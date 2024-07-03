@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 800,
+    height: 600
+});
+
+var option = {
+    title: {
+        text: 'Calorie and Sugar Content in Different Fruits',
+        left: 'center',
+        top: '10'
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: function (params) {
+            return params.seriesName + '<br/>' + 
+                   'Fruit: ' + params.data[2] + '<br/>' + 
+                   'Calories: ' + params.data[0] + '<br/>' + 
+                   'Sugar: ' + params.data[1];
+        }
+    },
+    legend: {
+        data: ['Fruits'],
+        left: 'right',
+        top: '10'
+    },
+    xAxis: {
+        name: 'Calories',
+        type: 'value'
+    },
+    yAxis: {
+        name: 'Sugar (g)',
+        type: 'value'
+    },
+    series: [{
+        name: 'Fruits',
+        type: 'scatter',
+        itemStyle: {
+            color: '#FF6347'
+        },
+        data: [
+            [52, 10.39, 'Apple'],
+            [96, 12.23, 'Banana'],
+            [50, 8.0, 'Cherry'],
+            [277, 66.47, 'Date'],
+            [42, 6.89, 'Grapefruit'],
+            [61, 9.0, 'Kiwi'],
+            [29, 2.5, 'Lemon'],
+            [60, 14.8, 'Mango'],
+            [47, 9.35, 'Orange'],
+            [43, 7.8, 'Papaya'],
+            [50, 9.85, 'Pineapple'],
+            [32, 4.89, 'Strawberry'],
+            [30, 6.2, 'Watermelon']
+        ]
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

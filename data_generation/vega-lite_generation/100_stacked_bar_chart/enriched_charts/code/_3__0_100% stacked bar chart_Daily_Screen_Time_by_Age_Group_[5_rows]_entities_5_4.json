@@ -1,0 +1,212 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "100% Stacked Bar Chart of Time Spent on Various Leisure Activities Over Days of the Week",
+    "data": {
+        "values": [
+            {
+                "Day": "Monday",
+                "Reading": 20,
+                "Gaming": 30,
+                "TV": 25,
+                "Exercise": 25
+            },
+            {
+                "Day": "Tuesday",
+                "Reading": 25,
+                "Gaming": 25,
+                "TV": 30,
+                "Exercise": 20
+            },
+            {
+                "Day": "Wednesday",
+                "Reading": 30,
+                "Gaming": 20,
+                "TV": 25,
+                "Exercise": 25
+            },
+            {
+                "Day": "Thursday",
+                "Reading": 20,
+                "Gaming": 35,
+                "TV": 25,
+                "Exercise": 20
+            },
+            {
+                "Day": "Friday",
+                "Reading": 25,
+                "Gaming": 20,
+                "TV": 30,
+                "Exercise": 25
+            },
+            {
+                "Day": "Saturday",
+                "Reading": 20,
+                "Gaming": 25,
+                "TV": 35,
+                "Exercise": 20
+            },
+            {
+                "Day": "Sunday",
+                "Reading": 25,
+                "Gaming": 30,
+                "TV": 20,
+                "Exercise": 25
+            },
+            {
+                "Day": "Monday",
+                "Reading": 20,
+                "Gaming": 25,
+                "TV": 30,
+                "Exercise": 25
+            },
+            {
+                "Day": "Tuesday",
+                "Reading": 25,
+                "Gaming": 30,
+                "TV": 20,
+                "Exercise": 25
+            },
+            {
+                "Day": "Wednesday",
+                "Reading": 20,
+                "Gaming": 25,
+                "TV": 25,
+                "Exercise": 30
+            },
+            {
+                "Day": "Thursday",
+                "Reading": 25,
+                "Gaming": 20,
+                "TV": 30,
+                "Exercise": 25
+            },
+            {
+                "Day": "Friday",
+                "Reading": 30,
+                "Gaming": 25,
+                "TV": 20,
+                "Exercise": 25
+            },
+            {
+                "Day": "Saturday",
+                "Reading": 25,
+                "Gaming": 30,
+                "TV": 25,
+                "Exercise": 20
+            },
+            {
+                "Day": "Sunday",
+                "Reading": 20,
+                "Gaming": 25,
+                "TV": 30,
+                "Exercise": 25
+            }
+        ]
+    },
+    "padding": {
+        "left": 5,
+        "top": 40,
+        "right": 5,
+        "bottom": 20
+    },
+    "width": 500,
+    "height": 300,
+    "transform": [
+        {
+            "fold": [
+                "Reading",
+                "Gaming",
+                "TV",
+                "Exercise"
+            ],
+            "as": [
+                "Activity",
+                "Percentage"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "bar",
+        "tooltip": true
+    },
+    "encoding": {
+        "y": {
+            "field": "Day",
+            "type": "nominal",
+            "axis": {
+                "title": "Day of the Week"
+            },
+            "sort": null
+        },
+        "x": {
+            "field": "Percentage",
+            "type": "quantitative",
+            "stack": "normalize",
+            "axis": {
+                "format": ".0%",
+                "title": "Percentage"
+            }
+        },
+        "color": {
+            "field": "Activity",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Reading",
+                    "Gaming",
+                    "TV",
+                    "Exercise"
+                ],
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e",
+                    "#2ca02c",
+                    "#d62728"
+                ]
+            },
+            "legend": {
+                "title": "Leisure Activity"
+            }
+        },
+        "height": {
+            "band": 0.5
+        },
+        "tooltip": [
+            {
+                "field": "Day",
+                "type": "nominal",
+                "title": "Day"
+            },
+            {
+                "field": "Activity",
+                "type": "nominal",
+                "title": "Leisure Activity"
+            },
+            {
+                "field": "Percentage",
+                "type": "quantitative",
+                "title": "Percentage",
+                "format": ".0%"
+            }
+        ]
+    },
+    "title": {
+        "text": "Time Spent on Various Leisure Activities Over Days of the Week",
+        "anchor": "start",
+        "fontSize": 14
+    },
+    "config": {
+        "axisY": {
+            "titleFontSize": 10,
+            "labelFontSize": 10
+        },
+        "axisX": {
+            "titleFontSize": 10,
+            "labelFontSize": 10
+        },
+        "legend": {
+            "titleFontSize": 12,
+            "labelFontSize": 10
+        }
+    }
+}

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {renderer: 'canvas'});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Internet Traffic Growth Forecast',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'item'
+    },
+    legend: {
+        orient: 'vertical',
+        left: 'left',
+        top: '15%'
+    },
+    color: [
+        '#FF7F50', '#87CEFA', '#DA70D6', '#32CD32', '#6495ED',
+        '#FF69B4', '#BA55D3', '#CD5C5C', '#FFD700', '#48D1CC',
+        '#C71585', '#191970', '#F08080', '#778899', '#4682B4',
+        '#00FA9A', '#708090', '#6B8E23', '#FFA07A', '#20B2AA'
+    ],
+    series: [
+        {
+            name: 'Year',
+            type: 'pie',
+            radius: '50%',
+            data: [
+                { value: 35.7, name: '2021' },
+                { value: 38.4, name: '2022' },
+                { value: 41.2, name: '2023' },
+                { value: 44.0, name: '2024' },
+                { value: 46.7, name: '2025' },
+                { value: 49.4, name: '2026' },
+                { value: 52.1, name: '2027' },
+                { value: 54.7, name: '2028' },
+                { value: 57.2, name: '2029' },
+                { value: 59.6, name: '2030' }
+            ],
+            avoidLabelOverlap: false,
+            label: {
+                show: false,
+                position: 'center'
+            },
+            emphasis: {
+                label: {
+                    show: true,
+                    fontSize: '30',
+                    fontWeight: 'bold'
+                }
+            },
+            labelLine: {
+                show: false
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

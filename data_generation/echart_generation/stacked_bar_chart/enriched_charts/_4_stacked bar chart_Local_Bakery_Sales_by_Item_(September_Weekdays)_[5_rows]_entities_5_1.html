@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+option = null;
+
+option = {
+    title: {
+        text: 'Annual Sales Comparison by Category',
+        left: 'center',
+        top: 20
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    color: ['#C1232B','#27727B','#FCCE10','#E87C25','#B5C334'],
+    legend: {
+        top: '10%',
+        left: 'left',
+        orient: 'vertical'
+    },
+    grid: {
+        left: '20%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01],
+    },
+    yAxis: {
+        type: 'category',
+        data: ['2015', '2016', '2017', '2018', '2019', '2020']
+    },
+    series: [
+        {
+            name: 'Books',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            data: [320, 332, 351, 368, 385, 400],
+            barWidth: 20
+        },
+        {
+            name: 'Electronics',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            data: [602, 620, 630, 640, 650, 660],
+            barWidth: 20
+        },
+        {
+            name: 'Clothing',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            data: [233, 250, 245, 270, 276, 282],
+            barWidth: 20
+        },
+        {
+            name: 'Home & Kitchen',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            data: [210, 215, 225, 230, 240, 250],
+            barWidth: 20
+        },
+        {
+            name: 'Toys & Games',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            data: [120, 125, 132, 140, 145, 150],
+            barWidth: 20
+        }
+    ]
+};
+
+myChart.setOption(option, true);
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

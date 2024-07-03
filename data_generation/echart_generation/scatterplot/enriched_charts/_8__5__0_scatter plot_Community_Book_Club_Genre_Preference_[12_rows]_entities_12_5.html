@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+var option = {
+    title: {
+        text: 'Data Points Over Time',
+        left: 'center',
+        top: '10%'
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: '{a} <br/>{b} : {c}'
+    },
+    legend: {
+        data: ['Values'],
+        left: '10%',
+        top: '15%'
+    },
+    xAxis: {
+        type: 'category',
+        name: 'Time',
+        data: Array.from({length: 50}, (_, i) => i + 1)
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Values'
+    },
+    series: [
+        {
+            name: 'Values',
+            type: 'scatter',
+            itemStyle: {
+                color: '#ff7f0e'
+            },
+            data: [
+                [1, 50], [2, 48], [3, 45], [4, 43], [5, 40],
+                [6, 38], [7, 35], [8, 33], [9, 30], [10, 28],
+                [11, 25], [12, 23], [13, 21], [14, 20], [15, 18],
+                [16, 16], [17, 14], [18, 12], [19, 11], [20, 9],
+                [21, 8], [22, 6], [23, 5], [24, 4], [25, 2],
+                [26, 1], [27, 0], [28, -1], [29, -3], [30, -4],
+                [31, -5], [32, -6], [33, -8], [34, -9], [35, -10],
+                [36, -11], [37, -13], [38, -14], [39, -15], [40, -16],
+                [41, -18], [42, -19], [43, -20], [44, -21], [45, -23],
+                [46, -24], [47, -25], [48, -26], [49, -28], [50, -29]
+            ]
+        }
+    ]
+};
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

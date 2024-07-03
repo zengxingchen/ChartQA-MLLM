@@ -1,0 +1,157 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Line chart showing the trend of stock prices over a week.",
+    "title": {
+        "text": "Stock Prices of Leading Companies by Sector",
+        "fontSize": 16,
+        "anchor": "start",
+        "color": "black"
+    },
+    "width": 800,
+    "height": 600,
+    "data": {
+        "values": [
+            {
+                "Company": "Apple",
+                "Monday": 150.3,
+                "Tuesday": 152.4,
+                "Wednesday": 155.1,
+                "Thursday": 153.2,
+                "Friday": 157.6,
+                "Saturday": 159.8,
+                "Sunday": 160.4
+            },
+            {
+                "Company": "Google",
+                "Monday": 2784.5,
+                "Tuesday": 2795.2,
+                "Wednesday": 2802.3,
+                "Thursday": 2810.0,
+                "Friday": 2821.5,
+                "Saturday": 2830.6,
+                "Sunday": 2840.8
+            },
+            {
+                "Company": "Amazon",
+                "Monday": 3467.2,
+                "Tuesday": 3480.4,
+                "Wednesday": 3492.6,
+                "Thursday": 3487.3,
+                "Friday": 3500.8,
+                "Saturday": 3515.9,
+                "Sunday": 3520.7
+            },
+            {
+                "Company": "Tesla",
+                "Monday": 1024.4,
+                "Tuesday": 1030.2,
+                "Wednesday": 1040.6,
+                "Thursday": 1050.3,
+                "Friday": 1060.1,
+                "Saturday": 1072.8,
+                "Sunday": 1080.5
+            },
+            {
+                "Company": "Microsoft",
+                "Monday": 299.5,
+                "Tuesday": 302.1,
+                "Wednesday": 304.7,
+                "Thursday": 306.3,
+                "Friday": 308.9,
+                "Saturday": 310.4,
+                "Sunday": 312.2
+            },
+            {
+                "Company": "Facebook",
+                "Monday": 344.1,
+                "Tuesday": 346.8,
+                "Wednesday": 349.2,
+                "Thursday": 351.7,
+                "Friday": 354.3,
+                "Saturday": 356.8,
+                "Sunday": 358.1
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday",
+                "Friday",
+                "Saturday",
+                "Sunday"
+            ],
+            "as": [
+                "Day",
+                "Stock Price"
+            ]
+        }
+    ],
+    "mark": "line",
+    "encoding": {
+        "x": {
+            "field": "Day",
+            "type": "ordinal",
+            "title": "Day of the Week",
+            "axis": {
+                "titleFontSize": 12,
+                "labelAngle": -45
+            }
+        },
+        "y": {
+            "field": "Stock Price",
+            "type": "quantitative",
+            "title": "Stock Price (USD)",
+            "axis": {
+                "titleFontSize": 12
+            }
+        },
+        "color": {
+            "field": "Company",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Apple",
+                    "Google",
+                    "Amazon",
+                    "Tesla",
+                    "Microsoft",
+                    "Facebook"
+                ],
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e",
+                    "#2ca02c",
+                    "#d62728",
+                    "#9467bd",
+                    "#8c564b"
+                ]
+            },
+            "legend": {
+                "title": "Company"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Company",
+                "type": "nominal"
+            },
+            {
+                "field": "Day",
+                "type": "ordinal"
+            },
+            {
+                "field": "Stock Price",
+                "type": "quantitative"
+            }
+        ]
+    },
+    "config": {
+        "axisY": {
+            "minExtent": 30
+        }
+    }
+}

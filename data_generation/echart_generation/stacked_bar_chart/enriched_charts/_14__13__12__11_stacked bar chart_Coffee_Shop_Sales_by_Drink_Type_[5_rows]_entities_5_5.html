@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var option;
+
+option = {
+    title: {
+        text: 'Art & Design Trends',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {type: 'shadow'}
+    },
+    legend: {
+        data: ['Value1', 'Value2', 'Value3'],
+        top: 'bottom'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        data: ['Painting', 'Sculpture', 'Photography', 'Drawing', 'Digital Art', 'Graphic Design', 'Industrial Design', 'Interior Design', 'UI/UX Design', 'Fashion Design'],
+        axisLabel: {
+            interval: 0,
+            rotate: 30
+        }
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Value1',
+            type: 'bar',
+            stack: 'total',
+            barWidth: '50%',
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            itemStyle: {
+                color: '#5470C6'
+            },
+            data: [120, 232, 191, 234, 330, 420, 332, 391, 434, 530]
+        },
+        {
+            name: 'Value2',
+            type: 'bar',
+            stack: 'total',
+            barWidth: '50%',
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            itemStyle: {
+                color: '#91CC75'
+            },
+            data: [132, 201, 234, 290, 310, 432, 301, 334, 390, 510]
+        },
+        {
+            name: 'Value3',
+            type: 'bar',
+            stack: 'total',
+            barWidth: '50%',
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            itemStyle: {
+                color: '#EE6666'
+            },
+            data: [101, 154, 290, 330, 123, 401, 354, 290, 330, 423]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

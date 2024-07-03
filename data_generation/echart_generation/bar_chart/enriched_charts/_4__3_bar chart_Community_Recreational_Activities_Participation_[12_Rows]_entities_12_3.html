@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+var option = {
+    title: {
+        text: 'Interest in Various Topics',
+        left: 'center',
+        top: '5%'
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01]
+    },
+    yAxis: {
+        type: 'category',
+        data: [
+            'Future Technologies', 'Art & Design', 'Science & Nature', 'Health & Psychology', 'Culture & Society', 
+            'Economics & Finance', 'Education & Learning', 'Entertainment & Leisure', 'Environment & Climate Change', 
+            'Food & Nutrition', 'Travel & Adventure', 'Fashion & Beauty', 'Politics & Governance', 'Sports & Fitness', 
+            'History & Archaeology', 'Philosophy & Ethics', 'Music & Performing Arts', 'Literature & Writing', 
+            'Business & Entrepreneurship', 'Astronomy & Space Exploration'
+        ]
+    },
+    series: [
+        {
+            name: 'Interest Level',
+            type: 'bar',
+            data: [
+                150, 120, 170, 200, 180, 160, 190, 140, 210, 130, 155, 145, 175, 165, 135, 185, 195, 125, 175, 155
+            ],
+            itemStyle: {
+                color: function(params) {
+                    var colorList = [
+                        '#c23531', '#2f4554', '#61a0a8', '#d48265', '#91c7ae', 
+                        '#749f83', '#ca8622', '#bda29a', '#6e7074', '#546570', 
+                        '#c4ccd3', '#f05b72', '#ef5b9c', '#f47920', '#905a3d', 
+                        '#fab27b', '#2a5caa', '#444693', '#726930', '#b2d235'
+                    ];
+                    return colorList[params.dataIndex]
+                }
+            },
+            label: {
+                show: true,
+                position: 'right',
+                formatter: '{c}'
+            },
+            barWidth: 20
+        }
+    ]
+};
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

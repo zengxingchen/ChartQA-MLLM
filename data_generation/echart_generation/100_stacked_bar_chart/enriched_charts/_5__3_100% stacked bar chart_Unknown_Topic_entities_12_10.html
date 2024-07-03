@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var app = {};
+
+var option;
+option = {
+    color: ['#003366', '#006699', '#4cabce', '#e5323e', '#9fde63'],
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Manned Missions', 'Unmanned Missions', 'Discoveries', 'Funding', 'Public Interest'],
+        textStyle: {
+            color: '#666'
+        }
+    },
+    title: {
+        text: 'Astronomy & Space Exploration Trends 2000-2020',
+        left: 'center',
+        textStyle: {
+            fontSize: 18
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01]
+    },
+    yAxis: {
+        type: 'category',
+        data: ['2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020']
+    },
+    series: [
+        {
+            name: 'Manned Missions',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 20,
+            data: [25, 23, 24, 22, 26, 30, 28, 27, 29, 25, 24, 26, 27, 28, 26, 30, 27, 29, 28, 27, 26]
+        },
+        {
+            name: 'Unmanned Missions',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 20,
+            data: [20, 22, 18, 20, 19, 21, 23, 20, 19, 22, 24, 23, 21, 20, 22, 20, 22, 21, 24, 23, 25]
+        },
+        {
+            name: 'Discoveries',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 20,
+            data: [15, 18, 15, 17, 16, 14, 15, 18, 16, 20, 19, 17, 18, 15, 16, 17, 19, 18, 16, 15, 17]
+        },
+        {
+            name: 'Funding',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 20,
+            data: [30, 25, 33, 30, 27, 25, 24, 25, 26, 23, 22, 24, 25, 27, 26, 23, 22, 22, 22, 25, 22]
+        },
+        {
+            name: 'Public Interest',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 20,
+            data: [10, 12, 10, 11, 12, 10, 10, 10, 10, 10, 11, 10, 9, 10, 10, 10, 10, 10, 10, 10, 10]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

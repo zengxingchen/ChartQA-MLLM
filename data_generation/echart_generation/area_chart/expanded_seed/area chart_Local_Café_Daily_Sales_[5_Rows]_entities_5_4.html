@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+
+var data = [
+    {'Date': '2023-03-01', 'Sales (USD)': 1200}, 
+    {'Date': '2023-03-02', 'Sales (USD)': 1350}, 
+    {'Date': '2023-03-03', 'Sales (USD)': 1600}, 
+    {'Date': '2023-03-04', 'Sales (USD)': 1900}, 
+    {'Date': '2023-03-05', 'Sales (USD)': 1750}
+];
+
+// Processing data to suitable format for ECharts
+var dates = data.map(function(item) {
+    return item['Date'];
+});
+var sales = data.map(function(item) {
+    return item['Sales (USD)'];
+});
+
+var option = {
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            label: {
+                backgroundColor: '#6a7985'
+            }
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: [
+        {
+            type: 'category',
+            boundaryGap: false,
+            data: dates
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value'
+        }
+    ],
+    series: [
+        {
+            name: 'Sales',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: sales,
+            smooth: true, // Makes the line smooth
+            symbol: 'circle', // Defines the type of symbol for data points
+            symbolSize: 10, // Size of symbols
+            itemStyle: {
+                normal: {
+                    color: '#c23531',
+                    borderColor: 'rgba(194,53,49,0.5)',
+                    borderWidth: 12
+                }
+            },
+            lineStyle: {
+                width: 3,
+                shadowColor: 'rgba(0, 0, 0, 0.4)',
+                shadowBlur: 10,
+                shadowOffsetY: 10
+            },
+            markPoint: {
+                data: [
+                    {type: 'max', name: 'Maximum'},
+                    {type: 'min', name: 'Minimum'}
+                ]
+            },
+            markLine: {
+                data: [
+                    {type: 'average', name: 'Average'}
+                ]
+            }
+        }
+    ],
+    // Additional visual effects like gradient
+    color: ['#3398DB'],
+    backgroundColor: '#fff',
+    visualMap: {
+        top: 10,
+        right: 10,
+        pieces: [
+            {
+                gt: 0,
+                lte: 1500,
+                color: '#096'
+            },
+            {
+                gt: 1500,
+                lte: 1800,
+                color: '#ffde33'
+            },
+            {
+                gt: 1800,
+                color: '#cc0033'
+            }
+        ],
+        outOfRange: {
+            color: '#999'
+        }
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

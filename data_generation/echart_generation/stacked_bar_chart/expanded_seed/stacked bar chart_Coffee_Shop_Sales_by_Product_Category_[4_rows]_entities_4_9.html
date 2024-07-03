@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+const data = [
+  {'Date': '2023-03-01', 'Espresso': 120, 'Latte': 200, 'Tea': 80, 'Pastries': 150},
+  {'Date': '2023-03-02', 'Espresso': 130, 'Latte': 190, 'Tea': 85, 'Pastries': 165},
+  {'Date': '2023-03-03', 'Espresso': 140, 'Latte': 185, 'Tea': 90, 'Pastries': 160},
+  {'Date': '2023-03-04', 'Espresso': 150, 'Latte': 180, 'Tea': 95, 'Pastries': 170}
+];
+
+// Extract dates for the x-axis
+const dates = data.map(function (item) {
+  return item.Date;
+});
+
+// Extract data for the series
+const espressoData = data.map(function (item) {
+  return item.Espresso;
+});
+const latteData = data.map(function (item) {
+  return item.Latte;
+});
+const teaData = data.map(function (item) {
+  return item.Tea;
+});
+const pastriesData = data.map(function (item) {
+  return item.Pastries;
+});
+
+option = {
+  tooltip: {
+    trigger: 'axis',
+    axisPointer: {
+      type: 'shadow'
+    }
+  },
+  legend: {
+    data: ['Espresso', 'Latte', 'Tea', 'Pastries']
+  },
+  grid: {
+    left: '3%',
+    right: '4%',
+    bottom: '3%',
+    containLabel: true
+  },
+  xAxis: [
+    {
+      type: 'category',
+      data: dates
+    }
+  ],
+  yAxis: [
+    {
+      type: 'value'
+    }
+  ],
+  series: [
+    {
+      name: 'Espresso',
+      type: 'bar',
+      stack: 'total',
+      emphasis: {
+        focus: 'series'
+      },
+      data: espressoData
+    },
+    {
+      name: 'Latte',
+      type: 'bar',
+      stack: 'total',
+      emphasis: {
+        focus: 'series'
+      },
+      data: latteData
+    },
+    {
+      name: 'Tea',
+      type: 'bar',
+      stack: 'total',
+      emphasis: {
+        focus: 'series'
+      },
+      data: teaData
+    },
+    {
+      name: 'Pastries',
+      type: 'bar',
+      stack: 'total',
+      emphasis: {
+        focus: 'series'
+      },
+      data: pastriesData
+    }
+  ]
+};
+
+if (option && typeof option === 'object') {
+  myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

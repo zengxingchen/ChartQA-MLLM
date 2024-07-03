@@ -1,0 +1,179 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+        "values": [
+            {
+                "Month": "January",
+                "Online Courses": 5,
+                "Workshops": 3,
+                "Webinars": 2,
+                "Conferences": 4
+            },
+            {
+                "Month": "February",
+                "Online Courses": 6,
+                "Workshops": 4,
+                "Webinars": 3,
+                "Conferences": 2
+            },
+            {
+                "Month": "March",
+                "Online Courses": 7,
+                "Workshops": 2,
+                "Webinars": 4,
+                "Conferences": 3
+            },
+            {
+                "Month": "April",
+                "Online Courses": 8,
+                "Workshops": 3,
+                "Webinars": 5,
+                "Conferences": 1
+            },
+            {
+                "Month": "May",
+                "Online Courses": 6,
+                "Workshops": 4,
+                "Webinars": 3,
+                "Conferences": 3
+            },
+            {
+                "Month": "June",
+                "Online Courses": 5,
+                "Workshops": 5,
+                "Webinars": 2,
+                "Conferences": 4
+            },
+            {
+                "Month": "July",
+                "Online Courses": 4,
+                "Workshops": 3,
+                "Webinars": 2,
+                "Conferences": 3
+            },
+            {
+                "Month": "August",
+                "Online Courses": 6,
+                "Workshops": 4,
+                "Webinars": 3,
+                "Conferences": 2
+            },
+            {
+                "Month": "September",
+                "Online Courses": 7,
+                "Workshops": 3,
+                "Webinars": 4,
+                "Conferences": 3
+            },
+            {
+                "Month": "October",
+                "Online Courses": 8,
+                "Workshops": 4,
+                "Webinars": 5,
+                "Conferences": 1
+            },
+            {
+                "Month": "November",
+                "Online Courses": 6,
+                "Workshops": 5,
+                "Webinars": 3,
+                "Conferences": 3
+            },
+            {
+                "Month": "December",
+                "Online Courses": 5,
+                "Workshops": 4,
+                "Webinars": 2,
+                "Conferences": 4
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Online Courses",
+                "Workshops",
+                "Webinars",
+                "Conferences"
+            ],
+            "as": [
+                "Activity",
+                "Hours"
+            ]
+        }
+    ],
+    "width": 400,
+    "height": 300,
+    "mark": {
+        "type": "bar",
+        "width": {
+            "band": 0.6
+        }
+    },
+    "title": {
+        "text": "Learning Activities Per Month",
+        "subtitle": "Source: Education Data",
+        "subtitleFontStyle": "italic",
+        "subtitleFontSize": 10,
+        "align": "center",
+        "anchor": "middle",
+        "color": "black"
+    },
+    "encoding": {
+        "x": {
+            "field": "Month",
+            "type": "ordinal",
+            "axis": {
+                "title": "Month"
+            }
+        },
+        "y": {
+            "field": "Hours",
+            "type": "quantitative",
+            "stack": "zero",
+            "axis": {
+                "title": "Hours"
+            }
+        },
+        "color": {
+            "field": "Activity",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Online Courses",
+                    "Workshops",
+                    "Webinars",
+                    "Conferences"
+                ],
+                "range": [
+                    "#8c564b",
+                    "#e377c2",
+                    "#7f7f7f",
+                    "#bcbd22"
+                ]
+            },
+            "legend": {
+                "title": "Activity Type",
+                "orient": "bottom",
+                "titleAlign": "left"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Month",
+                "type": "ordinal",
+                "title": "Month"
+            },
+            {
+                "field": "Activity",
+                "type": "nominal",
+                "title": "Activity"
+            },
+            {
+                "field": "Hours",
+                "type": "quantitative",
+                "title": "Hours"
+            }
+        ]
+    }
+}

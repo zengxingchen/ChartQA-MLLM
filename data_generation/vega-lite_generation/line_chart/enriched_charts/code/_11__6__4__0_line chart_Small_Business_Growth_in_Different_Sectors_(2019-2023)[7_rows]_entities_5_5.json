@@ -1,0 +1,185 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Line chart of average annual temperatures by continent over recent years",
+    "data": {
+        "values": [
+            {
+                "Year": 2010,
+                "Americas": 14.8,
+                "Europe": 11.7,
+                "Asia": 16.4,
+                "Africa": 23.0,
+                "Oceania": 18.3
+            },
+            {
+                "Year": 2011,
+                "Americas": 14.6,
+                "Europe": 11.5,
+                "Asia": 16.2,
+                "Africa": 22.8,
+                "Oceania": 18.1
+            },
+            {
+                "Year": 2012,
+                "Americas": 14.7,
+                "Europe": 11.6,
+                "Asia": 16.3,
+                "Africa": 22.9,
+                "Oceania": 18.2
+            },
+            {
+                "Year": 2013,
+                "Americas": 14.9,
+                "Europe": 11.8,
+                "Asia": 16.5,
+                "Africa": 23.1,
+                "Oceania": 18.4
+            },
+            {
+                "Year": 2014,
+                "Americas": 15.0,
+                "Europe": 11.9,
+                "Asia": 16.6,
+                "Africa": 23.2,
+                "Oceania": 18.5
+            },
+            {
+                "Year": 2015,
+                "Americas": 15.1,
+                "Europe": 12.0,
+                "Asia": 16.7,
+                "Africa": 23.3,
+                "Oceania": 18.6
+            },
+            {
+                "Year": 2016,
+                "Americas": 14.9,
+                "Europe": 11.8,
+                "Asia": 16.5,
+                "Africa": 23.1,
+                "Oceania": 18.4
+            },
+            {
+                "Year": 2017,
+                "Americas": 15.2,
+                "Europe": 12.1,
+                "Asia": 16.8,
+                "Africa": 23.4,
+                "Oceania": 18.7
+            },
+            {
+                "Year": 2018,
+                "Americas": 15.3,
+                "Europe": 12.2,
+                "Asia": 16.9,
+                "Africa": 23.5,
+                "Oceania": 18.8
+            },
+            {
+                "Year": 2019,
+                "Americas": 15.4,
+                "Europe": 12.3,
+                "Asia": 17.0,
+                "Africa": 23.6,
+                "Oceania": 18.9
+            },
+            {
+                "Year": 2020,
+                "Americas": 15.1,
+                "Europe": 12.0,
+                "Asia": 16.7,
+                "Africa": 23.3,
+                "Oceania": 18.6
+            },
+            {
+                "Year": 2021,
+                "Americas": 15.6,
+                "Europe": 12.5,
+                "Asia": 17.2,
+                "Africa": 23.8,
+                "Oceania": 19.1
+            },
+            {
+                "Year": 2022,
+                "Americas": 15.7,
+                "Europe": 12.6,
+                "Asia": 17.3,
+                "Africa": 23.9,
+                "Oceania": 19.2
+            },
+            {
+                "Year": 2023,
+                "Americas": 15.8,
+                "Europe": 12.7,
+                "Asia": 17.4,
+                "Africa": 24.0,
+                "Oceania": 19.3
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Americas",
+                "Europe",
+                "Asia",
+                "Africa",
+                "Oceania"
+            ],
+            "as": [
+                "Continent",
+                "Temperature"
+            ]
+        }
+    ],
+    "width": 800,
+    "height": 500,
+    "mark": {
+        "type": "line",
+        "point": true
+    },
+    "encoding": {
+        "x": {
+            "field": "Year",
+            "type": "ordinal",
+            "title": "Year"
+        },
+        "y": {
+            "field": "Temperature",
+            "type": "quantitative",
+            "title": "Average Annual Temperature (\u00b0C)",
+            "axis": {
+                "format": ".1f"
+            },
+            "scale": {
+                "reverse": true
+            }
+        },
+        "color": {
+            "field": "Continent",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Americas",
+                    "Europe",
+                    "Asia",
+                    "Africa",
+                    "Oceania"
+                ],
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e",
+                    "#2ca02c",
+                    "#d62728",
+                    "#9467bd"
+                ]
+            },
+            "title": "Continent"
+        }
+    },
+    "config": {
+        "axisY": {
+            "minExtent": 30
+        }
+    }
+}

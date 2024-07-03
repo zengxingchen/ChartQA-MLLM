@@ -1,0 +1,233 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "A 100% stacked horizontal bar chart showing the distribution of time spent on different music practice activities over a week",
+    "width": 800,
+    "height": 500,
+    "data": {
+        "values": [
+            {
+                "Day": "Monday",
+                "Guitar": 1,
+                "Piano": 2,
+                "Violin": 1,
+                "Drums": 1,
+                "Singing": 1
+            },
+            {
+                "Day": "Tuesday",
+                "Guitar": 1.5,
+                "Piano": 1,
+                "Violin": 1.5,
+                "Drums": 1,
+                "Singing": 1
+            },
+            {
+                "Day": "Wednesday",
+                "Guitar": 2,
+                "Piano": 1,
+                "Violin": 1,
+                "Drums": 1.5,
+                "Singing": 1
+            },
+            {
+                "Day": "Thursday",
+                "Guitar": 1,
+                "Piano": 2,
+                "Violin": 2,
+                "Drums": 1,
+                "Singing": 1
+            },
+            {
+                "Day": "Friday",
+                "Guitar": 1,
+                "Piano": 1,
+                "Violin": 1,
+                "Drums": 1,
+                "Singing": 2
+            },
+            {
+                "Day": "Saturday",
+                "Guitar": 1,
+                "Piano": 1.5,
+                "Violin": 1,
+                "Drums": 2,
+                "Singing": 1.5
+            },
+            {
+                "Day": "Sunday",
+                "Guitar": 2,
+                "Piano": 1,
+                "Violin": 2,
+                "Drums": 1,
+                "Singing": 1
+            },
+            {
+                "Day": "Monday",
+                "Guitar": 1.2,
+                "Piano": 1.8,
+                "Violin": 1.5,
+                "Drums": 0.5,
+                "Singing": 1
+            },
+            {
+                "Day": "Tuesday",
+                "Guitar": 1.6,
+                "Piano": 1.2,
+                "Violin": 1.1,
+                "Drums": 1.1,
+                "Singing": 1.4
+            },
+            {
+                "Day": "Wednesday",
+                "Guitar": 2.1,
+                "Piano": 0.9,
+                "Violin": 1.2,
+                "Drums": 1.7,
+                "Singing": 1.1
+            },
+            {
+                "Day": "Thursday",
+                "Guitar": 1.3,
+                "Piano": 1.9,
+                "Violin": 2.1,
+                "Drums": 1.2,
+                "Singing": 0.9
+            },
+            {
+                "Day": "Friday",
+                "Guitar": 1.5,
+                "Piano": 1.3,
+                "Violin": 1.4,
+                "Drums": 0.8,
+                "Singing": 2
+            },
+            {
+                "Day": "Saturday",
+                "Guitar": 0.9,
+                "Piano": 1.4,
+                "Violin": 1.3,
+                "Drums": 1.7,
+                "Singing": 1.5
+            },
+            {
+                "Day": "Sunday",
+                "Guitar": 2.2,
+                "Piano": 0.7,
+                "Violin": 2.3,
+                "Drums": 1.1,
+                "Singing": 1.2
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Guitar",
+                "Piano",
+                "Violin",
+                "Drums",
+                "Singing"
+            ],
+            "as": [
+                "Activity",
+                "Hours"
+            ]
+        },
+        {
+            "joinaggregate": [
+                {
+                    "op": "sum",
+                    "field": "Hours",
+                    "as": "TotalHours"
+                }
+            ],
+            "groupby": [
+                "Day"
+            ]
+        },
+        {
+            "calculate": "datum.Hours / datum.TotalHours",
+            "as": "PercentOfTotal"
+        }
+    ],
+    "mark": {
+        "type": "bar",
+        "width": {
+            "band": 0.7
+        }
+    },
+    "encoding": {
+        "y": {
+            "field": "Day",
+            "type": "ordinal",
+            "title": "Day of the Week",
+            "axis": {
+                "labelFontSize": 12,
+                "titleFontSize": 14
+            }
+        },
+        "x": {
+            "field": "PercentOfTotal",
+            "type": "quantitative",
+            "axis": {
+                "format": "%",
+                "title": "Percentage of Total Practice Time"
+            }
+        },
+        "color": {
+            "field": "Activity",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Guitar",
+                    "Piano",
+                    "Violin",
+                    "Drums",
+                    "Singing"
+                ],
+                "range": [
+                    "#4c78a8",
+                    "#f58518",
+                    "#54a24b",
+                    "#e45756",
+                    "#b279a2"
+                ]
+            },
+            "legend": {
+                "title": "Type of Music Practice",
+                "orient": "bottom"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Activity",
+                "type": "nominal",
+                "title": "Activity"
+            },
+            {
+                "field": "PercentOfTotal",
+                "type": "quantitative",
+                "title": "Percentage",
+                "format": ".1%"
+            }
+        ]
+    },
+    "title": {
+        "text": "Weekly Distribution of Time Spent on Music Practice",
+        "anchor": "start",
+        "offset": 5,
+        "color": "#333",
+        "fontSize": 16,
+        "fontWeight": "bold"
+    },
+    "config": {
+        "axis": {
+            "labelFontSize": 12,
+            "titleFontSize": 14
+        },
+        "legend": {
+            "labelFontSize": 12,
+            "titleFontSize": 14
+        }
+    }
+}

@@ -1,0 +1,176 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "A horizontal stacked bar chart representing the number of participants in various sports activities over months.",
+    "data": {
+        "values": [
+            {
+                "Month": "Jan",
+                "Basketball": 100,
+                "Soccer": 120,
+                "Tennis": 80,
+                "Swimming": 90,
+                "Cycling": 110
+            },
+            {
+                "Month": "Feb",
+                "Basketball": 110,
+                "Soccer": 130,
+                "Tennis": 85,
+                "Swimming": 95,
+                "Cycling": 115
+            },
+            {
+                "Month": "Mar",
+                "Basketball": 120,
+                "Soccer": 140,
+                "Tennis": 90,
+                "Swimming": 100,
+                "Cycling": 120
+            },
+            {
+                "Month": "Apr",
+                "Basketball": 130,
+                "Soccer": 150,
+                "Tennis": 95,
+                "Swimming": 105,
+                "Cycling": 125
+            },
+            {
+                "Month": "May",
+                "Basketball": 140,
+                "Soccer": 160,
+                "Tennis": 100,
+                "Swimming": 110,
+                "Cycling": 130
+            },
+            {
+                "Month": "Jun",
+                "Basketball": 150,
+                "Soccer": 170,
+                "Tennis": 105,
+                "Swimming": 115,
+                "Cycling": 135
+            },
+            {
+                "Month": "Jul",
+                "Basketball": 160,
+                "Soccer": 180,
+                "Tennis": 110,
+                "Swimming": 120,
+                "Cycling": 140
+            },
+            {
+                "Month": "Aug",
+                "Basketball": 170,
+                "Soccer": 190,
+                "Tennis": 115,
+                "Swimming": 125,
+                "Cycling": 145
+            },
+            {
+                "Month": "Sep",
+                "Basketball": 180,
+                "Soccer": 200,
+                "Tennis": 120,
+                "Swimming": 130,
+                "Cycling": 150
+            },
+            {
+                "Month": "Oct",
+                "Basketball": 190,
+                "Soccer": 210,
+                "Tennis": 125,
+                "Swimming": 135,
+                "Cycling": 155
+            },
+            {
+                "Month": "Nov",
+                "Basketball": 200,
+                "Soccer": 220,
+                "Tennis": 130,
+                "Swimming": 140,
+                "Cycling": 160
+            },
+            {
+                "Month": "Dec",
+                "Basketball": 210,
+                "Soccer": 230,
+                "Tennis": 135,
+                "Swimming": 145,
+                "Cycling": 165
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Basketball",
+                "Soccer",
+                "Tennis",
+                "Swimming",
+                "Cycling"
+            ],
+            "as": [
+                "Sport",
+                "Participants"
+            ]
+        }
+    ],
+    "width": 600,
+    "height": 800,
+    "mark": {
+        "type": "bar",
+        "height": {
+            "band": 0.7
+        }
+    },
+    "encoding": {
+        "y": {
+            "field": "Month",
+            "type": "nominal",
+            "axis": {
+                "title": "Month"
+            }
+        },
+        "x": {
+            "field": "Participants",
+            "type": "quantitative",
+            "stack": "zero",
+            "axis": {
+                "title": "Participants (in units)"
+            }
+        },
+        "color": {
+            "field": "Sport",
+            "type": "nominal",
+            "scale": {
+                "range": [
+                    "#1E90FF",
+                    "#FF6347",
+                    "#32CD32",
+                    "#FFD700",
+                    "#8A2BE2"
+                ]
+            },
+            "legend": {
+                "title": "Sports Activities"
+            }
+        }
+    },
+    "title": {
+        "text": "Monthly Participation in Sports Activities",
+        "anchor": "start",
+        "offset": 20,
+        "frame": "group"
+    },
+    "config": {
+        "background": "#f0f0f0",
+        "view": {
+            "stroke": "transparent"
+        },
+        "axis": {
+            "labelFontSize": 12,
+            "titleFontSize": 14
+        }
+    }
+}

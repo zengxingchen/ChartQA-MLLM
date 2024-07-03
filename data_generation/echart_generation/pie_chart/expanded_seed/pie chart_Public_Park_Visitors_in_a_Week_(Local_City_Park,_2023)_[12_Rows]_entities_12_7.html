@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+app.title = 'Pie Chart';
+
+// Process table data into format suitable for pie chart
+var originalData = [
+  {'Day of Week': 'Monday', 'Number of Visitors': 150},
+  {'Day of Week': 'Tuesday', 'Number of Visitors': 165},
+  {'Day of Week': 'Wednesday', 'Number of Visitors': 130},
+  {'Day of Week': 'Thursday', 'Number of Visitors': 175},
+  {'Day of Week': 'Friday', 'Number of Visitors': 200},
+  {'Day of Week': 'Saturday', 'Number of Visitors': 500},
+  {'Day of Week': 'Sunday', 'Number of Visitors': 450},
+  {'Day of Week': 'Second Monday', 'Number of Visitors': 160},
+  {'Day of Week': 'Second Tuesday', 'Number of Visitors': 170},
+  {'Day of Week': 'Second Wednesday', 'Number of Visitors': 140},
+  {'Day of Week': 'Second Thursday', 'Number of Visitors': 180},
+  {'Day of Week': 'Second Friday', 'Number of Visitors': 210}
+];
+
+// Map the data into a format that ECharts can understand
+var data = originalData.map(function(item) {
+  return {value: item['Number of Visitors'], name: item['Day of Week']};
+});
+
+// Define the pie chart option
+option = {
+  title: {
+    text: 'Weekly Visitors',
+    subtext: 'Visitor statistics',
+    left: 'center'
+  },
+  tooltip: {
+    trigger: 'item'
+  },
+  legend: {
+    orient: 'vertical',
+    left: 'left',
+    data: originalData.map(function (item) {
+      return item['Day of Week'];
+    })
+  },
+  series: [
+    {
+      name: 'Visitors',
+      type: 'pie',
+      radius: '50%',
+      data: data,
+      emphasis: {
+        itemStyle: {
+          shadowBlur: 10,
+          shadowOffsetX: 0,
+          shadowColor: 'rgba(0, 0, 0, 0.5)'
+        }
+      }
+    }
+  ],
+  toolbox: {
+    feature: {
+      saveAsImage: {show: true, title: "Save"}
+    }
+  },
+  color: ['#c23531', '#2f4554', '#61a0a8', '#d48265', '#91c7ae', '#749f83', '#ca8622', '#bda29a', '#6e7074', '#546570', '#c4ccd3', '#f05b72']
+};
+
+if (option && typeof option === 'object') {
+  myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

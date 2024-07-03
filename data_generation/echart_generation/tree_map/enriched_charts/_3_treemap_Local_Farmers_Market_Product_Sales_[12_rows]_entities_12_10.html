@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, { width: 800, height: 400 });
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Popularity of Art Styles',
+        left: 'center',
+        top: '10'
+    },
+    color: [
+        '#c23531', '#2f4554', '#61a0a8', '#d48265', 
+        '#91c7ae', '#749f83', '#ca8622', '#bda29a',
+        '#6e7074', '#546570', '#c4ccd3', '#f05b72',
+        '#ef5b9c', '#f47920', '#905a3d', '#fab27b',
+        '#2a5caa'
+    ],
+    series: [
+        {
+            name: 'Art Styles',
+            type: 'treemap',
+            visibleMin: 300,
+            label: {
+                show: true,
+                formatter: '{b}'
+            },
+            itemStyle: {
+                normal: {
+                    borderColor: '#fff'
+                }
+            },
+            data: [
+                { name: 'Impressionism', value: 120 },
+                { name: 'Cubism', value: 98 },
+                { name: 'Surrealism', value: 110 },
+                { name: 'Abstract', value: 130 },
+                { name: 'Expressionism', value: 90 },
+                { name: 'Pop Art', value: 95 },
+                { name: 'Fauvism', value: 75 },
+                { name: 'Art Deco', value: 85 },
+                { name: 'Digital Art', value: 145 },
+                { name: 'Conceptual Art', value: 80 },
+                { name: 'Minimalism', value: 70 },
+                { name: 'Performance Art', value: 65 },
+                { name: 'Art Nouveau', value: 55 },
+                { name: 'Renaissance', value: 150 },
+                { name: 'Baroque', value: 115 },
+                { name: 'Rococo', value: 60 },
+                { name: 'Neo-Classicism', value: 50 }
+            ]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

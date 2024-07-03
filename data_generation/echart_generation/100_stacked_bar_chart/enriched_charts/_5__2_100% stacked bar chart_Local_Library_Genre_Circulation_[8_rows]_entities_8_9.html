@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+
+var option;
+
+option = {
+    // Change the chart direction to vertical
+    // Add a headline at the top and make sure it does not overlap with the legend
+    // Change the topic to "Education & Learning"
+    title: {
+        text: 'Annual Spending Distribution - Education & Learning',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Education', 'Healthcare', 'Infrastructure', 'Research', 'Public Safety'],
+        top: 'bottom'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01]
+    },
+    yAxis: {
+        type: 'category',
+        data: ['2019', '2020', '2021', '2022']
+    },
+    series: [
+        {
+            name: 'Education',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35, // change the band width/height for bars
+            data: [25, 22, 20, 18],
+            itemStyle: {
+                color: '#4e79a7' // modify the color scheme
+            }
+        },
+        {
+            name: 'Healthcare',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35, // change the band width/height for bars
+            data: [20, 25, 30, 35],
+            itemStyle: {
+                color: '#f28e2b' // modify the color scheme
+            }
+        },
+        {
+            name: 'Infrastructure',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35, // change the band width/height for bars
+            data: [30, 28, 25, 22],
+            itemStyle: {
+                color: '#e15759' // modify the color scheme
+            }
+        },
+        {
+            name: 'Research',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35, // change the band width/height for bars
+            data: [15, 15, 15, 15],
+            itemStyle: {
+                color: '#76b7b2' // modify the color scheme
+            }
+        },
+        {
+            name: 'Public Safety',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35, // change the band width/height for bars
+            data: [10, 10, 10, 10],
+            itemStyle: {
+                color: '#59a14f' // modify the color scheme
+            }
+        }
+    ]
+};
+
+option && myChart.setOption(option);
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

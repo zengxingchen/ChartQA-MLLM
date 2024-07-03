@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Market Share of Web Browsers in 2023',
+        left: 'center',
+        top: 20
+    },
+    tooltip: {
+        trigger: 'item'
+    },
+    legend: {
+        orient: 'vertical',
+        left: 'left',
+        top: 50
+    },
+    color: [
+        '#3366CC', '#109618', '#FF9900', '#3B3EAC', '#0099C6', '#DD4477'
+    ],
+    series: [
+        {
+            type: 'pie',
+            radius: '70%',
+            center: ['50%', '60%'],
+            data: [
+                { value: 63.59, name: 'Chrome' },
+                { value: 19.14, name: 'Safari' },
+                { value: 3.73, name: 'Edge' },
+                { value: 3.65, name: 'Firefox' },
+                { value: 2.74, name: 'Samsung Internet' },
+                { value: 2.19, name: 'Opera' },
+            ],
+            emphasis: {
+                itemStyle: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            },
+            itemStyle: {
+                borderRadius: 5,
+                borderColor: '#fff',
+                borderWidth: 2
+            },
+            label: {
+                position: 'outside',
+                formatter: '{b}: {d}%'
+            },
+            labelLine: {
+                length: 20,
+                length2: 30,
+                smooth: 0.5
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

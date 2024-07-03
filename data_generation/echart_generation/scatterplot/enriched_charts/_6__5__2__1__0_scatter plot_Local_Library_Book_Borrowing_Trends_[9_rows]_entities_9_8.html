@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+var option = {
+    title: {
+        text: 'Correlation Between Study Hours and Exam Scores',
+        left: 'center',
+        top: '5%'
+    },
+    tooltip: {
+        trigger: 'item'
+    },
+    legend: {
+        data: ['Data Points'],
+        top: '10%',
+        left: 'right'
+    },
+    xAxis: {
+        type: 'value',
+        name: 'Study Hours',
+        nameLocation: 'middle',
+        nameTextStyle: {
+            padding: 20
+        }
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Exam Scores',
+        nameLocation: 'middle',
+        nameTextStyle: {
+            padding: 30
+        }
+    },
+    series: [
+        {
+            name: 'Data Points',
+            type: 'scatter',
+            itemStyle: {
+                color: '#1f78b4'
+            },
+            data: [
+                [1.1, 3.2],
+                [2.3, 4.1],
+                [3.5, 5.6],
+                [4.7, 7.2],
+                [5.9, 8.4],
+                [6.2, 10.1],
+                [7.5, 9.3],
+                [8.3, 11.5],
+                [9.1, 12.7],
+                [10.0, 13.6],
+                [11.2, 14.9],
+                [12.5, 16.3],
+                [13.3, 17.1],
+                [14.6, 18.5],
+                [15.8, 19.9],
+                [16.4, 20.7],
+                [17.7, 21.5],
+                [18.5, 22.8],
+                [19.3, 23.6],
+                [20.0, 24.4]
+            ]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

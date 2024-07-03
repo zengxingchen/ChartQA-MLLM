@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var app = {};
+
+var option;
+
+option = {
+  title: {
+    text: 'Internet Users Over Time',
+    left: 'center',
+    top: 20
+  },
+  tooltip: {
+    trigger: 'axis',
+    axisPointer: {
+      type: 'cross',
+      label: {
+        backgroundColor: '#6a7985'
+      }
+    }
+  },
+  legend: {
+    data: ['Internet Users'],
+    top: 50
+  },
+  toolbox: {
+    feature: {
+      saveAsImage: {}
+    }
+  },
+  grid: {
+    left: '3%',
+    right: '4%',
+    bottom: '3%',
+    containLabel: true
+  },
+  xAxis: [
+    {
+      type: 'category',
+      boundaryGap: false,
+      data: ['1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020']
+    }
+  ],
+  yAxis: [
+    {
+      type: 'value'
+    }
+  ],
+  series: [
+    {
+      name: 'Internet Users',
+      type: 'line',
+      stack: 'Total',
+      areaStyle: {},
+      emphasis: {
+        focus: 'series'
+      },
+      data: [
+        2.63, 4.03, 5.88, 9.16, 16.41, 26.63, 44.41, 70.42, 108.39, 165.2, 248.3, 391.4, 665.3, 781.7, 913.6, 1039.2, 1161.9, 1370.7, 1576.4, 1797.1, 2026.5, 2256.9, 2495.1, 2784.2, 3024.7, 3276.3, 3499.8, 3665.1, 3883.5, 4134.9, 4293.5
+      ],
+      color: '#008c76', // Custom color
+    }
+  ],
+  markLine: {
+    data: [
+      {
+        type: 'average',
+        name: 'Average'
+      }
+    ]
+  },
+  markPoint: {
+    data: [
+      {
+        type: 'max',
+        name: 'Max'
+      },
+      {
+        type: 'min',
+        name: 'Min'
+      }
+    ]
+  }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

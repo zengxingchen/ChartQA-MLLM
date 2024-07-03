@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 450});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Endangered Species Observations',
+        left: 'center',
+        top: 20,
+        textStyle: {
+            color: '#333',
+            fontSize: 24
+        }
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['Endangered Species Count'],
+        left: 'left'
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Endangered Species Count',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [120, 115, 110, 105, 100, 95, 90, 85, 80, 75, 70, 65],
+            markPoint: {
+                data: [
+                    {type: 'max', name: 'Maximum'},
+                    {type: 'min', name: 'Minimum'}
+                ]
+            },
+            lineStyle: {
+                color: '#FFA07A'
+            },
+            itemStyle: {
+                color: '#FF6347'
+            },
+        }
+    ],
+    color: ['#FFA07A', '#20B2AA', '#778899']
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

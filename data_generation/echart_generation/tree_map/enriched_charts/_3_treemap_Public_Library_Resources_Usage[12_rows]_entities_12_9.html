@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 800,
+    height: 600
+});
+var app = {};
+option = null;
+
+option = {
+    title: {
+        text: 'Popularity of Online Learning Platforms',
+        left: 'center'
+    },
+    tooltip: {
+        formatter: function (info) {
+            var value = info.value;
+            var treePathInfo = info.treePathInfo;
+            var treePath = [];
+
+            for (var i = 1; i < treePathInfo.length; i++) {
+                treePath.push(treePathInfo[i].name);
+            }
+
+            return [
+                '<div class="tooltip-title">' + echarts.format.encodeHTML(treePath.join('/')) + '</div>',
+                'Courses: ' + echarts.format.addCommas(value) + ' classes'
+            ].join('');
+        }
+    },
+    series: [{
+        name: 'Online Learning Platforms',
+        type: 'treemap',
+        visibleMin: 300,
+        label: {
+            show: true,
+            formatter: '{b}'
+        },
+        itemStyle: {
+            normal: {
+                borderColor: '#fff'
+            }
+        },
+        levels: [
+            {
+                itemStyle: {
+                    normal: {
+                        borderWidth: 0,
+                        gapWidth: 5
+                    }
+                }
+            }
+        ],
+        data: [
+            {name: 'Udemy', value: 2345},
+            {name: 'Coursera', value: 1567},
+            {name: 'Lynda', value: 987},
+            {name: 'Khan Academy', value: 852},
+            {name: 'edX', value: 743},
+            {name: 'Skillshare', value: 652},
+            {name: 'Codecademy', value: 524},
+            {name: 'FutureLearn', value: 488},
+            {name: 'Pluralsight', value: 401},
+            {name: 'Udacity', value: 365},
+            {name: 'Treehouse', value: 310},
+            {name: 'Canvas Network', value: 220}
+        ],
+        color: [
+            '#5F95FF', '#61DDAA', '#657797', '#F6BD16', '#7262fd', 
+            '#78D3F8', '#9661BC', '#F6903D', '#008685', '#F08BB4',
+            '#C5E1A5', '#FFAB91'
+        ]
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

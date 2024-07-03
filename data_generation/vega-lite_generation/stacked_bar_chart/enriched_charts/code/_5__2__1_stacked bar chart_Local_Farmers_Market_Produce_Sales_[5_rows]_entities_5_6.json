@@ -1,0 +1,188 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Monthly revenue from various types of sports equipment at a store.",
+    "data": {
+        "values": [
+            {
+                "Month": "2023-01",
+                "Tennis": 5400,
+                "Soccer": 3200,
+                "Basketball": 2100,
+                "Baseball": 2800,
+                "Running": 3100
+            },
+            {
+                "Month": "2023-02",
+                "Tennis": 5200,
+                "Soccer": 3300,
+                "Basketball": 2300,
+                "Baseball": 2700,
+                "Running": 3300
+            },
+            {
+                "Month": "2023-03",
+                "Tennis": 5000,
+                "Soccer": 3400,
+                "Basketball": 2200,
+                "Baseball": 2600,
+                "Running": 3500
+            },
+            {
+                "Month": "2023-04",
+                "Tennis": 5500,
+                "Soccer": 3500,
+                "Basketball": 2400,
+                "Baseball": 3100,
+                "Running": 3700
+            },
+            {
+                "Month": "2023-05",
+                "Tennis": 5600,
+                "Soccer": 3600,
+                "Basketball": 2500,
+                "Baseball": 3200,
+                "Running": 3900
+            },
+            {
+                "Month": "2023-06",
+                "Tennis": 5700,
+                "Soccer": 3700,
+                "Basketball": 2600,
+                "Baseball": 3300,
+                "Running": 4100
+            },
+            {
+                "Month": "2023-07",
+                "Tennis": 5800,
+                "Soccer": 3800,
+                "Basketball": 2700,
+                "Baseball": 3400,
+                "Running": 4200
+            },
+            {
+                "Month": "2023-08",
+                "Tennis": 5900,
+                "Soccer": 3900,
+                "Basketball": 2800,
+                "Baseball": 3500,
+                "Running": 4400
+            },
+            {
+                "Month": "2023-09",
+                "Tennis": 6000,
+                "Soccer": 4000,
+                "Basketball": 2900,
+                "Baseball": 3600,
+                "Running": 4500
+            },
+            {
+                "Month": "2023-10",
+                "Tennis": 6100,
+                "Soccer": 4100,
+                "Basketball": 3000,
+                "Baseball": 3700,
+                "Running": 4600
+            },
+            {
+                "Month": "2023-11",
+                "Tennis": 6200,
+                "Soccer": 4200,
+                "Basketball": 3100,
+                "Baseball": 3800,
+                "Running": 4800
+            },
+            {
+                "Month": "2023-12",
+                "Tennis": 6300,
+                "Soccer": 4300,
+                "Basketball": 3200,
+                "Baseball": 3900,
+                "Running": 4900
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Tennis",
+                "Soccer",
+                "Basketball",
+                "Baseball",
+                "Running"
+            ],
+            "as": [
+                "SportType",
+                "Revenue"
+            ]
+        }
+    ],
+    "mark": "bar",
+    "width": 600,
+    "height": 500,
+    "title": {
+        "text": "Store Monthly Revenue by Sports Equipment",
+        "anchor": "middle",
+        "subtitle": "Monthly Revenue in USD, 2023",
+        "subtitleFontStyle": "italic",
+        "subtitleFontSize": 12,
+        "color": "black",
+        "offset": 10
+    },
+    "encoding": {
+        "x": {
+            "field": "Revenue",
+            "type": "quantitative",
+            "stack": "zero",
+            "axis": {
+                "title": "Total Revenue (USD)"
+            }
+        },
+        "y": {
+            "field": "Month",
+            "type": "ordinal",
+            "axis": {
+                "title": "Month"
+            }
+        },
+        "color": {
+            "field": "SportType",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Tennis",
+                    "Soccer",
+                    "Basketball",
+                    "Baseball",
+                    "Running"
+                ],
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e",
+                    "#2ca02c",
+                    "#d62728",
+                    "#9467bd"
+                ]
+            },
+            "title": "Sport Type"
+        },
+        "tooltip": [
+            {
+                "field": "SportType",
+                "type": "nominal",
+                "title": "Sport Type"
+            },
+            {
+                "field": "Revenue",
+                "type": "quantitative",
+                "title": "Revenue (USD)"
+            }
+        ]
+    },
+    "config": {
+        "bar": {
+            "height": {
+                "band": 0.6
+            }
+        }
+    }
+}

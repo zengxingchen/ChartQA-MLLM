@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+// Processing the table data into a format that ECharts understands.
+const data = [
+  {'Date': '2023-03-01', 'Steps': 7500},
+  {'Date': '2023-03-02', 'Steps': 8200},
+  {'Date': '2023-03-03', 'Steps': 6000},
+  {'Date': '2023-03-04', 'Steps': 9100},
+  {'Date': '2023-03-05', 'Steps': 10800},
+  {'Date': '2023-03-06', 'Steps': 5000},
+  {'Date': '2023-03-07', 'Steps': 7600}
+];
+
+// Extracting the dates and the steps into separate arrays
+let dates = data.map(item => item.Date);
+let steps = data.map(item => item.Steps);
+
+option = {
+  // Title of the chart
+  title: {
+    text: 'Daily Steps'
+  },
+  // Tooltips to show details of data points
+  tooltip: {
+    trigger: 'axis',
+    axisPointer: {
+      type: 'cross',
+      label: {
+        backgroundColor: '#6a7985'
+      }
+    }
+  },
+  // Legend of the chart
+  legend: {
+    data: ['Steps']
+  },
+  // Settings related to the toolbox (saving, etc.)
+  toolbox: {
+    feature: {
+      saveAsImage: {}
+    }
+  },
+  // Settings related to the grid layout of the chart
+  grid: {
+    left: '3%',
+    right: '4%',
+    bottom: '3%',
+    containLabel: true
+  },
+  // Settings related to the X Axis
+  xAxis: [
+    {
+      type: 'category',
+      boundaryGap: false, // This line is important for an area chart (line chart with the area filled)
+      data: dates // Dates will be shown in the X axis
+    }
+  ],
+  // Settings related to the Y Axis
+  yAxis: [
+    {
+      type: 'value'
+    }
+  ],
+  // Series of data and how they should be displayed
+  series: [
+    {
+      name: 'Steps',
+      type: 'line',
+      stack: 'Total',
+      areaStyle: {}, // This object enables the area below the line to be filled
+      emphasis: {
+        focus: 'series'
+      },
+      data: steps // Steps data will be represented by the line
+    }
+  ],
+  // Colors of the series
+  color: ['#5470C6', '#91CC75', '#EE6666'],
+  // Animation settings
+  animationEasing: 'elasticOut',
+  animationDelayUpdate: function (idx) {
+      return idx * 5;
+  }
+};
+
+// Assign the configuration option to the chart instance
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

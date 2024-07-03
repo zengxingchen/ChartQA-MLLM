@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Monthly Food Production',
+        left: 'center',
+        top: '5%'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Fruits', 'Vegetables', 'Grains', 'Dairy', 'Meat'],
+        top: '10%'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        data: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Fruits',
+            type: 'bar',
+            stack: 'Total',
+            barWidth: '30%',
+            data: [120, 132, 101, 134, 90, 230, 210, 180, 150, 120, 110, 130],
+            itemStyle: {
+                color: '#ff6666'
+            },
+            label: {
+                show: true,
+                position: 'insideRight'
+            }
+        },
+        {
+            name: 'Vegetables',
+            type: 'bar',
+            stack: 'Total',
+            barWidth: '30%',
+            data: [220, 182, 191, 234, 290, 330, 310, 280, 250, 220, 210, 230],
+            itemStyle: {
+                color: '#66b3ff'
+            },
+            label: {
+                show: true,
+                position: 'insideRight'
+            }
+        },
+        {
+            name: 'Grains',
+            type: 'bar',
+            stack: 'Total',
+            barWidth: '30%',
+            data: [150, 232, 201, 154, 190, 330, 410, 360, 320, 290, 280, 300],
+            itemStyle: {
+                color: '#99ff99'
+            },
+            label: {
+                show: true,
+                position: 'insideRight'
+            }
+        },
+        {
+            name: 'Dairy',
+            type: 'bar',
+            stack: 'Total',
+            barWidth: '30%',
+            data: [320, 332, 301, 334, 390, 330, 320, 310, 280, 260, 250, 270],
+            itemStyle: {
+                color: '#ffcc66'
+            },
+            label: {
+                show: true,
+                position: 'insideRight'
+            }
+        },
+        {
+            name: 'Meat',
+            type: 'bar',
+            stack: 'Total',
+            barWidth: '30%',
+            data: [820, 932, 901, 934, 1290, 1330, 1320, 1300, 1250, 1200, 1180, 1250],
+            itemStyle: {
+                color: '#ff99cc'
+            },
+            label: {
+                show: true,
+                position: 'insideRight'
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

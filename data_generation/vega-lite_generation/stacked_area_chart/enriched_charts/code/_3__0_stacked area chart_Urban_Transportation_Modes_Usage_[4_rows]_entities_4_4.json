@@ -1,0 +1,184 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Stacked area chart showing monthly average temperatures over various cities",
+    "width": 500,
+    "height": 300,
+    "title": {
+        "text": "Monthly Average Temperatures Across Cities",
+        "fontSize": 20,
+        "anchor": "start",
+        "color": "black",
+        "offset": 20
+    },
+    "data": {
+        "values": [
+            {
+                "Month": "January",
+                "New York": -1,
+                "Tokyo": 5,
+                "Paris": 3,
+                "Sydney": 22
+            },
+            {
+                "Month": "February",
+                "New York": 0,
+                "Tokyo": 6,
+                "Paris": 4,
+                "Sydney": 22
+            },
+            {
+                "Month": "March",
+                "New York": 4,
+                "Tokyo": 10,
+                "Paris": 8,
+                "Sydney": 20
+            },
+            {
+                "Month": "April",
+                "New York": 11,
+                "Tokyo": 15,
+                "Paris": 12,
+                "Sydney": 18
+            },
+            {
+                "Month": "May",
+                "New York": 16,
+                "Tokyo": 20,
+                "Paris": 16,
+                "Sydney": 14
+            },
+            {
+                "Month": "June",
+                "New York": 21,
+                "Tokyo": 22,
+                "Paris": 20,
+                "Sydney": 11
+            },
+            {
+                "Month": "July",
+                "New York": 25,
+                "Tokyo": 26,
+                "Paris": 24,
+                "Sydney": 9
+            },
+            {
+                "Month": "August",
+                "New York": 24,
+                "Tokyo": 27,
+                "Paris": 23,
+                "Sydney": 11
+            },
+            {
+                "Month": "September",
+                "New York": 20,
+                "Tokyo": 23,
+                "Paris": 18,
+                "Sydney": 14
+            },
+            {
+                "Month": "October",
+                "New York": 14,
+                "Tokyo": 18,
+                "Paris": 13,
+                "Sydney": 17
+            },
+            {
+                "Month": "November",
+                "New York": 8,
+                "Tokyo": 13,
+                "Paris": 8,
+                "Sydney": 19
+            },
+            {
+                "Month": "December",
+                "New York": 2,
+                "Tokyo": 8,
+                "Paris": 4,
+                "Sydney": 21
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "New York",
+                "Tokyo",
+                "Paris",
+                "Sydney"
+            ],
+            "as": [
+                "City",
+                "Temperature"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "area",
+        "line": true,
+        "opacity": 0.8
+    },
+    "encoding": {
+        "x": {
+            "field": "Month",
+            "type": "ordinal",
+            "axis": {
+                "title": "Month"
+            }
+        },
+        "y": {
+            "field": "Temperature",
+            "type": "quantitative",
+            "stack": "zero",
+            "axis": {
+                "title": "Temperature (\u00b0C)"
+            }
+        },
+        "color": {
+            "field": "City",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "New York",
+                    "Tokyo",
+                    "Paris",
+                    "Sydney"
+                ],
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e",
+                    "#2ca02c",
+                    "#d62728"
+                ]
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Month",
+                "type": "ordinal",
+                "title": "Month"
+            },
+            {
+                "field": "City",
+                "type": "nominal",
+                "title": "City"
+            },
+            {
+                "field": "Temperature",
+                "type": "quantitative",
+                "title": "Temperature",
+                "format": ".1f"
+            }
+        ]
+    },
+    "config": {
+        "view": {
+            "stroke": "transparent"
+        },
+        "legend": {
+            "title": null,
+            "labelFontSize": 12,
+            "symbolSize": 100,
+            "offset": 15
+        }
+    }
+}

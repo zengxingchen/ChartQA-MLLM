@@ -1,0 +1,180 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Monthly Visitor Count from Different Countries Over Years",
+    "width": 600,
+    "height": 400,
+    "title": {
+        "text": "Global Monthly Visitor Count",
+        "fontSize": 18,
+        "align": "left",
+        "anchor": "start",
+        "dx": 10,
+        "dy": -10,
+        "color": "#2D3E50"
+    },
+    "data": {
+        "values": [
+            {
+                "Month": "January",
+                "USA": 50000,
+                "China": 30000,
+                "India": 20000,
+                "Brazil": 15000
+            },
+            {
+                "Month": "February",
+                "USA": 52000,
+                "China": 31000,
+                "India": 21000,
+                "Brazil": 16000
+            },
+            {
+                "Month": "March",
+                "USA": 54000,
+                "China": 32000,
+                "India": 22000,
+                "Brazil": 17000
+            },
+            {
+                "Month": "April",
+                "USA": 56000,
+                "China": 33000,
+                "India": 23000,
+                "Brazil": 18000
+            },
+            {
+                "Month": "May",
+                "USA": 58000,
+                "China": 34000,
+                "India": 24000,
+                "Brazil": 19000
+            },
+            {
+                "Month": "June",
+                "USA": 60000,
+                "China": 35000,
+                "India": 25000,
+                "Brazil": 20000
+            },
+            {
+                "Month": "July",
+                "USA": 62000,
+                "China": 36000,
+                "India": 26000,
+                "Brazil": 21000
+            },
+            {
+                "Month": "August",
+                "USA": 64000,
+                "China": 37000,
+                "India": 27000,
+                "Brazil": 22000
+            },
+            {
+                "Month": "September",
+                "USA": 66000,
+                "China": 38000,
+                "India": 28000,
+                "Brazil": 23000
+            },
+            {
+                "Month": "October",
+                "USA": 68000,
+                "China": 39000,
+                "India": 29000,
+                "Brazil": 24000
+            },
+            {
+                "Month": "November",
+                "USA": 70000,
+                "China": 40000,
+                "India": 30000,
+                "Brazil": 25000
+            },
+            {
+                "Month": "December",
+                "USA": 72000,
+                "China": 41000,
+                "India": 31000,
+                "Brazil": 26000
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "USA",
+                "China",
+                "India",
+                "Brazil"
+            ],
+            "as": [
+                "Country",
+                "Visitors"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "area",
+        "line": true,
+        "opacity": 0.7
+    },
+    "encoding": {
+        "x": {
+            "field": "Month",
+            "type": "ordinal",
+            "axis": {
+                "title": "Month"
+            }
+        },
+        "y": {
+            "field": "Visitors",
+            "type": "quantitative",
+            "stack": "zero",
+            "axis": {
+                "title": "Visitor Count"
+            }
+        },
+        "color": {
+            "field": "Country",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "USA",
+                    "China",
+                    "India",
+                    "Brazil"
+                ],
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e",
+                    "#2ca02c",
+                    "#d62728"
+                ]
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Month",
+                "type": "ordinal",
+                "title": "Month"
+            },
+            {
+                "field": "Country",
+                "type": "nominal",
+                "title": "Country"
+            },
+            {
+                "field": "Visitors",
+                "type": "quantitative",
+                "title": "Visitors",
+                "format": ",d"
+            }
+        ]
+    },
+    "config": {
+        "view": {
+            "stroke": "transparent"
+        }
+    }
+}

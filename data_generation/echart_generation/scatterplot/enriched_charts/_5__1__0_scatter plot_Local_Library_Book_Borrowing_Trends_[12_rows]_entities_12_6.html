@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var option;
+
+option = {
+    title: {
+        text: 'Stock Price vs. Volume',
+        left: 'center',
+        top: '10'
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: function (params) {
+            return 'Price: ' + params.value[0] + '<br/>Volume: ' + params.value[1];
+        }
+    },
+    legend: {
+        data: ['Stock Data'],
+        left: '10',
+        top: 'bottom'
+    },
+    xAxis: {
+        name: 'Price',
+        type: 'value',
+        scale: true
+    },
+    yAxis: {
+        name: 'Volume',
+        type: 'value',
+        scale: true
+    },
+    series: [{
+        name: 'Stock Data',
+        type: 'scatter',
+        itemStyle: {
+            color: '#1f78b4'
+        },
+        data: [
+            [100,1200],
+            [101,1300],
+            [102,1250],
+            [98,1400],
+            [105,1500],
+            [99,1450],
+            [104,1350],
+            [103,1550],
+            [97,1600],
+            [96,1580],
+            [107,1480],
+            [95,1650],
+            [94,1700],
+            [108,1750],
+            [110,1800],
+            [93,1850],
+            [109,1900],
+            [112,1950],
+            [113,2000],
+            [111,2050],
+            [115,2100],
+            [114,2150],
+            [116,2200],
+            [117,2250],
+            [118,2300]
+        ]
+    }],
+    grid: {
+        width: '80%',
+        height: '70%',
+        left: '10%',
+        top: '20%'
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

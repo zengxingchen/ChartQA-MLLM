@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 400});
+var app = {};
+
+var option;
+
+option = {
+  title: {
+    text: 'Decade Summary of Graduates by Discipline',
+    left: 'center'
+  },
+  tooltip: {
+    trigger: 'axis',
+    axisPointer: {
+      type: 'cross',
+      label: {
+        backgroundColor: '#6a7985'
+      }
+    }
+  },
+  legend: {
+    data: ['Engineering', 'Medicine', 'Arts'],
+    top: 'bottom'
+  },
+  toolbox: {
+    feature: {
+      saveAsImage: {}
+    }
+  },
+  grid: {
+    left: '3%',
+    right: '4%',
+    bottom: '3%',
+    containLabel: true
+  },
+  xAxis: [
+    {
+      type: 'category',
+      boundaryGap: false,
+      data: ['2010','2011','2012','2013','2014','2015','2016','2017','2018','2019','2020']
+    }
+  ],
+  yAxis: [
+    {
+      type: 'value'
+    }
+  ],
+  series: [
+    {
+      name: 'Engineering',
+      type: 'line',
+      stack: 'Total',
+      areaStyle: {},
+      emphasis: { focus: 'series' },
+      data: [120, 130, 135, 140, 150, 155, 160, 165, 170, 175, 180],
+      color: '#34bfa3'
+    },
+    {
+      name: 'Medicine',
+      type: 'line',
+      stack: 'Total',
+      areaStyle: {},
+      emphasis: { focus: 'series' },
+      data: [80, 85, 90, 95, 100, 105, 110, 115, 120, 125, 130],
+      color: '#f44336'
+    },
+    {
+      name: 'Arts',
+      type: 'line',
+      stack: 'Total',
+      areaStyle: {},
+      emphasis: { focus: 'series' },
+      data: [70, 75, 80, 85, 90, 95, 100, 105, 110, 115, 120],
+      color: '#3f51b5'
+    }
+  ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

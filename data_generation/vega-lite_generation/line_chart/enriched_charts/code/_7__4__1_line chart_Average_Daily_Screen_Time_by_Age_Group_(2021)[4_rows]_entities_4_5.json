@@ -1,0 +1,161 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Line chart showing average daily meditation time by age group.",
+    "title": {
+        "text": "Average Daily Meditation Time by Age Group",
+        "fontSize": 18,
+        "anchor": "start",
+        "color": "#4B0082"
+    },
+    "width": 800,
+    "height": 500,
+    "data": {
+        "values": [
+            {
+                "Age Group": "Teens",
+                "January": 0.5,
+                "February": 0.6,
+                "March": 0.8,
+                "April": 1.0,
+                "May": 1.2,
+                "June": 1.4,
+                "July": 1.5,
+                "August": 1.3,
+                "September": 1.2,
+                "October": 1.0,
+                "November": 0.8,
+                "December": 0.7
+            },
+            {
+                "Age Group": "Young Adults",
+                "January": 1.0,
+                "February": 1.1,
+                "March": 1.3,
+                "April": 1.5,
+                "May": 1.7,
+                "June": 1.8,
+                "July": 2.0,
+                "August": 1.9,
+                "September": 1.7,
+                "October": 1.5,
+                "November": 1.3,
+                "December": 1.1
+            },
+            {
+                "Age Group": "Adults",
+                "January": 0.7,
+                "February": 0.8,
+                "March": 1.0,
+                "April": 1.2,
+                "May": 1.3,
+                "June": 1.4,
+                "July": 1.6,
+                "August": 1.5,
+                "September": 1.4,
+                "October": 1.3,
+                "November": 1.1,
+                "December": 1.0
+            },
+            {
+                "Age Group": "Seniors",
+                "January": 0.3,
+                "February": 0.4,
+                "March": 0.5,
+                "April": 0.6,
+                "May": 0.7,
+                "June": 0.8,
+                "July": 1.0,
+                "August": 0.9,
+                "September": 0.8,
+                "October": 0.7,
+                "November": 0.6,
+                "December": 0.5
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "January",
+                "February",
+                "March",
+                "April",
+                "May",
+                "June",
+                "July",
+                "August",
+                "September",
+                "October",
+                "November",
+                "December"
+            ],
+            "as": [
+                "Month",
+                "Meditation Time (hours)"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "line",
+        "point": true
+    },
+    "encoding": {
+        "x": {
+            "field": "Month",
+            "type": "ordinal",
+            "title": "Month",
+            "axis": {
+                "titleFontSize": 12,
+                "labelAngle": -45
+            }
+        },
+        "y": {
+            "field": "Meditation Time (hours)",
+            "type": "quantitative",
+            "title": "Meditation Time (hours)",
+            "axis": {
+                "titleFontSize": 12
+            }
+        },
+        "color": {
+            "field": "Age Group",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Teens",
+                    "Young Adults",
+                    "Adults",
+                    "Seniors"
+                ],
+                "range": [
+                    "#FF0000",
+                    "#00FF00",
+                    "#0000FF",
+                    "#FF00FF"
+                ]
+            },
+            "legend": {
+                "title": "Age Group"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Age Group",
+                "type": "nominal"
+            },
+            {
+                "field": "Month",
+                "type": "ordinal"
+            },
+            {
+                "field": "Meditation Time (hours)",
+                "type": "quantitative"
+            }
+        ]
+    },
+    "config": {
+        "axisY": {
+            "minExtent": 30
+        }
+    }
+}

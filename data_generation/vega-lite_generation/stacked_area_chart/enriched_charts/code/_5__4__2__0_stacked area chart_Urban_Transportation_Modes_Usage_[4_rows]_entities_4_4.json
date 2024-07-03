@@ -1,0 +1,181 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Cumulative Monthly Club Memberships Sold for Different Sports Activities Over a Year",
+    "width": 600,
+    "height": 400,
+    "title": {
+        "text": "Monthly Club Memberships by Sport Activity",
+        "fontSize": 18,
+        "anchor": "start",
+        "color": "#444444",
+        "frame": "group"
+    },
+    "data": {
+        "values": [
+            {
+                "Month": "Jan",
+                "Gymnastics": 150,
+                "Swimming": 180,
+                "Tennis": 90,
+                "Boxing": 60
+            },
+            {
+                "Month": "Feb",
+                "Gymnastics": 160,
+                "Swimming": 200,
+                "Tennis": 100,
+                "Boxing": 80
+            },
+            {
+                "Month": "Mar",
+                "Gymnastics": 170,
+                "Swimming": 230,
+                "Tennis": 110,
+                "Boxing": 75
+            },
+            {
+                "Month": "Apr",
+                "Gymnastics": 180,
+                "Swimming": 250,
+                "Tennis": 115,
+                "Boxing": 80
+            },
+            {
+                "Month": "May",
+                "Gymnastics": 190,
+                "Swimming": 270,
+                "Tennis": 120,
+                "Boxing": 85
+            },
+            {
+                "Month": "Jun",
+                "Gymnastics": 200,
+                "Swimming": 300,
+                "Tennis": 130,
+                "Boxing": 90
+            },
+            {
+                "Month": "Jul",
+                "Gymnastics": 210,
+                "Swimming": 320,
+                "Tennis": 140,
+                "Boxing": 95
+            },
+            {
+                "Month": "Aug",
+                "Gymnastics": 220,
+                "Swimming": 350,
+                "Tennis": 150,
+                "Boxing": 100
+            },
+            {
+                "Month": "Sep",
+                "Gymnastics": 230,
+                "Swimming": 370,
+                "Tennis": 160,
+                "Boxing": 105
+            },
+            {
+                "Month": "Oct",
+                "Gymnastics": 240,
+                "Swimming": 400,
+                "Tennis": 170,
+                "Boxing": 110
+            },
+            {
+                "Month": "Nov",
+                "Gymnastics": 250,
+                "Swimming": 420,
+                "Tennis": 175,
+                "Boxing": 115
+            },
+            {
+                "Month": "Dec",
+                "Gymnastics": 260,
+                "Swimming": 450,
+                "Tennis": 180,
+                "Boxing": 120
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Gymnastics",
+                "Swimming",
+                "Tennis",
+                "Boxing"
+            ],
+            "as": [
+                "Sport Activity",
+                "Memberships"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "area",
+        "line": true,
+        "opacity": 0.6
+    },
+    "encoding": {
+        "x": {
+            "field": "Month",
+            "type": "ordinal",
+            "axis": {
+                "title": "Month"
+            }
+        },
+        "y": {
+            "field": "Memberships",
+            "type": "quantitative",
+            "stack": "zero",
+            "axis": {
+                "title": "Sold Memberships"
+            }
+        },
+        "color": {
+            "field": "Sport Activity",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Gymnastics",
+                    "Swimming",
+                    "Tennis",
+                    "Boxing"
+                ],
+                "range": [
+                    "#4682b4",
+                    "#3cb371",
+                    "#ffa07a",
+                    "#8a2be2"
+                ]
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Month",
+                "type": "ordinal",
+                "title": "Month"
+            },
+            {
+                "field": "Sport Activity",
+                "type": "nominal",
+                "title": "Sport Activity"
+            },
+            {
+                "field": "Memberships",
+                "type": "quantitative",
+                "title": "Memberships"
+            }
+        ]
+    },
+    "config": {
+        "view": {
+            "stroke": "transparent"
+        },
+        "axis": {
+            "domain": false
+        },
+        "background": "#f5f5f5"
+    }
+}

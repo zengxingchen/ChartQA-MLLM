@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 400});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Future Technologies Impact',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'item'
+    },
+    legend: {
+        orient: 'vertical',
+        left: 20,
+        top: 50
+    },
+    series: [
+        {
+            name: 'Technology',
+            type: 'pie',
+            radius: '50%',
+            data: [
+                {value: 45, name: 'Artificial Intelligence'},
+                {value: 25, name: 'Blockchain'},
+                {value: 27, name: 'Quantum Computing'},
+                {value: 20, name: 'VR/AR'},
+                {value: 35, name: 'Biotechnology'},
+                {value: 40, name: 'Renewable Energy'},
+                {value: 22, name: 'Space Travel'},
+                {value: 38, name: 'Robotics'},
+                {value: 18, name: '3D Printing'},
+                {value: 15, name: 'Nanotechnology'}
+            ],
+            emphasis: {
+                itemStyle: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            },
+            itemStyle: {
+                normal: {
+                    color: function(params) {
+                        var colorList = [
+                            '#ff7f0e', '#2ca02c', '#d62728', '#9467bd', '#8c564b',
+                            '#e377c2', '#7f7f7f', '#bcbd22', '#17becf', '#1f77b4'
+                        ];
+                        return colorList[params.dataIndex]
+                    },
+                    label: {
+                        show: true,
+                        formatter: '{b} : {c} ({d}%)'
+                    }
+                }
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

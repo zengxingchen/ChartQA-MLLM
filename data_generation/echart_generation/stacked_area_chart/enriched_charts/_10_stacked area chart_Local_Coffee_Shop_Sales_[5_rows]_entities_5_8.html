@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+dom.style.width = '800px';
+dom.style.height = '600px';
+var myChart = echarts.init(dom, null, {renderer: 'canvas'});
+
+var option;
+
+option = {
+    title: {
+        text: 'Online Course Adoption Trends by Field',
+        left: 'center',
+        top: '0',
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['Humanities', 'Technology', 'Business', 'Health & Psychology'],
+        left: 10,
+        top: '30'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ['January','February','March','April','May','June','July','August','September','October','November','December']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Humanities',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [1200, 1250, 1300, 1350, 1400, 1450, 1500, 1550, 1600, 1650, 1700, 1750],
+            markPoint: {
+                data: [
+                    {type: 'max', name: 'Max'},
+                    {type: 'min', name: 'Min'}
+                ],
+                label: {
+                    show: true
+                }
+            },
+            itemStyle: {
+                color: '#8E44AD'
+            },
+        },
+        {
+            name: 'Technology',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [1150, 1200, 1350, 1450, 1550, 1650, 1600, 1700, 1750, 1650, 1600, 1550],
+            markPoint: {
+                data: [
+                    {type: 'max', name: 'Max'},
+                    {type: 'min', name: 'Min'}
+                ]
+            },
+            itemStyle: {
+                color: '#3498DB'
+            },
+        },
+        {
+            name: 'Business',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [900, 920, 950, 980, 1000, 1020, 1040, 1100, 1150, 1200, 1300, 1350],
+            markPoint: {
+                data: [
+                    {type: 'max', name: 'Max'},
+                    {type: 'min', name: 'Min'}
+                ]
+            },
+            itemStyle: {
+                color: '#E67E22'
+            },
+        },
+        {
+            name: 'Health & Psychology',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [800, 850, 870, 890, 910, 930, 950, 980, 1010, 1030, 1050, 1080],
+            markPoint: {
+                data: [
+                    {type: 'max', name: 'Max'},
+                    {type: 'min', name: 'Min'}
+                ],
+                label: {
+                    show: true
+                }
+            },
+            itemStyle: {
+                color: '#2ECC71'
+            },
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

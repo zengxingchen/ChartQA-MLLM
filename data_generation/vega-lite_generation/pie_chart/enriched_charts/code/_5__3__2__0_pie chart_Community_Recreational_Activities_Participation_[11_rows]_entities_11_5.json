@@ -1,0 +1,109 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Popular Sports in 2024",
+    "title": {
+        "text": "Popular Sports in 2024",
+        "fontSize": 22,
+        "anchor": "start",
+        "color": "#1f1f1f"
+    },
+    "width": 500,
+    "height": 500,
+    "data": {
+        "values": [
+            {
+                "Sport": "Soccer",
+                "Popularity": 25
+            },
+            {
+                "Sport": "Basketball",
+                "Popularity": 20
+            },
+            {
+                "Sport": "Tennis",
+                "Popularity": 15
+            },
+            {
+                "Sport": "Cricket",
+                "Popularity": 10
+            },
+            {
+                "Sport": "Baseball",
+                "Popularity": 10
+            },
+            {
+                "Sport": "Rugby",
+                "Popularity": 8
+            },
+            {
+                "Sport": "Hockey",
+                "Popularity": 7
+            },
+            {
+                "Sport": "Swimming",
+                "Popularity": 5
+            }
+        ]
+    },
+    "transform": [
+        {
+            "calculate": "datum['Popularity']",
+            "as": "PopularityValue"
+        }
+    ],
+    "mark": {
+        "type": "arc",
+        "innerRadius": 70,
+        "outerRadius": 200,
+        "tooltip": true
+    },
+    "encoding": {
+        "theta": {
+            "field": "PopularityValue",
+            "type": "quantitative",
+            "stack": true
+        },
+        "color": {
+            "field": "Sport",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Soccer",
+                    "Basketball",
+                    "Tennis",
+                    "Cricket",
+                    "Baseball",
+                    "Rugby",
+                    "Hockey",
+                    "Swimming"
+                ],
+                "range": [
+                    "#ff5733",
+                    "#33ff57",
+                    "#3357ff",
+                    "#ff33a1",
+                    "#a133ff",
+                    "#33ffa1",
+                    "#ff5733",
+                    "#a1ff33"
+                ]
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Sport",
+                "type": "nominal",
+                "title": "Sport"
+            },
+            {
+                "field": "PopularityValue",
+                "type": "quantitative",
+                "title": "Popularity (%)",
+                "format": ".1f"
+            }
+        ]
+    },
+    "view": {
+        "stroke": null
+    }
+}

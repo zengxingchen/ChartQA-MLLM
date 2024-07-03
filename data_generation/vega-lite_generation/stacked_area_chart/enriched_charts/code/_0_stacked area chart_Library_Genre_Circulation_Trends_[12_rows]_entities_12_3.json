@@ -1,0 +1,168 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Stacked area chart of energy consumption by sector over the years",
+    "width": 600,
+    "height": 400,
+    "data": {
+        "values": [
+            {
+                "Year": 2010,
+                "Residential": 1200,
+                "Commercial": 800,
+                "Industrial": 1500,
+                "Transportation": 2000
+            },
+            {
+                "Year": 2011,
+                "Residential": 1180,
+                "Commercial": 820,
+                "Industrial": 1550,
+                "Transportation": 1980
+            },
+            {
+                "Year": 2012,
+                "Residential": 1170,
+                "Commercial": 860,
+                "Industrial": 1600,
+                "Transportation": 1950
+            },
+            {
+                "Year": 2013,
+                "Residential": 1150,
+                "Commercial": 880,
+                "Industrial": 1620,
+                "Transportation": 1920
+            },
+            {
+                "Year": 2014,
+                "Residential": 1130,
+                "Commercial": 910,
+                "Industrial": 1590,
+                "Transportation": 1900
+            },
+            {
+                "Year": 2015,
+                "Residential": 1100,
+                "Commercial": 920,
+                "Industrial": 1570,
+                "Transportation": 1880
+            },
+            {
+                "Year": 2016,
+                "Residential": 1080,
+                "Commercial": 940,
+                "Industrial": 1540,
+                "Transportation": 1900
+            },
+            {
+                "Year": 2017,
+                "Residential": 1070,
+                "Commercial": 950,
+                "Industrial": 1500,
+                "Transportation": 1930
+            },
+            {
+                "Year": 2018,
+                "Residential": 1050,
+                "Commercial": 970,
+                "Industrial": 1450,
+                "Transportation": 1950
+            },
+            {
+                "Year": 2019,
+                "Residential": 1030,
+                "Commercial": 990,
+                "Industrial": 1400,
+                "Transportation": 2000
+            },
+            {
+                "Year": 2020,
+                "Residential": 1010,
+                "Commercial": 1000,
+                "Industrial": 1350,
+                "Transportation": 2050
+            },
+            {
+                "Year": 2021,
+                "Residential": 1000,
+                "Commercial": 1020,
+                "Industrial": 1300,
+                "Transportation": 2100
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Residential",
+                "Commercial",
+                "Industrial",
+                "Transportation"
+            ],
+            "as": [
+                "Sector",
+                "Energy Consumption"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "area",
+        "opacity": 0.7
+    },
+    "encoding": {
+        "x": {
+            "field": "Year",
+            "type": "ordinal",
+            "title": "Year",
+            "axis": {
+                "labelAngle": 0
+            }
+        },
+        "y": {
+            "field": "Energy Consumption",
+            "type": "quantitative",
+            "stack": "zero",
+            "title": "Energy Consumption (in Billion kWh)"
+        },
+        "color": {
+            "field": "Sector",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Residential",
+                    "Commercial",
+                    "Industrial",
+                    "Transportation"
+                ],
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e",
+                    "#2ca02c",
+                    "#d62728"
+                ]
+            },
+            "title": "Energy Consumption Sector"
+        },
+        "tooltip": [
+            {
+                "field": "Sector",
+                "type": "nominal",
+                "title": "Sector"
+            },
+            {
+                "field": "Energy Consumption",
+                "type": "quantitative",
+                "title": "Energy Consumption",
+                "format": ",.0f"
+            }
+        ]
+    },
+    "config": {
+        "view": {
+            "stroke": "transparent"
+        },
+        "axis": {
+            "grid": false
+        }
+    }
+}

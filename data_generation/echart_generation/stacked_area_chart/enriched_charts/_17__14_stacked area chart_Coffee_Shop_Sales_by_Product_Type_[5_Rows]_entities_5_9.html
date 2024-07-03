@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 400});
+var app = {};
+
+option = {
+  title: {
+    text: 'Quarterly Tech Product Sales',
+    left: 'center',
+    top: '15'
+  },
+  tooltip: {
+    trigger: 'axis',
+    axisPointer: {
+      type: 'cross',
+      label: {
+        backgroundColor: '#6a7985'
+      }
+    }
+  },
+  legend: {
+    data: ['Smartwatch Sales', 'Tablet Sales', 'Laptop Sales'],
+    top: 40
+  },
+  toolbox: {
+    feature: {
+      saveAsImage: {}
+    }
+  },
+  grid: {
+    left: '3%',
+    right: '4%',
+    bottom: '3%',
+    containLabel: true
+  },
+  xAxis: {
+    type: 'category',
+    boundaryGap: false,
+    data: ['Q1 2021', 'Q2 2021', 'Q3 2021', 'Q4 2021', 'Q1 2022', 'Q2 2022', 'Q3 2022', 'Q4 2022']
+  },
+  yAxis: {
+    type: 'value'
+  },
+  series: [
+    {
+      name: 'Smartwatch Sales',
+      type: 'line',
+      stack: 'Total sales',
+      areaStyle: {normal: {color: '#FFD700'}},
+      emphasis: {focus: 'series'},
+      data: [12000, 15000, 18000, 21000, 23000, 26000, 28000, 31000]
+    },
+    {
+      name: 'Tablet Sales',
+      type: 'line',
+      stack: 'Total sales',
+      areaStyle: {normal: {color: '#FF4500'}},
+      emphasis: {focus: 'series'},
+      data: [22000, 25000, 27000, 32000, 33000, 34000, 36000, 39000]
+    },
+    {
+      name: 'Laptop Sales',
+      type: 'line',
+      stack: 'Total sales',
+      areaStyle: {normal: {color: '#1E90FF'}},
+      emphasis: {focus: 'series'},
+      data: [40000, 38000, 35000, 30000, 25000, 20000, 18000, 16000]
+    }
+  ],
+  dataZoom: [
+    {
+      type: 'inside',
+      start: 0,
+      end: 100
+    },
+    {
+      start: 0,
+      end: 10
+    }
+  ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

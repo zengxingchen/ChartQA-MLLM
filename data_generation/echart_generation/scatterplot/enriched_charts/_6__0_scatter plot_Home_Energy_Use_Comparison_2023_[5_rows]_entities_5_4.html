@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+var option;
+
+option = {
+    title: {
+        text: 'Scientific Discoveries Over Time',
+        left: 'center',
+        top: '5%',
+        textStyle: {
+            color: '#333',
+            fontSize: 20
+        }
+    },
+    legend: {
+        data: ['Discoveries'],
+        top: '10%',
+        left: 'right',
+        textStyle: {
+            color: '#000'
+        }
+    },
+    xAxis: {
+        type: 'value',
+        name: 'Year',
+        nameLocation: 'middle',
+        nameGap: 25,
+        axisLine: {
+            lineStyle: {
+                color: '#000'
+            }
+        }
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Number of Discoveries',
+        nameLocation: 'middle',
+        nameGap: 35,
+        axisLine: {
+            lineStyle: {
+                color: '#000'
+            }
+        }
+    },
+    series: [{
+        name: 'Discoveries',
+        type: 'scatter',
+        data: [
+            [1, 8], [2, 15], [3, 13], [4, 23], [5, 18],
+            [6, 30], [7, 28], [8, 35], [9, 40], [10, 45],
+            [11, 50], [12, 53], [13, 48], [14, 43], [15, 52],
+            [16, 60], [17, 55], [18, 70], [19, 68], [20, 75]
+        ],
+        itemStyle: {
+            color: '#FF5722'
+        }
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+var option;
+
+option = {
+    title: {
+        text: 'Animal Population Distribution',
+        left: 'center',
+        top: '20px',
+        textStyle: {
+            fontSize: 20,
+            color: '#333333'
+        }
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: '{b}: {c}'
+    },
+    series: [{
+        name: 'Animal Population',
+        type: 'treemap',
+        label: {
+            show: true,
+            formatter: '{b}'
+        },
+        itemStyle: {
+            borderColor: '#fff'
+        },
+        levels: [
+            {
+                itemStyle: {
+                    borderColor: '#777',
+                    borderWidth: 2,
+                    gapWidth: 2
+                }
+            },
+            {
+                colorSaturation: [0.3, 0.6],
+                itemStyle: {
+                    borderColorSaturation: 0.7,
+                    gapWidth: 1,
+                    borderWidth: 1
+                }
+            }
+        ],
+        data: [
+            {
+                name: 'Mammals',
+                value: 150,
+                itemStyle: {
+                    color: '#a1d99b'
+                },
+                children: [
+                    {
+                        name: 'Carnivores',
+                        value: 50,
+                        itemStyle: {
+                            color: '#31a354'
+                        }
+                    },
+                    {
+                        name: 'Herbivores',
+                        value: 70,
+                        itemStyle: {
+                            color: '#74c476'
+                        }
+                    },
+                    {
+                        name: 'Omnivores',
+                        value: 30,
+                        itemStyle: {
+                            color: '#bae4b3'
+                        }
+                    }
+                ]
+            },
+            {
+                name: 'Reptiles',
+                value: 80,
+                itemStyle: {
+                    color: '#fc9272'
+                },
+                children: [
+                    {
+                        name: 'Snakes',
+                        value: 40,
+                        itemStyle: {
+                            color: '#de2d26'
+                        }
+                    },
+                    {
+                        name: 'Lizards',
+                        value: 30,
+                        itemStyle: {
+                            color: '#fb6a4a'
+                        }
+                    },
+                    {
+                        name: 'Turtles',
+                        value: 10,
+                        itemStyle: {
+                            color: '#fcae91'
+                        }
+                    }
+                ]
+            },
+            {
+                name: 'Birds',
+                value: 120,
+                itemStyle: {
+                    color: '#9ecae1'
+                },
+                children: [
+                    {
+                        name: 'Passerines',
+                        value: 60,
+                        itemStyle: {
+                            color: '#3182bd'
+                        }
+                    },
+                    {
+                        name: 'Raptors',
+                        value: 30,
+                        itemStyle: {
+                            color: '#6baed6'
+                        }
+                    },
+                    {
+                        name: 'Waterfowl',
+                        value: 30,
+                        itemStyle: {
+                            color: '#c6dbef'
+                        }
+                    }
+                ]
+            },
+            {
+                name: 'Amphibians',
+                value: 60,
+                itemStyle: {
+                    color: '#fdae6b'
+                },
+                children: [
+                    {
+                        name: 'Frogs',
+                        value: 30,
+                        itemStyle: {
+                            color: '#e6550d'
+                        }
+                    },
+                    {
+                        name: 'Salamanders',
+                        value: 20,
+                        itemStyle: {
+                            color: '#fd8d3c'
+                        }
+                    },
+                    {
+                        name: 'Caecilians',
+                        value: 10,
+                        itemStyle: {
+                            color: '#fdd0a2'
+                        }
+                    }
+                ]
+            },
+            {
+                name: 'Fish',
+                value: 200,
+                itemStyle: {
+                    color: '#c7e9c0'
+                },
+                children: [
+                    {
+                        name: 'Freshwater',
+                        value: 120,
+                        itemStyle: {
+                            color: '#41ab5d'
+                        }
+                    },
+                    {
+                        name: 'Saltwater',
+                        value: 80,
+                        itemStyle: {
+                            color: '#7fcdbb'
+                        }
+                    }
+                ]
+            },
+            {
+                name: 'Insects',
+                value: 250,
+                itemStyle: {
+                    color: '#fccde5'
+                },
+                children: [
+                    {
+                        name: 'Butterflies',
+                        value: 70,
+                        itemStyle: {
+                            color: '#e7298a'
+                        }
+                    },
+                    {
+                        name: 'Beetles',
+                        value: 80,
+                        itemStyle: {
+                            color: '#df65b0'
+                        }
+                    },
+                    {
+                        name: 'Ants',
+                        value: 50,
+                        itemStyle: {
+                            color: '#c994c7'
+                        }
+                    }
+                ]
+            }
+        ]
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'CO2 Emissions Over Time',
+        left: 'center',
+        top: 20
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    xAxis: {
+        type: 'category',
+        data: ['2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025']
+    },
+    yAxis: {
+        type: 'value',
+        name: 'CO2 Emissions (in billion tons)'
+    },
+    series: [{
+        name: 'CO2 Emissions',
+        type: 'line',
+        data: [35.0, 34.8, 34.6, 34.3, 33.9, 33.4, 32.9, 32.3, 31.6, 30.8, 30.0, 29.2, 28.3, 27.4, 26.4, 25.3],
+        lineStyle: {
+            color: '#FF5733'
+        },
+        label: {
+            show: true,
+            position: 'top',
+            formatter: '{c} billion'
+        },
+        itemStyle: {
+            color: '#C70039'
+        }
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

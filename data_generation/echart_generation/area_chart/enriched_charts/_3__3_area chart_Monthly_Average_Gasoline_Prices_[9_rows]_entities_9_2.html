@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 400});
+var app = {};
+
+var option;
+
+var data = [
+    ['2023', 1200], ['2022', 1150], ['2021', 1100], ['2020', 1050],
+    ['2019', 1000], ['2018', 950], ['2017', 900], ['2016', 850],
+    ['2015', 800], ['2014', 750], ['2013', 700], ['2012', 650],
+    ['2011', 600], ['2010', 550], ['2009', 500], ['2008', 450],
+    ['2007', 400], ['2006', 350], ['2005', 300]
+];
+
+option = {
+    title: {
+        text: 'The Decreasing Trend in Student Enrollment',
+        subtext: 'Education & Learning',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            label: {
+                backgroundColor: '#6a7985'
+            }
+        }
+    },
+    legend: {
+        data: ['Students'],
+        top: '7%'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: data.map(function (item) {
+            return item[0];
+        })
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Students',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: data.map(function (item) {
+                return item[1];
+            }),
+            label: {
+                show: true,
+                position: 'top',
+                color: '#000'
+            },
+            lineStyle: {
+                color: '#3398DB'
+            },
+            itemStyle: {
+                color: '#7EC8E3'
+            },
+            areaStyle: {
+                color: '#D1E9FA'
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

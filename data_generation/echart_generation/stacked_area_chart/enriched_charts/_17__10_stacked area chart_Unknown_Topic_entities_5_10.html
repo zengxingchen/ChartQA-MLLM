@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById("container");
+var myChart = echarts.init(dom, null, {
+    width: 800, // Changed chart width
+    height: 600 // Changed chart height
+});
+var app = {};
+
+var option;
+
+option = {
+    title: { // Title of the chart
+        text: 'Landmark Visitor Trends',
+        subtext: '2010 - 2020',
+        left: 'center',
+        top: 20
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            label: {
+                backgroundColor: '#6a7985'
+            }
+        }
+    },
+    legend: {
+        data: ['Great Wall', 'Eiffel Tower', 'Grand Canyon'],
+        bottom: 10
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '10%',
+        containLabel: true
+    },
+    xAxis: [
+        {
+            type: 'category',
+            boundaryGap: false,
+            data: ['2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020']
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value'
+        }
+    ],
+    series: [
+        {
+            name: 'Great Wall',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [1000, 1170, 660, 1030, 820, 1200, 900, 1010, 1230, 1060, 850],
+            color: '#FF4500' // Specific color code for Great Wall
+        },
+        {
+            name: 'Eiffel Tower',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [500, 660, 1030, 540, 900, 400, 680, 850, 660, 980, 670],
+            color: '#1E90FF' // Specific color code for Eiffel Tower
+        },
+        {
+            name: 'Grand Canyon',
+            type: 'line',
+            stack: 'Total',
+            label: {
+                show: true,
+                position: 'top'
+            },
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [300, 400, 530, 800, 540, 750, 580, 590, 850, 620, 700],
+            color: '#32CD32' // Specific color code for Grand Canyon
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Monthly Sales Data',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['Sales'],
+        top: 'bottom'
+    },
+    xAxis: {
+        type: 'category',
+        data: ['2023-01-01', '2023-02-01', '2023-03-01', '2023-04-01', '2023-05-01', '2023-06-01', '2023-07-01', '2023-08-01', '2023-09-01', '2023-10-01', '2023-11-01', '2023-12-01'],
+        axisLabel: {
+            formatter: function (value) {
+                var date = new Date(value);
+                return [date.getFullYear(), date.getMonth() + 1, date.getDate()].join('-');
+            }
+        }
+    },
+    yAxis: {
+        type: 'value',
+        inverse: true,
+        axisLabel: {
+            formatter: '{value} USD'
+        }
+    },
+    series: [
+        {
+            name: 'Sales',
+            type: 'line',
+            data: [100, 110, 90, 95, 105, 115, 100, 120, 130, 125, 135, 140],
+            itemStyle: {
+                color: '#FF5733'
+            },
+            lineStyle: {
+                color: '#C70039'
+            },
+            label: {
+                show: true,
+                position: 'top',
+                formatter: '{c} USD'
+            }
+        }
+    ],
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

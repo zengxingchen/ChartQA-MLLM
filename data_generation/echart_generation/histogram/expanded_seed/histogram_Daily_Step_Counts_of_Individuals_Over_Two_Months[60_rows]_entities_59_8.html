@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var data = [{'Date': '01-01-2023', 'Steps': 5230}, {'Date': '02-01-2023', 'Steps': 6980}, {'Date': '03-01-2023', 'Steps': 7900}, {'Date': '04-01-2023', 'Steps': 10230}, {'Date': '05-01-2023', 'Steps': 3050}, {'Date': '06-01-2023', 'Steps': 5230}, {'Date': '07-01-2023', 'Steps': 8400}, {'Date': '08-01-2023', 'Steps': 6540}, {'Date': '09-01-2023', 'Steps': 7230}, {'Date': '10-01-2023', 'Steps': 4900}, {'Date': '11-01-2023', 'Steps': 8950}, {'Date': '12-01-2023', 'Steps': 10200}, {'Date': '13-01-2023', 'Steps': 7680}, {'Date': '14-01-2023', 'Steps': 5430}, {'Date': '15-01-2023', 'Steps': 11020}];
+
+// Binning function
+function binData(data, binSize) {
+    var bins = {};
+    data.forEach(function (point) {
+        var bin = Math.floor(point.Steps / binSize) * binSize;
+        bins[bin] = (bins[bin] || 0) + 1;
+    });
+    return Object.keys(bins).sort((a, b) => Number(a) - Number(b)).map(function (bin) {
+        return [Number(bin), bins[bin]];
+    });
+}
+
+var binSize = 1000; // You can change the bin size to your preference
+var binnedData = binData(data, binSize);
+
+option = {
+    title: {
+        text: 'Step Count Histogram',
+        subtext: 'Bin size: ' + binSize,
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'item',
+        axisPointer: {
+            type: 'shadow'
+        },
+        formatter: function (params) {
+            return `Steps: ${params.value[0]} - ${params.value[0] + binSize}<br>Frequency: ${params.value[1]}`;
+        }
+    },
+    xAxis: {
+        type: 'value',
+        name: 'Steps',
+        nameLocation: 'center',
+        nameGap: 30,
+        min: 'dataMin',
+        max: 'dataMax',
+        interval: binSize,
+        splitLine: {
+            show: false
+        },
+        axisLabel: {
+            formatter: function (value) {
+                return value + ' - ' + (value + binSize);
+            }
+        }
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Frequency',
+        minInterval: 1
+    },
+    series: [{
+        name: 'Frequency',
+        type: 'bar',
+        barWidth: '99.3%',
+        data: binnedData,
+        itemStyle: {
+            color: '#3398DB'
+        }
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

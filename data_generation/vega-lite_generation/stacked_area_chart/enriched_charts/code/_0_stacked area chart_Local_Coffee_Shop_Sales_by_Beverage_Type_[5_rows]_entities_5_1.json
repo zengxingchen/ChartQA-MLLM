@@ -1,0 +1,196 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Monthly Fruit Sales over a Year",
+    "width": 800,
+    "height": 400,
+    "title": {
+        "text": "Monthly Fruit Sales",
+        "subtitle": "Fruit Sales from January to December",
+        "fontSize": 20,
+        "subtitleFontSize": 12
+    },
+    "data": {
+        "values": [
+            {
+                "Month": "January",
+                "Apples": 12000,
+                "Oranges": 9500,
+                "Bananas": 13000,
+                "Grapes": 8000,
+                "Berries": 7600
+            },
+            {
+                "Month": "February",
+                "Apples": 11500,
+                "Oranges": 10000,
+                "Bananas": 12500,
+                "Grapes": 8500,
+                "Berries": 8000
+            },
+            {
+                "Month": "March",
+                "Apples": 13400,
+                "Oranges": 10500,
+                "Bananas": 14000,
+                "Grapes": 9000,
+                "Berries": 8500
+            },
+            {
+                "Month": "April",
+                "Apples": 13800,
+                "Oranges": 11000,
+                "Bananas": 15000,
+                "Grapes": 9500,
+                "Berries": 9200
+            },
+            {
+                "Month": "May",
+                "Apples": 14500,
+                "Oranges": 12000,
+                "Bananas": 16000,
+                "Grapes": 10000,
+                "Berries": 9500
+            },
+            {
+                "Month": "June",
+                "Apples": 15000,
+                "Oranges": 12500,
+                "Bananas": 17000,
+                "Grapes": 11000,
+                "Berries": 10000
+            },
+            {
+                "Month": "July",
+                "Apples": 15500,
+                "Oranges": 13000,
+                "Bananas": 17500,
+                "Grapes": 11500,
+                "Berries": 11000
+            },
+            {
+                "Month": "August",
+                "Apples": 16000,
+                "Oranges": 13500,
+                "Bananas": 18000,
+                "Grapes": 12000,
+                "Berries": 12000
+            },
+            {
+                "Month": "September",
+                "Apples": 16500,
+                "Oranges": 14000,
+                "Bananas": 18500,
+                "Grapes": 12500,
+                "Berries": 13000
+            },
+            {
+                "Month": "October",
+                "Apples": 17000,
+                "Oranges": 14500,
+                "Bananas": 19000,
+                "Grapes": 13000,
+                "Berries": 13500
+            },
+            {
+                "Month": "November",
+                "Apples": 17500,
+                "Oranges": 15000,
+                "Bananas": 19500,
+                "Grapes": 13500,
+                "Berries": 14000
+            },
+            {
+                "Month": "December",
+                "Apples": 18000,
+                "Oranges": 15500,
+                "Bananas": 20000,
+                "Grapes": 14000,
+                "Berries": 14500
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Apples",
+                "Oranges",
+                "Bananas",
+                "Grapes",
+                "Berries"
+            ],
+            "as": [
+                "Fruit Type",
+                "Sales"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "area",
+        "opacity": 0.7
+    },
+    "encoding": {
+        "x": {
+            "field": "Month",
+            "type": "ordinal",
+            "axis": {
+                "title": "Month"
+            }
+        },
+        "y": {
+            "field": "Sales",
+            "type": "quantitative",
+            "axis": {
+                "title": "Number of Sales"
+            },
+            "stack": "zero"
+        },
+        "color": {
+            "field": "Fruit Type",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Apples",
+                    "Oranges",
+                    "Bananas",
+                    "Grapes",
+                    "Berries"
+                ],
+                "range": [
+                    "#ff0000",
+                    "#ffa500",
+                    "#ffff00",
+                    "#800080",
+                    "#8b0000"
+                ]
+            },
+            "legend": {
+                "title": "Fruit Type"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Month",
+                "type": "ordinal",
+                "title": "Month"
+            },
+            {
+                "field": "Fruit Type",
+                "type": "nominal",
+                "title": "Fruit Type"
+            },
+            {
+                "field": "Sales",
+                "type": "quantitative",
+                "title": "Sales"
+            }
+        ]
+    },
+    "config": {
+        "view": {
+            "stroke": "transparent"
+        },
+        "axis": {
+            "grid": false
+        }
+    }
+}

@@ -1,0 +1,145 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Line chart showing the trend of adoption rates of emerging technologies over a week.",
+    "title": {
+        "text": "Adoption Rates of Emerging Technologies by Sector",
+        "fontSize": 16,
+        "anchor": "start",
+        "color": "black"
+    },
+    "width": 700,
+    "height": 500,
+    "data": {
+        "values": [
+            {
+                "Technology": "AI",
+                "Monday": 15.2,
+                "Tuesday": 19.5,
+                "Wednesday": 17.3,
+                "Thursday": 22.4,
+                "Friday": 25.6,
+                "Saturday": 27.0,
+                "Sunday": 28.5
+            },
+            {
+                "Technology": "Blockchain",
+                "Monday": 5.1,
+                "Tuesday": 7.8,
+                "Wednesday": 6.7,
+                "Thursday": 9.4,
+                "Friday": 9.9,
+                "Saturday": 11.3,
+                "Sunday": 12.6
+            },
+            {
+                "Technology": "Quantum Computing",
+                "Monday": 2.9,
+                "Tuesday": 3.5,
+                "Wednesday": 3.2,
+                "Thursday": 4.1,
+                "Friday": 4.7,
+                "Saturday": 6.0,
+                "Sunday": 7.2
+            },
+            {
+                "Technology": "IoT",
+                "Monday": 8.4,
+                "Tuesday": 10.7,
+                "Wednesday": 12.5,
+                "Thursday": 15.1,
+                "Friday": 17.8,
+                "Saturday": 20.9,
+                "Sunday": 22.3
+            },
+            {
+                "Technology": "VR/AR",
+                "Monday": 10.3,
+                "Tuesday": 12.2,
+                "Wednesday": 14.9,
+                "Thursday": 17.0,
+                "Friday": 19.5,
+                "Saturday": 21.1,
+                "Sunday": 22.8
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday",
+                "Friday",
+                "Saturday",
+                "Sunday"
+            ],
+            "as": [
+                "Day",
+                "Adoption Rate"
+            ]
+        }
+    ],
+    "mark": "line",
+    "encoding": {
+        "x": {
+            "field": "Day",
+            "type": "ordinal",
+            "title": "Day of the Week",
+            "axis": {
+                "titleFontSize": 12,
+                "labelAngle": -45
+            }
+        },
+        "y": {
+            "field": "Adoption Rate",
+            "type": "quantitative",
+            "title": "Adoption Rate (%)",
+            "axis": {
+                "titleFontSize": 12
+            }
+        },
+        "color": {
+            "field": "Technology",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "AI",
+                    "Blockchain",
+                    "Quantum Computing",
+                    "IoT",
+                    "VR/AR"
+                ],
+                "range": [
+                    "#e6194b",
+                    "#3cb44b",
+                    "#ffe119",
+                    "#4363d8",
+                    "#f58231"
+                ]
+            },
+            "legend": {
+                "title": "Technology"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Technology",
+                "type": "nominal"
+            },
+            {
+                "field": "Day",
+                "type": "ordinal"
+            },
+            {
+                "field": "Adoption Rate",
+                "type": "quantitative"
+            }
+        ]
+    },
+    "config": {
+        "axisY": {
+            "minExtent": 30
+        }
+    }
+}

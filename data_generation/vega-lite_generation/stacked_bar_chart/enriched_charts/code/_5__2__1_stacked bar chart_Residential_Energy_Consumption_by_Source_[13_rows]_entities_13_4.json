@@ -1,0 +1,180 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Horizontal stacked bar chart showing the book sales in different genres over years.",
+    "title": {
+        "text": "Annual Book Sales by Genre",
+        "fontSize": 20,
+        "anchor": "middle",
+        "color": "black",
+        "offset": 10
+    },
+    "width": 800,
+    "height": 500,
+    "data": {
+        "values": [
+            {
+                "Year": 2010,
+                "Fiction": 150,
+                "Non-Fiction": 200,
+                "Science": 120,
+                "History": 100
+            },
+            {
+                "Year": 2011,
+                "Fiction": 160,
+                "Non-Fiction": 210,
+                "Science": 130,
+                "History": 110
+            },
+            {
+                "Year": 2012,
+                "Fiction": 170,
+                "Non-Fiction": 220,
+                "Science": 140,
+                "History": 120
+            },
+            {
+                "Year": 2013,
+                "Fiction": 180,
+                "Non-Fiction": 230,
+                "Science": 150,
+                "History": 130
+            },
+            {
+                "Year": 2014,
+                "Fiction": 190,
+                "Non-Fiction": 240,
+                "Science": 160,
+                "History": 140
+            },
+            {
+                "Year": 2015,
+                "Fiction": 200,
+                "Non-Fiction": 250,
+                "Science": 170,
+                "History": 150
+            },
+            {
+                "Year": 2016,
+                "Fiction": 210,
+                "Non-Fiction": 260,
+                "Science": 180,
+                "History": 160
+            },
+            {
+                "Year": 2017,
+                "Fiction": 220,
+                "Non-Fiction": 270,
+                "Science": 190,
+                "History": 170
+            },
+            {
+                "Year": 2018,
+                "Fiction": 230,
+                "Non-Fiction": 280,
+                "Science": 200,
+                "History": 180
+            },
+            {
+                "Year": 2019,
+                "Fiction": 240,
+                "Non-Fiction": 290,
+                "Science": 210,
+                "History": 190
+            },
+            {
+                "Year": 2020,
+                "Fiction": 250,
+                "Non-Fiction": 300,
+                "Science": 220,
+                "History": 200
+            },
+            {
+                "Year": 2021,
+                "Fiction": 260,
+                "Non-Fiction": 310,
+                "Science": 230,
+                "History": 210
+            },
+            {
+                "Year": 2022,
+                "Fiction": 270,
+                "Non-Fiction": 320,
+                "Science": 240,
+                "History": 220
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Fiction",
+                "Non-Fiction",
+                "Science",
+                "History"
+            ],
+            "as": [
+                "Genre",
+                "Sales"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "bar",
+        "height": {
+            "band": 0.7
+        }
+    },
+    "encoding": {
+        "y": {
+            "field": "Year",
+            "type": "ordinal",
+            "axis": {
+                "labelAngle": 0,
+                "title": "Year"
+            }
+        },
+        "x": {
+            "field": "Sales",
+            "type": "quantitative",
+            "stack": "zero",
+            "axis": {
+                "title": "Sales (in thousands)"
+            }
+        },
+        "color": {
+            "field": "Genre",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Fiction",
+                    "Non-Fiction",
+                    "Science",
+                    "History"
+                ],
+                "range": [
+                    "#4C72B0",
+                    "#DD8452",
+                    "#55A868",
+                    "#C44E52"
+                ]
+            },
+            "title": "Genre"
+        },
+        "tooltip": [
+            {
+                "field": "Year",
+                "type": "ordinal"
+            },
+            {
+                "field": "Genre",
+                "type": "nominal"
+            },
+            {
+                "field": "Sales",
+                "type": "quantitative",
+                "title": "Sales (in thousands)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,176 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": {
+        "text": "Monthly Active Users by Social Media Platform",
+        "anchor": "start",
+        "offset": 5,
+        "fontWeight": "bold",
+        "fontSize": 18,
+        "frame": "bounds",
+        "color": "#1f77b4"
+    },
+    "width": 800,
+    "height": 400,
+    "data": {
+        "values": [
+            {
+                "Month": "Jan",
+                "Facebook": 2100,
+                "Twitter": 1200,
+                "Instagram": 900,
+                "LinkedIn": 450
+            },
+            {
+                "Month": "Feb",
+                "Facebook": 2200,
+                "Twitter": 1250,
+                "Instagram": 950,
+                "LinkedIn": 460
+            },
+            {
+                "Month": "Mar",
+                "Facebook": 2250,
+                "Twitter": 1300,
+                "Instagram": 1000,
+                "LinkedIn": 470
+            },
+            {
+                "Month": "Apr",
+                "Facebook": 2300,
+                "Twitter": 1350,
+                "Instagram": 1050,
+                "LinkedIn": 480
+            },
+            {
+                "Month": "May",
+                "Facebook": 2400,
+                "Twitter": 1400,
+                "Instagram": 1100,
+                "LinkedIn": 490
+            },
+            {
+                "Month": "Jun",
+                "Facebook": 2450,
+                "Twitter": 1450,
+                "Instagram": 1150,
+                "LinkedIn": 500
+            },
+            {
+                "Month": "Jul",
+                "Facebook": 2500,
+                "Twitter": 1500,
+                "Instagram": 1200,
+                "LinkedIn": 510
+            },
+            {
+                "Month": "Aug",
+                "Facebook": 2550,
+                "Twitter": 1550,
+                "Instagram": 1250,
+                "LinkedIn": 520
+            },
+            {
+                "Month": "Sep",
+                "Facebook": 2600,
+                "Twitter": 1600,
+                "Instagram": 1300,
+                "LinkedIn": 530
+            },
+            {
+                "Month": "Oct",
+                "Facebook": 2650,
+                "Twitter": 1650,
+                "Instagram": 1350,
+                "LinkedIn": 540
+            },
+            {
+                "Month": "Nov",
+                "Facebook": 2700,
+                "Twitter": 1700,
+                "Instagram": 1400,
+                "LinkedIn": 550
+            },
+            {
+                "Month": "Dec",
+                "Facebook": 2750,
+                "Twitter": 1750,
+                "Instagram": 1450,
+                "LinkedIn": 560
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Facebook",
+                "Twitter",
+                "Instagram",
+                "LinkedIn"
+            ],
+            "as": [
+                "Platform",
+                "MAUs"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "area",
+        "opacity": 0.65
+    },
+    "encoding": {
+        "x": {
+            "field": "Month",
+            "type": "ordinal",
+            "title": "Month",
+            "axis": {
+                "labelAngle": 0
+            }
+        },
+        "y": {
+            "field": "MAUs",
+            "type": "quantitative",
+            "stack": "zero",
+            "title": "Monthly Active Users (in millions)"
+        },
+        "color": {
+            "field": "Platform",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Facebook",
+                    "Twitter",
+                    "Instagram",
+                    "LinkedIn"
+                ],
+                "range": [
+                    "#3b5998",
+                    "#1da1f2",
+                    "#c32aa3",
+                    "#0077b5"
+                ]
+            },
+            "title": "Social Media Platform"
+        },
+        "tooltip": [
+            {
+                "field": "Platform",
+                "type": "nominal",
+                "title": "Platform"
+            },
+            {
+                "field": "MAUs",
+                "type": "quantitative",
+                "title": "Monthly Active Users",
+                "format": ",.1f"
+            }
+        ]
+    },
+    "config": {
+        "view": {
+            "stroke": "transparent"
+        },
+        "axisY": {
+            "grid": true
+        }
+    }
+}

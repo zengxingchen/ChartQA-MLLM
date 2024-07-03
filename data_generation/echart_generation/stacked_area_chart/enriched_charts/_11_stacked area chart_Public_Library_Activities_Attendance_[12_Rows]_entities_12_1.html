@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 400});
+var app = {};
+
+var option;
+
+option = {
+  title: {
+    text: 'Monthly Activity Engagement (2021-2022)',
+    left: 'center',
+    top: '3%',
+  },
+  tooltip: {
+    trigger: 'axis',
+    axisPointer: {
+      type: 'cross',
+      label: {
+        backgroundColor: '#6a7985'
+      }
+    }
+  },
+  legend: {
+    data: ['Indoor Activities', 'Outdoor Activities', 'Travel', 'Learning', 'Sports'],
+    top: '10%'
+  },
+  toolbox: {
+    feature: {
+      saveAsImage: {}
+    }
+  },
+  grid: {
+    left: '3%',
+    right: '4%',
+    bottom: '3%',
+    containLabel: true
+  },
+  xAxis: [
+    {
+      type: 'category',
+      boundaryGap: false,
+      data: [
+        '2021-01-01', '2021-02-01', '2021-03-01', '2021-04-01', '2021-05-01',
+        '2021-06-01', '2021-07-01', '2021-08-01', '2021-09-01', '2021-10-01',
+        '2021-11-01', '2021-12-01', '2022-01-01', '2022-02-01', '2022-03-01',
+        '2022-04-01', '2022-05-01', '2022-06-01', '2022-07-01', '2022-08-01',
+        '2022-09-01', '2022-10-01', '2022-11-01', '2022-12-01'
+      ]
+    }
+  ],
+  yAxis: [
+    {
+      type: 'value'
+    }
+  ],
+  series: [
+    {
+      name: 'Indoor Activities',
+      type: 'line',
+      stack: 'total',
+      areaStyle: {},
+      emphasis: {
+        focus: 'series'
+      },
+      data: [
+        120, 135, 160, 165, 170, 175, 180, 200, 190, 210, 190, 180, 230, 220, 210, 205,
+        200, 195, 190, 220, 210, 230, 220, 215
+      ],
+      color: '#1f78b4'
+    },
+    {
+      name: 'Outdoor Activities',
+      type: 'line',
+      stack: 'total',
+      areaStyle: {},
+      emphasis: {
+        focus: 'series'
+      },
+      data: [
+        80, 82, 95, 100, 105, 110, 115, 130, 140, 150, 145, 140, 155, 150, 145, 140,
+        135, 130, 125, 160, 155, 165, 160, 155
+      ],
+      color: '#33a02c'
+    },
+    {
+      name: 'Travel',
+      type: 'line',
+      stack: 'total',
+      areaStyle: {},
+      emphasis: {
+        focus: 'series'
+      },
+      data: [
+        60, 70, 80, 85, 90, 100, 110, 120, 130, 140, 135, 130, 150, 145, 140, 135,
+        130, 125, 120, 155, 150, 160, 155, 150
+      ],
+      color: '#fb9a99'
+    },
+    {
+      name: 'Learning',
+      type: 'line',
+      stack: 'total',
+      label: {
+        show: true,
+        position: 'top'
+      },
+      areaStyle: {},
+      emphasis: {
+        focus: 'series'
+      },
+      data: [
+        100, 110, 120, 130, 140, 150, 160, 170, 180, 190, 185, 180, 195, 190, 185, 180,
+        175, 170, 165, 200, 195, 205, 200, 195
+      ],
+      color: '#e31a1c'
+    },
+    {
+      name: 'Sports',
+      type: 'line',
+      stack: 'total',
+      areaStyle: {},
+      emphasis: {
+        focus: 'series'
+      },
+      data: [
+        40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 125, 120, 135, 130, 125, 120,
+        115, 110, 105, 145, 140, 150, 145, 140
+      ],
+      color: '#ff7f00'
+    }
+  ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

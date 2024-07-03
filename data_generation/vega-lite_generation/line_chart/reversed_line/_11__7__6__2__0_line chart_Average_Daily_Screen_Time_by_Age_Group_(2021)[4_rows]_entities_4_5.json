@@ -1,0 +1,160 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Line chart showing the number of movie tickets sold over a week.",
+    "title": {
+        "text": "Movie Ticket Sales Over a Week",
+        "fontSize": 20,
+        "anchor": "start",
+        "color": "#000000"
+    },
+    "width": 800,
+    "height": 400,
+    "data": {
+        "values": [
+            {
+                "City": "New York",
+                "Monday": 150,
+                "Tuesday": 160,
+                "Wednesday": 170,
+                "Thursday": 180,
+                "Friday": 200,
+                "Saturday": 220,
+                "Sunday": 230
+            },
+            {
+                "City": "Los Angeles",
+                "Monday": 180,
+                "Tuesday": 190,
+                "Wednesday": 200,
+                "Thursday": 210,
+                "Friday": 220,
+                "Saturday": 230,
+                "Sunday": 240
+            },
+            {
+                "City": "Chicago",
+                "Monday": 130,
+                "Tuesday": 140,
+                "Wednesday": 150,
+                "Thursday": 160,
+                "Friday": 170,
+                "Saturday": 180,
+                "Sunday": 190
+            },
+            {
+                "City": "Houston",
+                "Monday": 160,
+                "Tuesday": 170,
+                "Wednesday": 180,
+                "Thursday": 190,
+                "Friday": 200,
+                "Saturday": 210,
+                "Sunday": 220
+            },
+            {
+                "City": "Miami",
+                "Monday": 170,
+                "Tuesday": 180,
+                "Wednesday": 190,
+                "Thursday": 200,
+                "Friday": 210,
+                "Saturday": 220,
+                "Sunday": 230
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday",
+                "Friday",
+                "Saturday",
+                "Sunday"
+            ],
+            "as": [
+                "Day",
+                "Tickets Sold"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "line",
+        "point": {
+            "type": "circle",
+            "filled": true,
+            "color": "white",
+            "size": 100
+        }
+    },
+    "encoding": {
+        "x": {
+            "field": "Day",
+            "type": "ordinal",
+            "title": "Day of the Week",
+            "axis": {
+                "titleFontSize": 14,
+                "labelAngle": -45
+            }
+        },
+        "y": {
+            "field": "Tickets Sold",
+            "type": "quantitative",
+            "title": "Tickets Sold",
+            "scale": {
+                "reverse": true
+            },
+            "axis": {
+                "titleFontSize": 14
+            }
+        },
+        "color": {
+            "field": "City",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "New York",
+                    "Los Angeles",
+                    "Chicago",
+                    "Houston",
+                    "Miami"
+                ],
+                "range": [
+                    "#FF5733",
+                    "#33FF57",
+                    "#3357FF",
+                    "#FF33A1",
+                    "#A133FF"
+                ]
+            },
+            "legend": {
+                "title": "City"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "City",
+                "type": "nominal"
+            },
+            {
+                "field": "Day",
+                "type": "ordinal"
+            },
+            {
+                "field": "Tickets Sold",
+                "type": "quantitative"
+            }
+        ],
+        "text": {
+            "field": "Tickets Sold",
+            "type": "quantitative"
+        }
+    },
+    "config": {
+        "axisY": {
+            "minExtent": 30
+        }
+    }
+}

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 600,  // change width of chart reasonably
+    height: 400  // change height of chart reasonably
+});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Students Participation in Activities by Year',  // Headline for the topic "Education & Learning"
+        top: '1%',  // position the title to avoid overlapping with legend
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'  // use a shadow tooltip as its better for bar charts
+        }
+    },
+    legend: {
+        data: ['Reading', 'Writing', 'Mathematics', 'Science', 'Sports'],
+        top: '10%'  // Move legend down to prevent overlapping with title
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01]
+    },
+    yAxis: {
+        type: 'category',
+        data: ['2019', '2020', '2021', '2022']  // years at y-axis for a vertical bar chart
+    },
+    series: [
+        {
+            name: 'Reading',
+            type: 'bar',
+            stack: 'total',
+            barWidth: '40%',  // change width of bars reasonably
+            label: {
+                show: true,
+                formatter: '{c}%'
+            },
+            data: [15, 10, 20, 16],
+            itemStyle: {
+                color: '#FFC0CB'  // modify for better clarity with specific color
+            }
+        },
+        {
+            name: 'Writing',
+            type: 'bar',
+            stack: 'total',
+            barWidth: '40%',
+            label: {
+                show: true,
+                formatter: '{c}%'
+            },
+            data: [20, 18, 15, 22],
+            itemStyle: {
+                color: '#FFD700'
+            }
+        },
+        {
+            name: 'Mathematics',
+            type: 'bar',
+            stack: 'total',
+            barWidth: '40%',
+            label: {
+                show: true,
+                formatter: '{c}%'
+            },
+            data: [25, 30, 22, 24],
+            itemStyle: {
+                color: '#B0C4DE'
+            }
+        },
+        {
+            name: 'Science',
+            type: 'bar',
+            stack: 'total',
+            barWidth: '40%',
+            label: {
+                show: true,
+                formatter: '{c}%'
+            },
+            data: [22, 25, 28, 20],
+            itemStyle: {
+                color: '#90EE90'
+            }
+        },
+        {
+            name: 'Sports',
+            type: 'bar',
+            stack: 'total',
+            barWidth: '40%',
+            label: {
+                show: true,
+                formatter: '{c}%'
+            },
+            data: [18, 17, 15, 18],
+            itemStyle: {
+                color: '#FA8072'
+            }
+        }
+    ]
+};
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

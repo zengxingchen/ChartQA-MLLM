@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Popular Art Movements',
+        left: 'center',
+        top: '5%'
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: '{b}: {c}'
+    },
+    series: [
+        {
+            name: 'Art Movements',
+            type: 'treemap',
+            visibleMin: 300,
+            label: {
+                show: true,
+                formatter: '{b}'
+            },
+            itemStyle: {
+                borderColor: '#fff'
+            },
+            levels: [
+                {
+                    itemStyle: {
+                        normal: {
+                            borderColor: '#777',
+                            borderWidth: 1,
+                            gapWidth: 1,
+                            color: '#DAA520'
+                        }
+                    }
+                },
+                {
+                    colorSaturation: [0.3, 0.6],
+                    itemStyle: {
+                        normal: {
+                            borderColor: '#555',
+                            borderWidth: 1,
+                            gapWidth: 1,
+                            color: '#87CEEB'
+                        }
+                    }
+                }
+            ],
+            data: [
+                {
+                    name: 'Impressionism',
+                    value: 800,
+                    itemStyle: {
+                        color: '#FF6347'
+                    }
+                },
+                {
+                    name: 'Cubism',
+                    value: 600,
+                    itemStyle: {
+                        color: '#4682B4'
+                    }
+                },
+                {
+                    name: 'Surrealism',
+                    value: 700,
+                    itemStyle: {
+                        color: '#32CD32'
+                    }
+                },
+                {
+                    name: 'Abstract Art',
+                    value: 500,
+                    itemStyle: {
+                        color: '#FFD700'
+                    }
+                },
+                {
+                    name: 'Baroque',
+                    value: 450,
+                    itemStyle: {
+                        color: '#8A2BE2'
+                    }
+                },
+                {
+                    name: 'Renaissance',
+                    value: 650,
+                    itemStyle: {
+                        color: '#FF4500'
+                    }
+                },
+                {
+                    name: 'Modern Art',
+                    value: 550,
+                    itemStyle: {
+                        color: '#00CED1'
+                    }
+                },
+                {
+                    name: 'Pop Art',
+                    value: 600,
+                    itemStyle: {
+                        color: '#ADFF2F'
+                    }
+                },
+                {
+                    name: 'Realism',
+                    value: 480,
+                    itemStyle: {
+                        color: '#7B68EE'
+                    }
+                },
+                {
+                    name: 'Expressionism',
+                    value: 520,
+                    itemStyle: {
+                        color: '#FF1493'
+                    }
+                },
+                {
+                    name: 'Dada',
+                    value: 400,
+                    itemStyle: {
+                        color: '#DC143C'
+                    }
+                },
+                {
+                    name: 'Minimalism',
+                    value: 430,
+                    itemStyle: {
+                        color: '#00FA9A'
+                    }
+                },
+                {
+                    name: 'Conceptual Art',
+                    value: 410,
+                    itemStyle: {
+                        color: '#FFD700'
+                    }
+                },
+                {
+                    name: 'Futurism',
+                    value: 460,
+                    itemStyle: {
+                        color: '#4682B4'
+                    }
+                },
+                {
+                    name: 'Neo-Expressionism',
+                    value: 420,
+                    itemStyle: {
+                        color: '#FF6347'
+                    }
+                },
+                {
+                    name: 'Op Art',
+                    value: 470,
+                    itemStyle: {
+                        color: '#32CD32'
+                    }
+                }
+            ]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById("container");
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false
+});
+var app = {};
+
+var option;
+
+option = {
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['HR', 'Marketing', 'Development', 'Sales', 'Administration']
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: { show: true }
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value'
+    },
+    yAxis: {
+        type: 'category',
+        data: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+    },
+    series: [
+        {
+            name: 'HR',
+            type: 'bar',
+            stack: 'total',
+            emphasis: {
+                focus: 'series'
+            },
+            data: [320, 310, 325, 330, 300, 340, 360, 350, 355, 345, 375, 380]
+        },
+        {
+            name: 'Marketing',
+            type: 'bar',
+            stack: 'total',
+            emphasis: {
+                focus: 'series'
+            },
+            data: [410, 420, 430, 440, 415, 420, 430, 445, 450, 425, 440, 450]
+        },
+        {
+            name: 'Development',
+            type: 'bar',
+            stack: 'total',
+            emphasis: {
+                focus: 'series'
+            },
+            data: [550, 500, 560, 575, 595, 610, 620, 600, 610, 590, 620, 630]
+        },
+        {
+            name: 'Sales',
+            type: 'bar',
+            stack: 'total',
+            emphasis: {
+                focus: 'series'
+            },
+            data: [470, 480, 495, 510, 520, 530, 540, 550, 560, 550, 575, 590]
+        },
+        {
+            name: 'Administration',
+            type: 'bar',
+            stack: 'total',
+            emphasis: {
+                focus: 'series'
+            },
+            data: [230, 215, 210, 220, 200, 215, 230, 240, 225, 215, 230, 235]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

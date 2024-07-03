@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Distribution of Scores in Recent Exam',
+        left: 'center',
+        top: '10%'
+    },
+    xAxis: {
+        type: 'category',
+        data: ['40-45', '45-50', '50-55', '55-60', '60-65'],
+        name: 'Score Range'
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Frequency'
+    },
+    series: [
+        {
+            type: 'bar',
+            data: [
+                {value: 3, itemStyle: {color: '#5470C6'}},
+                {value: 5, itemStyle: {color: '#91CC75'}},
+                {value: 6, itemStyle: {color: '#EE6666'}},
+                {value: 4, itemStyle: {color: '#FAC858'}},
+                {value: 2, itemStyle: {color: '#73C0DE'}}
+            ],
+            barWidth: '40%',
+            label: {
+                show: true,
+                position: 'top'
+            }
+        }
+    ],
+    grid: {
+        containLabel: true,
+        width: '80%',
+        height: '70%',
+        left: '10%',
+        top: '20%'
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

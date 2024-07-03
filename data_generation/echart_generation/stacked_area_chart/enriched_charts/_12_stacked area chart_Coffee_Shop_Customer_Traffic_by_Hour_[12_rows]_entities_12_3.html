@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Quarterly Sector Growth',
+        subtext: 'Economy, Technology, and Healthcare',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            label: {
+                backgroundColor: '#6a7985'
+            }
+        }
+    },
+    legend: {
+        data: ['Economy', 'Technology', 'Healthcare'],
+        bottom: 10
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '15%',
+        containLabel: true
+    },
+    xAxis: [
+        {
+            type: 'category',
+            boundaryGap: false,
+            data: ['2021-Q1', '2021-Q2', '2021-Q3', '2021-Q4', '2022-Q1', '2022-Q2', '2022-Q3', '2022-Q4', '2023-Q1', '2023-Q2', '2023-Q3', '2023-Q4']
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value'
+        }
+    ],
+    series: [
+        {
+            name: 'Economy',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [5000, 5300, 5800, 6200, 6000, 6100, 6400, 6600, 6800, 7000, 7300, 7500],
+            color: '#FFD700'
+        },
+        {
+            name: 'Technology',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [5200, 5400, 5990, 6200, 6300, 6400, 6500, 6700, 6900, 7100, 7200, 7300],
+            color: '#FF4500'
+        },
+        {
+            name: 'Healthcare',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [4800, 4950, 5100, 5300, 5500, 5700, 6000, 6100, 6250, 6400, 6550, 6700],
+            color: '#32CD32'
+        }
+    ]
+};
+
+option && myChart.setOption(option);
+
+myChart.on('click', function (params) {
+    if (params.componentType === 'series') {
+        // Respond to click event on data points
+        console.log('You\'ve clicked on:', params.data);
+    }
+});
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

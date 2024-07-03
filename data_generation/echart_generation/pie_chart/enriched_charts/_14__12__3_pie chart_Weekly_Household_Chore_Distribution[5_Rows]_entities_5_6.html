@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Transportation Preferences in a Green City',
+        left: 'center',
+        top: 20
+    },
+    tooltip: {
+        trigger: 'item'
+    },
+    legend: {
+        orient: 'vertical',
+        left: 20,
+        top: 'middle'
+    },
+    series: [
+        {
+            name: 'Transportation Type',
+            type: 'pie',
+            radius: '50%',
+            data: [
+                {value: 30, name: 'Electric Cars'},
+                {value: 20, name: 'Hybrid Vehicles'},
+                {value: 10, name: 'Conventional Cars'},
+                {value: 15, name: 'Motorbikes'},
+                {value: 25, name: 'Bicycles'}
+            ],
+            emphasis: {
+                itemStyle: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            },
+            label: {
+                formatter: '{b}: {d}%'
+            },
+            color: [
+                '#34a853', // Electric Cars
+                '#fbbc05', // Hybrid Vehicles
+                '#ea4335', // Conventional Cars
+                '#4285f4', // Motorbikes
+                '#ff6d01'  // Bicycles
+            ]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

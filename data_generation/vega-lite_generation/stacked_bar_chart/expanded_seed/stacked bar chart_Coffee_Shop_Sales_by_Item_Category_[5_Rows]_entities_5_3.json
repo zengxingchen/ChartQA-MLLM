@@ -1,0 +1,111 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+        "values": [
+            {
+                "Date": "2023-01-01",
+                "Hot Beverages": 1500,
+                "Cold Beverages": 500,
+                "Baked Goods": 800,
+                "Packaged Snacks": 300,
+                "Merchandise": 200
+            },
+            {
+                "Date": "2023-02-01",
+                "Hot Beverages": 1800,
+                "Cold Beverages": 600,
+                "Baked Goods": 950,
+                "Packaged Snacks": 350,
+                "Merchandise": 250
+            },
+            {
+                "Date": "2023-03-01",
+                "Hot Beverages": 1600,
+                "Cold Beverages": 700,
+                "Baked Goods": 900,
+                "Packaged Snacks": 400,
+                "Merchandise": 300
+            },
+            {
+                "Date": "2023-04-01",
+                "Hot Beverages": 1700,
+                "Cold Beverages": 800,
+                "Baked Goods": 1000,
+                "Packaged Snacks": 450,
+                "Merchandise": 350
+            },
+            {
+                "Date": "2023-05-01",
+                "Hot Beverages": 1900,
+                "Cold Beverages": 900,
+                "Baked Goods": 1100,
+                "Packaged Snacks": 500,
+                "Merchandise": 400
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Hot Beverages",
+                "Cold Beverages",
+                "Baked Goods",
+                "Packaged Snacks",
+                "Merchandise"
+            ],
+            "as": [
+                "Category",
+                "Sales"
+            ]
+        }
+    ],
+    "mark": "bar",
+    "width": 250,
+    "height": 300,
+    "title": {
+        "text": "Monthly Sales by Product Category",
+        "fontSize": 14,
+        "anchor": "start",
+        "color": "black"
+    },
+    "encoding": {
+        "x": {
+            "field": "Date",
+            "type": "ordinal",
+            "title": "Date"
+        },
+        "y": {
+            "field": "Sales",
+            "type": "quantitative",
+            "title": "Sales"
+        },
+        "color": {
+            "field": "Category",
+            "type": "nominal",
+            "legend": {
+                "orient": "bottom-right"
+            },
+            "scale": {
+                "scheme": "category20"
+            },
+            "title": "Product Category"
+        },
+        "tooltip": [
+            {
+                "field": "Date",
+                "type": "nominal",
+                "title": "Date"
+            },
+            {
+                "field": "Category",
+                "type": "nominal",
+                "title": "Category"
+            },
+            {
+                "field": "Sales",
+                "type": "quantitative",
+                "title": "Sales"
+            }
+        ]
+    }
+}

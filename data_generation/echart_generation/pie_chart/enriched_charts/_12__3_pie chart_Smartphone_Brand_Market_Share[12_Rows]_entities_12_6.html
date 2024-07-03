@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 800,
+    height: 600
+});
+var app = {};
+
+var option;
+
+option = {
+    // Adding the headline at a top position to avoid overlap
+    title: {
+        text: 'Market Share of Space Agencies\' Budgets in 2023',
+        left: 'center',
+        top: 20
+    },
+    tooltip: {
+        trigger: 'item'
+    },
+    // Adjusting legend position to avoid overlap
+    legend: {
+        orient: 'vertical',
+        left: 'left',
+        top: 50
+    },
+    series: [
+        {
+            name: 'Budget (in millions)',
+            type: 'pie',
+            radius: '55%',
+            data: [
+                {value: 23100, name: 'NASA'},
+                {value: 7400, name: 'ESA'},
+                {value: 11000, name: 'CNSA'},
+                {value: 3000, name: 'Roscosmos'},
+                {value: 1700, name: 'ISRO'},
+                {value: 2000, name: 'JAXA'},
+                {value: 1200, name: 'SpaceX'},
+                {value: 900, name: 'Blue Origin'},
+                {value: 2300, name: 'Other'}
+            ],
+            emphasis: {
+                itemStyle: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            }
+        }
+    ],
+    color: [
+        '#003f5c',
+        '#2f4b7c',
+        '#665191',
+        '#a05195',
+        '#d45087',
+        '#f95d6a',
+        '#ff7c43',
+        '#ffa600',
+        '#488f31'
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

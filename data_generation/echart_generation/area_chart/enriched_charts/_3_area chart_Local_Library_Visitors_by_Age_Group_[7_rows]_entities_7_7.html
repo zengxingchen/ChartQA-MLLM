@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {renderer: 'canvas', width: '800', height: '600'});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Annual CO2 Emissions',
+        left: 'center',
+        textStyle: {
+            color: '#333',
+            fontWeight: 'bold',
+            fontSize: 20
+        }
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            label: {
+                backgroundColor: '#6a7985'
+            }
+        }
+    },
+    legend: {
+        data: ['CO2 Emissions'],
+        top: '5%'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: [
+            '2000', '2001', '2002', '2003', '2004', '2005', 
+            '2006', '2007', '2008', '2009', '2010', '2011', 
+            '2012', '2013', '2014', '2015', '2016', '2017', 
+            '2018', '2019', '2020'
+        ],
+        axisLabel: {
+            formatter: '{value}'
+        }
+    },
+    yAxis: {
+        type: 'value',
+        axisLabel: {
+            formatter: '{value} MMT'
+        },
+        name: 'Emissions',
+        nameLocation: 'middle',
+        nameGap: 50
+    },
+    series: [
+        {
+            name: 'CO2 Emissions',
+            type: 'line',
+            stack: 'Total amount',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [
+                1230.5, 1285.6, 1341.1, 1397.3, 1456.2, 1501.6, 
+                1578.9, 1642.3, 1706.0, 1744.2, 1820.3, 1895.8, 
+                1950.4, 2010.6, 2090.7, 2165.1, 2250.0, 2310.7, 
+                2385.3, 2425.5, 2377.4
+            ],
+            markPoint: {
+                data: [
+                    {type: 'max', name: 'Max'},
+                    {type: 'min', name: 'Min'}
+                ]
+            },
+            color: ['#4e7ac7']
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

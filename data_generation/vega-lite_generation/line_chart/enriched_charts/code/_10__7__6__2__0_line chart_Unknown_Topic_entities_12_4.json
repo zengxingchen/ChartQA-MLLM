@@ -1,0 +1,174 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+        "values": [
+            {
+                "Month": "January",
+                "Exercise Hours": 15,
+                "Healthy Eating Score": 80
+            },
+            {
+                "Month": "February",
+                "Exercise Hours": 20,
+                "Healthy Eating Score": 82
+            },
+            {
+                "Month": "March",
+                "Exercise Hours": 25,
+                "Healthy Eating Score": 85
+            },
+            {
+                "Month": "April",
+                "Exercise Hours": 30,
+                "Healthy Eating Score": 88
+            },
+            {
+                "Month": "May",
+                "Exercise Hours": 35,
+                "Healthy Eating Score": 90
+            },
+            {
+                "Month": "June",
+                "Exercise Hours": 40,
+                "Healthy Eating Score": 92
+            },
+            {
+                "Month": "July",
+                "Exercise Hours": 45,
+                "Healthy Eating Score": 95
+            },
+            {
+                "Month": "August",
+                "Exercise Hours": 50,
+                "Healthy Eating Score": 93
+            },
+            {
+                "Month": "September",
+                "Exercise Hours": 55,
+                "Healthy Eating Score": 91
+            },
+            {
+                "Month": "October",
+                "Exercise Hours": 60,
+                "Healthy Eating Score": 89
+            },
+            {
+                "Month": "November",
+                "Exercise Hours": 65,
+                "Healthy Eating Score": 87
+            },
+            {
+                "Month": "December",
+                "Exercise Hours": 70,
+                "Healthy Eating Score": 90
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Exercise Hours",
+                "Healthy Eating Score"
+            ],
+            "as": [
+                "Measure",
+                "Value"
+            ]
+        }
+    ],
+    "width": 900,
+    "height": 600,
+    "mark": {
+        "type": "line",
+        "point": {
+            "filled": true,
+            "fill": "white"
+        },
+        "tooltip": true
+    },
+    "encoding": {
+        "x": {
+            "field": "Month",
+            "type": "ordinal",
+            "title": "Month",
+            "axis": {
+                "labelAngle": 0
+            }
+        },
+        "y": {
+            "field": "Value",
+            "type": "quantitative",
+            "title": "Values",
+            "scale": {
+                "reverse": true
+            }
+        },
+        "color": {
+            "field": "Measure",
+            "type": "nominal",
+            "scale": {
+                "range": [
+                    "#E74C3C",
+                    "#2980B9"
+                ]
+            },
+            "legend": {
+                "title": "Measure"
+            }
+        }
+    },
+    "title": {
+        "text": "Monthly Health & Fitness Statistics",
+        "subtitle": "Tracking exercise hours and healthy eating scores",
+        "anchor": "start"
+    },
+    "layer": [
+        {
+            "mark": {
+                "type": "line",
+                "point": true,
+                "tooltip": true
+            },
+            "encoding": {
+                "x": {
+                    "field": "Month",
+                    "type": "ordinal"
+                },
+                "y": {
+                    "field": "Value",
+                    "type": "quantitative"
+                },
+                "color": {
+                    "field": "Measure",
+                    "type": "nominal"
+                }
+            }
+        },
+        {
+            "mark": {
+                "type": "text",
+                "align": "left",
+                "dx": 5,
+                "dy": -5
+            },
+            "encoding": {
+                "x": {
+                    "field": "Month",
+                    "type": "ordinal"
+                },
+                "y": {
+                    "field": "Value",
+                    "type": "quantitative"
+                },
+                "text": {
+                    "field": "Value",
+                    "type": "quantitative"
+                },
+                "color": {
+                    "field": "Measure",
+                    "type": "nominal"
+                }
+            }
+        }
+    ]
+}

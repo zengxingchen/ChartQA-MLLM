@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var option;
+
+option = {
+    title: {
+        text: 'Daily Steps Count Distribution',
+        left: 'center'
+    },
+    xAxis: {
+        type: 'category',
+        data: ['5', '6', '7', '8', '9', '10', '11', '12', '13']
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Frequency'
+    },
+    series: [{
+        data: [
+            {value: 2, itemStyle: {color: '#FF6347'}}, // 5
+            {value: 5, itemStyle: {color: '#FF7F50'}}, // 6
+            {value: 10, itemStyle: {color: '#FFD700'}}, // 7
+            {value: 8, itemStyle: {color: '#ADFF2F'}}, // 8
+            {value: 9, itemStyle: {color: '#32CD32'}}, // 9
+            {value: 10, itemStyle: {color: '#00FA9A'}}, // 10
+            {value: 5, itemStyle: {color: '#00CED1'}}, // 11
+            {value: 6, itemStyle: {color: '#1E90FF'}}, // 12
+            {value: 1, itemStyle: {color: '#9932CC'}}  // 13
+        ],
+        type: 'bar',
+        barWidth: '50%',
+        label: {
+            show: true,
+            position: 'inside'
+        }
+    }],
+    grid: {
+        left: '10%',
+        right: '10%',
+        bottom: '15%',
+        containLabel: true
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+option = {
+    title: {
+        text: 'Influential Artists in History',
+        left: 'center',
+        top: '5%',
+        textStyle: {
+            color: '#333',
+            fontSize: 24
+        }
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: '{b}: {c}'
+    },
+    series: [{
+        name: 'Artists',
+        type: 'treemap',
+        width: '90%',
+        height: '85%',
+        top: '15%',
+        label: {
+            show: true,
+            formatter: '{b}'
+        },
+        itemStyle: {
+            normal: {
+                borderColor: '#fff',
+                borderWidth: 1,
+                gapWidth: 1,
+                color: function(params) {
+                    var colors = ['#FF6F61', '#6B5B95', '#88B04B', '#F7CAC9', '#92A8D1', '#955251', '#B565A7', '#009B77', '#DD4124', '#45B8AC', '#EFC050', '#5B5EA6', '#9B2335', '#DFCFBE', '#55B4B0', '#E15D44', '#7FCDCD', '#BC243C', '#C3447A', '#98B4D4'];
+                    return colors[params.dataIndex % colors.length];
+                }
+            }
+        },
+        data: [
+            {name: 'Van Gogh', value: 95},
+            {name: 'Da Vinci', value: 80},
+            {name: 'Picasso', value: 72},
+            {name: 'Michelangelo', value: 85},
+            {name: 'Rembrandt', value: 67},
+            {name: 'Monet', value: 90},
+            {name: 'Cezanne', value: 75},
+            {name: 'Warhol', value: 65},
+            {name: 'Kahlo', value: 50},
+            {name: 'Dali', value: 60},
+            {name: 'Matisse', value: 70},
+            {name: 'Goya', value: 55},
+            {name: 'Vermeer', value: 45},
+            {name: 'Renoir', value: 88},
+            {name: 'Munch', value: 58},
+            {name: 'Raphael', value: 65},
+            {name: 'Botticelli', value: 52},
+            {name: 'Klimt', value: 48},
+            {name: 'Pollock', value: 62},
+            {name: 'Rodin', value: 57}
+        ]
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

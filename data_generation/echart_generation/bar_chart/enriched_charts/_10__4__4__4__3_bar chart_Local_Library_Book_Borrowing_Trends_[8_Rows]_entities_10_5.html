@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+var option;
+
+option = {
+    title: {
+        text: 'Sales Distribution Across Different Categories',
+        left: 'center',
+        top: '5%'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Value'],
+        top: '10%'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        data: ['Food', 'Beverages', 'Electronics', 'Clothing', 'Furniture', 'Toys', 'Books', 'Shoes', 'Accessories', 'Beauty', 'Sports', 'Music', 'Stationery', 'Games', 'Groceries'],
+        axisLabel: {
+            rotate: 45,
+            interval: 0
+        }
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Sales Value'
+    },
+    series: [
+        {
+            name: 'Value',
+            type: 'bar',
+            barWidth: '50%',
+            itemStyle: {
+                color: '#4CAF50'
+            },
+            data: [45, 30, 80, 55, 40, 25, 60, 70, 50, 35, 90, 20, 65, 75, 85],
+            label: {
+                show: true,
+                position: 'top'
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

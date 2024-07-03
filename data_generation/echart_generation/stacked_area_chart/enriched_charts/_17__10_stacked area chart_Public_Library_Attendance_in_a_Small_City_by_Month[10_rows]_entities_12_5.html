@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 400});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Annual Carbon Emissions by Sector',
+        subtext: 'In million metric tonnes CO2 equivalent',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            label: {
+                backgroundColor: '#6a7985'
+            }
+        }
+    },
+    legend: {
+        data: ['Energy', 'Industry', 'Forestry'],
+        top: '10%'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    color: ['#FF4500', '#1E90FF', '#32CD32'],
+    xAxis: [
+        {
+            type: 'category',
+            boundaryGap: false,
+            data: ['2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020']
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value'
+        }
+    ],
+    series: [
+        {
+            name: 'Energy',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [4000, 4200, 4300, 4500, 4600, 4700, 4800, 4900, 5000, 5100, 5200]
+        },
+        {
+            name: 'Industry',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [3000, 3200, 3300, 3400, 3500, 3600, 3700, 3800, 3900, 4000, 4100]
+        },
+        {
+            name: 'Forestry',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [2500, 2400, 2700, 2800, 2900, 3000, 3100, 3200, 3300, 3400, 3500]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

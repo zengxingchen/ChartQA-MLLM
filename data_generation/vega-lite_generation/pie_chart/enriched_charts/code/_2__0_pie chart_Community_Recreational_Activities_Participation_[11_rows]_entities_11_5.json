@@ -1,0 +1,103 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Favorite Fruits in 2024",
+    "title": {
+        "text": "Favorite Fruits in 2024",
+        "fontSize": 20,
+        "anchor": "start",
+        "color": "#333333"
+    },
+    "width": 500,
+    "height": 400,
+    "data": {
+        "values": [
+            {
+                "Fruit": "Apple",
+                "Preference": 35
+            },
+            {
+                "Fruit": "Banana",
+                "Preference": 25
+            },
+            {
+                "Fruit": "Cherry",
+                "Preference": 15
+            },
+            {
+                "Fruit": "Date",
+                "Preference": 10
+            },
+            {
+                "Fruit": "Elderberry",
+                "Preference": 5
+            },
+            {
+                "Fruit": "Fig",
+                "Preference": 5
+            },
+            {
+                "Fruit": "Grape",
+                "Preference": 5
+            }
+        ]
+    },
+    "transform": [
+        {
+            "calculate": "datum['Preference']",
+            "as": "PreferenceValue"
+        }
+    ],
+    "mark": {
+        "type": "arc",
+        "innerRadius": 70,
+        "outerRadius": 170,
+        "tooltip": true
+    },
+    "encoding": {
+        "theta": {
+            "field": "PreferenceValue",
+            "type": "quantitative",
+            "stack": true
+        },
+        "color": {
+            "field": "Fruit",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Apple",
+                    "Banana",
+                    "Cherry",
+                    "Date",
+                    "Elderberry",
+                    "Fig",
+                    "Grape"
+                ],
+                "range": [
+                    "#ff9999",
+                    "#ffcc99",
+                    "#ff6666",
+                    "#ffcc00",
+                    "#9999ff",
+                    "#cc99ff",
+                    "#99ff99"
+                ]
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Fruit",
+                "type": "nominal",
+                "title": "Fruit"
+            },
+            {
+                "field": "PreferenceValue",
+                "type": "quantitative",
+                "title": "Preference (%)",
+                "format": ".1f"
+            }
+        ]
+    },
+    "view": {
+        "stroke": null
+    }
+}

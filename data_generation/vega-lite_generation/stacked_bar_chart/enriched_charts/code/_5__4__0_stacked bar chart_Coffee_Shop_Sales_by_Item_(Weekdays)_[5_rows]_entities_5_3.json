@@ -1,0 +1,188 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+        "values": [
+            {
+                "Month": "January",
+                "Exercise": 120,
+                "Meditation": 80,
+                "Therapy": 90,
+                "Diet": 100,
+                "Sleep": 95
+            },
+            {
+                "Month": "February",
+                "Exercise": 130,
+                "Meditation": 90,
+                "Therapy": 100,
+                "Diet": 110,
+                "Sleep": 105
+            },
+            {
+                "Month": "March",
+                "Exercise": 140,
+                "Meditation": 100,
+                "Therapy": 110,
+                "Diet": 120,
+                "Sleep": 115
+            },
+            {
+                "Month": "April",
+                "Exercise": 150,
+                "Meditation": 110,
+                "Therapy": 120,
+                "Diet": 130,
+                "Sleep": 125
+            },
+            {
+                "Month": "May",
+                "Exercise": 160,
+                "Meditation": 120,
+                "Therapy": 130,
+                "Diet": 140,
+                "Sleep": 135
+            },
+            {
+                "Month": "June",
+                "Exercise": 170,
+                "Meditation": 130,
+                "Therapy": 140,
+                "Diet": 150,
+                "Sleep": 145
+            },
+            {
+                "Month": "July",
+                "Exercise": 180,
+                "Meditation": 140,
+                "Therapy": 150,
+                "Diet": 160,
+                "Sleep": 155
+            },
+            {
+                "Month": "August",
+                "Exercise": 190,
+                "Meditation": 150,
+                "Therapy": 160,
+                "Diet": 170,
+                "Sleep": 165
+            },
+            {
+                "Month": "September",
+                "Exercise": 200,
+                "Meditation": 160,
+                "Therapy": 170,
+                "Diet": 180,
+                "Sleep": 175
+            },
+            {
+                "Month": "October",
+                "Exercise": 210,
+                "Meditation": 170,
+                "Therapy": 180,
+                "Diet": 190,
+                "Sleep": 185
+            },
+            {
+                "Month": "November",
+                "Exercise": 220,
+                "Meditation": 180,
+                "Therapy": 190,
+                "Diet": 200,
+                "Sleep": 195
+            },
+            {
+                "Month": "December",
+                "Exercise": 230,
+                "Meditation": 190,
+                "Therapy": 200,
+                "Diet": 210,
+                "Sleep": 205
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Exercise",
+                "Meditation",
+                "Therapy",
+                "Diet",
+                "Sleep"
+            ],
+            "as": [
+                "Activity",
+                "Hours"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "bar",
+        "height": {
+            "band": 0.6
+        }
+    },
+    "width": 300,
+    "height": 500,
+    "title": {
+        "text": "Monthly Hours Spent on Health Activities",
+        "anchor": "start",
+        "dy": -20
+    },
+    "encoding": {
+        "y": {
+            "field": "Month",
+            "type": "ordinal",
+            "axis": {
+                "title": "Month"
+            }
+        },
+        "x": {
+            "field": "Hours",
+            "type": "quantitative",
+            "stack": "zero",
+            "axis": {
+                "title": "Total Hours"
+            },
+            "scale": {
+                "domain": [
+                    0,
+                    1300
+                ]
+            }
+        },
+        "color": {
+            "field": "Activity",
+            "type": "nominal",
+            "scale": {
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e",
+                    "#2ca02c",
+                    "#d62728",
+                    "#9467bd"
+                ]
+            },
+            "legend": {
+                "orient": "top-right",
+                "title": "Health Activity"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Month",
+                "type": "nominal",
+                "title": "Month"
+            },
+            {
+                "field": "Activity",
+                "type": "nominal",
+                "title": "Health Activity"
+            },
+            {
+                "field": "Hours",
+                "type": "quantitative",
+                "title": "Hours"
+            }
+        ]
+    }
+}

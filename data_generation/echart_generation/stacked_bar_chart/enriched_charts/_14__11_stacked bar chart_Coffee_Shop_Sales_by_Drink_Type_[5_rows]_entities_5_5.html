@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var option;
+
+option = {
+    title: {
+        text: 'Art and Design Categories Comparison',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {type: 'shadow'}
+    },
+    legend: {
+        data: ['Value1', 'Value2', 'Value3'],
+        top: 20
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        data: ['Art - Design', 'Art - Painting', 'Art - Sculpture', 'Art - Photography', 'Design - Graphic', 'Design - Interior', 'Design - Fashion', 'Design - Web'],
+        axisLabel: {
+            interval: 0,
+            rotate: 30
+        }
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Value1',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            data: [150, 200, 300, 170, 140, 110, 190, 210],
+            itemStyle: {
+                color: '#5470C6'
+            },
+            barWidth: '30%'
+        },
+        {
+            name: 'Value2',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            data: [230, 210, 120, 160, 120, 140, 190, 180],
+            itemStyle: {
+                color: '#91CC75'
+            },
+            barWidth: '30%'
+        },
+        {
+            name: 'Value3',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            data: [224, 214, 132, 191, 122, 138, 215, 205],
+            itemStyle: {
+                color: '#FAC858'
+            },
+            barWidth: '30%'
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

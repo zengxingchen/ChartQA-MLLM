@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 800, // Chart width
+    height: 600 // Chart height
+});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Monthly Website Traffic Sources',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['Organic Traffic', 'Email Marketing', 'Social Media'],
+        bottom: 10
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '12%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: [
+            '2023-01-01', '2023-01-02', '2023-01-03', '2023-01-04', '2023-01-05', 
+            '2023-01-06', '2023-01-07', '2023-01-08', '2023-01-09', '2023-01-10', 
+            '2023-01-11', '2023-01-12', '2023-01-13', '2023-01-14', '2023-01-15', 
+            '2023-01-16', '2023-01-17', '2023-01-18', '2023-01-19', '2023-01-20', 
+            '2023-01-21', '2023-01-22', '2023-01-23', '2023-01-24', '2023-01-25', 
+            '2023-01-26', '2023-01-27', '2023-01-28', '2023-01-29', '2023-01-30', 
+            '2023-01-31'
+        ],
+        axisLabel: {
+            formatter: function(value, index) {
+                // Formatting to show dd-mm format only
+                return value.substr(5).replace('-', '/');
+            }
+        }
+    },
+    yAxis: {
+        type: 'value',
+        axisLabel: {
+            formatter: '{value} visits'
+        }
+    },
+    series: [
+        {
+            name: 'Organic Traffic',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            itemStyle: {
+                color: '#675bba' // Purple shade
+            },
+            data: [
+                12000, 12300, 12100, 12500, 13000, 
+                12800, 13200, 13400, 12800, 12500, 
+                12700, 12300, 12000, 11900, 12100, 
+                12400, 12200, 12600, 12900, 13300, 
+                13500, 13000, 12800, 12900, 13100, 
+                13400, 13600, 13100, 13300, 13700, 
+                14000
+            ],
+            markLine: {
+                data: [
+                    { type: 'average', name: 'Avg' }
+                ]
+            }
+        },
+        {
+            name: 'Email Marketing',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            itemStyle: {
+                color: '#549e39' // Green shade
+            },
+            data: [
+                3000, 3200, 3300, 3400, 3500,
+                3450, 3550, 3600, 3700, 3750,
+                3800, 3850, 3900, 3950, 4000,
+                4050, 4100, 4200, 4300, 4400,
+                4500, 4550, 4600, 4650, 4700,
+                4800, 4850, 4900, 4950, 5000,
+                5100
+            ],
+            markLine: {
+                data: [
+                    { type: 'average', name: 'Avg' }
+                ]
+            }
+        },
+        {
+            name: 'Social Media',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            itemStyle: {
+                color: '#ec5550' // Red shade
+            },
+            data: [
+                2100, 2200, 2050, 2250, 2300,
+                2400, 2500, 2450, 2550, 2600,
+                2650, 2700, 2750, 2800, 2850,
+                2900, 2950, 3000, 3050, 3100,
+                3200, 3250, 3300, 3350, 3400,
+                3450, 3500, 3550, 3600, 3650,
+                3700
+            ],
+            markLine: {
+                data: [
+                    { type: 'average', name: 'Avg' }
+                ]
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

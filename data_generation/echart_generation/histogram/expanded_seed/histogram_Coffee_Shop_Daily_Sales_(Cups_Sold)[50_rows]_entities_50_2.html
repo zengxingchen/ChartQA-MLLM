@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var data = [{'Date': '2023-01-01', 'Cups Sold': 87}, {'Date': '2023-01-02', 'Cups Sold': 79}, {'Date': '2023-01-03', 'Cups Sold': 91}, {'Date': '2023-01-04', 'Cups Sold': 104}, {'Date': '2023-01-05', 'Cups Sold': 110}, {'Date': '2023-01-06', 'Cups Sold': 123}, {'Date': '2023-01-07', 'Cups Sold': 131}, {'Date': '2023-01-08', 'Cups Sold': 98}, {'Date': '2023-01-09', 'Cups Sold': 86}, {'Date': '2023-01-10', 'Cups Sold': 75}, {'Date': '2023-01-11', 'Cups Sold': 89}, {'Date': '2023-01-12', 'Cups Sold': 95}, {'Date': '2023-01-13', 'Cups Sold': 115}, {'Date': '2023-01-14', 'Cups Sold': 120}, {'Date': '2023-01-15', 'Cups Sold': 130}];
+
+// Transform data into frequency bins for histogram
+var cupsSoldArray = data.map(function (item) {
+    return item['Cups Sold'];
+}).sort(function (a, b) {
+    return a - b;
+});
+
+// Define bin size and create bins
+var binSize = 10; // Choose an appropriate bin size
+var bins = [];
+for (var i = Math.floor(cupsSoldArray[0] / binSize) * binSize; i < cupsSoldArray[cupsSoldArray.length - 1]; i += binSize) {
+    bins.push({min: i, max: i + binSize, frequency: 0});
+}
+
+cupsSoldArray.forEach((value) => {
+    var index = Math.floor((value - bins[0].min) / binSize);
+    bins[index].frequency += 1;
+});
+
+// Prepare x-axis labels (range of each bin) and y-axis data (frequency)
+var xAxisData = bins.map(bin => bin.min + '-' + bin.max);
+var yAxisData = bins.map(bin => bin.frequency);
+
+option = {
+    color: ['#3398DB'],
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: [
+        {
+            type: 'category',
+            data: xAxisData,
+            axisTick: {
+                alignWithLabel: true
+            }
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value'
+        }
+    ],
+    series: [
+        {
+            name: 'Frequency',
+            type: 'bar',
+            barWidth: '60%',
+            data: yAxisData
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

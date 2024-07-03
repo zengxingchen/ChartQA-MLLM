@@ -1,0 +1,185 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": {
+        "text": "Technology Adoption Over the Years",
+        "subtitle": "Horizontal stacked bar chart representing the proportion of adoption in different technologies",
+        "anchor": "start",
+        "color": "black"
+    },
+    "description": "A stacked bar chart showing the adoption percentage in AI, IoT, and Blockchain sectors.",
+    "width": 400,
+    "height": 600,
+    "data": {
+        "values": [
+            {
+                "Year": 2015,
+                "AI": 15,
+                "IoT": 25,
+                "Blockchain": 60
+            },
+            {
+                "Year": 2016,
+                "AI": 20,
+                "IoT": 28,
+                "Blockchain": 52
+            },
+            {
+                "Year": 2017,
+                "AI": 22,
+                "IoT": 30,
+                "Blockchain": 48
+            },
+            {
+                "Year": 2018,
+                "AI": 27,
+                "IoT": 33,
+                "Blockchain": 40
+            },
+            {
+                "Year": 2019,
+                "AI": 30,
+                "IoT": 35,
+                "Blockchain": 35
+            },
+            {
+                "Year": 2020,
+                "AI": 35,
+                "IoT": 30,
+                "Blockchain": 35
+            },
+            {
+                "Year": 2021,
+                "AI": 40,
+                "IoT": 28,
+                "Blockchain": 32
+            },
+            {
+                "Year": 2022,
+                "AI": 45,
+                "IoT": 25,
+                "Blockchain": 30
+            },
+            {
+                "Year": 2023,
+                "AI": 50,
+                "IoT": 23,
+                "Blockchain": 27
+            },
+            {
+                "Year": 2024,
+                "AI": 55,
+                "IoT": 20,
+                "Blockchain": 25
+            },
+            {
+                "Year": 2025,
+                "AI": 60,
+                "IoT": 18,
+                "Blockchain": 22
+            },
+            {
+                "Year": 2026,
+                "AI": 65,
+                "IoT": 15,
+                "Blockchain": 20
+            },
+            {
+                "Year": 2027,
+                "AI": 70,
+                "IoT": 12,
+                "Blockchain": 18
+            },
+            {
+                "Year": 2028,
+                "AI": 75,
+                "IoT": 10,
+                "Blockchain": 15
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "AI",
+                "IoT",
+                "Blockchain"
+            ],
+            "as": [
+                "Technology",
+                "Percentage"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "bar",
+        "width": {
+            "band": 0.7
+        }
+    },
+    "encoding": {
+        "y": {
+            "field": "Year",
+            "type": "ordinal",
+            "title": "Year"
+        },
+        "x": {
+            "field": "Percentage",
+            "type": "quantitative",
+            "title": "Adoption Percentage",
+            "stack": "normalize",
+            "axis": {
+                "format": ".0%"
+            }
+        },
+        "color": {
+            "field": "Technology",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "AI",
+                    "IoT",
+                    "Blockchain"
+                ],
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e",
+                    "#2ca02c"
+                ]
+            },
+            "title": "Technology"
+        },
+        "tooltip": [
+            {
+                "field": "Year",
+                "type": "ordinal",
+                "title": "Year"
+            },
+            {
+                "field": "Technology",
+                "type": "nominal",
+                "title": "Technology"
+            },
+            {
+                "field": "Percentage",
+                "type": "quantitative",
+                "title": "Percentage (%)",
+                "format": ".2f"
+            }
+        ]
+    },
+    "config": {
+        "axisY": {
+            "titleAngle": 0,
+            "titleAlign": "left",
+            "titleY": -10,
+            "titleX": -10,
+            "labelPadding": 5,
+            "titleFontSize": 12
+        },
+        "legend": {
+            "titleFontSize": 12,
+            "labelFontSize": 12,
+            "symbolType": "square"
+        }
+    }
+}

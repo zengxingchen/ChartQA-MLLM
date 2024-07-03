@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: '600',
+    height: '400'
+});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Technology Adoption Rates',
+        subtext: 'Data from Hitech Analysis',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['Adoption Rate'],
+        bottom: 10
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: [
+            '2020-01-01', '2020-02-01', '2020-03-01', '2020-04-01', '2020-05-01', 
+            '2020-06-01', '2020-07-01', '2020-08-01', '2020-09-01', '2020-10-01', 
+            '2020-11-01', '2020-12-01', '2021-01-01', '2021-02-01', '2021-03-01', 
+            '2021-04-01', '2021-05-01', '2021-06-01', '2021-07-01', '2021-08-01', 
+            '2021-09-01', '2021-10-01', '2021-11-01', '2021-12-01'
+        ]
+    },
+    yAxis: {
+        type: 'value',
+        axisLabel: {
+            formatter: '{value}%'
+        }
+    },
+    series: [
+        {
+            name: 'Adoption Rate',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [
+                800, 790, 780, 770, 760, 
+                745, 730, 710, 690, 675, 
+                660, 640, 620, 605, 590, 
+                580, 565, 550, 530, 510, 
+                495, 480, 460, 440
+            ],
+            markPoint: {
+                data: [
+                    {type: 'max', name: 'Max'},
+                    {type: 'min', name: 'Min'}
+                ]
+            },
+            color: ['#00aaff']
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

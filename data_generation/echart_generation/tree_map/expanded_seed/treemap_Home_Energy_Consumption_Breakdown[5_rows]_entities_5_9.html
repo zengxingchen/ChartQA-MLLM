@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+
+var data = [
+    {name: 'Heating', value: 6000, children: [{name: 'Central Heating', value: 6000}]},
+    {name: 'Cooling', value: 2000, children: [{name: 'Air Conditioning', value: 2000}]},
+    {name: 'Water Heating', value: 1500, children: [{name: 'Electric Water Heater', value: 1500}]},
+    {name: 'Appliances', value: 600, children: [{name: 'Refrigerator', value: 600}]},
+    {name: 'Lighting', value: 300, children: [{name: 'LED Bulbs', value: 300}]}
+];
+
+option = {
+    tooltip: {
+        formatter: function (info) {
+            var value = info.value;
+            var treePathInfo = info.treePathInfo;
+            var treePath = [];
+
+            for (var i = 1; i < treePathInfo.length; i++) {
+                treePath.push(treePathInfo[i].name);
+            }
+
+            return [
+                '<div class="tooltip-title">' + echarts.format.encodeHTML(treePath.join('/')) + '</div>',
+                'Annual kWh: ' + echarts.format.addCommas(value),
+            ].join('');
+        }
+    },
+    series: [
+        {
+            name: 'Energy Consumption',
+            type: 'treemap',
+            visibleMin: 300,
+            label: {
+                show: true,
+                formatter: '{b}'
+            },
+            itemStyle: {
+                normal: {
+                    borderColor: '#fff'
+                }
+            },
+            levels: [
+                {
+                    itemStyle: {
+                        normal: {
+                            borderWidth: 0,
+                            gapWidth: 5
+                        }
+                    }
+                },
+                {
+                    colorSaturation: [0.3, 0.6],
+                    itemStyle: {
+                        normal: {
+                            gapWidth: 1,
+                            borderColorSaturation: 0.6
+                        }
+                    }
+                }
+            ],
+            data: data
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

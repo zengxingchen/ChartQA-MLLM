@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 800,
+    height: 600
+});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Distribution of Calories in Foods',
+        left: 'center',
+        top: '5%',
+        textStyle: {
+            fontSize: 18,
+            color: '#2c3e50'
+        }
+    },
+    xAxis: {
+        type: 'category',
+        data: ['40-60', '61-80', '81-100', '101-120', '121-140', '141-160', '161-180', '181-200', '201-220', '221-240', '241-260', '261-280', '281-300', '301-320', '321-340', '341-360', '361-380', '381-400'],
+        name: 'Calories',
+        nameLocation: 'middle',
+        nameGap: 30
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Frequency',
+        nameLocation: 'middle',
+        nameGap: 50
+    },
+    series: [{
+        data: [1, 1, 1, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 1, 2, 1, 2, 1],
+        type: 'bar',
+        barWidth: '60%',
+        itemStyle: {
+            color: '#3498db'
+        },
+        label: {
+            show: true,
+            position: 'top',
+            formatter: '{c}'
+        }
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

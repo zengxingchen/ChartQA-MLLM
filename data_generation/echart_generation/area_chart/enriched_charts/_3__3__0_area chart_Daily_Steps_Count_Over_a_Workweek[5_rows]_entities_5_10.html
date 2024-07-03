@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 1000, height: 600});
+var app = {};
+
+var option;
+option = {
+  title: {
+    text: 'Annual CO2 Emissions Per Capita',
+    left: 'center',
+    textStyle: {
+      color: '#333',
+      fontWeight: 'normal',
+      fontSize: 20,
+    },
+  },
+  tooltip: {
+    trigger: 'axis',
+    axisPointer: {
+      type: 'cross',
+      label: {
+        backgroundColor: '#6a7985'
+      }
+    }
+  },
+  legend: {
+    data: ['CO2 Emissions'],
+    top: 'bottom',
+    textStyle: {
+      color: '#000',
+    },
+  },
+  grid: {
+    left: '3%',
+    right: '4%',
+    bottom: '3%',
+    containLabel: true
+  },
+  xAxis: [
+    {
+      type: 'category',
+      boundaryGap: false,
+      data: ['2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021']
+    }
+  ],
+  yAxis: [
+    {
+      type: 'value',
+      axisLabel: {
+        formatter: '{value} MT'
+      }
+    }
+  ],
+  series: [
+    {
+      name: 'CO2 Emissions',
+      type: 'line',
+      stack: 'Total amount',
+      areaStyle: {},
+      emphasis: {
+        focus: 'series'
+      },
+      data: [10.5, 10.3, 10.1, 9.9, 9.7, 9.5, 9.2, 9.0, 8.7, 8.4, 8.2, 8.0, 7.7, 7.5, 7.2, 7.0, 6.8, 6.5, 6.3, 6.1, 5.8, 5.6],
+      color: ['#3fa7dc']
+    }
+  ],
+  graphic: [
+    {
+      type: 'text',
+      z: 0,
+      x: 'center',
+      y: 'center',
+      style: {
+        text: 'CO2 per Capita Decrease',
+        font: '20px Microsoft YaHei',
+        fill: '#333'
+      }
+    }
+  ]
+};
+
+if (option && typeof option === 'object') {
+  myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

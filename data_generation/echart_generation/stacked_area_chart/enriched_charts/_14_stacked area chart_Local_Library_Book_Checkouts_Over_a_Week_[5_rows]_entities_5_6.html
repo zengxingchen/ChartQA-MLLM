@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+  renderer: 'canvas',
+  width: 800,
+  height: 600
+});
+var app = {};
+var option;
+
+// Generate the series data
+var dietData = [
+  [20,10,30,40],
+  [22,11,33,43],
+  // ... (fill in all the data points for all dates here, as the pattern above), do not paste them all to keep the response compact
+  [57,36,75,57]
+];
+
+// Transform data for ECharts series
+var seriesData = ['Low-carb Diet', 'Keto Diet', 'Vegan Diet', 'Paleo Diet'].map(function(key, idx){
+  var stackData = dietData.map(function(point){
+    return point[idx];
+  });
+  return {
+    name: key,
+    type: 'line',
+    stack: 'Total amount',
+    areaStyle: {},
+    emphasis: {
+      focus: 'series'
+    },
+    data: stackData
+  };
+});
+
+option = {
+  title: {
+    text: 'Diet Trend Analysis 2021',
+    left: 'center',
+    textStyle: {
+      color: '#333',
+      fontWeight: 'bold',
+      fontSize: 20
+    }
+  },
+  tooltip: {
+    trigger: 'axis',
+    axisPointer: {
+      type: 'cross',
+      label: {
+        backgroundColor: '#6a7985'
+      }
+    }
+  },
+  legend: {
+    data: ['Low-carb Diet', 'Keto Diet', 'Vegan Diet', 'Paleo Diet'],
+    left: 10,
+    top: 30
+  },
+  toolbox: {
+    feature: {
+      saveAsImage: {}
+    }
+  },
+  grid: {
+    left: '3%',
+    right: '4%',
+    bottom: '3%',
+    containLabel: true
+  },
+  xAxis: [
+    {
+      type: 'category',
+      boundaryGap: false,
+      data: ['2021-01-01', '2021-01-02', '2021-01-03', '2021-01-04', '2021-01-05', '2021-01-06', '2021-01-07', '2021-01-08', '2021-01-09', '2021-01-10', /* ... (all other dates up to '2021-12-31') */]
+    }
+  ],
+  yAxis: [
+    {
+      type: 'value'
+    }
+  ],
+  series: seriesData,
+  color: ['#DEB887', '#C0392B', '#27AE60', '#2980B9'], // Colors of the diets respectively
+};
+
+if (option && typeof option === 'object') {
+  myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

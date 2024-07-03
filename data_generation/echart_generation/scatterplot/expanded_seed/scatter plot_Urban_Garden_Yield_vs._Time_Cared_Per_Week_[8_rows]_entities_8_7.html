@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var data = [
+  { 'Garden Size (sq ft)': 100, ' Time Cared for Per Week (hours)': 2.0, ' Vegetable Yield (lbs/week)': 10 },
+  { 'Garden Size (sq ft)': 200, ' Time Cared for Per Week (hours)': 3.5, ' Vegetable Yield (lbs/week)': 20 },
+  { 'Garden Size (sq ft)': 150, ' Time Cared for Per Week (hours)': 4.0, ' Vegetable Yield (lbs/week)': 15 },
+  { 'Garden Size (sq ft)': 120, ' Time Cared for Per Week (hours)': 1.0, ' Vegetable Yield (lbs/week)': 7 },
+  { 'Garden Size (sq ft)': 180, ' Time Cared for Per Week (hours)': 5.0, ' Vegetable Yield (lbs/week)': 22 },
+  { 'Garden Size (sq ft)': 250, ' Time Cared for Per Week (hours)': 6.0, ' Vegetable Yield (lbs/week)': 30 },
+  { 'Garden Size (sq ft)': 90, ' Time Cared for Per Week (hours)': 2.5, ' Vegetable Yield (lbs/week)': 9 },
+  { 'Garden Size (sq ft)': 300, ' Time Cared for Per Week (hours)': 7.0, ' Vegetable Yield (lbs/week)': 35 }
+];
+
+var scatterData = data.map(function (item) {
+  return [
+    item['Garden Size (sq ft)'],
+    item[' Time Cared for Per Week (hours)'],
+    item[' Vegetable Yield (lbs/week)']
+  ];
+});
+
+option = {
+  tooltip: {
+    trigger: 'axis',
+    showDelay: 0,
+    formatter: function (params) {
+      if (params.value.length > 1) {
+        return (
+          params.seriesName +
+          ' :<br/>' +
+          params.value[0] +
+          'sq ft' +
+          ' , ' +
+          params.value[1] +
+          ' hours/week' +
+          '<br/>Yield: ' +
+          params.value[2] +
+          ' lbs/week'
+        );
+      } else {
+        return (
+          params.seriesName +
+          ' :<br/>' +
+          params.name +
+          ' : ' +
+          params.value +
+          ' lbs/week'
+        );
+      }
+    },
+    axisPointer: {
+      show: true,
+      type: 'cross',
+      lineStyle: {
+        type: 'dashed',
+        width: 1
+      }
+    }
+  },
+  xAxis: {
+    type: 'value',
+    scale: true,
+    name: 'Garden Size (sq ft)',
+    min: 0,
+    boundaryGap: [0.2, 0.2]
+  },
+  yAxis: {
+    type: 'value',
+    scale: true,
+    name: 'Time Cared for Per Week (hours)',
+    min: 0,
+    boundaryGap: [0.2, 0.2]
+  },
+  series: [
+    {
+      name: 'Garden Data',
+      type: 'scatter',
+      symbolSize: function (value) {
+        // Scale vegetable yield to symbol size
+        return Math.sqrt(value[2]) * 5;
+      },
+      data: scatterData,
+      emphasis: {
+        label: {
+          show: true,
+          formatter: function (param) {
+            return param.data[2] + ' lbs';
+          },
+          position: 'top'
+        }
+      },
+      markPoint: {
+        data: [
+          { type: 'max', name: 'Max Yield' },
+          { type: 'min', name: 'Min Yield' }
+        ]
+      },
+      markLine: {
+        lineStyle: {
+          type: 'dashed'
+        },
+        data: [
+          { type: 'median', name: 'Median' },
+          { xAxis: 150 }
+        ]
+      }
+    }
+  ]
+};
+
+if (option && typeof option === 'object') {
+  myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

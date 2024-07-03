@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+
+var data = [{'Genre': 'Mystery', 'Checkouts': 120}, {'Genre': 'Romance', 'Checkouts': 140}, {'Genre': 'Science Fiction', 'Checkouts': 110}, {'Genre': 'Biographies', 'Checkouts': 90}, {'Genre': "Children's Books", 'Checkouts': 160}, {'Genre': 'History', 'Checkouts': 80}, {'Genre': 'Self-Help', 'Checkouts': 70}, {'Genre': 'Cookbooks', 'Checkouts': 60}, {'Genre': 'Travel', 'Checkouts': 50}, {'Genre': 'Education', 'Checkouts': 45}, {'Genre': 'Fantasy', 'Checkouts': 130}, {'Genre': 'Horror', 'Checkouts': 75}, {'Genre': 'Thriller', 'Checkouts': 115}, {'Genre': 'Classic Literature', 'Checkouts': 100}, {'Genre': 'Poetry', 'Checkouts': 30}];
+
+// We'll use a simplified binning approach for demonstration purposes:
+var binSize = 30;
+var maxValue = Math.max.apply(Math, data.map(function(o){return o.Checkouts;}));
+var bins = Math.floor(maxValue / binSize) + 1;
+
+var histogramData = Array.from({length: bins}, () => 0);
+
+data.forEach(item => {
+    var index = Math.floor(item.Checkouts / binSize);
+    histogramData[index]++;
+});
+
+var categories = histogramData.map((_, index) => `${index * binSize}-${(index + 1) * binSize - 1}`);
+
+var option = {
+    title: {
+        text: 'Library Genre Checkouts - Histogram',
+        subtext: 'Binned by checkout frequency',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: '{b0}: {c0}'
+    },
+    xAxis: {
+        type: 'category',
+        data: categories,
+        name: 'Checkout Range',
+        nameLocation: 'middle',
+        nameGap: 30
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Frequency'
+    },
+    series: [{
+        name: 'Genre Frequency',
+        type: 'bar',
+        barWidth: '60%',
+        data: histogramData,
+        itemStyle: {
+            // Use color or other visual encodings as needed for each bin
+            color: function(params) {
+                var colorList = ['#C33531', '#EFE42A', '#64BD3D', '#EE9201', '#29AAE3', '#B74AE5', '#0AAF9F', '#E89589'];
+                return colorList[params.dataIndex % colorList.length];
+            },
+            // Apply bar border for better separation
+            borderColor: '#333',
+            borderWidth: 1
+        }
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

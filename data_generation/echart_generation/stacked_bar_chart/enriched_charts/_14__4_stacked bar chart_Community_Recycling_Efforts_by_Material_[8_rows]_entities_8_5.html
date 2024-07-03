@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var option;
+
+option = {
+    title: {
+        text: 'Product Analysis in Design, Performance, and Value',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Design', 'Performance', 'Value'],
+        top: '10%'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        data: ['Product A', 'Product B', 'Product C', 'Product D', 'Product E', 'Product F', 'Product G', 'Product H', 'Product I', 'Product J', 'Product K', 'Product L', 'Product M', 'Product N', 'Product O'],
+        axisLabel: {
+            interval: 0,
+            rotate: 30
+        }
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Design',
+            type: 'bar',
+            stack: 'Total',
+            barWidth: '50%',
+            itemStyle: {
+                color: '#5470C6'
+            },
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            data: [85, 70, 95, 60, 80, 75, 90, 65, 85, 78, 82, 77, 88, 73, 79]
+        },
+        {
+            name: 'Performance',
+            type: 'bar',
+            stack: 'Total',
+            barWidth: '50%',
+            itemStyle: {
+                color: '#91CC75'
+            },
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            data: [90, 85, 92, 65, 78, 83, 88, 72, 80, 86, 89, 74, 91, 80, 82]
+        },
+        {
+            name: 'Value',
+            type: 'bar',
+            stack: 'Total',
+            barWidth: '50%',
+            itemStyle: {
+                color: '#EE6666'
+            },
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            data: [80, 75, 88, 70, 85, 79, 92, 68, 82, 81, 84, 76, 87, 77, 83]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

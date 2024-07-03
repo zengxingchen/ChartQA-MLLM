@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: '30-Day Stock Price Trend',
+        left: 'center',
+        textStyle: {
+            color: '#333'
+        }
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['Price'],
+        top: 'bottom'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true,
+        height: '60%', // change height
+        width: '90%' // change width
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: [...Array(30).keys()].map(day => day + 1)
+    },
+    yAxis: {
+        type: 'value',
+        axisLabel: {
+            formatter: '${value}'
+        }
+    },
+    series: [
+        {
+            name: 'Price',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [
+                100, 98, 96, 93, 91, 89, 86, 84,
+                81, 78, 76, 74, 71, 69, 67, 65,
+                62, 60, 58, 55, 53, 51, 49, 47,
+                45, 43, 41, 38, 36, 34
+            ],
+            markPoint: {
+                data: [
+                    {type: 'max', name: 'Max'},
+                    {type: 'min', name: 'Min'}
+                ]
+            },
+            itemStyle: {
+                color: '#FF5733'
+            },
+            lineStyle: {
+                color: '#FFC300'
+            }
+        }
+    ],
+    visualMap: {
+        top: 50,
+        right: 10,
+        pieces: [{
+            gt: 60,
+            lte: 100,
+            color: '#096'
+        }, {
+            gt: 30,
+            lte: 60,
+            color: '#ffde33'
+        }, {
+            lte: 30,
+            color: '#ff9933'
+        }],
+        outOfRange: {
+            color: '#999'
+        }
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

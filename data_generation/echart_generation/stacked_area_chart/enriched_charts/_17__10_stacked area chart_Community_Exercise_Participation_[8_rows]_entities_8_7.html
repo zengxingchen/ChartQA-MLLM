@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var option;
+
+myChart.setOption({
+    title: {
+        text: 'Quarterly Sales Data',
+        left: 'center',
+        textStyle: {
+            fontSize: 20
+        }
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            label: {
+                backgroundColor: '#6a7985'
+            }
+        }
+    },
+    legend: {
+        data: ['Electronics', 'Apparel', 'Household', 'Books'],
+        right: '10%',
+        top: '3%'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: [
+            'Q1-2019', 'Q2-2019', 'Q3-2019', 'Q4-2019',
+            'Q1-2020', 'Q2-2020', 'Q3-2020', 'Q4-2020',
+            'Q1-2021', 'Q2-2021', 'Q3-2021', 'Q4-2021',
+            'Q1-2022', 'Q2-2022', 'Q3-2022', 'Q4-2022'
+        ]
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Sales (in USD)',
+        axisLabel: {
+            formatter: '{value}'
+        }
+    },
+    series: [
+        {
+            name: 'Electronics',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: { focus: 'series' },
+            data: [12000, 13000, 15000, 16000, 17000, 15500, 16500, 18000, 19000, 20500, 21000, 22000, 24000, 23500, 25000, 26000],
+            color: '#003366' // Dark blue
+        },
+        {
+            name: 'Apparel',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: { focus: 'series' },
+            data: [6000, 7000, 8000, 9000, 9500, 9900, 10300, 12000, 12500, 13000, 13500, 14000, 14500, 15000, 15500, 16000],
+            color: '#339966' // Medium green
+        },
+        {
+            name: 'Household',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: { focus: 'series' },
+            data: [9000, 8500, 8000, 9500, 10000, 10500, 12000, 13000, 14000, 15000, 16000, 16500, 17000, 17500, 18000, 18500],
+            color: '#800000' // Maroon
+        },
+        {
+            name: 'Books',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: { focus: 'series' },
+            data: [5000, 5500, 6000, 6500, 7000, 7500, 8000, 8500, 9000, 9500, 10000, 11000, 12000, 12500, 13000, 13500],
+            color: '#FFCC00' // Vivid yellow
+        }
+    ]
+});
+
+option = {
+    visualMap: {
+        top: 10,
+        right: 10,
+        pieces: [{
+            gt: 0,
+            lte: 5000,
+            color: '#096'
+        }, {
+            gt: 5000,
+            lte: 10000,
+            color: '#ffde33'
+        }, {
+            gt: 10000,
+            lte: 15000,
+            color: '#ff9933'
+        }, {
+            gt: 15000,
+            lte: 20000,
+            color: '#cc0033'
+        }, {
+            gt: 20000,
+            color: '#660099'
+        }],
+        outOfRange: {
+            color: '#999'
+        }
+    },
+    series: [{
+        markLine: {
+            silent: true,
+            data: [
+                { yAxis: 5000 },
+                { yAxis: 10000 },
+                { yAxis: 15000 },
+                { yAxis: 20000 },
+                { yAxis: 25000 }
+            ]
+        }
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

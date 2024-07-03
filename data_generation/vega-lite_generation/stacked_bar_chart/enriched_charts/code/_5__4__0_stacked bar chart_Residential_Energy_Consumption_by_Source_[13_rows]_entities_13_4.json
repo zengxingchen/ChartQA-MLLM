@@ -1,0 +1,185 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Stacked horizontal bar chart showing annual revenue by department over years.",
+    "title": {
+        "text": "Annual Revenue by Department Over Years",
+        "fontSize": 20,
+        "anchor": "middle",
+        "color": "#333333"
+    },
+    "width": 600,
+    "height": 400,
+    "data": {
+        "values": [
+            {
+                "Year": 2010,
+                "Sales": 150,
+                "R&D": 90,
+                "HR": 50,
+                "Finance": 30
+            },
+            {
+                "Year": 2011,
+                "Sales": 160,
+                "R&D": 100,
+                "HR": 55,
+                "Finance": 35
+            },
+            {
+                "Year": 2012,
+                "Sales": 170,
+                "R&D": 110,
+                "HR": 60,
+                "Finance": 40
+            },
+            {
+                "Year": 2013,
+                "Sales": 180,
+                "R&D": 120,
+                "HR": 65,
+                "Finance": 45
+            },
+            {
+                "Year": 2014,
+                "Sales": 190,
+                "R&D": 130,
+                "HR": 70,
+                "Finance": 50
+            },
+            {
+                "Year": 2015,
+                "Sales": 200,
+                "R&D": 140,
+                "HR": 75,
+                "Finance": 55
+            },
+            {
+                "Year": 2016,
+                "Sales": 210,
+                "R&D": 150,
+                "HR": 80,
+                "Finance": 60
+            },
+            {
+                "Year": 2017,
+                "Sales": 220,
+                "R&D": 160,
+                "HR": 85,
+                "Finance": 65
+            },
+            {
+                "Year": 2018,
+                "Sales": 230,
+                "R&D": 170,
+                "HR": 90,
+                "Finance": 70
+            },
+            {
+                "Year": 2019,
+                "Sales": 240,
+                "R&D": 180,
+                "HR": 95,
+                "Finance": 75
+            },
+            {
+                "Year": 2020,
+                "Sales": 250,
+                "R&D": 190,
+                "HR": 100,
+                "Finance": 80
+            },
+            {
+                "Year": 2021,
+                "Sales": 260,
+                "R&D": 200,
+                "HR": 105,
+                "Finance": 85
+            },
+            {
+                "Year": 2022,
+                "Sales": 270,
+                "R&D": 210,
+                "HR": 110,
+                "Finance": 90
+            },
+            {
+                "Year": 2023,
+                "Sales": 280,
+                "R&D": 220,
+                "HR": 115,
+                "Finance": 95
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Sales",
+                "R&D",
+                "HR",
+                "Finance"
+            ],
+            "as": [
+                "Department",
+                "Revenue"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "bar",
+        "width": {
+            "band": 0.5
+        }
+    },
+    "encoding": {
+        "y": {
+            "field": "Year",
+            "type": "ordinal",
+            "axis": {
+                "title": "Year"
+            }
+        },
+        "x": {
+            "field": "Revenue",
+            "type": "quantitative",
+            "stack": "zero",
+            "axis": {
+                "title": "Revenue (in millions of dollars)"
+            }
+        },
+        "color": {
+            "field": "Department",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Sales",
+                    "R&D",
+                    "HR",
+                    "Finance"
+                ],
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e",
+                    "#2ca02c",
+                    "#d62728"
+                ]
+            },
+            "title": "Department"
+        },
+        "tooltip": [
+            {
+                "field": "Year",
+                "type": "ordinal"
+            },
+            {
+                "field": "Department",
+                "type": "nominal"
+            },
+            {
+                "field": "Revenue",
+                "type": "quantitative",
+                "title": "Revenue"
+            }
+        ]
+    }
+}

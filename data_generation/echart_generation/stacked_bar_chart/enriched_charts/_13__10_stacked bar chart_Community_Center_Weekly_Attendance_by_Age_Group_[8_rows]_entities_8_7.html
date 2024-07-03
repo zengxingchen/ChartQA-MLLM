@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 900, height: 600});
+var option;
+
+option = {
+    title: {
+        text: 'Art & Design Trends',
+        left: 'center',
+        top: '20'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Type A', 'Type B', 'Type C'],
+        top: '50'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value'
+    },
+    yAxis: {
+        type: 'category',
+        data: ['Painting', 'Sculpture', 'Photography', 'Graphic Design', 'Architecture', 'Industrial Design', 'Fashion Design', 'Interior Design', 'Product Design', 'Textile Design']
+    },
+    series: [
+        {
+            name: 'Type A',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            itemStyle: {
+                color: '#FF5733'
+            },
+            data: [120, 140, 180, 170, 130, 150, 200, 170, 160, 140]
+        },
+        {
+            name: 'Type B',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            itemStyle: {
+                color: '#33FF57'
+            },
+            data: [200, 220, 160, 190, 180, 210, 230, 200, 190, 170]
+        },
+        {
+            name: 'Type C',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            itemStyle: {
+                color: '#3357FF'
+            },
+            data: [150, 180, 210, 200, 160, 190, 210, 180, 170, 160]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

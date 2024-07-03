@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 800,
+    height: 600
+});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Popular Programming Languages in Technology & Society',
+        left: 'center',
+        top: 20,
+        textStyle: {
+            color: '#333',
+            fontWeight: 'bold',
+            fontSize: 20
+        }
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: '{a} <br/>{b} : {c} ({d}%)'
+    },
+    legend: {
+        orient: 'vertical',
+        left: 'left',
+        data: ['Python', 'JavaScript', 'Java', 'C#', 'PHP', 'Ruby', 'Swift', 'C++', 'Kotlin', 'TypeScript']
+    },
+    color: [
+        '#1F77B4', // Python
+        '#FF7F0E', // JavaScript
+        '#2CA02C', // Java
+        '#D62728', // C#
+        '#9467BD', // PHP
+        '#8C564B', // Ruby
+        '#E377C2', // Swift
+        '#7F7F7F', // C++
+        '#BCBD22', // Kotlin
+        '#17BECF'  // TypeScript
+    ],
+    series: [
+        {
+            name: 'Languages',
+            type: 'pie',
+            radius: '55%',
+            center: ['50%', '60%'],
+            data: [
+                {value: 27.21, name: 'Python'},
+                {value: 20.7, name: 'JavaScript'},
+                {value: 18.45, name: 'Java'},
+                {value: 10.41, name: 'C#'},
+                {value: 9.12, name: 'PHP'},
+                {value: 4.87, name: 'Ruby'},
+                {value: 4.46, name: 'Swift'},
+                {value: 3.92, name: 'C++'},
+                {value: 0.76, name: 'Kotlin'},
+                {value: 0.1, name: 'TypeScript'}
+            ],
+            emphasis: {
+                itemStyle: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            },
+            label: {
+                normal: {
+                    formatter: '{b}: {d}%'
+                }
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+            var dom = document.getElementById('container');
+            var myChart = echarts.init(dom, null, {
+            renderer: 'canvas',
+            useDirtyRect: false
+            });
+            var app = {};
+            
+            var option;
+
+            
+option = {
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        },
+        formatter: function(params) {
+            let result = params[0].name + '<br>';
+            params.forEach(item => {
+                result += '<span style="display:inline-block;margin-right:5px;border-radius:10px;width:10px;height:10px;background-color:' + item.color + ';"></span>';
+                result += item.seriesName + ': ' + item.value + '<br>';
+            });
+            return result;
+        }
+    },
+    legend: {
+        data: ['Glass', 'Paper and Cardboard', 'Plastics', 'Metals', 'Organics']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01],
+        max: 100,
+        axisLabel: {
+            formatter: '{value}%'
+        }
+    },
+    yAxis: {
+        type: 'category',
+        data: ['2017', '2018', '2019', '2020', '2021']
+    },
+    series: [
+        {
+            name: 'Glass',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                formatter: '{b}'
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [25, 26, 27, 28, 30]
+        },
+        {
+            name: 'Paper and Cardboard',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [40, 39, 38, 37, 35]
+        },
+        {
+            name: 'Plastics',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [15, 16, 17, 18, 20]
+        },
+        {
+            name: 'Metals',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [10, 9, 9, 8, 7]
+        },
+        {
+            name: 'Organics',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [10, 10, 9, 9, 8]
+        }
+    ]
+};
+
+            if (option && typeof option === 'object') {
+            myChart.setOption(option);
+            }
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

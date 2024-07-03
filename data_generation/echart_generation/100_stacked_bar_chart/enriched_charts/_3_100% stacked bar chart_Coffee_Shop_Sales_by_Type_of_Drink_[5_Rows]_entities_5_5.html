@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false
+});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Popularity Trends in Future Technologies',
+        left: 'center',
+        textStyle: {
+            color: '#333',
+            fontWeight: 'bold',
+            fontSize: 16
+        },
+        padding: 20
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Artificial Intelligence', 'Cybersecurity', 'Quantum Computing', 'Biotechnology', 'Virtual Reality'],
+        bottom: 0
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '10%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01]
+    },
+    yAxis: {
+        type: 'category',
+        data: ['2020', '2021', '2022', '2023', '2024']
+    },
+    series: [
+        {
+            name: 'Artificial Intelligence',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 20,
+            label: {
+                show: true,
+                formatter: '{c}%'
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [35, 40, 42, 44, 48],
+            color: '#2ECC71'
+        },
+        {
+            name: 'Cybersecurity',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 20,
+            label: {
+                show: true,
+                formatter: '{c}%'
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [20, 18, 19, 21, 19],
+            color: '#3498DB'
+        },
+        {
+            name: 'Quantum Computing',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 20,
+            label: {
+                show: true,
+                formatter: '{c}%'
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [15, 17, 18, 20, 22],
+            color: '#9B59B6'
+        },
+        {
+            name: 'Biotechnology',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 20,
+            label: {
+                show: true,
+                formatter: '{c}%'
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [20, 15, 13, 9, 7],
+            color: '#E74C3C'
+        },
+        {
+            name: 'Virtual Reality',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 20,
+            label: {
+                show: true,
+                formatter: '{c}%'
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [10, 10, 8, 6, 4],
+            color: '#F1C40F'
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

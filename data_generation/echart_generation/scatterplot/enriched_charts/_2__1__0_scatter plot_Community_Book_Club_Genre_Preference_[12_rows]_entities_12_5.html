@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+var app = {};
+var option;
+
+option = {
+    title: {
+        text: 'Travel Destinations Popularity vs. Visitor Satisfaction',
+        left: 'center',
+        top: '20'
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['Destinations'],
+        left: '10',
+        top: '10'
+    },
+    xAxis: {
+        type: 'value',
+        name: 'Popularity (in millions)',
+        nameLocation: 'middle',
+        nameGap: 30,
+        min: 0,
+        max: 35
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Visitor Satisfaction',
+        nameLocation: 'middle',
+        nameGap: 40,
+        min: 0,
+        max: 20
+    },
+    series: [{
+        name: 'Destinations',
+        type: 'scatter',
+        data: [
+            [1.2,3.4],[2.3,2.8],[3.1,4.2],[4.5,3.9],[5.7,4.8],
+            [6.2,5.3],[7.8,6.1],[8.1,7.4],[9.0,6.8],[10.4,7.9],
+            [11.5,8.3],[12.6,8.7],[13.7,9.2],[14.8,10.1],[15.9,10.4],
+            [16.1,11.3],[17.2,11.8],[18.3,12.2],[19.4,12.7],[20.5,13.1],
+            [21.6,13.5],[22.7,14.0],[23.8,14.4],[24.9,14.9],[26.0,15.3],
+            [27.1,15.7],[28.2,16.2],[29.3,16.7],[30.4,17.1]
+        ],
+        itemStyle: {
+            color: '#FF5733'
+        }
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

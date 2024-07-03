@@ -1,0 +1,114 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Stacked bar chart of fruit and vegetable sales over time.",
+    "data": {
+        "values": [
+            {
+                "Date": "2023-03-01",
+                "Apples (Kg)": 150,
+                "Oranges (Kg)": 120,
+                "Bananas (Kg)": 130,
+                "Tomatoes (Kg)": 110,
+                "Kale (Kg)": 90
+            },
+            {
+                "Date": "2023-03-08",
+                "Apples (Kg)": 160,
+                "Oranges (Kg)": 130,
+                "Bananas (Kg)": 125,
+                "Tomatoes (Kg)": 100,
+                "Kale (Kg)": 75
+            },
+            {
+                "Date": "2023-03-15",
+                "Apples (Kg)": 170,
+                "Oranges (Kg)": 140,
+                "Bananas (Kg)": 150,
+                "Tomatoes (Kg)": 120,
+                "Kale (Kg)": 100
+            },
+            {
+                "Date": "2023-03-22",
+                "Apples (Kg)": 180,
+                "Oranges (Kg)": 150,
+                "Bananas (Kg)": 160,
+                "Tomatoes (Kg)": 130,
+                "Kale (Kg)": 110
+            },
+            {
+                "Date": "2023-03-29",
+                "Apples (Kg)": 190,
+                "Oranges (Kg)": 160,
+                "Bananas (Kg)": 170,
+                "Tomatoes (Kg)": 140,
+                "Kale (Kg)": 120
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Apples (Kg)",
+                "Oranges (Kg)",
+                "Bananas (Kg)",
+                "Tomatoes (Kg)",
+                "Kale (Kg)"
+            ],
+            "as": [
+                "Fruit/Vegetable",
+                "Sales"
+            ]
+        }
+    ],
+    "mark": "bar",
+    "width": 400,
+    "height": 300,
+    "title": {
+        "text": "Weekly Sales of Fruits and Vegetables",
+        "anchor": "middle",
+        "subtitle": "Amount Sold (Kg) by Date, in March 2023",
+        "subtitleFontStyle": "italic",
+        "subtitleFontSize": 12,
+        "color": "black"
+    },
+    "encoding": {
+        "x": {
+            "field": "Date",
+            "type": "ordinal",
+            "axis": {
+                "title": "Date"
+            }
+        },
+        "y": {
+            "field": "Sales",
+            "type": "quantitative",
+            "stack": "zero",
+            "axis": {
+                "title": "Total Sales (Kg)"
+            }
+        },
+        "color": {
+            "field": "Fruit/Vegetable",
+            "type": "nominal",
+            "legend": {
+                "orient": "right"
+            },
+            "scale": {
+                "scheme": "category20"
+            },
+            "title": "Fruit/Vegetable Type"
+        },
+        "tooltip": [
+            {
+                "field": "Fruit/Vegetable",
+                "type": "nominal",
+                "title": "Type"
+            },
+            {
+                "field": "Sales",
+                "type": "quantitative",
+                "title": "Sales (Kg)"
+            }
+        ]
+    }
+}

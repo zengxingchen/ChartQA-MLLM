@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {renderer: 'canvas', width: '800', height: '600'});
+var app = {};
+
+var option;
+option = {
+    title: {
+        text: 'Monthly Stock Price Trend',
+        left: 'center',
+        top: 20,
+        textStyle: {
+            color: '#333',
+            fontSize: 24
+        }
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['Stock Price'],
+        left: 10,
+        top: 50
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ['2023-03-01', '2023-03-02', '2023-03-03', '2023-03-04', '2023-03-05', '2023-03-06', '2023-03-07', '2023-03-08', '2023-03-09', '2023-03-10', '2023-03-11', '2023-03-12', '2023-03-13', '2023-03-14', '2023-03-15', '2023-03-16', '2023-03-17', '2023-03-18', '2023-03-19', '2023-03-20', '2023-03-21', '2023-03-22', '2023-03-23', '2023-03-24', '2023-03-25', '2023-03-26', '2023-03-27', '2023-03-28', '2023-03-29', '2023-03-30', '2023-03-31']
+    },
+    yAxis: {
+        type: 'value',
+        axisLabel: {
+            formatter: '${value}'
+        }
+    },
+    series: [
+        {
+            name: 'Stock Price',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [235.55, 238.10, 240.25, 243.45, 245.65, 248.60, 250.20, 255.30, 257.10, 260.40, 265.20, 267.50, 270.30, 275.40, 280.25, 285.75, 287.10, 290.20, 292.50, 295.10, 297.20, 299.30, 302.50, 305.40, 307.20, 310.10, 312.55, 315.70, 320.20, 322.65, 325.00],
+            color: '#1E90FF',
+            markPoint: {
+                data: [
+                    { type: 'max', name: 'Max value', symbolSize: 60 },
+                    { type: 'min', name: 'Min value', symbolSize: 60 }
+                ]
+            }
+        }
+    ],
+    itemStyle: {
+        normal: {
+            color: new echarts.graphic.LinearGradient(
+                0, 0, 0, 1,
+                [
+                    {offset: 0, color: '#8EC9EB'},
+                    {offset: 1, color: '#2F4F4F'}
+                ]
+            )
+        }
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

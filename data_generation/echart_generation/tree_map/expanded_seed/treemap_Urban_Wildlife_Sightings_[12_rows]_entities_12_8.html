@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+
+var data = [
+    {name: 'Manhattan - Peregrine Falcon', value: 15, status: 'Least Concern'},
+    {name: 'Brooklyn - Raccoon', value: 47, status: 'Least Concern'},
+    {name: 'Queens - Opossum', value: 34, status: 'Least Concern'},
+    {name: 'Bronx - Red-tailed Hawk', value: 29, status: 'Least Concern'},
+    {name: 'Staten Island - White-tailed Deer', value: 19, status: 'Conservation Dependent'},
+    {name: 'Downtown - Coyote', value: 8, status: 'Least Concern'},
+    {name: 'West End - Eastern Grey Squirrel', value: 52, status: 'Least Concern'},
+    {name: 'North Side - American Robin', value: 78, status: 'Least Concern'},
+    {name: 'South Side - European Starling', value: 87, status: 'Least Concern'},
+    {name: 'East Side - Rock Pigeon', value: 133, status: 'Least Concern'},
+    {name: 'Central - Monarch Butterfly', value: 66, status: 'Endangered'},
+    {name: 'Uptown - Honeybee', value: 21, status: 'Not Evaluated'}
+];
+
+var levels = [
+    {itemStyle: {borderColor: '#777', borderWidth: 0, gapWidth: 1}},
+    {colorSaturation: [0.2, 0.8], itemStyle: {borderColorSaturation: 0.7, gapWidth: 2, borderWidth: 2}}
+];
+
+var option = {
+    title: {
+        text: 'Wildlife Sightings in Regions - 2022',
+        left: 'center'
+    },
+    tooltip: {
+        formatter: function (info) {
+            var value = info.value;
+            var status = info.data.status;
+            return [
+                '<div class="tooltip-title">' + echarts.format.encodeHTML(info.name) + '</div>',
+                'Sightings: ' + value + '<br>',
+                'Status: ' + status
+            ].join('');
+        }
+    },
+    series: [
+        {
+            name: 'Wildlife Sightings',
+            type: 'treemap',
+            visibleMin: 10,
+            label: {
+                show: true,
+                formatter: '{b}'
+            },
+            upperLabel: {
+                show: true,
+                height: 30
+            },
+            itemStyle: {
+                normal: {
+                    borderColor: '#fff'
+                }
+            },
+            levels: levels,
+            data: data.map(function (item) {
+                return {
+                    name: item.name,
+                    value: item.value,
+                    status: item.status,
+                    itemStyle: {
+                        normal: {
+                            color: getStatusColor(item.status)
+                        }
+                    }
+                };
+            })
+        }
+    ]
+};
+
+myChart.setOption(option);
+
+// Function to get color based on status
+function getStatusColor(status) {
+    var colors = {
+        'Least Concern': '#90ee90',
+        'Conservation Dependent': '#ffdead',
+        'Endangered': '#ff4500',
+        'Not Evaluated': '#d3d3d3'
+    };
+    return colors[status];
+}
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+var app = {};
+
+var option = {
+    title: {
+        text: 'Art & Design Trends',
+        left: 'center',
+        top: 20
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: function (params) {
+            return 'X: ' + params.value[0] + '<br/>Y: ' + params.value[1];
+        }
+    },
+    xAxis: {},
+    yAxis: {},
+    series: [{
+        symbolSize: 10,
+        data: [
+            [23, 34],
+            [45, 76],
+            [67, 89],
+            [12, 56],
+            [89, 90],
+            [34, 45],
+            [56, 78],
+            [12, 34],
+            [45, 67],
+            [78, 90],
+            [23, 45],
+            [67, 56],
+            [34, 78],
+            [56, 90],
+            [12, 23],
+            [45, 89],
+            [78, 34],
+            [23, 78],
+            [67, 34],
+            [56, 45],
+            [89, 12],
+            [34, 23],
+            [78, 56],
+            [90, 67],
+            [23, 12],
+            [45, 34],
+            [67, 45],
+            [12, 67],
+            [89, 56],
+            [34, 12]
+        ],
+        type: 'scatter',
+        itemStyle: {
+            color: '#FF5733'
+        }
+    }],
+    legend: {
+        data: ['Art Trends'],
+        left: 'right',
+        top: '10%'
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,141 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Scatter plot of average sleep hours by age group",
+    "title": {
+        "text": "Average Sleep Hours by Age Group",
+        "fontSize": 16,
+        "anchor": "start",
+        "offset": 20,
+        "subtitle": [
+            "A study on sleep patterns across different age groups"
+        ],
+        "subtitleFontStyle": "italic",
+        "subtitleFontSize": 12
+    },
+    "data": {
+        "values": [
+            {
+                "Age Group Index": 1,
+                "Age Group": "Newborn",
+                "Average Sleep Hours": 16,
+                "Participants": 50
+            },
+            {
+                "Age Group Index": 2,
+                "Age Group": "Infants",
+                "Average Sleep Hours": 14,
+                "Participants": 60
+            },
+            {
+                "Age Group Index": 3,
+                "Age Group": "Toddlers",
+                "Average Sleep Hours": 12,
+                "Participants": 70
+            },
+            {
+                "Age Group Index": 4,
+                "Age Group": "Preschool",
+                "Average Sleep Hours": 11,
+                "Participants": 80
+            },
+            {
+                "Age Group Index": 5,
+                "Age Group": "School Age",
+                "Average Sleep Hours": 10,
+                "Participants": 90
+            },
+            {
+                "Age Group Index": 6,
+                "Age Group": "Teens",
+                "Average Sleep Hours": 9,
+                "Participants": 100
+            },
+            {
+                "Age Group Index": 7,
+                "Age Group": "Young Adults",
+                "Average Sleep Hours": 8,
+                "Participants": 110
+            },
+            {
+                "Age Group Index": 8,
+                "Age Group": "Adults",
+                "Average Sleep Hours": 7,
+                "Participants": 120
+            },
+            {
+                "Age Group Index": 9,
+                "Age Group": "Seniors",
+                "Average Sleep Hours": 7,
+                "Participants": 130
+            }
+        ]
+    },
+    "height": 300,
+    "width": 500,
+    "mark": {
+        "type": "point",
+        "filled": true,
+        "color": "darkblue",
+        "size": 100
+    },
+    "encoding": {
+        "x": {
+            "field": "Age Group Index",
+            "type": "ordinal",
+            "title": "Age Group",
+            "axis": {
+                "labels": true,
+                "labelExpr": "['Newborn', 'Infants', 'Toddlers', 'Preschool', 'School', 'Teens', 'Young', 'Adults', 'Seniors'][datum.value-1]"
+            }
+        },
+        "y": {
+            "field": "Average Sleep Hours",
+            "type": "quantitative",
+            "title": "Average Sleep Hours (per day)"
+        },
+        "color": {
+            "field": "Average Sleep Hours",
+            "scale": {
+                "domain": [
+                    7,
+                    16
+                ],
+                "range": [
+                    "#5E4FA1",
+                    "#3288BD",
+                    "#66C2A5",
+                    "#ABDDA4",
+                    "#E6F598",
+                    "#FFFFBF",
+                    "#FEE08B",
+                    "#FDAE61",
+                    "#F46D43",
+                    "#D53E4F",
+                    "#9E0142"
+                ]
+            },
+            "type": "quantitative",
+            "title": "Average Sleep Hours",
+            "legend": {
+                "offset": 10
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Age Group",
+                "type": "nominal",
+                "title": "Age Group"
+            },
+            {
+                "field": "Average Sleep Hours",
+                "type": "quantitative",
+                "title": "Average Sleep Hours"
+            },
+            {
+                "field": "Participants",
+                "type": "quantitative",
+                "title": "Number of Participants"
+            }
+        ]
+    }
+}

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 600, height: 400});
+var app = {};
+
+var option = {
+    color: ['#3366CC', '#DC3912', '#FF9900', '#109618'], // Diversified color codes for the series
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow',
+        },
+    },
+    legend: {
+        data: ['Science', 'Technology', 'Engineering', 'Mathematics'],
+        left: 10
+    },
+    title: {
+        text: 'Education & Learning: Percentage of Fields Over Time',
+        left: 'center',
+        top: 5 // Move the title up to avoid overlapping
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true,
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01]
+    },
+    yAxis: {
+        type: 'category',
+        data: ['2010','2011','2012','2013','2014','2015','2016','2017','2018','2019','2020']
+    },
+    series: [
+        {
+            name: 'Science',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35, // Changed the bar width for better clarity
+            data: [25, 23, 27, 28, 30, 29, 27, 31, 29, 28, 26],
+        },
+        {
+            name: 'Technology',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35, // Changed the bar width for better clarity
+            data: [30, 33, 32, 30, 28, 29, 31, 30, 32, 30, 33],
+        },
+        {
+            name: 'Engineering',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35, // Changed the bar width for better clarity
+            data: [20, 25, 21, 22, 24, 23, 25, 19, 21, 26, 24],
+        },
+        {
+            name: 'Mathematics',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35, // Changed the bar width for better clarity
+            data: [25, 19, 20, 20, 18, 19, 17, 20, 18, 16, 17],
+        },
+    ],
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

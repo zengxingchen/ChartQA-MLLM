@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 900, height: 600});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Declining CO2 Emissions in January 2023',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['CO2 Emissions'],
+        top: '5%',
+        textStyle: {
+            color: '#333'
+        }
+    },
+    toolbox: {
+        feature: {
+            magicType: {type: ['line', 'bar']},
+            restore: {},
+            saveAsImage: {}
+        }
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ['2023-01-01', '2023-01-02', '2023-01-03', '2023-01-04', '2023-01-05', '2023-01-06', '2023-01-07', '2023-01-08', '2023-01-09', '2023-01-10', '2023-01-11', '2023-01-12', '2023-01-13', '2023-01-14', '2023-01-15', '2023-01-16', '2023-01-17', '2023-01-18', '2023-01-19', '2023-01-20', '2023-01-21', '2023-01-22', '2023-01-23', '2023-01-24', '2023-01-25', '2023-01-26', '2023-01-27', '2023-01-28', '2023-01-29', '2023-01-30']
+    },
+    yAxis: {
+        type: 'value',
+        axisLabel: {
+            formatter: '{value} ppm'
+        },
+        axisPointer: {
+            snap: true
+        }
+    },
+    visualMap: {
+        top: 50,
+        right: 10,
+        pieces: [{
+            gt: 365,
+            lte: 410,
+            color: '#ffde33'
+        }, {
+            gt: 360,
+            lte: 365,
+            color: '#ff9933'
+        }, {
+            gt: 350,
+            lte: 360,
+            color: '#cc0033'
+        }, {
+            gt: 340,
+            lte: 350,
+            color: '#660099'
+        }, {
+            gt: 337,
+            lte: 340,
+            color: '#7e0023'
+        }],
+        outOfRange: {
+            color: '#999'
+        }
+    },
+    series: [
+        {
+            name: 'CO2 Emissions',
+            type: 'line',
+            stack: 'Total amount',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [410, 408, 406, 403, 401, 398, 395, 393, 391, 388, 385, 383, 380, 378, 375, 372, 370, 367, 365, 362, 360, 357, 355, 352, 350, 347, 345, 342, 340, 337],
+            markPoint: {
+                data: [
+                    {type: 'max', name: 'Max'},
+                    {type: 'min', name: 'Min'}
+                ]
+            },
+            markLine: {
+                data: [{type: 'average', name: 'Avg'}]
+            },
+            itemStyle: {
+                color: '#69c0ff'
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

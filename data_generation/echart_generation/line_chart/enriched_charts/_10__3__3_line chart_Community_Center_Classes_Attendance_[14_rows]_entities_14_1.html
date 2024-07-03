@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Monthly Data Trends in 2024',
+        left: 'center',
+        top: '5%'
+    },
+    xAxis: {
+        type: 'category',
+        data: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [{
+        data: [45, 30, 25, 50, 55, 20, 40, 35, 60, 70, 50, 65],
+        type: 'line',
+        label: {
+            show: true,
+            position: 'top'
+        },
+        itemStyle: {
+            color: '#FF5733'
+        },
+        lineStyle: {
+            color: '#FF5733'
+        },
+        markPoint: {
+            data: [
+                {type: 'max', name: 'Max'},
+                {type: 'min', name: 'Min'}
+            ],
+            label: {
+                color: '#000'
+            }
+        },
+        markLine: {
+            data: [
+                {type: 'average', name: 'Average'}
+            ],
+            label: {
+                color: '#000'
+            }
+        }
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

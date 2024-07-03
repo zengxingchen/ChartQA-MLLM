@@ -1,0 +1,158 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Quarterly Profit Analysis by Market Sector",
+    "width": 700,
+    "height": 400,
+    "title": {
+        "text": "Quarterly Profit Trends Across Market Sectors",
+        "anchor": "start",
+        "offset": 20,
+        "fontSize": 20
+    },
+    "data": {
+        "values": [
+            {
+                "Quarter": "Q1 2021",
+                "Technology": 150,
+                "Healthcare": 130,
+                "Energy": 90,
+                "Consumer Goods": 200
+            },
+            {
+                "Quarter": "Q2 2021",
+                "Technology": 165,
+                "Healthcare": 142,
+                "Energy": 95,
+                "Consumer Goods": 215
+            },
+            {
+                "Quarter": "Q3 2021",
+                "Technology": 170,
+                "Healthcare": 155,
+                "Energy": 100,
+                "Consumer Goods": 225
+            },
+            {
+                "Quarter": "Q4 2021",
+                "Technology": 180,
+                "Healthcare": 160,
+                "Energy": 105,
+                "Consumer Goods": 230
+            },
+            {
+                "Quarter": "Q1 2022",
+                "Technology": 190,
+                "Healthcare": 162,
+                "Energy": 110,
+                "Consumer Goods": 235
+            },
+            {
+                "Quarter": "Q2 2022",
+                "Technology": 200,
+                "Healthcare": 170,
+                "Energy": 115,
+                "Consumer Goods": 240
+            },
+            {
+                "Quarter": "Q3 2022",
+                "Technology": 210,
+                "Healthcare": 175,
+                "Energy": 120,
+                "Consumer Goods": 250
+            },
+            {
+                "Quarter": "Q4 2022",
+                "Technology": 220,
+                "Healthcare": 185,
+                "Energy": 130,
+                "Consumer Goods": 260
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Technology",
+                "Healthcare",
+                "Energy",
+                "Consumer Goods"
+            ],
+            "as": [
+                "Sector",
+                "Profit"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "area",
+        "opacity": 0.6
+    },
+    "encoding": {
+        "x": {
+            "field": "Quarter",
+            "type": "ordinal",
+            "axis": {
+                "title": "Quarter",
+                "labelAngle": 0
+            }
+        },
+        "y": {
+            "field": "Profit",
+            "type": "quantitative",
+            "stack": "zero",
+            "axis": {
+                "title": "Profit (in million USD)"
+            }
+        },
+        "color": {
+            "field": "Sector",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Technology",
+                    "Healthcare",
+                    "Energy",
+                    "Consumer Goods"
+                ],
+                "range": [
+                    "#e41a1c",
+                    "#377eb8",
+                    "#4daf4a",
+                    "#984ea3"
+                ]
+            },
+            "legend": {
+                "title": "Sector",
+                "labelFontSize": 12,
+                "titleFontSize": 14,
+                "titleLimit": 150
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Quarter",
+                "type": "ordinal",
+                "title": "Quarter"
+            },
+            {
+                "field": "Sector",
+                "type": "nominal",
+                "title": "Market Sector"
+            },
+            {
+                "field": "Profit",
+                "type": "quantitative",
+                "title": "Profit (in million USD)"
+            }
+        ]
+    },
+    "config": {
+        "view": {
+            "stroke": "transparent"
+        },
+        "axis": {
+            "labelFontSize": 12,
+            "titleFontSize": 14
+        }
+    }
+}

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+
+// Given data
+var data = [
+    {'Day': 'Monday', 'Steps': 3400}, {'Day': 'Tuesday', 'Steps': 7200},
+    {'Day': 'Wednesday', 'Steps': 3900}, {'Day': 'Thursday', 'Steps': 5600},
+    {'Day': 'Friday', 'Steps': 8100}, {'Day': 'Saturday', 'Steps': 9800},
+    {'Day': 'Sunday', 'Steps': 11300}, {'Day': 'Monday', 'Steps': 4500},
+    {'Day': 'Tuesday', 'Steps': 6750}, {'Day': 'Wednesday', 'Steps': 3200},
+    {'Day': 'Thursday', 'Steps': 5870}, {'Day': 'Friday', 'Steps': 7650},
+    {'Day': 'Saturday', 'Steps': 10230}, {'Day': 'Sunday', 'Steps': 12000},
+    {'Day': 'Monday', 'Steps': 3800}
+];
+
+// Extract steps into an array for binning
+var stepValues = data.map(function(item) {
+    return item.Steps;
+});
+
+// Determine bin range (min and max steps)
+var minSteps = Math.min.apply(null, stepValues);
+var maxSteps = Math.max.apply(null, stepValues);
+var binSize = 1000; // Define bin size (you can adjust this as needed)
+
+// Create bins based on the range of steps data
+var bins = [];
+for(var i = minSteps; i < maxSteps; i += binSize) {
+    bins.push({min: i, max: i + binSize, count: 0});
+}
+
+// Populate bins with frequency
+stepValues.forEach(function(value) {
+    var binIndex = Math.floor((value - minSteps) / binSize);
+    if(binIndex >= 0 && binIndex < bins.length) {
+        bins[binIndex].count += 1;
+    }
+});
+
+// Prepare series data for histogram (bar chart)
+var seriesData = bins.map(function(bin) {
+    return {
+        value: bin.count,
+        name: bin.min + ' - ' + bin.max
+    };
+});
+
+// ECharts option setup
+var option = {
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    xAxis: {
+        type: 'category',
+        name: 'Step Range',
+        data: bins.map(function(bin) {
+            return bin.min + '-' + bin.max;
+        }),
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Frequency',
+    },
+    series: [{
+        name: 'Steps',
+        type: 'bar',
+        data: seriesData,
+        itemStyle: {
+            color: function(params) {
+                return echarts.color.lerp(params.dataIndex / bins.length, ['#5470C6', '#91CC75']);
+            }
+        },
+    }]
+};
+
+// Use the specified configuration and data to display the chart
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

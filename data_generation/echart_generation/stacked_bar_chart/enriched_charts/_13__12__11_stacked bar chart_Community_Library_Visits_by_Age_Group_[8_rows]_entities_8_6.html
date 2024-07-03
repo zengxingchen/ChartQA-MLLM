@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Monthly Energy Consumption',
+        left: 'center',
+        top: '10'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Residential', 'Commercial', 'Industrial'],
+        top: '30'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        data: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Residential',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            data: [120, 150, 220, 320, 420, 520, 620, 720, 820, 920, 1020, 1120],
+            itemStyle: {
+                color: '#ff9999'
+            },
+            barWidth: 20
+        },
+        {
+            name: 'Commercial',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            data: [132, 182, 232, 332, 432, 532, 632, 732, 832, 932, 1032, 1132],
+            itemStyle: {
+                color: '#66b3ff'
+            },
+            barWidth: 20
+        },
+        {
+            name: 'Industrial',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            data: [101, 191, 201, 301, 401, 501, 601, 701, 801, 901, 1001, 1101],
+            itemStyle: {
+                color: '#99ff99'
+            },
+            barWidth: 20
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

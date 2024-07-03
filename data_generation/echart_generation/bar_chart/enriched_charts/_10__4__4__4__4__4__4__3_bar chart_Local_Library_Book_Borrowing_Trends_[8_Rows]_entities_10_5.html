@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var option;
+
+option = {
+    title: {
+        text: 'Future Technologies & Society',
+        left: 'center',
+        top: 20,
+        textStyle: {
+            color: '#333'
+        }
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    xAxis: {
+        type: 'category',
+        data: ['Artificial Intelligence', 'Virtual Reality', 'Blockchain', '3D Printing', 'Internet of Things', 'Quantum Computing', 'Autonomous Vehicles', 'Augmented Reality', 'Nanotechnology', 'Genetic Engineering'],
+        axisLabel: {
+            interval: 0,
+            rotate: 30,
+            textStyle: {
+                color: '#000'
+            }
+        }
+    },
+    yAxis: {
+        type: 'value',
+        axisLabel: {
+            textStyle: {
+                color: '#000'
+            }
+        }
+    },
+    series: [{
+        name: 'Value',
+        type: 'bar',
+        barWidth: '50%',
+        data: [
+            {value: 82, itemStyle: {color: '#FF5733'}},
+            {value: 67, itemStyle: {color: '#33FF57'}},
+            {value: 74, itemStyle: {color: '#3357FF'}},
+            {value: 59, itemStyle: {color: '#F333FF'}},
+            {value: 91, itemStyle: {color: '#33FFF3'}},
+            {value: 55, itemStyle: {color: '#FF3333'}},
+            {value: 77, itemStyle: {color: '#33FF33'}},
+            {value: 63, itemStyle: {color: '#5733FF'}},
+            {value: 88, itemStyle: {color: '#F3FF33'}},
+            {value: 72, itemStyle: {color: '#FF5733'}}
+        ]
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,248 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Stacked area chart showing the growth of different renewable energy sources over time",
+    "width": 600,
+    "height": 400,
+    "title": {
+        "text": "Renewable Energy Growth Over Time",
+        "fontSize": 18,
+        "anchor": "start",
+        "color": "black",
+        "offset": 10,
+        "frame": "group"
+    },
+    "data": {
+        "values": [
+            {
+                "Year": 2000,
+                "Solar": 10,
+                "Wind": 5,
+                "Hydro": 50,
+                "Biomass": 5
+            },
+            {
+                "Year": 2001,
+                "Solar": 15,
+                "Wind": 10,
+                "Hydro": 55,
+                "Biomass": 7
+            },
+            {
+                "Year": 2002,
+                "Solar": 20,
+                "Wind": 15,
+                "Hydro": 60,
+                "Biomass": 10
+            },
+            {
+                "Year": 2003,
+                "Solar": 25,
+                "Wind": 20,
+                "Hydro": 65,
+                "Biomass": 12
+            },
+            {
+                "Year": 2004,
+                "Solar": 30,
+                "Wind": 25,
+                "Hydro": 70,
+                "Biomass": 15
+            },
+            {
+                "Year": 2005,
+                "Solar": 40,
+                "Wind": 30,
+                "Hydro": 75,
+                "Biomass": 17
+            },
+            {
+                "Year": 2006,
+                "Solar": 50,
+                "Wind": 40,
+                "Hydro": 80,
+                "Biomass": 20
+            },
+            {
+                "Year": 2007,
+                "Solar": 60,
+                "Wind": 50,
+                "Hydro": 85,
+                "Biomass": 25
+            },
+            {
+                "Year": 2008,
+                "Solar": 70,
+                "Wind": 65,
+                "Hydro": 90,
+                "Biomass": 30
+            },
+            {
+                "Year": 2009,
+                "Solar": 80,
+                "Wind": 80,
+                "Hydro": 95,
+                "Biomass": 37
+            },
+            {
+                "Year": 2010,
+                "Solar": 90,
+                "Wind": 95,
+                "Hydro": 100,
+                "Biomass": 45
+            },
+            {
+                "Year": 2011,
+                "Solar": 100,
+                "Wind": 110,
+                "Hydro": 105,
+                "Biomass": 50
+            },
+            {
+                "Year": 2012,
+                "Solar": 110,
+                "Wind": 120,
+                "Hydro": 110,
+                "Biomass": 55
+            },
+            {
+                "Year": 2013,
+                "Solar": 120,
+                "Wind": 130,
+                "Hydro": 115,
+                "Biomass": 60
+            },
+            {
+                "Year": 2014,
+                "Solar": 130,
+                "Wind": 140,
+                "Hydro": 120,
+                "Biomass": 65
+            },
+            {
+                "Year": 2015,
+                "Solar": 140,
+                "Wind": 150,
+                "Hydro": 125,
+                "Biomass": 75
+            },
+            {
+                "Year": 2016,
+                "Solar": 150,
+                "Wind": 160,
+                "Hydro": 130,
+                "Biomass": 80
+            },
+            {
+                "Year": 2017,
+                "Solar": 160,
+                "Wind": 170,
+                "Hydro": 135,
+                "Biomass": 90
+            },
+            {
+                "Year": 2018,
+                "Solar": 170,
+                "Wind": 180,
+                "Hydro": 140,
+                "Biomass": 95
+            },
+            {
+                "Year": 2019,
+                "Solar": 180,
+                "Wind": 190,
+                "Hydro": 145,
+                "Biomass": 100
+            },
+            {
+                "Year": 2020,
+                "Solar": 200,
+                "Wind": 200,
+                "Hydro": 150,
+                "Biomass": 110
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Solar",
+                "Wind",
+                "Hydro",
+                "Biomass"
+            ],
+            "as": [
+                "Energy Source",
+                "Gigawatts"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "area",
+        "line": true,
+        "opacity": 0.7
+    },
+    "encoding": {
+        "x": {
+            "field": "Year",
+            "type": "ordinal",
+            "axis": {
+                "title": "Year"
+            }
+        },
+        "y": {
+            "field": "Gigawatts",
+            "type": "quantitative",
+            "stack": "zero",
+            "axis": {
+                "title": "Energy Output (Gigawatts)"
+            }
+        },
+        "color": {
+            "field": "Energy Source",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Solar",
+                    "Wind",
+                    "Hydro",
+                    "Biomass"
+                ],
+                "range": [
+                    "#eeca3b",
+                    "#5ab4ac",
+                    "#3182bd",
+                    "#31a354"
+                ]
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Year",
+                "type": "ordinal",
+                "title": "Year"
+            },
+            {
+                "field": "Energy Source",
+                "type": "nominal",
+                "title": "Energy Source"
+            },
+            {
+                "field": "Gigawatts",
+                "type": "quantitative",
+                "title": "Energy Output",
+                "format": ".1f"
+            }
+        ]
+    },
+    "config": {
+        "view": {
+            "stroke": "transparent"
+        },
+        "legend": {
+            "title": null,
+            "labelFontSize": 12,
+            "symbolSize": 100,
+            "offset": 15
+        }
+    }
+}

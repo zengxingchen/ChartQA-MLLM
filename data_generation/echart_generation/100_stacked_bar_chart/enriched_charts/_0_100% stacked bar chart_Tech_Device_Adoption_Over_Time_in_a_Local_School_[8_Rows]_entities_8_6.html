@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {renderer: 'canvas', width: 800, height: 600});
+
+var option = {
+  tooltip: {
+    trigger: 'axis',
+    axisPointer: {
+      type: 'shadow'
+    }
+  },
+  legend: {
+    data: ['Books', 'Electronics', 'Clothing', 'Home Goods', 'Beauty Products']
+  },
+  grid: {
+    left: '3%',
+    right: '4%',
+    bottom: '3%',
+    containLabel: true
+  },
+  xAxis: {
+    type: 'value',
+    boundaryGap: [0, 0.01]
+  },
+  yAxis: {
+    type: 'category',
+    data: ['2016', '2017', '2018', '2019', '2020', '2021']
+  },
+  series: [
+    {
+      name: 'Books',
+      type: 'bar',
+      stack: 'total',
+      label: {
+        show: true,
+        position: 'insideRight'
+      },
+      data: [15, 20, 15, 25, 30, 35],
+      itemStyle: {
+        color: '#ffa07a'
+      },
+      barWidth: 35
+    },
+    {
+      name: 'Electronics',
+      type: 'bar',
+      stack: 'total',
+      label: {
+        show: true,
+        position: 'insideRight'
+      },
+      data: [25, 30, 20, 25, 20, 18],
+      itemStyle: {
+        color: '#20b2aa'
+      }
+    },
+    {
+      name: 'Clothing',
+      type: 'bar',
+      stack: 'total',
+      label: {
+        show: true,
+        position: 'insideRight'
+      },
+      data: [35, 25, 40, 30, 25, 22],
+      itemStyle: {
+        color: '#778899'
+      }
+    },
+    {
+      name: 'Home Goods',
+      type: 'bar',
+      stack: 'total',
+      label: {
+        show: true,
+        position: 'insideRight'
+      },
+      data: [15, 15, 15, 10, 15, 15],
+      itemStyle: {
+        color: '#9370db'
+      }
+    },
+    {
+      name: 'Beauty Products',
+      type: 'bar',
+      stack: 'total',
+      label: {
+        show: true
+      },
+      data: [10, 10, 10, 10, 10, 10],
+      itemStyle: {
+        color: '#ffc0cb'
+      }
+    }
+  ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

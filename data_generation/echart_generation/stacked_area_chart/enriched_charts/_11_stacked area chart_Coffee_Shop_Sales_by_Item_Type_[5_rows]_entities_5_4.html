@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {renderer: 'canvas', width: '600', height: '400'});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Greenhouse Gas Emissions by Industry Sectors',
+        left: 'center',
+        top: '20'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            label: {
+                backgroundColor: '#6a7985'
+            }
+        }
+    },
+    legend: {
+        data: ['Energy', 'Industrial Processes', 'Agriculture', 'Waste'],
+        top: '5%'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: [
+        {
+            type: 'category',
+            boundaryGap: false,
+            data: ['1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019']
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value'
+        }
+    ],
+    series: [
+        {
+            name: 'Energy',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {color: '#1f78b4'},
+            emphasis: {focus: 'series'},
+            data: [14, 14.5, 14.8, 15.2, 15.4, 16, 16.5, 17, 17.5, 18, 18.5, 19, 19.5, 20, 20.5, 21, 21.5, 22, 22.3, 22.5, 23, 23.5, 23.3, 23.7, 24, 24.3, 24.5, 24.8, 25, 25.2]
+        },
+        {
+            name: 'Industrial Processes',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {color: '#b2df8a'},
+            emphasis: {focus: 'series'},
+            data: [3, 3.5, 3.6, 3.9, 4, 4.2, 4.4, 4.5, 4.7, 5, 5.2, 5.5, 5.7, 6, 6.3, 6.5, 6.7, 7, 7.2, 7.5, 7.7, 8, 8.2, 8.5, 8.7, 9, 9.2, 9.5, 9.7, 10]
+        },
+        {
+            name: 'Agriculture',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {color: '#33a02c'},
+            emphasis: {focus: 'series'},
+            data: [7, 7.2, 7.4, 7.6, 7.8, 8, 8.3, 8.5, 8.7, 9, 9.3, 9.6, 9.8, 10, 10.3, 10.5, 10.7, 11, 11.2, 11.5, 11.7, 12, 12.3, 12.5, 12.7, 13, 13.2, 13.5, 13.7, 14]
+        },
+        {
+            name: 'Waste',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {color: '#fb9a99'},
+            emphasis: {focus: 'series'},
+            data: [2, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 2.8, 2.9, 3, 3.2, 3.3, 3.4, 3.5, 3.6, 3.8, 4, 4.2, 4.3, 4.5, 4.6, 4.8, 5, 5.2, 5.3, 5.5, 5.6, 5.8, 6, 6.2]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

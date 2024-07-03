@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+// your table data
+const data = [
+    {'Week': 'Week 1', 'Coffee (Liters) - Startups': 150, 'Coffee (Liters) - Mid-sized Companies': 400, 'Coffee (Liters) - Large Corporations': 750},
+    {'Week': 'Week 2', 'Coffee (Liters) - Startups': 145, 'Coffee (Liters) - Mid-sized Companies': 390, 'Coffee (Liters) - Large Corporations': 740},
+    // ... includes all weeks data as in your example
+    {'Week': 'Week 12', 'Coffee (Liters) - Startups': 150, 'Coffee (Liters) - Mid-sized Companies': 400, 'Coffee (Liters) - Large Corporations': 750}
+];
+
+// Process data and extract category and series
+let weeks = data.map(item => item.Week);
+let coffeeStartups = data.map(item => item['Coffee (Liters) - Startups']);
+let coffeeMidSized = data.map(item => item['Coffee (Liters) - Mid-sized Companies']);
+let coffeeLargeCorps = data.map(item => item['Coffee (Liters) - Large Corporations']);
+
+option = {
+    title: {
+        text: 'Coffee Consumption by Company Size',
+        subtext: 'Liters of Coffee consumed per week'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            label: {
+                backgroundColor: '#6a7985'
+            }
+        }
+    },
+    legend: {
+        data: ['Startups', 'Mid-sized Companies', 'Large Corporations']
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: [
+        {
+            type: 'category',
+            boundaryGap: false,
+            data: weeks
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value'
+        }
+    ],
+    series: [
+        {
+            name: 'Startups',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: coffeeStartups
+        },
+        {
+            name: 'Mid-sized Companies',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: coffeeMidSized
+        },
+        {
+            name: 'Large Corporations',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: coffeeLargeCorps
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

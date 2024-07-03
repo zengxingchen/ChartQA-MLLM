@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+var option;
+
+option = {
+    title: {
+        text: 'Innovations in Future Technologies',
+        left: 'center',
+        top: 20
+    },
+    tooltip: {
+        trigger: 'item'
+    },
+    legend: {
+        orient: 'vertical',
+        left: 20,
+        top: '15%',
+        formatter: function (name) {
+            return echarts.format.truncateText(name, 100, '14px Microsoft Yahei', '...');
+        },
+        tooltip: {
+            show: true
+        }
+    },
+    series: [
+        {
+            name: 'Technology',
+            type: 'pie',
+            radius: '50%',
+            data: [
+                {value: 335, name: 'Smart Home Devices', itemStyle: {color: '#7eb00a'}},
+                {value: 310, name: 'Wearable Technology', itemStyle: {color: '#6f0099'}},
+                {value: 234, name: 'Assistive AI', itemStyle: {color: '#ffde33'}},
+                {value: 135, name: 'Blockchain Platforms', itemStyle: {color: '#369'}},
+                {value: 1045, name: 'Quantum Computing', itemStyle: {color: '#ff6f61'}},
+                {value: 1314, name: 'IoT Networks', itemStyle: {color: '#0047ab'}},
+                {value: 789, name: 'Nanotechnology', itemStyle: {color: '#00876c'}},
+                {value: 333, name: '3D Printing', itemStyle: {color: '#fd7400'}},
+                {value: 660, name: 'Virtual Reality', itemStyle: {color: '#9e0142'}},
+                {value: 402, name: 'Augmented Reality', itemStyle: {color: '#fdae61'}}
+            ],
+            emphasis: {
+                itemStyle: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

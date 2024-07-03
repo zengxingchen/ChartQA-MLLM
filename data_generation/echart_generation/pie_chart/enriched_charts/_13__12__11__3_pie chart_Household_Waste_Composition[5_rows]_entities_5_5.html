@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Global Cloud Market Share 2021',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'item'
+    },
+    legend: {
+        orient: 'vertical',
+        left: 20,
+        top: 'middle',
+        textStyle: {
+            fontSize: 14
+        }
+    },
+    series: [
+        {
+            name: 'Market Share',
+            type: 'pie',
+            radius: ['40%', '70%'],
+            avoidLabelOverlap: false,
+            itemStyle: {
+                borderRadius: 10,
+                borderColor: '#fff',
+                borderWidth: 2
+            },
+            label: {
+                show: false,
+                position: 'center'
+            },
+            emphasis: {
+                label: {
+                    show: true,
+                    fontSize: '18',
+                    fontWeight: 'bold'
+                }
+            },
+            labelLine: {
+                show: false
+            },
+            data: [
+                {value: 32, name: 'Amazon Web Services', itemStyle: {color: '#FF9900'}},
+                {value: 20, name: 'Microsoft Azure', itemStyle: {color: '#00A1F1'}},
+                {value: 9, name: 'Google Cloud Platform', itemStyle: {color: '#DB4437'}},
+                {value: 6, name: 'Alibaba Cloud', itemStyle: {color: '#FF6D00'}},
+                {value: 6, name: 'IBM Cloud', itemStyle: {color: '#052FAD'}},
+                {value: 3, name: 'Salesforce', itemStyle: {color: '#00A1E0'}},
+                {value: 3, name: 'Oracle Cloud', itemStyle: {color: '#F80000'}},
+                {value: 2, name: 'Tencent Cloud', itemStyle: {color: '#EB1B35'}},
+                {value: 1, name: 'SAP Cloud', itemStyle: {color: '#0FAAFF'}},
+                {value: 18, name: 'Others', itemStyle: {color: '#6A0DAD'}}
+            ]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

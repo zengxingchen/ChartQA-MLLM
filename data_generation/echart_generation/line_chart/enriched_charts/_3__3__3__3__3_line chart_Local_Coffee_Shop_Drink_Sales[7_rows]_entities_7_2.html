@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'June 2024 Daily Temperatures',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    xAxis: {
+        type: 'category',
+        data: ['2024-06-01', '2024-06-02', '2024-06-03', '2024-06-04', '2024-06-05', '2024-06-06', '2024-06-07', '2024-06-08', '2024-06-09', '2024-06-10', '2024-06-11', '2024-06-12', '2024-06-13', '2024-06-14', '2024-06-15', '2024-06-16', '2024-06-17', '2024-06-18', '2024-06-19', '2024-06-20', '2024-06-21', '2024-06-22', '2024-06-23', '2024-06-24', '2024-06-25', '2024-06-26', '2024-06-27', '2024-06-28', '2024-06-29', '2024-06-30']
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Temperature (°C)',
+    },
+    series: [{
+        data: [25, 26, 28, 27, 30, 32, 33, 31, 29, 28, 27, 26, 25, 24, 23, 22, 21, 23, 24, 26, 28, 30, 32, 33, 31, 30, 29, 28, 27, 26],
+        type: 'line',
+        smooth: true,
+        lineStyle: {
+            color: '#FF5722'
+        },
+        itemStyle: {
+            color: '#FF5722'
+        },
+        label: {
+            show: true,
+            position: 'top'
+        }
+    }],
+    visualMap: {
+        show: false,
+        pieces: [{
+            gt: 0,
+            lte: 10,
+            color: '#FFEB3B'
+        }, {
+            gt: 10,
+            lte: 20,
+            color: '#8BC34A'
+        }, {
+            gt: 20,
+            lte: 30,
+            color: '#00BCD4'
+        }, {
+            gt: 30,
+            color: '#FF5722'
+        }]
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

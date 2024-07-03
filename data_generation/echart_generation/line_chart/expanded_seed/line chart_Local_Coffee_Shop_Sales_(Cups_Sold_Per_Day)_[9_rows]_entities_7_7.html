@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+
+var data = [
+  {'Day': 'Monday', 'Cappuccino': 70, 'Espresso': 50, 'Americano': 80, 'Latte': 90},
+  {'Day': 'Tuesday', 'Cappuccino': 65, 'Espresso': 45, 'Americano': 85, 'Latte': 88},
+  {'Day': 'Wednesday', 'Cappuccino': 75, 'Espresso': 55, 'Americano': 82, 'Latte': 94},
+  {'Day': 'Thursday', 'Cappuccino': 80, 'Espresso': 60, 'Americano': 78, 'Latte': 100},
+  {'Day': 'Friday', 'Cappuccino': 90, 'Espresso': 70, 'Americano': 90, 'Latte': 110},
+  {'Day': 'Saturday', 'Cappuccino': 85, 'Espresso': 60, 'Americano': 95, 'Latte': 105},
+  {'Day': 'Sunday', 'Cappuccino': 50, 'Espresso': 30, 'Americano': 70, 'Latte': 80}
+];
+
+option = {
+  tooltip: {
+    trigger: 'axis'
+  },
+  legend: {
+    data: ['Cappuccino', 'Espresso', 'Americano', 'Latte']
+  },
+  xAxis: {
+    type: 'category',
+    boundaryGap: false,
+    data: data.map(function (item) {
+      return item.Day;
+    })
+  },
+  yAxis: {
+    type: 'value'
+  },
+  series: [
+    {
+      name: 'Cappuccino',
+      type: 'line',
+      data: data.map(function (item) {
+        return item.Cappuccino;
+      }),
+      itemStyle: {
+        color: '#ff7f50'
+      },
+      lineStyle: {
+        width: 2,
+        type: 'solid'
+      }
+    },
+    {
+      name: 'Espresso',
+      type: 'line',
+      data: data.map(function (item) {
+        return item.Espresso;
+      }),
+      itemStyle: {
+        color: '#87cefa'
+      },
+      lineStyle: {
+        width: 2,
+        type: 'dashed'
+      }
+    },
+    {
+      name: 'Americano',
+      type: 'line',
+      data: data.map(function (item) {
+        return item.Americano;
+      }),
+      itemStyle: {
+        color: '#dda0dd'
+      },
+      lineStyle: {
+        width: 2,
+        type: 'dotted'
+      }
+    },
+    {
+      name: 'Latte',
+      type: 'line',
+      data: data.map(function (item) {
+        return item.Latte;
+      }),
+      itemStyle: {
+        color: '#90ee90'
+      },
+      lineStyle: {
+        width: 2,
+        type: 'dashed'
+      }
+    }
+  ],
+  dataZoom: [
+    {
+      type: 'inside',
+      xAxisIndex: 0
+    }
+  ],
+  annotation: [
+    {
+      type: 'text',
+      position: ['50%', '50%'],
+      content: 'Weekly Coffee Sales',
+      style: {
+        fill: '#000',
+        fontSize: 14
+      }
+    }
+  ]
+};
+
+if (option && typeof option === 'object') {
+  myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+
+var option = {
+    title: {
+        text: 'Popular Tourist Attractions by Continent',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: '{b}: {c}'
+    },
+    series: [{
+        name: 'Attractions',
+        type: 'treemap',
+        visibleMin: 300,
+        data: [
+            {
+                name: 'North America',
+                itemStyle: { color: '#4A90E2' },
+                children: [
+                    { name: 'Grand Canyon', value: 9.8 },
+                    { name: 'Yellowstone National Park', value: 8.5 },
+                    { name: 'Niagara Falls', value: 8.7 },
+                    { name: 'Statue of Liberty', value: 9.3 }
+                ]
+            },
+            {
+                name: 'South America',
+                itemStyle: { color: '#50E3C2' },
+                children: [
+                    { name: 'Machu Picchu', value: 9.6 },
+                    { name: 'Christ the Redeemer', value: 9.1 },
+                    { name: 'Iguazu Falls', value: 8.8 },
+                    { name: 'Galapagos Islands', value: 8.9 }
+                ]
+            },
+            {
+                name: 'Europe',
+                itemStyle: { color: '#F5A623' },
+                children: [
+                    { name: 'Eiffel Tower', value: 9.7 },
+                    { name: 'Colosseum', value: 9.2 },
+                    { name: 'Louvre Museum', value: 9.5 },
+                    { name: 'Buckingham Palace', value: 8.6 }
+                ]
+            },
+            {
+                name: 'Asia',
+                itemStyle: { color: '#7ED321' },
+                children: [
+                    { name: 'Great Wall of China', value: 9.9 },
+                    { name: 'Taj Mahal', value: 9.4 },
+                    { name: 'Mount Fuji', value: 8.4 },
+                    { name: 'Bali', value: 9.0 }
+                ]
+            },
+            {
+                name: 'Africa',
+                itemStyle: { color: '#D0021B' },
+                children: [
+                    { name: 'Safari in Serengeti', value: 8.3 },
+                    { name: 'Pyramids of Giza', value: 9.0 },
+                    { name: 'Victoria Falls', value: 8.7 },
+                    { name: 'Marrakech Medina', value: 8.5 }
+                ]
+            },
+            {
+                name: 'Australia',
+                itemStyle: { color: '#BD10E0' },
+                children: [
+                    { name: 'Great Barrier Reef', value: 9.3 },
+                    { name: 'Sydney Opera House', value: 9.2 },
+                    { name: 'Uluru', value: 8.8 },
+                    { name: 'Blue Mountains', value: 8.4 }
+                ]
+            }
+        ]
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

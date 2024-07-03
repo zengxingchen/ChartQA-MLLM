@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 600, height: 400});
+var app = {};
+
+var option;
+
+option = {
+  title: {
+    text: 'Economics & Finance Overview',
+    left: 'center',
+    top: 16
+  },
+  tooltip: {
+    formatter: function (info) {
+      var value = info.value;
+      var treePathInfo = info.treePathInfo;
+      var treePath = [];
+
+      for (var i = 1; i < treePathInfo.length; i++) {
+        treePath.push(treePathInfo[i].name);
+      }
+      return [
+        '<div class="tooltip-title">' + echarts.format.encodeHTML(treePath.join('/')) + '</div>',
+        'Value: ' + echarts.format.addCommas(value),
+      ].join('');
+    }
+  },
+  series: [
+    {
+      name: 'Economics & Finance',
+      type: 'treemap',
+      visibleMin: 300,
+      label: {
+        show: true,
+        formatter: '{b}'
+      },
+      upperLabel: {
+        show: true,
+        height: 30
+      },
+      itemStyle: {
+        borderColor: '#fff'
+      },
+      levels: [
+        {
+          itemStyle: {
+            borderWidth: 1,
+            gapWidth: 1
+          }
+        },
+        {
+          colorSaturation: [0.3, 0.6],
+          itemStyle: {
+            borderWidth: 2,
+            gapWidth: 1,
+            borderColorSaturation: 0.7
+          }
+        }
+      ],
+      data: [
+        {name: 'Stocks', value: 30001, itemStyle: {color: '#FFD700'}},
+        {name: 'Bonds', value: 20000, itemStyle: {color: '#9D02D7'}},
+        {name: 'Commodities', value: 15000, itemStyle: {color: '#45CEA2'}},
+        {name: 'Real Estate', value: 10000, itemStyle: {color: '#FDC086'}},
+        {name: 'Currencies', value: 5000, itemStyle: {color: '#F0027F'}},
+        {
+          name: 'Stocks',
+          children: [
+            {name: 'Technology', value: 13000, itemStyle: {color: '#FFB14E'}},
+            {name: 'Healthcare', value: 7000, itemStyle: {color: '#FA8775'}},
+            {name: 'Finance', value: 5000, itemStyle: {color: '#EA5F94'}},
+            {name: 'Consumer Goods', value: 4001, itemStyle: {color: '#CD34B5'}},
+          ]
+        },
+        {
+          name: 'Bonds',
+          children: [
+            {name: 'Government', value: 11000, itemStyle: {color: '#0000FF'}},
+            {name: 'Corporate', value: 7000, itemStyle: {color: '#4A235A'}},
+            {name: 'Municipal', value: 3000, itemStyle: {color: '#154360'}},
+          ]
+        },
+        {
+          name: 'Commodities',
+          children: [
+            {name: 'Metals', value: 5000, itemStyle: {color: '#66FF66'}},
+            {name: 'Energy', value: 6000, itemStyle: {color: '#FF4040'}},
+            {name: 'Agriculture', value: 4000, itemStyle: {color: '#7FC97F'}},
+          ]
+        },
+        {
+          name: 'Real Estate',
+          children: [
+            {name: 'Residential', value: 4000, itemStyle: {color: '#FFFF99'}},
+            {name: 'Commercial', value: 6000, itemStyle: {color: '#386CB0'}},
+          ]
+        },
+        {
+          name: 'Currencies',
+          children: [
+            {name: 'Dollar', value: 1000, itemStyle: {color: '#BF5B17'}},
+            {name: 'Euro', value: 1500, itemStyle: {color: '#6666FF'}},
+            {name: 'Yen', value: 1500, itemStyle: {color: '#7F7F7F'}},
+            {name: 'Pound', value: 1000, itemStyle: {color: '#FF7F00'}},
+            {name: 'Franc', value: 1000, itemStyle: {color: '#FFFF33'}},
+          ]
+        },
+      ]
+    }
+  ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

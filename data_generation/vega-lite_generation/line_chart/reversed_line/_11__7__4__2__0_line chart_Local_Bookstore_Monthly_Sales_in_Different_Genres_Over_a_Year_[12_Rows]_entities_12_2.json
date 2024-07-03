@@ -1,0 +1,189 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Monthly Sales and Revenue Data",
+    "data": {
+        "values": [
+            {
+                "Month": "January",
+                "Sales": 500,
+                "Revenue": 12000,
+                "Profit": 3000,
+                "Expenses": 7000,
+                "Loss": 2000
+            },
+            {
+                "Month": "February",
+                "Sales": 550,
+                "Revenue": 12500,
+                "Profit": 3200,
+                "Expenses": 7100,
+                "Loss": 2200
+            },
+            {
+                "Month": "March",
+                "Sales": 600,
+                "Revenue": 13000,
+                "Profit": 3400,
+                "Expenses": 7200,
+                "Loss": 2300
+            },
+            {
+                "Month": "April",
+                "Sales": 650,
+                "Revenue": 13500,
+                "Profit": 3600,
+                "Expenses": 7300,
+                "Loss": 2400
+            },
+            {
+                "Month": "May",
+                "Sales": 700,
+                "Revenue": 14000,
+                "Profit": 3800,
+                "Expenses": 7400,
+                "Loss": 2500
+            },
+            {
+                "Month": "June",
+                "Sales": 750,
+                "Revenue": 14500,
+                "Profit": 4000,
+                "Expenses": 7500,
+                "Loss": 2600
+            },
+            {
+                "Month": "July",
+                "Sales": 800,
+                "Revenue": 15000,
+                "Profit": 4200,
+                "Expenses": 7600,
+                "Loss": 2700
+            },
+            {
+                "Month": "August",
+                "Sales": 850,
+                "Revenue": 15500,
+                "Profit": 4400,
+                "Expenses": 7700,
+                "Loss": 2800
+            },
+            {
+                "Month": "September",
+                "Sales": 900,
+                "Revenue": 16000,
+                "Profit": 4600,
+                "Expenses": 7800,
+                "Loss": 2900
+            },
+            {
+                "Month": "October",
+                "Sales": 950,
+                "Revenue": 16500,
+                "Profit": 4800,
+                "Expenses": 7900,
+                "Loss": 3000
+            },
+            {
+                "Month": "November",
+                "Sales": 1000,
+                "Revenue": 17000,
+                "Profit": 5000,
+                "Expenses": 8000,
+                "Loss": 3100
+            },
+            {
+                "Month": "December",
+                "Sales": 1050,
+                "Revenue": 17500,
+                "Profit": 5200,
+                "Expenses": 8100,
+                "Loss": 3200
+            }
+        ]
+    },
+    "width": 1200,
+    "height": 700,
+    "transform": [
+        {
+            "fold": [
+                "Sales",
+                "Revenue",
+                "Profit",
+                "Expenses",
+                "Loss"
+            ],
+            "as": [
+                "Category",
+                "Value"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "line",
+        "point": {
+            "filled": true,
+            "fill": "white"
+        },
+        "tooltip": {
+            "content": "data"
+        }
+    },
+    "encoding": {
+        "x": {
+            "field": "Month",
+            "type": "ordinal",
+            "title": "Month",
+            "axis": {
+                "labelAngle": 0
+            }
+        },
+        "y": {
+            "field": "Value",
+            "type": "quantitative",
+            "title": "Value",
+            "scale": {
+                "reverse": true
+            }
+        },
+        "color": {
+            "field": "Category",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Sales",
+                    "Revenue",
+                    "Profit",
+                    "Expenses",
+                    "Loss"
+                ],
+                "range": [
+                    "#FF0000",
+                    "#00FF00",
+                    "#0000FF",
+                    "#FFA500",
+                    "#800080"
+                ]
+            },
+            "title": "Category"
+        },
+        "tooltip": [
+            {
+                "field": "Month",
+                "type": "nominal"
+            },
+            {
+                "field": "Category",
+                "type": "nominal"
+            },
+            {
+                "field": "Value",
+                "type": "quantitative"
+            }
+        ],
+        "text": {
+            "field": "Value",
+            "type": "quantitative",
+            "format": ".2f"
+        }
+    }
+}

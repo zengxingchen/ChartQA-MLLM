@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    width: 800,
+    height: 400
+});
+var app = {};
+
+var option;
+
+option = {
+  title: {
+      text: 'Sector Contributions to GDP - Economics & Finance',
+      left: 'center'
+  },
+  tooltip: {
+      trigger: 'axis',
+      axisPointer: {
+          type: 'shadow'
+      }
+  },
+  legend: {
+      orient: 'vertical',
+      left: 'right',
+      top: 'center',
+      data: ['Agriculture', 'Manufacturing', 'Services', 'Technology']
+  },
+  grid: {
+      left: '3%',
+      right: '4%',
+      bottom: '3%',
+      containLabel: true
+  },
+  xAxis: {
+      type: 'value',
+      boundaryGap: [0, 0.01]
+  },
+  yAxis: {
+      type: 'category',
+      data: ['2017', '2018', '2019', '2020', '2021']
+  },
+  series: [
+      {
+          name: 'Agriculture',
+          type: 'bar',
+          stack: 'total',
+          label: {
+              show: true
+          },
+          emphasis: {
+              focus: 'series'
+          },
+          color: '#FFD700',
+          data: [12, 11, 10, 9, 8]
+      },
+      {
+          name: 'Manufacturing',
+          type: 'bar',
+          stack: 'total',
+          label: {
+              show: true
+          },
+          color: '#C0C0C0',
+          emphasis: {
+              focus: 'series'
+          },
+          data: [28, 29, 27, 30, 31]
+      },
+      {
+          name: 'Services',
+          type: 'bar',
+          stack: 'total',
+          label: {
+              show: true
+          },
+          color: '#CD7F32',
+          emphasis: {
+              focus: 'series'
+          },
+          data: [45, 47, 49, 48, 49]
+      },
+      {
+          name: 'Technology',
+          type: 'bar',
+          stack: 'total',
+          label: {
+              show: true
+          },
+          color: '#4682B4',
+          emphasis: {
+              focus: 'series'
+          },
+          data: [15, 13, 14, 13, 12]
+      }
+  ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

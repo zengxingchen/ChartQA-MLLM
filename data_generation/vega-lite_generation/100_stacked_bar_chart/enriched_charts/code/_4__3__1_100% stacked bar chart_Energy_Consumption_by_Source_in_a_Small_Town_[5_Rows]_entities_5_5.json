@@ -1,0 +1,178 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": {
+        "text": "Investment Methods Over Decades",
+        "subtitle": "Horizontal stacked bar chart representing the percentage of investment methods",
+        "anchor": "start",
+        "color": "#000000"
+    },
+    "description": "A stacked bar chart showing the percentage distribution of investment methods over several decades.",
+    "width": 700,
+    "height": 400,
+    "data": {
+        "values": [
+            {
+                "Decade": "1980s",
+                "Stocks": 40,
+                "Bonds": 30,
+                "Real Estate": 20,
+                "Others": 10
+            },
+            {
+                "Decade": "1990s",
+                "Stocks": 45,
+                "Bonds": 25,
+                "Real Estate": 20,
+                "Others": 10
+            },
+            {
+                "Decade": "2000s",
+                "Stocks": 50,
+                "Bonds": 20,
+                "Real Estate": 20,
+                "Others": 10
+            },
+            {
+                "Decade": "2010s",
+                "Stocks": 55,
+                "Bonds": 15,
+                "Real Estate": 20,
+                "Others": 10
+            },
+            {
+                "Decade": "2020s",
+                "Stocks": 60,
+                "Bonds": 15,
+                "Real Estate": 15,
+                "Others": 10
+            },
+            {
+                "Decade": "2030s",
+                "Stocks": 65,
+                "Bonds": 10,
+                "Real Estate": 15,
+                "Others": 10
+            },
+            {
+                "Decade": "2040s",
+                "Stocks": 70,
+                "Bonds": 10,
+                "Real Estate": 10,
+                "Others": 10
+            },
+            {
+                "Decade": "2050s",
+                "Stocks": 75,
+                "Bonds": 10,
+                "Real Estate": 10,
+                "Others": 5
+            },
+            {
+                "Decade": "2060s",
+                "Stocks": 80,
+                "Bonds": 5,
+                "Real Estate": 10,
+                "Others": 5
+            },
+            {
+                "Decade": "2070s",
+                "Stocks": 85,
+                "Bonds": 5,
+                "Real Estate": 5,
+                "Others": 5
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Stocks",
+                "Bonds",
+                "Real Estate",
+                "Others"
+            ],
+            "as": [
+                "Investment Method",
+                "Percentage"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "bar",
+        "width": {
+            "band": 0.6
+        }
+    },
+    "encoding": {
+        "y": {
+            "field": "Decade",
+            "type": "ordinal",
+            "title": "Decade"
+        },
+        "x": {
+            "field": "Percentage",
+            "type": "quantitative",
+            "title": "Percentage of Investment Methods",
+            "stack": "normalize",
+            "axis": {
+                "format": ".0%"
+            }
+        },
+        "color": {
+            "field": "Investment Method",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Stocks",
+                    "Bonds",
+                    "Real Estate",
+                    "Others"
+                ],
+                "range": [
+                    "#4c78a8",
+                    "#f58518",
+                    "#54a24b",
+                    "#e45756"
+                ]
+            },
+            "title": "Investment Method"
+        },
+        "tooltip": [
+            {
+                "field": "Decade",
+                "type": "ordinal",
+                "title": "Decade"
+            },
+            {
+                "field": "Investment Method",
+                "type": "nominal",
+                "title": "Investment Method"
+            },
+            {
+                "field": "Percentage",
+                "type": "quantitative",
+                "title": "Percentage (%)",
+                "format": ".0f"
+            }
+        ]
+    },
+    "config": {
+        "axisY": {
+            "titlePadding": 10,
+            "labelAngle": 0
+        },
+        "axisX": {
+            "titleAngle": 0,
+            "titleAlign": "center",
+            "titleY": 30,
+            "titleX": 0,
+            "labelPadding": 5,
+            "titleFontSize": 12
+        },
+        "legend": {
+            "titleFontSize": 12,
+            "labelFontSize": 12,
+            "symbolType": "square"
+        }
+    }
+}

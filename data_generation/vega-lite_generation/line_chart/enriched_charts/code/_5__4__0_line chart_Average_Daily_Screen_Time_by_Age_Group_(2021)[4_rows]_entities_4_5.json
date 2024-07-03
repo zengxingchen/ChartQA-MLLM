@@ -1,0 +1,181 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Line chart showing the trend of average exercise time of different cities over a week.",
+    "title": {
+        "text": "Average Exercise Time Trends by City",
+        "fontSize": 16,
+        "anchor": "start",
+        "color": "black"
+    },
+    "width": 800,
+    "height": 500,
+    "data": {
+        "values": [
+            {
+                "City": "New York",
+                "Monday": 30,
+                "Tuesday": 35,
+                "Wednesday": 32,
+                "Thursday": 40,
+                "Friday": 45,
+                "Saturday": 50,
+                "Sunday": 55
+            },
+            {
+                "City": "Los Angeles",
+                "Monday": 40,
+                "Tuesday": 42,
+                "Wednesday": 38,
+                "Thursday": 45,
+                "Friday": 50,
+                "Saturday": 52,
+                "Sunday": 55
+            },
+            {
+                "City": "Chicago",
+                "Monday": 35,
+                "Tuesday": 38,
+                "Wednesday": 40,
+                "Thursday": 45,
+                "Friday": 48,
+                "Saturday": 50,
+                "Sunday": 53
+            },
+            {
+                "City": "Houston",
+                "Monday": 45,
+                "Tuesday": 50,
+                "Wednesday": 48,
+                "Thursday": 53,
+                "Friday": 58,
+                "Saturday": 60,
+                "Sunday": 63
+            },
+            {
+                "City": "Phoenix",
+                "Monday": 50,
+                "Tuesday": 52,
+                "Wednesday": 48,
+                "Thursday": 55,
+                "Friday": 58,
+                "Saturday": 60,
+                "Sunday": 62
+            },
+            {
+                "City": "San Francisco",
+                "Monday": 25,
+                "Tuesday": 30,
+                "Wednesday": 28,
+                "Thursday": 35,
+                "Friday": 38,
+                "Saturday": 40,
+                "Sunday": 42
+            },
+            {
+                "City": "Boston",
+                "Monday": 28,
+                "Tuesday": 30,
+                "Wednesday": 27,
+                "Thursday": 33,
+                "Friday": 35,
+                "Saturday": 37,
+                "Sunday": 40
+            },
+            {
+                "City": "Miami",
+                "Monday": 38,
+                "Tuesday": 40,
+                "Wednesday": 37,
+                "Thursday": 42,
+                "Friday": 45,
+                "Saturday": 47,
+                "Sunday": 50
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday",
+                "Friday",
+                "Saturday",
+                "Sunday"
+            ],
+            "as": [
+                "Day",
+                "ExerciseTime"
+            ]
+        }
+    ],
+    "mark": "line",
+    "encoding": {
+        "x": {
+            "field": "Day",
+            "type": "ordinal",
+            "title": "Day of the Week",
+            "axis": {
+                "titleFontSize": 12,
+                "labelAngle": -45
+            }
+        },
+        "y": {
+            "field": "ExerciseTime",
+            "type": "quantitative",
+            "title": "Average Exercise Time (minutes)",
+            "axis": {
+                "titleFontSize": 12
+            }
+        },
+        "color": {
+            "field": "City",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "New York",
+                    "Los Angeles",
+                    "Chicago",
+                    "Houston",
+                    "Phoenix",
+                    "San Francisco",
+                    "Boston",
+                    "Miami"
+                ],
+                "range": [
+                    "#e41a1c",
+                    "#377eb8",
+                    "#4daf4a",
+                    "#984ea3",
+                    "#ff7f00",
+                    "#ffff33",
+                    "#a65628",
+                    "#f781bf"
+                ]
+            },
+            "legend": {
+                "title": "City"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "City",
+                "type": "nominal"
+            },
+            {
+                "field": "Day",
+                "type": "ordinal"
+            },
+            {
+                "field": "ExerciseTime",
+                "type": "quantitative"
+            }
+        ]
+    },
+    "config": {
+        "axisY": {
+            "minExtent": 30
+        }
+    }
+}

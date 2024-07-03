@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+
+var chartData = [
+    {'Month': 'January-2023', 'New Members': 5, 'Renewed Members': 15, 'Attendees': 20, 'Canceled Memberships': 2},
+    {'Month': 'February-2023', 'New Members': 3, 'Renewed Members': 18, 'Attendees': 22, 'Canceled Memberships': 1},
+    {'Month': 'March-2023', 'New Members': 7, 'Renewed Members': 12, 'Attendees': 18, 'Canceled Memberships': 4},
+    {'Month': 'April-2023', 'New Members': 4, 'Renewed Members': 20, 'Attendees': 25, 'Canceled Memberships': 3},
+    {'Month': 'May-2023', 'New Members': 6, 'Renewed Members': 15, 'Attendees': 30, 'Canceled Memberships': 2},
+    {'Month': 'June-2023', 'New Members': 8, 'Renewed Members': 22, 'Attendees': 35, 'Canceled Memberships': 5},
+    {'Month': 'July-2023', 'New Members': 10, 'Renewed Members': 18, 'Attendees': 30, 'Canceled Memberships': 1},
+    {'Month': 'August-2023', 'New Members': 7, 'Renewed Members': 15, 'Attendees': 28, 'Canceled Memberships': 2},
+    {'Month': 'September-2023', 'New Members': 5, 'Renewed Members': 12, 'Attendees': 26, 'Canceled Memberships': 3},
+    {'Month': 'October-2023', 'New Members': 9, 'Renewed Members': 20, 'Attendees': 32, 'Canceled Memberships': 0},
+    {'Month': 'November-2023', 'New Members': 4, 'Renewed Members': 13, 'Attendees': 24, 'Canceled Memberships': 4},
+    {'Month': 'December-2023', 'New Members': 3, 'Renewed Members': 17, 'Attendees': 29, 'Canceled Memberships': 2}
+];
+
+var option = {
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['New Members', 'Renewed Members', 'Attendees', 'Canceled Memberships'],
+        type: 'scroll'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    dataset: {
+        source: chartData
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        axisLabel: {
+            rotate: 45,
+            interval: 0
+        },
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'New Members',
+            type: 'line',
+            encode: {
+                x: 'Month',
+                y: 'New Members'
+            },
+            markPoint: {
+                data: [
+                    { type: 'max', name: 'Max' },
+                    { type: 'min', name: 'Min' }
+                ]
+            }
+        },
+        {
+            name: 'Renewed Members',
+            type: 'line',
+            encode: {
+                x: 'Month',
+                y: 'Renewed Members'
+            },
+            markLine: {
+                data: [{ type: 'average', name: 'Average' }]
+            }
+        },
+        {
+            name: 'Attendees',
+            type: 'line',
+            encode: {
+                x: 'Month',
+                y: 'Attendees'
+            },
+            markArea: {
+                data: [[{
+                    xAxis: 'March-2023'
+                }, {
+                    xAxis: 'June-2023'
+                }]]
+            }
+        },
+        {
+            name: 'Canceled Memberships',
+            type: 'line',
+            encode: {
+                x: 'Month',
+                y: 'Canceled Memberships'
+            },
+            areaStyle: {}, // Although area chart is not requested, areaStyle is used to differentiate this line
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

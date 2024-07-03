@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var option;
+
+option = {
+    title: {
+        text: 'Renewable Energy Capacity Over Time',
+        left: 'center',
+        textStyle: {
+            color: '#333333',
+            fontWeight: 'bold',
+            fontSize: 18
+        }
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['2010', '2012', '2014', '2016', '2018', '2020', '2022'],
+        top: 'bottom'
+    },
+    grid: {
+        left: '10%',
+        right: '10%',
+        bottom: '15%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        data: ['Solar Energy', 'Wind Energy', 'Hydropower', 'Biomass', 'Geothermal'],
+        axisLabel: {
+            rotate: 45,
+            interval: 0
+        },
+        axisLine: {
+            lineStyle: {
+                color: '#777777'
+            }
+        }
+    },
+    yAxis: {
+        type: 'value',
+        axisLine: {
+            lineStyle: {
+                color: '#777777'
+            }
+        },
+        splitLine: {
+            lineStyle: {
+                color: '#eeeeee'
+            }
+        }
+    },
+    series: [
+        {
+            name: '2010',
+            type: 'bar',
+            data: [35, 40, 60, 20, 15],
+            itemStyle: {
+                color: '#FF5733'
+            },
+            barWidth: '12%'
+        },
+        {
+            name: '2012',
+            type: 'bar',
+            data: [45, 55, 70, 25, 20],
+            itemStyle: {
+                color: '#33FF57'
+            },
+            barWidth: '12%'
+        },
+        {
+            name: '2014',
+            type: 'bar',
+            data: [60, 70, 75, 30, 25],
+            itemStyle: {
+                color: '#3357FF'
+            },
+            barWidth: '12%'
+        },
+        {
+            name: '2016',
+            type: 'bar',
+            data: [80, 90, 80, 40, 30],
+            itemStyle: {
+                color: '#FF33A1'
+            },
+            barWidth: '12%'
+        },
+        {
+            name: '2018',
+            type: 'bar',
+            data: [95, 110, 85, 50, 35],
+            itemStyle: {
+                color: '#33FFF7'
+            },
+            barWidth: '12%'
+        },
+        {
+            name: '2020',
+            type: 'bar',
+            data: [115, 130, 90, 55, 40],
+            itemStyle: {
+                color: '#F7FF33'
+            },
+            barWidth: '12%'
+        },
+        {
+            name: '2022',
+            type: 'bar',
+            data: [130, 150, 95, 60, 45],
+            itemStyle: {
+                color: '#FF5733'
+            },
+            barWidth: '12%'
+        }
+    ],
+    width: '1000px',
+    height: '500px'
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

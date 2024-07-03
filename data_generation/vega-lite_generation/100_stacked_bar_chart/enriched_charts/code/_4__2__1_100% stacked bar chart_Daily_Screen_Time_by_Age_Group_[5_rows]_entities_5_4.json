@@ -1,0 +1,171 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Dietary Intake by Age Group",
+    "padding": {
+        "left": 50,
+        "top": 5,
+        "right": 30,
+        "bottom": 60
+    },
+    "width": 600,
+    "height": 400,
+    "title": {
+        "text": "Dietary Intake by Age Group",
+        "anchor": "start",
+        "offset": 30,
+        "fontSize": 16
+    },
+    "data": {
+        "values": [
+            {
+                "Age Group": "Children",
+                "Protein": 15,
+                "Carbs": 40,
+                "Fats": 25,
+                "Fiber": 20
+            },
+            {
+                "Age Group": "Teens",
+                "Protein": 20,
+                "Carbs": 35,
+                "Fats": 30,
+                "Fiber": 15
+            },
+            {
+                "Age Group": "Adults",
+                "Protein": 25,
+                "Carbs": 30,
+                "Fats": 20,
+                "Fiber": 25
+            },
+            {
+                "Age Group": "Seniors",
+                "Protein": 30,
+                "Carbs": 25,
+                "Fats": 20,
+                "Fiber": 25
+            },
+            {
+                "Age Group": "Infants",
+                "Protein": 10,
+                "Carbs": 50,
+                "Fats": 30,
+                "Fiber": 10
+            },
+            {
+                "Age Group": "Young Adults",
+                "Protein": 22,
+                "Carbs": 33,
+                "Fats": 25,
+                "Fiber": 20
+            },
+            {
+                "Age Group": "Middle-aged",
+                "Protein": 28,
+                "Carbs": 28,
+                "Fats": 22,
+                "Fiber": 22
+            },
+            {
+                "Age Group": "Elderly",
+                "Protein": 18,
+                "Carbs": 38,
+                "Fats": 22,
+                "Fiber": 22
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Protein",
+                "Carbs",
+                "Fats",
+                "Fiber"
+            ],
+            "as": [
+                "Nutrient",
+                "Percentage"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "bar",
+        "tooltip": true
+    },
+    "encoding": {
+        "y": {
+            "field": "Age Group",
+            "type": "nominal",
+            "axis": {
+                "title": "Age Group"
+            },
+            "scale": {
+                "band": 0.6
+            }
+        },
+        "x": {
+            "field": "Percentage",
+            "type": "quantitative",
+            "stack": "normalize",
+            "axis": {
+                "format": ".0%"
+            }
+        },
+        "color": {
+            "field": "Nutrient",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Protein",
+                    "Carbs",
+                    "Fats",
+                    "Fiber"
+                ],
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e",
+                    "#2ca02c",
+                    "#d62728"
+                ]
+            },
+            "legend": {
+                "title": "Nutrient",
+                "orient": "bottom",
+                "offset": 40
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Age Group",
+                "type": "nominal",
+                "title": "Age Group"
+            },
+            {
+                "field": "Nutrient",
+                "type": "nominal",
+                "title": "Nutrient"
+            },
+            {
+                "field": "Percentage",
+                "type": "quantitative",
+                "title": "Percentage",
+                "format": ".0%"
+            }
+        ]
+    },
+    "config": {
+        "axisY": {
+            "titleFontSize": 14,
+            "labelFontSize": 12
+        },
+        "axisX": {
+            "titleFontSize": 14,
+            "labelFontSize": 12
+        },
+        "legend": {
+            "titleFontSize": 14,
+            "labelFontSize": 12
+        }
+    }
+}

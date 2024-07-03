@@ -1,0 +1,145 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Line chart showing the trend of adoption rates of fitness activities over a week.",
+    "title": {
+        "text": "Adoption Rates of Fitness Activities",
+        "fontSize": 16,
+        "anchor": "start",
+        "color": "black"
+    },
+    "width": 800,
+    "height": 400,
+    "data": {
+        "values": [
+            {
+                "Activity": "Running",
+                "Monday": 30.2,
+                "Tuesday": 32.5,
+                "Wednesday": 35.3,
+                "Thursday": 38.4,
+                "Friday": 40.6,
+                "Saturday": 42.0,
+                "Sunday": 45.5
+            },
+            {
+                "Activity": "Cycling",
+                "Monday": 25.1,
+                "Tuesday": 27.8,
+                "Wednesday": 26.7,
+                "Thursday": 29.4,
+                "Friday": 31.9,
+                "Saturday": 33.3,
+                "Sunday": 34.6
+            },
+            {
+                "Activity": "Swimming",
+                "Monday": 20.9,
+                "Tuesday": 23.5,
+                "Wednesday": 22.2,
+                "Thursday": 25.1,
+                "Friday": 27.7,
+                "Saturday": 30.0,
+                "Sunday": 32.2
+            },
+            {
+                "Activity": "Yoga",
+                "Monday": 18.4,
+                "Tuesday": 20.7,
+                "Wednesday": 22.5,
+                "Thursday": 24.1,
+                "Friday": 26.8,
+                "Saturday": 29.9,
+                "Sunday": 32.3
+            },
+            {
+                "Activity": "Weightlifting",
+                "Monday": 15.3,
+                "Tuesday": 18.2,
+                "Wednesday": 20.9,
+                "Thursday": 23.0,
+                "Friday": 25.5,
+                "Saturday": 27.1,
+                "Sunday": 29.8
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday",
+                "Friday",
+                "Saturday",
+                "Sunday"
+            ],
+            "as": [
+                "Day",
+                "Adoption Rate"
+            ]
+        }
+    ],
+    "mark": "line",
+    "encoding": {
+        "x": {
+            "field": "Day",
+            "type": "ordinal",
+            "title": "Day of the Week",
+            "axis": {
+                "titleFontSize": 12,
+                "labelAngle": -45
+            }
+        },
+        "y": {
+            "field": "Adoption Rate",
+            "type": "quantitative",
+            "title": "Adoption Rate (%)",
+            "axis": {
+                "titleFontSize": 12
+            }
+        },
+        "color": {
+            "field": "Activity",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Running",
+                    "Cycling",
+                    "Swimming",
+                    "Yoga",
+                    "Weightlifting"
+                ],
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e",
+                    "#2ca02c",
+                    "#d62728",
+                    "#9467bd"
+                ]
+            },
+            "legend": {
+                "title": "Activity"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Activity",
+                "type": "nominal"
+            },
+            {
+                "field": "Day",
+                "type": "ordinal"
+            },
+            {
+                "field": "Adoption Rate",
+                "type": "quantitative"
+            }
+        ]
+    },
+    "config": {
+        "axisY": {
+            "minExtent": 30
+        }
+    }
+}

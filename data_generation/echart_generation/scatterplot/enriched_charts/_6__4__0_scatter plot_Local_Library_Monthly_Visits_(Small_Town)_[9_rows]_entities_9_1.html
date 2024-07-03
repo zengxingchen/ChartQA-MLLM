@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Stress Levels vs. Sleep Hours',
+        left: 'center',
+        top: '10%'
+    },
+    legend: {
+        data: ['Stress Level'],
+        left: '10%',
+        top: 'bottom'
+    },
+    xAxis: {
+        name: 'Sleep Hours',
+        type: 'value',
+        min: 4,
+        max: 10
+    },
+    yAxis: {
+        name: 'Stress Level',
+        type: 'value',
+        min: 40,
+        max: 80
+    },
+    series: [{
+        name: 'Stress Level',
+        type: 'scatter',
+        itemStyle: {
+            color: '#FF5733'
+        },
+        data: [
+            [7.5, 45],
+            [6.8, 50],
+            [6.2, 60],
+            [7.1, 55],
+            [8.0, 48],
+            [9.0, 42],
+            [5.5, 65],
+            [5.0, 70],
+            [7.3, 53],
+            [8.2, 47],
+            [7.0, 52],
+            [9.5, 40],
+            [5.7, 68],
+            [4.8, 72],
+            [6.5, 58],
+            [8.1, 46],
+            [7.8, 49],
+            [5.9, 62],
+            [6.9, 54],
+            [8.5, 44]
+        ]
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

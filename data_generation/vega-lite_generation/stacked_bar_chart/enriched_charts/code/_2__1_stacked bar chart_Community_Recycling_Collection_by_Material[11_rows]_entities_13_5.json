@@ -1,0 +1,166 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": {
+        "text": "Monthly Sales Revenue by Region",
+        "subtitle": [
+            "Trends in sales revenue across different regions",
+            ""
+        ],
+        "subtitleFontStyle": "italic",
+        "subtitleFontSize": 10,
+        "anchor": "start",
+        "color": "#333333",
+        "subtitleColor": "#555555"
+    },
+    "config": {
+        "background": "#f9f9f9",
+        "view": {
+            "stroke": "transparent"
+        }
+    },
+    "data": {
+        "values": [
+            {
+                "Month": "January",
+                "North": 30000,
+                "South": 22000,
+                "East": 15000,
+                "West": 20000
+            },
+            {
+                "Month": "February",
+                "North": 31000,
+                "South": 21000,
+                "East": 16000,
+                "West": 19000
+            },
+            {
+                "Month": "March",
+                "North": 32000,
+                "South": 23000,
+                "East": 17000,
+                "West": 21000
+            },
+            {
+                "Month": "April",
+                "North": 33000,
+                "South": 24000,
+                "East": 18000,
+                "West": 22000
+            },
+            {
+                "Month": "May",
+                "North": 34000,
+                "South": 25000,
+                "East": 19000,
+                "West": 23000
+            },
+            {
+                "Month": "June",
+                "North": 35000,
+                "South": 26000,
+                "East": 20000,
+                "West": 24000
+            },
+            {
+                "Month": "July",
+                "North": 36000,
+                "South": 27000,
+                "East": 21000,
+                "West": 25000
+            },
+            {
+                "Month": "August",
+                "North": 37000,
+                "South": 28000,
+                "East": 22000,
+                "West": 26000
+            },
+            {
+                "Month": "September",
+                "North": 38000,
+                "South": 29000,
+                "East": 23000,
+                "West": 27000
+            },
+            {
+                "Month": "October",
+                "North": 39000,
+                "South": 30000,
+                "East": 24000,
+                "West": 28000
+            },
+            {
+                "Month": "November",
+                "North": 40000,
+                "South": 31000,
+                "East": 25000,
+                "West": 29000
+            },
+            {
+                "Month": "December",
+                "North": 41000,
+                "South": 32000,
+                "East": 26000,
+                "West": 30000
+            }
+        ]
+    },
+    "height": 400,
+    "width": 700,
+    "mark": {
+        "type": "bar",
+        "width": 20
+    },
+    "encoding": {
+        "x": {
+            "field": "Month",
+            "type": "ordinal",
+            "axis": {
+                "title": "Month"
+            }
+        },
+        "y": {
+            "field": "Revenue",
+            "type": "quantitative",
+            "axis": {
+                "title": "Revenue (USD)"
+            }
+        },
+        "color": {
+            "field": "Region",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "North",
+                    "South",
+                    "East",
+                    "West"
+                ],
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e",
+                    "#2ca02c",
+                    "#d62728"
+                ]
+            },
+            "legend": {
+                "title": "Region"
+            }
+        }
+    },
+    "transform": [
+        {
+            "fold": [
+                "North",
+                "South",
+                "East",
+                "West"
+            ],
+            "as": [
+                "Region",
+                "Revenue"
+            ]
+        }
+    ]
+}

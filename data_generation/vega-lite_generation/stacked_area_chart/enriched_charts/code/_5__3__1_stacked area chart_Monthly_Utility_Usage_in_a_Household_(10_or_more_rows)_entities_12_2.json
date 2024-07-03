@@ -1,0 +1,211 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+        "values": [
+            {
+                "Date": "2021-Q1",
+                "Revenue": 120,
+                "Expenses": 140,
+                "Profit": 30,
+                "Investments": 50
+            },
+            {
+                "Date": "2021-Q2",
+                "Revenue": 130,
+                "Expenses": 150,
+                "Profit": 40,
+                "Investments": 55
+            },
+            {
+                "Date": "2021-Q3",
+                "Revenue": 140,
+                "Expenses": 160,
+                "Profit": 50,
+                "Investments": 60
+            },
+            {
+                "Date": "2021-Q4",
+                "Revenue": 150,
+                "Expenses": 170,
+                "Profit": 60,
+                "Investments": 65
+            },
+            {
+                "Date": "2022-Q1",
+                "Revenue": 155,
+                "Expenses": 165,
+                "Profit": 70,
+                "Investments": 70
+            },
+            {
+                "Date": "2022-Q2",
+                "Revenue": 160,
+                "Expenses": 175,
+                "Profit": 75,
+                "Investments": 75
+            },
+            {
+                "Date": "2022-Q3",
+                "Revenue": 165,
+                "Expenses": 180,
+                "Profit": 80,
+                "Investments": 80
+            },
+            {
+                "Date": "2022-Q4",
+                "Revenue": 170,
+                "Expenses": 185,
+                "Profit": 85,
+                "Investments": 85
+            },
+            {
+                "Date": "2023-Q1",
+                "Revenue": 175,
+                "Expenses": 190,
+                "Profit": 90,
+                "Investments": 90
+            },
+            {
+                "Date": "2023-Q2",
+                "Revenue": 180,
+                "Expenses": 195,
+                "Profit": 95,
+                "Investments": 95
+            },
+            {
+                "Date": "2023-Q3",
+                "Revenue": 185,
+                "Expenses": 200,
+                "Profit": 100,
+                "Investments": 100
+            },
+            {
+                "Date": "2023-Q4",
+                "Revenue": 190,
+                "Expenses": 205,
+                "Profit": 105,
+                "Investments": 105
+            },
+            {
+                "Date": "2024-Q1",
+                "Revenue": 195,
+                "Expenses": 210,
+                "Profit": 110,
+                "Investments": 110
+            },
+            {
+                "Date": "2024-Q2",
+                "Revenue": 200,
+                "Expenses": 215,
+                "Profit": 115,
+                "Investments": 115
+            },
+            {
+                "Date": "2024-Q3",
+                "Revenue": 205,
+                "Expenses": 220,
+                "Profit": 120,
+                "Investments": 120
+            },
+            {
+                "Date": "2024-Q4",
+                "Revenue": 210,
+                "Expenses": 225,
+                "Profit": 125,
+                "Investments": 125
+            }
+        ]
+    },
+    "width": 800,
+    "height": 450,
+    "title": {
+        "text": "Quarterly Financial Overview",
+        "anchor": "start",
+        "offset": 5,
+        "orient": "top",
+        "dx": 10,
+        "dy": -10,
+        "fontSize": 18
+    },
+    "transform": [
+        {
+            "fold": [
+                "Revenue",
+                "Expenses",
+                "Profit",
+                "Investments"
+            ],
+            "as": [
+                "Financial Metric",
+                "Value"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "area",
+        "opacity": 0.8
+    },
+    "encoding": {
+        "x": {
+            "field": "Date",
+            "type": "ordinal",
+            "title": "Quarter",
+            "axis": {
+                "labelAngle": 0
+            }
+        },
+        "y": {
+            "field": "Value",
+            "type": "quantitative",
+            "title": "Amount (in millions)",
+            "stack": "zero"
+        },
+        "color": {
+            "field": "Financial Metric",
+            "type": "nominal",
+            "scale": {
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e",
+                    "#2ca02c",
+                    "#d62728"
+                ]
+            },
+            "title": "Metrics",
+            "legend": {
+                "orient": "bottom-left",
+                "titleAnchor": "start"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Date",
+                "type": "ordinal"
+            },
+            {
+                "field": "Financial Metric",
+                "type": "nominal"
+            },
+            {
+                "field": "Value",
+                "type": "quantitative",
+                "title": "Amount (in millions)"
+            }
+        ]
+    },
+    "config": {
+        "view": {
+            "stroke": "transparent"
+        },
+        "axis": {
+            "domainWidth": 1
+        },
+        "legend": {
+            "titlePadding": 10,
+            "labelFont": "sans-serif",
+            "labelLimit": 150,
+            "symbolStrokeWidth": 2,
+            "symbolSize": 100
+        }
+    }
+}

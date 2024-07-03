@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var app = {};
+
+var option = {
+    title: {
+        text: 'Calorie Distribution in Popular Snacks',
+        left: 'center',
+        top: '10'
+    },
+    tooltip: {},
+    xAxis: {
+        type: 'category',
+        data: ['90-110', '110-130', '130-150', '150-170', '170-190', '190-210', '210-230', '230-250', '250-270', '270-300', '300-320', '320-350', '350-370', '370-400', '400-420', '420-450', '450-470'],
+        axisLabel: {
+            rotate: 45,
+            interval: 0
+        }
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Frequency'
+    },
+    series: [{
+        data: [1, 2, 1, 2, 2, 1, 2, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1],
+        type: 'bar',
+        barWidth: '50%',
+        itemStyle: {
+            color: '#ff5733'
+        },
+        label: {
+            show: true,
+            position: 'top',
+            formatter: '{c} counts'
+        }
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

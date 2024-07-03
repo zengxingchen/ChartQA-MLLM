@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+var option = {
+    title: {
+        text: 'Student Enrollment Over Years',
+        left: 'center',
+        top: '10%'
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['Enrollment'],
+        top: '5%'
+    },
+    xAxis: {
+        type: 'category',
+        data: ['2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021']
+    },
+    yAxis: {
+        type: 'value',
+        inverse: true
+    },
+    series: [
+        {
+            name: 'Enrollment',
+            type: 'line',
+            data: [450, 470, 490, 510, 530, 550, 570, 590, 610, 630, 650, 670, 690, 710, 730, 750, 770, 790, 810, 830, 850, 870],
+            label: {
+                show: true,
+                position: 'top',
+                color: '#000000'
+            },
+            lineStyle: {
+                color: '#FF5733'
+            },
+            itemStyle: {
+                color: '#33FF57'
+            }
+        }
+    ]
+};
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

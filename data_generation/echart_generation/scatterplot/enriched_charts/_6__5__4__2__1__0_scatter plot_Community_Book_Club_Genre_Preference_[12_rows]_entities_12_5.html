@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, { width: 800, height: 600 });
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Monthly Temperature Variations',
+        left: 'center',
+        top: '10'
+    },
+    tooltip: {
+        trigger: 'axis',
+        showDelay: 0,
+        formatter: function (params) {
+            if (params.value.length > 1) {
+                return params.seriesName + ' :<br/>' +
+                    params.value[0] + '°C ' +
+                    params.value[1] + '°F ';
+            } else {
+                return params.seriesName + ' :<br/>' +
+                    params.name + ' : ' +
+                    params.value + '°F ';
+            }
+        },
+        axisPointer: {
+            show: true,
+            type: 'cross',
+            lineStyle: {
+                type: 'dashed',
+                width: 1
+            }
+        }
+    },
+    legend: {
+        data: ['Temperature'],
+        left: 'right',
+        top: '30'
+    },
+    xAxis: [
+        {
+            type: 'value',
+            scale: true,
+            axisLabel: {
+                formatter: '{value} °C'
+            },
+            name: 'Day of the Month',
+            nameLocation: 'middle',
+            nameGap: 25
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value',
+            scale: true,
+            axisLabel: {
+                formatter: '{value} °F'
+            },
+            name: 'Temperature'
+        }
+    ],
+    series: [
+        {
+            name: 'Temperature',
+            type: 'scatter',
+            large: true,
+            itemStyle: {
+                normal: {
+                    color: '#FF6347'
+                }
+            },
+            data: [
+                [1, 8.5],
+                [2, 9.2],
+                [3, 7.1],
+                [4, 6.3],
+                [5, 7.8],
+                [6, 8.0],
+                [7, 9.4],
+                [8, 6.9],
+                [9, 8.2],
+                [10, 7.5],
+                [11, 6.8],
+                [12, 9.1],
+                [13, 7.3],
+                [14, 8.7],
+                [15, 7.0],
+                [16, 6.5],
+                [17, 8.8],
+                [18, 9.0],
+                [19, 7.6],
+                [20, 8.1],
+                [21, 6.7],
+                [22, 7.9],
+                [23, 8.6],
+                [24, 6.2],
+                [25, 9.3],
+                [26, 7.2],
+                [27, 8.4],
+                [28, 7.7],
+                [29, 6.6],
+                [30, 9.5]
+            ]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

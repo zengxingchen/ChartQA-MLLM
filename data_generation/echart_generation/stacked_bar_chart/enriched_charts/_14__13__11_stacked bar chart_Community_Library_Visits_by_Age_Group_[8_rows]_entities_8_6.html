@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 800,
+    height: 600
+});
+var option = {
+    title: {
+        text: 'Interdisciplinary Trends in Media Arts',
+        left: 'center',
+        top: '10'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Design', 'Animation', 'Photography', 'Film'],
+        top: '40'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value'
+    },
+    yAxis: {
+        type: 'category',
+        data: ['Art', 'Technology', 'Nature', 'Fashion', 'History', 'Science', 'Culture', 'Travel']
+    },
+    series: [
+        {
+            name: 'Design',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            itemStyle: {
+                color: '#FF6347'
+            },
+            data: [35, 60, 45, 50, 40, 55, 50, 42]
+        },
+        {
+            name: 'Animation',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            itemStyle: {
+                color: '#4682B4'
+            },
+            data: [45, 55, 48, 42, 35, 60, 52, 38]
+        },
+        {
+            name: 'Photography',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            itemStyle: {
+                color: '#32CD32'
+            },
+            data: [38, 62, 52, 48, 42, 58, 50, 45]
+        },
+        {
+            name: 'Film',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            itemStyle: {
+                color: '#FFD700'
+            },
+            data: [50, 58, 49, 47, 38, 53, 51, 40]
+        }
+    ]
+};
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

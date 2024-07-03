@@ -1,0 +1,219 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": 500,
+    "height": 300,
+    "data": {
+        "values": [
+            {
+                "Year": "2010",
+                "Skiing": 30,
+                "Hiking": 20,
+                "Cycling": 10,
+                "Swimming": 5,
+                "Running": 8,
+                "Gymnastics": 15
+            },
+            {
+                "Year": "2011",
+                "Skiing": 32,
+                "Hiking": 22,
+                "Cycling": 13,
+                "Swimming": 5,
+                "Running": 9,
+                "Gymnastics": 17
+            },
+            {
+                "Year": "2012",
+                "Skiing": 34,
+                "Hiking": 24,
+                "Cycling": 15,
+                "Swimming": 6,
+                "Running": 10,
+                "Gymnastics": 20
+            },
+            {
+                "Year": "2013",
+                "Skiing": 36,
+                "Hiking": 26,
+                "Cycling": 17,
+                "Swimming": 7,
+                "Running": 12,
+                "Gymnastics": 23
+            },
+            {
+                "Year": "2014",
+                "Skiing": 38,
+                "Hiking": 28,
+                "Cycling": 18,
+                "Swimming": 8,
+                "Running": 14,
+                "Gymnastics": 25
+            },
+            {
+                "Year": "2015",
+                "Skiing": 40,
+                "Hiking": 30,
+                "Cycling": 20,
+                "Swimming": 9,
+                "Running": 15,
+                "Gymnastics": 28
+            },
+            {
+                "Year": "2016",
+                "Skiing": 42,
+                "Hiking": 32,
+                "Cycling": 21,
+                "Swimming": 10,
+                "Running": 17,
+                "Gymnastics": 30
+            },
+            {
+                "Year": "2017",
+                "Skiing": 44,
+                "Hiking": 34,
+                "Cycling": 23,
+                "Swimming": 11,
+                "Running": 18,
+                "Gymnastics": 32
+            },
+            {
+                "Year": "2018",
+                "Skiing": 46,
+                "Hiking": 36,
+                "Cycling": 25,
+                "Swimming": 12,
+                "Running": 20,
+                "Gymnastics": 35
+            },
+            {
+                "Year": "2019",
+                "Skiing": 49,
+                "Hiking": 38,
+                "Cycling": 27,
+                "Swimming": 13,
+                "Running": 21,
+                "Gymnastics": 37
+            },
+            {
+                "Year": "2020",
+                "Skiing": 51,
+                "Hiking": 40,
+                "Cycling": 30,
+                "Swimming": 14,
+                "Running": 23,
+                "Gymnastics": 40
+            },
+            {
+                "Year": "2021",
+                "Skiing": 54,
+                "Hiking": 42,
+                "Cycling": 32,
+                "Swimming": 15,
+                "Running": 25,
+                "Gymnastics": 42
+            },
+            {
+                "Year": "2022",
+                "Skiing": 57,
+                "Hiking": 44,
+                "Cycling": 35,
+                "Swimming": 17,
+                "Running": 27,
+                "Gymnastics": 45
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Skiing",
+                "Hiking",
+                "Cycling",
+                "Swimming",
+                "Running",
+                "Gymnastics"
+            ],
+            "as": [
+                "Activity Type",
+                "Participants"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "area",
+        "opacity": 0.6
+    },
+    "encoding": {
+        "x": {
+            "field": "Year",
+            "type": "ordinal",
+            "title": "Year"
+        },
+        "y": {
+            "field": "Participants",
+            "type": "quantitative",
+            "title": "Number of Participants",
+            "stack": "zero"
+        },
+        "color": {
+            "field": "Activity Type",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Skiing",
+                    "Hiking",
+                    "Cycling",
+                    "Swimming",
+                    "Running",
+                    "Gymnastics"
+                ],
+                "range": [
+                    "#577590",
+                    "#43aa8b",
+                    "#f94144",
+                    "#f8961e",
+                    "#f9c74f",
+                    "#f3722c"
+                ]
+            },
+            "title": "Type of Activity"
+        },
+        "tooltip": [
+            {
+                "field": "Activity Type",
+                "type": "nominal"
+            },
+            {
+                "field": "Participants",
+                "type": "quantitative",
+                "format": ",.0f"
+            }
+        ]
+    },
+    "title": {
+        "text": "Trending Outdoor Activities",
+        "fontSize": 18,
+        "subtitle": "Participation in outdoor sports from 2010 to 2022",
+        "subtitleFontSize": 12,
+        "anchor": "start",
+        "offset": 30,
+        "color": "#333333"
+    },
+    "config": {
+        "axis": {
+            "labelFontSize": 12,
+            "titleFontSize": 14
+        },
+        "legend": {
+            "labelFontSize": 11,
+            "titleFontSize": 13,
+            "titleLimit": 200,
+            "orient": "top-left"
+        },
+        "style": {
+            "cell": {
+                "stroke": "transparent"
+            }
+        }
+    }
+}

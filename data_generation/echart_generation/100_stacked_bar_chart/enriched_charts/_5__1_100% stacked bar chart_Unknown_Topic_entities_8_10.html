@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false
+});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Education & Learning Method Trends',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        orient: 'vertical',
+        left: 'left'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        top: '10%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: false,
+        max: 100
+    },
+    yAxis: {
+        type: 'category',
+        data: ['2016', '2017', '2018', '2019', '2020', '2021']
+    },
+    series: [
+        {
+            name: 'Online Courses',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [40, 45, 50, 55, 60, 65],
+            itemStyle: {
+                color: '#3398DB'
+            },
+            barWidth : 30
+        },
+        {
+            name: 'Text Books',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [10, 10, 9, 8, 7, 6],
+            itemStyle: {
+                color: '#D14A61'
+            },
+            barWidth : 30
+        },
+        {
+            name: 'Video Tutorials',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [25, 20, 18, 17, 15, 14],
+            itemStyle: {
+                color: '#675bba'
+            },
+            barWidth : 30
+        },
+        {
+            name: 'Interactive Applications',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [15, 15, 13, 12, 10, 9],
+            itemStyle: {
+                color: '#E5323E'
+            },
+            barWidth : 30
+        },
+        {
+            name: 'Others',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [10, 10, 10, 8, 8, 6],
+            itemStyle: {
+                color: '#fdae61'
+            },
+            barWidth : 30
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

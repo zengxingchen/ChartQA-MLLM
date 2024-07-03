@@ -1,0 +1,159 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Trends in Fashion & Beauty Over the Years",
+    "data": {
+        "values": [
+            {
+                "Year": 2010,
+                "Fashion Shows Held": 500,
+                "New Brands Launched": 300,
+                "Beauty Awards Won": 40,
+                "Market Revenue (Billion $)": 2.0
+            },
+            {
+                "Year": 2011,
+                "Fashion Shows Held": 550,
+                "New Brands Launched": 320,
+                "Beauty Awards Won": 45,
+                "Market Revenue (Billion $)": 2.5
+            },
+            {
+                "Year": 2012,
+                "Fashion Shows Held": 600,
+                "New Brands Launched": 340,
+                "Beauty Awards Won": 50,
+                "Market Revenue (Billion $)": 3.0
+            },
+            {
+                "Year": 2013,
+                "Fashion Shows Held": 650,
+                "New Brands Launched": 360,
+                "Beauty Awards Won": 55,
+                "Market Revenue (Billion $)": 3.5
+            },
+            {
+                "Year": 2014,
+                "Fashion Shows Held": 700,
+                "New Brands Launched": 380,
+                "Beauty Awards Won": 60,
+                "Market Revenue (Billion $)": 4.0
+            },
+            {
+                "Year": 2015,
+                "Fashion Shows Held": 750,
+                "New Brands Launched": 400,
+                "Beauty Awards Won": 65,
+                "Market Revenue (Billion $)": 4.5
+            },
+            {
+                "Year": 2016,
+                "Fashion Shows Held": 800,
+                "New Brands Launched": 420,
+                "Beauty Awards Won": 70,
+                "Market Revenue (Billion $)": 5.0
+            },
+            {
+                "Year": 2017,
+                "Fashion Shows Held": 850,
+                "New Brands Launched": 440,
+                "Beauty Awards Won": 75,
+                "Market Revenue (Billion $)": 5.5
+            },
+            {
+                "Year": 2018,
+                "Fashion Shows Held": 900,
+                "New Brands Launched": 460,
+                "Beauty Awards Won": 80,
+                "Market Revenue (Billion $)": 6.0
+            },
+            {
+                "Year": 2019,
+                "Fashion Shows Held": 950,
+                "New Brands Launched": 480,
+                "Beauty Awards Won": 85,
+                "Market Revenue (Billion $)": 6.5
+            },
+            {
+                "Year": 2020,
+                "Fashion Shows Held": 1000,
+                "New Brands Launched": 500,
+                "Beauty Awards Won": 90,
+                "Market Revenue (Billion $)": 7.0
+            },
+            {
+                "Year": 2021,
+                "Fashion Shows Held": 1050,
+                "New Brands Launched": 520,
+                "Beauty Awards Won": 95,
+                "Market Revenue (Billion $)": 7.5
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Fashion Shows Held",
+                "New Brands Launched",
+                "Beauty Awards Won",
+                "Market Revenue (Billion $)"
+            ],
+            "as": [
+                "Indicator",
+                "Value"
+            ]
+        }
+    ],
+    "width": 800,
+    "height": 600,
+    "mark": {
+        "type": "line",
+        "point": true,
+        "tooltip": true
+    },
+    "encoding": {
+        "x": {
+            "field": "Year",
+            "type": "ordinal",
+            "title": "Year"
+        },
+        "y": {
+            "field": "Value",
+            "type": "quantitative",
+            "title": "Indicator Values",
+            "axis": {
+                "format": ".1f"
+            },
+            "scale": {
+                "reverse": true
+            }
+        },
+        "color": {
+            "field": "Indicator",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Fashion Shows Held",
+                    "New Brands Launched",
+                    "Beauty Awards Won",
+                    "Market Revenue (Billion $)"
+                ],
+                "range": [
+                    "#e41a1c",
+                    "#377eb8",
+                    "#4daf4a",
+                    "#984ea3"
+                ]
+            },
+            "title": "Fashion & Beauty Indicators"
+        },
+        "text": {
+            "field": "Value",
+            "type": "quantitative"
+        }
+    },
+    "config": {
+        "axisY": {
+            "minExtent": 30
+        }
+    }
+}

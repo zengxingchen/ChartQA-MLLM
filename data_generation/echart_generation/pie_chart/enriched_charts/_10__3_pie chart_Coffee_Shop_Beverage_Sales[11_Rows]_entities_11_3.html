@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var app = {};
+option = null;
+option = {
+    title: {
+        text: 'Student Enrollment in Various Fields of Study',
+        left: 'center',
+        top: 20
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: '{a} <br/>{b} : {c} ({d}%)'
+    },
+    legend: {
+        orient: 'horizontal',
+        left: 10,
+        top: 'bottom',
+        data: ['Engineering', 'Health Sciences', 'Computer Science', 'Education', 'Humanities', 'Business', 'Law', 'Sciences', 'Arts']
+    },
+    series: [
+        {
+            name: 'Enrollment',
+            type: 'pie',
+            radius: '55%',
+            center: ['50%', '50%'],
+            data: [
+                {value: 15, name: 'Engineering'},
+                {value: 13, name: 'Health Sciences'},
+                {value: 19, name: 'Computer Science'},
+                {value: 8, name: 'Education'},
+                {value: 9, name: 'Humanities'},
+                {value: 18, name: 'Business'},
+                {value: 5, name: 'Law'},
+                {value: 10, name: 'Sciences'},
+                {value: 3, name: 'Arts'}
+            ],
+            emphasis: {
+                itemStyle: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            },
+            label: {
+                normal: {
+                    formatter: '{b}\n{d}%'
+                }
+            }
+        }
+    ],
+    color: ["#c23531", "#2f4554", "#61a0a8", "#d48265", "#91c7ae", "#749f83", "#ca8622", "#bda29a", "#6e7074"]
+};
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

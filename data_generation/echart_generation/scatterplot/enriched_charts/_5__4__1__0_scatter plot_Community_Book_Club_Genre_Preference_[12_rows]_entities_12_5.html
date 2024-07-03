@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 800,
+    height: 600
+});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Nutrient Content in Various Fruits',
+        left: 'center',
+        top: '10'
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: '{a} <br/>{b}: ({c})'
+    },
+    legend: {
+        data: ['Vitamin C', 'Fiber'],
+        left: 'left',
+        top: 'top'
+    },
+    xAxis: {
+        type: 'value',
+        name: 'Vitamin C (mg)',
+        nameLocation: 'middle',
+        nameGap: 30
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Fiber (g)',
+        nameLocation: 'middle',
+        nameGap: 50
+    },
+    series: [{
+        name: 'Nutrient Content',
+        type: 'scatter',
+        data: [
+            [14, 2.4],
+            [8.7, 2.6],
+            [53.2, 2.4],
+            [58.8, 2],
+            [9.7, 2.4],
+            [10.8, 1.4],
+            [36.4, 1.6],
+            [47.8, 1.4],
+            [92.7, 2.1],
+            [60.9, 1.8],
+            [8.1, 0.4],
+            [10.8, 1.6],
+            [6.6, 1.5],
+            [4.3, 3.1],
+            [26.2, 6.5],
+            [21, 5.3],
+            [36.7, 0.9],
+            [9.5, 1.4],
+            [10, 2],
+            [53, 2.8],
+            [29.1, 2.8]
+        ],
+        itemStyle: {
+            color: '#FF5733'
+        }
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

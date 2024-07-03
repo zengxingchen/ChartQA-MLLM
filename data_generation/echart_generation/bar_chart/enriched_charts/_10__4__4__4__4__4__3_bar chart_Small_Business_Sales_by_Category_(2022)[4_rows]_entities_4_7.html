@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var option;
+
+option = {
+    title: {
+        text: 'Future Technologies & Society',
+        left: 'center',
+        top: '10'
+    },
+    color: ['#5470C6', '#91CC75', '#EE6666', '#FAC858', '#73C0DE', '#3BA272', '#FC8452', '#9A60B4', '#EA7CCC'],
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        top: '30',
+        data: ['Value']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        data: ['Technology', 'Design', 'Nature', 'Health', 'Culture', 'Finance', 'Education', 'Entertainment', 'Environment', 'Nutrition', 'Travel', 'Fashion', 'Politics', 'Sports', 'History', 'Ethics', 'Music', 'Literature', 'Business', 'Astronomy'],
+        axisLabel: {
+            rotate: 45,
+            interval: 0
+        }
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Value',
+            type: 'bar',
+            barWidth: '30%',
+            data: [120, 150, 200, 180, 160, 210, 190, 175, 160, 145, 130, 155, 170, 185, 195, 140, 165, 150, 220, 230],
+            label: {
+                show: true,
+                position: 'top'
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

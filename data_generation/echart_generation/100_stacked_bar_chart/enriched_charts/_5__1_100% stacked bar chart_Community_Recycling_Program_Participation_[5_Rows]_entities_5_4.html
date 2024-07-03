@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 600, // Change the width of the chart reasonably
+    height: 400 // Change the height of the chart reasonably
+});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Education & Learning Performance by Region', // Headline in an appropriate place
+        left: 'center',
+        top: 20
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        },
+        formatter: function (params) {
+            let total = 0;
+            params.forEach(param => {
+                total += param.value;
+            });
+            return params[0].name + '<br />' + params.map(param => {
+                let value = ((param.value / total) * 100).toFixed(2);
+                return `${param.marker}${param.seriesName}: ${value}%`;
+            }).join('<br />');
+        }
+    },
+    legend: {
+        data: ['Region A', 'Region B', 'Region C', 'Region D'],
+        bottom: 0 // Making sure legend does not overlap with the title
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '10%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01]
+    },
+    yAxis: {
+        type: 'category',
+        data: ['2017', '2018', '2019', '2020']
+    },
+    series: [
+        {
+            name: 'Region A',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35, // Reasonable bar width
+            data: [85, 88, 90, 92],
+            itemStyle: {
+                color: '#1f77b4' // Specific color code
+            }
+        },
+        {
+            name: 'Region B',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            data: [70, 72, 75, 78],
+            itemStyle: {
+                color: '#ff7f0e'
+            }
+        },
+        {
+            name: 'Region C',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            data: [65, 67, 70, 72],
+            itemStyle: {
+                color: '#2ca02c'
+            }
+        },
+        {
+            name: 'Region D',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            data: [80, 82, 85, 89],
+            itemStyle: {
+                color: '#d62728'
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Historical Event Impact Over Time',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: function (params) {
+            return `Category: ${params.value[0]}<br/>Value: ${params.value[1]}`;
+        }
+    },
+    legend: {
+        data: ['History'],
+        left: 'left'
+    },
+    xAxis: {
+        name: 'Category',
+        type: 'category',
+        data: ['History']
+    },
+    yAxis: {
+        name: 'Value',
+        type: 'value'
+    },
+    series: [{
+        name: 'History',
+        type: 'scatter',
+        itemStyle: {
+            color: '#FF6347'
+        },
+        symbolSize: 10,
+        data: [
+            ['History', 20],
+            ['History', 18],
+            ['History', 16],
+            ['History', 15],
+            ['History', 14],
+            ['History', 13],
+            ['History', 11],
+            ['History', 10],
+            ['History', 9],
+            ['History', 7],
+            ['History', 5],
+            ['History', 4],
+            ['History', 3],
+            ['History', 2],
+            ['History', 1]
+        ]
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

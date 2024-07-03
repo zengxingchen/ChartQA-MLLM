@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+
+var days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
+var coffeeConsumed = [3, 4, 5, 2, 3];
+
+option = {
+    title: {
+        text: 'Cups of Coffee Consumed',
+        subtext: 'Per Day of the Week'
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['Cups of Coffee']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: days
+    },
+    yAxis: {
+        type: 'value',
+        axisLabel: {
+            formatter: '{value} cups'
+        }
+    },
+    series: [
+        {
+            name: 'Cups of Coffee',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: coffeeConsumed
+        }
+    ],
+    visualMap: {
+        top: 50,
+        right: 10,
+        pieces: [{
+            gt: 0,
+            lte: 3,
+            color: '#93CE07'
+        }, {
+            gt: 3,
+            lte: 5,
+            color: '#FBDB0F'
+        }],
+        outOfRange: {
+            color: '#999'
+        }
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

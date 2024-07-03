@@ -1,0 +1,188 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Horizontal stacked bar chart showing daily fruit consumption by type.",
+    "data": {
+        "values": [
+            {
+                "Day": "Day 1",
+                "Apples": 2,
+                "Bananas": 1,
+                "Cherries": 1.5,
+                "Dates": 1,
+                "Elderberries": 2,
+                "Figs": 1
+            },
+            {
+                "Day": "Day 2",
+                "Apples": 2.5,
+                "Bananas": 1.5,
+                "Cherries": 2,
+                "Dates": 1.5,
+                "Elderberries": 2.5,
+                "Figs": 1.5
+            },
+            {
+                "Day": "Day 3",
+                "Apples": 3,
+                "Bananas": 2,
+                "Cherries": 2.5,
+                "Dates": 1.5,
+                "Elderberries": 3,
+                "Figs": 2
+            },
+            {
+                "Day": "Day 4",
+                "Apples": 3.5,
+                "Bananas": 2.5,
+                "Cherries": 3,
+                "Dates": 2,
+                "Elderberries": 3.5,
+                "Figs": 2.5
+            },
+            {
+                "Day": "Day 5",
+                "Apples": 4,
+                "Bananas": 3,
+                "Cherries": 3.5,
+                "Dates": 2.5,
+                "Elderberries": 4,
+                "Figs": 3
+            },
+            {
+                "Day": "Day 6",
+                "Apples": 4.5,
+                "Bananas": 3.5,
+                "Cherries": 4,
+                "Dates": 3,
+                "Elderberries": 4.5,
+                "Figs": 3.5
+            },
+            {
+                "Day": "Day 7",
+                "Apples": 5,
+                "Bananas": 4,
+                "Cherries": 4.5,
+                "Dates": 3.5,
+                "Elderberries": 5,
+                "Figs": 4
+            },
+            {
+                "Day": "Day 8",
+                "Apples": 5.5,
+                "Bananas": 4.5,
+                "Cherries": 5,
+                "Dates": 4,
+                "Elderberries": 5.5,
+                "Figs": 4.5
+            },
+            {
+                "Day": "Day 9",
+                "Apples": 6,
+                "Bananas": 5,
+                "Cherries": 5.5,
+                "Dates": 4.5,
+                "Elderberries": 6,
+                "Figs": 5
+            },
+            {
+                "Day": "Day 10",
+                "Apples": 6.5,
+                "Bananas": 5.5,
+                "Cherries": 6,
+                "Dates": 5,
+                "Elderberries": 6.5,
+                "Figs": 5.5
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Apples",
+                "Bananas",
+                "Cherries",
+                "Dates",
+                "Elderberries",
+                "Figs"
+            ],
+            "as": [
+                "Fruit",
+                "Consumption"
+            ]
+        }
+    ],
+    "width": 600,
+    "height": 400,
+    "mark": {
+        "type": "bar",
+        "height": {
+            "band": 0.7
+        }
+    },
+    "title": {
+        "text": "Daily Fruit Consumption by Type",
+        "subtitle": "Each bar represents a day with fruits stacked horizontally",
+        "subtitleFontStyle": "italic",
+        "subtitleFontSize": 12,
+        "anchor": "start",
+        "color": "black",
+        "frame": "group"
+    },
+    "encoding": {
+        "y": {
+            "field": "Day",
+            "type": "ordinal",
+            "title": "Day",
+            "axis": {
+                "labelAngle": 0
+            }
+        },
+        "x": {
+            "field": "Consumption",
+            "type": "quantitative",
+            "title": "Fruit Consumption (units)"
+        },
+        "color": {
+            "field": "Fruit",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Apples",
+                    "Bananas",
+                    "Cherries",
+                    "Dates",
+                    "Elderberries",
+                    "Figs"
+                ],
+                "range": [
+                    "#ff9999",
+                    "#ffcc99",
+                    "#99ccff",
+                    "#ccff99",
+                    "#c299ff",
+                    "#ff99c2"
+                ]
+            },
+            "legend": {
+                "orient": "top"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Day",
+                "type": "ordinal",
+                "title": "Day"
+            },
+            {
+                "field": "Fruit",
+                "type": "nominal",
+                "title": "Fruit"
+            },
+            {
+                "field": "Consumption",
+                "type": "quantitative",
+                "title": "Consumption"
+            }
+        ]
+    }
+}

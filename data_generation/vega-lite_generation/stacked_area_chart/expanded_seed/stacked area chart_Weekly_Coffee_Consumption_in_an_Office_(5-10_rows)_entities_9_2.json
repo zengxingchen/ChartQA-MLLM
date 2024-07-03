@@ -1,0 +1,146 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Weekly Coffee Consumption by Employee",
+    "width": "container",
+    "height": 300,
+    "data": {
+        "values": [
+            {
+                "Employee": "Alice",
+                "Monday (cups)": 3,
+                "Tuesday (cups)": 4,
+                "Wednesday (cups)": 2,
+                "Thursday (cups)": 3,
+                "Friday (cups)": 5
+            },
+            {
+                "Employee": "Bob",
+                "Monday (cups)": 1,
+                "Tuesday (cups)": 0,
+                "Wednesday (cups)": 1,
+                "Thursday (cups)": 2,
+                "Friday (cups)": 1
+            },
+            {
+                "Employee": "Charlie",
+                "Monday (cups)": 2,
+                "Tuesday (cups)": 2,
+                "Wednesday (cups)": 3,
+                "Thursday (cups)": 2,
+                "Friday (cups)": 2
+            },
+            {
+                "Employee": "Danielle",
+                "Monday (cups)": 5,
+                "Tuesday (cups)": 3,
+                "Wednesday (cups)": 4,
+                "Thursday (cups)": 4,
+                "Friday (cups)": 3
+            },
+            {
+                "Employee": "Eva",
+                "Monday (cups)": 0,
+                "Tuesday (cups)": 1,
+                "Wednesday (cups)": 0,
+                "Thursday (cups)": 1,
+                "Friday (cups)": 2
+            },
+            {
+                "Employee": "Frank",
+                "Monday (cups)": 3,
+                "Tuesday (cups)": 3,
+                "Wednesday (cups)": 3,
+                "Thursday (cups)": 3,
+                "Friday (cups)": 4
+            },
+            {
+                "Employee": "Grace",
+                "Monday (cups)": 2,
+                "Tuesday (cups)": 1,
+                "Wednesday (cups)": 2,
+                "Thursday (cups)": 1,
+                "Friday (cups)": 2
+            },
+            {
+                "Employee": "Hannah",
+                "Monday (cups)": 1,
+                "Tuesday (cups)": 2,
+                "Wednesday (cups)": 1,
+                "Thursday (cups)": 2,
+                "Friday (cups)": 3
+            },
+            {
+                "Employee": "Ian",
+                "Monday (cups)": 4,
+                "Tuesday (cups)": 3,
+                "Wednesday (cups)": 4,
+                "Thursday (cups)": 5,
+                "Friday (cups)": 5
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Monday (cups)",
+                "Tuesday (cups)",
+                "Wednesday (cups)",
+                "Thursday (cups)",
+                "Friday (cups)"
+            ],
+            "as": [
+                "Day",
+                "Cups"
+            ]
+        }
+    ],
+    "mark": "area",
+    "encoding": {
+        "x": {
+            "field": "Day",
+            "type": "ordinal",
+            "title": "Day of the Week",
+            "scale": {
+                "domain": [
+                    "Monday (cups)",
+                    "Tuesday (cups)",
+                    "Wednesday (cups)",
+                    "Thursday (cups)",
+                    "Friday (cups)"
+                ]
+            }
+        },
+        "y": {
+            "field": "Cups",
+            "type": "quantitative",
+            "stack": "normalize",
+            "title": "Percentage of Cups Consumed"
+        },
+        "color": {
+            "field": "Employee",
+            "type": "nominal",
+            "scale": {
+                "scheme": "tableau20"
+            },
+            "legend": {
+                "orient": "right",
+                "title": "Employee"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Employee",
+                "type": "nominal"
+            },
+            {
+                "field": "Day",
+                "type": "ordinal"
+            },
+            {
+                "field": "Cups",
+                "type": "quantitative",
+                "title": "Cups of Coffee"
+            }
+        ]
+    }
+}

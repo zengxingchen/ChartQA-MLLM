@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var app = {};
+
+var option;
+
+option = {
+  title: {
+    text: 'Market Capitalizations by Sector',
+    left: 'center',
+    top: 10,
+  },
+  color: [
+    '#5F8B95', '#BA9F93', '#AFD5AA', '#F6EFA6',
+    '#E7C9CA', '#F5A7A7', '#847D81', '#9FD1D1',
+    '#F6DDA1', '#B2DEDF', '#97C8EB', '#E5C595',
+    '#E99675', '#E5B0EA', '#A6E3E7', '#A4B0BE',
+    '#A9E190', '#F9C784', '#D291BC', '#FEC8D8'
+  ],
+  tooltip: {
+    trigger: 'item',
+    formatter: "{b}: {c}"
+  },
+  series: [{
+    type: 'treemap',
+    data: [
+      {
+        name: 'Technology',
+        value: 1200,
+        children: [
+          {name: 'Apple', value: 300},
+          {name: 'Microsoft', value: 200},
+          {name: 'Google', value: 350},
+          {name: 'IBM', value: 80},
+          {name: 'Intel', value: 70},
+          {name: 'Samsung', value: 200}
+        ]
+      },
+      {
+        name: 'Financial Services',
+        value: 800,
+        children: [
+          {name: 'JP Morgan', value: 150},
+          {name: 'Goldman Sachs', value: 100},
+          {name: 'PayPal', value: 80},
+          {name: 'Visa', value: 150},
+          {name: 'Mastercard', value: 120}
+        ]
+      },
+      {
+        name: 'Energy',
+        value: 600,
+        children: [
+          {name: 'Saudi Aramco', value: 300},
+          {name: 'ExxonMobil', value: 120},
+          {name: 'Shell', value: 90},
+          {name: 'BP', value: 60},
+          {name: 'Chevron', value: 30}
+        ]
+      },
+      {
+        name: 'Consumer Goods',
+        value: 500,
+        children: [
+          {name: 'Nestle', value: 100},
+          {name: 'Procter & Gamble', value: 90},
+          {name: 'Coca-Cola', value: 80},
+          {name: 'Unilever', value: 70},
+          {name: 'Toyota', value: 50},
+          {name: 'Nike', value: 60},
+          {name: 'Disney', value: 50}
+        ]
+      },
+      {
+        name: 'Healthcare',
+        value: 400,
+        children: [
+          {name: 'Johnson & Johnson', value: 90},
+          {name: 'Pfizer', value: 80},
+          {name: 'Roche', value: 60},
+          {name: 'Merck & Co', value: 50},
+          {name: 'AbbVie', value: 40},
+          {name: 'Novartis', value: 30},
+          {name: 'Bristol Myers Squibb', value: 50}
+        ]
+      }
+    ]
+  }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

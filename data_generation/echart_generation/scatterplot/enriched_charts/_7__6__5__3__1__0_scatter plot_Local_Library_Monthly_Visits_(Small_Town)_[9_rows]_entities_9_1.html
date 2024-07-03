@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 800,
+    height: 600
+});
+var app = {};
+var option;
+
+option = {
+    title: {
+        text: 'Sleep Duration vs. Stress Levels',
+        left: 'center',
+        top: '10%'
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: function (params) {
+            return 'Sleep Duration: ' + params.value[0] + ' hours<br/>Stress Level: ' + params.value[1];
+        }
+    },
+    legend: {
+        data: ['Sleep vs. Stress'],
+        left: '10%',
+        top: '90%'
+    },
+    xAxis: {
+        name: 'Sleep Duration (hours)',
+        min: 3,
+        max: 9
+    },
+    yAxis: {
+        name: 'Stress Level (0-10)',
+        min: 0,
+        max: 10
+    },
+    series: [
+        {
+            name: 'Sleep vs. Stress',
+            type: 'scatter',
+            itemStyle: {
+                color: '#FF6347'
+            },
+            symbolSize: 15,
+            data: [
+                [8.0, 2],
+                [7.5, 3],
+                [6.0, 5],
+                [7.0, 4],
+                [5.5, 7],
+                [6.5, 5],
+                [4.0, 8],
+                [8.5, 2],
+                [5.0, 6],
+                [7.8, 3],
+                [4.5, 7],
+                [6.2, 5],
+                [5.8, 6],
+                [7.2, 3],
+                [6.8, 4],
+                [7.3, 2],
+                [6.1, 5],
+                [5.3, 6],
+                [4.9, 7],
+                [8.1, 2]
+            ]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

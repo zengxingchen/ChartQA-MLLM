@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+var option;
+
+option = {
+    title: {
+        text: 'Art & Design Scores Across Various Categories',
+        left: 'center',
+        top: 20,
+        textStyle: {
+            fontSize: 20,
+            fontWeight: 'bold'
+        }
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        top: 50,
+        data: ['Design', 'Usability', 'Creativity']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01],
+        axisLabel: {
+            formatter: '{value}'
+        }
+    },
+    yAxis: {
+        type: 'category',
+        data: ['Art & Design', 'Science & Nature', 'Health & Psychology', 'Culture & Society', 'Economics & Finance', 'Education & Learning', 'Entertainment & Leisure', 'Environment & Climate Change', 'Food & Nutrition', 'Travel & Adventure', 'Fashion & Beauty', 'Politics & Governance', 'Sports & Fitness', 'History & Archaeology', 'Philosophy & Ethics', 'Music & Performing Arts', 'Literature & Writing', 'Business & Entrepreneurship', 'Astronomy & Space Exploration'],
+        axisLabel: {
+            formatter: '{value}'
+        }
+    },
+    series: [
+        {
+            name: 'Design',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            barWidth: 15,
+            itemStyle: {
+                color: '#FF6F61'
+            },
+            data: [85, 90, 70, 80, 95, 75, 85, 90, 80, 85, 75, 70, 90, 85, 80, 85, 70, 95, 90]
+        },
+        {
+            name: 'Usability',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            barWidth: 15,
+            itemStyle: {
+                color: '#6B5B95'
+            },
+            data: [75, 80, 60, 70, 85, 65, 75, 80, 70, 75, 65, 60, 80, 75, 70, 75, 60, 85, 80]
+        },
+        {
+            name: 'Creativity',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            barWidth: 15,
+            itemStyle: {
+                color: '#88B04B'
+            },
+            data: [65, 70, 50, 60, 75, 55, 65, 70, 60, 65, 55, 50, 70, 65, 60, 65, 50, 75, 70]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

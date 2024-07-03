@@ -1,0 +1,208 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+        "values": [
+            {
+                "Day": "Monday",
+                "Grades K-2": 25,
+                "Grades 3-5": 30,
+                "Grades 6-8": 45,
+                "Grades 9-12": 20
+            },
+            {
+                "Day": "Tuesday",
+                "Grades K-2": 22,
+                "Grades 3-5": 25,
+                "Grades 6-8": 50,
+                "Grades 9-12": 22
+            },
+            {
+                "Day": "Wednesday",
+                "Grades K-2": 30,
+                "Grades 3-5": 35,
+                "Grades 6-8": 40,
+                "Grades 9-12": 25
+            },
+            {
+                "Day": "Thursday",
+                "Grades K-2": 28,
+                "Grades 3-5": 33,
+                "Grades 6-8": 47,
+                "Grades 9-12": 23
+            },
+            {
+                "Day": "Friday",
+                "Grades K-2": 35,
+                "Grades 3-5": 40,
+                "Grades 6-8": 45,
+                "Grades 9-12": 30
+            },
+            {
+                "Day": "Saturday",
+                "Grades K-2": 20,
+                "Grades 3-5": 25,
+                "Grades 6-8": 50,
+                "Grades 9-12": 21
+            },
+            {
+                "Day": "Sunday",
+                "Grades K-2": 27,
+                "Grades 3-5": 32,
+                "Grades 6-8": 43,
+                "Grades 9-12": 22
+            },
+            {
+                "Day": "Monday",
+                "Grades K-2": 26,
+                "Grades 3-5": 31,
+                "Grades 6-8": 46,
+                "Grades 9-12": 21
+            },
+            {
+                "Day": "Tuesday",
+                "Grades K-2": 23,
+                "Grades 3-5": 26,
+                "Grades 6-8": 51,
+                "Grades 9-12": 23
+            },
+            {
+                "Day": "Wednesday",
+                "Grades K-2": 31,
+                "Grades 3-5": 36,
+                "Grades 6-8": 41,
+                "Grades 9-12": 26
+            },
+            {
+                "Day": "Thursday",
+                "Grades K-2": 29,
+                "Grades 3-5": 34,
+                "Grades 6-8": 48,
+                "Grades 9-12": 24
+            },
+            {
+                "Day": "Friday",
+                "Grades K-2": 36,
+                "Grades 3-5": 41,
+                "Grades 6-8": 46,
+                "Grades 9-12": 31
+            },
+            {
+                "Day": "Saturday",
+                "Grades K-2": 21,
+                "Grades 3-5": 26,
+                "Grades 6-8": 51,
+                "Grades 9-12": 22
+            },
+            {
+                "Day": "Sunday",
+                "Grades K-2": 28,
+                "Grades 3-5": 33,
+                "Grades 6-8": 44,
+                "Grades 9-12": 23
+            }
+        ]
+    },
+    "width": 500,
+    "height": 600,
+    "title": {
+        "text": "Daily Classroom Attendance by Grade",
+        "subtitle": "A vertical stacked bar chart showing the number of students in different grade levels throughout the week.",
+        "subtitleFontStyle": "italic",
+        "subtitleFontSize": 10,
+        "anchor": "start"
+    },
+    "transform": [
+        {
+            "fold": [
+                "Grades K-2",
+                "Grades 3-5",
+                "Grades 6-8",
+                "Grades 9-12"
+            ],
+            "as": [
+                "Grade Level",
+                "Number of Students"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "bar",
+        "width": {
+            "band": 0.5
+        }
+    },
+    "encoding": {
+        "x": {
+            "field": "Day",
+            "type": "ordinal",
+            "title": "Day of the Week",
+            "axis": {
+                "labelAngle": 0
+            }
+        },
+        "y": {
+            "field": "Number of Students",
+            "type": "quantitative",
+            "title": "Number of Students",
+            "stack": "zero"
+        },
+        "color": {
+            "field": "Grade Level",
+            "type": "nominal",
+            "title": "Grade Level",
+            "scale": {
+                "domain": [
+                    "Grades K-2",
+                    "Grades 3-5",
+                    "Grades 6-8",
+                    "Grades 9-12"
+                ],
+                "range": [
+                    "#1F77B4",
+                    "#FF7F0E",
+                    "#2CA02C",
+                    "#D62728"
+                ]
+            },
+            "legend": {
+                "orient": "top-right",
+                "titleFontSize": 12
+            }
+        },
+        "order": {
+            "field": "Grade Level",
+            "type": "nominal",
+            "sort": [
+                "Grades K-2",
+                "Grades 3-5",
+                "Grades 6-8",
+                "Grades 9-12"
+            ]
+        },
+        "tooltip": [
+            {
+                "field": "Day",
+                "type": "nominal"
+            },
+            {
+                "field": "Grade Level",
+                "type": "nominal",
+                "title": "Grade Level"
+            },
+            {
+                "field": "Number of Students",
+                "type": "quantitative",
+                "title": "Number of Students"
+            }
+        ]
+    },
+    "config": {
+        "axis": {
+            "titleFontWeight": "normal",
+            "labelFont": "sans-serif"
+        },
+        "bar": {
+            "strokeWidth": 0
+        }
+    }
+}

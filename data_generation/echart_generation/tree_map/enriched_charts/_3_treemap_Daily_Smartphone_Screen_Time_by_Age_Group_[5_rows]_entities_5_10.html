@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var app = {};
+
+var data = [
+    {name: 'Renewable Energy', value: 130},
+    {name: 'Solar Power', value: 80},
+    {name: 'Wind Energy', value: 50},
+    {name: 'Hydropower', value: 40},
+    {name: 'Bioenergy', value: 30},
+    {name: 'Geothermal', value: 25},
+    {name: 'Nuclear Fusion', value: 70},
+    {name: 'AI in Energy', value: 65},
+    {name: 'Smart Grids', value: 55},
+    {name: 'Energy Storage', value: 45},
+    {name: 'Batteries', value: 35},
+    {name: 'Flywheels', value: 25},
+    {name: 'Compressed Air', value: 15},
+    {name: 'Superconductors', value: 40},
+    {name: 'Energy Efficiency', value: 60},
+    {name: 'LED Lighting', value: 35},
+    {name: 'Smart Appliances', value: 40},
+    {name: 'Insulation Materials', value: 30},
+    {name: 'Electric Vehicles', value: 70},
+    {name: 'Charging Stations', value: 40},
+    {name: 'Battery Technology', value: 60},
+    {name: 'Regenerative Braking', value: 20}
+];
+
+option = {
+    title: {
+        text: 'Innovations in Energy Sector',
+        left: 'center',
+        top: 'top'
+    },
+    color: [
+        '#5CACEE', '#FF8C00', '#32CD32', '#C71585',
+        '#FFD700', '#DC143C', '#00CED1', '#BA55D3',
+        '#3CB371', '#7B68EE', '#00FA9A', '#FF6347',
+        '#7FFFD4', '#FFA500', '#FF4500', '#2E8B57',
+        '#66CDAA', '#00008B', '#8B008B', '#2F4F4F',
+        '#FF1493', '#1E90FF'
+    ],
+    series: [{
+        name: 'Innovations in Energy Sector',
+        type: 'treemap',
+        visibleMin: 300,
+        label: {
+            show: true,
+            formatter: '{b}'
+        },
+        upperLabel: {
+            normal: {
+                show: true,
+                height: 30
+            }
+        },
+        itemStyle: {
+            normal: {
+                borderColor: '#fff'
+            }
+        },
+        levels: [
+            {
+                itemStyle: {
+                    normal: {
+                        borderWidth: 0,
+                        gapWidth: 5
+                    }
+                }
+            }
+        ],
+        data: data
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

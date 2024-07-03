@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {renderer: 'canvas', width: '800', height: '600'});
+
+var app = {};
+var option;
+
+option = {
+    title: {
+        text: 'Monthly Revenue Growth by Product',
+        left: 'center',
+        top: 20
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            label: {
+                backgroundColor: '#6a7985'
+            }
+        }
+    },
+    legend: {
+        data: ['Product A', 'Product B', 'Product C'],
+        orient: 'vertical',
+        right: 10,
+        top: 100
+    },
+    grid: {
+        left: '3%',
+        right: '20%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+    },
+    yAxis: {
+        type: 'value',
+        axisLabel: {
+            formatter: '${value}'
+        }
+    },
+    series: [
+        {
+            name: 'Product A',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [12000, 18000, 25000, 20000, 28000, 35000, 30000, 32000, 34000, 36000, 38000, 40000],
+            color: '#FF6347'
+        },
+        {
+            name: 'Product B',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [15000, 22000, 27000, 30000, 32000, 33000, 37000, 39000, 41000, 43000, 45000, 47000],
+            color: '#20B2AA'
+        },
+        {
+            name: 'Product C',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [13000, 20000, 24000, 28000, 30000, 31000, 35000, 37000, 39000, 42000, 44000, 46000],
+            color: '#EE82EE'
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

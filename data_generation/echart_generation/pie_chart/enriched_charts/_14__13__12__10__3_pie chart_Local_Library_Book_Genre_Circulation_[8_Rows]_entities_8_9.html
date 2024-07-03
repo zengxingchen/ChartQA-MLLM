@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Global Smartphone Market Share (2023)',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: '{a} <br/>{b}: {c} ({d}%)'
+    },
+    legend: {
+        orient: 'vertical',
+        left: 10,
+        top: 'middle',
+        textStyle: {
+            color: '#666'
+        }
+    },
+    series: [
+        {
+            name: 'Market Share',
+            type: 'pie',
+            radius: '50%',
+            data: [
+                { value: 21.5, name: 'Apple' },
+                { value: 20.8, name: 'Samsung' },
+                { value: 14.6, name: 'Huawei' },
+                { value: 13.1, name: 'Xiaomi' },
+                { value: 10.2, name: 'OPPO' },
+                { value: 8.9, name: 'Vivo' },
+                { value: 10.9, name: 'Others' }
+            ],
+            emphasis: {
+                itemStyle: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            },
+            itemStyle: {
+                normal: {
+                    color: function(params) {
+                        // predefined color palette for categories
+                        var colorList = [
+                            '#004D40', '#00796B', '#26A69A', '#4DB6AC', '#80CBC4', '#B2DFDB', '#E0F2F1'
+                        ];
+                        return colorList[params.dataIndex]
+                    },
+                    label: {
+                        show: true,
+                        formatter: '{b} : {c} ({d}%)'
+                    },
+                    labelLine: {show: true}
+                },
+                emphasis: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            }
+        }
+    ],
+    color: ['#004D40', '#00796B', '#26A69A', '#4DB6AC', '#80CBC4', '#B2DFDB', '#E0F2F1']
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

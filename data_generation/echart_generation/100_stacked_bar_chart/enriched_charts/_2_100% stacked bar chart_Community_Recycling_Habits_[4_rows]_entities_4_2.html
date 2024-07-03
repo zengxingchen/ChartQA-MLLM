@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    width: 800, // Reasonable chart width change
+    height: 600 // Reasonable chart height change
+});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Quarterly Product Revenue Analysis', // The topic headline
+        subtext: 'Business & Entrepreneurship', // Subheading
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Product A', 'Product B', 'Product C', 'Product D'],
+        bottom: 0
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: { // Changing direction to horizontal 
+        type: 'value'
+    },
+    yAxis: {
+        type: 'category',
+        data: ['Q1', 'Q2', 'Q3', 'Q4']
+    },
+    series: [
+        {
+            name: 'Product A',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 50, // Change width of bars
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [25, 40, 30, 35],
+            itemStyle: {
+                color: '#1f77b4' // Specific color code
+            }
+        },
+        {
+            name: 'Product B',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 50, // Change width of bars
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [30, 20, 40, 15],
+            itemStyle: {
+                color: '#ff7f0e' // Specific color code
+            }
+        },
+        {
+            name: 'Product C',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 50, // Change width of bars
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [15, 35, 20, 30],
+            itemStyle: {
+                color: '#2ca02c' // Specific color code
+            }
+        },
+        {
+            name: 'Product D',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 50, // Change width of bars
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [50, 25, 30, 40],
+            itemStyle: {
+                color: '#d62728' // Specific color code
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

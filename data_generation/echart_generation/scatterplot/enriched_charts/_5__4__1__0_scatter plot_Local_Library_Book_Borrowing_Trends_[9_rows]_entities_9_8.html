@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 800,
+    height: 600
+});
+var option;
+
+option = {
+    title: {
+        text: 'Exercise Duration vs. Mental Well-being Score',
+        left: 'center',
+        top: '10%'
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: function (params) {
+            return 'Exercise Duration: ' + params.data[0] + ' minutes<br/>Mental Well-being Score: ' + params.data[1];
+        }
+    },
+    xAxis: {
+        name: 'Exercise Duration (minutes)',
+        type: 'value'
+    },
+    yAxis: {
+        name: 'Mental Well-being Score',
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Data',
+            type: 'scatter',
+            itemStyle: {
+                color: '#1f78b4'
+            },
+            data: [
+                [30, 65], [45, 70], [60, 75], [25, 60], [50, 72],
+                [35, 67], [55, 73], [40, 69], [20, 58], [65, 76],
+                [75, 80], [15, 55], [10, 50], [85, 83], [90, 85],
+                [95, 86], [5, 45], [100, 87], [12, 52], [7, 48],
+                [80, 79], [70, 77], [42, 68], [37, 66], [62, 74],
+                [58, 71], [47, 70], [28, 64], [33, 65], [22, 59]
+            ]
+        }
+    ],
+    legend: {
+        data: ['Data'],
+        left: 'left',
+        top: '15%'
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

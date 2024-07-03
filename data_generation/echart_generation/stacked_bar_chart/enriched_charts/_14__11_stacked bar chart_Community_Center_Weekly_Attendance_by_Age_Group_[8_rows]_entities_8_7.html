@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var option;
+
+option = {
+    title: {
+        text: 'Nutrient Distribution in Different Food Groups',
+        left: 'center',
+        top: '5%'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Proteins', 'Carbohydrates', 'Fats'],
+        bottom: '0%'
+    },
+    grid: {
+        left: '5%',
+        right: '5%',
+        bottom: '10%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        data: ['Vegetables', 'Fruits', 'Grains', 'Dairy', 'Meats', 'Legumes', 'Nuts', 'Seafood'],
+        axisLabel: {
+            rotate: 30,
+            interval: 0
+        }
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Proteins',
+            type: 'bar',
+            stack: 'Nutrients',
+            data: [1.5, 0.8, 6, 3.4, 20, 9, 15, 18],
+            itemStyle: {
+                color: '#ff9999'
+            },
+            label: {
+                show: true,
+                position: 'inside'
+            }
+        },
+        {
+            name: 'Carbohydrates',
+            type: 'bar',
+            stack: 'Nutrients',
+            data: [6, 14, 30, 5, 0, 25, 5, 1],
+            itemStyle: {
+                color: '#66b3ff'
+            },
+            label: {
+                show: true,
+                position: 'inside'
+            }
+        },
+        {
+            name: 'Fats',
+            type: 'bar',
+            stack: 'Nutrients',
+            data: [0.2, 0.3, 1, 4.5, 10, 2, 20, 5],
+            itemStyle: {
+                color: '#99ff99'
+            },
+            label: {
+                show: true,
+                position: 'inside'
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+var option;
+
+option = {
+    title: {
+        text: 'Daily Nutrient Intake',
+        left: 'center',
+        top: 20,
+        textStyle: {
+            color: '#333',
+            fontSize: 24
+        }
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        top: 'bottom'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        data: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+        axisLabel: {
+            interval: 0,
+            rotate: 30
+        }
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Amount',
+        axisLabel: {
+            formatter: function(value) {
+                return value + ' g';
+            }
+        }
+    },
+    series: [
+        {
+            name: 'Carbohydrates (g)',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 20,
+            itemStyle: {
+                color: '#FF6666'
+            },
+            label: {
+                show: true,
+                position: 'inside'
+            },
+            data: [220, 200, 240, 230, 210, 250, 230]
+        },
+        {
+            name: 'Proteins (g)',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 20,
+            itemStyle: {
+                color: '#FFCC66'
+            },
+            label: {
+                show: true,
+                position: 'inside'
+            },
+            data: [50, 55, 45, 60, 50, 65, 55]
+        },
+        {
+            name: 'Fats (g)',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 20,
+            itemStyle: {
+                color: '#66CCFF'
+            },
+            label: {
+                show: true,
+                position: 'inside'
+            },
+            data: [60, 65, 70, 55, 75, 80, 60]
+        },
+        {
+            name: 'Vitamins (mg)',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 20,
+            itemStyle: {
+                color: '#99FF66'
+            },
+            label: {
+                show: true,
+                position: 'inside'
+            },
+            data: [20, 25, 22, 23, 21, 26, 24]
+        },
+        {
+            name: 'Minerals (mg)',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 20,
+            itemStyle: {
+                color: '#FF99CC'
+            },
+            label: {
+                show: true,
+                position: 'inside'
+            },
+            data: [15, 10, 18, 12, 17, 20, 15]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

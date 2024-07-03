@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,  // Change width of the chart
+    height: 600   // Change height of the chart
+});
+
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Energy Transition & Advancement',  // Headline for the topic "Environment & Climate Change"
+        subtext: 'Increase in Usage of Renewable Energy Sources (2020-2025)', // Subheadline for clarity
+        left: 'center'  // Position so it does not overlap with legend or other elements
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            // Use shadow instead of line
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Electric Vehicles', 'Solar Energy', 'Wind Energy', 'Hydropower'],
+        top: 50  // Move legend down to avoid overlap with title
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value'
+    },
+    yAxis: {
+        type: 'category',
+        data: ['2020', '2021', '2022', '2023', '2024', '2025']
+    },
+    series: [
+        {
+            name: 'Electric Vehicles',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [24, 40, 65, 80, 100, 120],
+            itemStyle: {
+                color: '#33A1C9' // Change color
+            },
+            barWidth: 20  // Change the width of bars
+        },
+        {
+            name: 'Solar Energy',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [76, 85, 90, 95, 105, 110],
+            itemStyle: {
+                color: '#FFD700' // Change color
+            },
+            barWidth: 20  // Change the width of bars
+        },
+        {
+            name: 'Wind Energy',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [95, 100, 110, 120, 130, 140],
+            itemStyle: {
+                color: '#6AB0B8' // Change color
+            },
+            barWidth: 20  // Change the width of bars
+        },
+        {
+            name: 'Hydropower',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [55, 65, 75, 80, 90, 95],
+            itemStyle: {
+                color: '#20B2AA' // Change color
+            },
+            barWidth: 20  // Change the width of bars
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Monthly Stock Prices',
+        left: 'center',
+        top: '5%'
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    xAxis: {
+        type: 'category',
+        data: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+    },
+    yAxis: {
+        type: 'value',
+        axisLabel: {
+            formatter: '${value}'
+        }
+    },
+    series: [{
+        name: 'Stock Price',
+        type: 'line',
+        data: [150, 145, 155, 160, 158, 165, 170, 168, 175, 180, 178, 185],
+        label: {
+            show: true,
+            position: 'top',
+            formatter: '${@[1]}'
+        },
+        lineStyle: {
+            color: '#FF6347'
+        },
+        itemStyle: {
+            color: '#4682B4'
+        }
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

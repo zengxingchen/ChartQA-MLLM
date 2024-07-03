@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Future Technologies & Society',
+        left: 'center'
+    },
+    color: ['#FF6F61', '#6B5B95', '#88B04B', '#F7CAC9', '#92A8D1', '#034F84', '#F7786B', '#98B4D4', '#B565A7', '#009473', '#DD4124', '#45B8AC', '#EFC050', '#5B5EA6', '#9B2335'],
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01]
+    },
+    yAxis: {
+        type: 'category',
+        data: ['Artificial Intelligence', 'Virtual Reality', 'Quantum Computing', 'Blockchain', '3D Printing', 'IoT', 'Biotechnology', 'Augmented Reality', 'Nanotechnology', 'Renewable Energy', 'Autonomous Vehicles', 'Smart Cities', 'Cybersecurity', 'Wearable Technology', '5G Technology']
+    },
+    series: [
+        {
+            name: 'Value',
+            type: 'bar',
+            data: [85, 70, 60, 75, 55, 80, 65, 72, 68, 90, 77, 83, 88, 74, 79],
+            barWidth: '50%',
+            label: {
+                show: true,
+                position: 'insideRight'
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

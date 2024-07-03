@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+const data = [
+    {'Time of Day': '00:00 - 01:00', 'Industrial_Area_dB(Decibels)': 50, 'Residential_Area_dB(Decibels)': 30, 'Commercial_Area_dB(Decibels)': 45},
+    {'Time of Day': '01:00 - 02:00', 'Industrial_Area_dB(Decibels)': 48, 'Residential_Area_dB(Decibels)': 28, 'Commercial_Area_dB(Decibels)': 43},
+    // ... more data points
+    {'Time of Day': '11:00 - 12:00', 'Industrial_Area_dB(Decibels)': 75, 'Residential_Area_dB(Decibels)': 45, 'Commercial_Area_dB(Decibels)': 60}
+];
+
+let industrial = data.map(item => [item['Time of Day'], item['Industrial_Area_dB(Decibels)']]);
+let residential = data.map(item => [item['Time of Day'], item['Residential_Area_dB(Decibels)']]);
+let commercial = data.map(item => [item['Time of Day'], item['Commercial_Area_dB(Decibels)']]);
+
+option = {
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross'
+        }
+    },
+    legend: {
+        data: ['Industrial', 'Residential', 'Commercial']
+    },
+    xAxis: {
+        type: 'category',
+        splitLine: {
+            lineStyle: {
+                type: 'dashed'
+            }
+        }
+    },
+    yAxis: {
+        splitLine: {
+            lineStyle: {
+                type: 'dashed'
+            }
+        },
+        scale: true
+    },
+    series: [{
+        name: 'Industrial',
+        data: industrial,
+        type: 'scatter',
+        symbolSize: 10,
+        itemStyle: {
+            color: 'rgba(255,0,0,0.8)'
+        }
+    }, {
+        name: 'Residential',
+        data: residential,
+        type: 'scatter',
+        symbolSize: 10,
+        itemStyle: {
+            color: 'rgba(0,0,255,0.8)'
+        }
+    }, {
+        name: 'Commercial',
+        data: commercial,
+        type: 'scatter',
+        symbolSize: 10,
+        itemStyle: {
+            color: 'rgba(0,255,0,0.8)'
+        }
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

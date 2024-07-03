@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+option = {
+    title: {
+        text: 'Top Travel Destinations by Visitors',
+        left: 'center',
+        top: '10'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    xAxis: {
+        type: 'value',
+        name: 'Visitors (in millions)',
+        nameLocation: 'middle',
+        nameTextStyle: {
+            fontSize: 14,
+            padding: 20
+        }
+    },
+    yAxis: {
+        type: 'category',
+        data: ['Paris', 'Bangkok', 'London', 'Dubai', 'Singapore', 'New York', 'Kuala Lumpur', 'Tokyo', 'Istanbul', 'Seoul', 'Hong Kong', 'Barcelona', 'Amsterdam', 'Rome', 'Milan', 'Vienna', 'Prague', 'Los Angeles', 'Madrid', 'Sydney'],
+        name: 'Destination',
+        nameLocation: 'middle',
+        nameTextStyle: {
+            fontSize: 14,
+            padding: 60
+        }
+    },
+    series: [
+        {
+            name: 'Visitors',
+            type: 'bar',
+            data: [19.1, 22.8, 19.6, 16.7, 14.7, 13.5, 13.8, 12.9, 13.4, 11.3, 9.9, 9.1, 8.8, 8.4, 7.7, 7.2, 7.0, 6.8, 6.5, 6.1],
+            itemStyle: {
+                color: '#3398DB'
+            },
+            barWidth: '50%',
+            label: {
+                show: true,
+                position: 'insideRight',
+                formatter: '{c}M'
+            }
+        }
+    ],
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,195 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Line chart showing average monthly gym visits by month for different regions.",
+    "title": {
+        "text": "Average Monthly Gym Visits by Region",
+        "fontSize": 20,
+        "anchor": "start",
+        "color": "#000000"
+    },
+    "width": 1000,
+    "height": 500,
+    "data": {
+        "values": [
+            {
+                "Region": "North America",
+                "January": 1200,
+                "February": 1150,
+                "March": 1180,
+                "April": 1170,
+                "May": 1160,
+                "June": 1190,
+                "July": 1210,
+                "August": 1220,
+                "September": 1230,
+                "October": 1240,
+                "November": 1220,
+                "December": 1210
+            },
+            {
+                "Region": "Europe",
+                "January": 1100,
+                "February": 1080,
+                "March": 1120,
+                "April": 1130,
+                "May": 1140,
+                "June": 1150,
+                "July": 1160,
+                "August": 1170,
+                "September": 1160,
+                "October": 1150,
+                "November": 1140,
+                "December": 1130
+            },
+            {
+                "Region": "Asia",
+                "January": 1350,
+                "February": 1340,
+                "March": 1360,
+                "April": 1370,
+                "May": 1380,
+                "June": 1390,
+                "July": 1400,
+                "August": 1410,
+                "September": 1400,
+                "October": 1390,
+                "November": 1380,
+                "December": 1370
+            },
+            {
+                "Region": "South America",
+                "January": 1050,
+                "February": 1040,
+                "March": 1060,
+                "April": 1070,
+                "May": 1080,
+                "June": 1090,
+                "July": 1100,
+                "August": 1090,
+                "September": 1080,
+                "October": 1070,
+                "November": 1060,
+                "December": 1050
+            },
+            {
+                "Region": "Africa",
+                "January": 900,
+                "February": 890,
+                "March": 910,
+                "April": 920,
+                "May": 930,
+                "June": 940,
+                "July": 950,
+                "August": 940,
+                "September": 930,
+                "October": 920,
+                "November": 910,
+                "December": 900
+            },
+            {
+                "Region": "Oceania",
+                "January": 1000,
+                "February": 980,
+                "March": 1010,
+                "April": 1020,
+                "May": 1030,
+                "June": 1040,
+                "July": 1050,
+                "August": 1040,
+                "September": 1030,
+                "October": 1020,
+                "November": 1010,
+                "December": 1000
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "January",
+                "February",
+                "March",
+                "April",
+                "May",
+                "June",
+                "July",
+                "August",
+                "September",
+                "October",
+                "November",
+                "December"
+            ],
+            "as": [
+                "Month",
+                "Visits"
+            ]
+        }
+    ],
+    "mark": "line",
+    "encoding": {
+        "x": {
+            "field": "Month",
+            "type": "ordinal",
+            "title": "Month",
+            "axis": {
+                "titleFontSize": 14,
+                "labelAngle": -45
+            }
+        },
+        "y": {
+            "field": "Visits",
+            "type": "quantitative",
+            "title": "Number of Visits",
+            "axis": {
+                "titleFontSize": 14,
+                "orient": "right"
+            }
+        },
+        "color": {
+            "field": "Region",
+            "type": "nominal",
+            "scale": {
+                "range": [
+                    "#e41a1c",
+                    "#377eb8",
+                    "#4daf4a",
+                    "#984ea3",
+                    "#ff7f00",
+                    "#ffff33"
+                ]
+            },
+            "legend": {
+                "title": "Region"
+            }
+        },
+        "strokeDash": {
+            "condition": {
+                "test": "datum['Region'] == 'South America'",
+                "value": [
+                    5,
+                    5
+                ]
+            },
+            "value": []
+        },
+        "tooltip": [
+            {
+                "field": "Region",
+                "type": "nominal"
+            },
+            {
+                "field": "Month",
+                "type": "ordinal"
+            },
+            {
+                "field": "Visits",
+                "type": "quantitative"
+            }
+        ]
+    },
+    "config": {
+        "axisY": {
+            "minExtent": 30
+        }
+    }
+}

@@ -1,0 +1,159 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": {
+        "text": "Distribution of Reading Preferences Over Years",
+        "subtitle": "Vertical stacked bar chart representing the proportion of reading preferences",
+        "anchor": "start",
+        "color": "#000000"
+    },
+    "description": "A stacked bar chart showing the percentage distribution of reading preferences over several years.",
+    "width": 700,
+    "height": 500,
+    "data": {
+        "values": [
+            {
+                "Year": 2015,
+                "Fiction": 30,
+                "Non-fiction": 50,
+                "Comics": 20
+            },
+            {
+                "Year": 2016,
+                "Fiction": 35,
+                "Non-fiction": 45,
+                "Comics": 20
+            },
+            {
+                "Year": 2017,
+                "Fiction": 40,
+                "Non-fiction": 40,
+                "Comics": 20
+            },
+            {
+                "Year": 2018,
+                "Fiction": 45,
+                "Non-fiction": 35,
+                "Comics": 20
+            },
+            {
+                "Year": 2019,
+                "Fiction": 50,
+                "Non-fiction": 30,
+                "Comics": 20
+            },
+            {
+                "Year": 2020,
+                "Fiction": 60,
+                "Non-fiction": 25,
+                "Comics": 15
+            },
+            {
+                "Year": 2021,
+                "Fiction": 55,
+                "Non-fiction": 30,
+                "Comics": 15
+            },
+            {
+                "Year": 2022,
+                "Fiction": 50,
+                "Non-fiction": 35,
+                "Comics": 15
+            },
+            {
+                "Year": 2023,
+                "Fiction": 65,
+                "Non-fiction": 25,
+                "Comics": 10
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Fiction",
+                "Non-fiction",
+                "Comics"
+            ],
+            "as": [
+                "Reading Preference",
+                "Percentage"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "bar",
+        "height": {
+            "band": 0.5
+        }
+    },
+    "encoding": {
+        "x": {
+            "field": "Year",
+            "type": "ordinal",
+            "title": "Year"
+        },
+        "y": {
+            "field": "Percentage",
+            "type": "quantitative",
+            "title": "Percentage of Reading Preferences",
+            "stack": "normalize",
+            "axis": {
+                "format": ".0%"
+            }
+        },
+        "color": {
+            "field": "Reading Preference",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Fiction",
+                    "Non-fiction",
+                    "Comics"
+                ],
+                "range": [
+                    "#1f77b4",
+                    "#ff6347",
+                    "#32cd32"
+                ]
+            },
+            "title": "Reading Preference"
+        },
+        "tooltip": [
+            {
+                "field": "Year",
+                "type": "ordinal",
+                "title": "Year"
+            },
+            {
+                "field": "Reading Preference",
+                "type": "nominal",
+                "title": "Reading Preference"
+            },
+            {
+                "field": "Percentage",
+                "type": "quantitative",
+                "title": "Percentage (%)",
+                "format": ".0f"
+            }
+        ]
+    },
+    "config": {
+        "axisX": {
+            "titlePadding": 10,
+            "titleFontSize": 12
+        },
+        "axisY": {
+            "titleAngle": 0,
+            "titleAlign": "left",
+            "titleY": -10,
+            "titleX": -10,
+            "labelPadding": 5,
+            "titleFontSize": 12
+        },
+        "legend": {
+            "titleFontSize": 12,
+            "labelFontSize": 12,
+            "symbolType": "square"
+        }
+    }
+}

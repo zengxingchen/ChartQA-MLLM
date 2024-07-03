@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Correlation between Data Type 1 and Data Type 2',
+        left: 'center',
+        top: '5%'
+    },
+    tooltip: {
+        trigger: 'item'
+    },
+    legend: {
+        data: ['Data Points'],
+        left: 'right',
+        top: '10%'
+    },
+    xAxis: {
+        name: 'Data Type 1',
+        type: 'value'
+    },
+    yAxis: {
+        name: 'Data Type 2',
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Data Points',
+            type: 'scatter',
+            itemStyle: {
+                color: '#FF5733'
+            },
+            data: [
+                [1.1, 2.3], [2.2, 2.9], [3.1, 4.1], [4.0, 3.8], [5.5, 5.6],
+                [6.7, 6.1], [7.3, 6.9], [8.5, 7.5], [9.0, 8.2], [10.1, 8.9],
+                [11.3, 9.0], [12.4, 9.7], [13.5, 10.3], [14.6, 10.8], [15.7, 11.2],
+                [16.8, 11.5], [17.9, 11.8], [18.5, 12.1], [19.0, 12.5], [20.3, 12.9],
+                [21.4, 13.0], [22.5, 13.3], [23.6, 13.7], [24.7, 14.1], [25.8, 14.5],
+                [26.9, 14.9], [27.0, 15.2], [28.1, 15.6], [29.2, 15.9], [30.3, 16.2]
+            ]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var app = {};
+
+var option;
+
+option = {
+  title: {
+    text: 'Education & Learning Enrollments',
+    left: 'center',
+    top: 'top'
+  },
+  series: [
+    {
+      type: 'treemap',
+      data: [
+        {
+          name: 'Social Sciences',
+          children: [
+            {name: 'Psychology', value: 300},
+            {name: 'Sociology', value: 150},
+            {name: 'Geography', value: 120},
+          ]
+        },
+        {
+          name: 'Natural Sciences',
+          children: [
+            {name: 'Biology', value: 200},
+            {name: 'Chemistry', value: 180},
+            {name: 'Physics', value: 160},
+          ]
+        },
+        {
+          name: 'Engineering & Technology',
+          children: [
+            {name: 'Computer Science', value: 310},
+            {name: 'Mechanical Engineering', value: 220},
+            {name: 'Electrical Engineering', value: 210},
+          ]
+        },
+        {
+          name: 'Arts & Humanities',
+          children: [
+            {name: 'History', value: 130},
+            {name: 'Philosophy', value: 90},
+            {name: 'Literature', value: 110},
+          ]
+        },
+        {
+          name: 'Mathematics & Statistics',
+          children: [
+            {name: 'Mathematics', value: 250},
+            {name: 'Statistics', value: 190},
+          ]
+        },
+        {
+          name: 'Business & Economics',
+          children: [
+            {name: 'Economics', value: 170},
+            {name: 'Business Administration', value: 280},
+            {name: 'Accounting', value: 160},
+          ]
+        },
+        {
+          name: 'Health Sciences',
+          children: [
+            {name: 'Medicine', value: 260},
+            {name: 'Nursing', value: 240},
+            {name: 'Pharmacy', value: 140},
+          ]
+        }
+      ],
+      leafDepth: 1,
+      levels: [
+        {
+          itemStyle: {
+            borderColor: '#555',
+            borderWidth: 4,
+            gapWidth: 4
+          }
+        },
+        {
+          colorSaturation: [0.3, 0.6],
+          itemStyle: {
+            borderColorSaturation: 0.7,
+            gapWidth: 2,
+            borderWidth: 2
+          }
+        }
+      ],
+      color: [
+        '#c23531', '#2f4554', '#61a0a8', '#d48265',
+        '#91c7ae', '#749f83', '#ca8622', '#bda29a',
+        '#6e7074', '#546570', '#c4ccd3', '#f05b72',
+        '#ef5b9c', '#f47920', '#905a3d', '#fab27b',
+        '#2a5caa', '#444693', '#726930', '#b2d235'
+      ]
+    }
+  ]
+};
+
+if (option && typeof option === 'object') {
+  myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

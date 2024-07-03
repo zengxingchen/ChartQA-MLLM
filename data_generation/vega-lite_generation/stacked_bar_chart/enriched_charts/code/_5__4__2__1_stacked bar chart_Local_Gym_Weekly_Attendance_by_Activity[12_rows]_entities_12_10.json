@@ -1,0 +1,188 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Weekly Reading Hours by Genre",
+    "data": {
+        "values": [
+            {
+                "Week": "Week 1",
+                "Fiction": 2,
+                "Non-Fiction": 1.5,
+                "Sci-Fi": 1,
+                "Biography": 2.5,
+                "Fantasy": 1,
+                "Self-Help": 1.5
+            },
+            {
+                "Week": "Week 2",
+                "Fiction": 2.5,
+                "Non-Fiction": 2,
+                "Sci-Fi": 1.5,
+                "Biography": 3,
+                "Fantasy": 1.5,
+                "Self-Help": 2
+            },
+            {
+                "Week": "Week 3",
+                "Fiction": 3,
+                "Non-Fiction": 2.5,
+                "Sci-Fi": 2,
+                "Biography": 3.5,
+                "Fantasy": 2,
+                "Self-Help": 2.5
+            },
+            {
+                "Week": "Week 4",
+                "Fiction": 3.5,
+                "Non-Fiction": 3,
+                "Sci-Fi": 2.5,
+                "Biography": 4,
+                "Fantasy": 2.5,
+                "Self-Help": 3
+            },
+            {
+                "Week": "Week 5",
+                "Fiction": 4,
+                "Non-Fiction": 3.5,
+                "Sci-Fi": 3,
+                "Biography": 4.5,
+                "Fantasy": 3,
+                "Self-Help": 3.5
+            },
+            {
+                "Week": "Week 6",
+                "Fiction": 4.5,
+                "Non-Fiction": 4,
+                "Sci-Fi": 3.5,
+                "Biography": 5,
+                "Fantasy": 3.5,
+                "Self-Help": 4
+            },
+            {
+                "Week": "Week 7",
+                "Fiction": 5,
+                "Non-Fiction": 4.5,
+                "Sci-Fi": 4,
+                "Biography": 5.5,
+                "Fantasy": 4,
+                "Self-Help": 4.5
+            },
+            {
+                "Week": "Week 8",
+                "Fiction": 5.5,
+                "Non-Fiction": 5,
+                "Sci-Fi": 4.5,
+                "Biography": 6,
+                "Fantasy": 4.5,
+                "Self-Help": 5
+            },
+            {
+                "Week": "Week 9",
+                "Fiction": 6,
+                "Non-Fiction": 5.5,
+                "Sci-Fi": 5,
+                "Biography": 6.5,
+                "Fantasy": 5,
+                "Self-Help": 5.5
+            },
+            {
+                "Week": "Week 10",
+                "Fiction": 6.5,
+                "Non-Fiction": 6,
+                "Sci-Fi": 5.5,
+                "Biography": 7,
+                "Fantasy": 5.5,
+                "Self-Help": 6
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Fiction",
+                "Non-Fiction",
+                "Sci-Fi",
+                "Biography",
+                "Fantasy",
+                "Self-Help"
+            ],
+            "as": [
+                "Genre",
+                "Hours"
+            ]
+        }
+    ],
+    "width": 800,
+    "height": 600,
+    "mark": {
+        "type": "bar",
+        "width": {
+            "band": 0.6
+        }
+    },
+    "title": {
+        "text": "Weekly Reading Hours by Genre",
+        "subtitle": "Each bar represents a week with genres stacked vertically",
+        "subtitleFontStyle": "italic",
+        "subtitleFontSize": 12,
+        "anchor": "start",
+        "color": "black",
+        "frame": "group"
+    },
+    "encoding": {
+        "x": {
+            "field": "Week",
+            "type": "ordinal",
+            "title": "Week",
+            "axis": {
+                "labelAngle": 0
+            }
+        },
+        "y": {
+            "field": "Hours",
+            "type": "quantitative",
+            "title": "Reading Hours"
+        },
+        "color": {
+            "field": "Genre",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Fiction",
+                    "Non-Fiction",
+                    "Sci-Fi",
+                    "Biography",
+                    "Fantasy",
+                    "Self-Help"
+                ],
+                "range": [
+                    "#FF5733",
+                    "#33FF57",
+                    "#3357FF",
+                    "#FF33A1",
+                    "#FF5733",
+                    "#8C33FF"
+                ]
+            },
+            "legend": {
+                "orient": "right"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Week",
+                "type": "ordinal",
+                "title": "Week"
+            },
+            {
+                "field": "Genre",
+                "type": "nominal",
+                "title": "Genre"
+            },
+            {
+                "field": "Hours",
+                "type": "quantitative",
+                "title": "Hours"
+            }
+        ]
+    }
+}

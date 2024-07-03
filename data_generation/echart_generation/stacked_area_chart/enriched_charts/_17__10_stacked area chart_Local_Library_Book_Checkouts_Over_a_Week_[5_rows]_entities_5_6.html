@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 800, // changed width
+    height: 400 // changed height
+});
+
+var app = {};
+
+var option;
+
+// Monthly revenue data for products A, B, and C
+var dataMonth = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+var dataProductA = [12000, 15000, 10000, 16000, 20000, 18000, 22000, 24000, 21000, 19000, 23000, 25000];
+var dataProductB = [8000, 9000, 11000, 9500, 10000, 12000, 14000, 15000, 13000, 12000, 15500, 16000];
+var dataProductC = [4000, 5000, 6000, 6500, 7000, 8000, 9000, 10000, 11000, 12000, 13000, 14000];
+
+option = {
+    title: {
+        text: 'Monthly Product Revenue Analysis',
+        left: 'center',
+        top: 20
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            label: {
+                backgroundColor: '#6a7985'
+            }
+        }
+    },
+    legend: {
+        data: ['Product A', 'Product B', 'Product C'],
+        bottom: 0
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '10%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: dataMonth
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Product A',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: dataProductA,
+            color: '#FFD700' // Gold color for Product A
+        },
+        {
+            name: 'Product B',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: dataProductB,
+            color: '#C0C0C0' // Silver color for Product B
+        },
+        {
+            name: 'Product C',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: dataProductC,
+            color: '#CD7F32' // Bronze color for Product C
+        }
+    ],
+    // Adding numerical/text label/annotation in the chart.
+    markPoint: {
+        data: [
+            {type: 'max', name: 'Max', valueIndex: 5, itemStyle: {color: '#54FF9F'}}, // Spring Green color for the peak
+            {type: 'min', name: 'Min', valueIndex: 5, itemStyle: {color: '#FF6A6A'}} // Red color for the bottom
+        ],
+        symbolSize: 80
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

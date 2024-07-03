@@ -1,0 +1,146 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+        "values": [
+            {
+                "Year": 2019,
+                "Clothing": 12000,
+                "Footwear": 7000,
+                "Accessories": 5000,
+                "Cosmetics": 3000
+            },
+            {
+                "Year": 2020,
+                "Clothing": 13000,
+                "Footwear": 7500,
+                "Accessories": 5200,
+                "Cosmetics": 3500
+            },
+            {
+                "Year": 2021,
+                "Clothing": 14000,
+                "Footwear": 8000,
+                "Accessories": 5500,
+                "Cosmetics": 3700
+            },
+            {
+                "Year": 2022,
+                "Clothing": 15000,
+                "Footwear": 8500,
+                "Accessories": 5800,
+                "Cosmetics": 4000
+            },
+            {
+                "Year": 2023,
+                "Clothing": 16000,
+                "Footwear": 9000,
+                "Accessories": 6000,
+                "Cosmetics": 4500
+            },
+            {
+                "Year": 2024,
+                "Clothing": 17000,
+                "Footwear": 9500,
+                "Accessories": 6500,
+                "Cosmetics": 4800
+            },
+            {
+                "Year": 2025,
+                "Clothing": 18000,
+                "Footwear": 10000,
+                "Accessories": 7000,
+                "Cosmetics": 5200
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Clothing",
+                "Footwear",
+                "Accessories",
+                "Cosmetics"
+            ],
+            "as": [
+                "Category",
+                "Sales"
+            ]
+        }
+    ],
+    "width": 800,
+    "height": 500,
+    "mark": {
+        "type": "bar",
+        "height": {
+            "band": 0.6
+        }
+    },
+    "title": {
+        "text": "Annual Sales in Fashion & Beauty",
+        "subtitle": "Sales per Category, source: Fashion Data",
+        "subtitleFontStyle": "italic",
+        "subtitleFontSize": 10,
+        "anchor": "start",
+        "color": "black"
+    },
+    "encoding": {
+        "x": {
+            "field": "Year",
+            "type": "ordinal",
+            "axis": {
+                "title": "Year"
+            }
+        },
+        "y": {
+            "field": "Sales",
+            "type": "quantitative",
+            "axis": {
+                "title": "Sales"
+            }
+        },
+        "color": {
+            "field": "Category",
+            "type": "nominal",
+            "legend": {
+                "orient": "top-right"
+            },
+            "scale": {
+                "domain": [
+                    "Clothing",
+                    "Footwear",
+                    "Accessories",
+                    "Cosmetics"
+                ],
+                "range": [
+                    "#ff0000",
+                    "#00ff00",
+                    "#0000ff",
+                    "#ff00ff"
+                ]
+            },
+            "title": "Fashion Category"
+        },
+        "tooltip": [
+            {
+                "field": "Year",
+                "type": "ordinal",
+                "title": "Year"
+            },
+            {
+                "field": "Sales",
+                "type": "quantitative",
+                "title": "Sales"
+            },
+            {
+                "field": "Category",
+                "type": "nominal",
+                "title": "Fashion Category"
+            }
+        ]
+    },
+    "config": {
+        "axisX": {
+            "labelAngle": 0
+        }
+    }
+}

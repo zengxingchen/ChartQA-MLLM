@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: '600',
+    height: '400'
+});
+var app = {};
+
+var option;
+option = {
+    title: {
+        text: 'Entertainment Products Consumption in January 2023',
+        left: 'center',
+        textStyle: {
+            color: '#333',
+            fontWeight: 'normal'
+        },
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            label: {
+                backgroundColor: '#6a7985'
+            }
+        }
+    },
+    legend: {
+        data: ['Video Games', 'Books', 'Movies', 'Music'],
+        top: '8%',
+        textStyle: {
+            color: '#000'
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: [
+        {
+            type: 'category',
+            boundaryGap: false,
+            data: ['2023-01-01', '2023-01-02', '2023-01-03', '2023-01-04', '2023-01-05', '2023-01-06', '2023-01-07', '2023-01-08', '2023-01-09', '2023-01-10', '2023-01-11', '2023-01-12', '2023-01-13', '2023-01-14', '2023-01-15', '2023-01-16', '2023-01-17', '2023-01-18', '2023-01-19', '2023-01-20']
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value'
+        }
+    ],
+    series: [
+        {
+            name: 'Video Games',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: { focus: 'series' },
+            data: [1200, 1180, 1250, 1300, 1350, 1400, 1450, 1480, 1550, 1600, 1620, 1650, 1670, 1700, 1720, 1750, 1760, 1750, 1780, 1800],
+            color: '#00aaff'
+        },
+        {
+            name: 'Books',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: { focus: 'series' },
+            data: [400, 420, 460, 480, 500, 520, 540, 560, 590, 610, 620, 630, 640, 650, 660, 670, 680, 690, 700, 710],
+            color: '#ffa500'
+        },
+        {
+            name: 'Movies',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: { focus: 'series' },
+            data: [800, 790, 810, 840, 880, 890, 860, 850, 870, 900, 910, 920, 930, 940, 950, 960, 970, 980, 990, 1000],
+            color: '#ff4500'
+        },
+        {
+            name: 'Music',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: { focus: 'series' },
+            data: [500, 510, 530, 550, 570, 590, 610, 630, 640, 660, 670, 680, 690, 700, 710, 720, 730, 740, 750, 760],
+            color: '#90ee90'
+        },
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

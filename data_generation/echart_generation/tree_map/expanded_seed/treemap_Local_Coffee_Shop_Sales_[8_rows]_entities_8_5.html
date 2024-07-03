@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var option;
+
+// Process the data to the format that Echarts treemap accepts
+function processData(data) {
+    var dates = {};
+    data.forEach(function (entry) {
+        if (!dates[entry.Date]) {
+            dates[entry.Date] = {
+                name: entry.Date,
+                children: []
+            };
+        }
+        var items = dates[entry.Date].children;
+        var item = items.find(i => i.name === entry.Item);
+        if (!item) {
+            item = {name: entry.Item, children: []};
+            items.push(item);
+        }
+        item.children.push({
+            name: entry.Size,
+            value: entry['Revenue ($)'],
+            quantity: entry['Quantity Sold']
+        });
+    });
+
+    return {
+        name: 'Sales Data',
+        children: Object.values(dates)
+    };
+}
+
+var treeData = processData([
+    {'Date': '2022-11-01', 'Item': 'Espresso', 'Size': 'Small', 'Quantity Sold': 50, 'Revenue ($)': 150},
+    {'Date': '2022-11-01', 'Item': 'Cappuccino', 'Size': 'Medium', 'Quantity Sold': 45, 'Revenue ($)': 225},
+    {'Date': '2022-11-01', 'Item': 'Latte', 'Size': 'Large', 'Quantity Sold': 60, 'Revenue ($)': 300},
+    {'Date': '2022-11-02', 'Item': 'Espresso', 'Size': 'Small', 'Quantity Sold': 60, 'Revenue ($)': 180},
+    {'Date': '2022-11-02', 'Item': 'Cappuccino', 'Size': 'Medium', 'Quantity Sold': 50, 'Revenue ($)': 250},
+    {'Date': '2022-11-02', 'Item': 'Latte', 'Size': 'Large', 'Quantity Sold': 70, 'Revenue ($)': 350},
+    {'Date': '2022-11-03', 'Item': 'Espresso', 'Size': 'Small', 'Quantity Sold': 55, 'Revenue ($)': 165},
+    {'Date': '2022-11-03', 'Item': 'Cappuccino', 'Size': 'Medium', 'Quantity Sold': 60, 'Revenue ($)': 300}
+]);
+
+option = {
+    tooltip: {
+        formatter: function (info) {
+            var value = info.value;
+            var quantity = info.data.quantity;
+            var name = info.name;
+            return [
+                `<strong>${name}</strong>`,
+                `Revenue: $${value}`,
+                `Quantity Sold: ${quantity}`
+            ].join('<br/>');
+        }
+    },
+    series: [{
+        type: 'treemap',
+        data: [treeData],
+        label: {
+            show: true,
+            formatter: '{b}'
+        },
+        levels: [
+            {
+                itemStyle: {
+                    borderColor: '#555',
+                    borderWidth: 4,
+                    gapWidth: 4
+                }
+            },
+            {
+                colorSaturation: [0.3, 0.6],
+                itemStyle: {
+                    borderColorSaturation: 0.7,
+                    gapWidth: 2,
+                    borderWidth: 2
+                }
+            },
+            {
+                colorSaturation: [0.3, 0.5],
+                itemStyle: {
+                    borderColorSaturation: 0.6,
+                    gapWidth: 1
+                }
+            },
+            {
+                colorSaturation: [0.3, 0.5]
+            }
+        ]
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

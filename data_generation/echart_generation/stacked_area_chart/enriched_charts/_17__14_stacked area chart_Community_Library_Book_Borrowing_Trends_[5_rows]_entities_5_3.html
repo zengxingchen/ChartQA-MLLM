@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 800, // Changed width
+    height: 600 // Changed height
+});
+
+var option;
+
+option = {
+    title: {
+        text: 'Online Course Enrollments by Category',
+        subtext: 'Education & Learning (2023)',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['Science & Tech', 'Arts & Humanities', 'Business & Finance', 'Health & Psychology'],
+        top: 'bottom'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Science & Tech',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [1200, 1250, 1300, 1350, 1400, 1450, 1500, 1550, 1600, 1650, 1700, 1750],
+            color: '#1E90FF' // Changed color
+        },
+        {
+            name: 'Arts & Humanities',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [800, 850, 870, 890, 900, 920, 940, 950, 970, 980, 990, 1000],
+            color: '#32CD32' // Changed color
+        },
+        {
+            name: 'Business & Finance',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [1000, 1100, 1150, 1200, 1250, 1300, 1350, 1400, 1450, 1500, 1550, 1600],
+            color: '#FFD700' // Changed color
+        },
+        {
+            name: 'Health & Psychology',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [900, 950, 980, 1000, 1050, 1100, 1150, 1200, 1250, 1300, 1350, 1400],
+            color: '#FF6347' // Changed color
+        }
+    ],
+    // Assign numerical/text label/annotation in the chart
+    label: {
+        show: true,
+        position: 'top'
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

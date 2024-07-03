@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+var option;
+option = {
+    title: {
+        text: 'Height vs Weight Analysis',
+        left: 'center',
+        top: '10%'
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: function (params) {
+            return 'Height: ' + params.data[0] + ' cm<br/>Weight: ' + params.data[1] + ' kg';
+        }
+    },
+    legend: {
+        data: ['Height vs Weight'],
+        left: '10%',
+        top: '30%'
+    },
+    xAxis: {
+        name: 'Height (cm)',
+        type: 'value'
+    },
+    yAxis: {
+        name: 'Weight (kg)',
+        type: 'value'
+    },
+    series: [{
+        name: 'Height vs Weight',
+        type: 'scatter',
+        data: [
+            [160.0, 25.0],
+            [105.0, 14.5],
+            [150.5, 18.0],
+            [170.0, 30.0],
+            [140.0, 10.0],
+            [120.0, 20.0],
+            [130.5, 15.0],
+            [125.0, 12.0],
+            [110.0, 19.0],
+            [175.0, 28.0],
+            [190.0, 23.0],
+            [95.0, 17.0],
+            [100.0, 21.0],
+            [85.0, 11.0],
+            [80.0, 13.5],
+            [115.0, 18.0],
+            [126.0, 19.5],
+            [135.0, 20.0],
+            [155.0, 22.0],
+            [145.0, 25.5],
+            [130.0, 29.0],
+            [148.0, 27.5],
+            [180.0, 14.0],
+            [165.0, 16.5],
+            [150.0, 12.5],
+            [170.0, 20.5],
+            [190.0, 24.5],
+            [105.0, 26.0],
+            [115.0, 18.0],
+            [125.0, 13.5],
+            [132.5, 28.0],
+            [137.0, 19.5],
+            [142.0, 15.0],
+            [98.0, 18.0],
+            [115.0, 27.0],
+            [122.0, 20.5],
+            [128.0, 16.0],
+            [156.0, 24.0],
+            [162.0, 25.5],
+            [168.0, 14.0],
+            [123.0, 19.0],
+            [145.0, 22.0],
+            [172.0, 30.5],
+            [180.0, 20.0],
+            [190.0, 29.0]
+        ],
+        itemStyle: {
+            color: '#40E0D0'
+        }
+    }],
+    grid: {
+        width: '80%',
+        height: '65%',
+        top: '20%'
+    }
+};
+if (option && typeof option === "object") {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, { renderer: 'canvas', width: 800, height: 400 });
+var app = {};
+
+var option;
+
+option = {
+  title: {
+    text: 'Annual Growth of Fitness Class Memberships',
+    subtext: '2010-2020',
+    left: 'center'
+  },
+  tooltip: {
+    trigger: 'axis',
+    axisPointer: {
+      type: 'cross',
+      label: {
+        backgroundColor: '#6a7985',
+      },
+    },
+  },
+  legend: {
+    data: ['Yoga', 'Cardio', 'Weightlifting'],
+    left: 10,
+    top: '8%',
+  },
+  toolbox: {
+    feature: {
+      saveAsImage: {}
+    }
+  },
+  grid: {
+    left: '3%',
+    right: '4%',
+    bottom: '3%',
+    containLabel: true
+  },
+  xAxis: {
+    type: 'category',
+    boundaryGap: false,
+    data: ['2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020']
+  },
+  yAxis: {
+    type: 'value'
+  },
+  series: [
+    {
+      name: 'Yoga',
+      type: 'line',
+      stack: 'Total',
+      areaStyle: {},
+      emphasis: {focus: 'series'},
+      data: [120, 130, 135, 140, 150, 155, 160, 165, 170, 180, 190],
+      color: '#FF7F50',
+    },
+    {
+      name: 'Cardio',
+      type: 'line',
+      stack: 'Total',
+      areaStyle: {},
+      emphasis: {focus: 'series'},
+      data: [200, 210, 220, 230, 240, 250, 260, 270, 280, 290, 300],
+      color: '#1E90FF',
+    },
+    {
+      name: 'Weightlifting',
+      type: 'line',
+      stack: 'Total',
+      areaStyle: {},
+      emphasis: {focus: 'series'},
+      data: [150, 160, 165, 170, 180, 185, 190, 200, 210, 220, 230],
+      color: '#32CD32',
+    },
+  ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

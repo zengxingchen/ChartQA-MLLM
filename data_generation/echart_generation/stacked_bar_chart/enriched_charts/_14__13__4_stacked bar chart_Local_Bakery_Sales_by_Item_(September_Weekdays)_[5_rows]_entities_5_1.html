@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+var option = {
+    title: {
+        text: 'Health & Wellness Trends Over Years',
+        left: 'center',
+        top: '5%'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Value1', 'Value2', 'Value3'],
+        top: '10%'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        data: ['Nutrition 2018', 'Nutrition 2019', 'Nutrition 2020', 'Exercise 2018', 'Exercise 2019', 'Exercise 2020', 'Mental Health 2018', 'Mental Health 2019', 'Mental Health 2020'],
+        axisLabel: {
+            rotate: 30,
+            interval: 0
+        }
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Value1',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'inside'
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [120, 90, 150, 220, 210, 300, 320, 332, 301],
+            itemStyle: {
+                color: '#5470C6'
+            }
+        },
+        {
+            name: 'Value2',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'inside'
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [132, 212, 232, 182, 192, 332, 332, 311, 334],
+            itemStyle: {
+                color: '#91CC75'
+            }
+        },
+        {
+            name: 'Value3',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'inside'
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [101, 121, 201, 191, 171, 301, 301, 334, 380],
+            itemStyle: {
+                color: '#EE6666'
+            }
+        }
+    ]
+};
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+var option;
+
+option = {
+    title: {
+        text: 'Trends in Various Fields Over the Years',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        top: 'bottom',
+        data: ['Art & Design', 'Science & Nature', 'Health & Psychology', 'Culture & Society', 'Economics & Finance']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '10%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        data: ['2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020'],
+        axisLabel: {
+            interval: 0
+        }
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Art & Design',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'inside'
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            itemStyle: {
+                color: '#FF5733'
+            },
+            data: [120, 220, 150, 320, 420, 520, 620, 720, 820, 920, 1020]
+        },
+        {
+            name: 'Science & Nature',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'inside'
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            itemStyle: {
+                color: '#33FF57'
+            },
+            data: [132, 182, 232, 332, 432, 532, 632, 732, 832, 932, 1032]
+        },
+        {
+            name: 'Health & Psychology',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'inside'
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            itemStyle: {
+                color: '#3357FF'
+            },
+            data: [101, 191, 201, 301, 401, 501, 601, 701, 801, 901, 1001]
+        },
+        {
+            name: 'Culture & Society',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'inside'
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            itemStyle: {
+                color: '#FF33A1'
+            },
+            data: [134, 234, 154, 334, 334, 434, 534, 634, 734, 834, 934]
+        },
+        {
+            name: 'Economics & Finance',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'inside'
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            itemStyle: {
+                color: '#FFD700'
+            },
+            data: [90, 290, 190, 390, 390, 490, 590, 690, 790, 890, 990]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

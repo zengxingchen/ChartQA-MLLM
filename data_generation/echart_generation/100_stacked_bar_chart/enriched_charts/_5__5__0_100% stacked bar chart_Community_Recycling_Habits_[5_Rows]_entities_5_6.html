@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 600,
+    height: 400
+});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Environment & Climate Change Initiatives by Year',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Renewable Energy', 'Electric Cars', 'Recycling', 'Conservation', 'Others'],
+        top: '6%'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01]
+    },
+    yAxis: {
+        type: 'category',
+        data: ['2018', '2019', '2020', '2021', '2022', '2023']
+    },
+    series: [
+        {
+            name: 'Renewable Energy',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 20,
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            color: '#1f77b4',
+            data: [20, 22, 25, 28, 30, 35]
+        },
+        {
+            name: 'Electric Cars',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 20,
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            color: '#ff7f0e',
+            data: [15, 17, 20, 25, 30, 33]
+        },
+        {
+            name: 'Recycling',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 20,
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            color: '#2ca02c',
+            data: [30, 28, 27, 25, 20, 17]
+        },
+        {
+            name: 'Conservation',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 20,
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            color: '#d62728',
+            data: [25, 23, 18, 12, 10, 8]
+        },
+        {
+            name: 'Others',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 20,
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            color: '#9467bd',
+            data: [10, 10, 10, 10, 10, 7]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

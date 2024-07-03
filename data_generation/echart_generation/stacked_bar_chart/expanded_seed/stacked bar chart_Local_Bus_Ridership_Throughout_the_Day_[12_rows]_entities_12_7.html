@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+// Generate series data for each route
+function generateSeries(data) {
+    var series = [];
+    var routeNames = Object.keys(data[0]).filter(k => k !== 'Time'); // exclude 'Time' key
+    routeNames.forEach(function (route) {
+        var seriesData = data.map(function (item) {
+            return item[route];
+        });
+
+        series.push({
+            name: route,
+            type: 'bar',
+            stack: 'total',
+            emphasis: {
+                focus: 'series'
+            },
+            data: seriesData
+        });
+    });
+    return series;
+}
+
+var tableData = [
+    {'Time': '6am-7am', 'Route A': 50, 'Route B': 25, 'Route C': 35, 'Route D': 20, 'Route E': 15},
+    {'Time': '7am-8am', 'Route A': 150, 'Route B': 75, 'Route C': 120, 'Route D': 60, 'Route E': 40},
+    {'Time': '8am-9am', 'Route A': 200, 'Route B': 100, 'Route C': 150, 'Route D': 80, 'Route E': 60},
+    {'Time': '9am-10am', 'Route A': 120, 'Route B': 60, 'Route C': 90, 'Route D': 40, 'Route E': 30},
+    {'Time': '10am-11am', 'Route A': 90, 'Route B': 45, 'Route C': 70, 'Route D': 30, 'Route E': 20},
+    {'Time': '11am-12pm', 'Route A': 85, 'Route B': 42, 'Route C': 65, 'Route D': 30, 'Route E': 22},
+    {'Time': '12pm-1pm', 'Route A': 110, 'Route B': 55, 'Route C': 75, 'Route D': 32, 'Route E': 25},
+    {'Time': '1pm-2pm', 'Route A': 100, 'Route B': 50, 'Route C': 70, 'Route D': 30, 'Route E': 20},
+    {'Time': '2pm-3pm', 'Route A': 120, 'Route B': 60, 'Route C': 85, 'Route D': 45, 'Route E': 30},
+    {'Time': '3pm-4pm', 'Route A': 130, 'Route B': 65, 'Route C': 100, 'Route D': 50, 'Route E': 35},
+    {'Time': '4pm-5pm', 'Route A': 220, 'Route B': 110, 'Route C': 180, 'Route D': 90, 'Route E': 60},
+    {'Time': '5pm-6pm', 'Route A': 240, 'Route B': 120, 'Route C': 200, 'Route D': 100, 'Route E': 80}
+];
+var timeData = tableData.map(function (item) {
+    return item.Time;
+});
+
+option = {
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            // Use a shadow instead of a line
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Route A', 'Route B', 'Route C', 'Route D', 'Route E']
+    },
+    toolbox: {
+        show: true,
+        feature: {
+            saveAsImage: { show: true }
+        }
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: true,
+        data: timeData // ['6am-7am', '7am-8am', ...]
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: generateSeries(tableData)
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

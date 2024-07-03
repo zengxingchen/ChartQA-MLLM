@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+var option;
+
+option = {
+    title: {
+        text: 'Monthly Sales of Electronic Devices',
+        left: 'center',
+        top: '5%'
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['Smartphones', 'Laptops', 'Tablets'],
+        top: '10%'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Smartphones',
+            type: 'line',
+            color: '#FF5733',
+            data: [120, 130, 140, 150, 160, 170, 180, 190, 200, 210, 220, 230],
+            label: {
+                show: true,
+                position: 'top'
+            }
+        },
+        {
+            name: 'Laptops',
+            type: 'line',
+            color: '#33FF57',
+            data: [85, 90, 95, 100, 105, 110, 115, 120, 125, 130, 135, 140],
+            label: {
+                show: true,
+                position: 'top'
+            }
+        },
+        {
+            name: 'Tablets',
+            type: 'line',
+            color: '#3357FF',
+            data: [50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100, 105],
+            label: {
+                show: true,
+                position: 'top'
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

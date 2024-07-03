@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+var option;
+
+option = {
+    title: {
+        text: 'Monthly CO2 Levels Over Time',
+        left: 'center',
+        top: '5%',
+        textStyle: {
+            color: '#333',
+            fontSize: 20,
+        },
+    },
+    tooltip: {
+        trigger: 'axis',
+        formatter: '{b0}: {c0} ppm'
+    },
+    xAxis: {
+        type: 'category',
+        data: ['2020-01', '2020-02', '2020-03', '2020-04', '2020-05', '2020-06', '2020-07', '2020-08', '2020-09', '2020-10', '2020-11', '2020-12',
+               '2021-01', '2021-02', '2021-03', '2021-04', '2021-05', '2021-06', '2021-07', '2021-08', '2021-09', '2021-10', '2021-11', '2021-12',
+               '2022-01', '2022-02', '2022-03', '2022-04', '2022-05', '2022-06', '2022-07', '2022-08', '2022-09', '2022-10', '2022-11', '2022-12'],
+        axisLabel: {
+            rotate: 45,
+            textStyle: {
+                color: '#333',
+                fontSize: 12,
+            },
+        },
+    },
+    yAxis: {
+        type: 'value',
+        axisLabel: {
+            formatter: '{value} ppm',
+            textStyle: {
+                color: '#333',
+                fontSize: 12,
+            },
+        },
+    },
+    series: [{
+        name: 'CO2 Levels',
+        type: 'line',
+        data: [415.25, 416.75, 417.30, 416.45, 417.65, 416.15, 415.95, 416.80, 416.30, 417.10, 416.90, 417.00,
+               418.20, 418.75, 419.30, 418.45, 419.65, 418.15, 417.95, 418.80, 418.30, 419.10, 418.90, 419.00,
+               420.20, 420.75, 421.30, 420.45, 421.65, 420.15, 419.95, 420.80, 420.30, 421.10, 420.90, 421.00],
+        lineStyle: {
+            color: '#1f78b4',
+            width: 2,
+        },
+        itemStyle: {
+            color: '#33a02c',
+        },
+        label: {
+            show: true,
+            position: 'top',
+            color: '#333',
+        }
+    }],
+    legend: {
+        data: ['CO2 Levels'],
+        top: 'bottom',
+        textStyle: {
+            color: '#333',
+        },
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

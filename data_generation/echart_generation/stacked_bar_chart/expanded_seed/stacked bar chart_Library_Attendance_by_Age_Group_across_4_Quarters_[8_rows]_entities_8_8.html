@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+// Transform provided data into a format that ECharts can consume
+const tableData = [
+  {'Quarter': 'Q1', 'Children (0-12)': 450, 'Teens (13-19)': 200, 'Adults (20-64)': 750, 'Seniors (65+)': 300},
+  {'Quarter': 'Q2', 'Children (0-12)': 500, 'Teens (13-19)': 240, 'Adults (20-64)': 790, 'Seniors (65+)': 320},
+  {'Quarter': 'Q3', 'Children (0-12)': 550, 'Teens (13-19)': 280, 'Adults (20-64)': 830, 'Seniors (65+)': 350},
+  {'Quarter': 'Q4', 'Children (0-12)': 600, 'Teens (13-19)': 220, 'Adults (20-64)': 780, 'Seniors (65+)': 330},
+  {'Quarter': 'Q5', 'Children (0-12)': 620, 'Teens (13-19)': 200, 'Adults (20-64)': 770, 'Seniors (65+)': 340},
+  {'Quarter': 'Q6', 'Children (0-12)': 640, 'Teens (13-19)': 220, 'Adults (20-64)': 800, 'Seniors (65+)': 360},
+  {'Quarter': 'Q7', 'Children (0-12)': 650, 'Teens (13-19)': 230, 'Adults (20-64)': 810, 'Seniors (65+)': 370},
+  {'Quarter': 'Q8', 'Children (0-12)': 670, 'Teens (13-19)': 240, 'Adults (20-64)': 820, 'Seniors (65+)': 380},
+];
+
+let quarters = tableData.map(item => item.Quarter);
+let childrenData = tableData.map(item => item['Children (0-12)']);
+let teensData = tableData.map(item => item['Teens (13-19)']);
+let adultsData = tableData.map(item => item['Adults (20-64)']);
+let seniorsData = tableData.map(item => item['Seniors (65+)']);
+
+option = {
+  tooltip: {
+    trigger: 'axis',
+    axisPointer: {
+      type: 'shadow'
+    }
+  },
+  legend: {
+    data: ['Children (0-12)', 'Teens (13-19)', 'Adults (20-64)', 'Seniors (65+)']
+  },
+  grid: {
+    left: '3%',
+    right: '4%',
+    bottom: '3%',
+    containLabel: true
+  },
+  xAxis: {
+    type: 'value'
+  },
+  yAxis: {
+    type: 'category',
+    data: quarters,
+  },
+  series: [
+    {
+      name: 'Children (0-12)',
+      type: 'bar',
+      stack: 'total',
+      label: {
+        show: true,
+        position: 'insideRight'
+      },
+      data: childrenData
+    },
+    {
+      name: 'Teens (13-19)',
+      type: 'bar',
+      stack: 'total',
+      label: {
+        show: true,
+        position: 'insideRight'
+      },
+      data: teensData
+    },
+    {
+      name: 'Adults (20-64)',
+      type: 'bar',
+      stack: 'total',
+      label: {
+        show: true,
+        position: 'insideRight'
+      },
+      data: adultsData
+    },
+    {
+      name: 'Seniors (65+)',
+      type: 'bar',
+      stack: 'total',
+      label: {
+        show: true,
+        position: 'insideRight'
+      },
+      data: seniorsData
+    }
+  ]
+};
+
+if (option && typeof option === 'object') {
+  myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

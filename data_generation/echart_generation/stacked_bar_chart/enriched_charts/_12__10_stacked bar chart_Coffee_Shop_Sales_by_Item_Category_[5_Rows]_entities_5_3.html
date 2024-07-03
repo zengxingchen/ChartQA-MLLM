@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 800,
+    height: 600
+});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Quarterly Departmental Performance',
+        left: 'center',
+        top: '10'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Design', 'Development', 'Marketing', 'Sales', 'Support'],
+        top: '40'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value'
+    },
+    yAxis: {
+        type: 'category',
+        data: ['Q1', 'Q2', 'Q3', 'Q4', 'Q5', 'Q6', 'Q7', 'Q8', 'Q9', 'Q10']
+    },
+    series: [
+        {
+            name: 'Design',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            itemStyle: {
+                color: '#FF5733'
+            },
+            data: [120, 220, 320, 420, 520, 620, 720, 820, 920, 1020]
+        },
+        {
+            name: 'Development',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            itemStyle: {
+                color: '#33FF57'
+            },
+            data: [132, 182, 232, 282, 332, 382, 432, 482, 532, 582]
+        },
+        {
+            name: 'Marketing',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            itemStyle: {
+                color: '#3357FF'
+            },
+            data: [101, 191, 301, 391, 481, 571, 661, 751, 841, 931]
+        },
+        {
+            name: 'Sales',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            itemStyle: {
+                color: '#FF33A8'
+            },
+            data: [134, 234, 334, 434, 534, 634, 734, 834, 934, 1034]
+        },
+        {
+            name: 'Support',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            itemStyle: {
+                color: '#A833FF'
+            },
+            data: [90, 290, 390, 490, 590, 690, 790, 890, 990, 1090]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,185 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Average Time Spent on Leisure Activities by Age Group",
+    "padding": {
+        "left": 60,
+        "top": 20,
+        "right": 30,
+        "bottom": 100
+    },
+    "width": 600,
+    "height": 400,
+    "title": {
+        "text": "Average Time Spent on Leisure Activities by Age Group",
+        "anchor": "start",
+        "offset": 40,
+        "fontSize": 18
+    },
+    "data": {
+        "values": [
+            {
+                "AgeGroup": "15-24",
+                "Reading": 15,
+                "TV": 30,
+                "Sports": 25,
+                "Socializing": 30
+            },
+            {
+                "AgeGroup": "25-34",
+                "Reading": 20,
+                "TV": 25,
+                "Sports": 20,
+                "Socializing": 35
+            },
+            {
+                "AgeGroup": "35-44",
+                "Reading": 18,
+                "TV": 35,
+                "Sports": 15,
+                "Socializing": 32
+            },
+            {
+                "AgeGroup": "45-54",
+                "Reading": 22,
+                "TV": 30,
+                "Sports": 10,
+                "Socializing": 38
+            },
+            {
+                "AgeGroup": "55-64",
+                "Reading": 25,
+                "TV": 40,
+                "Sports": 8,
+                "Socializing": 27
+            },
+            {
+                "AgeGroup": "65+",
+                "Reading": 30,
+                "TV": 50,
+                "Sports": 5,
+                "Socializing": 15
+            },
+            {
+                "AgeGroup": "25-34",
+                "Reading": 10,
+                "TV": 35,
+                "Sports": 30,
+                "Socializing": 25
+            },
+            {
+                "AgeGroup": "55-64",
+                "Reading": 15,
+                "TV": 25,
+                "Sports": 25,
+                "Socializing": 35
+            },
+            {
+                "AgeGroup": "35-44",
+                "Reading": 28,
+                "TV": 22,
+                "Sports": 22,
+                "Socializing": 28
+            },
+            {
+                "AgeGroup": "65+",
+                "Reading": 22,
+                "TV": 35,
+                "Sports": 15,
+                "Socializing": 28
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Reading",
+                "TV",
+                "Sports",
+                "Socializing"
+            ],
+            "as": [
+                "Activity",
+                "Percentage"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "bar",
+        "tooltip": true
+    },
+    "encoding": {
+        "x": {
+            "field": "AgeGroup",
+            "type": "nominal",
+            "axis": {
+                "title": "Age Group"
+            },
+            "scale": {
+                "band": 0.8
+            }
+        },
+        "y": {
+            "field": "Percentage",
+            "type": "quantitative",
+            "stack": "normalize",
+            "axis": {
+                "format": ".0%"
+            }
+        },
+        "color": {
+            "field": "Activity",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Reading",
+                    "TV",
+                    "Sports",
+                    "Socializing"
+                ],
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e",
+                    "#2ca02c",
+                    "#d62728"
+                ]
+            },
+            "legend": {
+                "title": "Activity",
+                "orient": "right",
+                "offset": 20
+            }
+        },
+        "tooltip": [
+            {
+                "field": "AgeGroup",
+                "type": "nominal",
+                "title": "Age Group"
+            },
+            {
+                "field": "Activity",
+                "type": "nominal",
+                "title": "Activity"
+            },
+            {
+                "field": "Percentage",
+                "type": "quantitative",
+                "title": "Percentage",
+                "format": ".0%"
+            }
+        ]
+    },
+    "config": {
+        "axisX": {
+            "titleFontSize": 14,
+            "labelFontSize": 12
+        },
+        "axisY": {
+            "titleFontSize": 14,
+            "labelFontSize": 12
+        },
+        "legend": {
+            "titleFontSize": 14,
+            "labelFontSize": 12
+        }
+    }
+}

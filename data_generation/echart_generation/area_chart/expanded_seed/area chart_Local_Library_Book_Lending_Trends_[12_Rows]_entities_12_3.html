@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+// Data
+var data = [{'Week': '2023-01-01 to 2023-01-07', 'Books Lent': 120}, {'Week': '2023-01-08 to 2023-01-14', 'Books Lent': 134}, {'Week': '2023-01-15 to 2023-01-21', 'Books Lent': 145}, {'Week': '2023-01-22 to 2023-01-28', 'Books Lent': 113}, {'Week': '2023-01-29 to 2023-02-04', 'Books Lent': 98}, {'Week': '2023-02-05 to 2023-02-11', 'Books Lent': 107}, {'Week': '2023-02-12 to 2023-02-18', 'Books Lent': 123}, {'Week': '2023-02-19 to 2023-02-25', 'Books Lent': 95}, {'Week': '2023-02-26 to 2023-03-04', 'Books Lent': 130}, {'Week': '2023-03-05 to 2023-03-11', 'Books Lent': 111}, {'Week': '2023-03-12 to 2023-03-18', 'Books Lent': 145}, {'Week': '2023-03-19 to 2023-03-25', 'Books Lent': 152}];
+
+// Transform the data into a suitable format for the area chart
+var xData = data.map(item => item.Week);
+var yData = data.map(item => item['Books Lent']);
+
+option = {
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            label: {
+                backgroundColor: '#6a7985'
+            }
+        }
+    },
+    legend: {
+        data: ['Books Lent']
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {},
+            dataView: {}
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: [
+        {
+            type: 'category',
+            boundaryGap: false,
+            data: xData
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value'
+        }
+    ],
+    series: [
+        {
+            name: 'Books Lent',
+            type: 'line',
+            stack: 'Total amount',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: yData
+        }
+    ],
+    color: ['#5470c6'], // Customize the color of the series here
+    textStyle: {
+        fontFamily: 'Arial, sans-serif'
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

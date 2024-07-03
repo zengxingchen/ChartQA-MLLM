@@ -1,0 +1,196 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Monthly Electricity Consumption of Various Industries",
+    "width": 500,
+    "height": 300,
+    "data": {
+        "values": [
+            {
+                "Month": "January",
+                "Automotive": 80,
+                "Electronics": 130,
+                "Textiles": 45,
+                "Food Processing": 110,
+                "Pharmaceuticals": 95
+            },
+            {
+                "Month": "February",
+                "Automotive": 85,
+                "Electronics": 125,
+                "Textiles": 50,
+                "Food Processing": 115,
+                "Pharmaceuticals": 90
+            },
+            {
+                "Month": "March",
+                "Automotive": 78,
+                "Electronics": 140,
+                "Textiles": 52,
+                "Food Processing": 108,
+                "Pharmaceuticals": 100
+            },
+            {
+                "Month": "April",
+                "Automotive": 82,
+                "Electronics": 135,
+                "Textiles": 55,
+                "Food Processing": 120,
+                "Pharmaceuticals": 85
+            },
+            {
+                "Month": "May",
+                "Automotive": 87,
+                "Electronics": 145,
+                "Textiles": 57,
+                "Food Processing": 105,
+                "Pharmaceuticals": 110
+            },
+            {
+                "Month": "June",
+                "Automotive": 73,
+                "Electronics": 150,
+                "Textiles": 53,
+                "Food Processing": 112,
+                "Pharmaceuticals": 92
+            },
+            {
+                "Month": "July",
+                "Automotive": 88,
+                "Electronics": 155,
+                "Textiles": 60,
+                "Food Processing": 98,
+                "Pharmaceuticals": 115
+            },
+            {
+                "Month": "August",
+                "Automotive": 94,
+                "Electronics": 160,
+                "Textiles": 62,
+                "Food Processing": 130,
+                "Pharmaceuticals": 105
+            },
+            {
+                "Month": "September",
+                "Automotive": 90,
+                "Electronics": 165,
+                "Textiles": 65,
+                "Food Processing": 115,
+                "Pharmaceuticals": 95
+            },
+            {
+                "Month": "October",
+                "Automotive": 85,
+                "Electronics": 170,
+                "Textiles": 63,
+                "Food Processing": 128,
+                "Pharmaceuticals": 110
+            },
+            {
+                "Month": "November",
+                "Automotive": 89,
+                "Electronics": 175,
+                "Textiles": 66,
+                "Food Processing": 105,
+                "Pharmaceuticals": 120
+            },
+            {
+                "Month": "December",
+                "Automotive": 96,
+                "Electronics": 180,
+                "Textiles": 68,
+                "Food Processing": 110,
+                "Pharmaceuticals": 93
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Automotive",
+                "Electronics",
+                "Textiles",
+                "Food Processing",
+                "Pharmaceuticals"
+            ],
+            "as": [
+                "Industry",
+                "Consumption"
+            ]
+        }
+    ],
+    "title": {
+        "text": "Monthly Electricity Consumption across Industries",
+        "anchor": "middle",
+        "offset": 5,
+        "frame": "bounds"
+    },
+    "mark": {
+        "type": "area",
+        "opacity": 0.8
+    },
+    "encoding": {
+        "x": {
+            "field": "Month",
+            "type": "ordinal",
+            "axis": {
+                "title": "Month",
+                "labelAngle": 0
+            }
+        },
+        "y": {
+            "field": "Consumption",
+            "type": "quantitative",
+            "stack": "zero",
+            "axis": {
+                "title": "Electricity Consumption (GWh)"
+            }
+        },
+        "color": {
+            "field": "Industry",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Automotive",
+                    "Electronics",
+                    "Textiles",
+                    "Food Processing",
+                    "Pharmaceuticals"
+                ],
+                "range": [
+                    "#e69f00",
+                    "#56b4e9",
+                    "#009e73",
+                    "#f0e442",
+                    "#0072b2"
+                ]
+            },
+            "legend": {
+                "title": "Industry",
+                "orient": "right",
+                "offset": 10
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Month",
+                "type": "ordinal"
+            },
+            {
+                "field": "Industry",
+                "type": "nominal"
+            },
+            {
+                "field": "Consumption",
+                "type": "quantitative"
+            }
+        ]
+    },
+    "config": {
+        "view": {
+            "stroke": "transparent"
+        },
+        "axis": {
+            "domainWidth": 1
+        }
+    }
+}

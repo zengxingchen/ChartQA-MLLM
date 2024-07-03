@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+var option = {
+    title: {
+        text: 'Correlation between Exercise Duration and Mood',
+        left: 'center',
+        top: '10'
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: function (params) {
+            return 'Exercise Duration: ' + params.value[0] + ' min<br>Mood Score: ' + params.value[1];
+        }
+    },
+    xAxis: {
+        name: 'Exercise Duration (minutes)',
+        nameLocation: 'middle',
+        nameGap: 30,
+        splitLine: {
+            lineStyle: {
+                type: 'dashed'
+            }
+        }
+    },
+    yAxis: {
+        name: 'Mood Score',
+        nameLocation: 'middle',
+        nameGap: 30,
+        splitLine: {
+            lineStyle: {
+                type: 'dashed'
+            }
+        }
+    },
+    series: [{
+        name: 'Exercise vs Mood',
+        type: 'scatter',
+        itemStyle: {
+            color: '#ff7f50'
+        },
+        data: [
+            [5, 2], [10, 3], [15, 4], [20, 4], [25, 5],
+            [30, 5], [35, 6], [40, 6], [45, 7], [50, 7],
+            [55, 8], [60, 8], [65, 9], [70, 9], [75, 10],
+            [80, 10], [85, 9], [90, 8], [95, 8], [100, 7],
+            [105, 6], [110, 6], [115, 5], [120, 5], [125, 4],
+            [130, 4], [135, 3], [140, 3], [145, 2], [150, 2]
+        ]
+    }],
+    legend: {
+        data: ['Exercise vs Mood'],
+        left: 'left',
+        top: '10'
+    }
+};
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

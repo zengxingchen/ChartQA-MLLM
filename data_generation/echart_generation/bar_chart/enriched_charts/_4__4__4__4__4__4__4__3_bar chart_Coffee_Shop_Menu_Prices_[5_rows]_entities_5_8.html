@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 800,
+    height: 600
+});
+var app = {};
+
+var option = {
+    title: {
+        text: 'Future Technologies & Society',
+        left: 'center',
+        top: '20'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01]
+    },
+    yAxis: {
+        type: 'category',
+        data: ['AI in Healthcare', 'VR in Education', 'Blockchain in Finance', 'Green Energy', 'Space Exploration', 'Smart Cities', 'Biotechnology', 'Quantum Computing', '5G Technology', 'Autonomous Vehicles']
+    },
+    series: [
+        {
+            name: 'Value',
+            type: 'bar',
+            data: [85, 75, 65, 95, 70, 60, 80, 90, 88, 78],
+            itemStyle: {
+                color: function(params) {
+                    var colorList = [
+                        '#FF5733', '#33FF57', '#3357FF', '#FF33A6', '#33FFD1', '#A633FF', '#FF8F33', '#33FF8F', '#FF3333', '#338FFF'
+                    ];
+                    return colorList[params.dataIndex];
+                }
+            },
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            barWidth: '50%'
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

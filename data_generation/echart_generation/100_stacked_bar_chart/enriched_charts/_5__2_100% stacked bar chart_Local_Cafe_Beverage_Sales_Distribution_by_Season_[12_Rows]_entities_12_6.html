@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+  width: 600, // Change width of the chart
+  height: 500 // Change height of the chart
+});
+var option;
+
+option = {
+  title: {
+    text: 'Education Levels by Country', // Headline
+    left: 'center',
+    top: 20 // Make sure the headline does not overlap with legend
+  },
+  tooltip: {
+    trigger: 'axis',
+    axisPointer: {
+      // Use axis to keep tooltip line vertical
+      type: 'shadow'
+    }
+  },
+  legend: {
+    data: ['Primary', 'Secondary', 'Tertiary'],
+    bottom: 0 // Move legend to the bottom to prevent overlap with headline
+  },
+  grid: {
+    left: '3%',
+    right: '4%',
+    bottom: '10%',
+    containLabel: true
+  },
+  xAxis: {
+    type: 'value',
+    boundaryGap: [0, 0.01],
+  },
+  yAxis: {
+    type: 'category',
+    data: ['Country A', 'Country B', 'Country C', 'Country D', 'Country E']
+  },
+  series: [
+    {
+      name: 'Primary',
+      type: 'bar',
+      stack: 'total',
+      barWidth: 35, // Change width of the bars
+      data: [45, 25, 15, 30, 20],
+      color: '#FFD700' // Specific color code
+    },
+    {
+      name: 'Secondary',
+      type: 'bar',
+      stack: 'total',
+      barWidth: 35, // Same as above
+      data: [35, 45, 55, 40, 50],
+      color: '#6A5ACD' // Specific color code
+    },
+    {
+      name: 'Tertiary',
+      type: 'bar',
+      stack: 'total',
+      barWidth: 35, // Same as above
+      data: [20, 30, 30, 30, 30],
+      color: '#20B2AA' // Specific color code
+    }
+  ]
+};
+
+if (option && typeof option === 'object') {
+  myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

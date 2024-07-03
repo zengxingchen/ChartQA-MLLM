@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option = {
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Electric Vehicles', 'Hybrid Vehicles', 'Solar Energy', 'Wind Energy']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value'
+    },
+    yAxis: {
+        type: 'category',
+        data: ['2021', '2022', '2023', '2024', '2025']
+    },
+    series: [
+        {
+            name: 'Electric Vehicles',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [15, 20, 25, 30, 35],
+            itemStyle: {
+                color: '#33CCFF'
+            },
+            barWidth: 20
+        },
+        {
+            name: 'Hybrid Vehicles',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [10, 15, 20, 25, 20],
+            itemStyle: {
+                color: '#009966'
+            },
+            barWidth: 20
+        },
+        {
+            name: 'Solar Energy',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [40, 40, 35, 30, 25],
+            itemStyle: {
+                color: '#FFCC00'
+            },
+            barWidth: 20
+        },
+        {
+            name: 'Wind Energy',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [35, 25, 20, 15, 20],
+            itemStyle: {
+                color: '#990033'
+            },
+            barWidth: 20
+        }
+    ],
+    title: {
+        text: 'Advancements in Sustainable Energy and Transport',
+        subtext: 'Percentage Change over Years',
+        left: 'center'
+    },
+    toolbox: {
+        show: true,
+        feature: {
+            saveAsImage: { show: true }
+        }
+    },
+    color: ['#33CCFF', '#009966', '#FFCC00', '#990033'],
+    itemStyle: {
+        barBorderRadius: [0, 0, 0, 0]
+    },
+    textStyle: {
+        fontSize: 14
+    },
+    barCategoryGap: '40%',
+    size: ['80%', '60%']
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

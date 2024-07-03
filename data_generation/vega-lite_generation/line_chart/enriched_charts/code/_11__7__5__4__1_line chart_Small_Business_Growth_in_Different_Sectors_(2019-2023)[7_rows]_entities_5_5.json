@@ -1,0 +1,158 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Key Space Exploration Milestones Over the Years",
+    "data": {
+        "values": [
+            {
+                "Year": 1961,
+                "First Human in Space": 1,
+                "Moon Landing": 0,
+                "Mars Rover": 0,
+                "Space Stations": 0,
+                "Commercial Spaceflight": 0
+            },
+            {
+                "Year": 1969,
+                "First Human in Space": 1,
+                "Moon Landing": 1,
+                "Mars Rover": 0,
+                "Space Stations": 0,
+                "Commercial Spaceflight": 0
+            },
+            {
+                "Year": 1971,
+                "First Human in Space": 1,
+                "Moon Landing": 1,
+                "Mars Rover": 1,
+                "Space Stations": 0,
+                "Commercial Spaceflight": 0
+            },
+            {
+                "Year": 1973,
+                "First Human in Space": 1,
+                "Moon Landing": 1,
+                "Mars Rover": 1,
+                "Space Stations": 1,
+                "Commercial Spaceflight": 0
+            },
+            {
+                "Year": 1981,
+                "First Human in Space": 1,
+                "Moon Landing": 1,
+                "Mars Rover": 1,
+                "Space Stations": 1,
+                "Commercial Spaceflight": 1
+            },
+            {
+                "Year": 1998,
+                "First Human in Space": 1,
+                "Moon Landing": 1,
+                "Mars Rover": 1,
+                "Space Stations": 2,
+                "Commercial Spaceflight": 1
+            },
+            {
+                "Year": 2004,
+                "First Human in Space": 1,
+                "Moon Landing": 1,
+                "Mars Rover": 2,
+                "Space Stations": 2,
+                "Commercial Spaceflight": 1
+            },
+            {
+                "Year": 2012,
+                "First Human in Space": 1,
+                "Moon Landing": 1,
+                "Mars Rover": 3,
+                "Space Stations": 2,
+                "Commercial Spaceflight": 2
+            },
+            {
+                "Year": 2020,
+                "First Human in Space": 1,
+                "Moon Landing": 1,
+                "Mars Rover": 4,
+                "Space Stations": 3,
+                "Commercial Spaceflight": 3
+            },
+            {
+                "Year": 2021,
+                "First Human in Space": 1,
+                "Moon Landing": 1,
+                "Mars Rover": 5,
+                "Space Stations": 3,
+                "Commercial Spaceflight": 4
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "First Human in Space",
+                "Moon Landing",
+                "Mars Rover",
+                "Space Stations",
+                "Commercial Spaceflight"
+            ],
+            "as": [
+                "Milestone",
+                "Value"
+            ]
+        }
+    ],
+    "width": 700,
+    "height": 500,
+    "mark": {
+        "type": "line",
+        "point": true,
+        "tooltip": true
+    },
+    "encoding": {
+        "x": {
+            "field": "Year",
+            "type": "ordinal",
+            "title": "Year"
+        },
+        "y": {
+            "field": "Value",
+            "type": "quantitative",
+            "title": "Milestone Count",
+            "scale": {
+                "reverse": true
+            },
+            "axis": {
+                "format": ".1f"
+            }
+        },
+        "color": {
+            "field": "Milestone",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "First Human in Space",
+                    "Moon Landing",
+                    "Mars Rover",
+                    "Space Stations",
+                    "Commercial Spaceflight"
+                ],
+                "range": [
+                    "#FF5733",
+                    "#33FF57",
+                    "#3357FF",
+                    "#FF33A1",
+                    "#FFC300"
+                ]
+            },
+            "title": "Space Exploration Milestones"
+        },
+        "text": {
+            "field": "Value",
+            "type": "quantitative"
+        }
+    },
+    "config": {
+        "axisY": {
+            "minExtent": 30
+        }
+    }
+}

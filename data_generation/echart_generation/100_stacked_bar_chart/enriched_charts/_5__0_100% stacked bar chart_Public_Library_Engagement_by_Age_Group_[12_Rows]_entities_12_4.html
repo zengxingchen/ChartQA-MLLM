@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 800, // Reasonable width of the chart
+    height: 600 // Reasonable height of the chart
+});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Future Technologies Market Share Projections',
+        left: 'center', // Proper placement to avoid overlap with legend
+        textStyle: {
+            fontSize: 24 // Slightly larger text for better readability
+        }
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Artificial Intelligence', 'IoT', 'Renewable Energy', 'Genetic Engineering', 'Virtual Reality', 'Augmented Reality', 'Robotics', 'Nanotechnology'],
+        bottom: 0 // Put legend at the bottom to prevent overlap with the title
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '10%', // Adjust for legend
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: false,
+        max: 100 // 100% stacked bar
+    },
+    yAxis: {
+        type: 'category',
+        data: ['2021', '2022', '2023', '2024', '2025']
+    },
+    series: [
+        {
+            name: 'Artificial Intelligence',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 30, // Width of bars
+            label: {
+                show: true,
+                position: 'inside'
+            },
+            itemStyle: {
+                color: '#FF5733' // Specific color code for this data point
+            },
+            data: [25, 23, 26, 27, 30]
+        },
+        {
+            name: 'IoT',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 30,
+            label: {
+                show: true
+            },
+            itemStyle: {
+                color: '#33B8FF' // Specific color code for this data point
+            },
+            data: [15, 16, 17, 18, 19]
+        },
+        {
+            name: 'Renewable Energy',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 30,
+            label: {
+                show: true
+            },
+            itemStyle: {
+                color: '#4CAF50' // Specific color code for this data point
+            },
+            data: [20, 21, 19, 22, 18]
+        },
+        {
+            name: 'Genetic Engineering',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 30,
+            label: {
+                show: true
+            },
+            itemStyle: {
+                color: '#9C27B0' // Specific color code for this data point
+            },
+            data: [10, 11, 12, 13, 14]
+        },
+        {
+            name: 'Virtual Reality',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 30,
+            label: {
+                show: true
+            },
+            itemStyle: {
+                color: '#E91E63' // Specific color code for this data point
+            },
+            data: [5, 6, 7, 5, 4]
+        },
+        {
+            name: 'Augmented Reality',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 30,
+            label: {
+                show: true
+            },
+            itemStyle: {
+                color: '#FFC107' // Specific color code for this data point
+            },
+            data: [10, 8, 8, 9, 7]
+        },
+        {
+            name: 'Robotics',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 30,
+            label: {
+                show: true
+            },
+            itemStyle: {
+                color: '#607D8B' // Specific color code for this data point
+            },
+            data: [10, 9, 7, 4, 5]
+        },
+        {
+            name: 'Nanotechnology',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 30,
+            label: {
+                show: true
+            },
+            itemStyle: {
+                color: '#FFEB3B' // Specific color code for this data point
+            },
+            data: [5, 6, 4, 2, 3]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') myChart.setOption(option);
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

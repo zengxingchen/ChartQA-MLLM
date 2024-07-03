@@ -1,0 +1,177 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "A 100% stacked vertical bar chart showing the distribution of time spent on different leisure activities over a weekend",
+    "width": 600,
+    "height": 300,
+    "data": {
+        "values": [
+            {
+                "Day": "Friday",
+                "Movies": 2,
+                "Gaming": 1,
+                "Reading": 3,
+                "Exercise": 1,
+                "Cooking": 1
+            },
+            {
+                "Day": "Saturday",
+                "Movies": 1.5,
+                "Gaming": 2,
+                "Reading": 2,
+                "Exercise": 1.5,
+                "Cooking": 2
+            },
+            {
+                "Day": "Sunday",
+                "Movies": 1,
+                "Gaming": 3,
+                "Reading": 1,
+                "Exercise": 2,
+                "Cooking": 2
+            },
+            {
+                "Day": "Monday",
+                "Movies": 2,
+                "Gaming": 1,
+                "Reading": 2,
+                "Exercise": 1,
+                "Cooking": 1.5
+            },
+            {
+                "Day": "Tuesday",
+                "Movies": 2,
+                "Gaming": 1.5,
+                "Reading": 1.5,
+                "Exercise": 2,
+                "Cooking": 1
+            },
+            {
+                "Day": "Wednesday",
+                "Movies": 3,
+                "Gaming": 1,
+                "Reading": 1,
+                "Exercise": 2,
+                "Cooking": 1
+            },
+            {
+                "Day": "Thursday",
+                "Movies": 2,
+                "Gaming": 2,
+                "Reading": 2,
+                "Exercise": 1,
+                "Cooking": 1
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Movies",
+                "Gaming",
+                "Reading",
+                "Exercise",
+                "Cooking"
+            ],
+            "as": [
+                "Activity",
+                "Hours"
+            ]
+        },
+        {
+            "joinaggregate": [
+                {
+                    "op": "sum",
+                    "field": "Hours",
+                    "as": "TotalHours"
+                }
+            ],
+            "groupby": [
+                "Day"
+            ]
+        },
+        {
+            "calculate": "datum.Hours / datum.TotalHours",
+            "as": "PercentOfTotal"
+        }
+    ],
+    "mark": {
+        "type": "bar",
+        "height": {
+            "band": 0.6
+        }
+    },
+    "encoding": {
+        "x": {
+            "field": "Day",
+            "type": "ordinal",
+            "title": "Day of the Week",
+            "axis": {
+                "labelFontSize": 12,
+                "titleFontSize": 14
+            }
+        },
+        "y": {
+            "field": "PercentOfTotal",
+            "type": "quantitative",
+            "axis": {
+                "format": "%",
+                "title": "Percentage of Total Time Spent"
+            }
+        },
+        "color": {
+            "field": "Activity",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Movies",
+                    "Gaming",
+                    "Reading",
+                    "Exercise",
+                    "Cooking"
+                ],
+                "range": [
+                    "#FF5733",
+                    "#33FF57",
+                    "#3357FF",
+                    "#FF33A1",
+                    "#FFA133"
+                ]
+            },
+            "legend": {
+                "title": "Type of Leisure Activity",
+                "orient": "right"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Activity",
+                "type": "nominal",
+                "title": "Activity"
+            },
+            {
+                "field": "PercentOfTotal",
+                "type": "quantitative",
+                "title": "Percentage",
+                "format": ".1%"
+            }
+        ]
+    },
+    "title": {
+        "text": "Weekend Distribution of Leisure Activities",
+        "anchor": "start",
+        "offset": 5,
+        "color": "#333",
+        "fontSize": 16,
+        "fontWeight": "bold"
+    },
+    "config": {
+        "axis": {
+            "labelFontSize": 12,
+            "titleFontSize": 14
+        },
+        "legend": {
+            "labelFontSize": 12,
+            "titleFontSize": 14
+        }
+    }
+}

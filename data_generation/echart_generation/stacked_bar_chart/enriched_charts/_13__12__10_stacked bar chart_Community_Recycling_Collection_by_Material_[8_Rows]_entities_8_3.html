@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Nutritional Composition of Various Food Categories',
+        left: 'center',
+        top: '5%'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Carbohydrates', 'Proteins', 'Fats', 'Vitamins'],
+        top: '10%'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01]
+    },
+    yAxis: {
+        type: 'category',
+        data: ['Vegetables', 'Fruits', 'Dairy', 'Meat', 'Grains', 'Legumes', 'Nuts', 'Seafood']
+    },
+    series: [
+        {
+            name: 'Carbohydrates',
+            type: 'bar',
+            stack: 'Total',
+            color: '#FF5733',
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            data: [12, 15, 5, 0, 30, 20, 10, 0]
+        },
+        {
+            name: 'Proteins',
+            type: 'bar',
+            stack: 'Total',
+            color: '#33FF57',
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            data: [2, 1, 3.5, 25, 6, 9, 8, 22]
+        },
+        {
+            name: 'Fats',
+            type: 'bar',
+            stack: 'Total',
+            color: '#3357FF',
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            data: [0.2, 0.1, 8, 15, 2, 1, 20, 7]
+        },
+        {
+            name: 'Vitamins',
+            type: 'bar',
+            stack: 'Total',
+            color: '#FF33A6',
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            data: [1, 1.5, 0.5, 0, 0.5, 0.7, 0.6, 0]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

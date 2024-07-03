@@ -1,0 +1,164 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "A 100% stacked vertical bar chart showing the percentage distribution of preferred movie genres by age group.",
+    "title": {
+        "text": "Preferred Movie Genres by Age Group",
+        "anchor": "start",
+        "offset": 4,
+        "color": "#333",
+        "fontSize": 14
+    },
+    "width": 500,
+    "height": 500,
+    "padding": {
+        "left": 20,
+        "top": 40,
+        "right": 20,
+        "bottom": 40
+    },
+    "data": {
+        "values": [
+            {
+                "Age Group": "Under 18",
+                "Action": 30,
+                "Comedy": 20,
+                "Drama": 25,
+                "Sci-Fi": 25
+            },
+            {
+                "Age Group": "18-24",
+                "Action": 35,
+                "Comedy": 25,
+                "Drama": 20,
+                "Sci-Fi": 20
+            },
+            {
+                "Age Group": "25-34",
+                "Action": 25,
+                "Comedy": 20,
+                "Drama": 30,
+                "Sci-Fi": 25
+            },
+            {
+                "Age Group": "35-44",
+                "Action": 20,
+                "Comedy": 30,
+                "Drama": 25,
+                "Sci-Fi": 25
+            },
+            {
+                "Age Group": "45-54",
+                "Action": 15,
+                "Comedy": 25,
+                "Drama": 35,
+                "Sci-Fi": 25
+            },
+            {
+                "Age Group": "55-64",
+                "Action": 10,
+                "Comedy": 20,
+                "Drama": 40,
+                "Sci-Fi": 30
+            },
+            {
+                "Age Group": "65+",
+                "Action": 5,
+                "Comedy": 15,
+                "Drama": 45,
+                "Sci-Fi": 35
+            },
+            {
+                "Age Group": "75+",
+                "Action": 5,
+                "Comedy": 10,
+                "Drama": 50,
+                "Sci-Fi": 35
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Action",
+                "Comedy",
+                "Drama",
+                "Sci-Fi"
+            ],
+            "as": [
+                "Genre",
+                "Percentage"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "bar",
+        "tooltip": true
+    },
+    "encoding": {
+        "x": {
+            "field": "Age Group",
+            "type": "nominal",
+            "axis": {
+                "title": "Age Group"
+            }
+        },
+        "y": {
+            "field": "Percentage",
+            "type": "quantitative",
+            "axis": {
+                "title": "Percentage",
+                "format": ".0%"
+            },
+            "stack": "normalize"
+        },
+        "color": {
+            "field": "Genre",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Action",
+                    "Comedy",
+                    "Drama",
+                    "Sci-Fi"
+                ],
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e",
+                    "#2ca02c",
+                    "#d62728"
+                ]
+            },
+            "legend": {
+                "title": "Genre",
+                "orient": "bottom"
+            }
+        },
+        "height": {
+            "field": {
+                "group": "height"
+            },
+            "band": 0.8
+        },
+        "tooltip": [
+            {
+                "field": "Genre",
+                "type": "nominal",
+                "title": "Genre"
+            },
+            {
+                "field": "Percentage",
+                "type": "quantitative",
+                "title": "Percentage"
+            }
+        ]
+    },
+    "config": {
+        "axisX": {
+            "labelColor": "#000"
+        },
+        "bar": {
+            "cornerRadiusTopLeft": 3,
+            "cornerRadiusTopRight": 3
+        }
+    }
+}

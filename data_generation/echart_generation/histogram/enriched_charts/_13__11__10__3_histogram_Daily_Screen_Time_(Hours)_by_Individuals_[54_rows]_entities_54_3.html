@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var option;
+
+option = {
+    title: {
+        text: 'Electric Vehicle Adoption Over the Years',
+        left: 'center',
+        top: 20,
+        textStyle: {
+            color: '#333333'
+        }
+    },
+    xAxis: {
+        type: 'category',
+        data: ['2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022'],
+        name: 'Year',
+        nameLocation: 'middle',
+        nameGap: 30,
+        axisLabel: {
+            interval: 0,
+            rotate: 45
+        }
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Number of Vehicles',
+        nameLocation: 'middle',
+        nameGap: 50,
+    },
+    series: [{
+        data: [150, 200, 300, 450, 600, 800, 1000, 1500, 2200, 3000, 5000, 7500, 10500],
+        type: 'bar',
+        barWidth: '60%',
+        itemStyle: {
+            color: '#3398DB'
+        },
+        label: {
+            show: true,
+            position: 'top'
+        }
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Innovations in Urban Mobility',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'item'
+    },
+    legend: {
+        orient: 'vertical',
+        left: 'left',
+        top: '15%',
+    },
+    series: [
+        {
+            name: 'Urban Mobility Type',
+            type: 'pie',
+            radius: '50%',
+            data: [
+                { value: 35, name: 'Hybrid Vehicles'},
+                { value: 80, name: 'Electric Cars'},
+                { value: 15, name: 'Hydrogen Fuel Cell Vehicles'},
+                { value: 20, name: 'Solar Powered Vehicles'},
+                { value: 50, name: 'E-Bikes'},
+                { value: 40, name: 'Autonomous Vehicles'},
+                { value: 25, name: 'Connected Cars'},
+                { value: 30, name: 'Electric Scooters'},
+                { value: 5, name: 'Electric Skateboards'},
+                { value: 10, name: 'Air Taxis'},
+                { value: 3, name: 'Personal Drones'},
+                { value: 12, name: 'Smart Roads'}
+            ],
+            emphasis: {
+                itemStyle: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            }
+        }
+    ],
+    color: [
+        '#FF3D68', '#FFB14E', '#FAF884', '#8BFFC9', 
+        '#00BDFF', '#E85EF4', '#FF8A5C', '#FFEE93', 
+        '#9EE09E', '#9EC1CF', '#CC99C9', '#A4A8D1'
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

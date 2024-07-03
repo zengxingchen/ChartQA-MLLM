@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false
+});
+var app = {};
+
+var option;
+
+myChart.showLoading();
+
+option = {
+    title: {
+        text: 'AI & Machine Learning Topics Popularity',
+        left: 'center',
+        top: 20,
+        textStyle: {
+            color: '#333'
+        }
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: '{a} <br/>{b}: {c} ({d}%)'
+    },
+    legend: {
+        orient: 'vertical',
+        left: 'left',
+        top: 'middle',
+        textStyle: {
+            color: '#666',
+        },
+        data: ['Introduction to AI', 'Machine Learning', 'Deep Learning', 'Computer Vision', 'Natural Language Processing', 'Data Analytics']
+    },
+    color: ['#FF6B6B', '#5F27CD', '#1DD1A1', '#Feca57', '#48dbfb', '#C8D6E5'],
+    series: [
+        {
+            name: 'AI Topics',
+            type: 'pie',
+            radius: '50%',
+            data: [
+                { value: 600, name: 'Introduction to AI' },
+                { value: 800, name: 'Machine Learning' },
+                { value: 300, name: 'Deep Learning' },
+                { value: 450, name: 'Computer Vision' },
+                { value: 400, name: 'Natural Language Processing' },
+                { value: 750, name: 'Data Analytics' }
+            ],
+            emphasis: {
+                itemStyle: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            },
+            label: {
+                formatter: '{b}: {d}%',
+            },
+        }
+    ]
+};
+
+myChart.hideLoading();
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,107 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "A horizontal bar chart showing average monthly gym visits by age group.",
+    "width": 500,
+    "height": 400,
+    "title": {
+        "text": "Average Monthly Gym Visits by Age Group",
+        "anchor": "start",
+        "offset": 5
+    },
+    "data": {
+        "values": [
+            {
+                "Age Group": "Below 18",
+                "Average Visits": 8
+            },
+            {
+                "Age Group": "18-25",
+                "Average Visits": 10
+            },
+            {
+                "Age Group": "26-35",
+                "Average Visits": 12
+            },
+            {
+                "Age Group": "36-45",
+                "Average Visits": 10
+            },
+            {
+                "Age Group": "46-55",
+                "Average Visits": 8
+            },
+            {
+                "Age Group": "56-65",
+                "Average Visits": 5
+            },
+            {
+                "Age Group": "Over 65",
+                "Average Visits": 3
+            }
+        ]
+    },
+    "mark": {
+        "type": "bar",
+        "tooltip": true,
+        "cornerRadiusEnd": 2
+    },
+    "encoding": {
+        "y": {
+            "field": "Age Group",
+            "type": "ordinal",
+            "axis": {
+                "title": "Age Group"
+            }
+        },
+        "x": {
+            "field": "Average Visits",
+            "type": "quantitative",
+            "axis": {
+                "title": "Average Monthly Visits"
+            }
+        },
+        "color": {
+            "field": "Age Group",
+            "scale": {
+                "domain": [
+                    "Below 18",
+                    "18-25",
+                    "26-35",
+                    "36-45",
+                    "46-55",
+                    "56-65",
+                    "Over 65"
+                ],
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e",
+                    "#2ca02c",
+                    "#d62728",
+                    "#9467bd",
+                    "#8c564b",
+                    "#e377c2"
+                ]
+            }
+        },
+        "opacity": {
+            "condition": {
+                "param": "hover",
+                "value": 0.8
+            },
+            "value": 1
+        },
+        "width": {
+            "band": 0.7
+        }
+    },
+    "params": [
+        {
+            "name": "hover",
+            "select": {
+                "type": "point",
+                "on": "mouseover",
+                "clear": "mouseout"
+            }
+        }
+    ]
+}

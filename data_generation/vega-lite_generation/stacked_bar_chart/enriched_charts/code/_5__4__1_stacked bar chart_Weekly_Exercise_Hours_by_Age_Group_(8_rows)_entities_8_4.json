@@ -1,0 +1,176 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": {
+        "text": "Monthly Space Exploration Events",
+        "subtitle": "Stacked representation of different types of space events over a year",
+        "subtitleFontStyle": "italic",
+        "subtitleFontSize": 10,
+        "anchor": "start"
+    },
+    "data": {
+        "values": [
+            {
+                "Month": "Jan",
+                "Launches": 5,
+                "Discoveries": 3,
+                "Missions": 2,
+                "Observations": 4
+            },
+            {
+                "Month": "Feb",
+                "Launches": 6,
+                "Discoveries": 4,
+                "Missions": 3,
+                "Observations": 5
+            },
+            {
+                "Month": "Mar",
+                "Launches": 7,
+                "Discoveries": 5,
+                "Missions": 4,
+                "Observations": 6
+            },
+            {
+                "Month": "Apr",
+                "Launches": 8,
+                "Discoveries": 6,
+                "Missions": 5,
+                "Observations": 7
+            },
+            {
+                "Month": "May",
+                "Launches": 9,
+                "Discoveries": 7,
+                "Missions": 6,
+                "Observations": 8
+            },
+            {
+                "Month": "Jun",
+                "Launches": 10,
+                "Discoveries": 8,
+                "Missions": 7,
+                "Observations": 9
+            },
+            {
+                "Month": "Jul",
+                "Launches": 11,
+                "Discoveries": 9,
+                "Missions": 8,
+                "Observations": 10
+            },
+            {
+                "Month": "Aug",
+                "Launches": 12,
+                "Discoveries": 10,
+                "Missions": 9,
+                "Observations": 11
+            },
+            {
+                "Month": "Sep",
+                "Launches": 13,
+                "Discoveries": 11,
+                "Missions": 10,
+                "Observations": 12
+            },
+            {
+                "Month": "Oct",
+                "Launches": 14,
+                "Discoveries": 12,
+                "Missions": 11,
+                "Observations": 13
+            },
+            {
+                "Month": "Nov",
+                "Launches": 15,
+                "Discoveries": 13,
+                "Missions": 12,
+                "Observations": 14
+            },
+            {
+                "Month": "Dec",
+                "Launches": 16,
+                "Discoveries": 14,
+                "Missions": 13,
+                "Observations": 15
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Launches",
+                "Discoveries",
+                "Missions",
+                "Observations"
+            ],
+            "as": [
+                "Event",
+                "Count"
+            ]
+        }
+    ],
+    "width": 600,
+    "height": 400,
+    "mark": {
+        "type": "bar",
+        "width": {
+            "band": 0.4
+        }
+    },
+    "encoding": {
+        "y": {
+            "field": "Month",
+            "type": "nominal",
+            "axis": {
+                "title": "Month",
+                "labelAngle": 0
+            }
+        },
+        "x": {
+            "field": "Count",
+            "type": "quantitative",
+            "axis": {
+                "title": "Total Count"
+            },
+            "stack": "normalize"
+        },
+        "color": {
+            "field": "Event",
+            "type": "nominal",
+            "scale": {
+                "range": [
+                    "#FF6347",
+                    "#1E90FF",
+                    "#32CD32",
+                    "#FFD700"
+                ]
+            },
+            "legend": {
+                "title": "Event",
+                "orient": "top-left"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Event",
+                "type": "nominal",
+                "title": "Event"
+            },
+            {
+                "field": "Month",
+                "type": "nominal",
+                "title": "Month"
+            },
+            {
+                "field": "Count",
+                "type": "quantitative",
+                "title": "Count"
+            }
+        ]
+    },
+    "config": {
+        "axisX": {
+            "minExtent": 30
+        }
+    }
+}

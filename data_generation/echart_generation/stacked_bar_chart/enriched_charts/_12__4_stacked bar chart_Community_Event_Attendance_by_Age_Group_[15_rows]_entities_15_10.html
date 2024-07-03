@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Monthly Fruit Sales Data',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Apple', 'Orange', 'Banana', 'Cherry', 'Grape'],
+        top: 'bottom'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '10%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        axisTick: {show: false},
+        data: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+        axisLabel: {
+            interval: 0,
+            rotate: 30,
+            textStyle: {
+                fontSize: 10
+            }
+        }
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Apple',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 20,
+            itemStyle: {
+                color: '#FF0000'
+            },
+            data: [30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85]
+        },
+        {
+            name: 'Orange',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 20,
+            itemStyle: {
+                color: '#FFA500'
+            },
+            data: [40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95]
+        },
+        {
+            name: 'Banana',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 20,
+            itemStyle: {
+                color: '#FFFF00'
+            },
+            data: [20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75]
+        },
+        {
+            name: 'Cherry',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 20,
+            itemStyle: {
+                color: '#8B0000'
+            },
+            data: [10, 12, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60]
+        },
+        {
+            name: 'Grape',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 20,
+            itemStyle: {
+                color: '#800080'
+            },
+            data: [15, 18, 20, 22, 25, 28, 30, 32, 35, 38, 40, 42]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

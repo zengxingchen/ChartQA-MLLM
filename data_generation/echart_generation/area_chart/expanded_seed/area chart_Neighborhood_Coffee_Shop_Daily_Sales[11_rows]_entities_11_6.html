@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+// Prepare data
+var data = [
+    {'Date': '2023-01-01', 'Sales ($)': 350},
+    {'Date': '2023-01-02', 'Sales ($)': 475},
+    {'Date': '2023-01-03', 'Sales ($)': 525},
+    {'Date': '2023-01-04', 'Sales ($)': 600},
+    {'Date': '2023-01-05', 'Sales ($)': 450},
+    {'Date': '2023-01-06', 'Sales ($)': 400},
+    {'Date': '2023-01-07', 'Sales ($)': 650},
+    {'Date': '2023-01-08', 'Sales ($)': 700},
+    {'Date': '2023-01-09', 'Sales ($)': 480},
+    {'Date': '2023-01-10', 'Sales ($)': 520},
+    {'Date': '2023-01-11', 'Sales ($)': 560}
+];
+
+var dates = data.map(function (item) {
+    return item.Date;
+});
+
+var sales = data.map(function (item) {
+    return item['Sales ($)'];
+});
+
+// Chart configuration
+option = {
+    tooltip: {
+        trigger: 'axis'
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: dates,
+        axisLabel: {
+            formatter: function (value, index) {
+                // Format the display of date, only display month and day
+                var date = new Date(value);
+                return (date.getMonth() + 1) + '-' + date.getDate();
+            }
+        }
+    },
+    yAxis: {
+        type: 'value',
+        axisLabel: {
+            formatter: '{value} $'
+        }
+    },
+    series: [
+        {
+            name: 'Sales',
+            type: 'line',
+            smooth: true, // Turn on the smooth drawing mode
+            data: sales,
+            symbol: 'triangle', // Define symbol as triangle
+            symbolSize: 8,
+            areaStyle: {
+                normal: {
+                    color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                        { offset: 0, color: 'rgb(58,77,233)' },
+                        { offset: 1, color: 'rgb(99,221,250)' }
+                    ])
+                }
+            },
+            itemStyle: {
+                normal: {
+                    borderColor: 'rgba(137,189,27,0.27)',
+                    borderWidth: 12
+                }
+            }
+        }
+    ],
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    }
+};
+
+// Use the configured options
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

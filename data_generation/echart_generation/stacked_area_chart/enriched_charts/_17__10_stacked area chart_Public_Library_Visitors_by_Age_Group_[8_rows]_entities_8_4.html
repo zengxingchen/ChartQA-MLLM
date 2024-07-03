@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    width: 800,
+    height: 500
+});
+
+option = {
+    title: {
+        text: 'Monthly Energy Consumption',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            label: {
+                backgroundColor: '#6a7985'
+            }
+        }
+    },
+    legend: {
+        data: ['Heating', 'Cooling', 'Lighting', 'Appliances'],
+        top: 30
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {},
+            restore: {},
+            dataView: {},
+            magicType: {
+                type: ['stack']
+            },
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: [
+        {
+            type: 'category',
+            boundaryGap: false,
+            data: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value'
+        }
+    ],
+    series: [
+        {
+            name: 'Heating',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [200, 180, 160, 90, 70, 50, 40, 45, 55, 120, 160, 190],
+            color: '#FF6F61'
+        },
+        {
+            name: 'Cooling',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [30, 25, 35, 45, 60, 80, 100, 90, 65, 50, 35, 28],
+            color: '#6CC0E8'
+        },
+        {
+            name: 'Lighting',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [50, 48, 47, 45, 43, 40, 38, 36, 40, 44, 49, 50],
+            color: '#FFD662'
+        },
+        {
+            name: 'Appliances',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [90, 85, 80, 75, 70, 65, 60, 62, 68, 76, 82, 88],
+            color: '#57D1C9'
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

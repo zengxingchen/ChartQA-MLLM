@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, { width: 800, height: 600 });
+var option;
+
+option = {
+    title: {
+        text: 'Knowledge Area Popularity',
+        left: 'center',
+        top: '5%'
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['Popularity'],
+        left: '10%',
+        top: '10%'
+    },
+    xAxis: {
+        type: 'category',
+        data: ['Literature', 'Philosophy', 'Science', 'Art', 'Economics', 'Technology', 'History', 'Environment', 'Travel', 'Music'],
+        axisLabel: {
+            color: '#333333'
+        }
+    },
+    yAxis: {
+        type: 'value',
+        inverse: true,
+        axisLabel: {
+            color: '#333333'
+        }
+    },
+    series: [
+        {
+            name: 'Popularity',
+            type: 'line',
+            data: [85, 78, 92, 88, 76, 95, 81, 90, 83, 79],
+            label: {
+                show: true,
+                position: 'top',
+                color: '#000000'
+            },
+            lineStyle: {
+                color: '#1f78b4'
+            },
+            itemStyle: {
+                color: '#ff7f0e'
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

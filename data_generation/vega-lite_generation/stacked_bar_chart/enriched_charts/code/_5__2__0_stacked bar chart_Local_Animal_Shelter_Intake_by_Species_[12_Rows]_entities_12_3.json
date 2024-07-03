@@ -1,0 +1,140 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Horizontal stacked bar chart showing the number of participants in different sports per quarter.",
+    "data": {
+        "values": [
+            {
+                "Quarter": "Q1",
+                "Football": 150,
+                "Basketball": 120,
+                "Swimming": 200,
+                "Tennis": 100,
+                "Running": 180,
+                "Cycling": 170
+            },
+            {
+                "Quarter": "Q2",
+                "Football": 160,
+                "Basketball": 130,
+                "Swimming": 210,
+                "Tennis": 110,
+                "Running": 190,
+                "Cycling": 180
+            },
+            {
+                "Quarter": "Q3",
+                "Football": 170,
+                "Basketball": 140,
+                "Swimming": 220,
+                "Tennis": 120,
+                "Running": 200,
+                "Cycling": 190
+            },
+            {
+                "Quarter": "Q4",
+                "Football": 180,
+                "Basketball": 150,
+                "Swimming": 230,
+                "Tennis": 130,
+                "Running": 210,
+                "Cycling": 200
+            },
+            {
+                "Quarter": "Q5",
+                "Football": 190,
+                "Basketball": 160,
+                "Swimming": 240,
+                "Tennis": 140,
+                "Running": 220,
+                "Cycling": 210
+            },
+            {
+                "Quarter": "Q6",
+                "Football": 200,
+                "Basketball": 170,
+                "Swimming": 250,
+                "Tennis": 150,
+                "Running": 230,
+                "Cycling": 220
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Football",
+                "Basketball",
+                "Swimming",
+                "Tennis",
+                "Running",
+                "Cycling"
+            ],
+            "as": [
+                "Sport",
+                "Participants"
+            ]
+        }
+    ],
+    "width": 600,
+    "height": 400,
+    "mark": {
+        "type": "bar",
+        "width": 30
+    },
+    "encoding": {
+        "y": {
+            "field": "Quarter",
+            "type": "ordinal",
+            "axis": {
+                "title": "Quarter"
+            },
+            "band": 0.5
+        },
+        "x": {
+            "field": "Participants",
+            "type": "quantitative",
+            "axis": {
+                "title": "Number of Participants"
+            },
+            "stack": "zero"
+        },
+        "color": {
+            "field": "Sport",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Football",
+                    "Basketball",
+                    "Swimming",
+                    "Tennis",
+                    "Running",
+                    "Cycling"
+                ],
+                "range": [
+                    "#FF5733",
+                    "#33FF57",
+                    "#3357FF",
+                    "#FF33A1",
+                    "#A133FF",
+                    "#33FFA1"
+                ]
+            },
+            "legend": {
+                "title": "Sports"
+            }
+        }
+    },
+    "config": {
+        "background": "#ffffff",
+        "view": {
+            "stroke": "transparent"
+        }
+    },
+    "title": {
+        "text": "Number of Participants in Different Sports per Quarter",
+        "anchor": "start",
+        "fontSize": 16,
+        "fontWeight": "bold",
+        "offset": 10
+    }
+}

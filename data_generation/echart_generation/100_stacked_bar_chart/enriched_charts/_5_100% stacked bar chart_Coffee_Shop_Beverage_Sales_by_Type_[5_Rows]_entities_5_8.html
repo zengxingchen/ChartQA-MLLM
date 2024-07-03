@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    width: 600,
+    height: 400
+});
+
+var option;
+option = {
+    title: {
+        text: 'Electric and Autonomous Vehicle Market Trends',
+        left: 'center',
+        top: 10
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['EVs (Electric Vehicles)', 'AVs (Autonomous Vehicles)', 'Shared Mobility', 'Public Transport'],
+        top: 40
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01]
+    },
+    yAxis: {
+        type: 'category',
+        data: ['2020', '2021', '2022', '2023', '2024', '2025']
+    },
+    series: [
+        {
+            name: 'EVs (Electric Vehicles)',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                formatter: '{c}%'
+            },
+            barWidth: 35,
+            itemStyle: {
+                color: '#34eb83'
+            },
+            data: [25, 30, 35, 40, 45, 50]
+        },
+        {
+            name: 'AVs (Autonomous Vehicles)',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                formatter: '{c}%'
+            },
+            barWidth: 35,
+            itemStyle: {
+                color: '#eb4034'
+            },
+            data: [15, 20, 22, 25, 28, 30]
+        },
+        {
+            name: 'Shared Mobility',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                formatter: '{c}%'
+            },
+            barWidth: 35,
+            itemStyle: {
+                color: '#3477eb'
+            },
+            data: [35, 30, 28, 20, 15, 10]
+        },
+        {
+            name: 'Public Transport',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                formatter: '{c}%'
+            },
+            barWidth: 35,
+            itemStyle: {
+                color: '#eb34d2'
+            },
+            data: [25, 20, 15, 15, 12, 10]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

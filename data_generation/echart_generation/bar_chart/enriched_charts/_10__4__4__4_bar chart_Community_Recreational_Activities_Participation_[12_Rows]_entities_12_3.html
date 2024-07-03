@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+option = {
+    title: {
+        text: 'Future Technologies & Society',
+        left: 'center',
+        top: '5%',
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    xAxis: {
+        type: 'category',
+        data: ['Artificial Intelligence', 'Quantum Computing', 'Blockchain', 'Augmented Reality', '5G Networks', 'IoT', 'Robotics', 'Biotechnology', 'Autonomous Vehicles', 'Renewable Energy', 'Cybersecurity', 'Nanotechnology', 'Wearable Tech', 'Smart Cities', '3D Printing'],
+        axisLabel: {
+            rotate: 45,
+            interval: 0
+        }
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [{
+        data: [95, 85, 80, 75, 90, 70, 60, 85, 78, 92, 88, 74, 67, 83, 72],
+        type: 'bar',
+        itemStyle: {
+            color: function (params) {
+                var colors = ['#5470C6', '#91CC75', '#FAC858', '#EE6666', '#73C0DE', '#3BA272', '#FC8452', '#9A60B4', '#EA7CCC', '#FFC0CB', '#40E0D0', '#FFA07A', '#20B2AA', '#778899', '#7B68EE'];
+                return colors[params.dataIndex % colors.length];
+            }
+        },
+        barWidth: '50%'
+    }],
+    grid: {
+        left: '10%',
+        right: '10%',
+        bottom: '15%',
+        top: '20%',
+        containLabel: true
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var app = {};
+
+option = {
+    color: ['#3398DB'],
+    title: {
+        text: 'Global Satellite Launches by Year',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: [
+        {
+            type: 'category',
+            data: ['2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021'],
+            axisTick: {
+                alignWithLabel: true
+            }
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value'
+        }
+    ],
+    series: [
+        {
+            name: 'Number of Satellites',
+            type: 'bar',
+            barWidth: '60%',
+            data: [
+                {value: 70, itemStyle: {color: '#a71d31'}, label: {show: true, position: 'top'}},
+                {value: 78, itemStyle: {color: '#d0b136'}, label: {show: true, position: 'top'}},
+                {value: 85, itemStyle: {color: '#4da74d'}, label: {show: true, position: 'top'}},
+                {value: 95, itemStyle: {color: '#6a3d9a'}, label: {show: true, position: 'top'}},
+                {value: 110, itemStyle: {color: '#1f78b4'}, label: {show: true, position: 'top'}},
+                {value: 123, itemStyle: {color: '#b15928'}, label: {show: true, position: 'top'}},
+                {value: 132, itemStyle: {color: '#b2df8a'}, label: {show: true, position: 'top'}},
+                {value: 142, itemStyle: {color: '#33a02c'}, label: {show: true, position: 'top'}},
+                {value: 155, itemStyle: {color: '#fb9a99'}, label: {show: true, position: 'top'}},
+                {value: 165, itemStyle: {color: '#e31a1c'}, label: {show: true, position: 'top'}},
+                {value: 180, itemStyle: {color: '#fdbf6f'}, label: {show: true, position: 'top'}},
+                {value: 200, itemStyle: {color: '#ff7f00'}, label: {show: true, position: 'top'}}
+            ]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

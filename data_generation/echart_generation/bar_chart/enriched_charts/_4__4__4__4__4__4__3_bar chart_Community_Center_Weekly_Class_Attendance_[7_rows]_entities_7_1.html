@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {renderer: 'canvas', useDirtyRect: false});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Future Technologies & Society',
+        left: 'center',
+        top: 20,
+        textStyle: {
+            color: '#333',
+            fontSize: 20
+        }
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01]
+    },
+    yAxis: {
+        type: 'category',
+        data: ['AI & Robotics', 'Quantum Computing', 'Biotechnology', 'Renewable Energy', 'Space Exploration', 'Nanotechnology', '5G Networks', 'Virtual Reality', 'Blockchain', 'Smart Cities']
+    },
+    series: [
+        {
+            name: 'Value',
+            type: 'bar',
+            barWidth: '60%',
+            data: [
+                {value: 80, itemStyle: {color: '#1f77b4'}},
+                {value: 70, itemStyle: {color: '#ff7f0e'}},
+                {value: 65, itemStyle: {color: '#2ca02c'}},
+                {value: 75, itemStyle: {color: '#d62728'}},
+                {value: 90, itemStyle: {color: '#9467bd'}},
+                {value: 55, itemStyle: {color: '#8c564b'}},
+                {value: 85, itemStyle: {color: '#e377c2'}},
+                {value: 60, itemStyle: {color: '#7f7f7f'}},
+                {value: 50, itemStyle: {color: '#bcbd22'}},
+                {value: 40, itemStyle: {color: '#17becf'}}
+            ],
+            label: {
+                show: true,
+                position: 'right',
+                formatter: '{c}'
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

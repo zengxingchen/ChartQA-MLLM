@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var chartData = [{'Date': '2023-04-10', 'Download Speed (Mbps)': 55.3, 'Upload Speed (Mbps)': 11.7, 'Ping (ms)': 14}, {'Date': '2023-04-11', 'Download Speed (Mbps)': 62.5, 'Upload Speed (Mbps)': 13.2, 'Ping (ms)': 12}, {'Date': '2023-04-12', 'Download Speed (Mbps)': 58.8, 'Upload Speed (Mbps)': 12.6, 'Ping (ms)': 15}, {'Date': '2023-04-13', 'Download Speed (Mbps)': 44.1, 'Upload Speed (Mbps)': 9.4, 'Ping (ms)': 20}, {'Date': '2023-04-14', 'Download Speed (Mbps)': 60.0, 'Upload Speed (Mbps)': 12.8, 'Ping (ms)': 13}, {'Date': '2023-04-15', 'Download Speed (Mbps)': 59.7, 'Upload Speed (Mbps)': 13.0, 'Ping (ms)': 14}, {'Date': '2023-04-16', 'Download Speed (Mbps)': 57.4, 'Upload Speed (Mbps)': 11.5, 'Ping (ms)': 15}];
+
+var dates = chartData.map(function (item) {
+    return item.Date;
+});
+var downloadSpeeds = chartData.map(function (item) {
+    return item['Download Speed (Mbps)'];
+});
+var uploadSpeeds = chartData.map(function (item) {
+    return item['Upload Speed (Mbps)'];
+});
+var pings = chartData.map(function (item) {
+    return item['Ping (ms)'];
+});
+
+var maxDownloadSpeed = Math.max.apply(null, downloadSpeeds);
+var maxUploadSpeed = Math.max.apply(null, uploadSpeeds);
+var maxPing = Math.max.apply(null, pings);
+
+option = {
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['Download Speed (Mbps)', 'Upload Speed (Mbps)', 'Ping (ms)']
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: dates
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Download Speed (Mbps)',
+            type: 'line',
+            data: downloadSpeeds,
+            markPoint: {
+                data: [
+                    {
+                        type: 'max',
+                        name: 'Maximum Speed',
+                        label: { show: true }
+                    }
+                ]
+            }
+        },
+        {
+            name: 'Upload Speed (Mbps)',
+            type: 'line',
+            data: uploadSpeeds,
+            markPoint: {
+                data: [
+                    {
+                        type: 'max',
+                        name: 'Maximum Speed',
+                        label: { show: true }
+                    }
+                ]
+            }
+        },
+        {
+            name: 'Ping (ms)',
+            type: 'line',
+            data: pings,
+            markPoint: {
+                data: [
+                    {
+                        type: 'max',
+                        name: 'Worst Ping',
+                        label: { show: true }
+                    }
+                ]
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

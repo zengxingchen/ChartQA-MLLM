@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var option;
+
+option = {
+    title: {
+        text: 'Health & Wellness Statistics',
+        left: 'center',
+        top: 10,
+        textStyle: {
+            color: '#333'
+        }
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: '{b}: {c}'
+    },
+    series: [
+        {
+            type: 'treemap',
+            width: '90%',
+            height: '90%',
+            roam: false,
+            nodeClick: false,
+            breadcrumb: {
+                show: true,
+                textStyle: {
+                    color: '#333'
+                }
+            },
+            label: {
+                show: true,
+                formatter: '{b}'
+            },
+            itemStyle: {
+                borderColor: '#fff'
+            },
+            data: [
+                {
+                    name: 'Health & Wellness',
+                    value: 4500,
+                    itemStyle: {
+                        color: '#A3E4D7'
+                    },
+                    children: [
+                        {
+                            name: 'Mental Health',
+                            value: 2500,
+                            itemStyle: {
+                                color: '#76D7C4'
+                            }
+                        },
+                        {
+                            name: 'Physical Health',
+                            value: 2000,
+                            itemStyle: {
+                                color: '#48C9B0'
+                            }
+                        }
+                    ]
+                },
+                {
+                    name: 'Fitness',
+                    value: 3500,
+                    itemStyle: {
+                        color: '#F5B041'
+                    },
+                    children: [
+                        {
+                            name: 'Cardio',
+                            value: 1800,
+                            itemStyle: {
+                                color: '#F7DC6F'
+                            }
+                        },
+                        {
+                            name: 'Strength Training',
+                            value: 1700,
+                            itemStyle: {
+                                color: '#F8C471'
+                            }
+                        }
+                    ]
+                },
+                {
+                    name: 'Yoga & Meditation',
+                    value: 2500,
+                    itemStyle: {
+                        color: '#EB984E'
+                    },
+                    children: [
+                        {
+                            name: 'Yoga',
+                            value: 1000,
+                            itemStyle: {
+                                color: '#E59866'
+                            }
+                        },
+                        {
+                            name: 'Meditation',
+                            value: 1500,
+                            itemStyle: {
+                                color: '#D35400'
+                            }
+                        }
+                    ]
+                },
+                {
+                    name: 'Nutrition',
+                    value: 3000,
+                    itemStyle: {
+                        color: '#A9DFBF'
+                    },
+                    children: [
+                        {
+                            name: 'Vitamins',
+                            value: 1000,
+                            itemStyle: {
+                                color: '#7DCEA0'
+                            }
+                        },
+                        {
+                            name: 'Healthy Eating',
+                            value: 2000,
+                            itemStyle: {
+                                color: '#52BE80'
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

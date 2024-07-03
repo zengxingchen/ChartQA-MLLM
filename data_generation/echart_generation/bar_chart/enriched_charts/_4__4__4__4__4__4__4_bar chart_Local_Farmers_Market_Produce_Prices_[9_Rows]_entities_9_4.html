@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+option = {
+    title: {
+        text: 'Future Technologies & Society: Projected Growth',
+        left: 'center',
+        top: '20px',
+        textStyle: {
+            color: '#333',
+            fontSize: 18
+        }
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01]
+    },
+    yAxis: {
+        type: 'category',
+        data: ['2024', '2025', '2026', '2027', '2028', '2029', '2030', '2031', '2032', '2033', '2034', '2035', '2036', '2037', '2038'],
+        axisLabel: {
+            interval: 0,
+            rotate: 30
+        }
+    },
+    series: [
+        {
+            name: 'Value',
+            type: 'bar',
+            data: [300, 450, 500, 550, 700, 650, 620, 720, 680, 740, 800, 780, 860, 900, 950],
+            itemStyle: {
+                color: '#5470C6'
+            },
+            barWidth: '50%',
+            label: {
+                show: true,
+                position: 'right',
+                formatter: '{c}'
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

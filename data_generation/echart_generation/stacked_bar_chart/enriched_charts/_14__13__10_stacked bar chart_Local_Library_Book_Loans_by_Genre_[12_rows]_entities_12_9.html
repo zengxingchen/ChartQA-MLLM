@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Art & Design Trends Over the Years',
+        left: 'center',
+        top: 20,
+        textStyle: {
+            color: '#333',
+            fontSize: 20
+        }
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Art', 'Design', 'Digital Art', 'Graphic Design', 'Painting', 'Sculpture'],
+        top: 60
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        data: ['2019', '2020', '2021', '2022', '2023'],
+        axisLabel: {
+            rotate: 30,
+            fontSize: 12
+        }
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Art',
+            type: 'bar',
+            stack: 'Total',
+            barWidth: 20,
+            itemStyle: {
+                color: '#FF5733'
+            },
+            data: [120, 220, 150, 320, 420]
+        },
+        {
+            name: 'Design',
+            type: 'bar',
+            stack: 'Total',
+            barWidth: 20,
+            itemStyle: {
+                color: '#33FF57'
+            },
+            data: [132, 182, 232, 332, 432]
+        },
+        {
+            name: 'Digital Art',
+            type: 'bar',
+            stack: 'Total',
+            barWidth: 20,
+            itemStyle: {
+                color: '#3357FF'
+            },
+            data: [101, 191, 201, 301, 401]
+        },
+        {
+            name: 'Graphic Design',
+            type: 'bar',
+            stack: 'Total',
+            barWidth: 20,
+            itemStyle: {
+                color: '#F39C12'
+            },
+            data: [134, 234, 154, 334, 434]
+        },
+        {
+            name: 'Painting',
+            type: 'bar',
+            stack: 'Total',
+            barWidth: 20,
+            itemStyle: {
+                color: '#9B59B6'
+            },
+            data: [90, 290, 190, 390, 490]
+        },
+        {
+            name: 'Sculpture',
+            type: 'bar',
+            stack: 'Total',
+            barWidth: 20,
+            itemStyle: {
+                color: '#E74C3C'
+            },
+            data: [230, 330, 330, 430, 530]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

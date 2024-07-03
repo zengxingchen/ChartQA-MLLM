@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Frequency Distribution of Observed Values',
+        left: 'center',
+        top: '10'
+    },
+    xAxis: {
+        type: 'category',
+        name: 'Value',
+        data: ['10-30', '30-50', '50-70', '70-90', '90-110', '110-130', '130-150', '150-170', '170-190', '190-210', '210-230', '230-250', '250-270', '270-290', '290-310', '310-330', '330-350', '350-370', '370-390', '390-410']
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Frequency'
+    },
+    series: [
+        {
+            type: 'bar',
+            data: [
+                1, 2, 2, 1, 2, 2, 2, 1, 1, 2, 2, 1, 2, 2, 2, 2, 1, 2, 1, 1
+            ],
+            itemStyle: {
+                color: '#3398DB'
+            },
+            barWidth: '60%',
+            label: {
+                show: true,
+                position: 'top'
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

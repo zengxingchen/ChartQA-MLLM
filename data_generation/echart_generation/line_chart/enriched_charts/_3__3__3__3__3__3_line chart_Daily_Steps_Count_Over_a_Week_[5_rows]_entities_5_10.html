@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 800,
+    height: 600
+});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Future Technologies & Society',
+        left: 'center',
+        top: '10'
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['Tech_A', 'Tech_B', 'Tech_C'],
+        top: '40'
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ['2024-01', '2024-02', '2024-03', '2024-04', '2024-05', '2024-06', '2024-07', '2024-08', '2024-09', '2024-10', '2024-11', '2024-12']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Tech_A',
+            type: 'line',
+            data: [100, 110, 130, 140, 150, 160, 170, 180, 190, 200, 210, 220],
+            lineStyle: {
+                color: '#FF0000'
+            },
+            label: {
+                show: true,
+                position: 'top'
+            }
+        },
+        {
+            name: 'Tech_B',
+            type: 'line',
+            data: [120, 115, 125, 130, 135, 140, 145, 150, 155, 160, 165, 170],
+            lineStyle: {
+                color: '#00FF00'
+            },
+            label: {
+                show: true,
+                position: 'top'
+            }
+        },
+        {
+            name: 'Tech_C',
+            type: 'line',
+            data: [150, 160, 170, 180, 190, 200, 210, 220, 230, 240, 250, 260],
+            lineStyle: {
+                color: '#0000FF'
+            },
+            label: {
+                show: true,
+                position: 'top'
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

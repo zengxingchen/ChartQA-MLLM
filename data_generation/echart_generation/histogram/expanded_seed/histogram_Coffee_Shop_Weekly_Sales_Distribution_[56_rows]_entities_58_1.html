@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var rawData = [
+    {'Day of Week': 'Monday', 'Total Sales ($)': 845},
+    {'Day of Week': 'Tuesday', 'Total Sales ($)': 760},
+    {'Day of Week': 'Wednesday', 'Total Sales ($)': 892},
+    {'Day of Week': 'Thursday', 'Total Sales ($)': 931},
+    {'Day of Week': 'Friday', 'Total Sales ($)': 1405},
+    {'Day of Week': 'Saturday', 'Total Sales ($)': 1980},
+    {'Day of Week': 'Sunday', 'Total Sales ($)': 1670},
+    {'Day of Week': 'Monday', 'Total Sales ($)': 825},
+    {'Day of Week': 'Tuesday', 'Total Sales ($)': 780},
+    {'Day of Week': 'Wednesday', 'Total Sales ($)': 900},
+    {'Day of Week': 'Thursday', 'Total Sales ($)': 950},
+    {'Day of Week': 'Friday', 'Total Sales ($)': 1450},
+    {'Day of Week': 'Saturday', 'Total Sales ($)': 2100},
+    {'Day of Week': 'Sunday', 'Total Sales ($)': 1600},
+    {'Day of Week': 'Monday', 'Total Sales ($)': 860}
+];
+
+// Create bins for the histogram
+// Assuming a hypothetical bin size of 200 dollars for simplicity
+var binSize = 200;
+var bins = {};
+rawData.forEach(function (item) {
+    var binKey = Math.floor(item['Total Sales ($)'] / binSize) * binSize;
+    bins[binKey] = (bins[binKey] || 0) + 1;
+});
+
+// Convert bins to format suitable for ECharts
+var histogramData = [];
+for (var bin in bins) {
+    histogramData.push([bin, bins[bin]]);
+}
+
+// Sort histogram data by bin value to display in ascending order
+histogramData.sort(function (a, b) {
+    return a[0] - b[0];
+});
+
+option = {
+    title: {
+        text: 'Histogram of Total Sales',
+        subtext: 'Binned by $200 intervals',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '3%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        name: 'Sales Range ($)',
+        data: histogramData.map(function (item) { return item[0]; })
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Frequency'
+    },
+    series: [{
+        type: 'bar',
+        data: histogramData.map(function (item) { return item[1]; }),
+        markPoint: {
+            data: [
+                {type: 'max', name: 'Max'},
+                {type: 'min', name: 'Min'}
+            ]
+        },
+        markLine: {
+            data: [{type: 'average', name: 'Average'}]
+        }
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

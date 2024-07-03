@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Energy Mix in 2030',
+        left: 'center',
+        top: '20'
+    },
+    tooltip: {
+        trigger: 'item'
+    },
+    legend: {
+        orient: 'vertical',
+        left: 'right',
+        top: 'middle',
+        align: 'left'
+    },
+    color: ['#67C23A', '#E6A23C', '#409EFF', '#C0C4CC'],
+    series: [
+        {
+            name: 'Energy Source',
+            type: 'pie',
+            radius: '50%',
+            data: [
+                { value: 35, name: 'Renewable Energy' },
+                { value: 55, name: 'Fossil Fuels' },
+                { value: 15, name: 'Nuclear Energy' },
+                { value: 5, name: 'Others' }
+            ],
+            emphasis: {
+                itemStyle: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            },
+            label: {
+                formatter: '{b}: {d}%',
+                position: 'outside',
+            },
+            labelLine: {
+                show: true
+            },
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

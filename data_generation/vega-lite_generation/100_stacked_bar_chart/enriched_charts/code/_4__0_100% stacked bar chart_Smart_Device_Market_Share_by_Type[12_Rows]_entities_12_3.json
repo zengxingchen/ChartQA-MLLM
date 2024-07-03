@@ -1,0 +1,142 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "A 100% stacked bar chart showing the distribution of preferred modes of transport over different years.",
+    "data": {
+        "values": [
+            {
+                "Year": "2015",
+                "Car": 30,
+                "Bicycle": 10,
+                "Public Transport": 40,
+                "Walking": 20
+            },
+            {
+                "Year": "2016",
+                "Car": 32,
+                "Bicycle": 12,
+                "Public Transport": 38,
+                "Walking": 18
+            },
+            {
+                "Year": "2017",
+                "Car": 28,
+                "Bicycle": 14,
+                "Public Transport": 40,
+                "Walking": 18
+            },
+            {
+                "Year": "2018",
+                "Car": 26,
+                "Bicycle": 16,
+                "Public Transport": 42,
+                "Walking": 16
+            },
+            {
+                "Year": "2019",
+                "Car": 24,
+                "Bicycle": 18,
+                "Public Transport": 43,
+                "Walking": 15
+            },
+            {
+                "Year": "2020",
+                "Car": 22,
+                "Bicycle": 20,
+                "Public Transport": 44,
+                "Walking": 14
+            },
+            {
+                "Year": "2021",
+                "Car": 20,
+                "Bicycle": 22,
+                "Public Transport": 45,
+                "Walking": 13
+            },
+            {
+                "Year": "2022",
+                "Car": 18,
+                "Bicycle": 24,
+                "Public Transport": 46,
+                "Walking": 12
+            },
+            {
+                "Year": "2023",
+                "Car": 16,
+                "Bicycle": 26,
+                "Public Transport": 48,
+                "Walking": 10
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Car",
+                "Bicycle",
+                "Public Transport",
+                "Walking"
+            ],
+            "as": [
+                "Transport Mode",
+                "Percentage"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "bar",
+        "width": {
+            "band": 0.5
+        }
+    },
+    "width": 800,
+    "height": 300,
+    "encoding": {
+        "x": {
+            "field": "Percentage",
+            "type": "quantitative",
+            "axis": {
+                "title": "Percentage"
+            },
+            "stack": "normalize"
+        },
+        "y": {
+            "field": "Year",
+            "type": "ordinal",
+            "axis": {
+                "title": "Year"
+            }
+        },
+        "color": {
+            "field": "Transport Mode",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Car",
+                    "Bicycle",
+                    "Public Transport",
+                    "Walking"
+                ],
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e",
+                    "#2ca02c",
+                    "#d62728"
+                ]
+            },
+            "legend": {
+                "title": "Transport Mode"
+            }
+        }
+    },
+    "config": {
+        "bar": {
+            "cornerRadiusEnd": 5
+        }
+    },
+    "title": {
+        "text": "Distribution of Preferred Modes of Transport Over Different Years",
+        "anchor": "start",
+        "fontSize": 16,
+        "dy": -20
+    }
+}

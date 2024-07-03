@@ -1,0 +1,191 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+        "values": [
+            {
+                "Month": "January",
+                "Temperature": -5,
+                "Precipitation": 30,
+                "Snowfall": 50
+            },
+            {
+                "Month": "February",
+                "Temperature": -3,
+                "Precipitation": 25,
+                "Snowfall": 45
+            },
+            {
+                "Month": "March",
+                "Temperature": 2,
+                "Precipitation": 40,
+                "Snowfall": 20
+            },
+            {
+                "Month": "April",
+                "Temperature": 10,
+                "Precipitation": 50,
+                "Snowfall": 5
+            },
+            {
+                "Month": "May",
+                "Temperature": 15,
+                "Precipitation": 60,
+                "Snowfall": 0
+            },
+            {
+                "Month": "June",
+                "Temperature": 20,
+                "Precipitation": 70,
+                "Snowfall": 0
+            },
+            {
+                "Month": "July",
+                "Temperature": 25,
+                "Precipitation": 80,
+                "Snowfall": 0
+            },
+            {
+                "Month": "August",
+                "Temperature": 23,
+                "Precipitation": 75,
+                "Snowfall": 0
+            },
+            {
+                "Month": "September",
+                "Temperature": 18,
+                "Precipitation": 65,
+                "Snowfall": 0
+            },
+            {
+                "Month": "October",
+                "Temperature": 10,
+                "Precipitation": 55,
+                "Snowfall": 5
+            },
+            {
+                "Month": "November",
+                "Temperature": 2,
+                "Precipitation": 45,
+                "Snowfall": 20
+            },
+            {
+                "Month": "December",
+                "Temperature": -2,
+                "Precipitation": 35,
+                "Snowfall": 40
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Temperature",
+                "Precipitation",
+                "Snowfall"
+            ],
+            "as": [
+                "Measure",
+                "Value"
+            ]
+        }
+    ],
+    "width": 800,
+    "height": 600,
+    "mark": {
+        "type": "line",
+        "point": {
+            "filled": true,
+            "fill": "white"
+        },
+        "tooltip": true
+    },
+    "encoding": {
+        "x": {
+            "field": "Month",
+            "type": "ordinal",
+            "title": "Month",
+            "axis": {
+                "labelAngle": 0
+            }
+        },
+        "y": {
+            "field": "Value",
+            "type": "quantitative",
+            "title": "Value",
+            "scale": {
+                "reverse": true
+            }
+        },
+        "color": {
+            "field": "Measure",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Temperature",
+                    "Precipitation",
+                    "Snowfall"
+                ],
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e",
+                    "#2ca02c"
+                ]
+            },
+            "legend": {
+                "title": "Measure"
+            }
+        }
+    },
+    "title": {
+        "text": "Environment & Climate Change: Monthly Weather Indicators",
+        "subtitle": "Monthly data over a year",
+        "anchor": "start"
+    },
+    "layer": [
+        {
+            "mark": {
+                "type": "line"
+            },
+            "encoding": {
+                "x": {
+                    "field": "Month",
+                    "type": "ordinal"
+                },
+                "y": {
+                    "field": "Value",
+                    "type": "quantitative"
+                },
+                "color": {
+                    "field": "Measure",
+                    "type": "nominal"
+                }
+            }
+        },
+        {
+            "mark": {
+                "type": "text",
+                "align": "left",
+                "dx": 5,
+                "dy": -5
+            },
+            "encoding": {
+                "x": {
+                    "field": "Month",
+                    "type": "ordinal"
+                },
+                "y": {
+                    "field": "Value",
+                    "type": "quantitative"
+                },
+                "text": {
+                    "field": "Value",
+                    "type": "quantitative"
+                },
+                "color": {
+                    "field": "Measure",
+                    "type": "nominal"
+                }
+            }
+        }
+    ]
+}

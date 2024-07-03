@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 700, // Width of the chart
+    height: 500 // Height of the chart
+});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Advancements in Future Technologies',
+        left: 'center',
+        top: 20
+    },
+    tooltip: {
+        trigger: 'item'
+    },
+    legend: {
+        orient: 'vertical',
+        left: 'left',
+        top: '15%',
+        formatter: function (name) {
+            // Formatting legend text with percentages
+            var total = 0;
+            var target;
+            option.series[0].data.forEach(function (item) {
+                total += item.value;
+                if (item.name === name) {
+                    target = item.value;
+                }
+            });
+            var arr = [
+                '{name|' + name + '}',
+                '{value|(' + ((target / total) * 100).toFixed(2) + '%)}'
+            ];
+            return arr.join(' ');
+        },
+        textStyle: {
+            rich: {
+                name: {
+                    color: '#666',
+                    fontSize: 14,
+                    fontWeight: 'bold',
+                    width: 150,
+                    align: 'left'
+                },
+                value: {
+                    color: '#333',
+                    fontSize: 14,
+                    align: 'left'
+                }
+            }
+        }
+    },
+    series: [
+        {
+            name: 'Market Share',
+            type: 'pie',
+            radius: '55%',
+            center: ['50%', '60%'],
+            data: [
+                {value: 15, name: 'Renewable Energy'},
+                {value: 10, name: 'Electric Vehicles'},
+                {value: 8,  name: 'Smart Homes'},
+                {value: 12, name: 'Biotechnology'},
+                {value: 11, name: 'Nanotechnology'},
+                {value: 20, name: 'Artificial Intelligence'},
+                {value: 5,  name: 'Robotics'},
+                {value: 7,  name: 'Aerospace Innovation'},
+                {value: 5,  name: 'Quantum Computing'},
+                {value: 7,  name: 'Cybersecurity'}
+            ],
+            emphasis: {
+                itemStyle: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            }
+        }
+    ],
+    color: [
+        '#1f77b4', // Renewable Energy
+        '#ff7f0e', // Electric Vehicles
+        '#2ca02c', // Smart Homes
+        '#d62728', // Biotechnology
+        '#9467bd', // Nanotechnology
+        '#8c564b', // Artificial Intelligence
+        '#e377c2', // Robotics
+        '#7f7f7f', // Aerospace Innovation
+        '#bcbd22', // Quantum Computing
+        '#17becf'  // Cybersecurity
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {renderer: 'canvas', width: '600', height: '400'});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Monthly Average Temperatures',
+        left: 'left'
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['Temperature (°C)'],
+        right: 10
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: [
+            'January', 'February', 'March', 'April', 'May', 'June', 
+            'July', 'August', 'September', 'October', 'November', 'December'
+        ]
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Temperature (°C)'
+    },
+    series: [
+        {
+            name: 'Temperature (°C)',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {
+                color: 'rgba(255, 140, 0, 0.7)', // A fresh orange with opacity
+                opacity: 0.5 // Experiment with area opacity
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [
+                -3, -1, 2, 8, 14, 19,
+                22, 21, 16, 10, 4, -2
+            ],
+            color: '#FF8C00' // Orange color for line
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

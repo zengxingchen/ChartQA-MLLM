@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {renderer: 'canvas', width: 800, height: 400});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Online Course Enrollments in April',
+        left: 'center'
+    },
+    color: ['#3398DB'],
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            label: {
+                backgroundColor: '#6a7985'
+            }
+        }
+    },
+    grid: { 
+        left: '3%', right: '4%', bottom: '3%', containLabel: true
+    },
+    xAxis: [
+        {
+            type: 'category',
+            boundaryGap: false,
+            data: [
+                '2023-04-01','2023-04-02','2023-04-03','2023-04-04','2023-04-05',
+                '2023-04-06','2023-04-07','2023-04-08','2023-04-09','2023-04-10',
+                '2023-04-11','2023-04-12','2023-04-13','2023-04-14','2023-04-15',
+                '2023-04-16','2023-04-17','2023-04-18','2023-04-19','2023-04-20',
+                '2023-04-21','2023-04-22','2023-04-23','2023-04-24','2023-04-25',
+                '2023-04-26','2023-04-27','2023-04-28','2023-04-29','2023-04-30'
+            ]
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value'
+        }
+    ],
+    series: [
+        {
+            name: 'Enrollment',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [
+                1200,1185,1169,1152,1135,1118,1102,1087,1070,1053,1038,1022,1010,
+                995,978,960,942,928,910,895,880,865,850,835,820,805,790,775,760,745
+            ],
+            markPoint: {
+                data: [
+                    {type: 'max', name: 'Max'},
+                    {type: 'min', name: 'Min'}
+                ]
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

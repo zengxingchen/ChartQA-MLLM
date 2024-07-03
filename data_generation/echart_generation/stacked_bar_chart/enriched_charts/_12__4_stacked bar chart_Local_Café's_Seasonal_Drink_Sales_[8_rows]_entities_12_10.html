@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, { renderer: 'canvas', width: 800, height: 600 });
+var option = {
+    title: {
+        text: 'Funding Trends in Arts, Science, and Health (2020-2030)',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Art Sales', 'Science Grants', 'Health Funding'],
+        top: '10%'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        axisLabel: {
+            formatter: '{value}'
+        }
+    },
+    yAxis: {
+        type: 'category',
+        data: ['2020', '2021', '2022', '2023', '2024', '2025', '2026', '2027', '2028', '2029', '2030']
+    },
+    series: [
+        {
+            name: 'Art Sales',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            data: [50, 70, 65, 80, 90, 100, 120, 110, 130, 140, 150],
+            itemStyle: {
+                color: '#FF5733'
+            },
+            barWidth: 20
+        },
+        {
+            name: 'Science Grants',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            data: [80, 90, 100, 110, 120, 130, 140, 150, 160, 170, 180],
+            itemStyle: {
+                color: '#33FF57'
+            },
+            barWidth: 20
+        },
+        {
+            name: 'Health Funding',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            data: [45, 60, 55, 70, 75, 85, 95, 90, 100, 110, 120],
+            itemStyle: {
+                color: '#3357FF'
+            },
+            barWidth: 20
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

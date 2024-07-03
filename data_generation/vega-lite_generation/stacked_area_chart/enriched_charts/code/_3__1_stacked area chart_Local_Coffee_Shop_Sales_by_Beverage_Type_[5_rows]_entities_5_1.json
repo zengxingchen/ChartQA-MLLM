@@ -1,0 +1,224 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Annual Revenue by Sport League",
+    "width": 800,
+    "height": 300,
+    "title": {
+        "text": "Annual Revenue by Sport League",
+        "subtitle": "Revenue from 2010 to 2022",
+        "fontSize": 16,
+        "subtitleFontSize": 10,
+        "anchor": "start",
+        "offset": 10
+    },
+    "data": {
+        "values": [
+            {
+                "Year": 2010,
+                "NFL": 8000,
+                "NBA": 4200,
+                "MLB": 4800,
+                "NHL": 3000,
+                "FIFA": 3500,
+                "Commercial": 2000
+            },
+            {
+                "Year": 2011,
+                "NFL": 8200,
+                "NBA": 4300,
+                "MLB": 4900,
+                "NHL": 3100,
+                "FIFA": 3550,
+                "Commercial": 2100
+            },
+            {
+                "Year": 2012,
+                "NFL": 8400,
+                "NBA": 4400,
+                "MLB": 5000,
+                "NHL": 3200,
+                "FIFA": 3600,
+                "Commercial": 2150
+            },
+            {
+                "Year": 2013,
+                "NFL": 8600,
+                "NBA": 4500,
+                "MLB": 5100,
+                "NHL": 3300,
+                "FIFA": 3650,
+                "Commercial": 2250
+            },
+            {
+                "Year": 2014,
+                "NFL": 8800,
+                "NBA": 4600,
+                "MLB": 5200,
+                "NHL": 3400,
+                "FIFA": 3700,
+                "Commercial": 2300
+            },
+            {
+                "Year": 2015,
+                "NFL": 9000,
+                "NBA": 4700,
+                "MLB": 5300,
+                "NHL": 3500,
+                "FIFA": 3800,
+                "Commercial": 2400
+            },
+            {
+                "Year": 2016,
+                "NFL": 9200,
+                "NBA": 4800,
+                "MLB": 5400,
+                "NHL": 3600,
+                "FIFA": 3900,
+                "Commercial": 2500
+            },
+            {
+                "Year": 2017,
+                "NFL": 9400,
+                "NBA": 4900,
+                "MLB": 5500,
+                "NHL": 3700,
+                "FIFA": 4000,
+                "Commercial": 2600
+            },
+            {
+                "Year": 2018,
+                "NFL": 9600,
+                "NBA": 5000,
+                "MLB": 5600,
+                "NHL": 3800,
+                "FIFA": 4100,
+                "Commercial": 2700
+            },
+            {
+                "Year": 2019,
+                "NFL": 9800,
+                "NBA": 5100,
+                "MLB": 5700,
+                "NHL": 3900,
+                "FIFA": 4200,
+                "Commercial": 2800
+            },
+            {
+                "Year": 2020,
+                "NFL": 10000,
+                "NBA": 5200,
+                "MLB": 5800,
+                "NHL": 4000,
+                "FIFA": 4300,
+                "Commercial": 2900
+            },
+            {
+                "Year": 2021,
+                "NFL": 10200,
+                "NBA": 5300,
+                "MLB": 5900,
+                "NHL": 4100,
+                "FIFA": 4400,
+                "Commercial": 3000
+            },
+            {
+                "Year": 2022,
+                "NFL": 10400,
+                "NBA": 5400,
+                "MLB": 6000,
+                "NHL": 4200,
+                "FIFA": 4500,
+                "Commercial": 3100
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "NFL",
+                "NBA",
+                "MLB",
+                "NHL",
+                "FIFA",
+                "Commercial"
+            ],
+            "as": [
+                "League",
+                "Revenue"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "area",
+        "opacity": 0.7
+    },
+    "encoding": {
+        "x": {
+            "field": "Year",
+            "type": "ordinal",
+            "axis": {
+                "title": "Year"
+            }
+        },
+        "y": {
+            "field": "Revenue",
+            "type": "quantitative",
+            "axis": {
+                "title": "Revenue (in million USD)"
+            },
+            "stack": "zero"
+        },
+        "color": {
+            "field": "League",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "NFL",
+                    "NBA",
+                    "MLB",
+                    "NHL",
+                    "FIFA",
+                    "Commercial"
+                ],
+                "range": [
+                    "#173f5f",
+                    "#20639b",
+                    "#3caea3",
+                    "#f6d55c",
+                    "#ed553b",
+                    "#7ea2aa"
+                ]
+            },
+            "legend": {
+                "title": "League",
+                "orient": "right",
+                "offset": -100
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Year",
+                "type": "ordinal",
+                "title": "Year"
+            },
+            {
+                "field": "League",
+                "type": "nominal",
+                "title": "League"
+            },
+            {
+                "field": "Revenue",
+                "type": "quantitative",
+                "title": "Revenue"
+            }
+        ]
+    },
+    "config": {
+        "view": {
+            "stroke": "transparent"
+        },
+        "axis": {
+            "grid": true
+        }
+    }
+}

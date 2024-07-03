@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {renderer: 'canvas', useDirtyRect: false, width: 800, height: 600});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Art & Design Data Analysis',
+        left: 'center',
+        top: '10',
+        textStyle: {
+            color: '#333',
+            fontSize: 24
+        }
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Type A', 'Type B', 'Type C', 'Type D'],
+        top: '40'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        data: ['Art', 'Design', 'Painting', 'Sculpture', 'Photography', 'Architecture', 'Graphic Design'],
+        axisLabel: {
+            interval: 0
+        }
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Type A',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            itemStyle: {
+                color: '#FF5733'
+            },
+            data: [30, 45, 55, 20, 65, 35, 40],
+            barWidth: '50%'
+        },
+        {
+            name: 'Type B',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            itemStyle: {
+                color: '#33FF57'
+            },
+            data: [40, 35, 65, 30, 45, 50, 55]
+        },
+        {
+            name: 'Type C',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            itemStyle: {
+                color: '#3357FF'
+            },
+            data: [50, 25, 35, 45, 30, 40, 50]
+        },
+        {
+            name: 'Type D',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            itemStyle: {
+                color: '#FF33A8'
+            },
+            data: [60, 15, 25, 55, 40, 25, 35]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

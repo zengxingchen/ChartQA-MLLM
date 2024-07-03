@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    width: 800,
+    height: 600
+});
+var app = {};
+
+var option;
+
+option = {
+    color: ['#FFD700', '#1E90FF', '#32CD32', '#8B4513', '#800080', '#A9A9A9'],
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Solar Energy', 'Hydropower', 'Wind Energy', 'Biomass', 'Nuclear Energy', 'Fossil Fuels'],
+        top: '5%'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01]
+    },
+    yAxis: {
+        type: 'category',
+        data: ['2016', '2017', '2018', '2019', '2020', '2021', '2022']
+    },
+    series: [
+        {
+            name: 'Solar Energy',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            data: [2, 3, 4, 6, 7, 9, 11]
+        },
+        {
+            name: 'Hydropower',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            data: [25, 26, 27, 28, 28, 29, 29]
+        },
+        {
+            name: 'Wind Energy',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            data: [10, 12, 13, 14, 16, 18, 19]
+        },
+        {
+            name: 'Biomass',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            data: [5, 4, 3, 3, 2, 2, 1]
+        },
+        {
+            name: 'Nuclear Energy',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            data: [15, 15, 16, 16, 17, 16, 15]
+        },
+        {
+            name: 'Fossil Fuels',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            data: [43, 40, 37, 33, 30, 26, 25]
+        }
+    ],
+    title: {
+        text: 'Energy Mix for Environment & Climate Change',
+        left: 'center',
+        top: '1%'
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

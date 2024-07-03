@@ -1,0 +1,205 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": {
+        "text": "Annual Tourism Expenditure by Category",
+        "subtitle": [
+            "Annual expenditure on tourism activities by category",
+            ""
+        ],
+        "subtitleFontStyle": "italic",
+        "subtitleFontSize": 10,
+        "anchor": "start",
+        "color": "#333333",
+        "subtitleColor": "#444444"
+    },
+    "config": {
+        "background": "#eaeaea",
+        "view": {
+            "stroke": "transparent"
+        }
+    },
+    "data": {
+        "values": [
+            {
+                "Year": 2010,
+                "Accommodation": 1200,
+                "Food": 800,
+                "Transport": 600,
+                "Entertainment": 500
+            },
+            {
+                "Year": 2011,
+                "Accommodation": 1250,
+                "Food": 850,
+                "Transport": 620,
+                "Entertainment": 520
+            },
+            {
+                "Year": 2012,
+                "Accommodation": 1300,
+                "Food": 870,
+                "Transport": 640,
+                "Entertainment": 540
+            },
+            {
+                "Year": 2013,
+                "Accommodation": 1350,
+                "Food": 900,
+                "Transport": 660,
+                "Entertainment": 560
+            },
+            {
+                "Year": 2014,
+                "Accommodation": 1400,
+                "Food": 920,
+                "Transport": 680,
+                "Entertainment": 580
+            },
+            {
+                "Year": 2015,
+                "Accommodation": 1450,
+                "Food": 950,
+                "Transport": 700,
+                "Entertainment": 600
+            },
+            {
+                "Year": 2016,
+                "Accommodation": 1500,
+                "Food": 980,
+                "Transport": 720,
+                "Entertainment": 620
+            },
+            {
+                "Year": 2017,
+                "Accommodation": 1550,
+                "Food": 1000,
+                "Transport": 740,
+                "Entertainment": 640
+            },
+            {
+                "Year": 2018,
+                "Accommodation": 1600,
+                "Food": 1030,
+                "Transport": 760,
+                "Entertainment": 660
+            },
+            {
+                "Year": 2019,
+                "Accommodation": 1650,
+                "Food": 1060,
+                "Transport": 780,
+                "Entertainment": 680
+            },
+            {
+                "Year": 2020,
+                "Accommodation": 1700,
+                "Food": 1090,
+                "Transport": 800,
+                "Entertainment": 700
+            },
+            {
+                "Year": 2021,
+                "Accommodation": 1750,
+                "Food": 1120,
+                "Transport": 820,
+                "Entertainment": 720
+            },
+            {
+                "Year": 2022,
+                "Accommodation": 1800,
+                "Food": 1150,
+                "Transport": 840,
+                "Entertainment": 740
+            },
+            {
+                "Year": 2023,
+                "Accommodation": 1850,
+                "Food": 1180,
+                "Transport": 860,
+                "Entertainment": 760
+            },
+            {
+                "Year": 2024,
+                "Accommodation": 1900,
+                "Food": 1210,
+                "Transport": 880,
+                "Entertainment": 780
+            },
+            {
+                "Year": 2025,
+                "Accommodation": 1950,
+                "Food": 1240,
+                "Transport": 900,
+                "Entertainment": 800
+            }
+        ]
+    },
+    "height": 400,
+    "width": 800,
+    "mark": "bar",
+    "encoding": {
+        "x": {
+            "field": "Year",
+            "type": "ordinal",
+            "axis": {
+                "title": "Year"
+            }
+        },
+        "y": {
+            "type": "quantitative",
+            "axis": {
+                "title": "Expenditure (Million USD)"
+            }
+        },
+        "color": {
+            "field": "Category",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Accommodation",
+                    "Food",
+                    "Transport",
+                    "Entertainment"
+                ],
+                "range": [
+                    "#377eb8",
+                    "#ff7f00",
+                    "#4daf4a",
+                    "#e41a1c"
+                ]
+            },
+            "legend": {
+                "title": "Category"
+            }
+        }
+    },
+    "transform": [
+        {
+            "fold": [
+                "Accommodation",
+                "Food",
+                "Transport",
+                "Entertainment"
+            ],
+            "as": [
+                "Category",
+                "Expenditure"
+            ]
+        }
+    ],
+    "layer": [
+        {
+            "mark": {
+                "type": "bar",
+                "width": {
+                    "band": 0.2
+                }
+            },
+            "encoding": {
+                "y": {
+                    "field": "Expenditure"
+                }
+            }
+        }
+    ]
+}

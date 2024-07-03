@@ -1,0 +1,171 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+        "values": [
+            {
+                "Date": "2023-01-01",
+                "Classical": 30,
+                "Rock": 45,
+                "Jazz": 35,
+                "Pop": 50
+            },
+            {
+                "Date": "2023-01-02",
+                "Classical": 25,
+                "Rock": 55,
+                "Jazz": 40,
+                "Pop": 60
+            },
+            {
+                "Date": "2023-01-03",
+                "Classical": 40,
+                "Rock": 50,
+                "Jazz": 45,
+                "Pop": 55
+            },
+            {
+                "Date": "2023-01-04",
+                "Classical": 35,
+                "Rock": 60,
+                "Jazz": 50,
+                "Pop": 70
+            },
+            {
+                "Date": "2023-01-05",
+                "Classical": 45,
+                "Rock": 65,
+                "Jazz": 55,
+                "Pop": 75
+            },
+            {
+                "Date": "2023-01-06",
+                "Classical": 50,
+                "Rock": 70,
+                "Jazz": 60,
+                "Pop": 80
+            },
+            {
+                "Date": "2023-01-07",
+                "Classical": 55,
+                "Rock": 75,
+                "Jazz": 65,
+                "Pop": 85
+            },
+            {
+                "Date": "2023-01-08",
+                "Classical": 60,
+                "Rock": 80,
+                "Jazz": 70,
+                "Pop": 90
+            },
+            {
+                "Date": "2023-01-09",
+                "Classical": 65,
+                "Rock": 85,
+                "Jazz": 75,
+                "Pop": 95
+            },
+            {
+                "Date": "2023-01-10",
+                "Classical": 70,
+                "Rock": 90,
+                "Jazz": 80,
+                "Pop": 100
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Classical",
+                "Rock",
+                "Jazz",
+                "Pop"
+            ],
+            "as": [
+                "Genre",
+                "Streams"
+            ]
+        }
+    ],
+    "width": 500,
+    "height": 300,
+    "title": {
+        "text": "Daily Music Genre Streams",
+        "subtitle": "Stream counts by genre",
+        "subtitleFontStyle": "italic",
+        "subtitleFontSize": 10,
+        "anchor": "start",
+        "color": "black"
+    },
+    "mark": {
+        "type": "bar",
+        "width": {
+            "band": 0.7
+        }
+    },
+    "encoding": {
+        "x": {
+            "field": "Date",
+            "type": "ordinal",
+            "title": "Date",
+            "axis": {
+                "labelAngle": 0
+            }
+        },
+        "y": {
+            "field": "Streams",
+            "type": "quantitative",
+            "title": "Streams Count"
+        },
+        "color": {
+            "field": "Genre",
+            "type": "nominal",
+            "legend": {
+                "orient": "top",
+                "title": "Music Genre",
+                "titleFontSize": 12,
+                "labelFontSize": 10
+            },
+            "scale": {
+                "domain": [
+                    "Classical",
+                    "Rock",
+                    "Jazz",
+                    "Pop"
+                ],
+                "range": [
+                    "#1f78b4",
+                    "#33a02c",
+                    "#e31a1c",
+                    "#ff7f00"
+                ]
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Date",
+                "type": "ordinal",
+                "title": "Date"
+            },
+            {
+                "field": "Genre",
+                "type": "nominal",
+                "title": "Genre"
+            },
+            {
+                "field": "Streams",
+                "type": "quantitative",
+                "title": "Streams"
+            }
+        ]
+    },
+    "config": {
+        "axisX": {
+            "labelAngle": 0
+        },
+        "view": {
+            "stroke": "transparent"
+        }
+    }
+}

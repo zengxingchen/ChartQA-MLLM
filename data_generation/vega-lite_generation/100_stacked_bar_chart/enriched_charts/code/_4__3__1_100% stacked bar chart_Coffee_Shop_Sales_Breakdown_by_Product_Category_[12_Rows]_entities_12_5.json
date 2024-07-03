@@ -1,0 +1,160 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Vertical 100% Stacked bar chart of daily food preferences by age groups.",
+    "width": 600,
+    "height": 400,
+    "data": {
+        "values": [
+            {
+                "Age Group": "10-20",
+                "Vegetables": 30,
+                "Fruits": 20,
+                "Meat": 15,
+                "Dairy": 20,
+                "Grains": 15
+            },
+            {
+                "Age Group": "21-30",
+                "Vegetables": 25,
+                "Fruits": 25,
+                "Meat": 20,
+                "Dairy": 15,
+                "Grains": 15
+            },
+            {
+                "Age Group": "31-40",
+                "Vegetables": 20,
+                "Fruits": 30,
+                "Meat": 25,
+                "Dairy": 10,
+                "Grains": 15
+            },
+            {
+                "Age Group": "41-50",
+                "Vegetables": 15,
+                "Fruits": 35,
+                "Meat": 30,
+                "Dairy": 10,
+                "Grains": 10
+            },
+            {
+                "Age Group": "51-60",
+                "Vegetables": 10,
+                "Fruits": 40,
+                "Meat": 25,
+                "Dairy": 15,
+                "Grains": 10
+            },
+            {
+                "Age Group": "61+",
+                "Vegetables": 15,
+                "Fruits": 35,
+                "Meat": 20,
+                "Dairy": 20,
+                "Grains": 10
+            },
+            {
+                "Age Group": "71+",
+                "Vegetables": 20,
+                "Fruits": 30,
+                "Meat": 15,
+                "Dairy": 25,
+                "Grains": 10
+            },
+            {
+                "Age Group": "81+",
+                "Vegetables": 25,
+                "Fruits": 25,
+                "Meat": 10,
+                "Dairy": 30,
+                "Grains": 10
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Vegetables",
+                "Fruits",
+                "Meat",
+                "Dairy",
+                "Grains"
+            ],
+            "as": [
+                "Food Type",
+                "Percentage"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "bar",
+        "height": {
+            "band": 0.5
+        }
+    },
+    "encoding": {
+        "x": {
+            "field": "Age Group",
+            "title": "Age Groups",
+            "type": "ordinal",
+            "axis": {
+                "labelAngle": 0
+            }
+        },
+        "y": {
+            "field": "Percentage",
+            "type": "quantitative",
+            "title": "Percentage",
+            "stack": "normalize",
+            "axis": {
+                "format": "%"
+            }
+        },
+        "color": {
+            "field": "Food Type",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Vegetables",
+                    "Fruits",
+                    "Meat",
+                    "Dairy",
+                    "Grains"
+                ],
+                "range": [
+                    "#FF6347",
+                    "#FFD700",
+                    "#32CD32",
+                    "#8A2BE2",
+                    "#4682B4"
+                ]
+            },
+            "legend": {
+                "title": "Food Type"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Age Group",
+                "type": "ordinal"
+            },
+            {
+                "field": "Food Type",
+                "type": "nominal"
+            },
+            {
+                "field": "Percentage",
+                "type": "quantitative",
+                "title": "Percentage",
+                "format": ".2f"
+            }
+        ]
+    },
+    "title": {
+        "text": "Daily Food Preferences by Age Group",
+        "anchor": "start",
+        "offset": 10,
+        "frame": "group",
+        "fontSize": 20
+    }
+}

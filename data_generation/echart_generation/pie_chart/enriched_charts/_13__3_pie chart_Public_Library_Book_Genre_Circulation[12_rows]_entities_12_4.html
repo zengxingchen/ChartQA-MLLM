@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Global Distribution of Consumer Tech Devices',
+        left: 'center',
+        top: 20,
+    },
+    tooltip: {
+        trigger: 'item'
+    },
+    legend: {
+        orient: 'vertical',
+        left: 'left',
+        top: '25%',
+    },
+    series: [
+        {
+            name: 'Device',
+            type: 'pie',
+            radius: '50%',
+            data: [
+                { value: 1200, name: 'Smartphones', itemStyle: { color: '#4E79A7' } },
+                { value: 980, name: 'Laptops', itemStyle: { color: '#F28E2C' } },
+                { value: 450, name: 'Tablets', itemStyle: { color: '#E15759' } },
+                { value: 320, name: 'Smartwatches', itemStyle: { color: '#76B7B2' } },
+                { value: 210, name: 'VR Headsets', itemStyle: { color: '#59A14F' } },
+                { value: 150, name: 'AR Glasses', itemStyle: { color: '#EDC949' } },
+                { value: 660, name: 'Fitness Trackers', itemStyle: { color: '#B07AA1' } },
+                { value: 340, name: 'E-Readers', itemStyle: { color: '#FF9DA7' } },
+                { value: 310, name: 'Portable Gaming Devices', itemStyle: { color: '#9C755F' } },
+                { value: 600, name: 'Home Automation Devices', itemStyle: { color: '#BAB0AB' } }
+            ],
+            emphasis: {
+                itemStyle: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

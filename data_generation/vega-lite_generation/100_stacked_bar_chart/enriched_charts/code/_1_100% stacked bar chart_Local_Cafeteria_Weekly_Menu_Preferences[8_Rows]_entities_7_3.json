@@ -1,0 +1,175 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "A 100% stacked horizontal bar chart showing the distribution of time spent on different educational activities over a week",
+    "width": 400,
+    "height": 200,
+    "data": {
+        "values": [
+            {
+                "Day": "Monday",
+                "Reading": 2,
+                "Writing": 1,
+                "Math": 2,
+                "Science": 1,
+                "Arts": 1
+            },
+            {
+                "Day": "Tuesday",
+                "Reading": 2,
+                "Writing": 1.5,
+                "Math": 1.5,
+                "Science": 1,
+                "Arts": 1
+            },
+            {
+                "Day": "Wednesday",
+                "Reading": 3,
+                "Writing": 1,
+                "Math": 1,
+                "Science": 2,
+                "Arts": 1
+            },
+            {
+                "Day": "Thursday",
+                "Reading": 2,
+                "Writing": 2,
+                "Math": 2,
+                "Science": 1,
+                "Arts": 1
+            },
+            {
+                "Day": "Friday",
+                "Reading": 1,
+                "Writing": 1,
+                "Math": 1,
+                "Science": 2,
+                "Arts": 3
+            },
+            {
+                "Day": "Saturday",
+                "Reading": 1,
+                "Writing": 3,
+                "Math": 1,
+                "Science": 1,
+                "Arts": 2
+            },
+            {
+                "Day": "Sunday",
+                "Reading": 2,
+                "Writing": 2,
+                "Math": 3,
+                "Science": 1,
+                "Arts": 1
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Reading",
+                "Writing",
+                "Math",
+                "Science",
+                "Arts"
+            ],
+            "as": [
+                "Activity",
+                "Hours"
+            ]
+        },
+        {
+            "joinaggregate": [
+                {
+                    "op": "sum",
+                    "field": "Hours",
+                    "as": "TotalHours"
+                }
+            ],
+            "groupby": [
+                "Day"
+            ]
+        },
+        {
+            "calculate": "datum.Hours / datum.TotalHours",
+            "as": "PercentOfTotal"
+        }
+    ],
+    "mark": {
+        "type": "bar",
+        "width": 15
+    },
+    "encoding": {
+        "y": {
+            "field": "Day",
+            "type": "ordinal",
+            "title": "Day of the Week",
+            "axis": {
+                "labelFontSize": 12,
+                "titleFontSize": 14
+            }
+        },
+        "x": {
+            "field": "PercentOfTotal",
+            "type": "quantitative",
+            "axis": {
+                "format": "%",
+                "title": "Percentage of Total Time Spent"
+            }
+        },
+        "color": {
+            "field": "Activity",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Reading",
+                    "Writing",
+                    "Math",
+                    "Science",
+                    "Arts"
+                ],
+                "range": [
+                    "#59C4C5",
+                    "#F9B5AC",
+                    "#FADDAF",
+                    "#F7C6A6",
+                    "#8D9F87"
+                ]
+            },
+            "legend": {
+                "title": "Type of Educational Activity",
+                "orient": "top"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Activity",
+                "type": "nominal",
+                "title": "Activity"
+            },
+            {
+                "field": "PercentOfTotal",
+                "type": "quantitative",
+                "title": "Percentage",
+                "format": ".1%"
+            }
+        ]
+    },
+    "title": {
+        "text": "Weekly Distribution of Educational Activities",
+        "anchor": "start",
+        "offset": 5,
+        "color": "#333",
+        "fontSize": 16,
+        "fontWeight": "bold"
+    },
+    "config": {
+        "axis": {
+            "labelFontSize": 12,
+            "titleFontSize": 14
+        },
+        "legend": {
+            "labelFontSize": 12,
+            "titleFontSize": 14
+        }
+    }
+}

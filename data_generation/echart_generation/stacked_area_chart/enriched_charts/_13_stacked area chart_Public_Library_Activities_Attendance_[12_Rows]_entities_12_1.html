@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 400});
+var app = {};
+var option;
+
+option = {
+    title: {
+        text: 'Energy Production by Source',
+        subtext: 'Renewable vs Non-Renewable',
+        left: 'center',
+        top: 20
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['Solar', 'Wind', 'Hydro', 'Nuclear'],
+        left: 20,
+        top: 50,
+        textStyle: {
+            color: '#333',
+            fontSize: 12
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ['2010-01', '2010-02', '2010-03', '2010-04', '2010-05', '2010-06', '2010-07', '2010-08', '2010-09', '2010-10', '2010-11', '2010-12']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Solar',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: { focus: 'series' },
+            data: [8, 12, 10, 14, 16, 18, 22, 28, 24, 20, 18, 12],
+            itemStyle: {
+                color: '#FFD700'
+            }
+        },
+        {
+            name: 'Wind',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: { focus: 'series' },
+            data: [12, 14, 13, 18, 21, 26, 30, 34, 30, 25, 20, 15],
+            itemStyle: {
+                color: '#1E90FF'
+            }
+        },
+        {
+            name: 'Hydro',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: { focus: 'series' },
+            data: [25, 18, 20, 22, 25, 30, 35, 40, 32, 26, 23, 18],
+            itemStyle: {
+                color: '#3CB371'
+            }
+        },
+        {
+            name: 'Nuclear',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: { focus: 'series' },
+            label: {
+                show: true,
+                position: 'top'
+            },
+            data: [10, 15, 10, 20, 22, 25, 30, 28, 25, 20, 15, 12],
+            itemStyle: {
+                color: '#800080'
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

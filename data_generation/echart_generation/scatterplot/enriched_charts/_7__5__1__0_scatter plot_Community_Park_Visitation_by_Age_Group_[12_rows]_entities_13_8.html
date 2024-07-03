@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Stock Market Performance vs. GDP Growth',
+        left: 'center',
+        top: '5%'
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['Stock Market Performance', 'GDP Growth'],
+        left: 'left',
+        top: '10%'
+    },
+    xAxis: {
+        type: 'value',
+        name: 'GDP Growth (%)',
+        min: 0,
+        max: 4,
+        splitLine: {
+            show: false
+        }
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Stock Market Performance',
+        min: 1100,
+        max: 1450,
+        splitLine: {
+            show: false
+        }
+    },
+    series: [
+        {
+            name: 'Stock Market Performance',
+            type: 'scatter',
+            itemStyle: {
+                color: '#FF5733'
+            },
+            data: [
+                [1.5, 1200],
+                [2.1, 1300],
+                [2.5, 1350],
+                [1.8, 1250],
+                [0.9, 1150],
+                [3.2, 1400],
+                [2.8, 1380],
+                [1.0, 1160],
+                [1.6, 1220],
+                [2.3, 1320],
+                [3.0, 1390],
+                [0.5, 1120],
+                [2.7, 1360],
+                [1.2, 1180],
+                [1.9, 1260],
+                [2.4, 1340],
+                [0.7, 1130],
+                [3.3, 1410],
+                [2.2, 1310],
+                [1.4, 1190],
+                [1.1, 1170],
+                [0.8, 1140],
+                [3.1, 1405],
+                [2.0, 1290],
+                [1.7, 1240],
+                [0.6, 1110]
+            ]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

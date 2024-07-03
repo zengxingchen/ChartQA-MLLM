@@ -1,0 +1,197 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Monthly Precipitation Analysis by Region",
+    "width": 600,
+    "height": 400,
+    "title": {
+        "text": "Monthly Precipitation Analysis by Region",
+        "anchor": "start",
+        "fontSize": 20,
+        "color": "#333",
+        "dy": -10
+    },
+    "data": {
+        "values": [
+            {
+                "Month": "January",
+                "North": 120,
+                "South": 80,
+                "East": 160,
+                "West": 100,
+                "Central": 140
+            },
+            {
+                "Month": "February",
+                "North": 110,
+                "South": 70,
+                "East": 150,
+                "West": 90,
+                "Central": 130
+            },
+            {
+                "Month": "March",
+                "North": 130,
+                "South": 75,
+                "East": 170,
+                "West": 95,
+                "Central": 155
+            },
+            {
+                "Month": "April",
+                "North": 125,
+                "South": 65,
+                "East": 160,
+                "West": 85,
+                "Central": 145
+            },
+            {
+                "Month": "May",
+                "North": 135,
+                "South": 85,
+                "East": 175,
+                "West": 105,
+                "Central": 160
+            },
+            {
+                "Month": "June",
+                "North": 140,
+                "South": 90,
+                "East": 180,
+                "West": 110,
+                "Central": 170
+            },
+            {
+                "Month": "July",
+                "North": 145,
+                "South": 95,
+                "East": 185,
+                "West": 115,
+                "Central": 180
+            },
+            {
+                "Month": "August",
+                "North": 150,
+                "South": 100,
+                "East": 190,
+                "West": 120,
+                "Central": 185
+            },
+            {
+                "Month": "September",
+                "North": 135,
+                "South": 85,
+                "East": 175,
+                "West": 105,
+                "Central": 160
+            },
+            {
+                "Month": "October",
+                "North": 125,
+                "South": 75,
+                "East": 165,
+                "West": 95,
+                "Central": 150
+            },
+            {
+                "Month": "November",
+                "North": 115,
+                "South": 70,
+                "East": 155,
+                "West": 85,
+                "Central": 140
+            },
+            {
+                "Month": "December",
+                "North": 120,
+                "South": 80,
+                "East": 160,
+                "West": 100,
+                "Central": 145
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "North",
+                "South",
+                "East",
+                "West",
+                "Central"
+            ],
+            "as": [
+                "Region",
+                "Precipitation"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "area",
+        "opacity": 0.65
+    },
+    "encoding": {
+        "x": {
+            "field": "Month",
+            "type": "ordinal",
+            "axis": {
+                "title": "Month",
+                "labelAngle": 0
+            }
+        },
+        "y": {
+            "field": "Precipitation",
+            "type": "quantitative",
+            "stack": "zero",
+            "axis": {
+                "title": "Precipitation (mm)"
+            }
+        },
+        "color": {
+            "field": "Region",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "North",
+                    "South",
+                    "East",
+                    "West",
+                    "Central"
+                ],
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e",
+                    "#2ca02c",
+                    "#d62728",
+                    "#9467bd"
+                ]
+            },
+            "legend": {
+                "title": "Region",
+                "orient": "bottom-right",
+                "offset": 5
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Month",
+                "type": "ordinal"
+            },
+            {
+                "field": "Region",
+                "type": "nominal"
+            },
+            {
+                "field": "Precipitation",
+                "type": "quantitative"
+            }
+        ]
+    },
+    "config": {
+        "view": {
+            "stroke": "transparent"
+        },
+        "axis": {
+            "domainWidth": 1
+        }
+    }
+}

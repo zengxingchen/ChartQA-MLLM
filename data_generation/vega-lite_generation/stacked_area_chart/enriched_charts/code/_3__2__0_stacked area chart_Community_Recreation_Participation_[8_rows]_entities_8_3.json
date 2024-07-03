@@ -1,0 +1,197 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": 500,
+    "height": 300,
+    "data": {
+        "values": [
+            {
+                "Month": "January",
+                "Business": 5000,
+                "Technology": 7000,
+                "Health": 4000,
+                "Art": 3000,
+                "Science": 2000
+            },
+            {
+                "Month": "February",
+                "Business": 5200,
+                "Technology": 7300,
+                "Health": 4200,
+                "Art": 3200,
+                "Science": 2200
+            },
+            {
+                "Month": "March",
+                "Business": 5400,
+                "Technology": 7600,
+                "Health": 4400,
+                "Art": 3400,
+                "Science": 2400
+            },
+            {
+                "Month": "April",
+                "Business": 5600,
+                "Technology": 7900,
+                "Health": 4600,
+                "Art": 3600,
+                "Science": 2600
+            },
+            {
+                "Month": "May",
+                "Business": 5800,
+                "Technology": 8200,
+                "Health": 4800,
+                "Art": 3800,
+                "Science": 2800
+            },
+            {
+                "Month": "June",
+                "Business": 6000,
+                "Technology": 8500,
+                "Health": 5000,
+                "Art": 4000,
+                "Science": 3000
+            },
+            {
+                "Month": "July",
+                "Business": 6200,
+                "Technology": 8800,
+                "Health": 5200,
+                "Art": 4200,
+                "Science": 3200
+            },
+            {
+                "Month": "August",
+                "Business": 6400,
+                "Technology": 9100,
+                "Health": 5400,
+                "Art": 4400,
+                "Science": 3400
+            },
+            {
+                "Month": "September",
+                "Business": 6600,
+                "Technology": 9400,
+                "Health": 5600,
+                "Art": 4600,
+                "Science": 3600
+            },
+            {
+                "Month": "October",
+                "Business": 6800,
+                "Technology": 9700,
+                "Health": 5800,
+                "Art": 4800,
+                "Science": 3800
+            },
+            {
+                "Month": "November",
+                "Business": 7000,
+                "Technology": 10000,
+                "Health": 6000,
+                "Art": 5000,
+                "Science": 4000
+            },
+            {
+                "Month": "December",
+                "Business": 7200,
+                "Technology": 10300,
+                "Health": 6200,
+                "Art": 5200,
+                "Science": 4200
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Business",
+                "Technology",
+                "Health",
+                "Art",
+                "Science"
+            ],
+            "as": [
+                "Category",
+                "Enrollments"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "area",
+        "opacity": 0.7
+    },
+    "encoding": {
+        "x": {
+            "field": "Month",
+            "type": "ordinal",
+            "title": "Month"
+        },
+        "y": {
+            "field": "Enrollments",
+            "type": "quantitative",
+            "title": "Course Enrollments"
+        },
+        "color": {
+            "field": "Category",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Business",
+                    "Technology",
+                    "Health",
+                    "Art",
+                    "Science"
+                ],
+                "range": [
+                    "#68a357",
+                    "#8574a9",
+                    "#af5b5b",
+                    "#4fb0c6",
+                    "#e7a977"
+                ]
+            },
+            "title": "Course Category"
+        },
+        "tooltip": [
+            {
+                "field": "Category",
+                "type": "nominal"
+            },
+            {
+                "field": "Enrollments",
+                "type": "quantitative",
+                "format": ",.0f"
+            }
+        ]
+    },
+    "title": {
+        "text": "Monthly Online Course Enrollments by Category",
+        "fontSize": 16,
+        "anchor": "start",
+        "align": "left",
+        "dy": -5,
+        "dx": 60
+    },
+    "config": {
+        "axis": {
+            "labelFontSize": 11,
+            "titleFontSize": 13
+        },
+        "legend": {
+            "labelFontSize": 11,
+            "titleFontSize": 13,
+            "orient": "top-left",
+            "offset": 0,
+            "titlePadding": 10,
+            "titleOrient": "left",
+            "titleAlign": "left",
+            "titleAnchor": "start"
+        },
+        "style": {
+            "cell": {
+                "stroke": "transparent"
+            }
+        }
+    }
+}

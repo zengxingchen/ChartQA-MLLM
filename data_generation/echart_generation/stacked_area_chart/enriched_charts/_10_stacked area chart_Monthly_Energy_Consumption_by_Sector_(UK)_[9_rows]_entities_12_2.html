@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    width: 800,
+    height: 450
+});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Evolution of Vehicle Types by 2024',
+        left: 'center',
+        top: 20
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            label: {
+                backgroundColor: '#6a7985'
+            }
+        }
+    },
+    legend: {
+        data: ['Electric Cars', 'Hybrid Vehicles', 'Traditional Vehicles'],
+        top: 50
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: [
+        {
+            type: 'category',
+            boundaryGap: false,
+            data: ['2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024']
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value'
+        }
+    ],
+    series: [
+        {
+            name: 'Electric Cars',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [120, 150, 195, 240, 310, 380, 460, 550, 640, 735, 820, 920, 1010, 1112, 1225],
+            color: '#ff0000'
+        },
+        {
+            name: 'Hybrid Vehicles',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [359, 412, 498, 550, 620, 690, 755, 819, 880, 930, 985, 1025, 1060, 1095, 1130],
+            color: '#00ff00'
+        },
+        {
+            name: 'Traditional Vehicles',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [1572, 1530, 1492, 1460, 1432, 1398, 1350, 1305, 1260, 1220, 1190, 1150, 1105, 1070, 1030],
+            color: '#0000ff'
+        }
+    ],
+    markPoint: {
+        data: [
+            {type: 'max', name: 'Max', symbol: 'pin', symbolSize: 50}
+        ]
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

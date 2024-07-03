@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var option;
+
+option = {
+    title: {
+        text: 'Daily Step Count and Sleep Quality Over a Month',
+        left: 'center',
+        top: '10%'
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['Steps', 'Sleep Hours'],
+        top: '20%'
+    },
+    xAxis: {
+        type: 'category',
+        data: ['2024-06-01', '2024-06-02', '2024-06-03', '2024-06-04', '2024-06-05', '2024-06-06', '2024-06-07', '2024-06-08', '2024-06-09', '2024-06-10', '2024-06-11', '2024-06-12', '2024-06-13', '2024-06-14', '2024-06-15', '2024-06-16', '2024-06-17', '2024-06-18', '2024-06-19', '2024-06-20', '2024-06-21', '2024-06-22', '2024-06-23', '2024-06-24', '2024-06-25', '2024-06-26', '2024-06-27', '2024-06-28', '2024-06-29', '2024-06-30']
+    },
+    yAxis: [
+        {
+            type: 'value',
+            name: 'Steps',
+            min: 7000,
+            max: 12000,
+            position: 'left',
+            axisLine: {
+                lineStyle: {
+                    color: '#ff5733'
+                }
+            },
+            axisLabel: {
+                formatter: '{value} steps'
+            }
+        },
+        {
+            type: 'value',
+            name: 'Sleep Hours',
+            min: 6,
+            max: 8,
+            position: 'right',
+            axisLine: {
+                lineStyle: {
+                    color: '#3398DB'
+                }
+            },
+            axisLabel: {
+                formatter: '{value} hrs'
+            }
+        }
+    ],
+    series: [
+        {
+            name: 'Steps',
+            type: 'line',
+            data: [7500, 8000, 8200, 8500, 9000, 9200, 9400, 8800, 8600, 8700, 8900, 9100, 9300, 9400, 9500, 9700, 9800, 9900, 10000, 10100, 10200, 10300, 10400, 10500, 10600, 10700, 10800, 10900, 11000, 11100],
+            lineStyle: {
+                color: '#ff5733'
+            }
+        },
+        {
+            name: 'Sleep Hours',
+            type: 'line',
+            yAxisIndex: 1,
+            data: [7, 6.5, 7.2, 7.1, 6.8, 7.4, 7.3, 7.6, 7.5, 6.9, 7.2, 7.3, 7, 7.4, 7.1, 7.5, 7.6, 7.7, 7.8, 7.4, 7.5, 7.6, 7.2, 7.1, 7.3, 7.4, 7.5, 7.6, 7.7, 7.8],
+            lineStyle: {
+                color: '#3398DB'
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

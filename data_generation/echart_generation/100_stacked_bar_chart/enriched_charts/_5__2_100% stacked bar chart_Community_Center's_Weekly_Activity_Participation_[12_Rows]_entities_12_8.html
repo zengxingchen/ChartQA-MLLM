@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {renderer: 'canvas'});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Study Methods Distribution Over Four Years',
+        subtext: 'Education & Learning',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        },
+        formatter: '{b}<br/>{a0}: {c0}%<br/>{a1}: {c1}%<br/>{a2}: {c2}%<br/>{a3}: {c3}%<br/>{a4}: {c4}%'
+    },
+    legend: {
+        orient: 'horizontal',
+        left: 'center',
+        top: '6%',
+        data: ['Reading & Writing', 'Audio-Visual', 'Interactive Practice', 'Group Discussions', 'Online Courses']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01]
+    },
+    yAxis: {
+        type: 'category',
+        data: ['2018', '2019', '2020', '2021']
+    },
+    series: [
+        {
+            name: 'Reading & Writing',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35, // Width of the bars
+            data: [25, 22, 20, 18],
+            color: '#FFD700' // Gold
+        },
+        {
+            name: 'Audio-Visual',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            data: [20, 25, 30, 35],
+            color: '#C0C0C0' // Silver
+        },
+        {
+            name: 'Interactive Practice',
+            type: 'bar',
+            stack: 'total',
+            data: [30, 28, 25, 25],
+            color: '#CD7F32' // Bronze
+        },
+        {
+            name: 'Group Discussions',
+            type: 'bar',
+            stack: 'total',
+            data: [15, 15, 15, 12],
+            color: '#6495ED' // Cornflower Blue
+        },
+        {
+            name: 'Online Courses',
+            type: 'bar',
+            stack: 'total',
+            data: [10, 10, 10, 10],
+            color: '#90EE90' // Light Green
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

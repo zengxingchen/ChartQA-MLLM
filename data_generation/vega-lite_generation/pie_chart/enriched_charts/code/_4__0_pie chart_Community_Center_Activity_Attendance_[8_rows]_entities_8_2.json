@@ -1,0 +1,124 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "A pie chart representing the distribution of different mental health services.",
+    "title": {
+        "text": "Distribution of Mental Health Services",
+        "fontSize": 16,
+        "font": "Arial",
+        "dy": -170
+    },
+    "height": 350,
+    "width": 350,
+    "padding": 5,
+    "config": {
+        "font": "Arial",
+        "axis": {
+            "domainColor": "#44475a",
+            "tickColor": "#44475a"
+        }
+    },
+    "data": {
+        "values": [
+            {
+                "Service": "Therapy",
+                "Sessions": 1200
+            },
+            {
+                "Service": "Counseling",
+                "Sessions": 800
+            },
+            {
+                "Service": "Medication Management",
+                "Sessions": 600
+            },
+            {
+                "Service": "Crisis Intervention",
+                "Sessions": 300
+            },
+            {
+                "Service": "Support Groups",
+                "Sessions": 400
+            },
+            {
+                "Service": "Psychiatric Evaluation",
+                "Sessions": 200
+            },
+            {
+                "Service": "Substance Abuse Treatment",
+                "Sessions": 450
+            },
+            {
+                "Service": "Community Outreach",
+                "Sessions": 500
+            }
+        ]
+    },
+    "mark": {
+        "type": "arc",
+        "tooltip": true
+    },
+    "encoding": {
+        "theta": {
+            "field": "Sessions",
+            "type": "quantitative",
+            "stack": true
+        },
+        "color": {
+            "field": "Service",
+            "type": "nominal",
+            "scale": {
+                "range": [
+                    "#FF5733",
+                    "#33FF57",
+                    "#3357FF",
+                    "#FF33A1",
+                    "#33FFA1",
+                    "#A133FF",
+                    "#FFA133",
+                    "#33A1FF"
+                ]
+            },
+            "legend": {
+                "direction": "horizontal",
+                "orient": "bottom"
+            }
+        },
+        "opacity": {
+            "value": 0.8
+        }
+    },
+    "layer": [
+        {
+            "mark": {
+                "type": "arc",
+                "outerRadius": 140
+            }
+        },
+        {
+            "transform": [
+                {
+                    "calculate": "datum.Sessions / 1000 + 'K'",
+                    "as": "formattedSessions"
+                }
+            ],
+            "mark": {
+                "type": "text",
+                "radius": 160
+            },
+            "encoding": {
+                "text": {
+                    "field": "formattedSessions",
+                    "type": "nominal"
+                },
+                "theta": {
+                    "field": "Sessions",
+                    "type": "quantitative",
+                    "stack": true
+                }
+            }
+        }
+    ],
+    "view": {
+        "stroke": null
+    }
+}

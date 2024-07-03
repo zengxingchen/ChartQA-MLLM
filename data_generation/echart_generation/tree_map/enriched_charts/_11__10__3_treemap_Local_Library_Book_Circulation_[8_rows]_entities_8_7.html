@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false
+});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Various Categories in Art & Science',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: '{b}: {c}'
+    },
+    toolbox: {
+        show: true,
+        feature: {
+            restore: { show: true },
+            saveAsImage: { show: true }
+        }
+    },
+    series: [{
+        name: 'Categories',
+        type: 'treemap',
+        width: '80%',
+        height: '80%',
+        label: {
+            show: true,
+            formatter: '{b}'
+        },
+        itemStyle: {
+            borderColor: '#fff'
+        },
+        levels: [
+            {
+                itemStyle: {
+                    borderColor: '#777',
+                    borderWidth: 0,
+                    gapWidth: 1
+                }
+            }
+        ],
+        data: [
+            {
+                name: 'Art & Design',
+                value: 615,
+                itemStyle: {
+                    color: '#d94e5d'
+                },
+                children: [
+                    {
+                        name: 'Painting',
+                        value: 120,
+                        itemStyle: {
+                            color: '#eac736'
+                        }
+                    },
+                    {
+                        name: 'Sculpture',
+                        value: 90,
+                        itemStyle: {
+                            color: '#50a3ba'
+                        }
+                    },
+                    {
+                        name: 'Photography',
+                        value: 75,
+                        itemStyle: {
+                            color: '#ca8622'
+                        }
+                    },
+                    {
+                        name: 'Graphic Design',
+                        value: 150,
+                        itemStyle: {
+                            color: '#91c7ae'
+                        }
+                    },
+                    {
+                        name: 'Digital Art',
+                        value: 180,
+                        itemStyle: {
+                            color: '#bda29a'
+                        }
+                    }
+                ]
+            },
+            {
+                name: 'Science & Nature',
+                value: 770,
+                itemStyle: {
+                    color: '#6e7074'
+                },
+                children: [
+                    {
+                        name: 'Biology',
+                        value: 200,
+                        itemStyle: {
+                            color: '#546570'
+                        }
+                    },
+                    {
+                        name: 'Physics',
+                        value: 150,
+                        itemStyle: {
+                            color: '#c4ccd3'
+                        }
+                    },
+                    {
+                        name: 'Chemistry',
+                        value: 170,
+                        itemStyle: {
+                            color: '#f5e8c8'
+                        }
+                    },
+                    {
+                        name: 'Geology',
+                        value: 110,
+                        itemStyle: {
+                            color: '#9b8bba'
+                        }
+                    },
+                    {
+                        name: 'Astronomy',
+                        value: 140,
+                        itemStyle: {
+                            color: '#ea7e53'
+                        }
+                    }
+                ]
+            },
+            {
+                name: 'Health & Psychology',
+                value: 635,
+                itemStyle: {
+                    color: '#2a5caa'
+                },
+                children: [
+                    {
+                        name: 'Mental Health',
+                        value: 95,
+                        itemStyle: {
+                            color: '#bda29a'
+                        }
+                    },
+                    {
+                        name: 'Physical Health',
+                        value: 180,
+                        itemStyle: {
+                            color: '#6e7074'
+                        }
+                    },
+                    {
+                        name: 'Nutrition',
+                        value: 120,
+                        itemStyle: {
+                            color: '#546570'
+                        }
+                    },
+                    {
+                        name: 'Psychotherapy',
+                        value: 80,
+                        itemStyle: {
+                            color: '#c4ccd3'
+                        }
+                    },
+                    {
+                        name: 'Public Health',
+                        value: 160,
+                        itemStyle: {
+                            color: '#f5e8c8'
+                        }
+                    }
+                ]
+            }
+        ]
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

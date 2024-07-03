@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var option;
+
+option = {
+    title: {
+        text: 'Decline in Average Monthly Temperature',
+        left: 'center',
+        top: '10%'
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: '{a} <br/>{b} : {c}'
+    },
+    xAxis: {
+        name: 'Month',
+        type: 'category',
+        data: Array.from({length: 29}, (_, i) => (i + 1).toString())
+    },
+    yAxis: {
+        name: 'Temperature (°C)',
+        type: 'value'
+    },
+    legend: {
+        data: ['Temperature'],
+        left: '10%',
+        top: '10%'
+    },
+    series: [{
+        name: 'Temperature',
+        type: 'scatter',
+        data: [
+            [1, 10], [2, 9], [3, 8], [4, 7], [5, 6], 
+            [6, 5.5], [7, 5], [8, 4.5], [9, 4], [10, 3.8], 
+            [11, 3.6], [12, 3.4], [13, 3.2], [14, 3], [15, 2.8], 
+            [16, 2.6], [17, 2.4], [18, 2.2], [19, 2], [20, 1.8], 
+            [21, 1.6], [22, 1.4], [23, 1.2], [24, 1], [25, 0.8], 
+            [26, 0.6], [27, 0.4], [28, 0.2], [29, 0]
+        ],
+        itemStyle: {
+            color: '#FF6347'
+        }
+    }],
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

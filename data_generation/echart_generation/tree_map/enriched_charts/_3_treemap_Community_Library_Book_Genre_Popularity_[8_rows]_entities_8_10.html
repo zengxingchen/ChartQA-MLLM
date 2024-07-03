@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 800, // Adjusted width
+    height: 600 // Adjusted height
+});
+var app = {};
+
+option = {
+    title: {
+        text: 'University Enrollment - Education & Learning',
+        left: 'center',
+        textStyle: {
+            color: '#333',
+            fontSize: 24
+        },
+        padding: [20, 0, 0, 0] // Adjust padding to ensure no overlap
+    },
+    tooltip: {},
+    series: [{
+        name: 'Education',
+        type: 'treemap',
+        visibleMin: 300,
+        label: {
+            show: true,
+            formatter: '{b}'
+        },
+        upperLabel: {
+            normal: {
+                show: true,
+                height: 30
+            }
+        },
+        itemStyle: {
+            borderColor: '#fff'
+        },
+        levels: [
+            {
+                itemStyle: {
+                    borderColor: '#777',
+                    borderWidth: 0,
+                    gapWidth: 1
+                }
+            },
+            {
+                colorSaturation: [0.5, 0.7],
+                itemStyle: {
+                    borderWidth: 5,
+                    gapWidth: 1,
+                    borderColorSaturation: 0.6
+                }
+            }
+        ],
+        data: [
+            {name: 'Engineering', value: 4000},
+            {name: 'Electrical Engineering', value: 1200},
+            {name: 'Mechanical Engineering', value: 1000},
+            {name: 'Civil Engineering', value: 800},
+            {name: 'Chemical Engineering', value: 600},
+            {name: 'Computer Science', value: 3500},
+            {name: 'Algorithms', value: 900},
+            {name: 'Machine Learning', value: 800},
+            {name: 'Databases', value: 600},
+            {name: 'Operating Systems', value: 500},
+            {name: 'Humanities', value: 1500},
+            {name: 'Literature', value: 600},
+            {name: 'Philosophy', value: 500},
+            {name: 'History', value: 400},
+            {name: 'Business', value: 3000},
+            {name: 'Accounting', value: 800},
+            {name: 'Marketing', value: 800},
+            {name: 'Finance', value: 700},
+            {name: 'International Business', value: 700},
+            {name: 'Health Sciences', value: 2000},
+            {name: 'Nursing', value: 700},
+            {name: 'Biomedicine', value: 600},
+            {name: 'Dentistry', value: 400},
+            {name: 'Physical Therapy', value: 300},
+            {name: 'Social Sciences', value: 2500},
+            {name: 'Sociology', value: 800},
+            {name: 'Psychology', value: 700},
+            {name: 'Political Science', value: 500},
+            {name: 'Anthropology', value: 500}
+        ],
+        color: [ // Adjusted color scheme
+            '#c23531', '#2f4554', '#61a0a8', '#d48265', 
+            '#91c7ae','#749f83', '#ca8622', '#bda29a',
+            '#6e7074', '#546570', '#c4ccd3', '#f05b4f',
+            '#ef5b9c', '#f47920', '#905a3d', '#fab27b',
+            '#2a5caa', '#444693', '#726930', '#b2d235',
+            '#6d8346', '#ac6767', '#1d953f', '#6950a1',
+            '#918597', '#f6f5ec'
+        ]
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

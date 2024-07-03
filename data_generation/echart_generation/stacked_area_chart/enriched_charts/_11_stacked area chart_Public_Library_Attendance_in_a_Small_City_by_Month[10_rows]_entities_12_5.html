@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 400});
+var app = {};
+
+var option;
+
+option = {
+  title: {
+    text: 'Tech Giants Quarterly Revenue',
+    left: 'center',
+    top: '2%'
+  },
+  tooltip: {
+    trigger: 'axis',
+    axisPointer: {
+      type: 'cross',
+      label: {
+        backgroundColor: '#6a7985'
+      }
+    }
+  },
+  legend: {
+    data: ['Apple', 'Google', 'Amazon'],
+    top: '8%'
+  },
+  grid: {
+    left: '3%',
+    right: '4%',
+    bottom: '3%',
+    containLabel: true
+  },
+  toolbox: {
+    feature: {
+      saveAsImage: {}
+    }
+  },
+  xAxis: [
+    {
+      type: 'category',
+      boundaryGap: false,
+      data: ['Q1-2020', 'Q2-2020', 'Q3-2020', 'Q4-2020', 'Q1-2021', 'Q2-2021', 'Q3-2021', 'Q4-2021', 'Q1-2022', 'Q2-2022', 'Q3-2022', 'Q4-2022']
+    }
+  ],
+  yAxis: [
+    {
+      type: 'value'
+    }
+  ],
+  series: [
+    {
+      name: 'Apple',
+      type: 'line',
+      stack: 'Total',
+      areaStyle: {},
+      emphasis: {
+        focus: 'series'
+      },
+      data: [58000, 59685, 64698, 111439, 89584, 81746, 83360, 123945, 97278, 83369, 90219, 127846],
+      color: '#34a853'
+    },
+    {
+      name: 'Google',
+      type: 'line',
+      stack: 'Total',
+      areaStyle: {},
+      emphasis: {
+        focus: 'series'
+      },
+      data: [41159, 38356, 46121, 56302, 55688, 50383, 65227, 75068, 68233, 61855, 69279, 75932],
+      color: '#4285f4'
+    },
+    {
+      name: 'Amazon',
+      type: 'line',
+      stack: 'Total',
+      areaStyle: {},
+      emphasis: {
+        focus: 'series'
+      },
+      data: [75452, 88912, 96145, 125555, 108518, 113080, 110866, 137412, 116444, 121335, 127141, 149007],
+      color: '#fbbc05'
+    }
+  ],
+  annotations: [
+    {
+      type: 'label',
+      position: ['Q4-2022', 127846],
+      value: {
+        text: 'Peak for Apple',
+        style: {
+          color: '#FFF',
+          backgroundColor: '#34a853'
+        }
+      }
+    }
+  ]
+};
+
+if (option && typeof option === 'object') {
+  myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

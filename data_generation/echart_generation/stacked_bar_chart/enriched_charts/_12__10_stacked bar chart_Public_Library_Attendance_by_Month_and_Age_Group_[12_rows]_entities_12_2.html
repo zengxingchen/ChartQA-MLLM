@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 800,
+    height: 600
+});
+var app = {};
+
+var option;
+option = {
+    title: {
+        text: 'Monthly Sales of Art, Design, and Installations',
+        left: 'center',
+        top: '10'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Art Sales', 'Design Sales', 'Installation Sales'],
+        top: '50'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        data: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+        axisLabel: {
+            rotate: 45
+        }
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Art Sales',
+            type: 'bar',
+            stack: 'sales',
+            barWidth: 20,
+            itemStyle: {
+                color: '#1f77b4'
+            },
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            data: [120, 150, 200, 230, 180, 170, 160, 220, 190, 240, 210, 250]
+        },
+        {
+            name: 'Design Sales',
+            type: 'bar',
+            stack: 'sales',
+            barWidth: 20,
+            itemStyle: {
+                color: '#ff7f0e'
+            },
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            data: [132, 182, 232, 212, 232, 132, 142, 192, 222, 282, 252, 292]
+        },
+        {
+            name: 'Installation Sales',
+            type: 'bar',
+            stack: 'sales',
+            barWidth: 20,
+            itemStyle: {
+                color: '#2ca02c'
+            },
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            data: [101, 191, 201, 221, 151, 111, 171, 181, 191, 231, 211, 241]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var rawData = [{'Garden Location': 'Central Park Community Garden', 'Lettuce Heads': 100, 'Tomatoes_kg': 150, 'Carrots_kg': 60},
+{'Garden Location': 'Riverside Neighborhood Garden', 'Lettuce Heads': 80, 'Tomatoes_kg': 120, 'Carrots_kg': 50},
+{'Garden Location': 'Eastside Schoolyard Garden', 'Lettuce Heads': 150, 'Tomatoes_kg': 180, 'Carrots_kg': 90},
+{'Garden Location': 'West End Rooftop Garden', 'Lettuce Heads': 90, 'Tomatoes_kg': 160, 'Carrots_kg': 70},
+{'Garden Location': 'Suburbia Green Patch', 'Lettuce Heads': 110, 'Tomatoes_kg': 140, 'Carrots_kg': 75},
+{'Garden Location': 'City Hall Green Space', 'Lettuce Heads': 70, 'Tomatoes_kg': 130, 'Carrots_kg': 45},
+{'Garden Location': 'River City Joint Garden', 'Lettuce Heads': 85, 'Tomatoes_kg': 175, 'Carrots_kg': 65},
+{'Garden Location': 'Downtown Box Gardens', 'Lettuce Heads': 60, 'Tomatoes_kg': 110, 'Carrots_kg': 40},
+{'Garden Location': 'Southside Green Collective', 'Lettuce Heads': 95, 'Tomatoes_kg': 165, 'Carrots_kg': 80}];
+
+var data = rawData.map(function (item) {
+    return [item['Tomatoes_kg'], item['Lettuce Heads'], item['Carrots_kg'], item['Garden Location']];
+});
+
+option = {
+    tooltip: {
+        formatter: function (param) {
+            return [
+                'Garden: ' + param.value[3],
+                'Tomatoes (kg): ' + param.value[0],
+                'Lettuce Heads: ' + param.value[1],
+                'Carrots (kg): ' + param.value[2]
+            ].join('<br>');
+        }
+    },
+    xAxis: {
+        name: 'Tomatoes (kg)',
+        splitLine: {
+            lineStyle: {
+                type: 'dashed'
+            }
+        }
+    },
+    yAxis: {
+        name: 'Lettuce Heads',
+        splitLine: {
+            lineStyle: {
+                type: 'dashed'
+            }
+        },
+        scale: true
+    },
+    visualMap: [
+        {
+            show: false,
+            dimension: 2,
+            min: 40,
+            max: 100,
+            inRange: {
+                symbolSize: [10, 70]
+            }
+        }
+    ],
+    series: [
+        {
+            name: 'Garden Produce',
+            type: 'scatter',
+            data: data,
+            encode: {
+                x: 0,
+                y: 1,
+                tooltip: [0, 1, 2, 3]
+            },
+            markPoint: {
+                data: [
+                    {type: 'max', name: 'Max Tomato'},
+                    {type: 'min', name: 'Min Tomato'}
+                ],
+                symbolSize: 60
+            },
+            markLine: {
+                lineStyle: {
+                    type: 'dashed'
+                },
+                data: [
+                    {type: 'average', name: 'Average'}
+                ]
+            },
+            itemStyle: {
+                borderColor: 'black',
+                borderWidth: 1
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

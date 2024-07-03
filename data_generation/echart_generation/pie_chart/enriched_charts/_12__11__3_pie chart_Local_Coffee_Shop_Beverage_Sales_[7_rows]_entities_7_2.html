@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Online Learning Platform Popularity',
+        left: 'center',
+        top: 20
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: '{a} <br/>{b} : {c} ({d}%)'
+    },
+    legend: {
+        orient: 'vertical',
+        left: 'left',
+        top: 50,
+        data: ['Coursera', 'Udemy', 'edX', 'Skillshare', 'Khan Academy', 'Codecademy', 'Pluralsight', 'Udacity', 'FutureLearn', 'LinkedIn Learning', 'MasterClass']
+    },
+    series: [
+        {
+            name: 'Number of Users',
+            type: 'pie',
+            radius: '55%',
+            center: ['50%', '60%'],
+            data: [
+                { value: 45000000, name: 'Coursera' },
+                { value: 40000000, name: 'Udemy' },
+                { value: 30000000, name: 'edX' },
+                { value: 5000000, name: 'Skillshare' },
+                { value: 18000000, name: 'Khan Academy' },
+                { value: 5000000, name: 'Codecademy' },
+                { value: 6000000, name: 'Pluralsight' },
+                { value: 4000000, name: 'Udacity' },
+                { value: 10000000, name: 'FutureLearn' },
+                { value: 11000000, name: 'LinkedIn Learning' },
+                { value: 2000000, name: 'MasterClass' }
+            ],
+            emphasis: {
+                itemStyle: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            },
+            avoidLabelOverlap: true
+        }
+    ],
+    color: [
+        '#1f77b4', // Coursera
+        '#ff7f0e', // Udemy
+        '#2ca02c', // edX
+        '#d62728', // Skillshare
+        '#9467bd', // Khan Academy
+        '#8c564b', // Codecademy
+        '#e377c2', // Pluralsight
+        '#7f7f7f', // Udacity
+        '#bcbd22', // FutureLearn
+        '#17becf', // LinkedIn Learning
+        '#1a55FF'  // MasterClass
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

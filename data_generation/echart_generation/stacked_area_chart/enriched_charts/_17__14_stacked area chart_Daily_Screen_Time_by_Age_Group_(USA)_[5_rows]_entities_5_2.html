@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {renderer: 'canvas', width: 800, height: 600});
+var app = {};
+
+var option;
+
+option = {
+  title: {
+    text: 'Gaming Industry Revenue Trends by Platform',
+    subtext: '2021 - 2022',
+    left: 'center'
+  },
+  tooltip: {
+    trigger: 'axis',
+    axisPointer: {
+      type: 'cross',
+      label: {
+        backgroundColor: '#6a7985'
+      }
+    }
+  },
+  legend: {
+    data: ['Mobile Gaming', 'PC Gaming', 'Console Gaming'],
+    top: 30
+  },
+  grid: {
+    left: '3%',
+    right: '4%',
+    bottom: '3%',
+    containLabel: true
+  },
+  toolbox: {
+    feature: {
+      saveAsImage: {}
+    }
+  },
+  xAxis: {
+    type: 'category',
+    boundaryGap: false,
+    data: ['2021-01', '2021-02', '2021-03', '2021-04', '2021-05', '2021-06', '2021-07', '2021-08', '2021-09', '2021-10', '2021-11', '2021-12', '2022-01', '2022-02', '2022-03', '2022-04', '2022-05', '2022-06', '2022-07', '2022-08', '2022-09', '2022-10', '2022-11', '2022-12']
+  },
+  yAxis: {
+    type: 'value'
+  },
+  series: [
+    {
+      name: 'Mobile Gaming',
+      type: 'line',
+      stack: 'total',
+      areaStyle: {},
+      emphasis: {
+        focus: 'series'
+      },
+      itemStyle: {
+        color: '#ff7f0e'
+      },
+      data: [20, 40, 30, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150, 160, 170, 180, 190, 200, 210, 220, 230, 240, 250]
+    },
+    {
+      name: 'PC Gaming',
+      type: 'line',
+      stack: 'total',
+      areaStyle: {},
+      emphasis: {
+        focus: 'series'
+      },
+      itemStyle: {
+        color: '#2ca02c'
+      },
+      data: [30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100, 105, 110, 115, 120, 125, 130, 135, 140, 145]
+    },
+    {
+      name: 'Console Gaming',
+      type: 'line',
+      stack: 'total',
+      areaStyle: {},
+      emphasis: {
+        focus: 'series'
+      },
+      itemStyle: {
+        color: '#1f77b4'
+      },
+      data: [50, 25, 30, 5, 40, 75, 65, 55, 45, 35, 25, 15, 5, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110]
+    }
+  ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var data = [{'Date': '2023-03-01', 'Espresso': 60, 'Americano': 45, 'Cappuccino': 53, 'Latte': 67}, {'Date': '2023-03-02', 'Espresso': 50, 'Americano': 40, 'Cappuccino': 60, 'Latte': 70}, {'Date': '2023-03-03', 'Espresso': 58, 'Americano': 48, 'Cappuccino': 55, 'Latte': 80}, {'Date': '2023-03-04', 'Espresso': 70, 'Americano': 60, 'Cappuccino': 65, 'Latte': 90}];
+
+var dates = data.map(function (item) {
+    return item.Date;
+});
+var espressos = data.map(function (item) {
+    return item.Espresso;
+});
+var americanos = data.map(function (item) {
+    return item.Americano;
+});
+var cappuccinos = data.map(function (item) {
+    return item.Cappuccino;
+});
+var lattes = data.map(function (item) {
+    return item.Latte;
+});
+
+var seriesData = [
+    {
+        name: 'Espresso',
+        type: 'line',
+        data: espressos,
+        itemStyle: { color: '#a6c84c' },
+        lineStyle: { width: 2, type: 'dashed' }, // Dashed line for Espresso
+        emphasis: {
+            focus: 'series'
+        }
+    },
+    {
+        name: 'Americano',
+        type: 'line',
+        data: americanos,
+        itemStyle: { color: '#ffa022' },
+        lineStyle: { width: 2 },
+        emphasis: {
+            focus: 'series'
+        }
+    },
+    {
+        name: 'Cappuccino',
+        type: 'line',
+        data: cappuccinos,
+        itemStyle: { color: '#46bee9' },
+        lineStyle: { width: 3 }, // Thicker line for Cappuccino
+        emphasis: {
+            focus: 'series'
+        }
+    },
+    {
+        name: 'Latte',
+        type: 'line',
+        data: lattes,
+        itemStyle: { color: '#f845f1' },
+        lineStyle: { width: 2, type: 'solid' },
+        emphasis: {
+            focus: 'series'
+        },
+        markPoint: {
+            data: [
+                { type: 'max', name: 'Max', symbolSize: 80, label: { show: true, formatter: 'Max Latte\n{@[1]}', color: '#000', fontSize: 14, fontWeight: 'bold', position: 'top' } } // Annotation/Text label on Latte's max value
+            ],
+            itemStyle: {
+                color: '#f845f1'
+            }
+        }
+    }
+];
+
+var option = {
+    title: {
+        text: 'Coffee Sales Data'
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['Espresso', 'Americano', 'Cappuccino', 'Latte']
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: dates
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: seriesData
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

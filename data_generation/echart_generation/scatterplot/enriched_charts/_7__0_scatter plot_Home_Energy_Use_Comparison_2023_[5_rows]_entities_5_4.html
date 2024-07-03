@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 800,
+    height: 600
+});
+var option;
+
+option = {
+    title: {
+        text: 'Correlation between R&D Investment and Company Growth',
+        left: 'center',
+        top: 20
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: function (params) {
+            return `R&D Investment: ${params.data[0]}<br>Company Growth: ${params.data[1]}`;
+        }
+    },
+    legend: {
+        data: ['Investment vs Growth'],
+        top: 60,
+        left: 'right'
+    },
+    xAxis: {
+        name: 'R&D Investment (in million $)',
+        min: 0,
+        max: 110,
+        type: 'value'
+    },
+    yAxis: {
+        name: 'Company Growth (%)',
+        min: 0,
+        max: 100,
+        type: 'value'
+    },
+    series: [{
+        name: 'Investment vs Growth',
+        type: 'scatter',
+        itemStyle: {
+            color: '#FF5733'
+        },
+        data: [
+            [10, 15], [15, 22], [20, 35], [25, 45], [30, 50], [35, 55], 
+            [40, 60], [45, 65], [50, 68], [55, 70], [60, 73], [65, 75], 
+            [70, 78], [75, 80], [80, 82], [85, 85], [90, 88], [95, 90], 
+            [100, 92]
+        ]
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

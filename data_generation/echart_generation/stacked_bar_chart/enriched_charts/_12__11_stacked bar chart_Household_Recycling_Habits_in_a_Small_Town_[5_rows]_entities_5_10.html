@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+var app = {};
+
+var option;
+option = {
+    title: {
+        text: 'Company Project Phases Over Years',
+        left: 'center',
+        top: 20,
+        textStyle: {
+            fontSize: 20,
+            color: '#333333'
+        }
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['2019', '2020', '2021', '2022'],
+        top: 50,
+        left: 'center'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01],
+        axisLabel: {
+            formatter: '{value} hours'
+        }
+    },
+    yAxis: {
+        type: 'category',
+        data: ['Research', 'Development', 'Testing', 'Deployment', 'Support', 'Maintenance']
+    },
+    series: [
+        {
+            name: '2019',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            itemStyle: {
+                color: '#1f77b4'
+            },
+            data: [120, 220, 150, 98, 123, 170]
+        },
+        {
+            name: '2020',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            itemStyle: {
+                color: '#ff7f0e'
+            },
+            data: [132, 182, 232, 77, 145, 168]
+        },
+        {
+            name: '2021',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            itemStyle: {
+                color: '#2ca02c'
+            },
+            data: [101, 191, 201, 101, 130, 165]
+        },
+        {
+            name: '2022',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            itemStyle: {
+                color: '#d62728'
+            },
+            data: [134, 234, 154, 99, 111, 154]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

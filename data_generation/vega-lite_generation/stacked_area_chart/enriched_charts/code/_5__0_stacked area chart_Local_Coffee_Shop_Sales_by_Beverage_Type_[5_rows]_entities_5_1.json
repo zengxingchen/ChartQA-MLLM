@@ -1,0 +1,188 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Monthly Gym Membership Signups over a Year",
+    "width": 600,
+    "height": 300,
+    "title": {
+        "text": "Monthly Gym Membership Signups",
+        "subtitle": "Signups from January to December",
+        "fontSize": 16,
+        "anchor": "start",
+        "offset": 10,
+        "subtitleFontSize": 10
+    },
+    "data": {
+        "values": [
+            {
+                "Month": "January",
+                "Basic": 80,
+                "Standard": 150,
+                "Premium": 60,
+                "VIP": 30
+            },
+            {
+                "Month": "February",
+                "Basic": 90,
+                "Standard": 160,
+                "Premium": 70,
+                "VIP": 32
+            },
+            {
+                "Month": "March",
+                "Basic": 100,
+                "Standard": 170,
+                "Premium": 80,
+                "VIP": 34
+            },
+            {
+                "Month": "April",
+                "Basic": 110,
+                "Standard": 180,
+                "Premium": 90,
+                "VIP": 36
+            },
+            {
+                "Month": "May",
+                "Basic": 120,
+                "Standard": 190,
+                "Premium": 100,
+                "VIP": 38
+            },
+            {
+                "Month": "June",
+                "Basic": 130,
+                "Standard": 200,
+                "Premium": 110,
+                "VIP": 40
+            },
+            {
+                "Month": "July",
+                "Basic": 140,
+                "Standard": 210,
+                "Premium": 120,
+                "VIP": 42
+            },
+            {
+                "Month": "August",
+                "Basic": 150,
+                "Standard": 220,
+                "Premium": 130,
+                "VIP": 44
+            },
+            {
+                "Month": "September",
+                "Basic": 160,
+                "Standard": 230,
+                "Premium": 140,
+                "VIP": 46
+            },
+            {
+                "Month": "October",
+                "Basic": 170,
+                "Standard": 240,
+                "Premium": 150,
+                "VIP": 48
+            },
+            {
+                "Month": "November",
+                "Basic": 180,
+                "Standard": 250,
+                "Premium": 160,
+                "VIP": 50
+            },
+            {
+                "Month": "December",
+                "Basic": 190,
+                "Standard": 260,
+                "Premium": 170,
+                "VIP": 52
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Basic",
+                "Standard",
+                "Premium",
+                "VIP"
+            ],
+            "as": [
+                "Membership Type",
+                "Signups"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "area",
+        "opacity": 0.6
+    },
+    "encoding": {
+        "x": {
+            "field": "Month",
+            "type": "ordinal",
+            "axis": {
+                "title": "Month"
+            }
+        },
+        "y": {
+            "field": "Signups",
+            "type": "quantitative",
+            "axis": {
+                "title": "Number of Signups"
+            },
+            "stack": "zero"
+        },
+        "color": {
+            "field": "Membership Type",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Basic",
+                    "Standard",
+                    "Premium",
+                    "VIP"
+                ],
+                "range": [
+                    "#0072B2",
+                    "#D55E00",
+                    "#F0E442",
+                    "#CC79A7"
+                ]
+            },
+            "legend": {
+                "title": "Membership Type",
+                "orient": "top",
+                "offset": 10
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Month",
+                "type": "ordinal",
+                "title": "Month"
+            },
+            {
+                "field": "Membership Type",
+                "type": "nominal",
+                "title": "Membership Type"
+            },
+            {
+                "field": "Signups",
+                "type": "quantitative",
+                "title": "Signups"
+            }
+        ]
+    },
+    "config": {
+        "view": {
+            "stroke": "transparent"
+        },
+        "axis": {
+            "grid": false
+        },
+        "title": {
+            "offset": 20
+        }
+    }
+}

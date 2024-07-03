@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var option;
+
+option = {
+    title: {
+        text: 'Environmental Impact Over Time',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: function (params) {
+            return 'x: ' + params.value[0] + '<br/>y: ' + params.value[1];
+        }
+    },
+    legend: {
+        data: ['Impact'],
+        left: 'right',
+        top: '10%'
+    },
+    xAxis: {
+        name: 'Time (years)',
+        type: 'value'
+    },
+    yAxis: {
+        name: 'Impact Score',
+        type: 'value'
+    },
+    series: [{
+        name: 'Impact',
+        type: 'scatter',
+        itemStyle: {
+            color: '#FF5733'
+        },
+        data: [
+            [1, 9], [2, 8], [3, 7.5], [4, 7.8], [5, 7.2], [6, 6.9], 
+            [7, 6.7], [8, 6.5], [9, 6.3], [10, 6.1], [11, 5.9], [12, 5.7], 
+            [13, 5.5], [14, 5.3], [15, 5.1], [16, 4.9], [17, 4.7], [18, 4.5], 
+            [19, 4.3], [20, 4.1], [21, 3.9], [22, 3.7], [23, 3.5], [24, 3.3], 
+            [25, 3.1], [26, 2.9], [27, 2.7], [28, 2.5], [29, 2.3], [30, 2.1]
+        ]
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

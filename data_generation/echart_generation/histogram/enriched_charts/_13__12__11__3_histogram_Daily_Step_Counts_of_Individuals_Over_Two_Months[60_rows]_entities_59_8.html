@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Nutrition Facts of Various Fruits',
+        left: 'center',
+        textStyle: {
+            color: '#333333',
+            fontSize: 20
+        }
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    xAxis: {
+        type: 'category',
+        data: ['0-20', '21-40', '41-60', '61-80', '81-100', '101-120'],
+        axisLabel: {
+            color: '#333333'
+        }
+    },
+    yAxis: {
+        type: 'value',
+        axisLabel: {
+            color: '#333333'
+        }
+    },
+    series: [{
+        name: 'Fruit Nutrition Value',
+        type: 'bar',
+        data: [
+            { value: 0, itemStyle: { color: '#FF9999' } },
+            { value: 7, itemStyle: { color: '#FF6666' } },
+            { value: 15, itemStyle: { color: '#FF3333' } },
+            { value: 13, itemStyle: { color: '#FF0000' } },
+            { value: 10, itemStyle: { color: '#CC0000' } },
+            { value: 5, itemStyle: { color: '#990000' } }
+        ],
+        barWidth: '50%',
+        label: {
+            show: true,
+            position: 'inside'
+        }
+    }],
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

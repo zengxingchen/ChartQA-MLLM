@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+// Data
+var data = [{
+    name: 'Fiction', value: 20000, loaned: 5000, waitTime: 2
+}, {
+    name: 'Mystery', value: 15000, loaned: 4200, waitTime: 5
+}, {
+    name: 'Science Fiction', value: 10000, loaned: 3600, waitTime: 4
+}, {
+    name: 'Biographies', value: 8000, loaned: 1900, waitTime: 7
+}, {
+    name: "Children's Literature", value: 22000, loaned: 6500, waitTime: 3
+}, {
+    name: 'Young Adult', value: 14000, loaned: 4100, waitTime: 4
+}, {
+    name: 'Non-Fiction', value: 18000, loaned: 2900, waitTime: 5
+}, {
+    name: 'Self-Help', value: 9000, loaned: 2800, waitTime: 6
+}, {
+    name: 'History', value: 7500, loaned: 1500, waitTime: 10
+}, {
+    name: 'Romance', value: 13000, loaned: 4000, waitTime: 3
+}, {
+    name: 'Cookbooks', value: 4000, loaned: 1200, waitTime: 7
+}, {
+    name: 'Graphic Novels', value: 6000, loaned: 3000, waitTime: 2
+}];
+
+// Treemap Levels
+var levels = [
+    {
+        itemStyle: {
+            borderColor: '#777',
+            borderWidth: 0,
+            gapWidth: 1
+        },
+        upperLabel: {
+            show: true,
+            height: 30
+        }
+    },
+    {
+        itemStyle: {
+            borderColor: '#555',
+            borderWidth: 5,
+            gapWidth: 1
+        },
+        emphasis: {
+            itemStyle: {
+                borderColor: '#ddd'
+            }
+        }
+    },
+    {
+        colorSaturation: [0.35, 0.5],
+        itemStyle: {
+            borderWidth: 5,
+            gapWidth: 1,
+            borderColorSaturation: 0.6
+        }
+    }
+];
+
+option = {
+    tooltip: {
+        formatter: function (info) {
+            var value = info.value;
+            var loaned = info.data.loaned;
+            var waitTime = info.data.waitTime;
+            return [
+                '<div class="tooltip-title">' + echarts.format.encodeHTML(info.name) + '</div>',
+                'Books in Circulation: ' + value + '<br>',
+                'Books Loaned Last Year: ' + loaned + '<br>',
+                'Reservation Wait Time: ' + waitTime + ' days'
+            ].join('');
+        }
+    },
+    series: [
+        {
+            name: 'Genres',
+            type: 'treemap',
+            visibleMin: 300,
+            label: {
+                show: true,
+                formatter: '{b}'
+            },
+            itemStyle: {
+                normal: {
+                    borderColor: '#fff'
+                }
+            },
+            levels: levels,
+            data: data
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

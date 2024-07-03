@@ -1,0 +1,178 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Stacked area chart of monthly sales figures for various product categories",
+    "width": 600,
+    "height": 400,
+    "data": {
+        "values": [
+            {
+                "Month": "January",
+                "Electronics": 8000,
+                "Books": 5000,
+                "Clothing": 6000,
+                "Furniture": 3000,
+                "Groceries": 4000
+            },
+            {
+                "Month": "February",
+                "Electronics": 8200,
+                "Books": 4800,
+                "Clothing": 6100,
+                "Furniture": 3100,
+                "Groceries": 4200
+            },
+            {
+                "Month": "March",
+                "Electronics": 7800,
+                "Books": 5300,
+                "Clothing": 5800,
+                "Furniture": 3300,
+                "Groceries": 4300
+            },
+            {
+                "Month": "April",
+                "Electronics": 9000,
+                "Books": 4000,
+                "Clothing": 6200,
+                "Furniture": 3500,
+                "Groceries": 4500
+            },
+            {
+                "Month": "May",
+                "Electronics": 8500,
+                "Books": 4500,
+                "Clothing": 6300,
+                "Furniture": 3400,
+                "Groceries": 4600
+            },
+            {
+                "Month": "June",
+                "Electronics": 8300,
+                "Books": 5200,
+                "Clothing": 6400,
+                "Furniture": 3700,
+                "Groceries": 4800
+            },
+            {
+                "Month": "July",
+                "Electronics": 8100,
+                "Books": 5500,
+                "Clothing": 6700,
+                "Furniture": 3600,
+                "Groceries": 4900
+            },
+            {
+                "Month": "August",
+                "Electronics": 8650,
+                "Books": 5400,
+                "Clothing": 6800,
+                "Furniture": 3750,
+                "Groceries": 5050
+            },
+            {
+                "Month": "September",
+                "Electronics": 8750,
+                "Books": 5600,
+                "Clothing": 6900,
+                "Furniture": 3800,
+                "Groceries": 5100
+            },
+            {
+                "Month": "October",
+                "Electronics": 8900,
+                "Books": 5700,
+                "Clothing": 7000,
+                "Furniture": 3900,
+                "Groceries": 5200
+            },
+            {
+                "Month": "November",
+                "Electronics": 9300,
+                "Books": 5800,
+                "Clothing": 7100,
+                "Furniture": 4000,
+                "Groceries": 5300
+            },
+            {
+                "Month": "December",
+                "Electronics": 9700,
+                "Books": 5900,
+                "Clothing": 7200,
+                "Furniture": 4100,
+                "Groceries": 5400
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Electronics",
+                "Books",
+                "Clothing",
+                "Furniture",
+                "Groceries"
+            ],
+            "as": [
+                "Category",
+                "Sales"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "area",
+        "opacity": 0.7
+    },
+    "encoding": {
+        "x": {
+            "field": "Month",
+            "type": "ordinal",
+            "axis": {
+                "title": "Month"
+            }
+        },
+        "y": {
+            "field": "Sales",
+            "type": "quantitative",
+            "title": "Sales (USD)",
+            "stack": "zero"
+        },
+        "color": {
+            "field": "Category",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Electronics",
+                    "Books",
+                    "Clothing",
+                    "Furniture",
+                    "Groceries"
+                ],
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e",
+                    "#2ca02c",
+                    "#d62728",
+                    "#9467bd"
+                ]
+            },
+            "title": "Product Category"
+        },
+        "tooltip": [
+            {
+                "field": "Month",
+                "type": "ordinal",
+                "title": "Month"
+            },
+            {
+                "field": "Category",
+                "type": "nominal",
+                "title": "Category"
+            },
+            {
+                "field": "Sales",
+                "type": "quantitative",
+                "title": "Sales"
+            }
+        ]
+    }
+}

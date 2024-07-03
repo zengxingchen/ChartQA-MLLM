@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var option;
+
+var data = [
+    {'Genre': 'Mystery', 'Adult (Circulation)': 320, 'Youth (Circulation)': 270, 'Total Circulation': 590},
+    {'Genre': 'Science Fiction', 'Adult (Circulation)': 280, 'Youth (Circulation)': 150, 'Total Circulation': 430},
+    {'Genre': 'Romance', 'Adult (Circulation)': 450, 'Youth (Circulation)': 50, 'Total Circulation': 500},
+    {'Genre': 'Historical', 'Adult (Circulation)': 400, 'Youth (Circulation)': 120, 'Total Circulation': 520},
+    {'Genre': 'Biography', 'Adult (Circulation)': 370, 'Youth (Circulation)': 180, 'Total Circulation': 550},
+    {'Genre': 'Self-Help', 'Adult (Circulation)': 160, 'Youth (Circulation)': 40, 'Total Circulation': 200},
+    {'Genre': "Children's Literature", 'Adult (Circulation)': 30, 'Youth (Circulation)': 600, 'Total Circulation': 630},
+    {'Genre': 'Young Adult', 'Adult (Circulation)': 220, 'Youth (Circulation)': 580, 'Total Circulation': 800},
+    {'Genre': 'Graphic Novels', 'Adult (Circulation)': 190, 'Youth (Circulation)': 310, 'Total Circulation': 500},
+    {'Genre': 'Non-Fiction', 'Adult (Circulation)': 300, 'Youth (Circulation)': 200, 'Total Circulation': 500},
+    {'Genre': 'Cookbooks', 'Adult (Circulation)': 170, 'Youth (Circulation)': 30, 'Total Circulation': 200},
+    {'Genre': 'Travel Guides', 'Adult (Circulation)': 160, 'Youth (Circulation)': 20, 'Total Circulation': 180}
+];
+
+var formattedData = data.map(function (item) {
+    return {
+        name: item['Genre'],
+        value: item['Total Circulation'],
+        path: item['Genre'],
+        children: [
+            {
+                name: 'Adult',
+                value: item['Adult (Circulation)'],
+                path: item['Genre'] + '/Adult'
+            },
+            {
+                name: 'Youth',
+                value: item['Youth (Circulation)'],
+                path: item['Genre'] + '/Youth'
+            }
+        ]
+    };
+});
+
+option = {
+    tooltip: {
+        formatter: function (info) {
+            var value = info.value;
+            var path = info.treePathInfo.map(function (treePath) {
+                return treePath.name;
+            }).join('/');
+            return [
+                '<div class="tooltip-title">' + echarts.format.encodeHTML(path) + '</div>',
+                'Circulation: ' + echarts.format.addCommas(value),
+            ].join('');
+        }
+    },
+    series: [{
+        type: 'treemap',
+        data: formattedData,
+        leafDepth: 1, // show subcategories on click
+        levels: [ 
+            {
+                itemStyle: {
+                    borderColor: '#777',
+                    borderWidth: 1,
+                    gapWidth: 1
+                },
+                upperLabel: {
+                    show: true,
+                    height: 30,
+                    textStyle: {
+                        fontSize: 14
+                    }
+                }
+            },
+            {
+                colorSaturation: [0.35, 0.5],
+                itemStyle: {
+                    borderWidth: 5,
+                    gapWidth: 1,
+                    borderColorSaturation: 0.6
+                }
+            }
+        ]
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

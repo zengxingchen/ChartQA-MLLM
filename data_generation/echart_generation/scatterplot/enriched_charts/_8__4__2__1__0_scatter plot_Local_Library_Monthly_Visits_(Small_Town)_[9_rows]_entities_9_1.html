@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+var option = {
+    title: {
+        text: 'Monthly Temperature Variation',
+        left: 'center'
+    },
+    legend: {
+        data: ['Temperature'],
+        top: '10%',
+        right: '10%'
+    },
+    xAxis: {
+        type: 'category',
+        name: 'Month',
+        data: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Temperature (°C)'
+    },
+    series: [
+        {
+            name: 'Temperature',
+            type: 'scatter',
+            data: [
+                [1, 100], [2, 95], [3, 90], [4, 85], [5, 83],
+                [6, 80], [7, 75], [8, 74], [9, 72], [10, 68],
+                [11, 65], [12, 63], [13, 61], [14, 59], [15, 57],
+                [16, 56], [17, 54], [18, 52], [19, 50], [20, 49],
+                [21, 47], [22, 46], [23, 45], [24, 43], [25, 41],
+                [26, 40], [27, 39], [28, 38], [29, 36], [30, 35]
+            ],
+            itemStyle: {
+                color: '#FF5733'
+            }
+        }
+    ]
+};
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

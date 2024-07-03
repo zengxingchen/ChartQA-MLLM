@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 900,
+    height: 600
+});
+var option = {
+    title: {
+        text: 'Future Technologies & Society',
+        left: 'center',
+        top: '10'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Value'],
+        top: '30'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01]
+    },
+    yAxis: {
+        type: 'category',
+        data: ['Augmented Reality', 'Virtual Reality', 'Artificial Intelligence', 'Quantum Computing', 'Blockchain', '5G Technology', 'Renewable Energy', 'Biotechnology', 'Autonomous Vehicles', 'Nanotechnology', 'Space Tourism', 'Smart Cities', 'IoT Devices', 'Wearable Tech']
+    },
+    series: [
+        {
+            name: 'Value',
+            type: 'bar',
+            data: [38, 45, 75, 62, 50, 55, 68, 72, 60, 65, 48, 53, 70, 47],
+            itemStyle: {
+                color: function (params) {
+                    var colorList = ['#5470C6', '#91CC75', '#FAC858', '#EE6666', '#73C0DE', '#3BA272', '#FC8452', '#9A60B4', '#EA7CCC', '#FF5733', '#33FFBD', '#339FFF', '#FF33F1', '#8D33FF'];
+                    return colorList[params.dataIndex];
+                }
+            },
+            barWidth: '60%',
+            label: {
+                show: true,
+                position: 'insideRight'
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 800,
+    height: 600
+});
+var app = {};
+var option;
+
+option = {
+    title: {
+        text: 'Stock Prices Over Time',
+        left: 'center',
+        top: '10'
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['Stock Price'],
+        top: '40'
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ['2023-01-01', '2023-02-01', '2023-03-01', '2023-04-01', '2023-05-01', '2023-06-01', '2023-07-01', '2023-08-01', '2023-09-01', '2023-10-01', '2023-11-01', '2023-12-01', '2024-01-01', '2024-02-01', '2024-03-01', '2024-04-01', '2024-05-01', '2024-06-01', '2024-07-01', '2024-08-01', '2024-09-01', '2024-10-01', '2024-11-01', '2024-12-01']
+    },
+    yAxis: {
+        type: 'value',
+        axisLabel: {
+            formatter: '{value} USD'
+        }
+    },
+    series: [
+        {
+            name: 'Stock Price',
+            type: 'line',
+            data: [150, 145, 148, 155, 160, 158, 162, 164, 166, 170, 172, 175, 178, 180, 185, 182, 188, 190, 192, 195, 198, 200, 205, 210],
+            lineStyle: {
+                color: '#FF5733'
+            },
+            label: {
+                show: true,
+                position: 'top',
+                color: '#000'
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

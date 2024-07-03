@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+option = {
+    title: {
+        text: 'Global Age Distribution in 2023',
+        left: 'center',
+        top: 20,
+    },
+    tooltip: {
+        trigger: 'item',
+    },
+    legend: {
+        orient: 'vertical',
+        left: 'left',
+        top: 'middle'
+    },
+    series: [
+        {
+            name: 'Age Group',
+            type: 'pie',
+            radius: '50%',
+            data: [
+                {value: 20, name: '0-14'},
+                {value: 18, name: '15-24'},
+                {value: 17, name: '25-34'},
+                {value: 13, name: '35-44'},
+                {value: 12, name: '45-54'},
+                {value: 10, name: '55-64'},
+                {value: 10, name: '65+'}
+            ],
+            emphasis: {
+                itemStyle: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            }
+        }
+    ],
+    color: [
+        '#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF', '#FF9F40', '#C9CBCF'
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Electric Vehicle Adoption Trends',
+        left: 'center',
+        textStyle: {
+            color: '#333',
+            fontSize: 20
+        }
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    xAxis: {
+        type: 'category',
+        data: ['2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023'],
+        axisLabel: {
+            rotate: 45,
+            textStyle: {
+                color: '#333',
+                fontSize: 12
+            }
+        }
+    },
+    yAxis: {
+        type: 'value',
+        axisLabel: {
+            textStyle: {
+                color: '#333',
+                fontSize: 12
+            }
+        }
+    },
+    series: [
+        {
+            name: 'Electric Vehicles Sold',
+            type: 'bar',
+            data: [50000, 75000, 120000, 180000, 260000, 400000, 550000, 750000, 1100000, 1600000, 2100000],
+            itemStyle: {
+                color: '#4CAF50'
+            },
+            barWidth: '40%',
+            label: {
+                show: true,
+                position: 'top',
+                textStyle: {
+                    color: '#333',
+                    fontSize: 12
+                }
+            }
+        }
+    ],
+    grid: {
+        left: '3%',
+        right: '3%',
+        bottom: '10%',
+        containLabel: true
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

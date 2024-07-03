@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {renderer: 'canvas'});
+var app = {};
+var option;
+
+myChart.showLoading();
+
+option = {
+    title: {
+        text: 'Investment in Space Ventures (in Billions)',
+        left: 'center',
+        top: 20,
+        textStyle: {
+            color: '#333',
+            fontWeight: 'bold'
+        }
+    },
+    tooltip: {
+        trigger: 'item'
+    },
+    legend: {
+        orient: 'vertical',
+        left: 'left',
+        data: ['Asteroid Mining', 'Space Tourism', 'Private Spaceflight', 'Satellite Internet Services', 'Space Research'],
+        top: 80
+    },
+    series: [
+        {
+            name: 'Investment Distribution',
+            type: 'pie',
+            radius: '50%',
+            center: ['50%', '60%'],
+            data: [
+                {value: 30, name: 'Asteroid Mining'},
+                {value: 25, name: 'Space Tourism'},
+                {value: 15, name: 'Private Spaceflight'},
+                {value: 20, name: 'Satellite Internet Services'},
+                {value: 10, name: 'Space Research'}
+            ],
+            emphasis: {
+                itemStyle: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            },
+            itemStyle: {
+                normal: {
+                    color: function(params) {
+                        const colorList = ['#5E4FA2', '#3288BD', '#66C2A5', '#ABDDA4', '#E6F598'];
+                        return colorList[params.dataIndex];
+                    }
+                }
+            },
+            label: {
+                show: true,
+                formatter: '{b}\n{c} Billion'
+            },
+            labelLine: {
+                show: true
+            },
+        }
+    ],
+    color: ['#5E4FA2', '#3288BD', '#66C2A5', '#ABDDA4', '#E6F598']
+};
+
+if (!app.inNode) {
+    // .... Data loading code (if necessary) ....
+    myChart.hideLoading();
+}
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

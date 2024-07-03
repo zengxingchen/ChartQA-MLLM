@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+  renderer: 'canvas',
+  useDirtyRect: false
+});
+var app = {};
+
+var option;
+
+// Data points for the pie chart
+var data = [
+  { value: 500, name: 'Engineering', itemStyle: { color: '#1F77B4' } },
+  { value: 300, name: 'Medicine', itemStyle: { color: '#FF7F0E' } },
+  { value: 200, name: 'Economics', itemStyle: { color: '#2CA02C' } },
+  { value: 150, name: 'Arts', itemStyle: { color: '#D62728' } },
+  { value: 450, name: 'Computer Science', itemStyle: { color: '#9467BD' } },
+  { value: 180, name: 'Education', itemStyle: { color: '#8C564B' } }
+];
+
+option = {
+  title: {
+    text: 'Student Distribution by Field of Study',
+    left: 'center',
+    top: 20
+  },
+  tooltip: {
+    trigger: 'item'
+  },
+  legend: {
+    orient: 'vertical',
+    left: 'left',
+    top: 'middle',
+    padding: [0, 0, 0, 20] // Keep distance from the pie chart
+  },
+  series: [
+    {
+      name: 'Field of Study',
+      type: 'pie',
+      radius: '50%',
+      data: data,
+      emphasis: {
+        itemStyle: {
+          shadowBlur: 10,
+          shadowOffsetX: 0,
+          shadowColor: 'rgba(0, 0, 0, 0.5)'
+        }
+      },
+      label: {
+        formatter: '{b}: {d}%'
+      }
+    }
+  ]
+};
+
+if (option && typeof option === 'object') {
+  myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

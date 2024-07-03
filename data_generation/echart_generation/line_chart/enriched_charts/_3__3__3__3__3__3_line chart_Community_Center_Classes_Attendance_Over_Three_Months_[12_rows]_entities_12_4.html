@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 500
+});
+var option;
+
+option = {
+    title: {
+        text: 'Future Technologies Investment Over the Year',
+        left: 'center',
+        textStyle: {
+            color: '#333',
+            fontSize: 20
+        }
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['Investment'],
+        bottom: '0',
+    },
+    xAxis: {
+        type: 'category',
+        data: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        axisLabel: {
+            textStyle: {
+                color: '#333'
+            }
+        }
+    },
+    yAxis: {
+        type: 'value',
+        axisLabel: {
+            textStyle: {
+                color: '#333'
+            }
+        }
+    },
+    series: [
+        {
+            name: 'Investment',
+            type: 'line',
+            data: [120, 132, 101, 134, 90, 230, 210, 180, 160, 170, 220, 250],
+            itemStyle: {
+                color: '#FF5733'
+            },
+            label: {
+                show: true,
+                position: 'top',
+                color: '#000'
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,92 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Pie chart showing the distribution of investment portfolio by percentage",
+    "width": 450,
+    "height": 450,
+    "data": {
+        "values": [
+            {
+                "Investment Type": "Stocks",
+                "Percentage": 35
+            },
+            {
+                "Investment Type": "Bonds",
+                "Percentage": 25
+            },
+            {
+                "Investment Type": "Real Estate",
+                "Percentage": 20
+            },
+            {
+                "Investment Type": "Commodities",
+                "Percentage": 10
+            },
+            {
+                "Investment Type": "Cash",
+                "Percentage": 5
+            },
+            {
+                "Investment Type": "Cryptocurrency",
+                "Percentage": 5
+            }
+        ]
+    },
+    "mark": {
+        "type": "arc",
+        "outerRadius": 160
+    },
+    "encoding": {
+        "theta": {
+            "field": "Percentage",
+            "type": "quantitative",
+            "stack": true
+        },
+        "color": {
+            "field": "Investment Type",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Stocks",
+                    "Bonds",
+                    "Real Estate",
+                    "Commodities",
+                    "Cash",
+                    "Cryptocurrency"
+                ],
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e",
+                    "#2ca02c",
+                    "#d62728",
+                    "#9467bd",
+                    "#8c564b"
+                ]
+            },
+            "legend": {
+                "title": "Investment Types",
+                "orient": "right"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Investment Type",
+                "type": "nominal",
+                "title": "Investment Type"
+            },
+            {
+                "field": "Percentage",
+                "type": "quantitative",
+                "title": "Percentage (%)"
+            }
+        ]
+    },
+    "title": {
+        "text": "Investment Portfolio Distribution",
+        "anchor": "start",
+        "fontSize": 16,
+        "dy": -10
+    },
+    "view": {
+        "stroke": null
+    }
+}

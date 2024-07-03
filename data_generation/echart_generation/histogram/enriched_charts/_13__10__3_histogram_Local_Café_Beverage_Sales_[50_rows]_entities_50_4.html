@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Distribution of Nutrient Intake',
+        left: 'center',
+        top: '20'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    xAxis: {
+        type: 'category',
+        data: ['1-2', '2-3', '3-4', '4-5', '5-6'],
+        name: 'Nutrient Intake (mg)',
+        nameLocation: 'middle',
+        nameGap: 25
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Frequency',
+        nameLocation: 'middle',
+        nameGap: 50
+    },
+    series: [{
+        data: [4, 6, 8, 7, 5],
+        type: 'bar',
+        barWidth: '30%',
+        itemStyle: {
+            color: '#87CEEB'
+        },
+        label: {
+            show: true,
+            position: 'top',
+            formatter: '{c}'
+        }
+    }],
+    grid: {
+        width: '80%',
+        height: '70%',
+        containLabel: true
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

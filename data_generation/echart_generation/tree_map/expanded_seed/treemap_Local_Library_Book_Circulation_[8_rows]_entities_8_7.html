@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var option;
+
+// Prepare data for treemap
+var data = [
+    {
+        name: 'Fiction',
+        children: [
+            {name: 'Mystery', value: 150},
+            {name: 'Romance', value: 120},
+            {name: 'Fantasy', value: 175},
+        ]
+    },
+    {
+        name: 'Non-Fiction',
+        children: [
+            {name: 'History', value: 95},
+            {name: 'Biography', value: 80},
+        ]
+    },
+    {
+        name: "Children's Books",
+        children: [
+            {name: 'Picture Books', value: 300},
+            {name: 'Early Readers', value: 220},
+        ]
+    },
+    {
+        name: 'Young Adult',
+        children: [
+            {name: 'Dystopian', value: 160},
+        ]
+    },
+];
+
+option = {
+    tooltip: {
+        trigger: 'item',
+        formatter: '{b}: {c}'
+    },
+    series: [
+        {
+            type: 'treemap',
+            data: data,
+            label: {
+                show: true,
+                formatter: '{b}'
+            },
+            upperLabel: {
+                normal: {
+                    show: true,
+                    height: 30
+                }
+            },
+            itemStyle: {
+                normal: {
+                    borderColor: '#fff'
+                },
+                emphasis: {
+                    label: {
+                        show: true
+                    },
+                    borderColor: '#eee'
+                }
+            },
+            levels: [
+                {
+                    itemStyle: {
+                        normal: {
+                            borderWidth: 0,
+                            gapWidth: 5
+                        }
+                    }
+                },
+                {
+                    itemStyle: {
+                        normal: {
+                            gapWidth: 1
+                        }
+                    }
+                },
+                {
+                    colorSaturation: [0.35, 0.5],
+                    itemStyle: {
+                        normal: {
+                            gapWidth: 1,
+                            borderColorSaturation: 0.6
+                        }
+                    }
+                }
+            ]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

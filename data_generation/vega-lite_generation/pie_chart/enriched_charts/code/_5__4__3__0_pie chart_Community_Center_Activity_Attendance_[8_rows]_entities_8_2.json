@@ -1,0 +1,125 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "A pie chart representing the distribution of different types of foods in a diet.",
+    "height": 450,
+    "width": 450,
+    "padding": 5,
+    "config": {
+        "font": "Arial",
+        "axis": {
+            "domainColor": "#44475a",
+            "tickColor": "#44475a"
+        }
+    },
+    "data": {
+        "values": [
+            {
+                "Food": "Vegetables",
+                "Calories": 200
+            },
+            {
+                "Food": "Fruits",
+                "Calories": 150
+            },
+            {
+                "Food": "Grains",
+                "Calories": 180
+            },
+            {
+                "Food": "Protein",
+                "Calories": 300
+            },
+            {
+                "Food": "Dairy",
+                "Calories": 250
+            },
+            {
+                "Food": "Sweets",
+                "Calories": 220
+            },
+            {
+                "Food": "Beverages",
+                "Calories": 270
+            },
+            {
+                "Food": "Fats",
+                "Calories": 200
+            }
+        ]
+    },
+    "mark": {
+        "type": "arc",
+        "tooltip": true
+    },
+    "encoding": {
+        "theta": {
+            "field": "Calories",
+            "type": "quantitative",
+            "stack": true
+        },
+        "color": {
+            "field": "Food",
+            "type": "nominal",
+            "scale": {
+                "range": [
+                    "#ff6347",
+                    "#ffa07a",
+                    "#20b2aa",
+                    "#4682b4",
+                    "#dda0dd",
+                    "#b0e0e6",
+                    "#ffb6c1",
+                    "#87cefa"
+                ]
+            },
+            "legend": {
+                "direction": "horizontal",
+                "orient": "bottom"
+            }
+        },
+        "opacity": {
+            "value": 0.8
+        }
+    },
+    "layer": [
+        {
+            "mark": {
+                "type": "arc",
+                "outerRadius": 180
+            }
+        },
+        {
+            "transform": [
+                {
+                    "calculate": "datum.Calories + ' cal'",
+                    "as": "formattedCalories"
+                }
+            ],
+            "mark": {
+                "type": "text",
+                "radius": 200
+            },
+            "encoding": {
+                "text": {
+                    "field": "formattedCalories",
+                    "type": "nominal"
+                },
+                "theta": {
+                    "field": "Calories",
+                    "type": "quantitative",
+                    "stack": true
+                }
+            }
+        }
+    ],
+    "view": {
+        "stroke": null
+    },
+    "title": {
+        "text": "Distribution of Food Types in a Diet",
+        "fontSize": 22,
+        "anchor": "start",
+        "align": "center",
+        "dy": -20
+    }
+}

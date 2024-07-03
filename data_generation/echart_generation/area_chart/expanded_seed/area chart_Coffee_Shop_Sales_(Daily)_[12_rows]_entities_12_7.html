@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+option = null;
+
+var chartData = [{'Date': '2023-04-01', 'Sales ($)': 830}, {'Date': '2023-04-02', 'Sales ($)': 790}, {'Date': '2023-04-03', 'Sales ($)': 810}, {'Date': '2023-04-04', 'Sales ($)': 820}, {'Date': '2023-04-05', 'Sales ($)': 880}, {'Date': '2023-04-06', 'Sales ($)': 860}, {'Date': '2023-04-07', 'Sales ($)': 940}, {'Date': '2023-04-08', 'Sales ($)': 970}, {'Date': '2023-04-09', 'Sales ($)': 915}, {'Date': '2023-04-10', 'Sales ($)': 890}, {'Date': '2023-04-11', 'Sales ($)': 930}, {'Date': '2023-04-12', 'Sales ($)': 950}];
+
+option = {
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            label: {
+                backgroundColor: '#6a7985'
+            }
+        }
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {},
+            restore: {},
+            dataView: {},
+            magicType: {
+                type: ['line', 'bar', 'stack', 'tiled']
+            },
+            dataZoom: {}
+        }
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: chartData.map(function (item) {
+            return item.Date;
+        })
+    },
+    yAxis: {
+        type: 'value',
+        axisLabel: {
+            formatter: '${value}'
+        },
+        axisPointer: {
+            snap: true
+        }
+    },
+    dataZoom: [{
+        type: 'inside',
+        start: 0,
+        end: 100
+    }, {
+        start: 0,
+        end: 10
+    }],
+    series: [
+        {
+            name: 'Sales',
+            type: 'line',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: chartData.map(function (item) {
+                return item['Sales ($)'];
+            }),
+            markPoint: {
+                data: [
+                    {type: 'max', name: 'Max'},
+                    {type: 'min', name: 'Min'}
+                ]
+            },
+            markLine: {
+                data: [
+                    {type: 'average', name: 'Avg'}
+                ]
+            }
+        }
+    ],
+    visualMap: {
+        top: 50,
+        right: 10,
+        pieces: [{
+            gt: 800,
+            lte: 900,
+            color: '#96BFFF'
+        }, {
+            gt: 900,
+            lte: 1000,
+            color: '#F57567'
+        }],
+        outOfRange: {
+            color: '#999'
+        }
+    },
+    color: ['#3398DB']
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

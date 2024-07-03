@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 800, // Change width of the chart
+    height: 600 // Change height of the chart
+});
+var app = {};
+
+var option;
+
+option = {
+    color: ['#3398DB', '#D48265', '#91C7AE', '#749F83',  '#CA8622', '#BDA29A','#6E7074', '#546570', '#C4CCD3'],
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {            
+            type: 'shadow'        
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: [
+        {
+            type: 'category',
+            data: ['2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020'],
+            axisTick: {
+                alignWithLabel: true
+            }
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value'
+        }
+    ],
+    series: [
+        {
+            name: 'Sales',
+            type: 'bar',
+            barWidth: '60%', // Change the width of bars
+            barMaxWidth: '30', // Change the band width/height for bars
+            label: {
+                show: true,
+                position: 'top'
+            },
+            data: [
+                {value: 120, itemStyle: {color: '#c23531'}},
+                {value: 200, itemStyle: {color: '#2f4554'}},
+                {value: 150, itemStyle: {color: '#61a0a8'}},
+                {value: 80, itemStyle: {color: '#d48265'}},
+                {value: 200, itemStyle: {color: '#91c7ae'}},
+                {value: 170, itemStyle: {color: '#749f83'}},
+                {value: 110, itemStyle: {color: '#ca8622'}},
+                {value: 250, itemStyle: {color: '#bda29a'}},
+                {value: 190, itemStyle: {color: '#6e7074'}},
+                {value: 130, itemStyle: {color: '#546570'}},
+                {value: 180, itemStyle: {color: '#c4ccd3'}}
+            ]
+        }
+    ],
+    title: {
+        text: 'Annual Sales Report', // headline
+        left: 'center',
+        padding: [
+            10, // Top
+            0, // Right
+            0,  // Bottom
+            0,  // Left
+        ],
+        textStyle: {
+            fontSize: 24,
+            fontWeight: 'normal'
+        }
+    },
+    legend: {
+        top: '5%', // Adjust legend position
+        data: ['Sales']
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

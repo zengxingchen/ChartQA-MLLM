@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Class Attendance Over Time'
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['Yoga', 'Pilates', 'Zumba', 'Karate', 'Tai Chi']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ['2023-03-01', '2023-03-08', '2023-03-15', '2023-03-22', '2023-03-29', '2023-04-05', '2023-04-12', '2023-04-19', '2023-04-26', '2023-05-03', '2023-05-10', '2023-05-17', '2023-05-24', '2023-05-31']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Yoga',
+            type: 'line',
+            data: [20, 22, 25, 23, 24, 26, 28, 30, 29, 27, 26, 28, 30, 31],
+            markPoint: {
+                data: [
+                    {type: 'max', name: 'Max'},
+                    {type: 'min', name: 'Min'}
+                ]
+            }
+        },
+        {
+            name: 'Pilates',
+            type: 'line',
+            data: [15, 13, 16, 18, 14, 19, 15, 20, 17, 16, 18, 15, 20, 21]
+        },
+        {
+            name: 'Zumba',
+            type: 'line',
+            data: [35, 33, 30, 32, 34, 33, 35, 36, 38, 37, 39, 40, 41, 42]
+        },
+        {
+            name: 'Karate',
+            type: 'line',
+            data: [10, 11, 12, 13, 14, 15, 15, 16, 14, 13, 15, 16, 16, 17]
+        },
+        {
+            name: 'Tai Chi',
+            type: 'line',
+            data: [5, 6, 7, 5, 8, 9, 7, 10, 8, 9, 7, 8, 10, 11],
+            markLine: {
+                data: [
+                    {type: 'average', name: 'Avg'}
+                ]
+            }
+        }
+    ],
+    dataZoom: [
+        {
+            type: 'inside',
+            start: 0,
+            end: 100
+        },
+        {
+            start: 0,
+            end: 10
+        }
+    ],
+    responsive: true
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

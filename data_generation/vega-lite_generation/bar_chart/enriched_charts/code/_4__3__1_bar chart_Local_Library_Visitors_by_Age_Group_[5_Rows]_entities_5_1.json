@@ -1,0 +1,103 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "A horizontal bar chart showing average weekly exercise hours by different age groups.",
+    "width": 800,
+    "height": 600,
+    "title": {
+        "text": "Average Weekly Exercise Hours by Age Group",
+        "anchor": "middle",
+        "offset": 10
+    },
+    "data": {
+        "values": [
+            {
+                "Age Group": "10-19",
+                "Average Hours": 6
+            },
+            {
+                "Age Group": "20-29",
+                "Average Hours": 8
+            },
+            {
+                "Age Group": "30-39",
+                "Average Hours": 7
+            },
+            {
+                "Age Group": "40-49",
+                "Average Hours": 5
+            },
+            {
+                "Age Group": "50-59",
+                "Average Hours": 4
+            },
+            {
+                "Age Group": "60-69",
+                "Average Hours": 3
+            },
+            {
+                "Age Group": "70-79",
+                "Average Hours": 2
+            },
+            {
+                "Age Group": "80+",
+                "Average Hours": 1
+            }
+        ]
+    },
+    "mark": {
+        "type": "bar",
+        "tooltip": true,
+        "cornerRadiusEnd": 3,
+        "width": {
+            "band": 0.5
+        }
+    },
+    "encoding": {
+        "y": {
+            "field": "Age Group",
+            "type": "ordinal",
+            "axis": {
+                "title": "Age Group"
+            }
+        },
+        "x": {
+            "field": "Average Hours",
+            "type": "quantitative",
+            "axis": {
+                "title": "Average Weekly Exercise Hours"
+            }
+        },
+        "color": {
+            "field": "Age Group",
+            "scale": {
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e",
+                    "#2ca02c",
+                    "#d62728",
+                    "#9467bd",
+                    "#8c564b",
+                    "#e377c2",
+                    "#7f7f7f"
+                ]
+            }
+        },
+        "opacity": {
+            "condition": {
+                "param": "hover",
+                "value": 0.8
+            },
+            "value": 1
+        }
+    },
+    "params": [
+        {
+            "name": "hover",
+            "select": {
+                "type": "point",
+                "on": "mouseover",
+                "clear": "mouseout"
+            }
+        }
+    ]
+}

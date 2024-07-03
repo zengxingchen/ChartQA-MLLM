@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Stock Portfolio Trends',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['Technology', 'Finance', 'Consumer Goods', 'Energy', 'Healthcare'],
+        top: 'bottom'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '10%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ['2017-01-01', '2017-01-02', '2017-01-03', /*...*/ '2017-12-29', '2017-12-30', '2017-12-31']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Technology',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: { focus: 'series' },
+            data: [120, 122, 125, /*...*/ 242, 245, 250],
+            color: '#FF7F50'
+        },
+        {
+            name: 'Finance',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: { focus: 'series' },
+            data: [80, 82, 83, /*...*/ 195, 198, 200],
+            color: '#9370DB'
+        },
+        {
+            name: 'Consumer Goods',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: { focus: 'series' },
+            data: [50, 53, 55, /*...*/ 165, 167, 170],
+            color: '#3CB371'
+        },
+        {
+            name: 'Energy',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: { focus: 'series' },
+            data: [30, 35, 33, /*...*/ 132, 134, 135],
+            color: '#00CED1'
+        },
+        {
+            name: 'Healthcare',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: { focus: 'series' },
+            data: [40, 42, 44, /*...*/ 152, 155, 157],
+            color: '#DC143C'
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

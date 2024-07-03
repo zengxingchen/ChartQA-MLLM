@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+var app = {};
+
+option = {
+    title: {
+        text: 'Economic Growth in Technology Sector',
+        left: 'center',
+        top: 10
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            label: {
+                backgroundColor: '#6a7985'
+            }
+        }
+    },
+    legend: {
+        data: ['Startups', 'Investments', 'Acquisitions'],
+        top: 50
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: [
+        {
+            type: 'category',
+            boundaryGap: false,
+            data: ['2020-01', '2020-02', '2020-03', '2020-04', '2020-05', '2020-06',
+                   '2020-07', '2020-08', '2020-09', '2020-10', '2020-11', '2020-12',
+                   '2021-01', '2021-02', '2021-03', '2021-04', '2021-05', '2021-06',
+                   '2021-07', '2021-08', '2021-09', '2021-10', '2021-11', '2021-12']
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value',
+            axisLabel: {
+                formatter: '{value} mil'
+            },
+            axisPointer: {
+                snap: true
+            }
+        }
+    ],
+    color: ['#FF7F50', '#87CEFA', '#DA70D6'],
+    series: [
+        {
+            name: 'Startups',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [300, 310, 325, 335, 345, 360, 375, 385, 390, 400, 415, 420, 430, 440, 455, 460, 470, 480, 490, 500, 510, 520, 530, 540]
+        },
+        {
+            name: 'Investments',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [600, 630, 650, 670, 710, 730, 750, 770, 810, 830, 850, 870, 890, 910, 930, 950, 970, 990, 1010, 1030, 1040, 1060, 1080, 1100]
+        },
+        {
+            name: 'Acquisitions',
+            type: 'line',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'top'
+            },
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [200, 210, 215, 230, 240, 250, 260, 270, 280, 285, 290, 295, 300, 305, 310, 320, 325, 330, 340, 350, 360, 370, 380, 390]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

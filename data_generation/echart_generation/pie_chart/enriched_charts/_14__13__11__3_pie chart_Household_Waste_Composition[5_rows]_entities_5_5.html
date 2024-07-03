@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+option = {
+  title: {
+    text: 'Vehicle Types in Sustainable Transportation',
+    left: 'center',
+    top: 20
+  },
+  tooltip: {
+    trigger: 'item'
+  },
+  legend: {
+    orient: 'vertical',
+    left: 'left',
+    top: 'middle',
+    textStyle: {
+      color: '#666',
+      fontSize: 14
+    }
+  },
+  series: [
+    {
+      name: 'Vehicle Types',
+      type: 'pie',
+      radius: '50%',
+      data: [
+        { value: 40, name: 'Electric Cars' },
+        { value: 25, name: 'Hybrid Vehicles' },
+        { value: 15, name: 'Diesel Engines' },
+        { value: 10, name: 'Petrol Engines' },
+        { value: 10, name: 'Hydrogen Fuel Cell' }
+      ],
+      emphasis: {
+        itemStyle: {
+          shadowBlur: 10,
+          shadowOffsetX: 0,
+          shadowColor: 'rgba(0, 0, 0, 0.5)'
+        }
+      },
+      itemStyle: {
+        normal: {
+          color: function(params) {
+            var colorList = [
+              '#c23531','#2f4554','#61a0a8','#d48265','#91c7ae'
+            ];
+            return colorList[params.dataIndex]
+          },
+          label: {
+            show: true,
+            formatter: '{b}: {d}%'
+          },
+          labelLine: {
+            show: true
+          }
+        }
+      }
+    }
+  ],
+  color: ['#c23531', '#2f4554', '#61a0a8', '#d48265', '#91c7ae']
+};
+
+if (option && typeof option === 'object') {
+  myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

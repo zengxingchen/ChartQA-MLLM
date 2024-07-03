@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Quarterly Revenue Growth of Tech Companies',
+        left: 'center',
+        top: '20'
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['Apple', 'Google', 'Amazon', 'Facebook'],
+        top: '50'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ['Q1-2020', 'Q2-2020', 'Q3-2020', 'Q4-2020', 'Q1-2021', 'Q2-2021', 'Q3-2021', 'Q4-2021']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Apple',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [58000, 59300, 60000, 62000, 64000, 65400, 67000, 69000],
+            color: '#FF0000',
+        },
+        {
+            name: 'Google',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [44000, 45100, 46000, 47000, 48000, 49000, 51000, 53000],
+            color: '#0000FF',
+        },
+        {
+            name: 'Amazon',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [75000, 77000, 78000, 79000, 80000, 81500, 83000, 85000],
+            color: '#008000',
+        },
+        {
+            name: 'Facebook',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [27000, 28100, 29000, 30000, 31000, 32500, 34000, 36000],
+            color: '#FFA500',
+        }
+    ]
+};
+
+myChart.setOption(option);
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

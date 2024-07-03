@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+option = {
+    title: {
+        text: 'Technology Adoption in Space Exploration',
+        left: 'center',
+        top: 20,
+        textStyle: {
+            color: '#333',
+            fontWeight: 'normal',
+            fontSize: 20
+        }
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            label: {
+                backgroundColor: '#6a7985'
+            }
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: [
+        {
+            type: 'category',
+            boundaryGap: false,
+            data: ['2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022']
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value'
+        }
+    ],
+    series: [
+        {
+            name: 'Adoption Rate',
+            type: 'line',
+            stack: 'Total amount',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [15, 17, 20, 22, 25, 29, 33, 38, 44, 50, 57, 64, 72],
+            itemStyle: {
+                color: '#5470c6',
+                borderColor: '#5470c6'
+            },
+            lineStyle: {
+                width: 2,
+                color: '#5470c6'
+            }
+        }
+    ],
+    color: ['#5470c6', '#91cc75', '#fac858', '#ee6666'],
+    legend: {
+        data: ['Adoption Rate'],
+        right: 10,
+        top: 30
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    }
+};
+
+myChart.setOption(option, true);
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

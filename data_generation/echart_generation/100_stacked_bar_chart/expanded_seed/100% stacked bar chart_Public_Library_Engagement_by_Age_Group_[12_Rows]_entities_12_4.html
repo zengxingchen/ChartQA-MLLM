@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+            var dom = document.getElementById('container');
+            var myChart = echarts.init(dom, null, {
+            renderer: 'canvas',
+            useDirtyRect: false
+            });
+            var app = {};
+            
+            var option;
+
+            
+option = {
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        },
+        formatter: function (params) {
+            var tar = params[1];
+            return tar.name + '<br/>' + tar.seriesName + ' : ' + tar.value + '%';
+        }
+    },
+    legend: {
+        data: ['Children (0-14) (%)', 'Youth (15-24) (%)', 'Adults (25-64) (%)', 'Seniors (65+) (%)']
+    },
+    xAxis: {
+        type: 'value',
+        max: 100,
+        axisLabel: {
+            formatter: '{value}%'
+        }
+    },
+    yAxis: {
+        type: 'category',
+        data: []
+    },
+    series: [
+        {
+            name: 'Placeholder',
+            type: 'bar',
+            stack: 'total',
+            itemStyle: {
+                borderColor: 'transparent',
+                color: 'transparent'
+            },
+            emphasis: {
+                itemStyle: {
+                    borderColor: 'transparent',
+                    color: 'transparent'
+                }
+            },
+            data: []
+        },
+        {
+            name: 'Children (0-14) (%)',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            data: []
+        },
+        {
+            name: 'Youth (15-24) (%)',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            data: []
+        },
+        {
+            name: 'Adults (25-64) (%)',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            data: []
+        },
+        {
+            name: 'Seniors (65+) (%)',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            data: []
+        }
+    ]
+};
+
+// Extract data from your table and populate the yAxis data and series data
+const chartData = [
+    {'Month': 'January', 'Children (0-14) (%)': 25, 'Youth (15-24) (%)': 20, 'Adults (25-64) (%)': 40, 'Seniors (65+) (%)': 15},
+    // ... The rest of your input data
+    {'Month': 'December', 'Children (0-14) (%)': 30, 'Youth (15-24) (%)': 15, 'Adults (25-64) (%)': 40, 'Seniors (65+) (%)': 15}
+];
+
+chartData.forEach(function (item) {
+    option.yAxis.data.push(item.Month);
+    option.series[0].data.push(100 - item['Children (0-14) (%)'] - item['Youth (15-24) (%)'] - item['Adults (25-64) (%)'] - item['Seniors (65+) (%)']);
+    option.series[1].data.push(item['Children (0-14) (%)']);
+    option.series[2].data.push(item['Youth (15-24) (%)']);
+    option.series[3].data.push(item['Adults (25-64) (%)']);
+    option.series[4].data.push(item['Seniors (65+) (%)']);
+});
+
+            if (option && typeof option === 'object') {
+            myChart.setOption(option);
+            }
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

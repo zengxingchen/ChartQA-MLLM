@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Renewable Energy Adoption in 2022',
+        left: 'center',
+        top: 20
+    },
+    tooltip: {
+        trigger: 'item'
+    },
+    legend: {
+        orient: 'vertical',
+        left: 20,
+        top: 'middle'
+    },
+    series: [
+        {
+            name: 'Energy Source',
+            type: 'pie',
+            radius: '50%',
+            data: [
+                { value: 24.5, name: 'Solar' },
+                { value: 21.6, name: 'Wind' },
+                { value: 16.4, name: 'Hydroelectric' },
+                { value: 12.7, name: 'Biomass' },
+                { value: 8.3, name: 'Geothermal' },
+                { value: 6.2, name: 'Wave and Tidal' },
+                { value: 3.6, name: 'Biofuels' },
+                { value: 3.4, name: 'Concentrated Solar Power' },
+                { value: 3.3, name: 'Others' }
+            ],
+            emphasis: {
+                itemStyle: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            }
+        }
+    ],
+    color: [
+        '#ff7e50', '#87cefa', '#da70d6', '#32cd32', '#6495ed', 
+        '#ff69b4', '#ba55d3', '#cd5c5c', '#ffa500', '#40e0d0', 
+        '#1e90ff', '#ff6347', '#7b68ee', '#00fa9a', '#ffd700', 
+        '#6699FF', '#ff6666', '#3cb371', '#b8860b', '#30e0e0'
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

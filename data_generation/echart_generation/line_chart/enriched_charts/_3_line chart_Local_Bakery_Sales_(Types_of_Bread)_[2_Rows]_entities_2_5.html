@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {renderer: 'canvas', width: 800, height: 600});
+var app = {};
+
+var option;
+
+option = {
+  title: {
+    text: 'New Species Discovered (2000 - 2020)',
+    left: 'center',
+    top: 20
+  },
+  tooltip: {
+    trigger: 'axis'
+  },
+  legend: {
+    top: 'bottom'
+  },
+  toolbox: {
+    show: true,
+    feature: {
+      dataView: {readOnly: false},
+      restore: {},
+      saveAsImage: {}
+    }
+  },
+  xAxis: {
+    type: 'category',
+    boundaryGap: false,
+    data: ['2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020']
+  },
+  yAxis: {
+    type: 'value',
+    axisLabel: {
+      formatter: '{value} species'
+    }
+  },
+  series: [
+    {
+      name: 'New Species Discovered',
+      type: 'line',
+      smooth: true,
+      symbol: 'none',
+      sampling: 'average',
+      itemStyle: {
+        color: '#34b1eb'
+      },
+      lineStyle: {
+        width: 3
+      },
+      markPoint: {
+        data: [
+          {type: 'max', name: 'Max'},
+          {type: 'min', name: 'Min'}
+        ]
+      },
+      data: [
+        120, 130, 150, 155, 160, 170, 175, 180, 190, 200,
+        210, 220, 230, 240, 250, 260, 270, 280, 290, 300, 320
+      ]
+    }
+  ],
+  markLine: {
+    silent: true,
+    data: [{
+      yAxis: 150,
+      label: {
+        formatter: 'Average baseline'
+      },
+      lineStyle: {
+        type: 'solid',
+        color: '#ff0000'
+      }
+    }]
+  }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 600, height: 400});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Progress in Future Technologies & Society Over Years',
+        left: 'center',
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        },
+        formatter: function(params) {
+            let res = params[0].name + '<br/>';
+            params.forEach(function (item) {
+                res += '<span style="display:inline-block;margin-right:4px;border-radius:10px;width:9px;height:9px;background-color:' + item.color + '"></span> ' +
+                    item.seriesName + ': ' + item.value + '%<br/>';
+            });
+            return res;
+        }
+    },
+    legend: {
+        top: '8%',
+        data: ['Technology', 'Design', 'Science', 'Health', 'Culture']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01],
+        max: 100
+    },
+    yAxis: {
+        type: 'category',
+        data: ['2019', '2020', '2021', '2022']
+    },
+    series: [
+        {
+            name: 'Technology',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            data: [20, 25, 30, 35],
+            color: '#1f77b4'
+        },
+        {
+            name: 'Design',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            data: [30, 25, 20, 15],
+            color: '#ff7f0e'
+        },
+        {
+            name: 'Science',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            data: [10, 15, 20, 25],
+            color: '#2ca02c'
+        },
+        {
+            name: 'Health',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            data: [25, 20, 15, 10],
+            color: '#d62728'
+        },
+        {
+            name: 'Culture',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            data: [15, 15, 15, 15],
+            color: '#9467bd'
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

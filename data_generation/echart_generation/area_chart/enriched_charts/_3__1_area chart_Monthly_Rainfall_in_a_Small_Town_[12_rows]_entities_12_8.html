@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 400});
+var app = {};
+
+var option = {
+    title: {
+        text: 'Average Daily Hours of Sleep - March 2023',
+        subtext: 'Health & Psychology',
+        left: 'center',
+        top: 'top'
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['Hours of Sleep'],
+        top: 'bottom'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: [
+            '2023-03-01', '2023-03-02', '2023-03-03', '2023-03-04', '2023-03-05', '2023-03-06', '2023-03-07',
+            '2023-03-08', '2023-03-09', '2023-03-10', '2023-03-11', '2023-03-12', '2023-03-13', '2023-03-14',
+            '2023-03-15', '2023-03-16', '2023-03-17', '2023-03-18', '2023-03-19', '2023-03-20', '2023-03-21',
+            '2023-03-22', '2023-03-23', '2023-03-24', '2023-03-25', '2023-03-26', '2023-03-27', '2023-03-28',
+            '2023-03-29', '2023-03-30', '2023-03-31'
+        ]
+    },
+    yAxis: {
+        type: 'value',
+        axisLabel: {
+            formatter: '{value} h'
+        }
+    },
+    series: [
+        {
+            name: 'Hours of Sleep',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            data: [
+                6.1, 6.0, 6.2, 6.4, 6.3, 6.5, 6.7, 6.8, 7.0, 7.1, 7.3, 7.2, 7.4, 7.6, 7.5,
+                7.7, 7.8, 7.9, 8.0, 8.2, 8.1, 8.3, 8.4, 8.6, 8.7, 8.8, 8.9, 9.0, 9.1, 9.2, 9.3
+            ],
+            markPoint: {
+                data: [
+                    {type: 'max', name: 'Max'},
+                    {type: 'min', name: 'Min'}
+                ]
+            },
+            itemStyle: {
+                color: '#4E9F3D'
+            },
+            lineStyle: {
+                color: '#276955'
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var rawData = [
+    {'Age Group': '10-20', 'Social Media (hours/week)': 15, 'News Apps (hours/week)': 2, 'Gaming (hours/week)': 10},
+    {'Age Group': '20-30', 'Social Media (hours/week)': 18, 'News Apps (hours/week)': 3, 'Gaming (hours/week)': 7},
+    {'Age Group': '30-40', 'Social Media (hours/week)': 12, 'News Apps (hours/week)': 5, 'Gaming (hours/week)': 4},
+    {'Age Group': '40-50', 'Social Media (hours/week)': 10, 'News Apps (hours/week)': 6, 'Gaming (hours/week)': 3},
+    {'Age Group': '50-60', 'Social Media (hours/week)': 8, 'News Apps (hours/week)': 7, 'Gaming (hours/week)': 2},
+    {'Age Group': '60+', 'Social Media (hours/week)': 6, 'News Apps (hours/week)': 8, 'Gaming (hours/week)': 1},
+    {'Age Group': '10-20', 'Social Media (hours/week)': 14, 'News Apps (hours/week)': 2, 'Gaming (hours/week)': 11},
+    {'Age Group': '20-30', 'Social Media (hours/week)': 20, 'News Apps (hours/week)': 4, 'Gaming (hours/week)': 8},
+    {'Age Group': '30-40', 'Social Media (hours/week)': 13, 'News Apps (hours/week)': 6, 'Gaming (hours/week)': 5},
+    {'Age Group': '40-50', 'Social Media (hours/week)': 9, 'News Apps (hours/week)': 7, 'Gaming (hours/week)': 2},
+    {'Age Group': '50-60', 'Social Media (hours/week)': 7, 'News Apps (hours/week)': 6, 'Gaming (hours/week)': 1},
+    {'Age Group': '60+', 'Social Media (hours/week)': 5, 'News Apps (hours/week)': 9, 'Gaming (hours/week)': 1}
+];
+
+var data = rawData.map(function (item) {
+    return [item[' Social Media (hours/week)'], item[' News Apps (hours/week)'], item[' Gaming (hours/week)'], item['Age Group']];
+});
+
+option = {
+    tooltip: {
+        formatter: function (params) {
+            return 'Social Media: ' + params.value[0] + ' hrs/week<br>News Apps: ' + params.value[1] + ' hrs/week<br>Gaming: ' + params.value[2] + ' hrs/week<br>Age Group: ' + params.value[3];
+        }
+    },
+    xAxis: {
+        splitLine: {
+            lineStyle: {
+                type: 'dotted'
+            }
+        },
+        name: 'Social Media (hours/week)'
+    },
+    yAxis: {
+        splitLine: {
+            lineStyle: {
+                type: 'dotted'
+            }
+        },
+        scale: true,
+        name: 'News Apps (hours/week)'
+    },
+    series: [{
+        name: 'Age Group',
+        data: data,
+        type: 'scatter',
+        symbolSize: function (data) {
+            return data[2] * 2; // Gaming hours affect the size
+        },
+        itemStyle: {
+            normal: {
+                borderWidth: 2,
+                borderColor: 'rgba(0,0,0,0.2)',
+                color: function (param) {
+                    // Different age group gets different color
+                    var ageColors = {
+                        '10-20': 'rgba(255, 100, 100, 0.8)',
+                        '20-30': 'rgba(100, 255, 100, 0.8)',
+                        '30-40': 'rgba(100, 100, 255, 0.8)',
+                        '40-50': 'rgba(255, 255, 100, 0.8)',
+                        '50-60': 'rgba(255, 100, 255, 0.8)',
+                        '60+': 'rgba(100, 255, 255, 0.8)'
+                    };
+                    return ageColors[param.value[3]] || 'rgba(255, 255, 255, 0.8)';
+                }
+            }
+        },
+        emphasis: {
+            label: {
+                show: true,
+                formatter: function (param) {
+                    return param.value[3];
+                },
+                position: 'top'
+            }
+        }
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, { width: 800, height: 600 });
+
+var option = {
+    title: {
+        text: 'Effect of Exercise on Mood Levels',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: 'Mood on Day {b}: {c} units'
+    },
+    legend: {
+        data: ['Mood'],
+        left: 'left',
+        top: 'top'
+    },
+    xAxis: {
+        name: 'Day',
+        type: 'value'
+    },
+    yAxis: {
+        name: 'Mood Level (units)',
+        type: 'value'
+    },
+    series: [{
+        name: 'Mood',
+        type: 'scatter',
+        itemStyle: {
+            color: '#FF5733'
+        },
+        data: [
+            [1, 2], [2, 3], [3, 5], [4, 6], [5, 8], 
+            [6, 10], [7, 9], [8, 7], [9, 8], [10, 11], 
+            [11, 13], [12, 15], [13, 14], [14, 16], [15, 18], 
+            [16, 19], [17, 21], [18, 20], [19, 22], [20, 22], 
+            [21, 23], [22, 24], [23, 26], [24, 25], [25, 27], 
+            [26, 28], [27, 30], [28, 29], [29, 32], [30, 31]
+        ]
+    }]
+};
+
+if (option && typeof option === 'object') myChart.setOption(option);
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

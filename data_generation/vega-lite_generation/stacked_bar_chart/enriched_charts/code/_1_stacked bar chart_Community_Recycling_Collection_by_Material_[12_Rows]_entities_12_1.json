@@ -1,0 +1,252 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+        "values": [
+            {
+                "Week": "2023-01-01",
+                "Smartphones": 200,
+                "Laptops": 100,
+                "Tablets": 80,
+                "Wearables": 50,
+                "VR Headsets": 30
+            },
+            {
+                "Week": "2023-01-08",
+                "Smartphones": 220,
+                "Laptops": 120,
+                "Tablets": 90,
+                "Wearables": 60,
+                "VR Headsets": 35
+            },
+            {
+                "Week": "2023-01-15",
+                "Smartphones": 250,
+                "Laptops": 150,
+                "Tablets": 100,
+                "Wearables": 70,
+                "VR Headsets": 40
+            },
+            {
+                "Week": "2023-01-22",
+                "Smartphones": 260,
+                "Laptops": 160,
+                "Tablets": 110,
+                "Wearables": 75,
+                "VR Headsets": 45
+            },
+            {
+                "Week": "2023-01-29",
+                "Smartphones": 280,
+                "Laptops": 170,
+                "Tablets": 120,
+                "Wearables": 80,
+                "VR Headsets": 50
+            },
+            {
+                "Week": "2023-02-05",
+                "Smartphones": 300,
+                "Laptops": 180,
+                "Tablets": 130,
+                "Wearables": 85,
+                "VR Headsets": 55
+            },
+            {
+                "Week": "2023-02-12",
+                "Smartphones": 320,
+                "Laptops": 190,
+                "Tablets": 140,
+                "Wearables": 90,
+                "VR Headsets": 60
+            },
+            {
+                "Week": "2023-02-19",
+                "Smartphones": 340,
+                "Laptops": 200,
+                "Tablets": 150,
+                "Wearables": 95,
+                "VR Headsets": 65
+            },
+            {
+                "Week": "2023-02-26",
+                "Smartphones": 360,
+                "Laptops": 210,
+                "Tablets": 160,
+                "Wearables": 100,
+                "VR Headsets": 70
+            },
+            {
+                "Week": "2023-03-05",
+                "Smartphones": 380,
+                "Laptops": 220,
+                "Tablets": 170,
+                "Wearables": 105,
+                "VR Headsets": 75
+            },
+            {
+                "Week": "2023-03-12",
+                "Smartphones": 400,
+                "Laptops": 230,
+                "Tablets": 180,
+                "Wearables": 110,
+                "VR Headsets": 80
+            },
+            {
+                "Week": "2023-03-19",
+                "Smartphones": 420,
+                "Laptops": 240,
+                "Tablets": 190,
+                "Wearables": 115,
+                "VR Headsets": 85
+            },
+            {
+                "Week": "2023-03-26",
+                "Smartphones": 440,
+                "Laptops": 250,
+                "Tablets": 200,
+                "Wearables": 120,
+                "VR Headsets": 90
+            },
+            {
+                "Week": "2023-04-02",
+                "Smartphones": 460,
+                "Laptops": 260,
+                "Tablets": 210,
+                "Wearables": 125,
+                "VR Headsets": 95
+            },
+            {
+                "Week": "2023-04-09",
+                "Smartphones": 480,
+                "Laptops": 270,
+                "Tablets": 220,
+                "Wearables": 130,
+                "VR Headsets": 100
+            },
+            {
+                "Week": "2023-04-16",
+                "Smartphones": 500,
+                "Laptops": 280,
+                "Tablets": 230,
+                "Wearables": 135,
+                "VR Headsets": 105
+            },
+            {
+                "Week": "2023-04-23",
+                "Smartphones": 520,
+                "Laptops": 290,
+                "Tablets": 240,
+                "Wearables": 140,
+                "VR Headsets": 110
+            },
+            {
+                "Week": "2023-04-30",
+                "Smartphones": 540,
+                "Laptops": 300,
+                "Tablets": 250,
+                "Wearables": 145,
+                "VR Headsets": 115
+            }
+        ]
+    },
+    "mark": {
+        "type": "bar",
+        "width": {
+            "band": 0.5
+        }
+    },
+    "width": 500,
+    "height": 200,
+    "title": {
+        "text": "Technology Product Sales",
+        "subtitle": "Sales by Product Category per Week",
+        "subtitleFontStyle": "italic",
+        "subtitleFontSize": 10,
+        "anchor": "start",
+        "color": "blue",
+        "dx": 50
+    },
+    "encoding": {
+        "x": {
+            "aggregate": "sum",
+            "field": "value",
+            "type": "quantitative",
+            "title": "Total Sales"
+        },
+        "y": {
+            "field": "Week",
+            "title": "Week",
+            "type": "ordinal",
+            "axis": {
+                "labelAngle": 0
+            }
+        },
+        "color": {
+            "field": "key",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Smartphones",
+                    "Laptops",
+                    "Tablets",
+                    "Wearables",
+                    "VR Headsets"
+                ],
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e",
+                    "#2ca02c",
+                    "#d62728",
+                    "#9467bd"
+                ]
+            },
+            "legend": {
+                "title": "Product Type",
+                "orient": "bottom",
+                "columns": 2
+            }
+        }
+    },
+    "transform": [
+        {
+            "fold": [
+                "Smartphones",
+                "Laptops",
+                "Tablets",
+                "Wearables",
+                "VR Headsets"
+            ],
+            "as": [
+                "key",
+                "value"
+            ]
+        }
+    ],
+    "layer": [
+        {
+            "mark": "bar",
+            "encoding": {
+                "x": {
+                    "field": "value",
+                    "type": "quantitative"
+                },
+                "tooltip": [
+                    {
+                        "field": "Week",
+                        "type": "ordinal",
+                        "title": "Week"
+                    },
+                    {
+                        "field": "key",
+                        "type": "nominal",
+                        "title": "Product Type"
+                    },
+                    {
+                        "field": "value",
+                        "type": "quantitative",
+                        "title": "Sales"
+                    }
+                ]
+            }
+        }
+    ]
+}

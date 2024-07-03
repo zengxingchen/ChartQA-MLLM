@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var app = {};
+option = null;
+
+option = {
+    title: {
+        text: 'Innovations in Sustainable Living',
+        left: 'center',
+        top: 20,
+    },
+    tooltip: {
+        trigger: 'item'
+    },
+    legend: {
+        orient: 'vertical',
+        left: 20,
+        top: 'middle',
+    },
+    series: [
+        {
+            name: 'Innovation Type',
+            type: 'pie',
+            radius: '55%',
+            center: ['60%', '50%'],
+            data: [
+                { value: 834, name: 'Electric Cars' },
+                { value: 620, name: 'Hybrid Vehicles' },
+                { value: 1032, name: 'Solar Power Homes' },
+                { value: 1456, name: 'Wind Turbines' },
+                { value: 478, name: 'Smart Appliances' },
+                { value: 891, name: 'High-speed Rail' },
+                { value: 365, name: 'Telemedicine Services' },
+                { value: 940, name: 'Biodegradable Packaging' },
+                { value: 675, name: 'Water Purification Tech' },
+                { value: 473, name: 'Drones for Delivery' }
+            ],
+            emphasis: {
+                itemStyle: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            }
+        }
+    ],
+    color: [
+        '#1f77b4',
+        '#aec7e8',
+        '#ff7f0e',
+        '#ffbb78',
+        '#2ca02c',
+        '#98df8a',
+        '#d62728',
+        '#ff9896',
+        '#9467bd',
+        '#c5b0d5'
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

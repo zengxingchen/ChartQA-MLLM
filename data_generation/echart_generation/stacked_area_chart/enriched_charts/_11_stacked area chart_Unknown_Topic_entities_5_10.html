@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Renewable Energy Production Over Time',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            label: {
+                backgroundColor: '#6a7985'
+            }
+        }
+    },
+    legend: {
+        top: '8%',
+        data: ['Solar Energy', 'Wind Energy', 'Hydro Energy', 'Geo Energy']
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: [
+        {
+            type: 'category',
+            boundaryGap: false,
+            data: ['2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021']
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value'
+        }
+    ],
+    series: [
+        {
+            name: 'Solar Energy',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [120, 150, 170, 200, 240, 280, 320, 360, 400, 440, 480, 520],
+            color: '#FFCC00'
+        },
+        {
+            name: 'Wind Energy',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [80, 88, 95, 110, 130, 160, 190, 220, 250, 280, 310, 340],
+            color: '#1E90FF'
+        },
+        {
+            name: 'Hydro Energy',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [300, 310, 320, 330, 340, 350, 360, 370, 385, 400, 415, 425],
+            color: '#3CB371'
+        },
+        {
+            name: 'Geo Energy',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100, 110],
+            color: '#8B0000'
+        }
+    ],
+    // Adjust chart size
+    grid: {
+        top: '12%',
+        left: '1%',
+        right: '1%',
+        bottom: '3%',
+        containLabel: true
+    }
+};
+
+// Set the width and height of the chart
+myChart.resize({
+    width: 800,
+    height: 600
+});
+
+// Add annotations/labels
+myChart.setOption({
+    graphic: [{
+        type: 'text',
+        left: 'center',
+        top: '90%',
+        style: {
+            text: 'Year',
+            textAlign: 'center',
+            font: 'bold 14px sans-serif',
+            fill: '#333'
+        }
+    }, {
+        type: 'text',
+        left: '10%',
+        top: '5%',
+        rotation: -Math.PI / 2,
+        style: {
+            text: 'Energy Production (GWh)',
+            textAlign: 'center',
+            font: 'bold 14px sans-serif',
+            fill: '#333'
+        }
+    }]
+});
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

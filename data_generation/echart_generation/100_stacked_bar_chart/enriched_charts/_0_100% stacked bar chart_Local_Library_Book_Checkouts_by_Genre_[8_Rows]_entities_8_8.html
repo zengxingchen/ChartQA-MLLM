@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 600, height: 400});
+var app = {};
+
+var option;
+
+option = {
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'        
+        }
+    },
+    legend: {
+        data: ['Series1', 'Series2', 'Series3']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value'
+    },
+    yAxis: {
+        type: 'category',
+        data: ['Product A', 'Product B', 'Product C', 'Product D', 'Product E', 'Product F', 'Product G']
+    },
+    series: [
+        {
+            name: 'Series1',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [40, 30, 35, 50, 70, 35, 45],
+            color: '#ff6f61',
+            barWidth: 20
+        },
+        {
+            name: 'Series2',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [35, 40, 60, 20, 10, 25, 50],
+            color: '#ffaf61',
+            barWidth: 20
+        },
+        {
+            name: 'Series3',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [25, 30, 5, 30, 20, 40, 5],
+            color: '#61ff70',
+            barWidth: 20
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

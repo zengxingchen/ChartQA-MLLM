@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Health & Psychology Research Fields',
+        left: 'center',
+        top: 20
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: '{a} <br/>{b}: {c} ({d}%)'
+    },
+    legend: {
+        orient: 'vertical',
+        left: 'left',
+        top: 50
+    },
+    series: [
+        {
+            name: 'Research Fields',
+            type: 'pie',
+            radius: '50%',
+            data: [
+                {value: 800, name: 'Neuroscience'},
+                {value: 600, name: 'Psychology'},
+                {value: 400, name: 'Nutrition'},
+                {value: 700, name: 'Genetics'},
+                {value: 500, name: 'Epidemiology'},
+                {value: 300, name: 'Vaccinology'},
+                {value: 900, name: 'Pathology'},
+                {value: 650, name: 'Pharmacology'}
+            ],
+            emphasis: {
+                itemStyle: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            },
+            label: {
+                normal: {
+                    formatter: '{b}\n{c} ({d}%)',
+                    position: 'outside'
+                }
+            }
+        }
+    ],
+    color: ['#FFAA00', '#FF5500', '#FF0055', '#AA00FF', '#5500FF', '#00AAFF', '#55FF00', '#00FFAA']
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

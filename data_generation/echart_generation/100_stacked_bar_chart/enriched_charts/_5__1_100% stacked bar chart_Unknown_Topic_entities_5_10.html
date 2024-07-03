@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {renderer: 'canvas', width: 600, height: 400});
+var app = {};
+
+var option;
+
+option = {
+    tooltip: {
+      trigger: 'axis',
+      axisPointer: {
+        type: 'shadow'
+      }
+    },
+    legend: {
+      data: ['CO2 Emission', 'Deforestation', 'Renewable Energy', 'Recycling', 'Waste Management'],
+      orient: 'horizontal',
+      x: 'center',
+      y: 'bottom'
+    },
+    grid: {
+      left: '3%',
+      right: '4%',
+      bottom: '3%',
+      containLabel: true
+    },
+    xAxis: {
+      type: 'value',
+      boundaryGap: false,
+    },
+    yAxis: {
+      type: 'category',
+      data: ['2010', '2011', '2012', '2013', '2014']
+    },
+    series: [
+      {
+        name: 'CO2 Emission',
+        type: 'bar',
+        stack: 'total',
+        label: {
+          show: true
+        },
+        emphasis: {
+          focus: 'series'
+        },
+        data: [25, 22, 20, 18, 15],
+        itemStyle: {
+          color: '#FF4136'
+        },
+        barWidth: 35,
+      },
+      {
+        name: 'Deforestation',
+        type: 'bar',
+        stack: 'total',
+        label: {
+          show: true
+        },
+        emphasis: {
+          focus: 'series'
+        },
+        data: [15, 17, 18, 19, 21],
+        itemStyle: {
+          color: '#2ECC40'
+        }
+      },
+      {
+        name: 'Renewable Energy',
+        type: 'bar',
+        stack: 'total',
+        label: {
+          show: true
+        },
+        emphasis: {
+          focus: 'series'
+        },
+        data: [30, 35, 40, 45, 50],
+        itemStyle: {
+          color: '#0074D9'
+        }
+      },
+      {
+        name: 'Recycling',
+        type: 'bar',
+        stack: 'total',
+        label: {
+          show: true
+        },
+        emphasis: {
+          focus: 'series'
+        },
+        data: [10, 9, 10, 12, 12],
+        itemStyle: {
+          color: '#FF851B'
+        }
+      },
+      {
+        name: 'Waste Management',
+        type: 'bar',
+        stack: 'total',
+        label: {
+          show: true
+        },
+        emphasis: {
+          focus: 'series'
+        },
+        data: [20, 17, 12, 6, 2],
+        itemStyle: {
+          color: '#B10DC9'
+        }
+      }
+    ],
+    title: {
+      text: 'Environment & Climate Change Impact by Year',
+      left: 'center',
+      top: 'top'
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

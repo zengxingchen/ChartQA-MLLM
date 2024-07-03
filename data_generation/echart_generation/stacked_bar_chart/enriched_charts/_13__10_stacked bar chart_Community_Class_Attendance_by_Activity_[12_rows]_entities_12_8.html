@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+var option;
+
+option = {
+    title: {
+        text: 'Quarterly Performance in Art & Design',
+        left: 'center',
+        top: 20
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: { 
+            type: 'shadow' 
+        }
+    },
+    legend: {
+        data: ['Q1', 'Q2', 'Q3', 'Q4'],
+        top: 50
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01],
+        axisLabel: {
+            formatter: '{value}'
+        }
+    },
+    yAxis: {
+        type: 'category',
+        data: ['Art', 'Music', 'Design', 'Literature', 'Photography', 'Film', 'Dance', 'Theatre']
+    },
+    series: [
+        {
+            name: 'Q1',
+            type: 'bar',
+            stack: 'Total',
+            barWidth: '20%',
+            itemStyle: {
+                color: '#FF7F50'
+            },
+            data: [120, 220, 150, 98, 110, 190, 130, 165],
+            label: {
+                show: true,
+                position: 'insideRight'
+            }
+        },
+        {
+            name: 'Q2',
+            type: 'bar',
+            stack: 'Total',
+            barWidth: '20%',
+            itemStyle: {
+                color: '#87CEFA'
+            },
+            data: [132, 182, 232, 77, 110, 210, 170, 175],
+            label: {
+                show: true,
+                position: 'insideRight'
+            }
+        },
+        {
+            name: 'Q3',
+            type: 'bar',
+            stack: 'Total',
+            barWidth: '20%',
+            itemStyle: {
+                color: '#32CD32'
+            },
+            data: [101, 191, 201, 101, 111, 190, 140, 160],
+            label: {
+                show: true,
+                position: 'insideRight'
+            }
+        },
+        {
+            name: 'Q4',
+            type: 'bar',
+            stack: 'Total',
+            barWidth: '20%',
+            itemStyle: {
+                color: '#DA70D6'
+            },
+            data: [134, 234, 154, 99, 130, 230, 150, 185],
+            label: {
+                show: true,
+                position: 'insideRight'
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,111 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "A diversified bubble chart displaying the average number of steps by age group, showcasing exercise habits.",
+    "title": {
+        "text": "Average Daily Steps by Age Group",
+        "fontSize": 16,
+        "subtitle": [
+            "An illustration of physical activity across different age brackets"
+        ],
+        "subtitleFontStyle": "italic",
+        "subtitleFontSize": 12,
+        "anchor": "start"
+    },
+    "data": {
+        "values": [
+            {
+                "Age Group Index": 1,
+                "Age Group": "16-24",
+                "Average Steps": 7500
+            },
+            {
+                "Age Group Index": 2,
+                "Age Group": "25-34",
+                "Average Steps": 7100
+            },
+            {
+                "Age Group Index": 3,
+                "Age Group": "35-44",
+                "Average Steps": 6800
+            },
+            {
+                "Age Group Index": 4,
+                "Age Group": "45-54",
+                "Average Steps": 6400
+            },
+            {
+                "Age Group Index": 5,
+                "Age Group": "55-64",
+                "Average Steps": 6000
+            },
+            {
+                "Age Group Index": 6,
+                "Age Group": "65-74",
+                "Average Steps": 5500
+            },
+            {
+                "Age Group Index": 7,
+                "Age Group": "75-84",
+                "Average Steps": 4700
+            },
+            {
+                "Age Group Index": 8,
+                "Age Group": "85+",
+                "Average Steps": 4300
+            }
+        ]
+    },
+    "height": 300,
+    "width": 500,
+    "mark": {
+        "type": "circle",
+        "filled": true
+    },
+    "encoding": {
+        "x": {
+            "field": "Age Group Index",
+            "type": "ordinal",
+            "title": "Age Group",
+            "axis": {
+                "labelExpr": "datum.label == 1 ? '16-24' : datum.label == 2 ? '25-34' : datum.label == 3 ? '35-44' : datum.label == 4 ? '45-54' : datum.label == 5 ? '55-64' : datum.label == 6 ? '65-74' : datum.label == 7 ? '75-84' : '85+'"
+            },
+            "scale": {
+                "padding": 1.5
+            }
+        },
+        "y": {
+            "field": "Average Steps",
+            "type": "quantitative",
+            "title": "Average Daily Steps"
+        },
+        "color": {
+            "field": "Average Steps",
+            "type": "quantitative",
+            "scale": {
+                "range": [
+                    "#f7fbff",
+                    "#4292c6",
+                    "#08306b"
+                ]
+            },
+            "legend": {
+                "title": "Steps Scale"
+            }
+        },
+        "size": {
+            "value": 200
+        },
+        "tooltip": [
+            {
+                "field": "Age Group",
+                "type": "nominal",
+                "title": "Age Group"
+            },
+            {
+                "field": "Average Steps",
+                "type": "quantitative",
+                "title": "Daily Steps"
+            }
+        ]
+    }
+}

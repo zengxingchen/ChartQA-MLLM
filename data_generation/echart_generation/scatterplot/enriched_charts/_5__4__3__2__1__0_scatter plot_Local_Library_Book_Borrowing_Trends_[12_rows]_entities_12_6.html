@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+var option;
+
+option = {
+    title: {
+        text: 'Popular Tourist Destinations by Visitor Ratings and Number of Visitors',
+        left: 'center',
+        top: '10'
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: function (params) {
+            return params.name + '<br/>Rating: ' + params.value[0] + '<br/>Visitors: ' + params.value[1];
+        }
+    },
+    xAxis: {
+        name: 'Rating',
+        min: 4,
+        max: 5
+    },
+    yAxis: {
+        name: 'Number of Visitors',
+        min: 400000,
+        max: 2000000
+    },
+    series: [{
+        symbolSize: 10,
+        data: [
+            [4.8, 1800000, "Paris"],
+            [4.7, 1600000, "New York"],
+            [4.6, 1500000, "Tokyo"],
+            [4.5, 1400000, "Rome"],
+            [4.4, 1300000, "Istanbul"],
+            [4.3, 1200000, "Bangkok"],
+            [4.6, 1100000, "Dubai"],
+            [4.5, 1000000, "Singapore"],
+            [4.7, 950000, "Barcelona"],
+            [4.8, 900000, "Sydney"],
+            [4.6, 850000, "London"],
+            [4.4, 800000, "Los Angeles"],
+            [4.3, 750000, "Hong Kong"],
+            [4.7, 700000, "Amsterdam"],
+            [4.5, 650000, "San Francisco"],
+            [4.6, 600000, "Rio de Janeiro"],
+            [4.4, 550000, "Berlin"],
+            [4.3, 500000, "Cape Town"],
+            [4.2, 450000, "Moscow"],
+            [4.1, 400000, "Toronto"]
+        ],
+        type: 'scatter',
+        itemStyle: {
+            color: function (params) {
+                var colors = ['#FF5733', '#33FF57', '#3357FF', '#F7FF33', '#FF33F6'];
+                return colors[params.dataIndex % colors.length];
+            }
+        }
+    }],
+    legend: {
+        data: ['Tourist Destinations'],
+        left: 'left',
+        top: '10'
+    },
+    grid: {
+        width: '70%',
+        height: '70%',
+        top: '15%',
+        left: '15%'
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

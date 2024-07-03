@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+option = {
+    title: {
+        text: 'Market Share by Sector',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Technology', 'Healthcare', 'Finance', 'Energy'],
+        top: 'bottom'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    yAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01]
+    },
+    xAxis: {
+        type: 'category',
+        data: ['A', 'B', 'C', 'D', 'E']
+    },
+    series: [
+        {
+            name: 'Technology',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            data: [20, 25, 30, 15, 10],
+            color: '#5B8FF9'
+        },
+        {
+            name: 'Healthcare',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            data: [30, 35, 20, 25, 15],
+            color: '#5AD8A6'
+        },
+        {
+            name: 'Finance',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            data: [35, 20, 40, 25, 30],
+            color: '#5D7092'
+        },
+        {
+            name: 'Energy',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            data: [15, 20, 10, 35, 45],
+            color: '#F6BD16'
+        }
+    ]
+};
+
+myChart.setOption(option, true);
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 800,
+    height: 600
+});
+
+var option = {
+    title: {
+        text: 'Philosophers and Their Impact Scores',
+        left: 'center',
+        top: '10%'
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    xAxis: {
+        type: 'category',
+        data: ['Socrates', 'Plato', 'Aristotle', 'Descartes', 'Kant', 'Nietzsche', 'Heidegger', 'Sartre', 'Foucault', 'Derrida'],
+        axisLabel: {
+            rotate: 45
+        }
+    },
+    yAxis: {
+        type: 'value',
+        inverse: true
+    },
+    series: [{
+        name: 'Impact Score',
+        type: 'line',
+        data: [90, 85, 80, 75, 70, 65, 60, 55, 50, 45],
+        itemStyle: {
+            color: '#FF6347'
+        },
+        lineStyle: {
+            color: '#4682B4'
+        },
+        label: {
+            show: true,
+            position: 'top',
+            formatter: '{c}'
+        }
+    }],
+    backgroundColor: '#F5F5F5'
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

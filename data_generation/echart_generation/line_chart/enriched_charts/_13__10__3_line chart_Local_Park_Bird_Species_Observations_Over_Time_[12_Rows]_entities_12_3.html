@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+var option;
+
+option = {
+    title: {
+        text: 'Monthly Revenue in 2023',
+        left: 'center',
+        top: '10%'
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+    },
+    yAxis: {
+        type: 'value',
+        inverse: true
+    },
+    series: [
+        {
+            name: 'Revenue',
+            type: 'line',
+            data: [5000, 7000, 8000, 12000, 15000, 13000, 16000, 17000, 14000, 18000, 19000, 20000],
+            lineStyle: {
+                color: '#FF5733'
+            },
+            itemStyle: {
+                color: '#C70039'
+            },
+            label: {
+                show: true,
+                position: 'top',
+                formatter: '{@[1]}'
+            }
+        }
+    ]
+};
+
+option && myChart.setOption(option);
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

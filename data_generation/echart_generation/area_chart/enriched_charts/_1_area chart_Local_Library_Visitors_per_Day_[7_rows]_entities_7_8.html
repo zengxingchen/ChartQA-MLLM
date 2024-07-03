@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 400});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Global Temperature Anomaly Trends',
+        left: 'center',
+        top: 10
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            label: {
+                backgroundColor: '#6a7985'
+            }
+        }
+    },
+    legend: {
+        data: ['Temperature Anomaly'],
+        top: 30
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ['1880', '1881', '1882', '1883', '1884', '1885', '1886', '1887', '1888', '1889', '1890', '1891', '1892', '1893', '1894', '1895', '1896', '1897', '1898', '1899', '1900', '1901', '1902', '1903', '1904', '1905', '1906', '1907', '1908', '1909' /* ... additional years up to most recent year */]
+    },
+    yAxis: {
+        type: 'value',
+        axisLabel: {
+            formatter: '{value} °C'
+        }
+    },
+    series: [
+        {
+            name: 'Temperature Anomaly',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [-0.16, -0.08, -0.10, -0.16, -0.27, -0.25, -0.23, -0.29, -0.14, -0.10, -0.35, -0.21, -0.27, -0.30, -0.31, -0.21, -0.15, -0.11, -0.27, -0.16, -0.08, -0.14, -0.27, -0.35, -0.44, -0.26, -0.22, -0.40, -0.43, -0.47 /* ... additional data points up to most recent year */],
+            itemStyle: {
+                color: '#a50f15' // deep red color to represent temperature anomaly
+            },
+            lineStyle: {
+                color: '#a50f15' // deep red line color
+            }
+        }
+    ],
+    color: ['#a50f15', '#2c7bb6'], // colors of the series
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

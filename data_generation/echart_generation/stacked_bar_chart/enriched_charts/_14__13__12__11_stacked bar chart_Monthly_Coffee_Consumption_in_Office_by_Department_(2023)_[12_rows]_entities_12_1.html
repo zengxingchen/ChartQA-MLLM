@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var option;
+
+option = {
+    title: {
+        text: 'Nutritional Breakdown by Food Category',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        bottom: 10,
+        data: ['Calories', 'Protein', 'Carbs', 'Fats', 'Fiber']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '15%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        data: ['Fruits', 'Vegetables', 'Grains', 'Dairy', 'Protein Foods', 'Snacks', 'Beverages']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Calories',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            data: [120, 50, 250, 200, 300, 150, 80],
+            itemStyle: {
+                color: '#FF6F61'
+            }
+        },
+        {
+            name: 'Protein',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            data: [1.2, 2.5, 8, 10, 25, 2, 0.5],
+            itemStyle: {
+                color: '#6B5B95'
+            }
+        },
+        {
+            name: 'Carbs',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            data: [30, 10, 50, 15, 5, 20, 20],
+            itemStyle: {
+                color: '#88B04B'
+            }
+        },
+        {
+            name: 'Fats',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            data: [0.2, 0.1, 2, 8, 10, 7, 0],
+            itemStyle: {
+                color: '#F7CAC9'
+            }
+        },
+        {
+            name: 'Fiber',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            data: [3, 5, 7, 0, 2, 1, 0],
+            itemStyle: {
+                color: '#92A8D1'
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

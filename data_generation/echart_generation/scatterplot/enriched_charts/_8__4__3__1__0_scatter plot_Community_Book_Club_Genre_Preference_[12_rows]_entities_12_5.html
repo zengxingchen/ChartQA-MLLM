@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, { width: 800, height: 600 });
+var option;
+
+option = {
+    title: {
+        text: 'Fitness Progress Over Time',
+        left: 'center',
+        top: '10%'
+    },
+    legend: {
+        data: ['Fitness Score'],
+        left: '10%',
+        top: 'top'
+    },
+    xAxis: {
+        type: 'value',
+        name: 'Time (weeks)',
+        min: 0,
+        max: 50
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Fitness Score',
+        min: 0,
+        max: 100
+    },
+    series: [{
+        name: 'Fitness Score',
+        type: 'scatter',
+        itemStyle: {
+            color: '#FF6347'
+        },
+        data: [
+            [1, 100], [2, 95], [3, 90], [4, 85], [5, 82],
+            [6, 78], [7, 75], [8, 70], [9, 68], [10, 64],
+            [11, 60], [12, 58], [13, 55], [14, 52], [15, 50],
+            [16, 48], [17, 45], [18, 43], [19, 40], [20, 38],
+            [21, 35], [22, 33], [23, 30], [24, 28], [25, 27],
+            [26, 25], [27, 23], [28, 22], [29, 20], [30, 18],
+            [31, 17], [32, 16], [33, 14], [34, 13], [35, 12],
+            [36, 10], [37, 9], [38, 8], [39, 7], [40, 6],
+            [41, 5], [42, 4], [43, 3], [44, 2], [45, 1]
+        ]
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

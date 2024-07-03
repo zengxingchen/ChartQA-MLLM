@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+dom.style.width = '1000px';
+dom.style.height = '600px';
+var myChart = echarts.init(dom);
+
+var option = {
+    title: {
+        text: 'Astronomy & Space Exploration Patent Filings by Year',
+        left: 'center',
+        padding: [20, 0, 0, 0] // Adjusting the padding to ensure it does not overlap with the legend or anything
+    },
+    tooltip: {},
+    legend: {
+        data: ['Patent Filings'],
+        top: 'bottom' // Positioning legend at the bottom to avoid overlap with the title
+    },
+    xAxis: {
+        type: 'category',
+        data: ['2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020'],
+        axisLabel: {
+            interval: 0,
+            rotate: 45
+        }
+    },
+    yAxis: {
+        type: 'value',
+        boundaryGap: ['20%', '20%']
+    },
+    series: [{
+        name: 'Patent Filings',
+        type: 'bar',
+        data: [150, 155, 147, 162, 169, 178, 182, 195, 200, 210, 215, 230, 245, 255, 265, 272, 280, 290, 305, 320, 335],
+        itemStyle: {
+            normal: {
+                color: function (params) {
+                    // Assign a unique color to each bar
+                    var colorList = [
+                        '#c23531', '#2f4554', '#61a0a8', '#d48265', '#91c7ae',
+                        '#749f83', '#ca8622', '#bda29a', '#6e7074', '#546570',
+                        '#c4ccd3', '#f05b72', '#ef5b9c', '#f47920', '#905a3d',
+                        '#fab27b', '#2a5caa', '#444693', '#726930', '#b2d235'
+                    ];
+                    return colorList[params.dataIndex % colorList.length];
+                }
+            }
+        },
+        barWidth: '50%', // changing the width of bars
+        label: {
+            show: true,
+            position: 'top',
+            formatter: '{c}'
+        }
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

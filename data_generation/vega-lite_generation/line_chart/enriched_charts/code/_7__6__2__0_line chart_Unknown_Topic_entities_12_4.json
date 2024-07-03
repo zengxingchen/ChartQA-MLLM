@@ -1,0 +1,175 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+        "values": [
+            {
+                "Month": "January",
+                "Tourist Arrivals": 5000,
+                "Hotel Occupancy Rate": 60
+            },
+            {
+                "Month": "February",
+                "Tourist Arrivals": 5500,
+                "Hotel Occupancy Rate": 65
+            },
+            {
+                "Month": "March",
+                "Tourist Arrivals": 6000,
+                "Hotel Occupancy Rate": 70
+            },
+            {
+                "Month": "April",
+                "Tourist Arrivals": 6500,
+                "Hotel Occupancy Rate": 75
+            },
+            {
+                "Month": "May",
+                "Tourist Arrivals": 7000,
+                "Hotel Occupancy Rate": 80
+            },
+            {
+                "Month": "June",
+                "Tourist Arrivals": 7500,
+                "Hotel Occupancy Rate": 85
+            },
+            {
+                "Month": "July",
+                "Tourist Arrivals": 8000,
+                "Hotel Occupancy Rate": 90
+            },
+            {
+                "Month": "August",
+                "Tourist Arrivals": 8500,
+                "Hotel Occupancy Rate": 88
+            },
+            {
+                "Month": "September",
+                "Tourist Arrivals": 7000,
+                "Hotel Occupancy Rate": 82
+            },
+            {
+                "Month": "October",
+                "Tourist Arrivals": 6500,
+                "Hotel Occupancy Rate": 75
+            },
+            {
+                "Month": "November",
+                "Tourist Arrivals": 6000,
+                "Hotel Occupancy Rate": 70
+            },
+            {
+                "Month": "December",
+                "Tourist Arrivals": 6500,
+                "Hotel Occupancy Rate": 78
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Tourist Arrivals",
+                "Hotel Occupancy Rate"
+            ],
+            "as": [
+                "Measure",
+                "Value"
+            ]
+        }
+    ],
+    "width": 800,
+    "height": 500,
+    "mark": {
+        "type": "line",
+        "point": {
+            "filled": true,
+            "fill": "white"
+        },
+        "tooltip": true
+    },
+    "encoding": {
+        "x": {
+            "field": "Month",
+            "type": "ordinal",
+            "title": "Month",
+            "axis": {
+                "labelAngle": 0
+            }
+        },
+        "y": {
+            "field": "Value",
+            "type": "quantitative",
+            "title": "Values"
+        },
+        "color": {
+            "field": "Measure",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Tourist Arrivals",
+                    "Hotel Occupancy Rate"
+                ],
+                "range": [
+                    "#FF5733",
+                    "#2E86C1"
+                ]
+            },
+            "legend": {
+                "title": "Measure"
+            }
+        }
+    },
+    "title": {
+        "text": "Monthly Travel & Accommodation Statistics",
+        "subtitle": "Tracking tourist arrivals and hotel occupancy rates",
+        "anchor": "start"
+    },
+    "layer": [
+        {
+            "mark": {
+                "type": "line",
+                "point": true,
+                "tooltip": true
+            },
+            "encoding": {
+                "x": {
+                    "field": "Month",
+                    "type": "ordinal"
+                },
+                "y": {
+                    "field": "Value",
+                    "type": "quantitative"
+                },
+                "color": {
+                    "field": "Measure",
+                    "type": "nominal"
+                }
+            }
+        },
+        {
+            "mark": {
+                "type": "text",
+                "align": "left",
+                "dx": 5,
+                "dy": -5
+            },
+            "encoding": {
+                "x": {
+                    "field": "Month",
+                    "type": "ordinal"
+                },
+                "y": {
+                    "field": "Value",
+                    "type": "quantitative"
+                },
+                "text": {
+                    "field": "Value",
+                    "type": "quantitative"
+                },
+                "color": {
+                    "field": "Measure",
+                    "type": "nominal"
+                }
+            }
+        }
+    ]
+}

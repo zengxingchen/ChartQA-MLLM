@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+option = {
+    title: {
+        text: 'Distribution of Investment in Future Technologies',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'item'
+    },
+    legend: {
+        orient: 'vertical',
+        left: 'left',
+        top: '20%',
+    },
+    color: [
+        '#ff7f0e', // Artificial Intelligence
+        '#1f77b4', // Blockchain
+        '#2ca02c', // Robotics
+        '#d62728', // Quantum Computing
+        '#9467bd', // Nanotechnology
+        '#8c564b', // Biotechnology
+        '#e377c2', // Renewable Energy
+        '#7f7f7f'  // Space Tourism
+    ],
+    series: [
+        {
+            name: 'Investment Share',
+            type: 'pie',
+            radius: '50%',
+            data: [
+                { value: 25, name: 'Artificial Intelligence' },
+                { value: 20, name: 'Blockchain' },
+                { value: 15, name: 'Robotics' },
+                { value: 13, name: 'Quantum Computing' },
+                { value: 10, name: 'Nanotechnology' },
+                { value: 8, name: 'Biotechnology' },
+                { value: 9, name: 'Renewable Energy' },
+                { value: 5, name: 'Space Tourism' }
+            ],
+            emphasis: {
+                itemStyle: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

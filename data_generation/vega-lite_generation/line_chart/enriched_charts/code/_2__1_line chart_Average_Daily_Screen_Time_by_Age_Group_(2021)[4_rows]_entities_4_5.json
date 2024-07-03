@@ -1,0 +1,185 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Line chart showing average monthly rainfall by month for different regions.",
+    "title": {
+        "text": "Average Monthly Rainfall by Region",
+        "fontSize": 18,
+        "anchor": "start",
+        "color": "#333333"
+    },
+    "width": 600,
+    "height": 400,
+    "data": {
+        "values": [
+            {
+                "Region": "Amazon Basin",
+                "January": 320,
+                "February": 280,
+                "March": 340,
+                "April": 300,
+                "May": 290,
+                "June": 310,
+                "July": 330,
+                "August": 350,
+                "September": 360,
+                "October": 370,
+                "November": 340,
+                "December": 320
+            },
+            {
+                "Region": "Sahara Desert",
+                "January": 10,
+                "February": 15,
+                "March": 5,
+                "April": 10,
+                "May": 20,
+                "June": 5,
+                "July": 0,
+                "August": 5,
+                "September": 10,
+                "October": 20,
+                "November": 15,
+                "December": 10
+            },
+            {
+                "Region": "Southeast Asia",
+                "January": 180,
+                "February": 160,
+                "March": 190,
+                "April": 210,
+                "May": 230,
+                "June": 240,
+                "July": 260,
+                "August": 270,
+                "September": 250,
+                "October": 240,
+                "November": 220,
+                "December": 200
+            },
+            {
+                "Region": "Central Europe",
+                "January": 50,
+                "February": 45,
+                "March": 60,
+                "April": 70,
+                "May": 80,
+                "June": 90,
+                "July": 100,
+                "August": 90,
+                "September": 80,
+                "October": 70,
+                "November": 60,
+                "December": 50
+            },
+            {
+                "Region": "Australia",
+                "January": 120,
+                "February": 110,
+                "March": 130,
+                "April": 140,
+                "May": 150,
+                "June": 160,
+                "July": 170,
+                "August": 160,
+                "September": 150,
+                "October": 140,
+                "November": 130,
+                "December": 120
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "January",
+                "February",
+                "March",
+                "April",
+                "May",
+                "June",
+                "July",
+                "August",
+                "September",
+                "October",
+                "November",
+                "December"
+            ],
+            "as": [
+                "Month",
+                "Rainfall (mm)"
+            ]
+        }
+    ],
+    "mark": "line",
+    "encoding": {
+        "x": {
+            "field": "Month",
+            "type": "ordinal",
+            "title": "Month",
+            "axis": {
+                "titleFontSize": 14,
+                "labelAngle": -45
+            }
+        },
+        "y": {
+            "field": "Rainfall (mm)",
+            "type": "quantitative",
+            "title": "Rainfall (mm)",
+            "axis": {
+                "titleFontSize": 14
+            }
+        },
+        "color": {
+            "field": "Region",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Amazon Basin",
+                    "Sahara Desert",
+                    "Southeast Asia",
+                    "Central Europe",
+                    "Australia"
+                ],
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e",
+                    "#2ca02c",
+                    "#d62728",
+                    "#9467bd"
+                ]
+            },
+            "legend": {
+                "title": "Region"
+            }
+        },
+        "strokeDash": {
+            "condition": {
+                "test": "datum['Region'] == 'Sahara Desert'",
+                "value": [
+                    5,
+                    5
+                ]
+            },
+            "value": []
+        },
+        "tooltip": [
+            {
+                "field": "Region",
+                "type": "nominal"
+            },
+            {
+                "field": "Month",
+                "type": "ordinal"
+            },
+            {
+                "field": "Rainfall (mm)",
+                "type": "quantitative"
+            }
+        ]
+    },
+    "config": {
+        "axisY": {
+            "minExtent": 30
+        }
+    }
+}

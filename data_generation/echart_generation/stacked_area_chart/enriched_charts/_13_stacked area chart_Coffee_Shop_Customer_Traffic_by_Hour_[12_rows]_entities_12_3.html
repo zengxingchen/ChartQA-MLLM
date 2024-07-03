@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var app = {};
+var option;
+
+app.title = 'Health & Psychology: Diet Trends Over Time';
+
+option = {
+    title: {
+        text: 'Popular Diet Trends (2010-2023)',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            label: {
+                backgroundColor: '#6a7985'
+            }
+        }
+    },
+    legend: {
+        data: ['Low-Fat Diets', 'Veganism', 'Intermittent Fasting', 'Keto Diets'],
+        right: 10,
+        top: 30
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ['2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Low-Fat Diets',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [40, 45, 42, 49, 50, 55, 60, 65, 62, 70, 75, 80, 78, 81],
+            color: '#FFD700'  // Gold color
+        },
+        {
+            name: 'Veganism',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [10, 14, 15, 20, 27, 33, 38, 50, 55, 60, 68, 75, 77, 79],
+            color: '#00FF00'  // Lime color
+        },
+        {
+            name: 'Intermittent Fasting',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [30, 35, 40, 45, 42, 45, 50, 52, 60, 65, 63, 70, 75, 79],
+            color: '#00BFFF'  // Deep Sky Blue color
+        },
+        {
+            name: 'Keto Diets',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [20, 26, 23, 21, 31, 27, 22, 18, 13, 10, 9, 5, 2, 1],
+            color: '#FF6347'  // Tomato color
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

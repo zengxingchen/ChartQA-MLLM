@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: '600', height: '400'});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Tech Product Sales Trends',
+        left: 'center',
+        top: '20'
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['Virtual Reality', 'Artificial Intelligence', 'Wearable Tech', 'Biotech Innovations'],
+        top: '40'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ['Q1-2019', 'Q2-2019', 'Q3-2019', 'Q4-2019', 'Q1-2020', 'Q2-2020',
+               'Q3-2020', 'Q4-2020', 'Q1-2021', 'Q2-2021', 'Q3-2021', 'Q4-2021',
+               'Q1-2022', 'Q2-2022', 'Q3-2022', 'Q4-2022']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Virtual Reality',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: { focus: 'series' },
+            data: [12000, 15000, 17000, 20000, 25000, 27000, 29000, 31000, 32000, 33000, 34000, 36000, 37000, 38000, 40000, 42000],
+            color: '#FF7F50'
+        },
+        {
+            name: 'Artificial Intelligence',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: { focus: 'series' },
+            data: [25000, 26500, 27500, 30000, 32000, 34000, 35500, 40000, 43000, 45000, 47000, 49000, 51000, 53000, 55000, 58000],
+            color: '#32CD32'
+        },
+        {
+            name: 'Wearable Tech',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: { focus: 'series' },
+            data: [10000, 11000, 12000, 14000, 15500, 16000, 17000, 20000, 22000, 23000, 24000, 25000, 26000, 26500, 28000, 30000],
+            color: '#1E90FF'
+        },
+        {
+            name: 'Biotech Innovations',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: { focus: 'series' },
+            data: [15000, 16000, 16500, 18000, 19000, 20000, 22000, 24000, 26000, 27000, 28000, 30000, 32000, 33000, 35000, 37000],
+            color: '#9370DB'
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

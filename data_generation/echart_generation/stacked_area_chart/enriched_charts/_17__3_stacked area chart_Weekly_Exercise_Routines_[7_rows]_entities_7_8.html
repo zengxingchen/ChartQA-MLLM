@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Daily Exercise Trends',
+        left: 'center',
+        top: 10
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['Running', 'Cycling', 'Swimming'],
+        left: 10,
+        top: 50
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ['2023-01-01', '2023-01-02', '2023-01-03', '2023-01-04', '2023-01-05', '2023-01-06', '2023-01-07', '2023-01-08', '2023-01-09', '2023-01-10', '2023-01-11', '2023-01-12', '2023-01-13', '2023-01-14', '2023-01-15', '2023-01-16', '2023-01-17', '2023-01-18', '2023-01-19', '2023-01-20']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Running',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [120, 125, 130, 128, 140, 135, 145, 150, 155, 160, 162, 165, 170, 175, 180, 185, 190, 195, 200, 205],
+            lineStyle: {
+                color: '#FF5733'
+            },
+            itemStyle: {
+                color: '#FF5733'
+            }
+        },
+        {
+            name: 'Cycling',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [80, 85, 90, 86, 94, 92, 96, 98, 102, 100, 105, 110, 120, 125, 130, 135, 140, 145, 150, 155],
+            lineStyle: {
+                color: '#33FF57'
+            },
+            itemStyle: {
+                color: '#33FF57'
+            }
+        },
+        {
+            name: 'Swimming',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [40, 45, 50, 52, 54, 48, 47, 49, 49, 50, 52, 53, 55, 57, 58, 59, 58, 57, 59, 60],
+            lineStyle: {
+                color: '#3357FF'
+            },
+            itemStyle: {
+                color: '#3357FF'
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

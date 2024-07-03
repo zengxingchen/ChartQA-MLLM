@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Population Growth Decline in a City',
+        left: 'center',
+        top: '20px',
+        textStyle: {
+            color: '#333',
+            fontSize: 20,
+            fontWeight: 'bold'
+        }
+    },
+    legend: {
+        data: ['Population'],
+        top: 'bottom'
+    },
+    xAxis: {
+        type: 'category',
+        name: 'Year',
+        nameLocation: 'middle',
+        nameTextStyle: {
+            fontSize: 14,
+            padding: [20, 0, 0, 0]
+        }
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Population (in thousands)',
+        nameTextStyle: {
+            fontSize: 14,
+            padding: [0, 0, 0, 20]
+        }
+    },
+    series: [{
+        name: 'Population',
+        type: 'scatter',
+        itemStyle: {
+            color: '#FF6347'
+        },
+        data: [
+            [0, 50],
+            [1, 48],
+            [2, 47],
+            [3, 44],
+            [4, 42],
+            [5, 40],
+            [6, 38],
+            [7, 37],
+            [8, 34],
+            [9, 32],
+            [10, 30],
+            [11, 29],
+            [12, 27],
+            [13, 25],
+            [14, 24],
+            [15, 23],
+            [16, 20],
+            [17, 19],
+            [18, 17],
+            [19, 15],
+            [20, 14],
+            [21, 13],
+            [22, 11],
+            [23, 10],
+            [24, 8],
+            [25, 7],
+            [26, 6],
+            [27, 5],
+            [28, 3],
+            [29, 2],
+            [30, 1]
+        ]
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 400});
+var app = {};
+
+var years = ['1880', '1881', '1882', '1883', '1884', '2020', '2021'];
+var temperatureAnomaly = [-0.16, -0.08, -0.1, -0.16, -0.27, 1.02, 0.98];
+
+option = {
+    title: {
+        text: 'Global Average Temperature Anomalies',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['Temperature Anomaly'],
+        right: 10
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: years,
+        name: 'Year',
+        axisLabel: {
+            interval: 'auto'
+        }
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Anomaly (°C)',
+        axisLabel: {
+            formatter: '{value} °C'
+        }
+    },
+    series: [
+        {
+            name: 'Temperature Anomaly',
+            type: 'line',
+            stack: 'total',
+            data: temperatureAnomaly,
+            color: '#FF4136', // using hexadecimal color for the line
+            label: {
+                show: true,
+                position: 'top'
+            },
+            markPoint: {
+                data: [
+                    {type: 'max', name: 'Max'},
+                    {type: 'min', name: 'Min'}
+                ]
+            },
+            markLine: {
+                data: [{type: 'average', name: 'Average'}]
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

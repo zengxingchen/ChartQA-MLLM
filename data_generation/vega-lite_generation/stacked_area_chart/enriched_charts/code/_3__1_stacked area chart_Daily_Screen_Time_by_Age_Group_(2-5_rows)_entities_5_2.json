@@ -1,0 +1,142 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Stacked area chart presenting the growth of a hypothetical investment portfolio over several decades",
+    "width": 600,
+    "height": 400,
+    "title": {
+        "text": "Portfolio Growth by Decade",
+        "subtitle": "Hypothetical performance of investment assets",
+        "fontSize": 18,
+        "subtitleFontSize": 12,
+        "anchor": "start",
+        "color": "black",
+        "offset": 20
+    },
+    "data": {
+        "values": [
+            {
+                "Decade": "1970s",
+                "Stocks": 10,
+                "Bonds": 5,
+                "Real Estate": 2,
+                "Commodities": 1
+            },
+            {
+                "Decade": "1980s",
+                "Stocks": 15,
+                "Bonds": 7,
+                "Real Estate": 3,
+                "Commodities": 1.5
+            },
+            {
+                "Decade": "1990s",
+                "Stocks": 20,
+                "Bonds": 9,
+                "Real Estate": 4,
+                "Commodities": 2
+            },
+            {
+                "Decade": "2000s",
+                "Stocks": 25,
+                "Bonds": 10,
+                "Real Estate": 5,
+                "Commodities": 2.5
+            },
+            {
+                "Decade": "2010s",
+                "Stocks": 30,
+                "Bonds": 12,
+                "Real Estate": 6,
+                "Commodities": 3
+            },
+            {
+                "Decade": "2020s",
+                "Stocks": 35,
+                "Bonds": 14,
+                "Real Estate": 7,
+                "Commodities": 3.5
+            }
+        ]
+    },
+    "mark": {
+        "type": "area",
+        "opacity": 0.6
+    },
+    "encoding": {
+        "x": {
+            "field": "Decade",
+            "type": "ordinal",
+            "title": "Decade"
+        },
+        "y": {
+            "type": "quantitative",
+            "title": "Investment Value (in USD million)",
+            "stack": "zero"
+        },
+        "color": {
+            "field": "Asset",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Stocks",
+                    "Bonds",
+                    "Real Estate",
+                    "Commodities"
+                ],
+                "range": [
+                    "#3366cc",
+                    "#dc3912",
+                    "#ff9900",
+                    "#109618"
+                ]
+            },
+            "legend": {
+                "title": "Asset Type",
+                "orient": "horizontal",
+                "direction": "horizontal",
+                "offset": 30,
+                "titlePadding": 10
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Decade",
+                "type": "nominal",
+                "title": "Decade"
+            },
+            {
+                "field": "Asset",
+                "type": "nominal",
+                "title": "Asset Type"
+            },
+            {
+                "field": "Value",
+                "type": "quantitative",
+                "title": "Investment Value"
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Stocks",
+                "Bonds",
+                "Real Estate",
+                "Commodities"
+            ],
+            "as": [
+                "Asset",
+                "Value"
+            ]
+        }
+    ],
+    "config": {
+        "view": {
+            "stroke": "transparent"
+        },
+        "axis": {
+            "labelFontSize": 12,
+            "titleFontSize": 14
+        }
+    }
+}

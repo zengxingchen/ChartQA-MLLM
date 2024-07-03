@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+// The provided data
+var data = [
+    {"Business Name": "Joe's Bakery", "Year Founded": 2015, "Employees 2023": 5, "Annual Revenue (in K)": 120},
+    {"Business Name": "Pam's Laundry", "Year Founded": 2010, "Employees 2023": 3, "Annual Revenue (in K)": 90},
+    {"Business Name": "Mike's Tech Repair", "Year Founded": 2018, "Employees 2023": 8, "Annual Revenue (in K)": 200},
+    {"Business Name": "The Green Grocer", "Year Founded": 2014, "Employees 2023": 10, "Annual Revenue (in K)": 300},
+    {"Business Name": "Anna's Café", "Year Founded": 2016, "Employees 2023": 12, "Annual Revenue (in K)": 180},
+    {"Business Name": "Tina's Boutique", "Year Founded": 2019, "Employees 2023": 6, "Annual Revenue (in K)": 150},
+    {"Business Name": "Sandra's Ceramics", "Year Founded": 2013, "Employees 2023": 4, "Annual Revenue (in K)": 85},
+    {"Business Name": "Rob's Fitness Center", "Year Founded": 2017, "Employees 2023": 15, "Annual Revenue (in K)": 220},
+    {"Business Name": "Marty's Bookstore", "Year Founded": 2021, "Employees 2023": 2, "Annual Revenue (in K)": 65},
+    {"Business Name": "Liz's Flower Shop", "Year Founded": 2012, "Employees 2023": 3, "Annual Revenue (in K)": 95},
+    {"Business Name": "Carlos's Taco Stand", "Year Founded": 2020, "Employees 2023": 5, "Annual Revenue (in K)": 110},
+    {"Business Name": "Vicky's Vegan Snacks", "Year Founded": 2022, "Employees 2023": 3, "Annual Revenue (in K)": 70}
+];
+
+// Format data for ECharts
+var formattedData = data.map(function (item) {
+    return [
+        item['Year Founded'],
+        item['Annual Revenue (in K)'],
+        item['Employees 2023'],
+        item['Business Name']
+    ];
+});
+
+option = {
+    tooltip: {
+        formatter: function (param) {
+            return param.data[3] + '<br>Year Founded: ' + param.data[0] + '<br>Revenue: ' + param.data[1] + 'K<br>Employees: ' + param.data[2];
+        }
+    },
+    xAxis: {
+        type: 'category',
+        name: 'Year Founded',
+        nameLocation: 'middle',
+        nameGap: 30,
+        splitLine: {
+            show: false
+        },
+        data: data.map(function (item) {
+            return item['Year Founded'];
+        }).sort()
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Annual Revenue (in K)',
+        nameLocation: 'middle',
+        nameGap: 50,
+        splitLine: {
+            show: false
+        }
+    },
+    series: [{
+        name: 'Businesses',
+        data: formattedData,
+        type: 'scatter',
+        symbolSize: function (data) {
+            return data[2] * 2;  // Employee count as bubble size
+        },
+        encode: {
+            x: 0,
+            y: 1,
+            tooltip: [0, 1, 2, 3],
+            itemName: 3
+        }
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

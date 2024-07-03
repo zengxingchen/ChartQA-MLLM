@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var option;
+
+option = {
+    title: {
+        text: 'Star Luminosity vs Temperature',
+        left: 'center',
+        top: '10%'
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: function (params) {
+            return 'Star ' + params.dataIndex + ': (' + params.data[0] + ', ' + params.data[1] + ')';
+        }
+    },
+    legend: {
+        data: ['Stars'],
+        left: '10%',
+        top: '90%'
+    },
+    xAxis: {
+        name: 'Temperature (K)',
+        min: 0,
+        max: 25,
+    },
+    yAxis: {
+        name: 'Luminosity (L☉)',
+        min: 0,
+        max: 25,
+    },
+    series: [{
+        name: 'Stars',
+        type: 'scatter',
+        itemStyle: {
+            color: '#FF5733'
+        },
+        symbolSize: 10,
+        data: [
+            [1.2, 3.5], [2.4, 6.8], [3.1, 7.4], [4.2, 5.6], 
+            [5.3, 8.1], [6.4, 9.3], [7.5, 10.2], [8.6, 11.5], 
+            [9.7, 12.8], [10.8, 13.3], [11.1, 14.7], [12.3, 15.1], 
+            [13.4, 16.8], [14.5, 17.2], [15.6, 18.4], [16.7, 19.7], 
+            [17.8, 20.1], [18.9, 21.5], [19.2, 22.3], [20.4, 23.6]
+        ]
+    }],
+    grid: {
+        left: '10%',
+        right: '10%',
+        top: '20%',
+        bottom: '10%'
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

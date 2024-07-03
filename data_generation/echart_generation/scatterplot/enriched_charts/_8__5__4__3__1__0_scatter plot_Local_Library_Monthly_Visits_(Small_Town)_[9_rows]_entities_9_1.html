@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var option;
+
+option = {
+    title: {
+        text: 'Science & Nature: Temperature vs. Altitude',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: 'Altitude: {b0}m<br />Temperature: {c0}°C'
+    },
+    xAxis: {
+        name: 'Altitude (m)',
+        type: 'value'
+    },
+    yAxis: {
+        name: 'Temperature (°C)',
+        type: 'value'
+    },
+    series: [{
+        symbolSize: 10,
+        data: [
+            [10, 90], [15, 85], [20, 80], [25, 77], [30, 73], 
+            [35, 70], [40, 65], [45, 63], [50, 60], [55, 57], 
+            [60, 55], [65, 52], [70, 50], [75, 48], [80, 45], 
+            [85, 43], [90, 40], [95, 37], [100, 35], [105, 33], 
+            [110, 30], [115, 28], [120, 25], [125, 23], [130, 20], 
+            [135, 18], [140, 15], [145, 12], [150, 10], [155, 8], 
+            [160, 5], [165, 3], [170, 0]
+        ],
+        type: 'scatter',
+        itemStyle: {
+            color: '#FF5733'
+        }
+    }],
+    legend: {
+        data: ['Temperature'],
+        left: 'right',
+        top: '10%'
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

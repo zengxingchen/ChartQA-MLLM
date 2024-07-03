@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+var option;
+
+option = {
+    title: {
+      text: 'Green Technology Advancements',
+      left: 'center',
+      top: 20
+    },
+    color: ['#b6d957', '#f4e001', '#f4b300', '#004dcf', '#0343df', '#75bbfd'],
+    tooltip: {
+        trigger: 'item'
+    },
+    legend: {
+        orient: 'vertical',
+        left: 'left',
+        top: 50
+    },
+    series: [
+        {
+            name: 'Tech Category',
+            type: 'pie',
+            radius: '50%',
+            data: [
+                {value: 40, name: 'Electric Cars'},
+                {value: 25, name: 'Solar Panels'},
+                {value: 20, name: 'Smart Homes'},
+                {value: 15, name: 'Energy Storage'},
+                {value: 10, name: 'Green Tech Investments'},
+                {value: 8, name: 'Sustainable Materials'}
+            ],
+            emphasis: {
+                itemStyle: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            }
+        }
+    ],
+    label: {
+        normal: {
+            formatter: '{b} ({d}%)'
+        }
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

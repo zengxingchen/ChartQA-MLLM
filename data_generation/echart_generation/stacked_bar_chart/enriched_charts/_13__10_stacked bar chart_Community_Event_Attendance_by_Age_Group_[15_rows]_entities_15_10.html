@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var option;
+
+option = {
+    title: {
+        text: 'Monthly Art & Design Activities',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        bottom: 0,
+        data: ['Design', 'Illustration', 'Photography', 'Animation']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '10%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        data: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+        axisLabel: {
+            rotate: 45,
+            interval: 0
+        }
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Design',
+            type: 'bar',
+            stack: 'total',
+            barWidth: '30%',
+            label: {
+                show: true
+            },
+            itemStyle: {
+                color: '#5470C6'
+            },
+            data: [320, 332, 301, 334, 390, 330, 320, 310, 300, 340, 320, 300]
+        },
+        {
+            name: 'Illustration',
+            type: 'bar',
+            stack: 'total',
+            barWidth: '30%',
+            label: {
+                show: true
+            },
+            itemStyle: {
+                color: '#91CC75'
+            },
+            data: [120, 132, 101, 134, 90, 230, 210, 180, 150, 200, 170, 160]
+        },
+        {
+            name: 'Photography',
+            type: 'bar',
+            stack: 'total',
+            barWidth: '30%',
+            label: {
+                show: true
+            },
+            itemStyle: {
+                color: '#FAC858'
+            },
+            data: [220, 182, 191, 234, 290, 330, 310, 300, 280, 290, 300, 310]
+        },
+        {
+            name: 'Animation',
+            type: 'bar',
+            stack: 'total',
+            barWidth: '30%',
+            label: {
+                show: true
+            },
+            itemStyle: {
+                color: '#EE6666'
+            },
+            data: [150, 232, 201, 154, 190, 330, 410, 380, 390, 370, 360, 330]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

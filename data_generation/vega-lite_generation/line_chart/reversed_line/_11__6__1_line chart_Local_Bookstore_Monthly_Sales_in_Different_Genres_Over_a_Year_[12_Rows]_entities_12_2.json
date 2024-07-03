@@ -1,0 +1,182 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Monthly Average Workout Hours by Exercise Type",
+    "data": {
+        "values": [
+            {
+                "Month": "January",
+                "Cardio": 10,
+                "Strength": 8,
+                "Yoga": 5,
+                "Pilates": 4,
+                "HIIT": 7
+            },
+            {
+                "Month": "February",
+                "Cardio": 12,
+                "Strength": 9,
+                "Yoga": 6,
+                "Pilates": 5,
+                "HIIT": 8
+            },
+            {
+                "Month": "March",
+                "Cardio": 15,
+                "Strength": 10,
+                "Yoga": 8,
+                "Pilates": 6,
+                "HIIT": 10
+            },
+            {
+                "Month": "April",
+                "Cardio": 18,
+                "Strength": 12,
+                "Yoga": 9,
+                "Pilates": 7,
+                "HIIT": 12
+            },
+            {
+                "Month": "May",
+                "Cardio": 20,
+                "Strength": 14,
+                "Yoga": 11,
+                "Pilates": 8,
+                "HIIT": 15
+            },
+            {
+                "Month": "June",
+                "Cardio": 22,
+                "Strength": 15,
+                "Yoga": 12,
+                "Pilates": 9,
+                "HIIT": 16
+            },
+            {
+                "Month": "July",
+                "Cardio": 25,
+                "Strength": 18,
+                "Yoga": 13,
+                "Pilates": 10,
+                "HIIT": 18
+            },
+            {
+                "Month": "August",
+                "Cardio": 23,
+                "Strength": 17,
+                "Yoga": 12,
+                "Pilates": 9,
+                "HIIT": 16
+            },
+            {
+                "Month": "September",
+                "Cardio": 20,
+                "Strength": 14,
+                "Yoga": 10,
+                "Pilates": 8,
+                "HIIT": 14
+            },
+            {
+                "Month": "October",
+                "Cardio": 18,
+                "Strength": 12,
+                "Yoga": 9,
+                "Pilates": 7,
+                "HIIT": 12
+            },
+            {
+                "Month": "November",
+                "Cardio": 16,
+                "Strength": 11,
+                "Yoga": 8,
+                "Pilates": 6,
+                "HIIT": 10
+            },
+            {
+                "Month": "December",
+                "Cardio": 14,
+                "Strength": 10,
+                "Yoga": 7,
+                "Pilates": 5,
+                "HIIT": 9
+            }
+        ]
+    },
+    "width": 800,
+    "height": 500,
+    "transform": [
+        {
+            "fold": [
+                "Cardio",
+                "Strength",
+                "Yoga",
+                "Pilates",
+                "HIIT"
+            ],
+            "as": [
+                "Exercise Type",
+                "Workout Hours"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "line",
+        "point": true
+    },
+    "encoding": {
+        "x": {
+            "field": "Month",
+            "type": "ordinal",
+            "title": "Month",
+            "axis": {
+                "labelAngle": 0
+            }
+        },
+        "y": {
+            "field": "Workout Hours",
+            "type": "quantitative",
+            "title": "Average Workout Hours",
+            "scale": {
+                "reverse": true
+            }
+        },
+        "color": {
+            "field": "Exercise Type",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Cardio",
+                    "Strength",
+                    "Yoga",
+                    "Pilates",
+                    "HIIT"
+                ],
+                "range": [
+                    "#ff6347",
+                    "#4682b4",
+                    "#32cd32",
+                    "#ff69b4",
+                    "#ffa500"
+                ]
+            },
+            "title": "Exercise Type"
+        },
+        "tooltip": [
+            {
+                "field": "Month",
+                "type": "nominal"
+            },
+            {
+                "field": "Exercise Type",
+                "type": "nominal"
+            },
+            {
+                "field": "Workout Hours",
+                "type": "quantitative"
+            }
+        ],
+        "text": {
+            "field": "Workout Hours",
+            "type": "quantitative"
+        }
+    }
+}

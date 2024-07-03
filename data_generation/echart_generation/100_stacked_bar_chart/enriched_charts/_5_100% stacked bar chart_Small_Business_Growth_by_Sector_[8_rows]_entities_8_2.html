@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Energy Consumption by Sector',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        },
+        formatter: function(params) {
+            var tar = params[1];
+            return tar.name + '<br/>' + tar.seriesName + ' : ' + tar.value + '%';
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        min: 0,
+        max: 100,
+        interval: 25,
+        axisLabel: {
+            formatter: '{value} %'
+        }
+    },
+    yAxis: {
+        type: 'category',
+        inverse: true,
+        data: ['2021', '2022', '2023', '2024', '2025']
+    },
+    series: [
+        {
+            name: 'Placeholder',
+            type: 'bar',
+            stack: 'Total',
+            itemStyle: {
+                borderColor: 'transparent',
+                color: 'transparent'
+            },
+            emphasis: {
+                itemStyle: {
+                    borderColor: 'transparent',
+                    color: 'transparent'
+                }
+            },
+            data: [0, 0, 0, 0, 0]
+        },
+        {
+            name: 'Residential',
+            type: 'bar',
+            stack: 'Total',
+            label: {
+                show: true
+            },
+            itemStyle: {
+                color: '#FFC107'
+            },
+            barWidth: 35,
+            data: [25, 30, 35, 40, 45]
+        },
+        {
+            name: 'Commercial',
+            type: 'bar',
+            stack: 'Total',
+            label: {
+                show: true
+            },
+            itemStyle: {
+                color: '#03A9F4'
+            },
+            barWidth: 35,
+            data: [30, 25, 20, 15, 10]
+        },
+        {
+            name: 'Industrial',
+            type: 'bar',
+            stack: 'Total',
+            label: {
+                show: true
+            },
+            itemStyle: {
+                color: '#E91E63'
+            },
+            barWidth: 35,
+            data: [15, 20, 25, 30, 35]
+        },
+        {
+            name: 'Transportation',
+            type: 'bar',
+            stack: 'Total',
+            label: {
+                show: true
+            },
+            itemStyle: {
+                color: '#4CAF50'
+            },
+            barWidth: 35,
+            data: [30, 25, 20, 15, 10]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

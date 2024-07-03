@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+
+var option;
+
+option = {
+    title: {
+        text: 'Interest in Different Fields of Study Over Time',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            // Use axis to trigger tooltip
+            type: 'shadow' // 'shadow' as default; can also be 'line' or 'shadow'
+        }
+    },
+    legend: {
+        data: ['Mathematics', 'Literature', 'Science', 'Arts', 'Technology', 'History'],
+        bottom: 0
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '6%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: false
+    },
+    yAxis: {
+        type: 'category',
+        data: ['2019', '2020', '2021'],
+        axisTick: {
+            alignWithLabel: true
+        }
+    },
+    series: [
+        {
+            name: 'Mathematics',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            data: [20, 15, 25],
+            color: '#33691E',
+        },
+        {
+            name: 'Literature',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            data: [15, 20, 10],
+            color: '#1A237E',
+        },
+        {
+            name: 'Science',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            data: [25, 30, 20],
+            color: '#BF360C',
+        },
+        {
+            name: 'Arts',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            data: [10, 10, 15],
+            color: '#3E2723',
+        },
+        {
+            name: 'Technology',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            data: [20, 15, 20],
+            color: '#263238',
+        },
+        {
+            name: 'History',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            data: [10, 10, 10],
+            color: '#827717',
+        }
+    ]
+};
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

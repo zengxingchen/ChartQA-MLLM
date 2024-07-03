@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+
+var data = [
+    {'Year': 2019, 'Community': 'Greenwood', 'Plastic (kg)': 3200, 'Paper (kg)': 4500, 'Glass (kg)': 1500, 'Metal (kg)': 1200},
+    {'Year': 2020, 'Community': 'Lakeview', 'Plastic (kg)': 2800, 'Paper (kg)': 3900, 'Glass (kg)': 1700, 'Metal (kg)': 1100},
+    {'Year': 2021, 'Community': 'Pinecrest', 'Plastic (kg)': 3400, 'Paper (kg)': 4200, 'Glass (kg)': 1800, 'Metal (kg)': 1300},
+    {'Year': 2022, 'Community': 'Riverdale', 'Plastic (kg)': 3100, 'Paper (kg)': 4800, 'Glass (kg)': 1600, 'Metal (kg)': 1400},
+    {'Year': 2023, 'Community': 'Sunnyside', 'Plastic (kg)': 2900, 'Paper (kg)': 5000, 'Glass (kg)': 1900, 'Metal (kg)': 1500}
+];
+
+// Convert data to format suitable for treemap
+function formatData(data) {
+    var treemapData = [];
+    data.forEach(function (item) {
+        var communityNode = {
+            name: item.Community + ' ' + item.Year,
+            value: item['Plastic (kg)'] + item['Paper (kg)'] + item['Glass (kg)'] + item['Metal (kg)'],
+            children: [
+                { name: 'Plastic', value: item['Plastic (kg)'] },
+                { name: 'Paper', value: item['Paper (kg)'] },
+                { name: 'Glass', value: item['Glass (kg)'] },
+                { name: 'Metal', value: item['Metal (kg)'] }
+            ]
+        };
+        treemapData.push(communityNode);
+    });
+    return treemapData;
+}
+
+var option = {
+    tooltip: {
+        formatter: function (info) {
+            var value = info.value;
+            var treePathInfo = info.treePathInfo;
+            var treePath = [];
+
+            for (var i = 1; i < treePathInfo.length; i++) {
+                treePath.push(treePathInfo[i].name);
+            }
+
+            return [
+                '<div class="tooltip-title">' + echarts.format.encodeHTML(treePath.join('/')) + '</div>',
+                'Total Weight: ' + echarts.format.addCommas(value) + ' kg'
+            ].join('');
+        }
+    },
+    series: [
+        {
+            name: 'Community Waste',
+            type: 'treemap',
+            visibleMin: 300,
+            data: formatData(data),
+            leafDepth: 1, // 0 for not show subtree
+            levels: [
+                {
+                    itemStyle: {
+                        borderColor: '#555',
+                        borderWidth: 4,
+                        gapWidth: 4
+                    }
+                },
+                {
+                    colorSaturation: [0.3, 0.6],
+                    itemStyle: {
+                        borderColorSaturation: 0.7,
+                        gapWidth: 2,
+                        borderWidth: 2
+                    }
+                },
+                {
+                    colorSaturation: [0.3, 0.5],
+                    itemStyle: {
+                        borderColorSaturation: 0.6,
+                        gapWidth: 1
+                    }
+                },
+                {
+                    colorSaturation: [0.3, 0.5]
+                }
+            ]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+            var dom = document.getElementById('container');
+            var myChart = echarts.init(dom, null, {
+            renderer: 'canvas',
+            useDirtyRect: false
+            });
+            var app = {};
+            
+            var option;
+
+            
+option = {
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Paper (%)', 'Glass (%)', 'Plastic (%)', 'Metals (%)', 'Organics (%)']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: false,
+        min: 0,
+        max: 100,
+        axisLabel: {
+            formatter: '{value} %'
+        }
+    },
+    yAxis: {
+        type: 'category',
+        data: [2016, 2017, 2018, 2019, 2020].map(String) // Ensure years are treated as strings
+    },
+    series: [
+        {
+            name: 'Paper (%)',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                formatter: "{c} %"
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [40, 42, 43, 44, 45]
+        },
+        {
+            name: 'Glass (%)',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                formatter: "{c} %"
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [20, 19, 18, 17, 15]
+        },
+        {
+            name: 'Plastic (%)',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                formatter: "{c} %"
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [25, 24, 22, 20, 18]
+        },
+        {
+            name: 'Metals (%)',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                formatter: "{c} %"
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [10, 10, 12, 14, 16]
+        },
+        {
+            name: 'Organics (%)',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                formatter: "{c} %"
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [5, 5, 5, 5, 6]
+        }
+    ]
+};
+
+            if (option && typeof option === 'object') {
+            myChart.setOption(option);
+            }
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

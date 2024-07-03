@@ -1,0 +1,180 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": {
+        "text": "Monthly Exercise Participation by Type",
+        "anchor": "start",
+        "offset": 5
+    },
+    "description": "A 100% stacked bar chart showing the market share of exercise participation by type over different months.",
+    "data": {
+        "values": [
+            {
+                "Month": "January",
+                "Cardio": 25,
+                "Strength": 20,
+                "Yoga": 15,
+                "Pilates": 10,
+                "Cycling": 30
+            },
+            {
+                "Month": "February",
+                "Cardio": 28,
+                "Strength": 22,
+                "Yoga": 18,
+                "Pilates": 12,
+                "Cycling": 20
+            },
+            {
+                "Month": "March",
+                "Cardio": 22,
+                "Strength": 19,
+                "Yoga": 20,
+                "Pilates": 15,
+                "Cycling": 24
+            },
+            {
+                "Month": "April",
+                "Cardio": 30,
+                "Strength": 25,
+                "Yoga": 10,
+                "Pilates": 12,
+                "Cycling": 23
+            },
+            {
+                "Month": "May",
+                "Cardio": 27,
+                "Strength": 23,
+                "Yoga": 17,
+                "Pilates": 13,
+                "Cycling": 20
+            },
+            {
+                "Month": "June",
+                "Cardio": 26,
+                "Strength": 21,
+                "Yoga": 14,
+                "Pilates": 17,
+                "Cycling": 22
+            },
+            {
+                "Month": "July",
+                "Cardio": 24,
+                "Strength": 26,
+                "Yoga": 19,
+                "Pilates": 15,
+                "Cycling": 16
+            },
+            {
+                "Month": "August",
+                "Cardio": 29,
+                "Strength": 24,
+                "Yoga": 16,
+                "Pilates": 14,
+                "Cycling": 17
+            },
+            {
+                "Month": "September",
+                "Cardio": 31,
+                "Strength": 20,
+                "Yoga": 18,
+                "Pilates": 11,
+                "Cycling": 20
+            },
+            {
+                "Month": "October",
+                "Cardio": 28,
+                "Strength": 22,
+                "Yoga": 15,
+                "Pilates": 13,
+                "Cycling": 22
+            },
+            {
+                "Month": "November",
+                "Cardio": 26,
+                "Strength": 21,
+                "Yoga": 16,
+                "Pilates": 12,
+                "Cycling": 25
+            },
+            {
+                "Month": "December",
+                "Cardio": 32,
+                "Strength": 19,
+                "Yoga": 14,
+                "Pilates": 10,
+                "Cycling": 25
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Cardio",
+                "Strength",
+                "Yoga",
+                "Pilates",
+                "Cycling"
+            ],
+            "as": [
+                "Type",
+                "Participation"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "bar",
+        "cursor": "pointer"
+    },
+    "width": 700,
+    "height": 500,
+    "encoding": {
+        "y": {
+            "field": "Participation",
+            "type": "quantitative",
+            "axis": {
+                "title": "Percentage"
+            },
+            "stack": "normalize"
+        },
+        "x": {
+            "field": "Month",
+            "type": "nominal",
+            "axis": {
+                "title": "Month"
+            }
+        },
+        "color": {
+            "field": "Type",
+            "type": "nominal",
+            "scale": {
+                "range": [
+                    "#FF5733",
+                    "#33FF57",
+                    "#3357FF",
+                    "#FF33A1",
+                    "#33FFF5"
+                ]
+            },
+            "legend": {
+                "title": "Type",
+                "orient": "right"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Type",
+                "type": "nominal"
+            },
+            {
+                "field": "Participation",
+                "type": "quantitative",
+                "title": "Participation Percentage"
+            }
+        ]
+    },
+    "config": {
+        "bar": {
+            "binSpacing": 5
+        }
+    }
+}

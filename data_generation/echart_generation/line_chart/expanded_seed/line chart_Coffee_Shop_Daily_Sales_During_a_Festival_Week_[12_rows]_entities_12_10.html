@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+// Provided dataset
+const data = [
+  {'Date': '1st July', 'Sales($)': 250},
+  {'Date': '2nd July', 'Sales($)': 275},
+  {'Date': '3rd July', 'Sales($)': 340},
+  {'Date': '4th July', 'Sales($)': 500},
+  {'Date': '5th July', 'Sales($)': 450},
+  {'Date': '6th July', 'Sales($)': 420},
+  {'Date': '7th July', 'Sales($)': 480},
+  {'Date': '8th July', 'Sales($)': 390},
+  {'Date': '9th July', 'Sales($)': 410},
+  {'Date': '10th July', 'Sales($)': 430},
+  {'Date': '11th July', 'Sales($)': 420},
+  {'Date': '12th July', 'Sales($)': 390}
+];
+
+// Process data
+const dates = data.map(item => item.Date);
+const sales = data.map(item => item['Sales($)']);
+
+// Find the day with highest sales
+let maxSale = Math.max(...sales);
+let maxSaleDayIndex = sales.findIndex(sale => sale === maxSale);
+
+option = {
+  title: {
+    text: 'Sales Data'
+  },
+  tooltip: {
+    trigger: 'axis'
+  },
+  legend: {
+    data: ['Sales($)']
+  },
+  grid: {
+    left: '3%',
+    right: '4%',
+    bottom: '3%',
+    containLabel: true
+  },
+  xAxis: {
+    type: 'category',
+    boundaryGap: false,
+    data: dates
+  },
+  yAxis: {
+    type: 'value'
+  },
+  series: [{
+    name: 'Sales($)',
+    type: 'line',
+    data: sales,
+    markPoint: {
+      data: [
+        { type: 'max', name: 'Max sales' },
+      ],
+      label: {
+        show: true,
+        formatter: ({ value }) => `Max Sales:\n$${value}`,
+      }
+    },
+    markLine: {
+      lineStyle: {
+        type: 'dashed'
+      },
+      data: [
+        { type: 'average', name: 'Average' }
+      ]
+    }
+  }],
+  textStyle: {
+    fontFamily: 'Arial, Verdana, sans-serif'
+  },
+  // An annotation for the highest sales day
+  graphic: {
+    elements: [{
+      type: 'text',
+      left: '80%',
+      top: '10%',
+      style: {
+        text: `Highest Sales on ${dates[maxSaleDayIndex]}: $${maxSale}`,
+        fill: '#333',
+        font: '14px sans-serif'
+      }
+    }]
+  }
+};
+
+if (option && typeof option === 'object') {
+  myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

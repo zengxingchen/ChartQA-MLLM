@@ -1,0 +1,151 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Line chart showing the trend of daily step counts of different individuals over a week.",
+    "title": {
+        "text": "Daily Step Counts Over a Week",
+        "fontSize": 16,
+        "anchor": "start",
+        "color": "#333333"
+    },
+    "width": 900,
+    "height": 450,
+    "data": {
+        "values": [
+            {
+                "Person": "Alice",
+                "Monday": 7000,
+                "Tuesday": 8000,
+                "Wednesday": 7500,
+                "Thursday": 8200,
+                "Friday": 8500,
+                "Saturday": 9000,
+                "Sunday": 9500
+            },
+            {
+                "Person": "Bob",
+                "Monday": 5000,
+                "Tuesday": 5500,
+                "Wednesday": 6000,
+                "Thursday": 6500,
+                "Friday": 7000,
+                "Saturday": 7500,
+                "Sunday": 8000
+            },
+            {
+                "Person": "Charlie",
+                "Monday": 8500,
+                "Tuesday": 8700,
+                "Wednesday": 8900,
+                "Thursday": 9100,
+                "Friday": 9300,
+                "Saturday": 9500,
+                "Sunday": 9700
+            },
+            {
+                "Person": "Diana",
+                "Monday": 4500,
+                "Tuesday": 4800,
+                "Wednesday": 5000,
+                "Thursday": 5300,
+                "Friday": 5600,
+                "Saturday": 5900,
+                "Sunday": 6200
+            },
+            {
+                "Person": "Ethan",
+                "Monday": 10000,
+                "Tuesday": 10500,
+                "Wednesday": 11000,
+                "Thursday": 11500,
+                "Friday": 12000,
+                "Saturday": 12500,
+                "Sunday": 13000
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday",
+                "Friday",
+                "Saturday",
+                "Sunday"
+            ],
+            "as": [
+                "Day",
+                "Step Count"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "line",
+        "point": true
+    },
+    "encoding": {
+        "x": {
+            "field": "Day",
+            "type": "ordinal",
+            "title": "Day of the Week",
+            "axis": {
+                "titleFontSize": 12,
+                "labelAngle": -45
+            }
+        },
+        "y": {
+            "field": "Step Count",
+            "type": "quantitative",
+            "title": "Step Count",
+            "axis": {
+                "titleFontSize": 12
+            },
+            "scale": {
+                "reverse": true
+            }
+        },
+        "color": {
+            "field": "Person",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Alice",
+                    "Bob",
+                    "Charlie",
+                    "Diana",
+                    "Ethan"
+                ],
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e",
+                    "#2ca02c",
+                    "#d62728",
+                    "#9467bd"
+                ]
+            },
+            "legend": {
+                "title": "Person"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Person",
+                "type": "nominal"
+            },
+            {
+                "field": "Day",
+                "type": "ordinal"
+            },
+            {
+                "field": "Step Count",
+                "type": "quantitative"
+            }
+        ]
+    },
+    "config": {
+        "axisY": {
+            "minExtent": 30
+        }
+    }
+}

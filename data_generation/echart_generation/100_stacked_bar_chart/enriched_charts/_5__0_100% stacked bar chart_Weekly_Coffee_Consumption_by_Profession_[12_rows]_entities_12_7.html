@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 400});
+
+var option = {
+  title: {
+    text: 'Monthly Budget Allocation - Economics & Finance',
+    left: 'center'
+  },
+  tooltip: {
+    trigger: 'axis',
+    axisPointer: {
+      type: 'shadow'
+    }
+  },
+  legend: {
+    data: ['Housing', 'Utilities', 'Food', 'Transportation', 'Healthcare', 'Entertainment', 'Savings', 'Miscellaneous'],
+    orient: 'vertical',
+    left: 'right'
+  },
+  grid: {
+    left: '3%',
+    right: '20%',
+    bottom: '3%',
+    containLabel: true
+  },
+  xAxis: {
+    type: 'value',
+    boundaryGap: false,
+    axisLabel: {
+      show: true,
+      formatter: '{value} %'
+    }
+  },
+  yAxis: {
+    type: 'category',
+    data: ['John Smith', 'Emily Johnson', 'Michael Brown', 'Linda Davis']
+  },
+  series: [
+    {
+      name: 'Housing',
+      type: 'bar',
+      stack: 'total',
+      data: [25, 30, 28, 27],
+      barWidth: 35,
+      itemStyle: {
+        color: '#3366CC'
+      }
+    },
+    {
+      name: 'Utilities',
+      type: 'bar',
+      stack: 'total',
+      data: [8, 6, 9, 8],
+      barWidth: 35,
+      itemStyle: {
+        color: '#DC3912'
+      }
+    },
+    {
+      name: 'Food',
+      type: 'bar',
+      stack: 'total',
+      data: [15, 18, 16, 17],
+      barWidth: 35,
+      itemStyle: {
+        color: '#FF9900'
+      }
+    },
+    {
+      name: 'Transportation',
+      type: 'bar',
+      stack: 'total',
+      data: [12, 10, 14, 11],
+      barWidth: 35,
+      itemStyle: {
+        color: '#109618'
+      }
+    },
+    {
+      name: 'Healthcare',
+      type: 'bar',
+      stack: 'total',
+      data: [10, 8, 7, 9],
+      barWidth: 35,
+      itemStyle: {
+        color: '#990099'
+      }
+    },
+    {
+      name: 'Entertainment',
+      type: 'bar',
+      stack: 'total',
+      data: [8, 9, 11, 10],
+      barWidth: 35,
+      itemStyle: {
+        color: '#3B3EAC'
+      }
+    },
+    {
+      name: 'Savings',
+      type: 'bar',
+      stack: 'total',
+      data: [12, 11, 9, 10],
+      barWidth: 35,
+      itemStyle: {
+        color: '#0099C6'
+      }
+    },
+    {
+      name: 'Miscellaneous',
+      type: 'bar',
+      stack: 'total',
+      data: [10, 8, 6, 8],
+      barWidth: 35,
+      itemStyle: {
+        color: '#DD4477'
+      }
+    }
+  ]
+};
+
+if (option && typeof option === 'object') {
+  myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

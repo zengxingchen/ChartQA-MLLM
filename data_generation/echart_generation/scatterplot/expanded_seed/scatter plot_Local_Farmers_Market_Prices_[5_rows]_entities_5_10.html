@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+// Parse the given data for charting
+const rawData = [
+    {'Date': '2023-03-01', 'Vendor_A_Tomatoes_Price($)': 2.99, 'Vendor_B_Tomatoes_Price($)': 3.19, 'Vendor_C_Tomatoes_Price($)': 2.89},
+    {'Date': '2023-03-08', 'Vendor_A_Tomatoes_Price($)': 2.89, 'Vendor_B_Tomatoes_Price($)': 3.09, 'Vendor_C_Tomatoes_Price($)': 2.79},
+    {'Date': '2023-03-15', 'Vendor_A_Tomatoes_Price($)': 3.09, 'Vendor_B_Tomatoes_Price($)': 3.29, 'Vendor_C_Tomatoes_Price($)': 2.99},
+    {'Date': '2023-03-22', 'Vendor_A_Tomatoes_Price($)': 3.19, 'Vendor_B_Tomatoes_Price($)': 3.39, 'Vendor_C_Tomatoes_Price($)': 3.09},
+    {'Date': '2023-03-29', 'Vendor_A_Tomatoes_Price($)': 2.99, 'Vendor_B_Tomatoes_Price($)': 3.19, 'Vendor_C_Tomatoes_Price($)': 2.89}
+];
+
+// Convert the date to a timestamp for plotting
+const data = rawData.map(function (item) {
+    return {
+        date: +echarts.format.parseDate(item.Date),
+        vendorA: item['Vendor_A_Tomatoes_Price($)'],
+        vendorB: item['Vendor_B_Tomatoes_Price($)'],
+        vendorC: item['Vendor_C_Tomatoes_Price($)']
+    };
+});
+
+// Now map the processed data to the format that eCharts scatter plot expects.
+const scatterData = {
+    'Vendor A': data.map(function (item) { return [item.date, item.vendorA]; }),
+    'Vendor B': data.map(function (item) { return [item.date, item.vendorB]; }),
+    'Vendor C': data.map(function (item) { return [item.date, item.vendorC]; }),
+};
+
+option = {
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross'
+        },
+        formatter: function (params) {
+            return echarts.format.formatTime('yyyy-MM-dd', params[0].value[0]) + '<br/>' +
+                   params.map(function (param) {
+                       return param.seriesName + ': $' + param.value[1];
+                   }).join('<br/>');
+        }
+    },
+    xAxis: {
+        type: 'time'
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Price ($)',
+        axisLabel: {
+            formatter: '${value}'
+        }
+    },
+    series: [
+        {
+            name: 'Vendor A',
+            type: 'scatter',
+            data: scatterData['Vendor A'],
+            symbolSize: 10  // Size of the scatter points
+        },
+        {
+            name: 'Vendor B',
+            type: 'scatter',
+            data: scatterData['Vendor B'],
+            symbolSize: 10
+        },
+        {
+            name: 'Vendor C',
+            type: 'scatter',
+            data: scatterData['Vendor C'],
+            symbolSize: 10
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

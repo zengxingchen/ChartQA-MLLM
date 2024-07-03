@@ -1,0 +1,199 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Monthly Average Happiness Scores in Different Regions",
+    "data": {
+        "values": [
+            {
+                "Month": "January",
+                "North America": 75,
+                "Europe": 70,
+                "Asia": 65,
+                "Africa": 55,
+                "South America": 60
+            },
+            {
+                "Month": "February",
+                "North America": 78,
+                "Europe": 73,
+                "Asia": 68,
+                "Africa": 58,
+                "South America": 63
+            },
+            {
+                "Month": "March",
+                "North America": 80,
+                "Europe": 75,
+                "Asia": 70,
+                "Africa": 60,
+                "South America": 65
+            },
+            {
+                "Month": "April",
+                "North America": 82,
+                "Europe": 78,
+                "Asia": 72,
+                "Africa": 63,
+                "South America": 68
+            },
+            {
+                "Month": "May",
+                "North America": 85,
+                "Europe": 80,
+                "Asia": 75,
+                "Africa": 65,
+                "South America": 70
+            },
+            {
+                "Month": "June",
+                "North America": 88,
+                "Europe": 83,
+                "Asia": 78,
+                "Africa": 68,
+                "South America": 73
+            },
+            {
+                "Month": "July",
+                "North America": 90,
+                "Europe": 85,
+                "Asia": 80,
+                "Africa": 70,
+                "South America": 75
+            },
+            {
+                "Month": "August",
+                "North America": 92,
+                "Europe": 88,
+                "Asia": 83,
+                "Africa": 73,
+                "South America": 78
+            },
+            {
+                "Month": "September",
+                "North America": 95,
+                "Europe": 90,
+                "Asia": 85,
+                "Africa": 75,
+                "South America": 80
+            },
+            {
+                "Month": "October",
+                "North America": 97,
+                "Europe": 93,
+                "Asia": 88,
+                "Africa": 78,
+                "South America": 83
+            },
+            {
+                "Month": "November",
+                "North America": 100,
+                "Europe": 95,
+                "Asia": 90,
+                "Africa": 80,
+                "South America": 85
+            },
+            {
+                "Month": "December",
+                "North America": 98,
+                "Europe": 93,
+                "Asia": 87,
+                "Africa": 77,
+                "South America": 82
+            }
+        ]
+    },
+    "width": 700,
+    "height": 400,
+    "transform": [
+        {
+            "fold": [
+                "North America",
+                "Europe",
+                "Asia",
+                "Africa",
+                "South America"
+            ],
+            "as": [
+                "Region",
+                "Happiness Score"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "line",
+        "point": true
+    },
+    "encoding": {
+        "x": {
+            "field": "Month",
+            "type": "ordinal",
+            "title": "Month",
+            "axis": {
+                "labelAngle": 0
+            }
+        },
+        "y": {
+            "field": "Happiness Score",
+            "type": "quantitative",
+            "title": "Happiness Score",
+            "scale": {
+                "reverse": true
+            }
+        },
+        "color": {
+            "field": "Region",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "North America",
+                    "Europe",
+                    "Asia",
+                    "Africa",
+                    "South America"
+                ],
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e",
+                    "#2ca02c",
+                    "#d62728",
+                    "#9467bd"
+                ]
+            },
+            "title": "Region"
+        },
+        "tooltip": [
+            {
+                "field": "Month",
+                "type": "nominal"
+            },
+            {
+                "field": "Region",
+                "type": "nominal"
+            },
+            {
+                "field": "Happiness Score",
+                "type": "quantitative"
+            }
+        ],
+        "text": {
+            "field": "Happiness Score",
+            "type": "quantitative"
+        }
+    },
+    "layer": [
+        {
+            "mark": "line"
+        },
+        {
+            "mark": "text",
+            "encoding": {
+                "text": {
+                    "field": "Happiness Score",
+                    "type": "quantitative"
+                },
+                "color": {
+                    "value": "#000000"
+                }
+            }
+        }
+    ]
+}

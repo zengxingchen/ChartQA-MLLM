@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Monthly Visitors to the Science Museum',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['Visitors'],
+        top: '10%'
+    },
+    xAxis: {
+        type: 'category',
+        data: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        axisLabel: {
+            color: '#000000'
+        }
+    },
+    yAxis: {
+        type: 'value',
+        inverse: true,
+        axisLabel: {
+            color: '#000000'
+        }
+    },
+    series: [
+        {
+            name: 'Visitors',
+            type: 'line',
+            data: [500, 450, 550, 600, 700, 650, 720, 780, 850, 900, 950, 1000],
+            lineStyle: {
+                color: '#FF6347'
+            },
+            itemStyle: {
+                color: '#FF6347'
+            },
+            label: {
+                show: true,
+                position: 'top',
+                formatter: '{c} visitors'
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

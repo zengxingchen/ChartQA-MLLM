@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    width: 800,
+    height: 400
+});
+var app = {};
+
+var option;
+
+option = {
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Science & Technology', 'Arts & Humanities', 'Business & Finance', 'Education & Health', 'Engineering & IT']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01]
+    },
+    yAxis: {
+        type: 'category',
+        data: ['2018', '2019', '2020', '2021', '2022']
+    },
+    series: [
+        {
+            name: 'Science & Technology',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            label: { show: true },
+            data: [25, 30, 28, 35, 40],
+            itemStyle: { color: '#1f77b4' }
+        },
+        {
+            name: 'Arts & Humanities',
+            type: 'bar',
+            stack: 'total',
+            label: { show: true },
+            data: [20, 18, 17, 15, 13],
+            itemStyle: { color: '#ff7f0e' }
+        },
+        {
+            name: 'Business & Finance',
+            type: 'bar',
+            stack: 'total',
+            label: { show: true },
+            data: [15, 15, 18, 17, 15],
+            itemStyle: { color: '#2ca02c' }
+        },
+        {
+            name: 'Education & Health',
+            type: 'bar',
+            stack: 'total',
+            label: { show: true },
+            data: [25, 20, 22, 20, 20],
+            itemStyle: { color: '#d62728' }
+        },
+        {
+            name: 'Engineering & IT',
+            type: 'bar',
+            stack: 'total',
+            label: { show: true },
+            data: [15, 17, 15, 13, 12],
+            itemStyle: { color: '#9467bd' }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

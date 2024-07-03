@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+option = {
+    title: {
+        text: 'Distribution of Fitness Scores',
+        left: 'center',
+        top: '5%'
+    },
+    xAxis: {
+        type: 'category',
+        data: ['3.5-3.7', '3.8-4.0', '4.1-4.3', '4.4-4.6', '4.7-4.9', '5.0-5.2', '5.3-5.5', '5.6-5.8', '5.9-6.1', '6.2-6.4', '6.5-6.7'],
+        axisLabel: {
+            rotate: 45
+        }
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Frequency'
+    },
+    series: [{
+        data: [2, 3, 5, 4, 3, 6, 3, 5, 2, 4, 1],
+        type: 'bar',
+        barWidth: '50%',
+        itemStyle: {
+            color: '#4CAF50'
+        },
+        label: {
+            show: true,
+            position: 'top'
+        }
+    }],
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    grid: {
+        left: '10%',
+        right: '10%',
+        bottom: '20%',
+        top: '15%',
+        containLabel: true
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

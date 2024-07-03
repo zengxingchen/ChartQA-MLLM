@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+var app = {};
+var option;
+
+option = {
+    title: {
+        text: 'Monthly Sales Data for 2023',
+        left: 'center',
+        top: 10
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Series 1', 'Series 2', 'Series 3'],
+        top: 50
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        data: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Series 1',
+            type: 'bar',
+            stack: 'Total',
+            barWidth: 20,
+            itemStyle: {
+                color: '#FF5733'
+            },
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            data: [120, 132, 101, 134, 90, 230, 210, 180, 210, 230, 220, 240]
+        },
+        {
+            name: 'Series 2',
+            type: 'bar',
+            stack: 'Total',
+            barWidth: 20,
+            itemStyle: {
+                color: '#33FF57'
+            },
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            data: [200, 182, 234, 290, 230, 210, 230, 260, 290, 300, 280, 310]
+        },
+        {
+            name: 'Series 3',
+            type: 'bar',
+            stack: 'Total',
+            barWidth: 20,
+            itemStyle: {
+                color: '#3357FF'
+            },
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            data: [150, 232, 290, 330, 220, 240, 270, 300, 330, 320, 310, 340]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

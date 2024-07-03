@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 800,
+    height: 600
+});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Business Revenue Over 10 Quarters',
+        left: 'center',
+        top: '10'
+    },
+    xAxis: {
+        type: 'category',
+        data: ['Q1', 'Q2', 'Q3', 'Q4', 'Q5', 'Q6', 'Q7', 'Q8', 'Q9', 'Q10'],
+        axisLabel: {
+            color: '#333'
+        }
+    },
+    yAxis: {
+        type: 'value',
+        inverse: true,
+        axisLabel: {
+            color: '#333'
+        }
+    },
+    series: [{
+        data: [200, 180, 160, 140, 120, 100, 80, 60, 40, 20],
+        type: 'line',
+        lineStyle: {
+            color: '#FF5733'
+        },
+        label: {
+            show: true,
+            position: 'top',
+            color: '#000'
+        },
+        itemStyle: {
+            color: '#FF5733'
+        }
+    }],
+    tooltip: {
+        trigger: 'axis'
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

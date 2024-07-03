@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+
+// Data preparation. The scatter plot requires data in the format of [[x1, y1], [x2, y2], ...]
+var data = [
+    ['Monday', 21, 530],
+    ['Tuesday', 19, 490],
+    ['Wednesday', 24, 600],
+    ['Thursday', 22, 550],
+    ['Friday', 25, 620]
+].map(function (item) {
+    return {
+        value: [item[1], item[2]],
+        name: item[0]
+    };
+});
+
+// Mapping days of the week to categorical axis (x-axis)
+var daysOfWeek = data.map(function (item) {
+    return item.name;
+});
+
+var option = {
+    title: {
+        text: 'Temperature vs Sales Scatter Plot',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: function (params) {
+            return params.marker + 'Day: ' + params.data.name + '<br/>Temperature (°C): ' + params.data.value[0] + '<br/>Sales ($): ' + params.data.value[1];
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '7%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        name: 'Temperature (°C)',
+        splitLine: {
+            lineStyle: {
+                type: 'dashed'
+            }
+        }
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Sales ($)',
+        splitLine: {
+            lineStyle: {
+                type: 'dashed'
+            }
+        }
+    },
+    visualMap: [
+        {
+            show: false,
+            dimension: 0,
+            min: 0,
+            max: 30,
+            inRange: {
+                symbolSize: [10, 70]
+            }
+        }
+    ],
+    series: [{
+        name: 'Sales',
+        data: data,
+        type: 'scatter',
+        symbolSize: function (val) {
+            return val[0] * 1.2; // Size of the bubble based on temperature
+        },
+        encode: {
+            x: 'value[0]',
+            y: 'value[1]'
+        },
+        itemStyle: {
+            borderColor: '#c23531',
+            borderWidth: 1.5
+        },
+        label: {
+            emphasis: {
+                show: true,
+                formatter: function (param) {
+                    return param.name;
+                },
+                position: 'top'
+            }
+        }
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Tech Market Share in AI Innovation',
+        left: 'center',
+        top: '5%'
+    },
+    tooltip: {
+        trigger: 'item'
+    },
+    legend: {
+        orient: 'vertical',
+        left: 'left',
+        top: '15%',
+        textStyle: {
+            color: '#666'
+        }
+    },
+    series: [
+        {
+            name: 'Market Share',
+            type: 'pie',
+            radius: '50%',
+            data: [
+                {value: 335, name: 'Machine Learning', itemStyle: {color: '#50C878'}},
+                {value: 310, name: 'Data Science', itemStyle: {color: '#FFD700'}},
+                {value: 234, name: 'Artificial Intelligence', itemStyle: {color: '#DC143C'}},
+                {value: 135, name: 'Big Data', itemStyle: {color: '#00008B'}},
+                {value: 1548, name: 'Neural Networks', itemStyle: {color: '#FF8C00'}}
+            ],
+            emphasis: {
+                itemStyle: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            },
+            label: {
+                formatter: '{b}: {c} ({d}%)'
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

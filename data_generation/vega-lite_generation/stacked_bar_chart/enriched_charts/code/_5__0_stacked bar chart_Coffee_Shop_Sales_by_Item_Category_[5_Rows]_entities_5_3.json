@@ -1,0 +1,153 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+        "values": [
+            {
+                "Year": "2019",
+                "Football": 3500,
+                "Basketball": 2500,
+                "Baseball": 2000,
+                "Tennis": 1500,
+                "Swimming": 1800
+            },
+            {
+                "Year": "2020",
+                "Football": 3000,
+                "Basketball": 2200,
+                "Baseball": 1700,
+                "Tennis": 1400,
+                "Swimming": 1600
+            },
+            {
+                "Year": "2021",
+                "Football": 4000,
+                "Basketball": 2700,
+                "Baseball": 2200,
+                "Tennis": 1800,
+                "Swimming": 2000
+            },
+            {
+                "Year": "2022",
+                "Football": 4200,
+                "Basketball": 2800,
+                "Baseball": 2300,
+                "Tennis": 1900,
+                "Swimming": 2100
+            },
+            {
+                "Year": "2023",
+                "Football": 4500,
+                "Basketball": 3000,
+                "Baseball": 2500,
+                "Tennis": 2000,
+                "Swimming": 2200
+            },
+            {
+                "Year": "2024",
+                "Football": 4600,
+                "Basketball": 3100,
+                "Baseball": 2600,
+                "Tennis": 2100,
+                "Swimming": 2300
+            },
+            {
+                "Year": "2025",
+                "Football": 4700,
+                "Basketball": 3200,
+                "Baseball": 2700,
+                "Tennis": 2200,
+                "Swimming": 2400
+            },
+            {
+                "Year": "2026",
+                "Football": 4800,
+                "Basketball": 3300,
+                "Baseball": 2800,
+                "Tennis": 2300,
+                "Swimming": 2500
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Football",
+                "Basketball",
+                "Baseball",
+                "Tennis",
+                "Swimming"
+            ],
+            "as": [
+                "Sport",
+                "Participation"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "bar",
+        "height": {
+            "band": 0.8
+        }
+    },
+    "width": 500,
+    "height": 300,
+    "title": {
+        "text": "Yearly Sports Participation",
+        "fontSize": 16,
+        "anchor": "start",
+        "color": "black"
+    },
+    "encoding": {
+        "x": {
+            "field": "Year",
+            "type": "ordinal",
+            "title": "Year"
+        },
+        "y": {
+            "field": "Participation",
+            "type": "quantitative",
+            "title": "Participation"
+        },
+        "color": {
+            "field": "Sport",
+            "type": "nominal",
+            "legend": {
+                "orient": "right"
+            },
+            "scale": {
+                "domain": [
+                    "Football",
+                    "Basketball",
+                    "Baseball",
+                    "Tennis",
+                    "Swimming"
+                ],
+                "range": [
+                    "#FF5733",
+                    "#33FF57",
+                    "#3357FF",
+                    "#FF33A1",
+                    "#A133FF"
+                ]
+            },
+            "title": "Sport"
+        },
+        "tooltip": [
+            {
+                "field": "Year",
+                "type": "nominal",
+                "title": "Year"
+            },
+            {
+                "field": "Sport",
+                "type": "nominal",
+                "title": "Sport"
+            },
+            {
+                "field": "Participation",
+                "type": "quantitative",
+                "title": "Participation"
+            }
+        ]
+    }
+}

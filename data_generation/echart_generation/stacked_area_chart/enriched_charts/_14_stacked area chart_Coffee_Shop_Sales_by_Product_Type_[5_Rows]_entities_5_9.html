@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+myChart.setOption({
+    title: {
+        text: 'Quarterly Economic Sector Growth',
+        left: 'center',
+        top: '20px'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            label: {
+                backgroundColor: '#6a7985'
+            }
+        }
+    },
+    legend: {
+        data: ['Agriculture', 'Industry', 'Services'],
+        top: '40px'
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true,
+        height: '60%',
+        width: '94%'
+    },
+    xAxis: [
+        {
+            type: 'category',
+            boundaryGap: false,
+            data: [
+                'Q1', 'Q2', 'Q3', 'Q4', 'Q5', 'Q6', 'Q7', 'Q8', 'Q9', 'Q10',
+                'Q11', 'Q12', 'Q13', 'Q14', 'Q15', 'Q16', 'Q17', 'Q18', 'Q19', 'Q20'
+            ]
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value'
+        }
+    ],
+    series: [
+        {
+            name: 'Agriculture',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: { focus: 'series' },
+            data: [20, 25, 22, 30, 35, 33, 40, 45, 42, 50, 52, 55, 58, 60, 65, 70, 75, 80, 85, 90],
+            color: '#FFD700'
+        },
+        {
+            name: 'Industry',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: { focus: 'series' },
+            data: [30, 35, 33, 40, 38, 44, 46, 52, 55, 60, 63, 68, 70, 75, 78, 82, 85, 90, 95, 100],
+            color: '#87CEFA'
+        },
+        {
+            name: 'Services',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: { focus: 'series' },
+            data: [50, 55, 60, 65, 70, 75, 78, 80, 85, 90, 95, 100, 105, 110, 115, 120, 130, 135, 140, 150],
+            color: '#32CD32'
+        }
+    ],
+    color: ['#FFD700', '#87CEFA', '#32CD32']
+});
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

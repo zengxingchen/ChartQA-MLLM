@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 400});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Monthly Site Visitors Trend',
+        subtext: 'Visitor numbers decreasing over the month',
+        left: 'center',
+        top: 10
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            label: {
+                backgroundColor: '#6a7985'
+            }
+        }
+    },
+    legend: {
+        data: ['Visitors'],
+        top: 30
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: [
+        {
+            type: 'category',
+            boundaryGap: false,
+            data: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30']
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value',
+            axisLabel: {
+                formatter: '{value} visitors'
+            }
+        }
+    ],
+    series: [
+        {
+            name: 'Visitors',
+            type: 'line',
+            stack: 'Total visitors',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [
+              1000, 980, 960, 930, 900, 870, 840, 810, 780, 750, 
+              720, 690, 660, 630, 600, 570, 540, 510, 480, 450, 
+              420, 390, 360, 330, 300, 270, 240, 210, 180, 150
+            ],
+            markPoint: {
+                data: [
+                    {type: 'max', name: 'Max Visitors'},
+                    {type: 'min', name: 'Min Visitors'}
+                ]
+            },
+            itemStyle: {
+                normal: {
+                    color: '#1f77b4',
+                    lineStyle: {
+                        color: '#1f77b4',
+                        width: 2
+                    }
+                }
+            }
+        }
+    ],
+    color: ['#1f77b4']
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

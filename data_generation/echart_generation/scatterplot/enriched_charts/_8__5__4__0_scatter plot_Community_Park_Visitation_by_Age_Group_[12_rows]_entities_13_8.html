@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var app = {};
+var option;
+
+option = {
+    title: {
+        text: 'Stock Price Movements',
+        left: 'center',
+        top: '20'
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: function (params) {
+            return 'Date: ' + params.value[0] + '<br/>Stock Price: ' + params.value[1];
+        }
+    },
+    xAxis: {
+        type: 'category',
+        name: 'Date'
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Stock Price',
+        min: 80,
+        max: 160
+    },
+    legend: {
+        data: ['Stock Price'],
+        left: 'right',
+        top: '10%'
+    },
+    series: [
+        {
+            name: 'Stock Price',
+            type: 'scatter',
+            itemStyle: {
+                color: '#FF5733'
+            },
+            data: [
+                ['2023-01-01', 150],
+                ['2023-02-01', 145],
+                ['2023-03-01', 142],
+                ['2023-04-01', 140],
+                ['2023-05-01', 138],
+                ['2023-06-01', 135],
+                ['2023-07-01', 133],
+                ['2023-08-01', 130],
+                ['2023-09-01', 128],
+                ['2023-10-01', 127],
+                ['2023-11-01', 125],
+                ['2023-12-01', 123],
+                ['2024-01-01', 120],
+                ['2024-02-01', 118],
+                ['2024-03-01', 117],
+                ['2024-04-01', 115],
+                ['2024-05-01', 113],
+                ['2024-06-01', 110],
+                ['2024-07-01', 108],
+                ['2024-08-01', 107],
+                ['2024-09-01', 105],
+                ['2024-10-01', 103],
+                ['2024-11-01', 102],
+                ['2024-12-01', 100],
+                ['2025-01-01', 98],
+                ['2025-02-01', 97],
+                ['2025-03-01', 95],
+                ['2025-04-01', 94],
+                ['2025-05-01', 92],
+                ['2025-06-01', 90],
+                ['2025-07-01', 89]
+            ]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+// Prepare data
+var rawData = [
+    {'Month': 'Jan 2023', 'Local Cafe Facebook Likes': 320, 'Bookstore Instagram Followers': 150, 'Bakery Pinterest Pins': 45, 'Garden Center Twitter Mentions': 60},
+    {'Month': 'Feb 2023', 'Local Cafe Facebook Likes': 330, 'Bookstore Instagram Followers': 165, 'Bakery Pinterest Pins': 50, 'Garden Center Twitter Mentions': 65},
+    {'Month': 'Mar 2023', 'Local Cafe Facebook Likes': 340, 'Bookstore Instagram Followers': 180, 'Bakery Pinterest Pins': 55, 'Garden Center Twitter Mentions': 70},
+    {'Month': 'Apr 2023', 'Local Cafe Facebook Likes': 350, 'Bookstore Instagram Followers': 200, 'Bakery Pinterest Pins': 58, 'Garden Center Twitter Mentions': 76},
+    {'Month': 'May 2023', 'Local Cafe Facebook Likes': 360, 'Bookstore Instagram Followers': 220, 'Bakery Pinterest Pins': 63, 'Garden Center Twitter Mentions': 82},
+    {'Month': 'Jun 2023', 'Local Cafe Facebook Likes': 370, 'Bookstore Instagram Followers': 240, 'Bakery Pinterest Pins': 70, 'Garden Center Twitter Mentions': 88},
+    {'Month': 'Jul 2023', 'Local Cafe Facebook Likes': 380, 'Bookstore Instagram Followers': 255, 'Bakery Pinterest Pins': 75, 'Garden Center Twitter Mentions': 93},
+    {'Month': 'Aug 2023', 'Local Cafe Facebook Likes': 390, 'Bookstore Instagram Followers': 270, 'Bakery Pinterest Pins': 80, 'Garden Center Twitter Mentions': 99},
+    {'Month': 'Sep 2023', 'Local Cafe Facebook Likes': 400, 'Bookstore Instagram Followers': 285, 'Bakery Pinterest Pins': 85, 'Garden Center Twitter Mentions': 105},
+    {'Month': 'Oct 2023', 'Local Cafe Facebook Likes': 410, 'Bookstore Instagram Followers': 300, 'Bakery Pinterest Pins': 90, 'Garden Center Twitter Mentions': 110},
+    {'Month': 'Nov 2023', 'Local Cafe Facebook Likes': 420, 'Bookstore Instagram Followers': 320, 'Bakery Pinterest Pins': 95, 'Garden Center Twitter Mentions': 115},
+    {'Month': 'Dec 2023', 'Local Cafe Facebook Likes': 430, 'Bookstore Instagram Followers': 340, 'Bakery Pinterest Pins': 100, 'Garden Center Twitter Mentions': 120}
+];
+
+var months = rawData.map(function(item) {
+    return item.Month;
+});
+
+var facebookLikes = rawData.map(function(item) {
+    return item['Local Cafe Facebook Likes'];
+});
+
+var instagramFollowers = rawData.map(function(item) {
+    return item['Bookstore Instagram Followers'];
+});
+
+var pinterestPins = rawData.map(function(item) {
+    return item['Bakery Pinterest Pins'];
+});
+
+var twitterMentions = rawData.map(function(item) {
+    return item['Garden Center Twitter Mentions'];
+});
+
+option = {
+    title: {
+        text: 'Social Media Engagement - 2023'
+    },
+    tooltip : {
+        trigger: 'axis'
+    },
+    legend: {
+        data:['Facebook Likes','Instagram Followers','Pinterest Pins', 'Twitter Mentions']
+    },
+    toolbox: {
+        show : true,
+        feature : {
+            saveAsImage : {show: true}
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis : [
+        {
+            type : 'category',
+            boundaryGap : false,
+            data : months
+        }
+    ],
+    yAxis : [
+        {
+            type : 'value'
+        }
+    ],
+    series : [
+        {
+            name:'Facebook Likes',
+            type:'line',
+            stack: 'Total',
+            areaStyle: {},
+            data: facebookLikes
+        },
+        {
+            name:'Instagram Followers',
+            type:'line',
+            stack: 'Total',
+            areaStyle: {},
+            data: instagramFollowers
+        },
+        {
+            name:'Pinterest Pins',
+            type:'line',
+            stack: 'Total',
+            areaStyle: {},
+            data: pinterestPins
+        },
+        {
+            name:'Twitter Mentions',
+            type:'line',
+            stack: 'Total',
+            areaStyle: {},
+            data: twitterMentions
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

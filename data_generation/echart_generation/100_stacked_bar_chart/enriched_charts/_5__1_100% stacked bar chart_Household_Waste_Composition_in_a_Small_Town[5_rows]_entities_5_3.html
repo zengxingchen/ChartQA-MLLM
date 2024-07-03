@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 800,  // width of the chart
+    height: 600  // height of the chart
+});
+var app = {};
+
+var option;
+
+app.title = 'Economics & Finance: Economic Growth by Sector';
+
+option = {
+    color: ['#2077B4', '#8BBA51', '#763E9B', '#CE5D57', '#DAA520'], // Custom color scheme
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Agriculture', 'Manufacturing', 'Services', 'Construction', 'Technology'],
+        textStyle: {
+            color: '#333' // set legend text color
+        },
+        top: '5%', // set legend position
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01],
+        max: 100  // Setting the xAxis to a fixed value of 100 for percentage
+    },
+    yAxis: {
+        type: 'category',
+        data: ['2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020']
+    },
+    series: [
+        {
+            name: 'Agriculture',
+            type: 'bar',
+            stack: 'total',
+            barWidth: '50%', // Custom bar width
+            data: [10, 15, 12, 11, 14, 13, 16, 17, 18, 19]
+        },
+        {
+            name: 'Manufacturing',
+            type: 'bar',
+            stack: 'total',
+            barWidth: '50%', // Custom bar width
+            data: [20, 18, 22, 26, 23, 19, 17, 15, 14, 13]
+        },
+        {
+            name: 'Services',
+            type: 'bar',
+            stack: 'total',
+            barWidth: '50%', // Custom bar width
+            data: [40, 42, 45, 42, 43, 47, 48, 50, 53, 55]
+        },
+        {
+            name: 'Construction',
+            type: 'bar',
+            stack: 'total',
+            barWidth: '50%', // Custom bar width
+            data: [20, 15, 10, 12, 10, 11, 9, 8, 7, 6]
+        },
+        {
+            name: 'Technology',
+            type: 'bar',
+            stack: 'total',
+            barWidth: '50%', // Custom bar width
+            data: [10, 10, 11, 9, 10, 10, 10, 10, 8, 7]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

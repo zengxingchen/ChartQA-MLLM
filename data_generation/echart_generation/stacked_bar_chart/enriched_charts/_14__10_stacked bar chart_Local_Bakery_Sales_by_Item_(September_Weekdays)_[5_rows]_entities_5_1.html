@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, { width: 800, height: 600 });
+var option;
+
+option = {
+    title: {
+        text: 'Daily Vitamin Intake from Different Foods',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: { type: 'shadow' }
+    },
+    legend: {
+        data: ['Vitamins A (IU)', 'Vitamins C (mg)', 'Vitamins D (IU)', 'Vitamins E (mg)'],
+        top: 50
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01]
+    },
+    yAxis: {
+        type: 'category',
+        data: ['Carrots', 'Oranges', 'Salmon', 'Almonds', 'Spinach', 'Milk', 'Tomatoes', 'Eggs', 'Broccoli']
+    },
+    series: [
+        {
+            name: 'Vitamins A (IU)',
+            type: 'bar',
+            stack: 'Total',
+            label: { show: true },
+            itemStyle: { color: '#FF6347' },
+            data: [3340, 225, 149, 0, 2813, 500, 1025, 520, 623]
+        },
+        {
+            name: 'Vitamins C (mg)',
+            type: 'bar',
+            stack: 'Total',
+            label: { show: true },
+            itemStyle: { color: '#32CD32' },
+            data: [6, 53.2, 0, 0, 28.1, 0, 13.7, 0, 89.2]
+        },
+        {
+            name: 'Vitamins D (IU)',
+            type: 'bar',
+            stack: 'Total',
+            label: { show: true },
+            itemStyle: { color: '#FFD700' },
+            data: [0, 0, 570, 0, 0, 120, 0, 37, 0]
+        },
+        {
+            name: 'Vitamins E (mg)',
+            type: 'bar',
+            stack: 'Total',
+            label: { show: true },
+            itemStyle: { color: '#8A2BE2' },
+            data: [0.66, 0.18, 1.1, 7.3, 0.64, 0.1, 1.2, 0.5, 0.8]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

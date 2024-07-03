@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, { width: 800, height: 600 });
+var app = {};
+
+var option = {
+    title: {
+        text: 'Global Population Growth (2000-2022)',
+        left: 'center',
+        textStyle: {
+            color: '#333333',
+            fontSize: 24
+        }
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ['2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022']
+    },
+    yAxis: {
+        type: 'value',
+        axisLabel: {
+            formatter: '{value} B'
+        }
+    },
+    series: [{
+        name: 'Population',
+        type: 'line',
+        data: [6.12, 6.20, 6.28, 6.36, 6.44, 6.52, 6.60, 6.68, 6.76, 6.84, 6.92, 7.00, 7.08, 7.16, 7.24, 7.32, 7.40, 7.48, 7.56, 7.64, 7.72, 7.80, 7.88],
+        label: {
+            show: true,
+            position: 'top',
+            formatter: '{c}B'
+        },
+        lineStyle: {
+            color: '#FF5733',
+            width: 3
+        },
+        itemStyle: {
+            color: '#C70039'
+        },
+        areaStyle: {
+            color: 'rgba(255, 87, 51, 0.3)'
+        }
+    }],
+    color: ['#FF5733']
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

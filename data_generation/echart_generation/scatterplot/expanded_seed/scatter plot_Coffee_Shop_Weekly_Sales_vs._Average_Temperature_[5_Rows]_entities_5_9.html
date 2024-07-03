@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, 'default');
+var rawData = [
+  {'Day': 'Monday', 'Average Temperature (F)': 70, 'Total Sales ($)': 500},
+  {'Day': 'Tuesday', 'Average Temperature (F)': 68, 'Total Sales ($)': 430},
+  {'Day': 'Wednesday', 'Average Temperature (F)': 75, 'Total Sales ($)': 550},
+  {'Day': 'Thursday', 'Average Temperature (F)': 71, 'Total Sales ($)': 470},
+  {'Day': 'Friday', 'Average Temperature (F)': 69, 'Total Sales ($)': 460}
+];
+
+var data = rawData.map(function(item) {
+  return [
+    item['Average Temperature (F)'],
+    item['Total Sales ($)'],
+    item['Day']
+  ];
+});
+
+var option = {
+  title: {
+    text: 'Sales vs Temperature Scatterplot',
+    subtext: 'Correlation between temperature and total sales'
+  },
+  tooltip: {
+    trigger: 'axis',
+    showDelay: 0,
+    formatter: function (params) {
+      if (params.value.length > 1) {
+        return params.value[2] + '<br/>'
+          + 'Temperature: ' + params.value[0] + '°F<br/>'
+          + 'Sales: $ ' + params.value[1];
+      }
+    },
+    axisPointer: {
+      show: true,
+      type: 'cross',
+      lineStyle: {
+        type: 'dashed',
+        width: 1
+      }
+    }
+  },
+  xAxis: {
+    type: 'value',
+    scale: true,
+    axisLabel: {
+      formatter: '{value} °F'
+    },
+    splitLine: {
+      show: false
+    },
+    name: 'Average Temperature (F)'
+  },
+  yAxis: {
+    type: 'value',
+    scale: true,
+    axisLabel: {
+      formatter: '${value}'
+    },
+    splitLine: {
+      show: false
+    },
+    name: 'Total Sales ($)'
+  },
+  grid: {
+    left: '3%',
+    right: '7%',
+    bottom: '3%',
+    containLabel: true
+  },
+  series: [{
+    name: 'Sales vs Temperature',
+    type: 'scatter',
+    data: data,
+    markArea: {
+      silent: true,
+      itemStyle: {
+        normal: {
+          color: 'transparent',
+          borderWidth: 1,
+          borderType: 'dashed'
+        }
+      }
+    },
+    markPoint: {
+      data: [
+        {type: 'max', name: 'Max Sales'},
+        {type: 'min', name: 'Min Sales'}
+      ]
+    },
+    markLine: {
+      lineStyle: {
+        normal: {
+          type: 'solid'
+        }
+      },
+      data: [
+        {type: 'average', name: 'Average Temperature'},
+        {type: 'average', name: 'Average Sales', valueIndex: 1}
+      ]
+    },
+    itemStyle: {
+      normal: {
+        shadowBlur: 10,
+        shadowColor: 'rgba(120, 36, 50, 0.5)',
+        shadowOffsetY: 5,
+        color: new echarts.graphic.RadialGradient(0.4, 0.3, 1, [{
+          offset: 0,
+          color: 'rgb(251, 118, 123)'
+        }, {
+          offset: 1,
+          color: 'rgb(204, 46, 72)'
+        }])
+      }
+    }
+  }]
+};
+
+if (option && typeof option === 'object') {
+  myChart.setOption(option, true);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

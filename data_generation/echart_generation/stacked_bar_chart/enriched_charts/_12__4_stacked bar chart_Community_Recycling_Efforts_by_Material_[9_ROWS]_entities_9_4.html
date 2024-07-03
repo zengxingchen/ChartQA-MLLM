@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var option;
+
+option = {
+    title: {
+        text: 'Energy Consumption by Source (2019-2023)',
+        left: 'center',
+        top: '10',
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Renewable Energy', 'Fossil Fuels', 'Nuclear Energy', 'Hydroelectric Power', 'Biomass Energy', 'Geothermal Energy'],
+        top: '40'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01]
+    },
+    yAxis: {
+        type: 'category',
+        data: ['2019', '2020', '2021', '2022', '2023']
+    },
+    series: [
+        {
+            name: 'Renewable Energy',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            data: [120, 150, 180, 220, 260],
+            itemStyle: {
+                color: '#1f78b4'
+            },
+            barWidth: '50%',
+        },
+        {
+            name: 'Fossil Fuels',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            data: [200, 190, 180, 160, 140],
+            itemStyle: {
+                color: '#33a02c'
+            },
+            barWidth: '50%',
+        },
+        {
+            name: 'Nuclear Energy',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            data: [80, 90, 100, 110, 120],
+            itemStyle: {
+                color: '#e31a1c'
+            },
+            barWidth: '50%',
+        },
+        {
+            name: 'Hydroelectric Power',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            data: [60, 65, 70, 75, 80],
+            itemStyle: {
+                color: '#ff7f00'
+            },
+            barWidth: '50%',
+        },
+        {
+            name: 'Biomass Energy',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            data: [40, 50, 60, 70, 80],
+            itemStyle: {
+                color: '#6a3d9a'
+            },
+            barWidth: '50%',
+        },
+        {
+            name: 'Geothermal Energy',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            data: [30, 35, 40, 45, 50],
+            itemStyle: {
+                color: '#b15928'
+            },
+            barWidth: '50%',
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

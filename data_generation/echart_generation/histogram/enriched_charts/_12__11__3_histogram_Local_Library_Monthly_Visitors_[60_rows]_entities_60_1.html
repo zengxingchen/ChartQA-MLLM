@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 800,
+    height: 600
+});
+var option;
+
+option = {
+    title: {
+        text: 'Distribution of Future Technology Investments',
+        left: 'center',
+        top: '10'
+    },
+    xAxis: {
+        type: 'category',
+        data: [
+            '0-100', '100-200', '200-300', '300-400', '400-500', '500-600', '600-700', '700-800', 
+            '800-900', '900-1000', '1000-1100', '1100-1200', '1200-1300', '1300-1400', '1400-1500'
+        ],
+        name: 'Investment Ranges',
+        nameLocation: 'middle',
+        nameTextStyle: {
+            fontWeight: 'bold',
+            fontSize: 14,
+            padding: 20
+        }
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Frequency',
+        nameLocation: 'middle',
+        nameTextStyle: {
+            fontWeight: 'bold',
+            fontSize: 14,
+            padding: 30
+        }
+    },
+    series: [{
+        data: [
+            1, 2, 3, 2, 2, 2, 2, 2, 2, 2, 3, 2, 2, 2, 2
+        ],
+        type: 'bar',
+        barWidth: '30%',
+        itemStyle: {
+            color: '#2ecc71'
+        },
+        label: {
+            show: true,
+            position: 'top',
+            formatter: '{@value}'
+        }
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+var app = {};
+var option;
+
+option = {
+    title: {
+        text: 'Art Event Participation',
+        left: 'center',
+        top: '5%'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {            
+            type: 'shadow'
+        }
+    },
+    legend: {
+        top: '10%',
+        left: 'center'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        axisLabel: {
+            rotate: 30
+        },
+        data: ['Q1 2021', 'Q2 2021', 'Q3 2021', 'Q4 2021', 'Q1 2022', 'Q2 2022', 'Q3 2022', 'Q4 2022']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Art Sales',
+            type: 'bar',
+            stack: 'Total',
+            barWidth: '30%',
+            itemStyle: {
+                color: '#1f77b4'
+            },
+            label: {
+                show: true,
+                position: 'inside'
+            },
+            data: [150, 200, 250, 300, 350, 400, 450, 500]
+        },
+        {
+            name: 'Exhibitions',
+            type: 'bar',
+            stack: 'Total',
+            barWidth: '30%',
+            itemStyle: {
+                color: '#ff7f0e'
+            },
+            label: {
+                show: true,
+                position: 'inside'
+            },
+            data: [80, 90, 100, 110, 120, 130, 140, 150]
+        },
+        {
+            name: 'Workshops',
+            type: 'bar',
+            stack: 'Total',
+            barWidth: '30%',
+            itemStyle: {
+                color: '#2ca02c'
+            },
+            label: {
+                show: true,
+                position: 'inside'
+            },
+            data: [60, 70, 80, 90, 100, 110, 120, 130]
+        },
+        {
+            name: 'Online Events',
+            type: 'bar',
+            stack: 'Total',
+            barWidth: '30%',
+            itemStyle: {
+                color: '#d62728'
+            },
+            label: {
+                show: true,
+                position: 'inside'
+            },
+            data: [40, 50, 60, 70, 80, 90, 100, 110]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

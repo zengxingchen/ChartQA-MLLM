@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 400});
+
+var option;
+
+option = {
+    title: {
+        text: 'Discoveries in Science & Nature',
+        subtext: 'Yearly Decrease of New Species Discovered',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            label: {
+                backgroundColor: '#6a7985'
+            }
+        }
+    },
+    legend: {
+        data: ['Species Discovered'],
+        right: 10
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ['2000-01', '2000-02', '2000-03', '2000-04', '2000-05', '2000-06', '2000-07', '2000-08', '2000-09', '2000-10', '2000-11', '2000-12', '2001-01', '2001-02', '2001-03', '2001-04', '2001-05', '2001-06', '2001-07', '2001-08', '2001-09', '2001-10', '2001-11', '2001-12']
+    },
+    yAxis: {
+        type: 'value',
+        axisLabel: {
+            formatter: '{value} species'
+        }
+    },
+    series: [{
+        name: 'Species Discovered',
+        type: 'line',
+        stack: 'Total',
+        areaStyle: {},
+        emphasis: {
+            focus: 'series'
+        },
+        data: [150, 145, 138, 130, 126, 121, 117, 112, 108, 100, 95, 90, 87, 82, 80, 75, 72, 68, 65, 60, 58, 55, 50, 48],
+        markPoint: {
+            data: [
+                {type: 'max', name: 'Max', symbolSize: 80},
+                {type: 'min', name: 'Min', symbolSize: 80}
+            ]
+        }
+    }],
+    color: ['#00aaff', '#f08080', '#66cdaa', '#ffec8b', '#c1c1c1'],
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

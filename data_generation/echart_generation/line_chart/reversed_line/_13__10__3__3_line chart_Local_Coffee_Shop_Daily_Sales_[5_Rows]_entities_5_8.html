@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+var option;
+
+option = {
+    title: {
+        text: 'Monthly Sales Data',
+        left: 'center',
+        top: '10'
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    xAxis: {
+        type: 'category',
+        data: ['2023-01-01', '2023-02-01', '2023-03-01', '2023-04-01', '2023-05-01', '2023-06-01', '2023-07-01', '2023-08-01', '2023-09-01', '2023-10-01', '2023-11-01', '2023-12-01'],
+        axisLabel: {
+            formatter: function (value) {
+                return echarts.format.formatTime('yyyy-MM-dd', value);
+            }
+        }
+    },
+    yAxis: {
+        type: 'value',
+        inverse: true
+    },
+    series: [{
+        name: 'Sales',
+        type: 'line',
+        data: [10, 20, 15, 25, 30, 28, 35, 40, 38, 45, 50, 55],
+        lineStyle: {
+            color: '#FF6347'
+        },
+        itemStyle: {
+            color: '#FF6347'
+        },
+        label: {
+            show: true,
+            position: 'top'
+        }
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,161 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "The distribution of exercise types over a week.",
+    "title": {
+        "text": "Weekly Exercise Duration",
+        "anchor": "start",
+        "offset": 5,
+        "color": "#333"
+    },
+    "data": {
+        "values": [
+            {
+                "Day": "Monday",
+                "Running": 30,
+                "Cycling": 40,
+                "Swimming": 20,
+                "Yoga": 5,
+                "Weights": 5
+            },
+            {
+                "Day": "Tuesday",
+                "Running": 25,
+                "Cycling": 35,
+                "Swimming": 25,
+                "Yoga": 10,
+                "Weights": 5
+            },
+            {
+                "Day": "Wednesday",
+                "Running": 35,
+                "Cycling": 30,
+                "Swimming": 20,
+                "Yoga": 10,
+                "Weights": 5
+            },
+            {
+                "Day": "Thursday",
+                "Running": 40,
+                "Cycling": 25,
+                "Swimming": 20,
+                "Yoga": 10,
+                "Weights": 5
+            },
+            {
+                "Day": "Friday",
+                "Running": 20,
+                "Cycling": 25,
+                "Swimming": 35,
+                "Yoga": 15,
+                "Weights": 5
+            },
+            {
+                "Day": "Saturday",
+                "Running": 15,
+                "Cycling": 30,
+                "Swimming": 40,
+                "Yoga": 10,
+                "Weights": 5
+            },
+            {
+                "Day": "Sunday",
+                "Running": 20,
+                "Cycling": 35,
+                "Swimming": 25,
+                "Yoga": 10,
+                "Weights": 10
+            }
+        ]
+    },
+    "width": 600,
+    "height": 300,
+    "transform": [
+        {
+            "fold": [
+                "Running",
+                "Cycling",
+                "Swimming",
+                "Yoga",
+                "Weights"
+            ],
+            "as": [
+                "Exercise Type",
+                "Duration"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "bar",
+        "height": {
+            "band": 0.7
+        }
+    },
+    "encoding": {
+        "x": {
+            "field": "Day",
+            "type": "nominal",
+            "axis": {
+                "title": "Day of the Week"
+            }
+        },
+        "y": {
+            "field": "Duration",
+            "type": "quantitative",
+            "axis": {
+                "title": "Percentage"
+            },
+            "stack": "normalize"
+        },
+        "color": {
+            "field": "Exercise Type",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Running",
+                    "Cycling",
+                    "Swimming",
+                    "Yoga",
+                    "Weights"
+                ],
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e",
+                    "#2ca02c",
+                    "#d62728",
+                    "#9467bd"
+                ]
+            },
+            "legend": {
+                "title": "Exercise Type",
+                "orient": "top-right",
+                "offset": 20
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Day",
+                "type": "nominal",
+                "title": "Day"
+            },
+            {
+                "field": "Exercise Type",
+                "type": "nominal",
+                "title": "Exercise Type"
+            },
+            {
+                "field": "Duration",
+                "type": "quantitative",
+                "title": "Percentage",
+                "format": ".2%"
+            }
+        ]
+    },
+    "config": {
+        "view": {
+            "stroke": "transparent"
+        },
+        "axis": {
+            "domainWidth": 1
+        }
+    }
+}

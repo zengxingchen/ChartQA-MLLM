@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 'auto', height: '500px'});
+var app = {};
+
+var option;
+option = {
+    title: {
+        text: 'Annual Revenue of Tech Companies',
+        left: 'center',
+        textStyle: {
+            color: '#333',
+            fontWeight: 'bold',
+            fontSize: 20,
+        }
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['Company A', 'Company B', 'Company C'],
+        top: '7%'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        top: '15%',
+        containLabel: true
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {},
+            dataView: {},
+            magicType: {type: ['line', 'bar', 'stack', 'tiled']},
+            restore: {}
+        }
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ['2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Company A',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [1200, 1340, 1290, 1400, 1550, 1660, 1760, 1870, 2000, 2100, 2200],
+            color: '#FF7F50'
+        },
+        {
+            name: 'Company B',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [2000, 2200, 2100, 2150, 2300, 2400, 2500, 2650, 2700, 2800, 2950],
+            color: '#6A5ACD'
+        },
+        {
+            name: 'Company C',
+            type: 'line',
+            stack: 'Total',
+            label: {
+                show: true,
+                position: 'top'
+            },
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [3100, 3220, 3400, 3600, 3800, 3900, 4100, 4200, 4300, 4400, 4600],
+            color: '#3CB371'
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

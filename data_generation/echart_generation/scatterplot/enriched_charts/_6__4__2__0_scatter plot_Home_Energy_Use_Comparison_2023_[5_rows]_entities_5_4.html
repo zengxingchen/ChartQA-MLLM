@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+var option;
+
+option = {
+    title: {
+        text: 'Impact of Study Hours on Exam Scores',
+        left: 'center',
+        top: '5%'
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['Scores'],
+        left: '10%',
+        top: '10%'
+    },
+    xAxis: {
+        name: 'Study Hours',
+        type: 'value',
+        min: 0,
+        max: 100
+    },
+    yAxis: {
+        name: 'Exam Scores',
+        type: 'value',
+        min: 0,
+        max: 200
+    },
+    series: [
+        {
+            name: 'Scores',
+            type: 'scatter',
+            data: [
+                [12, 50], [14, 55], [16, 53], [18, 60], [20, 65], [22, 62],
+                [24, 70], [26, 68], [28, 75], [30, 80], [32, 78], [34, 85],
+                [36, 88], [38, 90], [40, 95], [42, 93], [44, 100], [46, 98],
+                [48, 105], [50, 110], [52, 108], [54, 115], [56, 120], [58, 118],
+                [60, 125], [62, 123], [64, 130], [66, 135], [68, 133], [70, 140],
+                [72, 145], [74, 143], [76, 150], [78, 155], [80, 153], [82, 160],
+                [84, 165], [86, 163], [88, 170], [90, 175], [92, 173], [94, 180],
+                [96, 185], [98, 183], [100, 190]
+            ],
+            itemStyle: {
+                color: '#ff5733'
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

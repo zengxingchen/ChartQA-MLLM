@@ -1,0 +1,201 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Monthly Gym Attendance by Age Group",
+    "data": {
+        "values": [
+            {
+                "Month": "January",
+                "Children": 50,
+                "Teens": 60,
+                "Adults": 70,
+                "Seniors": 55,
+                "Middle-aged": 65
+            },
+            {
+                "Month": "February",
+                "Children": 52,
+                "Teens": 65,
+                "Adults": 75,
+                "Seniors": 58,
+                "Middle-aged": 68
+            },
+            {
+                "Month": "March",
+                "Children": 55,
+                "Teens": 70,
+                "Adults": 80,
+                "Seniors": 60,
+                "Middle-aged": 70
+            },
+            {
+                "Month": "April",
+                "Children": 57,
+                "Teens": 72,
+                "Adults": 82,
+                "Seniors": 62,
+                "Middle-aged": 72
+            },
+            {
+                "Month": "May",
+                "Children": 60,
+                "Teens": 75,
+                "Adults": 85,
+                "Seniors": 65,
+                "Middle-aged": 75
+            },
+            {
+                "Month": "June",
+                "Children": 62,
+                "Teens": 78,
+                "Adults": 88,
+                "Seniors": 67,
+                "Middle-aged": 77
+            },
+            {
+                "Month": "July",
+                "Children": 65,
+                "Teens": 80,
+                "Adults": 90,
+                "Seniors": 70,
+                "Middle-aged": 80
+            },
+            {
+                "Month": "August",
+                "Children": 68,
+                "Teens": 82,
+                "Adults": 92,
+                "Seniors": 72,
+                "Middle-aged": 82
+            },
+            {
+                "Month": "September",
+                "Children": 70,
+                "Teens": 85,
+                "Adults": 95,
+                "Seniors": 75,
+                "Middle-aged": 85
+            },
+            {
+                "Month": "October",
+                "Children": 72,
+                "Teens": 87,
+                "Adults": 97,
+                "Seniors": 78,
+                "Middle-aged": 87
+            },
+            {
+                "Month": "November",
+                "Children": 75,
+                "Teens": 90,
+                "Adults": 100,
+                "Seniors": 80,
+                "Middle-aged": 90
+            },
+            {
+                "Month": "December",
+                "Children": 78,
+                "Teens": 92,
+                "Adults": 102,
+                "Seniors": 82,
+                "Middle-aged": 92
+            }
+        ]
+    },
+    "width": 1000,
+    "height": 500,
+    "transform": [
+        {
+            "fold": [
+                "Children",
+                "Teens",
+                "Adults",
+                "Seniors",
+                "Middle-aged"
+            ],
+            "as": [
+                "Age Group",
+                "Gym Attendance"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "line",
+        "point": true,
+        "tooltip": true
+    },
+    "encoding": {
+        "x": {
+            "field": "Month",
+            "type": "ordinal",
+            "title": "Month",
+            "axis": {
+                "labelAngle": 0
+            }
+        },
+        "y": {
+            "field": "Gym Attendance",
+            "type": "quantitative",
+            "title": "Average Gym Attendance"
+        },
+        "color": {
+            "field": "Age Group",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Children",
+                    "Teens",
+                    "Adults",
+                    "Seniors",
+                    "Middle-aged"
+                ],
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e",
+                    "#2ca02c",
+                    "#d62728",
+                    "#9467bd"
+                ]
+            },
+            "title": "Age Group"
+        },
+        "tooltip": [
+            {
+                "field": "Month",
+                "type": "nominal"
+            },
+            {
+                "field": "Age Group",
+                "type": "nominal"
+            },
+            {
+                "field": "Gym Attendance",
+                "type": "quantitative"
+            }
+        ],
+        "text": {
+            "field": "Gym Attendance",
+            "type": "quantitative"
+        }
+    },
+    "layer": [
+        {
+            "mark": {
+                "type": "line"
+            }
+        },
+        {
+            "mark": {
+                "type": "text",
+                "align": "left",
+                "dx": 5,
+                "dy": -5
+            },
+            "encoding": {
+                "text": {
+                    "field": "Gym Attendance",
+                    "type": "quantitative"
+                }
+            }
+        }
+    ]
+}

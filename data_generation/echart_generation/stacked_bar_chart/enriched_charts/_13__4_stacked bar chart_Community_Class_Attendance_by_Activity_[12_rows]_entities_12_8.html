@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+var option;
+
+option = {
+    title: {
+        text: 'Art Creation Trends Over Years',
+        left: 'center',
+        top: '10'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        top: 'bottom'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '10%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        data: ['2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023'],
+        axisLabel: {
+            rotate: 45
+        }
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Painting',
+            type: 'bar',
+            stack: 'Total',
+            barWidth: 20,
+            color: '#FF5733',
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            data: [35, 38, 40, 42, 45, 48, 50, 53]
+        },
+        {
+            name: 'Drawing',
+            type: 'bar',
+            stack: 'Total',
+            barWidth: 20,
+            color: '#33FF57',
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            data: [40, 42, 43, 45, 48, 50, 53, 55]
+        },
+        {
+            name: 'Sculpture',
+            type: 'bar',
+            stack: 'Total',
+            barWidth: 20,
+            color: '#3357FF',
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            data: [15, 18, 20, 23, 25, 28, 30, 33]
+        },
+        {
+            name: 'Photography',
+            type: 'bar',
+            stack: 'Total',
+            barWidth: 20,
+            color: '#FF33A6',
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            data: [10, 12, 14, 16, 18, 20, 22, 24]
+        },
+        {
+            name: 'Digital Art',
+            type: 'bar',
+            stack: 'Total',
+            barWidth: 20,
+            color: '#33FFA6',
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            data: [20, 22, 25, 27, 30, 32, 35, 37]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

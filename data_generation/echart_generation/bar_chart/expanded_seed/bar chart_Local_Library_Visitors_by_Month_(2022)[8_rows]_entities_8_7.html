@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+
+var option;
+
+// Data
+var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August'];
+var childrenData = [340, 280, 360, 400, 440, 480, 520, 500];
+var teensData = [220, 200, 250, 300, 320, 340, 360, 330];
+var adultsData = [789, 650, 720, 780, 790, 820, 860, 810];
+var seniorsData = [410, 390, 400, 420, 430, 410, 420, 415];
+
+option = {
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {            
+            type: 'shadow'        
+        }
+    },
+    legend: {
+        data: ['Children (Ages 0-14)', 'Teens (Ages 15-18)', 'Adults (Ages 19-64)', 'Seniors (65+)']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        data: months,
+        axisTick: {
+            alignWithLabel: true
+        }
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Children (Ages 0-14)',
+            type: 'bar',
+            barGap: 0,
+            emphasis: {
+                focus: 'series'
+            },
+            data: childrenData
+        },
+        {
+            name: 'Teens (Ages 15-18)',
+            type: 'bar',
+            emphasis: {
+                focus: 'series'
+            },
+            data: teensData
+        },
+        {
+            name: 'Adults (Ages 19-64)',
+            type: 'bar',
+            emphasis: {
+                focus: 'series'
+            },
+            data: adultsData
+        },
+        {
+            name: 'Seniors (65+)',
+            type: 'bar',
+            emphasis: {
+                focus: 'series'
+            },
+            data: seniorsData
+        }
+    ],
+    color: ['#5470C6', '#91CC75', '#FAC858', '#EE6666'],
+    toolbox: {
+        feature: {
+            saveAsImage: {},
+            restore: {},
+            dataView: {},
+            magicType: {
+                type: ['line', 'bar', 'stack']
+            },
+            dataZoom: {
+                yAxisIndex: 'none'
+            },
+            brush: {
+                type: ['rect', 'polygon', 'lineX', 'lineY', 'keep', 'clear']
+            }
+        }
+    },
+    dataZoom: [
+        {
+            type: 'inside',
+            start: 0,
+            end: 100
+        },
+        {
+            start: 0,
+            end: 10,
+            handleIcon: 'M8.2,13.5V7.4h1.4v6.1H8.2z M0.1,2.9h2.4v1.4H0.1V2.9z M13.4,1.5h-2.4V0.1h2.4V1.5z',
+            handleSize: '80%',
+            handleStyle: {
+                color: '#fff',
+                shadowBlur: 3,
+                shadowColor: 'rgba(0, 0, 0, 0.6)',
+                shadowOffsetX: 2,
+                shadowOffsetY: 2
+            }
+        }
+    ],
+    responsive: true
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

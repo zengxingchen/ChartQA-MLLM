@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Sector Growth Over Years',
+        left: 'center',
+        top: '10'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['2019', '2020', '2021', '2022'],
+        top: '10',
+        left: 'left'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        data: ['Agriculture', 'Manufacturing', 'Services', 'Technology', 'Finance'],
+        axisLabel: {
+            interval: 0,
+            rotate: 30
+        }
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: '2019',
+            type: 'bar',
+            stack: 'Total',
+            barWidth: '50%',
+            color: '#FF6F61',
+            data: [12, 25, 30, 15, 20]
+        },
+        {
+            name: '2020',
+            type: 'bar',
+            stack: 'Total',
+            color: '#6B5B95',
+            data: [15, 28, 33, 18, 22]
+        },
+        {
+            name: '2021',
+            type: 'bar',
+            stack: 'Total',
+            color: '#88B04B',
+            data: [20, 30, 38, 22, 25]
+        },
+        {
+            name: '2022',
+            type: 'bar',
+            stack: 'Total',
+            color: '#F7CAC9',
+            data: [18, 35, 40, 25, 28]
+        }
+    ],
+    label: {
+        show: true,
+        position: 'insideBottom',
+        distance: 5,
+        align: 'left',
+        verticalAlign: 'middle',
+        rotate: 90,
+        formatter: '{a}: {c}'
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

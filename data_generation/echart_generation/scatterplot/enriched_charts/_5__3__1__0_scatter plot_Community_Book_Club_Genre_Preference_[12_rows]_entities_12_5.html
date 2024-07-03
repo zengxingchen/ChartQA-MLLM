@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var app = {};
+var option;
+
+option = {
+    title: {
+        text: 'Sleep Duration vs. Cognitive Performance',
+        left: 'center',
+        top: '5%'
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: function (params) {
+            return 'Sleep Duration: ' + params.value[0] + ' hours<br/>Cognitive Performance: ' + params.value[1] + ' score';
+        }
+    },
+    xAxis: {
+        name: 'Sleep Duration (hours)',
+        nameLocation: 'middle',
+        nameGap: 30
+    },
+    yAxis: {
+        name: 'Cognitive Performance (score)',
+        nameLocation: 'middle',
+        nameGap: 40
+    },
+    series: [{
+        symbolSize: 10,
+        data: [
+            [4.1, 72],
+            [5.2, 78],
+            [6.0, 85],
+            [7.1, 92],
+            [8.0, 88],
+            [8.5, 90],
+            [9.1, 80],
+            [4.5, 75],
+            [5.8, 82],
+            [6.5, 87],
+            [7.0, 89],
+            [7.5, 91],
+            [8.2, 85],
+            [9.0, 83]
+        ],
+        type: 'scatter',
+        itemStyle: {
+            color: '#FF5733'
+        }
+    }],
+    legend: {
+        data: ['Cognitive Performance'],
+        top: '10%',
+        left: 'right'
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

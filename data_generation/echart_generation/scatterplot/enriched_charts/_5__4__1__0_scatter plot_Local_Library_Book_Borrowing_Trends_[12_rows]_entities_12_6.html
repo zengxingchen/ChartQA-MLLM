@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+option = {
+    title: {
+        text: 'Relationship between Study Time and Exam Scores',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: function (params) {
+            return 'X: ' + params.value[0] + '<br/>Y: ' + params.value[1];
+        }
+    },
+    legend: {
+        data: ['Study Time vs Exam Scores'],
+        left: 'left'
+    },
+    xAxis: {
+        name: 'Study Time (hours)',
+        type: 'value'
+    },
+    yAxis: {
+        name: 'Exam Score (%)',
+        type: 'value'
+    },
+    series: [{
+        name: 'Study Time vs Exam Scores',
+        type: 'scatter',
+        data: [
+            [1, 10],
+            [2, 15],
+            [3, 12],
+            [4, 20],
+            [5, 18],
+            [6, 22],
+            [7, 25],
+            [8, 24],
+            [9, 30],
+            [10, 28],
+            [11, 35],
+            [12, 32],
+            [13, 38],
+            [14, 36],
+            [15, 40],
+            [16, 42],
+            [17, 45],
+            [18, 43],
+            [19, 50],
+            [20, 48]
+        ],
+        itemStyle: {
+            color: '#FF5733'
+        }
+    }],
+    grid: {
+        width: '80%',
+        height: '70%',
+        top: '15%'
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

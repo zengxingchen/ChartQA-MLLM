@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+            var dom = document.getElementById('container');
+            var myChart = echarts.init(dom, null, {
+            renderer: 'canvas',
+            useDirtyRect: false
+            });
+            var app = {};
+            
+            var option;
+
+            
+option = {
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Compost (%)', 'Recyclables (%)', 'Landfill Waste (%)']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01],
+        max: 100,
+        axisLabel: {
+            formatter: '{value} %'
+        }
+    },
+    yAxis: {
+        type: 'category',
+        data: ['2019', '2020', '2021', '2022']
+    },
+    series: [
+        {
+            name: 'Compost (%)',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                formatter: '{b}: {c}%'
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [25, 30, 35, 40],
+            itemStyle: {
+                color: '#8cc152'
+            }
+        },
+        {
+            name: 'Recyclables (%)',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                formatter: '{b}: {c}%'
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [45, 40, 40, 35],
+            itemStyle: {
+                color: '#4a89dc'
+            }
+        },
+        {
+            name: 'Landfill Waste (%)',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                formatter: '{b}: {c}%'
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [30, 30, 25, 25],
+            itemStyle: {
+                color: '#d9544f'
+            }
+        }
+    ]
+};
+
+            if (option && typeof option === 'object') {
+            myChart.setOption(option);
+            }
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

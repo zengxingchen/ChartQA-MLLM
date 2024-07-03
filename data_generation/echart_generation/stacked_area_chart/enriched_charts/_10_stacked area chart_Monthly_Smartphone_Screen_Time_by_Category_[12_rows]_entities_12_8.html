@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 1024, height: 768});
+var app = {};
+
+var option;
+
+option = {
+  title: {
+    text: 'Advancements in Home Technology',
+    subtext: 'Electric Cars, Solar Energy, and Smart Homes',
+    left: 'center',
+    top: 20
+  },
+  tooltip: {
+    trigger: 'axis',
+    axisPointer: {
+      type: 'cross',
+      label: {
+        backgroundColor: '#6a7985'
+      }
+    }
+  },
+  legend: {
+    data: ['Electric Cars', 'Solar Energy', 'Smart Homes'],
+    top: 50
+  },
+  toolbox: {
+    feature: {
+      saveAsImage: {}
+    }
+  },
+  grid: {
+    left: '3%',
+    right: '4%',
+    bottom: '3%',
+    containLabel: true
+  },
+  xAxis: {
+    type: 'category',
+    boundaryGap: false,
+    data: [
+      '2015-01', '2015-02', '2015-03', '2015-04', '2015-05',
+      '2015-06', '2015-07', '2015-08', '2015-09', '2015-10',
+      '2015-11', '2015-12', '2016-01', '2016-02', '2016-03',
+      '2016-04', '2016-05', '2016-06', '2016-07', '2016-08',
+      '2016-09', '2016-10', '2016-11', '2016-12', '2017-01',
+      '2017-02', '2017-03', '2017-04', '2017-05', '2017-06',
+      '2017-07', '2017-08', '2017-09', '2017-10', '2017-11', '2017-12'
+    ]
+  },
+  yAxis: {
+    type: 'value'
+  },
+  series: [
+    {
+      name: 'Electric Cars',
+      type: 'line',
+      stack: 'Total',
+      areaStyle: {},
+      emphasis: {
+        focus: 'series'
+      },
+      data: [
+        120, 150, 175, 200, 225, 250, 275, 300, 320, 340,
+        360, 380, 390, 405, 420, 435, 450, 465, 475, 480,
+        490, 500, 510, 520, 525, 530, 540, 550, 555, 560,
+        565, 570, 575, 580, 585, 590
+      ],
+      color: '#FF5733'
+    },
+    {
+      name: 'Solar Energy',
+      type: 'line',
+      stack: 'Total',
+      areaStyle: {},
+      emphasis: {
+        focus: 'series'
+      },
+      data: [
+        80, 95, 110, 125, 135, 150, 160, 175, 185, 200,
+        210, 220, 230, 240, 250, 260, 270, 280, 285, 290,
+        295, 300, 305, 310, 312, 315, 320, 325, 330, 335,
+        340, 345, 350, 355, 360, 365
+      ],
+      color: '#33FF57'
+    },
+    {
+      name: 'Smart Homes',
+      type: 'line',
+      stack: 'Total',
+      areaStyle: {},
+      emphasis: {
+        focus: 'series'
+      },
+      data: [
+        90, 110, 130, 150, 170, 190, 210, 230, 250, 270,
+        290, 310, 330, 350, 370, 390, 410, 430, 445, 455,
+        465, 475, 480, 485, 487, 490, 495, 500, 505, 510,
+        515, 520, 525, 530, 535, 540
+      ],
+      color: '#3357FF'
+    }
+  ],
+  color: ['#FF5733', '#33FF57', '#3357FF']
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

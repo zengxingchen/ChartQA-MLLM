@@ -1,0 +1,181 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Line chart showing monthly average temperatures by region.",
+    "title": {
+        "text": "Monthly Average Temperatures by Region",
+        "fontSize": 18,
+        "anchor": "start",
+        "color": "#333333"
+    },
+    "width": 700,
+    "height": 450,
+    "data": {
+        "values": [
+            {
+                "Region": "North America",
+                "January": -5,
+                "February": -3,
+                "March": 5,
+                "April": 10,
+                "May": 15,
+                "June": 20,
+                "July": 25,
+                "August": 24,
+                "September": 20,
+                "October": 15,
+                "November": 5,
+                "December": -2
+            },
+            {
+                "Region": "Europe",
+                "January": 0,
+                "February": 2,
+                "March": 8,
+                "April": 12,
+                "May": 17,
+                "June": 22,
+                "July": 25,
+                "August": 24,
+                "September": 20,
+                "October": 14,
+                "November": 8,
+                "December": 2
+            },
+            {
+                "Region": "Asia",
+                "January": 10,
+                "February": 12,
+                "March": 15,
+                "April": 18,
+                "May": 22,
+                "June": 25,
+                "July": 30,
+                "August": 28,
+                "September": 25,
+                "October": 20,
+                "November": 15,
+                "December": 10
+            },
+            {
+                "Region": "Australia",
+                "January": 25,
+                "February": 25,
+                "March": 23,
+                "April": 20,
+                "May": 18,
+                "June": 15,
+                "July": 12,
+                "August": 15,
+                "September": 18,
+                "October": 20,
+                "November": 22,
+                "December": 24
+            },
+            {
+                "Region": "South America",
+                "January": 28,
+                "February": 28,
+                "March": 26,
+                "April": 24,
+                "May": 22,
+                "June": 20,
+                "July": 18,
+                "August": 20,
+                "September": 22,
+                "October": 24,
+                "November": 26,
+                "December": 28
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "January",
+                "February",
+                "March",
+                "April",
+                "May",
+                "June",
+                "July",
+                "August",
+                "September",
+                "October",
+                "November",
+                "December"
+            ],
+            "as": [
+                "Month",
+                "Temperature (\u00b0C)"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "line",
+        "point": true
+    },
+    "encoding": {
+        "x": {
+            "field": "Month",
+            "type": "ordinal",
+            "title": "Month",
+            "axis": {
+                "titleFontSize": 14,
+                "labelAngle": -45
+            }
+        },
+        "y": {
+            "field": "Temperature (\u00b0C)",
+            "type": "quantitative",
+            "title": "Temperature (\u00b0C)",
+            "axis": {
+                "titleFontSize": 14
+            },
+            "scale": {
+                "reverse": true
+            }
+        },
+        "color": {
+            "field": "Region",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "North America",
+                    "Europe",
+                    "Asia",
+                    "Australia",
+                    "South America"
+                ],
+                "range": [
+                    "#0000FF",
+                    "#008000",
+                    "#FF0000",
+                    "#FFA500",
+                    "#800080"
+                ]
+            },
+            "legend": {
+                "title": "Region"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Region",
+                "type": "nominal"
+            },
+            {
+                "field": "Month",
+                "type": "ordinal"
+            },
+            {
+                "field": "Temperature (\u00b0C)",
+                "type": "quantitative"
+            }
+        ]
+    },
+    "config": {
+        "axisY": {
+            "minExtent": 30
+        }
+    }
+}

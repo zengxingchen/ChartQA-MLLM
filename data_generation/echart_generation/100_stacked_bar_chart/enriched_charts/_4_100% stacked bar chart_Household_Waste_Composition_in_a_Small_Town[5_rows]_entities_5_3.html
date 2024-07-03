@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var option;
+
+option = {
+  title: {
+    text: 'Education & Learning Activities Distribution by Age Group',
+    left: 'center'
+  },
+  tooltip: {
+    trigger: 'axis',
+    axisPointer: {
+      type: 'shadow'
+    },
+    formatter: function (params) {
+      // Custom tooltip formatting
+      var tooltipStr = params[0].name + '<br/>';
+      params.forEach(function (item) {
+        tooltipStr += item.marker + ' ' + item.seriesName + ': ' +
+                      item.value + '%' + '<br/>';
+      });
+      return tooltipStr;
+    }
+  },
+  legend: {
+    orient: 'vertical',
+    left: 'left'
+  },
+  grid: {
+    left: '20%',
+    right: '4%',
+    bottom: '3%',
+    containLabel: true
+  },
+  xAxis: {
+    type: 'value',
+    boundaryGap: false,
+    min: 0,
+    max: 100
+  },
+  yAxis: {
+    type: 'category',
+    data: ['Children', 'Young Adults', 'Adults']
+  },
+  series: [
+    {
+      name: 'Study',
+      type: 'bar',
+      stack: 'total',
+      label: {
+        show: true
+      },
+      emphasis: {
+        focus: 'series'
+      },
+      data: [25, 20, 15],
+      itemStyle: {
+        color: '#ff8c00'
+      },
+      barWidth: '15%'
+    },
+    {
+      name: 'Homework',
+      type: 'bar',
+      stack: 'total',
+      label: {
+        show: true
+      },
+      emphasis: {
+        focus: 'series'
+      },
+      data: [65, 35, 20],
+      itemStyle: {
+        color: '#6b8e23'
+      },
+      barWidth: '15%'
+    },
+    {
+      name: 'Research',
+      type: 'bar',
+      stack: 'total',
+      label: {
+        show: true
+      },
+      emphasis: {
+        focus: 'series'
+      },
+      data: [5, 25, 40],
+      itemStyle: {
+        color: '#4682b4'
+      },
+      barWidth: '15%'
+    },
+    {
+      name: 'Online Courses',
+      type: 'bar',
+      stack: 'total',
+      label: {
+        show: true
+      },
+      emphasis: {
+        focus: 'series'
+      },
+      data: [5, 20, 25],
+      itemStyle: {
+        color: '#d2691e'
+      },
+      barWidth: '15%'
+    }
+  ],
+  itemStyle: {
+    barBorderRadius: 0
+  },
+  resize: {
+    width: '600',
+    height: '400'
+  }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

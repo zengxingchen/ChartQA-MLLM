@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var option;
+option = {
+    title: {
+        text: 'Impact of Exercise on Heart Rate',
+        left: 'center',
+        top: '10%'
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: '{a} <br/>{b}: {c}'
+    },
+    legend: {
+        data: ['Heart Rate'],
+        top: '20%',
+        left: 'right'
+    },
+    xAxis: {
+        name: 'Time (minutes)',
+        type: 'value'
+    },
+    yAxis: {
+        name: 'Heart Rate (bpm)',
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Heart Rate',
+            type: 'scatter',
+            itemStyle: {
+                color: '#FF6347'
+            },
+            data: [
+                [5, 3.2],
+                [10, 4.1],
+                [15, 5.8],
+                [20, 6.0],
+                [25, 7.1],
+                [30, 8.5],
+                [35, 9.3],
+                [40, 10.2],
+                [45, 11.4],
+                [50, 12.0],
+                [55, 13.1],
+                [60, 13.8],
+                [65, 14.5],
+                [70, 15.3],
+                [75, 16.2],
+                [80, 17.0],
+                [85, 18.1],
+                [90, 18.5],
+                [95, 19.3],
+                [100, 20.0]
+            ]
+        }
+    ],
+    grid: {
+        width: '80%',
+        height: '70%',
+        top: '15%',
+        left: '10%'
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

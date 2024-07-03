@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Travel & Adventure Preferences',
+        left: 'center',
+        top: 20
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: '{a} <br/>{b} : {c} ({d}%)'
+    },
+    legend: {
+        orient: 'vertical',
+        left: 'left',
+        top: 'middle',
+        data: [
+            'Solo Travel',
+            'Beach Holidays',
+            'Adventure Sports',
+            'Cruises',
+            'Cultural Tours',
+            'Wildlife Safari',
+            'Mountain Trekking',
+            'Road Trips'
+        ]
+    },
+    series: [
+        {
+            name: 'Number of Participants',
+            type: 'pie',
+            radius: '55%',
+            center: ['50%', '60%'],
+            data: [
+                {value: 150, name: 'Solo Travel', itemStyle: {color: '#1f77b4'}},
+                {value: 200, name: 'Beach Holidays', itemStyle: {color: '#ff7f0e'}},
+                {value: 120, name: 'Adventure Sports', itemStyle: {color: '#2ca02c'}},
+                {value: 80, name: 'Cruises', itemStyle: {color: '#d62728'}},
+                {value: 180, name: 'Cultural Tours', itemStyle: {color: '#9467bd'}},
+                {value: 90, name: 'Wildlife Safari', itemStyle: {color: '#8c564b'}},
+                {value: 130, name: 'Mountain Trekking', itemStyle: {color: '#e377c2'}},
+                {value: 50, name: 'Road Trips', itemStyle: {color: '#7f7f7f'}}
+            ],
+            emphasis: {
+                itemStyle: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            },
+            label: {
+                show: true,
+                formatter: '{b}\n{c} ({d}%)'
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,113 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+        "values": [
+            {
+                "Year": "2020",
+                "Male": 800,
+                "Female": 1200,
+                "Other": 200
+            },
+            {
+                "Year": "2021",
+                "Male": 850,
+                "Female": 1250,
+                "Other": 250
+            },
+            {
+                "Year": "2022",
+                "Male": 900,
+                "Female": 1300,
+                "Other": 300
+            },
+            {
+                "Year": "2023",
+                "Male": 950,
+                "Female": 1350,
+                "Other": 350
+            },
+            {
+                "Year": "2024",
+                "Male": 1000,
+                "Female": 1400,
+                "Other": 400
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Male",
+                "Female",
+                "Other"
+            ],
+            "as": [
+                "Gender",
+                "Population"
+            ]
+        }
+    ],
+    "mark": "bar",
+    "width": 600,
+    "height": 300,
+    "title": {
+        "text": "Yearly Population Distribution by Gender",
+        "subtitleFontStyle": "italic",
+        "subtitleFontSize": 10,
+        "anchor": "start",
+        "offset": 5,
+        "subtitleColor": "gray"
+    },
+    "encoding": {
+        "x": {
+            "field": "Year",
+            "type": "ordinal",
+            "title": "Year"
+        },
+        "y": {
+            "field": "Population",
+            "type": "quantitative",
+            "title": "Population (in thousands)"
+        },
+        "color": {
+            "field": "Gender",
+            "type": "nominal",
+            "legend": {
+                "title": "Gender",
+                "orient": "bottom"
+            },
+            "scale": {
+                "domain": [
+                    "Male",
+                    "Female",
+                    "Other"
+                ],
+                "range": [
+                    "#3498db",
+                    "#e74c3c",
+                    "#9b59b6"
+                ]
+            }
+        },
+        "height": {
+            "field": "Population",
+            "type": "quantitative",
+            "band": 0.7
+        },
+        "tooltip": [
+            {
+                "field": "Year",
+                "type": "nominal"
+            },
+            {
+                "field": "Gender",
+                "type": "nominal"
+            },
+            {
+                "field": "Population",
+                "type": "quantitative",
+                "title": "Population (in thousands)"
+            }
+        ]
+    }
+}

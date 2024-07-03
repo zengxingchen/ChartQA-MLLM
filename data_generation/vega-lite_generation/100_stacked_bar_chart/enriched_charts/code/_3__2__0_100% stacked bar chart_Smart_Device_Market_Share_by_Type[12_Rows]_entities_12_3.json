@@ -1,0 +1,149 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "A 100% stacked bar chart showing the distribution of favorite types of physical activities over different years.",
+    "data": {
+        "values": [
+            {
+                "Year": "2015",
+                "Running": 15,
+                "Swimming": 25,
+                "Cycling": 30,
+                "Yoga": 30
+            },
+            {
+                "Year": "2016",
+                "Running": 18,
+                "Swimming": 22,
+                "Cycling": 28,
+                "Yoga": 32
+            },
+            {
+                "Year": "2017",
+                "Running": 20,
+                "Swimming": 24,
+                "Cycling": 26,
+                "Yoga": 30
+            },
+            {
+                "Year": "2018",
+                "Running": 22,
+                "Swimming": 20,
+                "Cycling": 27,
+                "Yoga": 31
+            },
+            {
+                "Year": "2019",
+                "Running": 25,
+                "Swimming": 18,
+                "Cycling": 25,
+                "Yoga": 32
+            },
+            {
+                "Year": "2020",
+                "Running": 28,
+                "Swimming": 20,
+                "Cycling": 23,
+                "Yoga": 29
+            },
+            {
+                "Year": "2021",
+                "Running": 30,
+                "Swimming": 22,
+                "Cycling": 24,
+                "Yoga": 24
+            },
+            {
+                "Year": "2022",
+                "Running": 27,
+                "Swimming": 23,
+                "Cycling": 26,
+                "Yoga": 24
+            },
+            {
+                "Year": "2023",
+                "Running": 26,
+                "Swimming": 24,
+                "Cycling": 25,
+                "Yoga": 25
+            },
+            {
+                "Year": "2024",
+                "Running": 29,
+                "Swimming": 21,
+                "Cycling": 26,
+                "Yoga": 24
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Running",
+                "Swimming",
+                "Cycling",
+                "Yoga"
+            ],
+            "as": [
+                "Activity",
+                "Percentage"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "bar",
+        "height": {
+            "band": 0.7
+        }
+    },
+    "width": 600,
+    "height": 400,
+    "encoding": {
+        "x": {
+            "field": "Year",
+            "type": "ordinal",
+            "axis": {
+                "title": "Year"
+            }
+        },
+        "y": {
+            "field": "Percentage",
+            "type": "quantitative",
+            "axis": {
+                "title": "Percentage"
+            },
+            "stack": "normalize"
+        },
+        "color": {
+            "field": "Activity",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Running",
+                    "Swimming",
+                    "Cycling",
+                    "Yoga"
+                ],
+                "range": [
+                    "#003f5c",
+                    "#58508d",
+                    "#bc5090",
+                    "#ff6361"
+                ]
+            },
+            "legend": {
+                "title": "Activity"
+            }
+        }
+    },
+    "title": {
+        "text": "Distribution of Favorite Physical Activities Over Years",
+        "fontSize": 20,
+        "fontWeight": "bold",
+        "align": "center"
+    },
+    "config": {
+        "bar": {
+            "cornerRadiusEnd": 4
+        }
+    }
+}

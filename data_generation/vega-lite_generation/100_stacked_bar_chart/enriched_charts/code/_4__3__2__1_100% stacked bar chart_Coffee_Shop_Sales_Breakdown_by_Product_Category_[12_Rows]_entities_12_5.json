@@ -1,0 +1,152 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Vertical 100% Stacked bar chart of exercise preferences by age group.",
+    "width": 400,
+    "height": 500,
+    "data": {
+        "values": [
+            {
+                "Age Group": "10-20",
+                "Running": 25,
+                "Cycling": 15,
+                "Gym": 20,
+                "Yoga": 25,
+                "Swimming": 15
+            },
+            {
+                "Age Group": "21-30",
+                "Running": 30,
+                "Cycling": 20,
+                "Gym": 25,
+                "Yoga": 15,
+                "Swimming": 10
+            },
+            {
+                "Age Group": "31-40",
+                "Running": 20,
+                "Cycling": 10,
+                "Gym": 30,
+                "Yoga": 25,
+                "Swimming": 15
+            },
+            {
+                "Age Group": "41-50",
+                "Running": 15,
+                "Cycling": 25,
+                "Gym": 20,
+                "Yoga": 20,
+                "Swimming": 20
+            },
+            {
+                "Age Group": "51-60",
+                "Running": 10,
+                "Cycling": 15,
+                "Gym": 20,
+                "Yoga": 35,
+                "Swimming": 20
+            },
+            {
+                "Age Group": "61-70",
+                "Running": 5,
+                "Cycling": 10,
+                "Gym": 15,
+                "Yoga": 40,
+                "Swimming": 30
+            },
+            {
+                "Age Group": "71+",
+                "Running": 5,
+                "Cycling": 5,
+                "Gym": 10,
+                "Yoga": 45,
+                "Swimming": 35
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Running",
+                "Cycling",
+                "Gym",
+                "Yoga",
+                "Swimming"
+            ],
+            "as": [
+                "Category",
+                "Percentage"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "bar",
+        "width": {
+            "band": 0.7
+        }
+    },
+    "encoding": {
+        "x": {
+            "field": "Age Group",
+            "title": "Age Groups",
+            "type": "ordinal",
+            "axis": {
+                "labelAngle": -45
+            }
+        },
+        "y": {
+            "field": "Percentage",
+            "type": "quantitative",
+            "title": "Percentage",
+            "stack": "normalize",
+            "axis": {
+                "format": "%"
+            }
+        },
+        "color": {
+            "field": "Category",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Running",
+                    "Cycling",
+                    "Gym",
+                    "Yoga",
+                    "Swimming"
+                ],
+                "range": [
+                    "#FF0000",
+                    "#00FF00",
+                    "#0000FF",
+                    "#FFFF00",
+                    "#FF00FF"
+                ]
+            },
+            "legend": {
+                "title": "Exercise Mode"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Age Group",
+                "type": "ordinal"
+            },
+            {
+                "field": "Category",
+                "type": "nominal"
+            },
+            {
+                "field": "Percentage",
+                "type": "quantitative",
+                "title": "Percentage",
+                "format": ".2f"
+            }
+        ]
+    },
+    "title": {
+        "text": "Health & Psychology: Exercise Preferences by Age Group",
+        "anchor": "start",
+        "offset": 10,
+        "frame": "group",
+        "fontSize": 18
+    }
+}

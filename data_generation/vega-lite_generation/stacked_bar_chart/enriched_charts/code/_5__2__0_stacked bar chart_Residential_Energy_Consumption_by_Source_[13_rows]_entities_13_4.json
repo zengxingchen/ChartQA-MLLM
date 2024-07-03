@@ -1,0 +1,192 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Stacked horizontal bar chart showing the number of different health activities over years.",
+    "title": {
+        "text": "Health Activities by Type Over Years",
+        "fontSize": 15,
+        "anchor": "start",
+        "color": "black"
+    },
+    "width": 400,
+    "height": 300,
+    "data": {
+        "values": [
+            {
+                "Year": 2010,
+                "Exercise": 120,
+                "Meditation": 30,
+                "Therapy": 20,
+                "Healthy Diet": 60
+            },
+            {
+                "Year": 2011,
+                "Exercise": 130,
+                "Meditation": 35,
+                "Therapy": 25,
+                "Healthy Diet": 65
+            },
+            {
+                "Year": 2012,
+                "Exercise": 140,
+                "Meditation": 40,
+                "Therapy": 30,
+                "Healthy Diet": 70
+            },
+            {
+                "Year": 2013,
+                "Exercise": 150,
+                "Meditation": 45,
+                "Therapy": 35,
+                "Healthy Diet": 75
+            },
+            {
+                "Year": 2014,
+                "Exercise": 160,
+                "Meditation": 50,
+                "Therapy": 40,
+                "Healthy Diet": 80
+            },
+            {
+                "Year": 2015,
+                "Exercise": 170,
+                "Meditation": 55,
+                "Therapy": 45,
+                "Healthy Diet": 85
+            },
+            {
+                "Year": 2016,
+                "Exercise": 180,
+                "Meditation": 60,
+                "Therapy": 50,
+                "Healthy Diet": 90
+            },
+            {
+                "Year": 2017,
+                "Exercise": 190,
+                "Meditation": 65,
+                "Therapy": 55,
+                "Healthy Diet": 95
+            },
+            {
+                "Year": 2018,
+                "Exercise": 200,
+                "Meditation": 70,
+                "Therapy": 60,
+                "Healthy Diet": 100
+            },
+            {
+                "Year": 2019,
+                "Exercise": 210,
+                "Meditation": 75,
+                "Therapy": 65,
+                "Healthy Diet": 105
+            },
+            {
+                "Year": 2020,
+                "Exercise": 220,
+                "Meditation": 80,
+                "Therapy": 70,
+                "Healthy Diet": 110
+            },
+            {
+                "Year": 2021,
+                "Exercise": 230,
+                "Meditation": 85,
+                "Therapy": 75,
+                "Healthy Diet": 120
+            },
+            {
+                "Year": 2022,
+                "Exercise": 240,
+                "Meditation": 90,
+                "Therapy": 80,
+                "Healthy Diet": 130
+            },
+            {
+                "Year": 2023,
+                "Exercise": 250,
+                "Meditation": 95,
+                "Therapy": 85,
+                "Healthy Diet": 140
+            },
+            {
+                "Year": 2024,
+                "Exercise": 260,
+                "Meditation": 100,
+                "Therapy": 90,
+                "Healthy Diet": 150
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Exercise",
+                "Meditation",
+                "Therapy",
+                "Healthy Diet"
+            ],
+            "as": [
+                "Activity Type",
+                "Quantity"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "bar",
+        "width": {
+            "band": 0.7
+        }
+    },
+    "encoding": {
+        "y": {
+            "field": "Year",
+            "type": "ordinal",
+            "axis": {
+                "title": "Year"
+            }
+        },
+        "x": {
+            "field": "Quantity",
+            "type": "quantitative",
+            "stack": "zero",
+            "axis": {
+                "title": "Participation Quantity (in thousands)"
+            }
+        },
+        "color": {
+            "field": "Activity Type",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Exercise",
+                    "Meditation",
+                    "Therapy",
+                    "Healthy Diet"
+                ],
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e",
+                    "#2ca02c",
+                    "#d62728"
+                ]
+            },
+            "title": "Activity Type"
+        },
+        "tooltip": [
+            {
+                "field": "Year",
+                "type": "ordinal"
+            },
+            {
+                "field": "Activity Type",
+                "type": "nominal"
+            },
+            {
+                "field": "Quantity",
+                "type": "quantitative",
+                "title": "Participation Quantity"
+            }
+        ]
+    }
+}

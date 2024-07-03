@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+option = {
+    title: {
+        text: 'Technology Device Usage - 2010 to 2022',
+        left: 'center',
+        top: 20
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['Mobile', 'Desktop', 'Tablet'],
+        top: 50
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: [
+          '2010', '2011', '2012', '2013',
+          '2014', '2015', '2016', '2017',
+          '2018', '2019', '2020', '2021', '2022'
+        ]
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Mobile',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: { focus: 'series' },
+            data: [120, 150, 170, 180, 200, 210, 220, 230, 240, 250, 260, 270, 280],
+            color: '#FF5733'
+        },
+        {
+            name: 'Desktop',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: { focus: 'series' },
+            data: [300, 320, 340, 360, 370, 350, 360, 370, 375, 380, 390, 400, 420],
+            color: '#33FF57'
+        },
+        {
+            name: 'Tablet',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: { focus: 'series' },
+            data: [50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100, 110, 120],
+            color: '#3357FF'
+        }
+    ],
+    color: ['#FF5733', '#33FF57', '#3357FF'],
+    textStyle: {
+        fontFamily: 'Arial, Verdana, sans-serif'
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

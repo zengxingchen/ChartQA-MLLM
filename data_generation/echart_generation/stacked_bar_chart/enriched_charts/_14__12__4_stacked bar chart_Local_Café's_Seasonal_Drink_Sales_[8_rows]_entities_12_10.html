@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, { width: 800, height: 600 });
+var option;
+
+option = {
+    title: {
+        text: 'Trends in Art & Design',
+        left: 'center',
+        top: 20,
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Art', 'Design', 'Music', 'Performing Arts'],
+        top: 60,
+        left: 'center',
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        data: ['2018', '2019', '2020', '2021', '2022'],
+        axisLabel: {
+            rotate: 30,
+            textStyle: {
+                fontSize: 12
+            }
+        }
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Art',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            data: [120, 150, 200, 230, 250],
+            itemStyle: {
+                color: '#FF5733'
+            },
+            barWidth: '60%'
+        },
+        {
+            name: 'Design',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            data: [132, 232, 332, 402, 432],
+            itemStyle: {
+                color: '#33FF57'
+            },
+            barWidth: '60%'
+        },
+        {
+            name: 'Music',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            data: [101, 201, 301, 381, 401],
+            itemStyle: {
+                color: '#3357FF'
+            },
+            barWidth: '60%'
+        },
+        {
+            name: 'Performing Arts',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            data: [134, 154, 234, 284, 314],
+            itemStyle: {
+                color: '#FF33A1'
+            },
+            barWidth: '60%'
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

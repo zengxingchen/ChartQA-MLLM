@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var option;
+
+option = {
+    title: {
+        text: 'Monthly Sales vs. Promotion Spend',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: function (params) {
+            return 'Promotion Spend: ' + params.value[0] + '<br>' + 'Sales: ' + params.value[1];
+        }
+    },
+    legend: {
+        orient: 'vertical',
+        left: 'left',
+        data: ['Sales Data']
+    },
+    xAxis: {
+        name: 'Promotion Spend ($)',
+        min: 10,
+        max: 100
+    },
+    yAxis: {
+        name: 'Sales ($)',
+        min: 20,
+        max: 260
+    },
+    series: [
+        {
+            name: 'Sales Data',
+            type: 'scatter',
+            itemStyle: {
+                color: '#FF6347'
+            },
+            data: [
+                [12, 25],
+                [14, 30],
+                [16, 40],
+                [18, 35],
+                [20, 50],
+                [22, 55],
+                [24, 60],
+                [26, 65],
+                [28, 80],
+                [30, 85],
+                [32, 70],
+                [34, 75],
+                [36, 90],
+                [38, 85],
+                [40, 100],
+                [42, 95],
+                [44, 105],
+                [46, 110],
+                [48, 120],
+                [50, 130],
+                [52, 125],
+                [54, 140],
+                [56, 135],
+                [58, 150],
+                [60, 155],
+                [62, 160],
+                [64, 165],
+                [66, 180],
+                [68, 175],
+                [70, 190],
+                [72, 200],
+                [74, 195],
+                [76, 205],
+                [78, 210],
+                [80, 220],
+                [82, 225],
+                [84, 230],
+                [86, 235],
+                [88, 240],
+                [90, 250]
+            ]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

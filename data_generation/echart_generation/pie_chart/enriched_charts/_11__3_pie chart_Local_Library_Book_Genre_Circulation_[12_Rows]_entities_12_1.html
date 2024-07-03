@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, 'default', {renderer: 'canvas', width: 600, height: 400});
+myChart.clear();
+
+var app = {};
+option = null;
+option = {
+    title: {
+        text: 'Global Energy Consumption by Source',
+        left: 'center',
+        top: 20
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: '{a} <br/>{b} : {c} ({d}%)'
+    },
+    legend: {
+        orient: 'vertical',
+        left: 'left',
+        data: ['Natural Gas', 'Coal', 'Biomass', 'Nuclear', 'Hydro', 'Wind', 'Solar', 'Oil', 'Geothermal', 'Others']
+    },
+    series: [
+        {
+            name: 'Energy Source',
+            type: 'pie',
+            radius: '55%',
+            center: ['50%', '60%'],
+            data: [
+                {value: 20, name: 'Natural Gas', itemStyle: {color: '#FFD700'}},
+                {value: 15, name: 'Coal', itemStyle: {color: '#C0C0C0'}},
+                {value: 13, name: 'Biomass', itemStyle: {color: '#228B22'}},
+                {value: 10, name: 'Nuclear', itemStyle: {color: '#FF4500'}},
+                {value: 12, name: 'Hydro', itemStyle: {color: '#00BFFF'}},
+                {value: 8, name: 'Wind', itemStyle: {color: '#32CD32'}},
+                {value: 5, name: 'Solar', itemStyle: {color: '#FFA500'}},
+                {value: 7, name: 'Oil', itemStyle: {color: '#000000'}},
+                {value: 3, name: 'Geothermal', itemStyle: {color: '#808080'}},
+                {value: 7, name: 'Others', itemStyle: {color: '#8A2BE2'}}
+            ],
+            emphasis: {
+                itemStyle: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            },
+            label: {
+                show: true,
+                formatter: '{b}: {d}%',
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') myChart.setOption(option);
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

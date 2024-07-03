@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+var option = {
+    title: {
+        text: 'Monthly Revenue Trends in 2023',
+        left: 'center',
+        top: '10',
+        textStyle: {
+            color: '#333'
+        }
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    xAxis: {
+        type: 'category',
+        data: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [{
+        name: 'Revenue',
+        type: 'line',
+        data: [4500, 5200, 4800, 5000, 5300, 5500, 5700, 5900, 5800, 6000, 6200, 6100],
+        itemStyle: {
+            color: '#FF5733'
+        },
+        lineStyle: {
+            color: '#33FF57'
+        },
+        label: {
+            show: true,
+            position: 'top'
+        }
+    }],
+    legend: {
+        data: ['Revenue'],
+        bottom: '10'
+    }
+};
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

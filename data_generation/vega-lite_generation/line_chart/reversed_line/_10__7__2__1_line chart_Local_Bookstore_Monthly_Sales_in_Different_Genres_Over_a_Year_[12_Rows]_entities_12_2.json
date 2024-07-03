@@ -1,0 +1,203 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Yearly Revenue by Department",
+    "data": {
+        "values": [
+            {
+                "Month": "January",
+                "Department 1": 1500,
+                "Department 2": 2000,
+                "Department 3": 1200,
+                "Department 4": 2500,
+                "Department 5": 1800
+            },
+            {
+                "Month": "February",
+                "Department 1": 1600,
+                "Department 2": 2100,
+                "Department 3": 1300,
+                "Department 4": 2600,
+                "Department 5": 1900
+            },
+            {
+                "Month": "March",
+                "Department 1": 1700,
+                "Department 2": 2200,
+                "Department 3": 1400,
+                "Department 4": 2700,
+                "Department 5": 2000
+            },
+            {
+                "Month": "April",
+                "Department 1": 1800,
+                "Department 2": 2300,
+                "Department 3": 1500,
+                "Department 4": 2800,
+                "Department 5": 2100
+            },
+            {
+                "Month": "May",
+                "Department 1": 1900,
+                "Department 2": 2400,
+                "Department 3": 1600,
+                "Department 4": 2900,
+                "Department 5": 2200
+            },
+            {
+                "Month": "June",
+                "Department 1": 2000,
+                "Department 2": 2500,
+                "Department 3": 1700,
+                "Department 4": 3000,
+                "Department 5": 2300
+            },
+            {
+                "Month": "July",
+                "Department 1": 2100,
+                "Department 2": 2600,
+                "Department 3": 1800,
+                "Department 4": 3100,
+                "Department 5": 2400
+            },
+            {
+                "Month": "August",
+                "Department 1": 2200,
+                "Department 2": 2700,
+                "Department 3": 1900,
+                "Department 4": 3200,
+                "Department 5": 2500
+            },
+            {
+                "Month": "September",
+                "Department 1": 2300,
+                "Department 2": 2800,
+                "Department 3": 2000,
+                "Department 4": 3300,
+                "Department 5": 2600
+            },
+            {
+                "Month": "October",
+                "Department 1": 2400,
+                "Department 2": 2900,
+                "Department 3": 2100,
+                "Department 4": 3400,
+                "Department 5": 2700
+            },
+            {
+                "Month": "November",
+                "Department 1": 2500,
+                "Department 2": 3000,
+                "Department 3": 2200,
+                "Department 4": 3500,
+                "Department 5": 2800
+            },
+            {
+                "Month": "December",
+                "Department 1": 2600,
+                "Department 2": 3100,
+                "Department 3": 2300,
+                "Department 4": 3600,
+                "Department 5": 2900
+            }
+        ]
+    },
+    "width": 700,
+    "height": 400,
+    "transform": [
+        {
+            "fold": [
+                "Department 1",
+                "Department 2",
+                "Department 3",
+                "Department 4",
+                "Department 5"
+            ],
+            "as": [
+                "Department",
+                "Revenue"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "line",
+        "point": true
+    },
+    "encoding": {
+        "x": {
+            "field": "Month",
+            "type": "ordinal",
+            "title": "Month",
+            "axis": {
+                "labelAngle": 0
+            }
+        },
+        "y": {
+            "field": "Revenue",
+            "type": "quantitative",
+            "title": "Monthly Revenue ($)",
+            "axis": {
+                "labelAngle": 0
+            },
+            "scale": {
+                "reverse": true
+            }
+        },
+        "color": {
+            "field": "Department",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Department 1",
+                    "Department 2",
+                    "Department 3",
+                    "Department 4",
+                    "Department 5"
+                ],
+                "range": [
+                    "#FF5733",
+                    "#33FF57",
+                    "#3357FF",
+                    "#FF33A8",
+                    "#A833FF"
+                ]
+            },
+            "title": "Department"
+        },
+        "tooltip": [
+            {
+                "field": "Month",
+                "type": "nominal"
+            },
+            {
+                "field": "Department",
+                "type": "nominal"
+            },
+            {
+                "field": "Revenue",
+                "type": "quantitative"
+            }
+        ]
+    },
+    "layer": [
+        {
+            "mark": "line"
+        },
+        {
+            "mark": "text",
+            "encoding": {
+                "text": {
+                    "field": "Revenue",
+                    "type": "quantitative"
+                },
+                "x": {
+                    "field": "Month",
+                    "type": "ordinal"
+                },
+                "y": {
+                    "field": "Revenue",
+                    "type": "quantitative"
+                }
+            }
+        }
+    ]
+}

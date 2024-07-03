@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 400});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Daily Time Spent on Activities',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['Indoor Activities', 'Outdoor Adventures', 'Family Time', 'Personal Development'],
+        bottom: 10
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '12%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: [
+            '2021-01-01', '2021-01-02', '2021-01-03', '2021-01-04', '2021-01-05',
+            '2021-01-06', '2021-01-07', '2021-01-08', '2021-01-09', '2021-01-10',
+            '2021-01-11', '2021-01-12', '2021-01-13', '2021-01-14', '2021-01-15',
+            '2021-01-16', '2021-01-17', '2021-01-18', '2021-01-19', '2021-01-20'
+        ]
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Indoor Activities',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [400, 410, 430, 450, 420, 415, 405, 385, 375, 390, 410, 420, 430, 440, 450, 455, 465, 470, 475, 480],
+            color: '#FF6384',
+            label: {
+                show: true,
+                position: 'top'
+            }
+        },
+        {
+            name: 'Outdoor Adventures',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [200, 220, 210, 230, 240, 235, 225, 200, 195, 210, 220, 215, 225, 235, 245, 255, 260, 250, 240, 245],
+            color: '#36A2EB',
+            label: {
+                show: true,
+                position: 'top'
+            }
+        },
+        {
+            name: 'Family Time',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [150, 160, 170, 180, 190, 185, 175, 165, 160, 170, 180, 185, 190, 195, 200, 205, 210, 215, 220, 225],
+            color: '#FFCE56',
+            label: {
+                show: true,
+                position: 'top'
+            }
+        },
+        {
+            name: 'Personal Development',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [100, 120, 130, 140, 150, 155, 165, 175, 185, 190, 200, 205, 215, 220, 225, 230, 235, 240, 245, 250],
+            color: '#4BC0C0',
+            label: {
+                show: true,
+                position: 'top'
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

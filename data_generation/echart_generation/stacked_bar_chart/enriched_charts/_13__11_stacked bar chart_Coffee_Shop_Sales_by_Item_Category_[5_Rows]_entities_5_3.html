@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var option;
+
+option = {
+    title: {
+        text: 'Art & Design Trends',
+        left: 'center',
+        top: '10'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['2018', '2019', '2020'],
+        top: 'bottom'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '15%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01]
+    },
+    yAxis: {
+        type: 'category',
+        data: ['Art', 'Design', 'Architecture', 'Graphic Design', 'Interior Design', 'Animation', 'Fashion', 'Photography', 'Industrial Design', 'Urban Planning', 'Landscape Design', 'Set Design', 'Exhibition Design']
+    },
+    series: [
+        {
+            name: '2018',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            data: [320, 220, 180, 260, 300, 250, 210, 270, 230, 290, 240, 220, 280],
+            itemStyle: {
+                color: '#FF5733'
+            },
+            barWidth: '15%'
+        },
+        {
+            name: '2019',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            data: [240, 280, 250, 200, 270, 220, 260, 230, 240, 250, 270, 280, 210],
+            itemStyle: {
+                color: '#33FF57'
+            },
+            barWidth: '15%'
+        },
+        {
+            name: '2020',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            data: [400, 350, 300, 330, 370, 340, 310, 360, 320, 380, 330, 350, 370],
+            itemStyle: {
+                color: '#3357FF'
+            },
+            barWidth: '15%'
+        }
+    ],
+    width: '800px',
+    height: '600px'
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

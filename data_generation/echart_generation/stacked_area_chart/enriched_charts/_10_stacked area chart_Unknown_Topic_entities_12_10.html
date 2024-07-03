@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var app = {};
+
+var option;
+option = {
+  title: {
+    text: 'Monthly Sales Trends by Category',
+    left: 'center',
+    textStyle: {
+      color: '#333',
+      fontWeight: 'bold',
+      fontSize: 18,
+    },
+    subtextStyle: {
+      color: '#aaa'
+    }
+  },
+  tooltip: {
+    trigger: 'axis'
+  },
+  legend: {
+    data: ['Electronics', 'Clothing', 'Home Appliances'],
+    top: 'bottom'
+  },
+  grid: {
+    left: '3%',
+    right: '4%',
+    bottom: '10%',
+    containLabel: true
+  },
+  toolbox: {
+    feature: {
+      saveAsImage: {}
+    }
+  },
+  xAxis: {
+    type: 'category',
+    boundaryGap: false,
+    data: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+  },
+  yAxis: {
+    type: 'value'
+  },
+  series: [
+    {
+      name: 'Electronics',
+      type: 'line',
+      stack: 'Total',
+      areaStyle: {},
+      emphasis: {
+        focus: 'series'
+      },
+      data: [3000, 2700, 3500, 3000, 3200, 3600, 3100, 3800, 3900, 3700, 4000, 4200],
+      color: '#ff5733'
+    },
+    {
+      name: 'Clothing',
+      type: 'line',
+      stack: 'Total',
+      areaStyle: {},
+      emphasis: {
+        focus: 'series'
+      },
+      data: [1400, 1500, 1600, 1400, 1300, 1700, 1600, 1550, 1500, 1400, 1200, 1900],
+      color: '#33ff57'
+    },
+    {
+      name: 'Home Appliances',
+      type: 'line',
+      stack: 'Total',
+      areaStyle: {},
+      emphasis: {
+        focus: 'series'
+      },
+      data: [2200, 2000, 2400, 2200, 2600, 2100, 2500, 2300, 2200, 2800, 2700, 2900],
+      color: '#3357ff'
+    }
+  ],
+  dataZoom: [
+    {
+      type: 'slider',
+      start: 0,
+      end: 100
+    },
+    {
+      type: 'inside',
+      start: 0,
+      end: 100
+    }
+  ],
+  markLine : {
+    data : [
+      {type : 'average', name: 'Average'}
+    ],
+    label: {
+      show: true,
+      position: 'end',
+      formatter: '{b}: {c}'
+    }
+  }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

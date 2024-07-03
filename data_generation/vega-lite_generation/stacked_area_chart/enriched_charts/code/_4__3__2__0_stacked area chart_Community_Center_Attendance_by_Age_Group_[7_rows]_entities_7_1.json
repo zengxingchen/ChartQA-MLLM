@@ -1,0 +1,170 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Semester-wise Online Course Subscriptions by Subject",
+    "width": 500,
+    "height": 300,
+    "title": {
+        "text": "Online Course Subscriptions by Subject",
+        "anchor": "start",
+        "offset": 10,
+        "frame": "group"
+    },
+    "data": {
+        "values": [
+            {
+                "Semester": "2019 S1",
+                "Math": 200,
+                "Science": 220,
+                "Literature": 150,
+                "Programming": 300
+            },
+            {
+                "Semester": "2019 S2",
+                "Math": 210,
+                "Science": 230,
+                "Literature": 160,
+                "Programming": 320
+            },
+            {
+                "Semester": "2020 S1",
+                "Math": 215,
+                "Science": 240,
+                "Literature": 165,
+                "Programming": 330
+            },
+            {
+                "Semester": "2020 S2",
+                "Math": 220,
+                "Science": 250,
+                "Literature": 170,
+                "Programming": 340
+            },
+            {
+                "Semester": "2021 S1",
+                "Math": 225,
+                "Science": 255,
+                "Literature": 180,
+                "Programming": 355
+            },
+            {
+                "Semester": "2021 S2",
+                "Math": 230,
+                "Science": 260,
+                "Literature": 185,
+                "Programming": 360
+            },
+            {
+                "Semester": "2022 S1",
+                "Math": 235,
+                "Science": 265,
+                "Literature": 190,
+                "Programming": 370
+            },
+            {
+                "Semester": "2022 S2",
+                "Math": 240,
+                "Science": 270,
+                "Literature": 195,
+                "Programming": 380
+            },
+            {
+                "Semester": "2023 S1",
+                "Math": 250,
+                "Science": 280,
+                "Literature": 200,
+                "Programming": 390
+            },
+            {
+                "Semester": "2023 S2",
+                "Math": 260,
+                "Science": 290,
+                "Literature": 210,
+                "Programming": 400
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Math",
+                "Science",
+                "Literature",
+                "Programming"
+            ],
+            "as": [
+                "Subject",
+                "Subscriptions"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "area",
+        "opacity": 0.6
+    },
+    "encoding": {
+        "x": {
+            "field": "Semester",
+            "type": "ordinal",
+            "axis": {
+                "labelAngle": 0,
+                "title": "Semester"
+            }
+        },
+        "y": {
+            "field": "Subscriptions",
+            "type": "quantitative",
+            "axis": {
+                "title": "Number of Subscriptions"
+            }
+        },
+        "color": {
+            "field": "Subject",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Math",
+                    "Science",
+                    "Literature",
+                    "Programming"
+                ],
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e",
+                    "#2ca02c",
+                    "#d62728"
+                ]
+            },
+            "legend": {
+                "orient": "bottom-left",
+                "title": "Subject",
+                "titleLimit": 150
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Semester",
+                "type": "ordinal"
+            },
+            {
+                "field": "Subject",
+                "type": "nominal",
+                "title": "Subject"
+            },
+            {
+                "field": "Subscriptions",
+                "type": "quantitative",
+                "title": "Subscriptions"
+            }
+        ]
+    },
+    "config": {
+        "style": {
+            "cell": {
+                "stroke": "transparent"
+            }
+        },
+        "axis": {
+            "grid": true
+        }
+    }
+}

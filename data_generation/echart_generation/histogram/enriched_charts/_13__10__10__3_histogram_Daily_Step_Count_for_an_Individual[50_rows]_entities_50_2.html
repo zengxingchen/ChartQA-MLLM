@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+var option;
+
+option = {
+    title: {
+        text: 'Monthly Average Rainfall (mm) in a City',
+        left: 'center'
+    },
+    xAxis: {
+        type: 'category',
+        data: [
+            '20-40', '40-60', '60-80', '80-100', '100-120', '120-140', '140-160', '160-180', '180-200',
+            '200-220', '220-240', '240-260', '260-280', '280-300', '300-320', '320-340', '340-360', '360-380',
+            '380-400', '400-420', '420-440', '440-460', '460-480', '480-500', '500-520', '520-540', '540-560',
+            '560-580', '580-600', '600-620', '620-640', '640-660', '660-680', '680-700', '700-720', '720-740', 
+            '740-760'
+        ]
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Frequency'
+    },
+    series: [{
+        data: [
+            1, 1, 1, 1, 2, 1, 2, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 2, 1, 1, 1, 2, 
+            1, 1, 1
+        ],
+        type: 'bar',
+        barWidth: '60%',
+        itemStyle: {
+            color: '#5470C6'
+        }
+    }],
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    responsive: true,
+    width: 800,
+    height: 600
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var fictionBooksData = [
+    ['January', 140],
+    ['February', 150],
+    ['March', 165],
+    ['April', 170],
+    ['May', 160],
+    ['June', 175],
+    ['July', 190],
+    ['August', 180],
+    ['September', 185],
+    ['October', 200],
+    ['November', 190],
+    ['December', 220]
+];
+
+var nonFictionBooksData = [
+    ['January', 90],
+    ['February', 100],
+    ['March', 95],
+    ['April', 120],
+    ['May', 110],
+    ['June', 105],
+    ['July', 115],
+    ['August', 130],
+    ['September', 125],
+    ['October', 140],
+    ['November', 110],
+    ['December', 120]
+];
+
+var childrenBooksData = [
+    ['January', 200],
+    ['February', 210],
+    ['March', 215],
+    ['April', 220],
+    ['May', 230],
+    ['June', 200],
+    ['July', 195],
+    ['August', 190],
+    ['September', 205],
+    ['October', 220],
+    ['November', 210],
+    ['December', 250]
+];
+
+option = {
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross'
+        }
+    },
+    grid: {
+        right: '20%'
+    },
+    legend: {
+        data: ['Fiction', 'Non-Fiction', "Children's Books"]
+    },
+    xAxis: {
+        type: 'category',
+        splitLine: {
+            lineStyle: {
+                type: 'dashed'
+            }
+        }
+    },
+    yAxis: {
+        type: 'value',
+        splitLine: {
+            lineStyle: {
+                type: 'dashed'
+            }
+        },
+        scale: true
+    },
+    series: [{
+        name: 'Fiction',
+        data: fictionBooksData,
+        type: 'scatter',
+        symbolSize: function (data) {
+            return Math.sqrt(data[1]) * 2;
+        },
+        emphasis: {
+            focus: 'series'
+        },
+        itemStyle: {
+            shadowBlur: 10,
+            shadowColor: 'rgba(120, 36, 50, 0.5)',
+            shadowOffsetY: 5,
+            color: new echarts.graphic.RadialGradient(0.4, 0.3, 1, [{
+                offset: 0,
+                color: 'rgb(251, 118, 123)'
+            }, {
+                offset: 1,
+                color: 'rgb(204, 46, 72)'
+            }])
+        }
+    }, {
+        name: 'Non-Fiction',
+        data: nonFictionBooksData,
+        type: 'scatter',
+        symbolSize: function (data) {
+            return Math.sqrt(data[1]) * 2;
+        },
+        emphasis: {
+            focus: 'series'
+        },
+        itemStyle: {
+            shadowBlur: 10,
+            shadowColor: 'rgba(25, 100, 150, 0.5)',
+            shadowOffsetY: 5,
+            color: new echarts.graphic.RadialGradient(0.4, 0.3, 1, [{
+                offset: 0,
+                color: 'rgb(129, 227, 238)'
+            }, {
+                offset: 1,
+                color: 'rgb(25, 183, 207)'
+            }])
+        }
+    }, {
+        name: "Children's Books",
+        data: childrenBooksData,
+        type: 'scatter',
+        symbolSize: function (data) {
+            return Math.sqrt(data[1]) * 2;
+        },
+        emphasis: {
+            focus: 'series'
+        },
+        itemStyle: {
+            shadowBlur: 10,
+            shadowColor: 'rgba(255, 215, 0, 0.5)',
+            shadowOffsetY: 5,
+            color: new echarts.graphic.RadialGradient(0.4, 0.3, 1, [{
+                offset: 0,
+                color: 'rgb(255, 235, 59)'
+            }, {
+                offset: 1,
+                color: 'rgb(255, 193, 7)'
+            }])
+        }
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

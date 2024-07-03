@@ -1,0 +1,185 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Line chart showing average monthly precipitation by region.",
+    "title": {
+        "text": "Average Monthly Precipitation by Region",
+        "fontSize": 16,
+        "anchor": "start",
+        "color": "black"
+    },
+    "width": 600,
+    "height": 400,
+    "data": {
+        "values": [
+            {
+                "Region": "Arctic",
+                "January": 10,
+                "February": 12,
+                "March": 14,
+                "April": 16,
+                "May": 18,
+                "June": 20,
+                "July": 22,
+                "August": 24,
+                "September": 23,
+                "October": 21,
+                "November": 19,
+                "December": 17
+            },
+            {
+                "Region": "North America",
+                "January": 50,
+                "February": 55,
+                "March": 60,
+                "April": 65,
+                "May": 70,
+                "June": 75,
+                "July": 80,
+                "August": 85,
+                "September": 78,
+                "October": 72,
+                "November": 65,
+                "December": 58
+            },
+            {
+                "Region": "Europe",
+                "January": 45,
+                "February": 48,
+                "March": 50,
+                "April": 55,
+                "May": 60,
+                "June": 65,
+                "July": 70,
+                "August": 68,
+                "September": 63,
+                "October": 58,
+                "November": 52,
+                "December": 48
+            },
+            {
+                "Region": "Asia",
+                "January": 30,
+                "February": 35,
+                "March": 40,
+                "April": 45,
+                "May": 50,
+                "June": 55,
+                "July": 60,
+                "August": 62,
+                "September": 58,
+                "October": 53,
+                "November": 47,
+                "December": 42
+            },
+            {
+                "Region": "Antarctica",
+                "January": 5,
+                "February": 6,
+                "March": 7,
+                "April": 8,
+                "May": 9,
+                "June": 10,
+                "July": 11,
+                "August": 12,
+                "September": 11,
+                "October": 10,
+                "November": 8,
+                "December": 7
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "January",
+                "February",
+                "March",
+                "April",
+                "May",
+                "June",
+                "July",
+                "August",
+                "September",
+                "October",
+                "November",
+                "December"
+            ],
+            "as": [
+                "Month",
+                "Precipitation"
+            ]
+        }
+    ],
+    "mark": "line",
+    "encoding": {
+        "x": {
+            "field": "Month",
+            "type": "ordinal",
+            "title": "Month",
+            "axis": {
+                "titleFontSize": 12,
+                "labelAngle": -45
+            }
+        },
+        "y": {
+            "field": "Precipitation",
+            "type": "quantitative",
+            "title": "Precipitation (mm)",
+            "axis": {
+                "titleFontSize": 12
+            }
+        },
+        "color": {
+            "field": "Region",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Arctic",
+                    "North America",
+                    "Europe",
+                    "Asia",
+                    "Antarctica"
+                ],
+                "range": [
+                    "#005f73",
+                    "#0a9396",
+                    "#94d2bd",
+                    "#e9d8a6",
+                    "#ee9b00"
+                ]
+            },
+            "legend": {
+                "title": "Region"
+            }
+        },
+        "strokeDash": {
+            "condition": {
+                "test": "datum['Region'] == 'Antarctica'",
+                "value": [
+                    5,
+                    5
+                ]
+            },
+            "value": []
+        },
+        "tooltip": [
+            {
+                "field": "Region",
+                "type": "nominal"
+            },
+            {
+                "field": "Month",
+                "type": "ordinal"
+            },
+            {
+                "field": "Precipitation",
+                "type": "quantitative"
+            }
+        ]
+    },
+    "config": {
+        "axisY": {
+            "minExtent": 30
+        }
+    }
+}

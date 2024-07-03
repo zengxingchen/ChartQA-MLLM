@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var option;
+
+option = {
+    title: {
+        text: 'Annual Budget Allocation (2020-2022)',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        bottom: '0',
+        data: ['2020', '2021', '2022']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '10%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01]
+    },
+    yAxis: {
+        type: 'category',
+        data: ['Education', 'Health', 'Economy', 'Environment', 'Technology', 'Arts', 'Sports', 'Travel', 'Food']
+    },
+    series: [
+        {
+            name: '2020',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            data: [320, 298, 450, 200, 480, 220, 190, 300, 310],
+            itemStyle: {
+                color: '#FF5733'
+            },
+            barWidth: '20%'
+        },
+        {
+            name: '2021',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            data: [402, 340, 470, 220, 510, 232, 210, 325, 330],
+            itemStyle: {
+                color: '#33FF57'
+            },
+            barWidth: '20%'
+        },
+        {
+            name: '2022',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            data: [451, 390, 512, 230, 540, 245, 220, 340, 350],
+            itemStyle: {
+                color: '#3357FF'
+            },
+            barWidth: '20%'
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

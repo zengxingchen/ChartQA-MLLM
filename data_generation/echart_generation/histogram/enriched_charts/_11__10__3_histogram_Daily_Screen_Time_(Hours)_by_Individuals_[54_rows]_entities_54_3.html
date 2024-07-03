@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, { width: 800, height: 600 });
+var app = {};
+
+var option = {
+    title: {
+        text: 'Frequency Distribution of Test Scores',
+        left: 'center',
+        top: 20
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    xAxis: {
+        name: 'Score Range',
+        type: 'category',
+        data: ['50-100', '101-200', '201-300', '301-400', '401-500', '501-600', '601-700', '701-800', '801-900', '901-1000'],
+        axisLabel: {
+            rotate: 45
+        }
+    },
+    yAxis: {
+        name: 'Frequency',
+        type: 'value'
+    },
+    series: [{
+        name: 'Frequency',
+        type: 'bar',
+        data: [5, 20, 35, 50, 65, 80, 95, 110, 125, 140],
+        itemStyle: {
+            color: '#3498db'
+        },
+        label: {
+            show: true,
+            position: 'top'
+        },
+        barWidth: '30%'
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

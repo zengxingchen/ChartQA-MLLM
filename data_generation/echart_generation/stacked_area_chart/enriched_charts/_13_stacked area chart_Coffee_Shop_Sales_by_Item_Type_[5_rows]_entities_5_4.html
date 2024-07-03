@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+  renderer: 'canvas',
+  width: 800,
+  height: 500
+});
+var app = {};
+
+var option;
+
+option = {
+  title: {
+    text: 'Monthly Business Overview',
+    left: 'center',
+    top: 20
+  },
+  tooltip: {
+    trigger: 'axis',
+    axisPointer: {
+      type: 'cross',
+      label: {
+        backgroundColor: '#6a7985'
+      }
+    }
+  },
+  legend: {
+    data: ['Sales', 'Expenses', 'Profit'],
+    bottom: 0
+  },
+  grid: {
+    left: '3%',
+    right: '4%',
+    bottom: '10%',
+    containLabel: true
+  },
+  xAxis: [
+    {
+      type: 'category',
+      boundaryGap: false,
+      data: [
+        '2021-01-01', '2021-01-02', '2021-01-03', '2021-01-04', '2021-01-05',
+        '2021-01-06', '2021-01-07', '2021-01-08', '2021-01-09', '2021-01-10',
+        '2021-01-11', '2021-01-12', '2021-01-13', '2021-01-14', '2021-01-15',
+        '2021-01-16', '2021-01-17', '2021-01-18', '2021-01-19', '2021-01-20',
+        '2021-01-21', '2021-01-22', '2021-01-23', '2021-01-24', '2021-01-25',
+        '2021-01-26', '2021-01-27', '2021-01-28', '2021-01-29', '2021-01-30'
+      ]
+    }
+  ],
+  yAxis: [
+    {
+      type: 'value'
+    }
+  ],
+  series: [
+    {
+      name: 'Sales',
+      type: 'line',
+      stack: 'Total',
+      areaStyle: {},
+      emphasis: {
+        focus: 'series'
+      },
+      data: [
+        12000, 14000, 20000, 22000, 23000, 24000, 25000, 20000, 21000,
+        22000, 22500, 23000, 21500, 22500, 24500, 24000, 25500, 26500,
+        27000, 29000, 31000, 33000, 34000, 36000, 37000, 38000, 40000,
+        42000, 43000, 45000
+      ],
+      color: '#FFC0CB'
+    },
+    {
+      name: 'Expenses',
+      type: 'line',
+      stack: 'Total',
+      areaStyle: {},
+      emphasis: {
+        focus: 'series'
+      },
+      data: [
+        8000, 10000, 12000, 14000, 15000, 17000, 18000, 16000, 17000,
+        15000, 14700, 15500, 14500, 13500, 15500, 17000, 18000, 17500,
+        18500, 19500, 21000, 22000, 23000, 24000, 25000, 27000, 28000,
+        29000, 30000, 32000
+      ],
+      color: '#87CEEB'
+    },
+    {
+      name: 'Profit',
+      type: 'line',
+      stack: 'Total',
+      areaStyle: {},
+      label: {
+        show: true,
+        position: 'top'
+      },
+      emphasis: {
+        focus: 'series'
+      },
+      data: [
+        4000, 4000, 8000, 8000, 8000, 7000, 7000, 4000, 4000, 7000, 7800, 7500,
+        7000, 9000, 9000, 7000, 7500, 9000, 8500, 9500, 10000, 11000, 11000,
+        12000, 12000, 11000, 12000, 13000, 13000, 13000
+      ],
+      color: '#32CD32'
+    }
+  ]
+};
+
+if (option && typeof option === 'object') {
+  myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

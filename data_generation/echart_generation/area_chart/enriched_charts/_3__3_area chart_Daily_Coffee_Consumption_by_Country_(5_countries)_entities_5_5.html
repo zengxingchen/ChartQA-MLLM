@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Renewable Energy Cost Decline Over Time',
+        left: 'center',
+        top: '20'
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['Average Cost'],
+        top: '40'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ['2023', '2024', '2025', '2026', '2027', '2028', '2029', 
+               '2030', '2031', '2032', '2033', '2034', '2035', '2036', 
+               '2037', '2038', '2039', '2040']
+    },
+    yAxis: {
+        type: 'value',
+        axisLabel: {
+            formatter: '${value}'
+        }
+    },
+    series: [
+        {
+            name: 'Average Cost',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [50, 48, 46, 45, 43, 42, 40, 38, 37, 35, 33, 32, 30, 28, 27, 26, 24, 23],
+            markPoint: {
+                data: [
+                    {type: 'max', name: 'Max'},
+                    {type: 'min', name: 'Min'}
+                ]
+            },
+            itemStyle: {
+                color: '#4E9F3D' // A pleasant green shade
+            },
+            lineStyle: {
+                color: '#D8E9A8'  // A lighter green for contrast
+            }
+        }
+    ],
+    color: [
+        '#4E9F3D', // Area color for Average Cost
+    ],
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

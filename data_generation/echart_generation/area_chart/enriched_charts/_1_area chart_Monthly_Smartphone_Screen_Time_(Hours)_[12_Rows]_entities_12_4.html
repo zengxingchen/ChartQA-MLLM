@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 400});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Average Global Temperature Anomaly (1880-2020)',
+        left: 'center',
+        top: 20
+    },
+    tooltip: {
+        trigger: 'axis',
+    },
+    legend: {
+        data: ['Temperature Anomaly'],
+        left: 30,
+        top: 50
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ['1880', '1885', '1890', '1895', '1900', '1905', '1910', '1915', '1920', '1925', '1930', '1935', '1940', '1945', '1950', '1955', '1960', '1965', '1970', '1975', '1980', '1985', '1990', '1995', '2000', '2005', '2010', '2015', '2020']
+    },
+    yAxis: {
+        type: 'value',
+        axisLabel: {
+            formatter: '{value} °C'
+        }
+    },
+    series: [
+        {
+            name: 'Temperature Anomaly',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {
+                color: '#92B4EC' // A shade of blue to represent the cooler temperatures
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [-0.12, -0.10, -0.37, -0.27, -0.08, -0.28, -0.44, -0.11, -0.27, -0.21, -0.14, 0.04, 0.13, 0.09, -0.18, -0.13, -0.02, -0.06, -0.01, 0.00, 0.27, 0.12, 0.45, 0.65, 0.42, 0.68, 0.72, 0.90, 1.02]
+        }
+    ],
+    color: ['#5470C6', '#EE6666'] // Custom colors for the series
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

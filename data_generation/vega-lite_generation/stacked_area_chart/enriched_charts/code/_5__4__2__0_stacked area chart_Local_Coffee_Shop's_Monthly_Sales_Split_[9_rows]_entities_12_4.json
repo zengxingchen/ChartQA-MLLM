@@ -1,0 +1,198 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Monthly Active Users by Fitness App Category",
+    "width": 800,
+    "height": 300,
+    "title": {
+        "text": "Monthly Active Users by Fitness App Category",
+        "anchor": "start",
+        "fontSize": 16,
+        "color": "#333",
+        "offset": 24,
+        "orient": "top"
+    },
+    "data": {
+        "values": [
+            {
+                "Month": "January",
+                "Running": 2500,
+                "Yoga": 1500,
+                "HIIT": 1000,
+                "Cycling": 1900,
+                "Meditation": 900
+            },
+            {
+                "Month": "February",
+                "Running": 2600,
+                "Yoga": 1600,
+                "HIIT": 1100,
+                "Cycling": 1950,
+                "Meditation": 920
+            },
+            {
+                "Month": "March",
+                "Running": 2700,
+                "Yoga": 1700,
+                "HIIT": 1150,
+                "Cycling": 2000,
+                "Meditation": 940
+            },
+            {
+                "Month": "April",
+                "Running": 2800,
+                "Yoga": 1750,
+                "HIIT": 1200,
+                "Cycling": 2050,
+                "Meditation": 960
+            },
+            {
+                "Month": "May",
+                "Running": 2850,
+                "Yoga": 1800,
+                "HIIT": 1250,
+                "Cycling": 2100,
+                "Meditation": 980
+            },
+            {
+                "Month": "June",
+                "Running": 2900,
+                "Yoga": 1850,
+                "HIIT": 1300,
+                "Cycling": 2150,
+                "Meditation": 1000
+            },
+            {
+                "Month": "July",
+                "Running": 3000,
+                "Yoga": 1900,
+                "HIIT": 1350,
+                "Cycling": 2200,
+                "Meditation": 1020
+            },
+            {
+                "Month": "August",
+                "Running": 3100,
+                "Yoga": 1950,
+                "HIIT": 1400,
+                "Cycling": 2250,
+                "Meditation": 1040
+            },
+            {
+                "Month": "September",
+                "Running": 3200,
+                "Yoga": 2000,
+                "HIIT": 1450,
+                "Cycling": 2300,
+                "Meditation": 1060
+            },
+            {
+                "Month": "October",
+                "Running": 3300,
+                "Yoga": 2100,
+                "HIIT": 1500,
+                "Cycling": 2350,
+                "Meditation": 1080
+            },
+            {
+                "Month": "November",
+                "Running": 3400,
+                "Yoga": 2200,
+                "HIIT": 1550,
+                "Cycling": 2400,
+                "Meditation": 1100
+            },
+            {
+                "Month": "December",
+                "Running": 3500,
+                "Yoga": 2300,
+                "HIIT": 1600,
+                "Cycling": 2450,
+                "Meditation": 1120
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Running",
+                "Yoga",
+                "HIIT",
+                "Cycling",
+                "Meditation"
+            ],
+            "as": [
+                "Activity",
+                "Users"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "area",
+        "opacity": 0.6
+    },
+    "encoding": {
+        "x": {
+            "field": "Month",
+            "type": "ordinal",
+            "axis": {
+                "title": "Month",
+                "labelAngle": 0
+            }
+        },
+        "y": {
+            "field": "Users",
+            "type": "quantitative",
+            "stack": "zero",
+            "axis": {
+                "title": "Active Users"
+            }
+        },
+        "color": {
+            "field": "Activity",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Running",
+                    "Yoga",
+                    "HIIT",
+                    "Cycling",
+                    "Meditation"
+                ],
+                "range": [
+                    "#5687a2",
+                    "#a25488",
+                    "#eb6c4a",
+                    "#77a047",
+                    "#c6a669"
+                ]
+            },
+            "legend": {
+                "title": "Activity",
+                "orient": "top-right",
+                "offset": 50
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Month",
+                "type": "ordinal"
+            },
+            {
+                "field": "Activity",
+                "type": "nominal"
+            },
+            {
+                "field": "Users",
+                "type": "quantitative"
+            }
+        ]
+    },
+    "config": {
+        "view": {
+            "stroke": "transparent"
+        },
+        "axis": {
+            "domainWidth": 1
+        }
+    }
+}

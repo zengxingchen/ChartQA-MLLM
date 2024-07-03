@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+var option;
+
+option = {
+    title: {
+        text: 'Daily Stress Levels',
+        left: 'center',
+        top: '10'
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    xAxis: {
+        type: 'category',
+        data: ['2024-01-01', '2024-01-02', '2024-01-03', '2024-01-04', '2024-01-05', '2024-01-06', '2024-01-07', '2024-01-08', '2024-01-09', '2024-01-10', '2024-01-11', '2024-01-12', '2024-01-13', '2024-01-14', '2024-01-15', '2024-01-16', '2024-01-17', '2024-01-18', '2024-01-19', '2024-01-20', '2024-01-21', '2024-01-22', '2024-01-23', '2024-01-24', '2024-01-25', '2024-01-26', '2024-01-27', '2024-01-28', '2024-01-29', '2024-01-30']
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Stress Level'
+    },
+    series: [{
+        name: 'Stress Level',
+        data: [40, 35, 45, 30, 50, 55, 60, 48, 52, 44, 36, 40, 38, 42, 47, 50, 53, 58, 54, 49, 45, 43, 41, 39, 37, 35, 33, 31, 29, 27],
+        type: 'line',
+        color: '#FF5733',
+        label: {
+            show: true,
+            position: 'top'
+        }
+    }],
+    annotation: [{
+        label: {
+            show: true,
+            formatter: 'Peak Stress',
+            position: 'end'
+        },
+        xAxis: '2024-01-07',
+        yAxis: 60
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

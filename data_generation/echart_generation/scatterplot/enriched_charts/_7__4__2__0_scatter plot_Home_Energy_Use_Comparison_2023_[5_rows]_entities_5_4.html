@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 800,
+    height: 600
+});
+
+var option = {
+    title: {
+        text: 'Biodiversity in Various Environments',
+        left: 'center'
+    },
+    legend: {
+        data: ['Forest', 'Ocean', 'Desert', 'Mountain', 'City'],
+        top: '10%',
+        left: 'right'
+    },
+    xAxis: {
+        type: 'value',
+        name: 'Biodiversity Index',
+        min: 0,
+        max: 1
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Species Count'
+    },
+    series: [
+        {
+            name: 'Forest',
+            type: 'scatter',
+            itemStyle: {
+                color: '#006400'
+            },
+            data: [
+                [0.95, 78],
+                [0.89, 70],
+                [0.80, 82],
+                [0.85, 65],
+                [0.92, 77]
+            ]
+        },
+        {
+            name: 'Ocean',
+            type: 'scatter',
+            itemStyle: {
+                color: '#1E90FF'
+            },
+            data: [
+                [0.60, 90],
+                [0.62, 85],
+                [0.65, 88],
+                [0.68, 92],
+                [0.63, 86]
+            ]
+        },
+        {
+            name: 'Desert',
+            type: 'scatter',
+            itemStyle: {
+                color: '#FFD700'
+            },
+            data: [
+                [0.30, 40],
+                [0.35, 42],
+                [0.32, 41],
+                [0.37, 45],
+                [0.33, 43]
+            ]
+        },
+        {
+            name: 'Mountain',
+            type: 'scatter',
+            itemStyle: {
+                color: '#8B4513'
+            },
+            data: [
+                [0.50, 60],
+                [0.55, 62],
+                [0.53, 65],
+                [0.58, 63],
+                [0.57, 61]
+            ]
+        },
+        {
+            name: 'City',
+            type: 'scatter',
+            itemStyle: {
+                color: '#DC143C'
+            },
+            data: [
+                [0.70, 80],
+                [0.72, 78],
+                [0.75, 82],
+                [0.77, 85],
+                [0.74, 79]
+            ]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

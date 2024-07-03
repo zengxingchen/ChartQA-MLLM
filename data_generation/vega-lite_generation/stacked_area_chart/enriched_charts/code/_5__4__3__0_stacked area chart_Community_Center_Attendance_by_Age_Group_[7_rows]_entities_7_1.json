@@ -1,0 +1,155 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Quarterly Revenue by Product Category",
+    "width": 600,
+    "height": 300,
+    "title": {
+        "text": "Quarterly Revenue by Product Category",
+        "offset": 5,
+        "anchor": "start",
+        "fontSize": 18
+    },
+    "data": {
+        "values": [
+            {
+                "Quarter": "Q1",
+                "Electronics": 50000,
+                "Clothing": 30000,
+                "Home Appliances": 20000,
+                "Books": 10000
+            },
+            {
+                "Quarter": "Q2",
+                "Electronics": 55000,
+                "Clothing": 32000,
+                "Home Appliances": 21000,
+                "Books": 15000
+            },
+            {
+                "Quarter": "Q3",
+                "Electronics": 60000,
+                "Clothing": 33000,
+                "Home Appliances": 22000,
+                "Books": 20000
+            },
+            {
+                "Quarter": "Q4",
+                "Electronics": 65000,
+                "Clothing": 34000,
+                "Home Appliances": 23000,
+                "Books": 25000
+            },
+            {
+                "Quarter": "Q1",
+                "Electronics": 70000,
+                "Clothing": 35000,
+                "Home Appliances": 24000,
+                "Books": 30000
+            },
+            {
+                "Quarter": "Q2",
+                "Electronics": 75000,
+                "Clothing": 36000,
+                "Home Appliances": 25000,
+                "Books": 35000
+            },
+            {
+                "Quarter": "Q3",
+                "Electronics": 80000,
+                "Clothing": 37000,
+                "Home Appliances": 26000,
+                "Books": 40000
+            },
+            {
+                "Quarter": "Q4",
+                "Electronics": 85000,
+                "Clothing": 38000,
+                "Home Appliances": 27000,
+                "Books": 45000
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Electronics",
+                "Clothing",
+                "Home Appliances",
+                "Books"
+            ],
+            "as": [
+                "Product Category",
+                "Revenue"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "area",
+        "opacity": 0.7
+    },
+    "encoding": {
+        "x": {
+            "field": "Quarter",
+            "type": "ordinal",
+            "axis": {
+                "labelAngle": 0,
+                "title": "Quarter"
+            }
+        },
+        "y": {
+            "field": "Revenue",
+            "type": "quantitative",
+            "stack": "zero",
+            "axis": {
+                "title": "Revenue (USD)"
+            }
+        },
+        "color": {
+            "field": "Product Category",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Electronics",
+                    "Clothing",
+                    "Home Appliances",
+                    "Books"
+                ],
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e",
+                    "#2ca02c",
+                    "#d62728"
+                ]
+            },
+            "legend": {
+                "orient": "top-left",
+                "title": "Product Category",
+                "titlePadding": 5
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Quarter",
+                "type": "ordinal"
+            },
+            {
+                "field": "Product Category",
+                "type": "nominal",
+                "title": "Product Category"
+            },
+            {
+                "field": "Revenue",
+                "type": "quantitative",
+                "title": "Revenue (USD)"
+            }
+        ]
+    },
+    "config": {
+        "view": {
+            "stroke": "transparent"
+        },
+        "axis": {
+            "grid": false
+        }
+    }
+}

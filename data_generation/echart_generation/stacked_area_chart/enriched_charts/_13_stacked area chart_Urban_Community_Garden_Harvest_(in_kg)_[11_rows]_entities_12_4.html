@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 500});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Quarterly Sector Revenue Growth',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            label: {
+                backgroundColor: '#6a7985'
+            }
+        }
+    },
+    legend: {
+        data: ['Technology', 'Healthcare', 'Consumer Goods'],
+        top: '10%'
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: [
+        {
+            type: 'category',
+            boundaryGap: false,
+            data: ['Q1-2020', 'Q2-2020', 'Q3-2020', 'Q4-2020', 'Q1-2021', 'Q2-2021', 'Q3-2021', 'Q4-2021', 'Q1-2022', 'Q2-2022', 'Q3-2022', 'Q4-2022']
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value'
+        }
+    ],
+    series: [
+        {
+            name: 'Technology',
+            type: 'line',
+            stack: 'Total Revenue',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [20000, 22000, 24000, 26000, 28000, 30000, 32000, 34000, 36000, 38000, 40000, 42000],
+            color: '#1f78b4'
+        },
+        {
+            name: 'Healthcare',
+            type: 'line',
+            stack: 'Total Revenue',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [15000, 16000, 17000, 18000, 19000, 20000, 21000, 22000, 23000, 24000, 25000, 26000],
+            color: '#33a02c'
+        },
+        {
+            name: 'Consumer Goods',
+            type: 'line',
+            stack: 'Total Revenue',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [10000, 11000, 10500, 12000, 11500, 12500, 13000, 13500, 14000, 14500, 15000, 15500],
+            color: '#b2df8a'
+        }
+    ],
+    graphic: [
+        {
+            type: 'text',
+            left: '90%', // Position on the right
+            top: '90%',
+            style: {
+                text: 'Data source: Company X',
+                fontSize: 12,
+                fontWeight: 'normal',
+                color: '#333'
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

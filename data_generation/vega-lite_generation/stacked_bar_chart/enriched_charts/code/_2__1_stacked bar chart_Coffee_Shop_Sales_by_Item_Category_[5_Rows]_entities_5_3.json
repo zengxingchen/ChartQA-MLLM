@@ -1,0 +1,188 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+        "values": [
+            {
+                "Month": "Jan",
+                "Therapy": 140,
+                "Medications": 90,
+                "Supplements": 120,
+                "Exercise": 80,
+                "Diet": 110
+            },
+            {
+                "Month": "Feb",
+                "Therapy": 150,
+                "Medications": 100,
+                "Supplements": 130,
+                "Exercise": 90,
+                "Diet": 120
+            },
+            {
+                "Month": "Mar",
+                "Therapy": 160,
+                "Medications": 110,
+                "Supplements": 140,
+                "Exercise": 95,
+                "Diet": 125
+            },
+            {
+                "Month": "Apr",
+                "Therapy": 170,
+                "Medications": 115,
+                "Supplements": 150,
+                "Exercise": 100,
+                "Diet": 130
+            },
+            {
+                "Month": "May",
+                "Therapy": 180,
+                "Medications": 120,
+                "Supplements": 160,
+                "Exercise": 110,
+                "Diet": 135
+            },
+            {
+                "Month": "Jun",
+                "Therapy": 190,
+                "Medications": 130,
+                "Supplements": 170,
+                "Exercise": 120,
+                "Diet": 140
+            },
+            {
+                "Month": "Jul",
+                "Therapy": 200,
+                "Medications": 140,
+                "Supplements": 180,
+                "Exercise": 130,
+                "Diet": 150
+            },
+            {
+                "Month": "Aug",
+                "Therapy": 210,
+                "Medications": 145,
+                "Supplements": 190,
+                "Exercise": 135,
+                "Diet": 155
+            },
+            {
+                "Month": "Sep",
+                "Therapy": 220,
+                "Medications": 150,
+                "Supplements": 200,
+                "Exercise": 140,
+                "Diet": 160
+            },
+            {
+                "Month": "Oct",
+                "Therapy": 230,
+                "Medications": 160,
+                "Supplements": 210,
+                "Exercise": 145,
+                "Diet": 170
+            },
+            {
+                "Month": "Nov",
+                "Therapy": 240,
+                "Medications": 170,
+                "Supplements": 220,
+                "Exercise": 150,
+                "Diet": 180
+            },
+            {
+                "Month": "Dec",
+                "Therapy": 250,
+                "Medications": 180,
+                "Supplements": 230,
+                "Exercise": 160,
+                "Diet": 190
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Therapy",
+                "Medications",
+                "Supplements",
+                "Exercise",
+                "Diet"
+            ],
+            "as": [
+                "Health Activity",
+                "Participation"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "bar",
+        "width": {
+            "band": 0.6
+        }
+    },
+    "width": 600,
+    "height": 500,
+    "title": {
+        "text": "Monthly Health Activity Participation",
+        "fontSize": 18,
+        "anchor": "start",
+        "color": "black",
+        "frame": "group"
+    },
+    "encoding": {
+        "x": {
+            "field": "Month",
+            "type": "ordinal",
+            "title": "Month"
+        },
+        "y": {
+            "field": "Participation",
+            "type": "quantitative",
+            "title": "Participation (in thousands)"
+        },
+        "color": {
+            "field": "Health Activity",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Therapy",
+                    "Medications",
+                    "Supplements",
+                    "Exercise",
+                    "Diet"
+                ],
+                "range": [
+                    "#4B0082",
+                    "#FF4500",
+                    "#32CD32",
+                    "#FFD700",
+                    "#1E90FF"
+                ]
+            },
+            "title": "Health Activity",
+            "legend": {
+                "orient": "right",
+                "titleFontSize": 14,
+                "labelFontSize": 12
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Month",
+                "type": "nominal",
+                "title": "Month"
+            },
+            {
+                "field": "Health Activity",
+                "type": "nominal",
+                "title": "Health Activity"
+            },
+            {
+                "field": "Participation",
+                "type": "quantitative",
+                "title": "Participation (in thousands)"
+            }
+        ]
+    }
+}

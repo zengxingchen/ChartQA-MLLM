@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 600, height: 400});
+var app = {};
+option = null;
+option = {
+    title: {
+        text: 'Adoption of Future Technologies',
+        left: 'center',
+        top: '5%'
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: '{a} <br/>{b} : {c} ({d}%)'
+    },
+    legend: {
+        orient: 'vertical',
+        left: 'left',
+        top: '15%',
+        data: ['Smart Homes', 'Wearable Devices', 'Autonomous Vehicles', 'Blockchain Technology', 'Quantum Computing', 'Augmented Reality', 'Virtual Reality', '5G Technology', 'Internet of Things', 'Artificial Intelligence', 'Edge Computing', 'Biotechnology']
+    },
+    series: [
+        {
+            name: 'Technology',
+            type: 'pie',
+            radius: '55%',
+            center: ['50%', '60%'],
+            data: [
+                {value: 560, name: 'Smart Homes'},
+                {value: 480, name: 'Wearable Devices'},
+                {value: 640, name: 'Autonomous Vehicles'},
+                {value: 500, name: 'Blockchain Technology'},
+                {value: 360, name: 'Quantum Computing'},
+                {value: 320, name: 'Augmented Reality'},
+                {value: 430, name: 'Virtual Reality'},
+                {value: 690, name: '5G Technology'},
+                {value: 750, name: 'Internet of Things'},
+                {value: 800, name: 'Artificial Intelligence'},
+                {value: 270, name: 'Edge Computing'},
+                {value: 320, name: 'Biotechnology'}
+            ],
+            itemStyle: {
+                borderColor: '#fff',
+                borderWidth: 1,
+                shadowBlur: 10,
+                shadowColor: 'rgba(0, 0, 0, 0.5)'
+            },
+            emphasis: {
+                shadowBlur: 10,
+                shadowOffsetX: 0,
+                shadowColor: 'rgba(0, 0, 0, 0.5)'
+            }
+        }
+    ],
+    color: ['#6675a9', '#7eb069', '#a5abd1', '#ed9e7f', '#77dcc5', '#ebb4cb', '#90d7ec', '#ddebb2', '#f7e58d', '#fc97af', '#cca18c', '#9b8bba']
+};
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

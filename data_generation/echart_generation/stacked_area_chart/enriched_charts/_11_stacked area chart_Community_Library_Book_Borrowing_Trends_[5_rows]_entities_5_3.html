@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Wildlife Populations Over 30 Years',
+        subtext: 'Environment & Climate Change',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['Oceanic Wildlife', 'Forest Ecosystems', 'Mountain Wildlife'],
+        bottom: 0
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '10%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ['1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000',
+               '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010',
+               '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Oceanic Wildlife',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [12000, 11500, 11800, 12100, 12500, 13000, 13600, 14000, 14500, 15100, 15500, 
+                   16000, 16200, 16500, 16800, 17000, 17500, 18000, 18500, 19000, 19500, 20000,
+                   20500, 21000, 21200, 21500, 22000, 22500, 23000, 23500, 24000],
+            itemStyle: {
+                color: '#1f77b4'
+            }
+        },
+        {
+            name: 'Forest Ecosystems',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [9000, 9200, 9300, 9600, 9800, 10100, 10500, 11000, 11600, 12200, 13000, 
+                   13800, 14300, 14700, 15100, 15500, 15900, 16300, 16800, 17200, 17700, 18000,
+                   18300, 18500, 18800, 19000, 19500, 20000, 20500, 21000, 21500],
+            itemStyle: {
+                color: '#ff7f0e'
+            }
+        },
+        {
+            name: 'Mountain Wildlife',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [3500, 3700, 3900, 4100, 4300, 4500, 4800, 5100, 5300, 5500, 5700, 
+                   5900, 6100, 6400, 6600, 6800, 7000, 7200, 7400, 7600, 7800, 8000, 
+                   8200, 8400, 8600, 8800, 9000, 9200, 9400, 9600, 9800],
+            itemStyle: {
+                color: '#2ca02c'
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

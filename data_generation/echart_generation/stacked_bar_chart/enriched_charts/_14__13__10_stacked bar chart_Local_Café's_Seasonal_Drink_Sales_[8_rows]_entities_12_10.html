@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+var option;
+
+option = {
+    title: {
+        text: 'Monthly Sales Data',
+        left: 'center',
+        top: '5%'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Subcategory1', 'Subcategory2', 'Subcategory3', 'Subcategory4'],
+        top: '10%',
+        left: 'center'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        data: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Subcategory1',
+            type: 'bar',
+            stack: 'total',
+            barWidth: '50%',
+            itemStyle: {
+                color: '#5470C6'
+            },
+            label: {
+                show: true,
+                position: 'inside'
+            },
+            data: [320, 332, 301, 334, 390, 330, 320, 301, 334, 320, 332, 334]
+        },
+        {
+            name: 'Subcategory2',
+            type: 'bar',
+            stack: 'total',
+            barWidth: '50%',
+            itemStyle: {
+                color: '#91CC75'
+            },
+            label: {
+                show: true,
+                position: 'inside'
+            },
+            data: [132, 101, 134, 134, 230, 210, 182, 198, 176, 145, 180, 190]
+        },
+        {
+            name: 'Subcategory3',
+            type: 'bar',
+            stack: 'total',
+            barWidth: '50%',
+            itemStyle: {
+                color: '#FAC858'
+            },
+            label: {
+                show: true,
+                position: 'inside'
+            },
+            data: [201, 234, 190, 215, 284, 184, 195, 220, 204, 210, 230, 215]
+        },
+        {
+            name: 'Subcategory4',
+            type: 'bar',
+            stack: 'total',
+            barWidth: '50%',
+            itemStyle: {
+                color: '#EE6666'
+            },
+            label: {
+                show: true,
+                position: 'inside'
+            },
+            data: [134, 290, 230, 240, 290, 220, 300, 310, 260, 230, 290, 240]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

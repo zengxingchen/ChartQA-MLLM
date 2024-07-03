@@ -1,0 +1,169 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Line chart showing average monthly sleep hours by month for different regions.",
+    "title": {
+        "text": "Average Monthly Sleep Hours by Region",
+        "fontSize": 18,
+        "anchor": "start",
+        "color": "#333333"
+    },
+    "width": 700,
+    "height": 450,
+    "data": {
+        "values": [
+            {
+                "Region": "North America",
+                "January": 7,
+                "February": 7.1,
+                "March": 7.2,
+                "April": 7.3,
+                "May": 7.4,
+                "June": 7.5,
+                "July": 7.6,
+                "August": 7.7,
+                "September": 7.6,
+                "October": 7.5,
+                "November": 7.4,
+                "December": 7.3
+            },
+            {
+                "Region": "South America",
+                "January": 6.5,
+                "February": 6.6,
+                "March": 6.7,
+                "April": 6.8,
+                "May": 6.9,
+                "June": 7,
+                "July": 7.1,
+                "August": 7.2,
+                "September": 7.1,
+                "October": 7,
+                "November": 6.9,
+                "December": 6.8
+            },
+            {
+                "Region": "Europe",
+                "January": 7.2,
+                "February": 7.3,
+                "March": 7.4,
+                "April": 7.5,
+                "May": 7.6,
+                "June": 7.7,
+                "July": 7.8,
+                "August": 7.9,
+                "September": 7.8,
+                "October": 7.7,
+                "November": 7.6,
+                "December": 7.5
+            },
+            {
+                "Region": "Asia",
+                "January": 6.8,
+                "February": 6.9,
+                "March": 7,
+                "April": 7.1,
+                "May": 7.2,
+                "June": 7.3,
+                "July": 7.4,
+                "August": 7.5,
+                "September": 7.4,
+                "October": 7.3,
+                "November": 7.2,
+                "December": 7.1
+            },
+            {
+                "Region": "Australia",
+                "January": 7.5,
+                "February": 7.6,
+                "March": 7.7,
+                "April": 7.8,
+                "May": 7.9,
+                "June": 8,
+                "July": 8.1,
+                "August": 8.2,
+                "September": 8.1,
+                "October": 8,
+                "November": 7.9,
+                "December": 7.8
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "January",
+                "February",
+                "March",
+                "April",
+                "May",
+                "June",
+                "July",
+                "August",
+                "September",
+                "October",
+                "November",
+                "December"
+            ],
+            "as": [
+                "Month",
+                "Sleep Hours"
+            ]
+        }
+    ],
+    "mark": "line",
+    "encoding": {
+        "x": {
+            "field": "Month",
+            "type": "ordinal",
+            "title": "Month",
+            "axis": {
+                "titleFontSize": 14,
+                "labelAngle": -45
+            }
+        },
+        "y": {
+            "field": "Sleep Hours",
+            "type": "quantitative",
+            "title": "Sleep Hours",
+            "axis": {
+                "titleFontSize": 14,
+                "orient": "right"
+            }
+        },
+        "color": {
+            "field": "Region",
+            "type": "nominal",
+            "scale": {
+                "range": [
+                    "#003f5c",
+                    "#58508d",
+                    "#bc5090",
+                    "#ff6361",
+                    "#ffa600"
+                ]
+            },
+            "legend": {
+                "title": "Region"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Region",
+                "type": "nominal"
+            },
+            {
+                "field": "Month",
+                "type": "ordinal"
+            },
+            {
+                "field": "Sleep Hours",
+                "type": "quantitative"
+            }
+        ]
+    },
+    "config": {
+        "axisY": {
+            "minExtent": 30
+        }
+    }
+}

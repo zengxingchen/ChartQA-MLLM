@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+
+var option;
+
+// Raw Data
+var data = [
+    {'Month': 'January', 'Adults': 1200, 'Teens': 300, 'Children': 500, 'Seniors': 400},
+    {'Month': 'February', 'Adults': 1150, 'Teens': 280, 'Children': 450, 'Seniors': 350},
+    {'Month': 'March', 'Adults': 1300, 'Teens': 320, 'Children': 480, 'Seniors': 420},
+    {'Month': 'April', 'Adults': 1250, 'Teens': 310, 'Children': 470, 'Seniors': 390},
+    {'Month': 'May', 'Adults': 1450, 'Teens': 330, 'Children': 510, 'Seniors': 440},
+    {'Month': 'June', 'Adults': 1350, 'Teens': 340, 'Children': 450, 'Seniors': 410},
+    {'Month': 'July', 'Adults': 1400, 'Teens': 350, 'Children': 490, 'Seniors': 450},
+    {'Month': 'August', 'Adults': 1550, 'Teens': 370, 'Children': 530, 'Seniors': 470},
+    {'Month': 'September', 'Adults': 1600, 'Teens': 380, 'Children': 540, 'Seniors': 480},
+    {'Month': 'October', 'Adults': 1500, 'Teens': 350, 'Children': 500, 'Seniors': 450},
+    {'Month': 'November', 'Adults': 1400, 'Teens': 330, 'Children': 470, 'Seniors': 420},
+    {'Month': 'December', 'Adults': 1700, 'Teens': 400, 'Children': 600, 'Seniors': 500}
+];
+
+// Split the data for each series
+var xAxisData = data.map(function(item) { return item.Month; });
+var adultsData = data.map(function(item) { return item.Adults; });
+var teensData = data.map(function(item) { return item.Teens; });
+var childrenData = data.map(function(item) { return item.Children; });
+var seniorsData = data.map(function(item) { return item.Seniors; });
+
+option = {
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            label: {
+                backgroundColor: '#6a7985'
+            }
+        }
+    },
+    legend: {
+        data: ['Adults', 'Teens', 'Children', 'Seniors']
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: [
+        {
+            type: 'category',
+            boundaryGap: false,
+            data: xAxisData
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value'
+        }
+    ],
+    series: [
+        {
+            name: 'Adults',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {normal: {}},
+            emphasis: {focus: 'series'},
+            data: adultsData
+        },
+        {
+            name: 'Teens',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {normal: {}},
+            emphasis: {focus: 'series'},
+            data: teensData
+        },
+        {
+            name: 'Children',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {normal: {}},
+            emphasis: {focus: 'series'},
+            data: childrenData
+        },
+        {
+            name: 'Seniors',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {normal: {}},
+            emphasis: {focus: 'series'},
+            data: seniorsData
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

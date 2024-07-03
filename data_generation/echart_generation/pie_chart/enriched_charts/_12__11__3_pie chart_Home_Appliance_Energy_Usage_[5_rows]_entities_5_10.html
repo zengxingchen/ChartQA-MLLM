@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 800, // change width
+    height: 600 // change height
+});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Adoption Rate of Future Technologies',
+        subtext: 'in various sectors',
+        left: 'center',
+        top: 30
+    },
+    tooltip: {
+        trigger: 'item'
+    },
+    legend: {
+        orient: 'vertical',
+        left: 'left',
+        top: 70
+    },
+    series: [
+        {
+            name: 'Adoption Rate',
+            type: 'pie',
+            radius: '50%',
+            data: [
+                { value: 12, name: '5G Technology' },
+                { value: 4, name: 'Quantum Computing' },
+                { value: 22, name: 'Blockchain' },
+                { value: 17, name: 'Augmented Reality' },
+                { value: 28, name: 'Artificial Intelligence' },
+                { value: 24, name: 'Internet of Things' },
+                { value: 9, name: 'IoT Security' },
+                { value: 6, name: 'Edge Computing' },
+                { value: 12, name: 'Robotic Process Automation' },
+                { value: 8, name: 'Virtual Reality' },
+                { value: 11, name: 'Biotechnology' },
+                { value: 5, name: 'Nanotechnology' },
+                { value: 23, name: 'Renewable Energy' },
+                { value: 15, name: 'Electric Vehicles' },
+                { value: 7, name: 'Smart Cities' },
+                { value: 3, name: 'Neurotechnology' },
+                { value: 9, name: 'Space Exploration' }
+            ],
+            emphasis: {
+                itemStyle: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            }
+        }
+    ],
+    color: [
+        '#FF6699', '#FFBB28', '#50A3BA', '#C9E6E5', '#DE6E6E',
+        '#EFC631', '#9E9E42', '#B6A2DE', '#67E0E3', '#FF9845',
+        '#7FC9FD', '#D3A4FF', '#9EDE73', '#F5A623', '#61A0A8',
+        '#F4554C', '#C23531'
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

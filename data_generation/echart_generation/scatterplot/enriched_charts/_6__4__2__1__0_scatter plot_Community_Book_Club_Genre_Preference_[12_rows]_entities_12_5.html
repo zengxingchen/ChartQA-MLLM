@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 800,
+    height: 600
+});
+
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Running Performance Over Time',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: '{a} <br/>{b}: {c}'
+    },
+    legend: {
+        data: ['Distance'],
+        left: 'left',
+        top: 'bottom'
+    },
+    xAxis: {
+        name: 'Time (Days)',
+        type: 'value'
+    },
+    yAxis: {
+        name: 'Distance (km)',
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Distance',
+            type: 'scatter',
+            itemStyle: {
+                color: '#FF6347'
+            },
+            data: [
+                [1, 5],
+                [2, 6.5],
+                [3, 8.2],
+                [4, 7.8],
+                [5, 9.1],
+                [6, 11.3],
+                [7, 10.5],
+                [8, 13.4],
+                [9, 14.2],
+                [10, 15],
+                [11, 16.3],
+                [12, 18.5],
+                [13, 17.8],
+                [14, 19],
+                [15, 20.5],
+                [16, 21.2],
+                [17, 22.3],
+                [18, 23],
+                [19, 24.5],
+                [20, 25.8]
+            ]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

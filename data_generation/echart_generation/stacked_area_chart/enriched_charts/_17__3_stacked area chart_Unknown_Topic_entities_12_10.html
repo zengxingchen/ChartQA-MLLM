@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 400});
+var app = {};
+
+var option;
+
+option = {
+  title: {
+    text: 'Monthly Sales Data',
+    left: 'center'
+  },
+  tooltip: {
+    trigger: 'axis'
+  },
+  legend: {
+    data: ['Books', 'Electronics', 'Clothing'],
+    top: 30
+  },
+  grid: {
+    left: '3%',
+    right: '4%',
+    bottom: '3%',
+    containLabel: true
+  },
+  toolbox: {
+    feature: {
+      saveAsImage: {}
+    }
+  },
+  xAxis: {
+    type: 'category',
+    boundaryGap: false,
+    data: [
+      '2023-01-01', '2023-01-02', '2023-01-03', '2023-01-04', '2023-01-05',
+      '2023-01-06', '2023-01-07', '2023-01-08', '2023-01-09', '2023-01-10',
+      '2023-01-11', '2023-01-12', '2023-01-13', '2023-01-14', '2023-01-15',
+      '2023-01-16', '2023-01-17', '2023-01-18', '2023-01-19', '2023-01-20',
+      '2023-01-21', '2023-01-22', '2023-01-23'
+    ]
+  },
+  yAxis: {
+    type: 'value'
+  },
+  series: [
+    {
+      name: 'Books',
+      type: 'line',
+      stack: 'total',
+      areaStyle: {},
+      emphasis: { focus: 'series' },
+      data: [150, 155, 149, 165, 170, 160, 175, 180, 185, 190, 195, 200, 190, 180, 185, 189, 193, 195, 200, 205, 210, 220, 230],
+      color: '#ff7f50'
+    },
+    {
+      name: 'Electronics',
+      type: 'line',
+      stack: 'total',
+      areaStyle: {},
+      emphasis: { focus: 'series' },
+      data: [120, 125, 130, 140, 145, 150, 160, 165, 170, 180, 190, 195, 185, 175, 178, 182, 189, 190, 195, 200, 205, 215, 225],
+      color: '#87ceeb'
+    },
+    {
+      name: 'Clothing',
+      type: 'line',
+      stack: 'total',
+      areaStyle: {},
+      emphasis: { focus: 'series' },
+      data: [80, 85, 87, 90, 95, 100, 105, 110, 115, 120, 125, 130, 135, 140, 150, 155, 157, 160, 162, 165, 170, 175, 180],
+      color: '#da70d6'
+    }
+  ],
+  markPoint: {
+    data: [
+      { type: 'max', name: 'Max' },
+      { type: 'min', name: 'Min' }
+    ]
+  }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

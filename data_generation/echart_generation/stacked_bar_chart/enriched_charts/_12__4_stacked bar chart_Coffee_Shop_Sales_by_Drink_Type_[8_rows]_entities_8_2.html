@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+var option = {
+    title: {
+        text: 'Monthly Data Analysis in 2023',
+        left: 'center',
+        top: 20,
+        textStyle: {
+            color: '#333'
+        }
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Data1', 'Data2', 'Data3', 'Data4'],
+        top: 50
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01],
+        axisLabel: {
+            formatter: '{value}'
+        }
+    },
+    yAxis: {
+        type: 'category',
+        data: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+    },
+    series: [
+        {
+            name: 'Data1',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [120, 220, 150, 320, 820, 420, 620, 720, 820, 920, 1020, 1120],
+            itemStyle: {
+                color: '#FF5733'
+            },
+            barWidth: '50%'
+        },
+        {
+            name: 'Data2',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [132, 182, 232, 332, 932, 432, 732, 832, 932, 1032, 1132, 1232],
+            itemStyle: {
+                color: '#33FF57'
+            },
+            barWidth: '50%'
+        },
+        {
+            name: 'Data3',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [101, 191, 201, 301, 901, 401, 701, 801, 901, 1001, 1101, 1201],
+            itemStyle: {
+                color: '#3357FF'
+            },
+            barWidth: '50%'
+        },
+        {
+            name: 'Data4',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [134, 234, 154, 334, 934, 434, 734, 834, 934, 1034, 1134, 1234],
+            itemStyle: {
+                color: '#FF33A1'
+            },
+            barWidth: '50%'
+        }
+    ]
+};
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

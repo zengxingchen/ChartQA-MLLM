@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {renderer: 'canvas', width: '600', height: '400'});
+
+var option;
+option = {
+    title: {
+        text: 'Quarterly Revenue by Product Line',
+        subtext: 'Economics & Finance',
+        left: 'center',
+        padding: 20,
+        textStyle: {
+            fontSize: 18
+        }
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            label: {
+                backgroundColor: '#6a7985'
+            }
+        }
+    },
+    legend: {
+        bottom: '3%',
+        data: ['Product A', 'Product B', 'Product C']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '10%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ['Q1-2021', 'Q2-2021', 'Q3-2021', 'Q4-2021', 'Q1-2022', 'Q2-2022', 'Q3-2022', 'Q4-2022']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Product A',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [120000, 150000, 130000, 200000, 160000, 170000, 180000, 220000],
+            itemStyle: {
+                color: '#FF7F50'
+            }
+        },
+        {
+            name: 'Product B',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [80000, 100000, 110000, 140000, 130000, 150000, 165000, 170000],
+            itemStyle: {
+                color: '#87CEFA'
+            }
+        },
+        {
+            name: 'Product C',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [50000, 60000, 70000, 80000, 85000, 90000, 95000, 100000],
+            itemStyle: {
+                color: '#32CD32'
+            }
+        }
+    ],
+    markPoint: {
+        data: [
+            {type: 'max', name: 'Max', symbolSize: 50},
+            {type: 'min', name: 'Min', symbolSize: 50}
+        ],
+        label: {
+            formatter: '{b}\n{c}'
+        }
+    },
+    markLine: {
+        silent: true,
+        data: [{
+            type: 'average', name: 'Average'
+        }]
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

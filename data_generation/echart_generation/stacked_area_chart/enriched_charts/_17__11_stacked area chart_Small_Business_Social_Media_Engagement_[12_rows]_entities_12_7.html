@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Quarterly Revenue Trends of Tech Companies',
+        left: 'center',
+        top: 20
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            label: {
+                backgroundColor: '#6a7985'
+            }
+        }
+    },
+    legend: {
+        data: ['Apple', 'Google', 'Amazon'],
+        align: 'left',
+        left: 10
+    },
+    color: ['#FFA07A', '#20B2AA', '#778899'],
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: [
+        {
+            type: 'category',
+            boundaryGap: false,
+            data: ['Q1-2019', 'Q1-2020', 'Q1-2021', 'Q2-2019', 'Q2-2020', 'Q2-2021', 'Q3-2019', 'Q3-2020', 'Q3-2021', 'Q4-2019', 'Q4-2020', 'Q4-2021']
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value'
+        }
+    ],
+    series: [
+        {
+            name: 'Apple',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [58000, 58300, 67650, 53800, 59540, 72520, 64000, 64650, 83360, 91840, 111440, 123850]
+        },
+        {
+            name: 'Google',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [36500, 44120, 55280, 38560, 38360, 56760, 40650, 46150, 65340, 46120, 56040, 75920]
+        },
+        {
+            name: 'Amazon',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [59750, 75450, 108970, 63410, 88910, 113080, 69930, 96180, 111440, 87450, 125650, 137410]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

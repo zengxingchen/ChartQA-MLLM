@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    width: 600,
+    height: 400
+});
+
+var app = {};
+var option;
+
+option = {
+    title: {
+        text: 'Tourist Destinations Visitors Trend',
+        subtext: 'Travel & Adventure - Monthly Visitors (in thousands)',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['Mount Everest', 'Grand Canyon', 'Great Wall of China'],
+        top: 'bottom'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Mount Everest',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [10, 12, 20, 25, 30, 22, 18, 15, 20, 25, 15, 10],
+            color: '#FF4500'
+        },
+        {
+            name: 'Grand Canyon',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [25, 22, 30, 35, 40, 50, 55, 60, 45, 40, 35, 30],
+            color: '#32CD32'
+        },
+        {
+            name: 'Great Wall of China',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [40, 35, 45, 50, 65, 70, 80, 75, 65, 60, 50, 40],
+            color: '#1E90FF'
+        }
+    ],
+    markPoint: {
+        data: [
+            {type: 'max', name: 'Max', symbolSize: 70, label: {show: true}},
+            {type: 'min', name: 'Min', symbolSize: 50, label: {show: true}}
+        ],
+        symbol: 'diamond'
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

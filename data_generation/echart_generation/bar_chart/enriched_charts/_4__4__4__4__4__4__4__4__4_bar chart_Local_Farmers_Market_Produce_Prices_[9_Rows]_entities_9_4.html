@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var option;
+
+option = {
+    title: {
+        text: 'Life Expectancy Over the Years',
+        left: 'center',
+        top: 20
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01]
+    },
+    yAxis: {
+        type: 'category',
+        data: ['2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', 
+               '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', 
+               '2020', '2021', '2022']
+    },
+    series: [
+        {
+            name: 'Life Expectancy',
+            type: 'bar',
+            data: [70.1, 70.3, 70.6, 70.9, 71.2, 71.5, 71.8, 72.1, 72.4, 72.7, 
+                   73.0, 73.2, 73.5, 73.7, 74.0, 74.2, 74.4, 74.6, 74.8, 75.0, 
+                   75.2, 75.4, 75.6],
+            itemStyle: {
+                color: '#3398DB'
+            },
+            label: {
+                show: true,
+                position: 'insideRight',
+                formatter: '{c} years'
+            },
+            barWidth: '50%'
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+
+var option;
+
+// Data parsing and preparation
+var rawData = [
+  {'Date': '2023-01-01', 'Espresso': 30, 'Cappuccino': 45, 'Latte': 50, 'Americano': 25, 'Muffins': 20, 'Sandwiches': 15},
+  {'Date': '2023-01-02', 'Espresso': 35, 'Cappuccino': 40, 'Latte': 55, 'Americano': 30, 'Muffins': 25, 'Sandwiches': 10},
+  {'Date': '2023-01-03', 'Espresso': 40, 'Cappuccino': 50, 'Latte': 60, 'Americano': 20, 'Muffins': 15, 'Sandwiches': 20},
+  {'Date': '2023-01-04', 'Espresso': 50, 'Cappuccino': 45, 'Latte': 65, 'Americano': 25, 'Muffins': 30, 'Sandwiches': 25},
+  {'Date': '2023-01-05', 'Espresso': 45, 'Cappuccino': 55, 'Latte': 70, 'Americano': 30, 'Muffins': 35, 'Sandwiches': 30}
+];
+
+// Extract date labels for the x-axis
+var dates = rawData.map(function (item) {
+  return item.Date;
+});
+
+// Extract series data for each type of product
+var series = [
+  {
+    name: 'Espresso',
+    type: 'line',
+    stack: 'Total',
+    areaStyle: { opacity: 0.8 },
+    emphasis: {
+      focus: 'series'
+    },
+    data: rawData.map(function (item) {
+      return item.Espresso;
+    })
+  },
+  {
+    name: 'Cappuccino',
+    type: 'line',
+    stack: 'Total',
+    areaStyle: { opacity: 0.8 },
+    emphasis: {
+      focus: 'series'
+    },
+    data: rawData.map(function (item) {
+      return item.Cappuccino;
+    })
+  },
+  {
+    name: 'Latte',
+    type: 'line',
+    stack: 'Total',
+    areaStyle: { opacity: 0.8 },
+    emphasis: {
+      focus: 'series'
+    },
+    data: rawData.map(function (item) {
+      return item.Latte;
+    })
+  },
+  {
+    name: 'Americano',
+    type: 'line',
+    stack: 'Total',
+    areaStyle: { opacity: 0.8 },
+    emphasis: {
+      focus: 'series'
+    },
+    data: rawData.map(function (item) {
+      return item.Americano;
+    })
+  },
+  {
+    name: 'Muffins',
+    type: 'line',
+    stack: 'Total',
+    areaStyle: { opacity: 0.8 },
+    emphasis: {
+      focus: 'series'
+    },
+    data: rawData.map(function (item) {
+      return item.Muffins;
+    })
+  },
+  {
+    name: 'Sandwiches',
+    type: 'line',
+    stack: 'Total',
+    areaStyle: { opacity: 0.8 },
+    emphasis: {
+      focus: 'series'
+    },
+    data: rawData.map(function (item) {
+      return item.Sandwiches;
+    })
+  }
+];
+
+// Configuration of the stacked area chart option
+option = {
+  tooltip: {
+    trigger: 'axis',
+    axisPointer: {
+      type: 'cross',
+      label: {
+        backgroundColor: '#6a7985'
+      }
+    }
+  },
+  legend: {
+    data: series.map(function (item) {
+      return item.name;
+    })
+  },
+  toolbox: {
+    feature: {
+      saveAsImage: {}
+    }
+  },
+  grid: {
+    left: '3%',
+    right: '4%',
+    bottom: '3%',
+    containLabel: true
+  },
+  xAxis: [
+    {
+      type: 'category',
+      boundaryGap: false,
+      data: dates
+    }
+  ],
+  yAxis: [
+    {
+      type: 'value'
+    }
+  ],
+  series: series
+};
+
+if (option && typeof option === 'object') {
+  myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

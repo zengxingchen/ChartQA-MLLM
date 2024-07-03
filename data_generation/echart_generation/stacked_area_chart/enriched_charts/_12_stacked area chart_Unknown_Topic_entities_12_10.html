@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+dom.style.width = '800px';
+dom.style.height = '500px';
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Annual Clothing Sales Trends',
+        left: 'center',
+        top: 20
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['T-Shirts', 'Jeans', 'Jackets'],
+        top: 70
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ['2010','2011','2012','2013','2014','2015','2016','2017','2018','2019','2020','2021','2022']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'T-Shirts',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [120, 150, 180, 200, 180, 210, 220, 230, 240, 230, 220, 210, 205],
+            color: '#34a853'
+        },
+        {
+            name: 'Jeans',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [80, 90, 95, 100, 105, 110, 115, 120, 125, 130, 140, 145, 150],
+            color: '#4285f4'
+        },
+        {
+            name: 'Jackets',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [50, 60, 65, 70, 75, 80, 85, 90, 95, 100, 110, 115, 120],
+            color: '#ea4335'
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

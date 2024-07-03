@@ -1,0 +1,179 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+        "values": [
+            {
+                "Month": "January",
+                "Solar": 3,
+                "Wind": 5,
+                "Hydro": 2,
+                "Coal": 4
+            },
+            {
+                "Month": "February",
+                "Solar": 4,
+                "Wind": 6,
+                "Hydro": 3,
+                "Coal": 3
+            },
+            {
+                "Month": "March",
+                "Solar": 5,
+                "Wind": 7,
+                "Hydro": 4,
+                "Coal": 2
+            },
+            {
+                "Month": "April",
+                "Solar": 6,
+                "Wind": 8,
+                "Hydro": 5,
+                "Coal": 1
+            },
+            {
+                "Month": "May",
+                "Solar": 7,
+                "Wind": 9,
+                "Hydro": 6,
+                "Coal": 2
+            },
+            {
+                "Month": "June",
+                "Solar": 8,
+                "Wind": 10,
+                "Hydro": 7,
+                "Coal": 3
+            },
+            {
+                "Month": "July",
+                "Solar": 9,
+                "Wind": 11,
+                "Hydro": 8,
+                "Coal": 4
+            },
+            {
+                "Month": "August",
+                "Solar": 10,
+                "Wind": 12,
+                "Hydro": 9,
+                "Coal": 5
+            },
+            {
+                "Month": "September",
+                "Solar": 9,
+                "Wind": 11,
+                "Hydro": 8,
+                "Coal": 4
+            },
+            {
+                "Month": "October",
+                "Solar": 8,
+                "Wind": 10,
+                "Hydro": 7,
+                "Coal": 3
+            },
+            {
+                "Month": "November",
+                "Solar": 7,
+                "Wind": 9,
+                "Hydro": 6,
+                "Coal": 2
+            },
+            {
+                "Month": "December",
+                "Solar": 6,
+                "Wind": 8,
+                "Hydro": 5,
+                "Coal": 1
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Solar",
+                "Wind",
+                "Hydro",
+                "Coal"
+            ],
+            "as": [
+                "Energy Source",
+                "Consumption"
+            ]
+        }
+    ],
+    "width": 600,
+    "height": 300,
+    "mark": {
+        "type": "bar",
+        "width": {
+            "band": 0.5
+        }
+    },
+    "title": {
+        "text": "Energy Consumption by Source Per Month",
+        "subtitle": "Source: Environmental Data",
+        "subtitleFontStyle": "italic",
+        "subtitleFontSize": 12,
+        "align": "center",
+        "anchor": "middle",
+        "color": "#333333"
+    },
+    "encoding": {
+        "x": {
+            "field": "Month",
+            "type": "ordinal",
+            "axis": {
+                "title": "Month"
+            }
+        },
+        "y": {
+            "field": "Consumption",
+            "type": "quantitative",
+            "stack": "zero",
+            "axis": {
+                "title": "Energy Consumption (kWh)"
+            }
+        },
+        "color": {
+            "field": "Energy Source",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Solar",
+                    "Wind",
+                    "Hydro",
+                    "Coal"
+                ],
+                "range": [
+                    "#FFDD44",
+                    "#4C78A8",
+                    "#72B7B2",
+                    "#F58518"
+                ]
+            },
+            "legend": {
+                "title": "Energy Source",
+                "orient": "bottom",
+                "titleAlign": "center"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Month",
+                "type": "ordinal",
+                "title": "Month"
+            },
+            {
+                "field": "Energy Source",
+                "type": "nominal",
+                "title": "Energy Source"
+            },
+            {
+                "field": "Consumption",
+                "type": "quantitative",
+                "title": "Consumption (kWh)"
+            }
+        ]
+    }
+}

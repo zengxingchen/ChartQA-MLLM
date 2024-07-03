@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var data = [{'Month': 'January', 'New Book Acquisitions': 5, 'Attendance': 450},
+            {'Month': 'February', 'New Book Acquisitions': 7, 'Attendance': 470},
+            {'Month': 'March', 'New Book Acquisitions': 10, 'Attendance': 550},
+            {'Month': 'April', 'New Book Acquisitions': 4, 'Attendance': 400},
+            {'Month': 'May', 'New Book Acquisitions': 6, 'Attendance': 420},
+            {'Month': 'June', 'New Book Acquisitions': 8, 'Attendance': 480},
+            {'Month': 'July', 'New Book Acquisitions': 11, 'Attendance': 620},
+            {'Month': 'August', 'New Book Acquisitions': 10, 'Attendance': 500},
+            {'Month': 'September', 'New Book Acquisitions': 13, 'Attendance': 540},
+            {'Month': 'October', 'New Book Acquisitions': 9, 'Attendance': 490},
+            {'Month': 'November', 'New Book Acquisitions': 4, 'Attendance': 410},
+            {'Month': 'December', 'New Book Acquisitions': 2, 'Attendance': 380}];
+
+var scatterData = data.map(function (item) {
+    return {
+        name: item.Month,
+        value: [item['New Book Acquisitions'], item.Attendance],
+        label: {
+            show: true,
+            formatter: item.Month,
+            position: 'top'
+        },
+        itemStyle: {
+            color: echarts.color.lift('#1f77b4', item['New Book Acquisitions']/13)
+        },
+        symbolSize: item.Attendance / 900 * 30,  // Use attendance to determine the size
+    };
+});
+
+option = {
+    title: {
+        text: 'Monthly Attendance and New Book Acquisitions',
+        subtext: 'Scatterplot',
+        left: 'center'
+    },
+    tooltip: {
+        formatter: function (param) {
+            return param.data.name + ': (' + param.value[0] + ', ' + param.value[1] + ')';
+        }
+    },
+    xAxis: {
+        splitLine: {
+            lineStyle: {
+                type: 'dashed'
+            }
+        },
+        name: 'New Book Acquisitions'
+    },
+    yAxis: {
+        splitLine: {
+            lineStyle: {
+                type: 'dashed'
+            }
+        },
+        scale: true,
+        name: 'Attendance'
+    },
+    series: [{
+        name: 'Data',
+        type: 'scatter',
+        data: scatterData,
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

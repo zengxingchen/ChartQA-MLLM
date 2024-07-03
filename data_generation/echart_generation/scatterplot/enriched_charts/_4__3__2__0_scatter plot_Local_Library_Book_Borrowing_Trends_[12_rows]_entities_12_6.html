@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var option;
+
+option = {
+    title: {
+        text: 'Popularity of Different Art Categories Over Time',
+        left: 'center',
+        top: '2%'
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['Photography', 'Painting', 'Sculpture', 'Digital_Art', 'Graphic_Design'],
+        top: '10%',
+        right: '10%'
+    },
+    xAxis: {
+        name: 'Time Published (Months)',
+        type: 'category',
+        data: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11']
+    },
+    yAxis: {
+        name: 'Popularity',
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Photography',
+            type: 'scatter',
+            itemStyle: {
+                color: '#FF6347'
+            },
+            data: [85, 90, 87, 88, 92, 91, 94, 89, 95, 97, 86]
+        },
+        {
+            name: 'Painting',
+            type: 'scatter',
+            itemStyle: {
+                color: '#4682B4'
+            },
+            data: [77, 75, 78, 80, 82, 79, 81, 85, 83, 88, 84]
+        },
+        {
+            name: 'Sculpture',
+            type: 'scatter',
+            itemStyle: {
+                color: '#32CD32'
+            },
+            data: [55, 53, 56, 58, 57, 59, 61, 60, 62, 63, 64]
+        },
+        {
+            name: 'Digital_Art',
+            type: 'scatter',
+            itemStyle: {
+                color: '#FFD700'
+            },
+            data: [45, 48, 47, 50, 51, 52, 53, 54, 55, 57, 58]
+        },
+        {
+            name: 'Graphic_Design',
+            type: 'scatter',
+            itemStyle: {
+                color: '#9932CC'
+            },
+            data: [67, 65, 70, 68, 72, 73, 71, 74, 75, 76, 77]
+        }
+    ],
+    grid: {
+        width: '80%',
+        height: '70%',
+        top: '15%'
+    }
+};
+
+if (option && typeof option === 'object') myChart.setOption(option);
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

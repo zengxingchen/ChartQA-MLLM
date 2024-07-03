@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+var option;
+
+option = {
+    title: {
+        text: 'Adoption Rates of Emerging Technologies',
+        left: 'center',
+        top: '5%'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '10%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01]
+    },
+    yAxis: {
+        type: 'category',
+        data: ['Artificial Intelligence', 'Blockchain', 'Quantum Computing', '5G', 'Internet of Things', 'Virtual Reality', 'Augmented Reality', 'Robotics', '3D Printing', 'Nanotechnology', 'Biotechnology', 'Cybersecurity']
+    },
+    series: [
+        {
+            name: 'Adoption Rate',
+            type: 'bar',
+            barWidth: '50%',
+            itemStyle: {
+                color: '#1f77b4'
+            },
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            data: [75, 60, 30, 85, 70, 50, 45, 55, 40, 35, 65, 80]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

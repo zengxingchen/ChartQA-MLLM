@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+            var dom = document.getElementById('container');
+            var myChart = echarts.init(dom, null, {
+            renderer: 'canvas',
+            useDirtyRect: false
+            });
+            var app = {};
+            
+            var option;
+
+            
+option = {
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        },
+        formatter: function (params) {
+            let tooltipContent = params[0].name;
+            let total = 0;
+            params.forEach(function (item) {
+                total += item.value;
+            });
+            tooltipContent += '<br/>Total: ' + total;
+            params.forEach(function (item) {
+                let percent = (item.value / total * 100).toFixed(2) + '%';
+                tooltipContent +=
+                    '<br/>' + item.seriesName + ': ' + item.value + ' (' + percent + ')';
+            });
+            return tooltipContent;
+        }
+    },
+    legend: {
+        data: ['Lenovo', 'HP', 'Dell', 'Apple', 'Acer']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: false,
+        min: 0,
+        max: 100,
+        axisLabel: {
+            show: true,
+            formatter: '{value} %'
+        }
+    },
+    yAxis: {
+        type: 'category',
+        data: ['Q1', 'Q2', 'Q3', 'Q4']
+    },
+    series: [
+        {
+            name: 'Lenovo',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                formatter: '{c}%',
+                position: 'insideRight'
+            },
+            data: [24, 25, 26, 27].map(function (val) {
+                return (val / 100).toFixed(2) * 100; // Convert to percentage format
+            }),
+            itemStyle: {
+                color: '#5470c6'
+            }
+        },
+        {
+            name: 'HP',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                formatter: '{c}%',
+                position: 'insideRight'
+            },
+            data: [22, 20, 21, 22].map(function (val) {
+                return (val / 100).toFixed(2) * 100; // Convert to percentage format
+            }),
+            itemStyle: {
+                color: '#91cc75'
+            }
+        },
+        {
+            name: 'Dell',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                formatter: '{c}%',
+                position: 'insideRight'
+            },
+            data: [16, 16, 17, 17].map(function (val) {
+                return (val / 100).toFixed(2) * 100; // Convert to percentage format
+            }),
+            itemStyle: {
+                color: '#fac858'
+            }
+        },
+        {
+            name: 'Apple',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                formatter: '{c}%',
+                position: 'insideRight'
+            },
+            data: [8, 9, 10, 11].map(function (val) {
+                return (val / 100).toFixed(2) * 100; // Convert to percentage format
+            }),
+            itemStyle: {
+                color: '#ee6666'
+            }
+        },
+        {
+            name: 'Acer',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                formatter: '{c}%',
+                position: 'insideRight'
+            },
+            data: [7, 6, 6, 5].map(function (val) {
+                return (val / 100).toFixed(2) * 100; // Convert to percentage format
+            }),
+            itemStyle: {
+                color: '#73c0de'
+            }
+        }
+    ]
+};
+
+            if (option && typeof option === 'object') {
+            myChart.setOption(option);
+            }
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

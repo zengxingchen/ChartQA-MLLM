@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 800,
+    height: 600
+});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Art & Design Trends (2020-2022)',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['2020', '2021', '2022'],
+        top: 'bottom'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01]
+    },
+    yAxis: {
+        type: 'category',
+        data: ['Art', 'Design', 'Photography', 'Painting', 'Sculpture', 'Crafts', 'Architecture', 'Digital Art']
+    },
+    series: [
+        {
+            name: '2020',
+            type: 'bar',
+            stack: 'Total',
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            itemStyle: {
+                color: '#FF6347'
+            },
+            data: [50, 40, 35, 25, 20, 30, 45, 55]
+        },
+        {
+            name: '2021',
+            type: 'bar',
+            stack: 'Total',
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            itemStyle: {
+                color: '#4682B4'
+            },
+            data: [60, 50, 45, 35, 30, 40, 55, 65]
+        },
+        {
+            name: '2022',
+            type: 'bar',
+            stack: 'Total',
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            itemStyle: {
+                color: '#32CD32'
+            },
+            data: [70, 60, 55, 45, 40, 50, 65, 75]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

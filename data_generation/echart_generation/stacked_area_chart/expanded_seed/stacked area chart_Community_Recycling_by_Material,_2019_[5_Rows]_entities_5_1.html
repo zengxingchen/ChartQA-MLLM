@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+const data = [
+    {'Year': 2019, 'Plastic (metric tons)': 180, 'Paper (metric tons)': 320, 'Metal (metric tons)': 150, 'Glass (metric tons)': 230, 'Electronics (metric tons)': 25},
+    {'Year': 2020, 'Plastic (metric tons)': 200, 'Paper (metric tons)': 310, 'Metal (metric tons)': 165, 'Glass (metric tons)': 220, 'Electronics (metric tons)': 30},
+    {'Year': 2021, 'Plastic (metric tons)': 190, 'Paper (metric tons)': 300, 'Metal (metric tons)': 160, 'Glass (metric tons)': 215, 'Electronics (metric tons)': 28},
+    {'Year': 2022, 'Plastic (metric tons)': 210, 'Paper (metric tons)': 315, 'Metal (metric tons)': 170, 'Glass (metric tons)': 225, 'Electronics (metric tons)': 32},
+    {'Year': 2023, 'Plastic (metric tons)': 205, 'Paper (metric tons)': 305, 'Metal (metric tons)': 155, 'Glass (metric tons)': 210, 'Electronics (metric tons)': 27}
+];
+
+const years = data.map(item => item.Year);
+const plasticData = data.map(item => item['Plastic (metric tons)']);
+const paperData = data.map(item => item['Paper (metric tons)']);
+const metalData = data.map(item => item['Metal (metric tons)']);
+const glassData = data.map(item => item['Glass (metric tons)']);
+const electronicsData = data.map(item => item['Electronics (metric tons)']);
+
+option = {
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            label: {
+                backgroundColor: '#6a7985'
+            }
+        }
+    },
+    legend: {
+        data: ['Plastic', 'Paper', 'Metal', 'Glass', 'Electronics']
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: [
+        {
+            type: 'category',
+            boundaryGap: false,
+            data: years
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value'
+        }
+    ],
+    series: [
+        {
+            name: 'Plastic',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: plasticData
+        },
+        {
+            name: 'Paper',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: paperData
+        },
+        {
+            name: 'Metal',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: metalData
+        },
+        {
+            name: 'Glass',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: glassData
+        },
+        {
+            name: 'Electronics',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: electronicsData
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,137 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Pie chart showing the popularity of travel destinations.",
+    "width": 400,
+    "height": 400,
+    "data": {
+        "values": [
+            {
+                "Destination": "Hawaii",
+                "Popularity": 1500
+            },
+            {
+                "Destination": "Paris",
+                "Popularity": 1400
+            },
+            {
+                "Destination": "Tokyo",
+                "Popularity": 1300
+            },
+            {
+                "Destination": "New York",
+                "Popularity": 1200
+            },
+            {
+                "Destination": "Sydney",
+                "Popularity": 1100
+            },
+            {
+                "Destination": "Rome",
+                "Popularity": 1000
+            },
+            {
+                "Destination": "Cape Town",
+                "Popularity": 900
+            },
+            {
+                "Destination": "Rio de Janeiro",
+                "Popularity": 800
+            }
+        ]
+    },
+    "layer": [
+        {
+            "mark": {
+                "type": "arc",
+                "tooltip": true
+            },
+            "encoding": {
+                "theta": {
+                    "field": "Popularity",
+                    "type": "quantitative",
+                    "stack": true
+                },
+                "color": {
+                    "field": "Destination",
+                    "type": "nominal",
+                    "scale": {
+                        "domain": [
+                            "Hawaii",
+                            "Paris",
+                            "Tokyo",
+                            "New York",
+                            "Sydney",
+                            "Rome",
+                            "Cape Town",
+                            "Rio de Janeiro"
+                        ],
+                        "range": [
+                            "#ff5733",
+                            "#33ff57",
+                            "#3357ff",
+                            "#ff33a1",
+                            "#a133ff",
+                            "#ff8c33",
+                            "#33fff0",
+                            "#ff3333"
+                        ]
+                    },
+                    "legend": {
+                        "title": "Destination",
+                        "orient": "right",
+                        "labelFont": "Roboto",
+                        "labelColor": "#44475a"
+                    }
+                },
+                "tooltip": [
+                    {
+                        "field": "Destination",
+                        "type": "nominal",
+                        "title": "Destination"
+                    },
+                    {
+                        "field": "Popularity",
+                        "type": "quantitative",
+                        "title": "Popularity"
+                    }
+                ]
+            }
+        },
+        {
+            "mark": {
+                "type": "text",
+                "radius": 150
+            },
+            "encoding": {
+                "text": {
+                    "field": "Popularity",
+                    "type": "quantitative"
+                },
+                "theta": {
+                    "field": "Popularity",
+                    "type": "quantitative",
+                    "stack": true
+                },
+                "color": {
+                    "value": "#44475a"
+                }
+            }
+        }
+    ],
+    "title": {
+        "text": "Popularity of Travel Destinations",
+        "fontSize": 20,
+        "anchor": "start",
+        "font": "Roboto",
+        "dy": -200
+    },
+    "view": {
+        "stroke": null
+    },
+    "config": {
+        "background": "#fffcf9",
+        "arc": {
+            "outerRadius": 180
+        }
+    }
+}

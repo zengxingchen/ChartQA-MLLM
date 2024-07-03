@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Insights into Various Fields',
+        left: 'center',
+        top: '10'
+    },
+    color: ['#5470C6', '#91CC75', '#EE6666', '#FAC858', '#73C0DE', '#3BA272', '#FC8452', '#9A60B4', '#EA7CCC'],
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        data: [
+            'Technology Advancements', 'Art Innovations', 'Nature Discoveries', 'Psychological Studies', 'Cultural Trends',
+            'Financial Insights', 'Learning Methods', 'Leisure Activities', 'Climate Change', 'Nutritional Research',
+            'Travel Trends', 'Fashion Developments', 'Political Movements', 'Fitness Routines', 'Historical Findings',
+            'Ethical Dilemmas', 'Performing Arts', 'Literary Works', 'Business Ventures', 'Space Exploration'
+        ],
+        axisLabel: {
+            rotate: 45,
+            interval: 0
+        }
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Value',
+            type: 'bar',
+            data: [
+                120, 98, 150, 130, 110, 90, 140, 115, 125, 105,
+                135, 95, 85, 100, 145, 80, 75, 155, 125, 160
+            ],
+            barWidth: '60%',
+            label: {
+                show: true,
+                position: 'top',
+                formatter: '{c}'
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

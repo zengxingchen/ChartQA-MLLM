@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 500});
+var app = {};
+
+var option;
+
+option = {
+  title: {
+    text: 'Renewable Energy Consumption by Source',
+    left: 'center',
+    top: 20
+  },
+  tooltip: {
+    trigger: 'axis',
+    axisPointer: {
+      type: 'shadow'
+    }
+  },
+  legend: {
+    data: ['Solar', 'Wind', 'Hydro', 'Others'],
+    top: '10%'
+  },
+  grid: {
+    left: '3%',
+    right: '4%',
+    bottom: '3%',
+    containLabel: true
+  },
+  xAxis: {
+    type: 'value',
+    boundaryGap: false,
+  },
+  yAxis: {
+    type: 'category',
+    data: ['2018', '2019', '2020', '2021', '2022']
+  },
+  series: [
+    {
+      name: 'Solar',
+      type: 'bar',
+      stack: 'total',
+      barWidth: 50,
+      label: {
+        show: true,
+        formatter: '{b}'
+      },
+      emphasis: {
+        focus: 'series'
+      },
+      data: [
+        { value: 10, itemStyle: { color: '#f1c40f' }},
+        { value: 15, itemStyle: { color: '#f39c12' }},
+        { value: 20, itemStyle: { color: '#f39c12' }},
+        { value: 25, itemStyle: { color: '#d35400' }},
+        { value: 30, itemStyle: { color: '#e74c3c' }}
+      ]
+    },
+    {
+      name: 'Wind',
+      type: 'bar',
+      stack: 'total',
+      barWidth: 50,
+      label: {
+        show: true,
+        position: 'inside'
+      },
+      data: [
+        { value: 25, itemStyle: { color: '#3498db' }},
+        { value: 30, itemStyle: { color: '#2980b9' }},
+        { value: 35, itemStyle: { color: '#2980b9' }},
+        { value: 40, itemStyle: { color: '#2471a3' }},
+        { value: 45, itemStyle: { color: '#1f618d' }}
+      ]
+    },
+    {
+      name: 'Hydro',
+      type: 'bar',
+      stack: 'total',
+      barWidth: 50,
+      label: {
+        show: true,
+        position: 'inside'
+      },
+      data: [
+        { value: 40, itemStyle: { color: '#2ecc71' }},
+        { value: 35, itemStyle: { color: '#27ae60' }},
+        { value: 30, itemStyle: { color: '#27ae60' }},
+        { value: 25, itemStyle: { color: '#229954' }},
+        { value: 15, itemStyle: { color: '#1e8449' }}
+      ]
+    },
+    {
+      name: 'Others',
+      type: 'bar',
+      stack: 'total',
+      barWidth: 50,
+      label: {
+        show: true,
+        position: 'inside'
+      },
+      data: [
+        { value: 25, itemStyle: { color: '#9b59b6' }},
+        { value: 20, itemStyle: { color: '#8e44ad' }},
+        { value: 15, itemStyle: { color: '#8e44ad' }},
+        { value: 10, itemStyle: { color: '#7d3c98' }},
+        { value: 10, itemStyle: { color: '#6c3483' }}
+      ]
+    }
+  ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

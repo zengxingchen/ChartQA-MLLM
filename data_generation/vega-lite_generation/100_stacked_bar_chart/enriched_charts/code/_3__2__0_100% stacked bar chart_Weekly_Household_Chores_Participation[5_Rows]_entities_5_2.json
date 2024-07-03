@@ -1,0 +1,170 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Percentage of Fruit Consumption by Different Age Groups",
+    "data": {
+        "values": [
+            {
+                "AgeGroup": "0-5",
+                "Apples": 15,
+                "Bananas": 30,
+                "Oranges": 25,
+                "Berries": 10,
+                "Grapes": 20
+            },
+            {
+                "AgeGroup": "6-12",
+                "Apples": 20,
+                "Bananas": 25,
+                "Oranges": 30,
+                "Berries": 15,
+                "Grapes": 10
+            },
+            {
+                "AgeGroup": "13-19",
+                "Apples": 25,
+                "Bananas": 20,
+                "Oranges": 15,
+                "Berries": 30,
+                "Grapes": 10
+            },
+            {
+                "AgeGroup": "20-29",
+                "Apples": 30,
+                "Bananas": 25,
+                "Oranges": 20,
+                "Berries": 15,
+                "Grapes": 10
+            },
+            {
+                "AgeGroup": "30-39",
+                "Apples": 25,
+                "Bananas": 20,
+                "Oranges": 30,
+                "Berries": 10,
+                "Grapes": 15
+            },
+            {
+                "AgeGroup": "40-49",
+                "Apples": 20,
+                "Bananas": 30,
+                "Oranges": 25,
+                "Berries": 15,
+                "Grapes": 10
+            },
+            {
+                "AgeGroup": "50-59",
+                "Apples": 30,
+                "Bananas": 25,
+                "Oranges": 20,
+                "Berries": 15,
+                "Grapes": 10
+            },
+            {
+                "AgeGroup": "60-69",
+                "Apples": 15,
+                "Bananas": 20,
+                "Oranges": 25,
+                "Berries": 30,
+                "Grapes": 10
+            },
+            {
+                "AgeGroup": "70+",
+                "Apples": 10,
+                "Bananas": 15,
+                "Oranges": 30,
+                "Berries": 25,
+                "Grapes": 20
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Apples",
+                "Bananas",
+                "Oranges",
+                "Berries",
+                "Grapes"
+            ],
+            "as": [
+                "Fruit",
+                "Consumption"
+            ]
+        }
+    ],
+    "padding": {
+        "left": 80,
+        "top": 60,
+        "right": 40,
+        "bottom": 60
+    },
+    "width": 400,
+    "height": 500,
+    "mark": {
+        "type": "bar",
+        "width": {
+            "band": 0.7
+        }
+    },
+    "encoding": {
+        "y": {
+            "field": "Consumption",
+            "type": "quantitative",
+            "stack": "normalize",
+            "axis": {
+                "title": "Percentage of Total Consumption",
+                "format": ".0%"
+            }
+        },
+        "x": {
+            "field": "AgeGroup",
+            "type": "nominal",
+            "axis": {
+                "title": "Age Group"
+            }
+        },
+        "color": {
+            "field": "Fruit",
+            "type": "nominal",
+            "scale": {
+                "range": [
+                    "#8c564b",
+                    "#e377c2",
+                    "#7f7f7f",
+                    "#bcbd22",
+                    "#17becf"
+                ]
+            },
+            "legend": {
+                "title": "Fruit"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "AgeGroup",
+                "type": "nominal",
+                "title": "Age Group"
+            },
+            {
+                "field": "Fruit",
+                "type": "nominal",
+                "title": "Fruit"
+            },
+            {
+                "field": "Consumption",
+                "type": "quantitative",
+                "title": "Consumption"
+            }
+        ]
+    },
+    "title": {
+        "text": "Percentage of Fruit Consumption by Different Age Groups",
+        "anchor": "middle"
+    },
+    "config": {
+        "bar": {
+            "cornerRadiusTopLeft": 5,
+            "cornerRadiusTopRight": 5
+        }
+    }
+}

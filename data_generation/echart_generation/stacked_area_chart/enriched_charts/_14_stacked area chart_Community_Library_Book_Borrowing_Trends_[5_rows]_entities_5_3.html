@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    width: 1000,
+    height: 600
+});
+
+var app = {};
+var option;
+
+myChart.showLoading();
+option = {
+    title: {
+        text: 'Monthly Revenue Streams - 2022',
+        left: 'center',
+        top: 5
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['Retail', 'Wholesale', 'Online'],
+        top: 30
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Retail',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [12000, 18000, 25000, 20000, 18000, 21000, 24000, 23000, 20000, 22000, 26000, 27000],
+            itemStyle: {
+                color: '#4E9F3D'
+            }
+        },
+        {
+            name: 'Wholesale',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [9000, 10000, 12000, 13000, 12500, 15000, 16500, 17000, 18000, 17500, 16000, 16500],
+            itemStyle: {
+                color: '#D8E46B'
+            }
+        },
+        {
+            name: 'Online',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [3000, 4000, 6500, 4700, 5200, 6000, 5500, 7100, 6700, 5800, 4900, 7500],
+            itemStyle: {
+                color: '#306B34'
+            }
+        }
+    ]
+};
+
+myChart.hideLoading();
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

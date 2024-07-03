@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Education & Learning Topics Distribution',
+        left: 'center',
+        top: '1%',
+        textStyle: {
+            color: '#666'
+        }
+    },
+    tooltip: {
+        formatter: function (info) {
+            var value = info.value;
+            var treePathInfo = info.treePathInfo;
+            var treePath = [];
+
+            for (var i = 1; i < treePathInfo.length; i++) {
+                treePath.push(treePathInfo[i].name);
+            }
+
+            return [
+                '<div class="tooltip-title">' + echarts.format.encodeHTML(treePath.join('/')) + '</div>',
+                'Course Hours: ' + echarts.format.addCommas(value) + ' hours',
+            ].join('');
+        }
+    },
+    series: [
+        {
+            name: 'Education & Learning',
+            type: 'treemap',
+            visibleMin: 300,
+            label: {
+                show: true,
+                formatter: '{b}'
+            },
+            itemStyle: {
+                borderColor: '#fff'
+            },
+            levels: [
+                {
+                    itemStyle: {
+                        borderWidth: 0,
+                        gapWidth: 5
+                    }
+                }
+            ],
+            data: [
+                {name: 'Mathematics', value: 120},
+                {name: 'Science', value: 150},
+                {name: 'Language Arts', value: 80},
+                {name: 'Social Studies', value: 70},
+                {name: 'Physical Education', value: 60},
+                {name: 'Arts & Music', value: 90},
+                {
+                    name: 'Mathematics Detailed',
+                    children: [
+                        {name: 'Algebra', value: 30},
+                        {name: 'Geometry', value: 40},
+                        {name: 'Calculus', value: 50},
+                    ],
+                },
+                {
+                    name: 'Science Detailed',
+                    children: [
+                        {name: 'Physics', value: 45},
+                        {name: 'Chemistry', value: 60},
+                        {name: 'Biology', value: 45},
+                    ],
+                },
+                {
+                    name: 'Language Arts Detailed',
+                    children: [
+                        {name: 'English Literature', value: 30},
+                        {name: 'Grammar', value: 25},
+                        {name: 'Foreign Languages', value: 25},
+                    ],
+                },
+                {
+                    name: 'Social Studies Detailed',
+                    children: [
+                        {name: 'History', value: 35},
+                        {name: 'Geography', value: 20},
+                        {name: 'Civics', value: 15},
+                    ],
+                },
+                {
+                    name: 'Physical Education Detailed',
+                    children: [
+                        {name: 'Team Sports', value: 30},
+                        {name: 'Fitness', value: 30},
+                    ],
+                },
+                {
+                    name: 'Arts & Music Detailed',
+                    children: [
+                        {name: 'Visual Arts', value: 45},
+                        {name: 'Music Theory', value: 45},
+                    ],
+                }
+            ],
+            color: [
+                '#5B8FF9', '#5AD8A6', '#5D7092', '#F6BD16', '#E86452',
+                '#6DC8EC', '#945FB9', '#FF9845', '#1E9493', '#FF99C3',
+                '#FFDB5C', '#9DD3E8', '#BBDEDE', '#FF85C0', '#BDA29A'
+            ]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

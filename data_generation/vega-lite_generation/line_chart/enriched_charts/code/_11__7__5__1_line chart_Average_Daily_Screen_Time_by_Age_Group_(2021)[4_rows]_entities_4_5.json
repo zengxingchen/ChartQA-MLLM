@@ -1,0 +1,218 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Line chart showing average monthly rainfall by region.",
+    "title": {
+        "text": "Average Monthly Rainfall by Region",
+        "fontSize": 16,
+        "anchor": "start",
+        "color": "black"
+    },
+    "width": 1000,
+    "height": 600,
+    "data": {
+        "values": [
+            {
+                "Region": "Amazon",
+                "January": 300,
+                "February": 280,
+                "March": 350,
+                "April": 400,
+                "May": 450,
+                "June": 480,
+                "July": 500,
+                "August": 490,
+                "September": 460,
+                "October": 430,
+                "November": 380,
+                "December": 350
+            },
+            {
+                "Region": "Sahara",
+                "January": 5,
+                "February": 5,
+                "March": 10,
+                "April": 15,
+                "May": 20,
+                "June": 25,
+                "July": 30,
+                "August": 28,
+                "September": 20,
+                "October": 15,
+                "November": 10,
+                "December": 5
+            },
+            {
+                "Region": "Southeast Asia",
+                "January": 150,
+                "February": 160,
+                "March": 170,
+                "April": 180,
+                "May": 200,
+                "June": 250,
+                "July": 300,
+                "August": 320,
+                "September": 310,
+                "October": 280,
+                "November": 220,
+                "December": 180
+            },
+            {
+                "Region": "Australia",
+                "January": 50,
+                "February": 55,
+                "March": 60,
+                "April": 70,
+                "May": 80,
+                "June": 90,
+                "July": 100,
+                "August": 95,
+                "September": 85,
+                "October": 75,
+                "November": 65,
+                "December": 55
+            },
+            {
+                "Region": "Europe",
+                "January": 60,
+                "February": 65,
+                "March": 70,
+                "April": 80,
+                "May": 90,
+                "June": 100,
+                "July": 110,
+                "August": 105,
+                "September": 95,
+                "October": 85,
+                "November": 75,
+                "December": 65
+            },
+            {
+                "Region": "North America",
+                "January": 100,
+                "February": 110,
+                "March": 120,
+                "April": 130,
+                "May": 150,
+                "June": 160,
+                "July": 170,
+                "August": 165,
+                "September": 140,
+                "October": 120,
+                "November": 110,
+                "December": 105
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "January",
+                "February",
+                "March",
+                "April",
+                "May",
+                "June",
+                "July",
+                "August",
+                "September",
+                "October",
+                "November",
+                "December"
+            ],
+            "as": [
+                "Month",
+                "Rainfall"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "line",
+        "point": {
+            "filled": true,
+            "fill": "white"
+        },
+        "tooltip": true
+    },
+    "encoding": {
+        "x": {
+            "field": "Month",
+            "type": "ordinal",
+            "title": "Month",
+            "axis": {
+                "titleFontSize": 12,
+                "labelAngle": -45
+            }
+        },
+        "y": {
+            "field": "Rainfall",
+            "type": "quantitative",
+            "title": "Rainfall (mm)",
+            "axis": {
+                "titleFontSize": 12
+            },
+            "scale": {
+                "reverse": true
+            }
+        },
+        "color": {
+            "field": "Region",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Amazon",
+                    "Sahara",
+                    "Southeast Asia",
+                    "Australia",
+                    "Europe",
+                    "North America"
+                ],
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e",
+                    "#2ca02c",
+                    "#d62728",
+                    "#9467bd",
+                    "#8c564b"
+                ]
+            },
+            "legend": {
+                "title": "Region"
+            }
+        },
+        "strokeDash": {
+            "condition": {
+                "test": "datum['Region'] == 'Sahara'",
+                "value": [
+                    5,
+                    5
+                ]
+            },
+            "value": []
+        },
+        "tooltip": [
+            {
+                "field": "Region",
+                "type": "nominal"
+            },
+            {
+                "field": "Month",
+                "type": "ordinal"
+            },
+            {
+                "field": "Rainfall",
+                "type": "quantitative"
+            }
+        ]
+    },
+    "config": {
+        "axisY": {
+            "minExtent": 30
+        },
+        "text": {
+            "fontSize": 12
+        },
+        "point": {
+            "size": 60
+        }
+    }
+}

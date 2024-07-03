@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 800,
+    height: 600
+});
+var option;
+
+option = {
+    title: {
+        text: 'Relationship Between X and Y in Art & Design',
+        left: 'center',
+        top: '20'
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: function (params) {
+            return 'X: ' + params.data[0] + '<br>Y: ' + params.data[1];
+        }
+    },
+    legend: {
+        data: ['Data Points'],
+        left: 'right',
+        top: '20'
+    },
+    xAxis: {
+        name: 'X',
+        nameLocation: 'middle',
+        nameGap: 30
+    },
+    yAxis: {
+        name: 'Y',
+        nameLocation: 'middle',
+        nameGap: 50
+    },
+    series: [
+        {
+            name: 'Data Points',
+            type: 'scatter',
+            itemStyle: {
+                color: '#FF5733'
+            },
+            data: [
+                [3.4, 7.2],
+                [4.1, 6.8],
+                [5.6, 6.3],
+                [6.7, 5.4],
+                [7.1, 4.8],
+                [8.2, 3.9],
+                [9.5, 3.3],
+                [10.3, 2.9],
+                [11.4, 2.1],
+                [12.0, 1.7]
+            ]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

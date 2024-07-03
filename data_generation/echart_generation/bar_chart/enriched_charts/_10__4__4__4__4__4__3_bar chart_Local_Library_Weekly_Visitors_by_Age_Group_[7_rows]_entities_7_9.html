@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {renderer: 'canvas', width: 800, height: 600});
+var option;
+
+option = {
+    title: {
+        text: 'Nutrient Content in Various Fruits',
+        left: 'center',
+        textStyle: {
+            color: '#333333',
+            fontSize: 20
+        }
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    xAxis: {
+        type: 'category',
+        data: ['Apple', 'Banana', 'Orange', 'Strawberry', 'Blueberry', 'Pineapple', 'Grapes', 'Mango', 'Peach', 'Cherry', 'Kiwi', 'Watermelon', 'Papaya', 'Lemon', 'Avocado'],
+        axisLabel: {
+            rotate: 45,
+            textStyle: {
+                color: '#333333',
+                fontSize: 12
+            }
+        }
+    },
+    yAxis: {
+        type: 'value',
+        axisLabel: {
+            textStyle: {
+                color: '#333333',
+                fontSize: 12
+            }
+        }
+    },
+    series: [{
+        name: 'Nutrient Value (mg)',
+        type: 'bar',
+        data: [25, 22, 30, 35, 28, 33, 20, 38, 27, 29, 31, 24, 36, 32, 29],
+        itemStyle: {
+            color: function(params) {
+                var colorList = ['#FF6347','#FFA07A','#FFD700','#ADFF2F','#32CD32','#00FF7F','#87CEFA','#6495ED','#FF69B4','#FF1493','#8A2BE2','#4B0082','#4682B4','#7FFF00','#DC143C'];
+                return colorList[params.dataIndex];
+            },
+            barBorderRadius: [5, 5, 0, 0]
+        },
+        barWidth: '50%',
+        label: {
+            show: true,
+            position: 'top',
+            formatter: '{c} mg',
+            textStyle: {
+                color: '#000000',
+                fontSize: 12
+            }
+        }
+    }],
+    grid: {
+        left: '10%',
+        right: '10%',
+        bottom: '20%',
+        top: '15%'
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

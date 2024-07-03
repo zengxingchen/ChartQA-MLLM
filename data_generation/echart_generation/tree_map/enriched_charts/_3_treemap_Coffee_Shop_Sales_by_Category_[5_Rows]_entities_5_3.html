@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var app = {};
+
+var data = [
+  {name: 'Smartphones', value: 13},
+  {name: 'Laptops', value: 9},
+  {name: 'VR Headsets', value: 15},
+  {name: 'AR Glasses', value: 12},
+  {name: 'Smart Watches', value: 19},
+  {name: 'Home Assistants', value: 14},
+  {name: 'Drones', value: 8},
+  {name: '3D Printers', value: 4},
+  {name: 'Robotics', value: 10},
+  {name: 'Quantum Computing', value: 2},
+  {name: 'Biotechnology', value: 7},
+  {name: 'Genetic Engineering', value: 6},
+  {name: 'Renewable Energy', value: 16},
+  {name: 'Electric Vehicles', value: 17},
+  {name: 'Hyperloop', value: 5},
+  {name: 'Space Tourism', value: 1}
+];
+
+option = {
+  title: {
+    text: 'Future Technologies & Society',
+    left: 'center',
+    textStyle: {
+      color: '#333',
+      fontSize: 24
+    }
+  },
+  tooltip: {},
+  series: [{
+    type: 'treemap',
+    data: data,
+    label: {
+      show: true,
+      formatter: '{b}'
+    },
+    upperLabel: {
+      normal: {
+        show: true,
+        height: 30
+      }
+    },
+    itemStyle: {
+      normal: {
+        borderColor: '#fff',
+        borderWidth: 2,
+        gapWidth: 2
+      }
+    },
+    levels: [
+      {
+        itemStyle: {
+          normal: {
+            borderColor: '#bbb',
+            borderWidth: 4,
+            gapWidth: 4
+          }
+        }
+      }
+    ],
+    color: [
+      '#c23531', '#314656', '#61a0a8', '#dd8668',
+      '#91c7ae', '#6e7074', '#61a0a8', '#bda29a',
+      '#44525d', '#c4ccd3', '#2f4554', '#c23531',
+      '#61a0a8', '#d48265', '#91c7ae', '#749f83'
+    ]
+  }]
+};
+
+if (option && typeof option === 'object') {
+  myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

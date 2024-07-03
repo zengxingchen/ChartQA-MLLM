@@ -1,0 +1,130 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "A vertical bar chart showing the average monthly expenditure on various categories.",
+    "width": 900,
+    "height": 500,
+    "title": {
+        "text": "Average Monthly Expenditure on Various Categories",
+        "anchor": "middle",
+        "offset": 10
+    },
+    "data": {
+        "values": [
+            {
+                "Category": "Rent",
+                "Expenditure": 1200
+            },
+            {
+                "Category": "Groceries",
+                "Expenditure": 400
+            },
+            {
+                "Category": "Utilities",
+                "Expenditure": 150
+            },
+            {
+                "Category": "Transportation",
+                "Expenditure": 200
+            },
+            {
+                "Category": "Dining Out",
+                "Expenditure": 250
+            },
+            {
+                "Category": "Entertainment",
+                "Expenditure": 100
+            },
+            {
+                "Category": "Healthcare",
+                "Expenditure": 300
+            },
+            {
+                "Category": "Education",
+                "Expenditure": 500
+            },
+            {
+                "Category": "Savings",
+                "Expenditure": 700
+            },
+            {
+                "Category": "Clothing",
+                "Expenditure": 150
+            },
+            {
+                "Category": "Insurance",
+                "Expenditure": 200
+            },
+            {
+                "Category": "Miscellaneous",
+                "Expenditure": 100
+            }
+        ]
+    },
+    "mark": {
+        "type": "bar",
+        "tooltip": true,
+        "cornerRadiusEnd": 3,
+        "size": 40
+    },
+    "encoding": {
+        "x": {
+            "field": "Category",
+            "type": "ordinal",
+            "axis": {
+                "title": "Expenditure Category"
+            },
+            "band": 0.7
+        },
+        "y": {
+            "field": "Expenditure",
+            "type": "quantitative",
+            "axis": {
+                "title": "Average Monthly Expenditure ($)"
+            }
+        },
+        "color": {
+            "field": "Category",
+            "scale": {
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e",
+                    "#2ca02c",
+                    "#d62728",
+                    "#9467bd",
+                    "#8c564b",
+                    "#e377c2",
+                    "#7f7f7f",
+                    "#bcbd22",
+                    "#17becf",
+                    "#aec7e8",
+                    "#ffbb78"
+                ]
+            }
+        },
+        "opacity": {
+            "condition": {
+                "param": "hover",
+                "value": 0.8
+            },
+            "value": 1
+        },
+        "text": {
+            "field": "Expenditure",
+            "type": "quantitative"
+        },
+        "label": {
+            "field": "Expenditure",
+            "type": "quantitative"
+        }
+    },
+    "params": [
+        {
+            "name": "hover",
+            "select": {
+                "type": "point",
+                "on": "mouseover",
+                "clear": "mouseout"
+            }
+        }
+    ]
+}

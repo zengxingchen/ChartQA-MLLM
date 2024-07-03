@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var option;
+
+option = {
+    title: {
+        text: 'Annual CO2 Emissions by Country',
+        left: 'center',
+        top: 20
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        name: 'CO2 Emissions (Million Metric Tons)'
+    },
+    yAxis: {
+        type: 'category',
+        data: ['China', 'United States', 'India', 'Russia', 'Japan', 'Germany', 'South Korea', 'Iran', 'Canada', 'Saudi Arabia', 'Brazil', 'Mexico', 'Indonesia', 'South Africa', 'Turkey', 'Australia', 'United Kingdom', 'France', 'Italy', 'Poland'],
+        name: 'Country'
+    },
+    series: [
+        {
+            name: 'CO2 Emissions',
+            type: 'bar',
+            data: [10600, 5500, 2600, 1700, 1200, 750, 700, 630, 590, 580, 490, 460, 430, 410, 400, 390, 360, 340, 320, 300],
+            itemStyle: {
+                color: '#FF5733'
+            },
+            barWidth: '50%',
+            label: {
+                show: true,
+                position: 'right'
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

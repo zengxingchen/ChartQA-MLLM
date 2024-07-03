@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: '600',
+    height: '400'
+});
+var app = {};
+
+var option;
+
+option = {
+    color: ['#FF6347', '#4682B4', '#FFD700', '#20B2AA', '#8A2BE2'],
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {            
+            type: 'shadow'        
+        }
+    },
+    legend: {
+        data: ['Science & Technology', 'Humanities', 'Arts', 'Business', 'Health & Medicine'],
+        top: '5%'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '6%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01],
+        max: 100,
+        axisLabel: {
+            formatter: '{value}%'
+        }
+    },
+    yAxis: {
+        type: 'category',
+        data: ['2019', '2020', '2021', '2022']
+    },
+    series: [
+        {
+            name: 'Science & Technology',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            data: [40, 35, 30, 25]
+        },
+        {
+            name: 'Humanities',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            data: [20, 22, 24, 25]
+        },
+        {
+            name: 'Arts',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            data: [15, 18, 16, 20]
+        },
+        {
+            name: 'Business',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            data: [15, 15, 20, 20]
+        },
+        {
+            name: 'Health & Medicine',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            data: [10, 10, 10, 10]
+        }
+    ],
+    title: {
+        text: 'University Students Distribution by Fields of Study (2019-2022)',
+        left: 'center',
+        top: 'top'
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

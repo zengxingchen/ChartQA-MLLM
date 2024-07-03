@@ -1,0 +1,117 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Pie chart showing daily activity time by type.",
+    "width": 400,
+    "height": 400,
+    "data": {
+        "values": [
+            {
+                "Activity": "Running",
+                "Time": 60
+            },
+            {
+                "Activity": "Cycling",
+                "Time": 45
+            },
+            {
+                "Activity": "Swimming",
+                "Time": 30
+            },
+            {
+                "Activity": "Yoga",
+                "Time": 50
+            },
+            {
+                "Activity": "Weightlifting",
+                "Time": 40
+            },
+            {
+                "Activity": "Walking",
+                "Time": 90
+            },
+            {
+                "Activity": "Basketball",
+                "Time": 55
+            },
+            {
+                "Activity": "Tennis",
+                "Time": 35
+            }
+        ]
+    },
+    "layer": [
+        {
+            "mark": {
+                "type": "arc",
+                "tooltip": true
+            },
+            "encoding": {
+                "theta": {
+                    "field": "Time",
+                    "type": "quantitative",
+                    "stack": true
+                },
+                "color": {
+                    "field": "Activity",
+                    "type": "nominal",
+                    "scale": {
+                        "domain": [
+                            "Running",
+                            "Cycling",
+                            "Swimming",
+                            "Yoga",
+                            "Weightlifting",
+                            "Walking",
+                            "Basketball",
+                            "Tennis"
+                        ],
+                        "range": [
+                            "#FF5733",
+                            "#33FF57",
+                            "#3357FF",
+                            "#FF33A8",
+                            "#FFBD33",
+                            "#8D33FF",
+                            "#33FFF5",
+                            "#FF8D33"
+                        ]
+                    },
+                    "legend": {
+                        "title": "Activity Type",
+                        "orient": "right",
+                        "labelFont": "Roboto",
+                        "labelColor": "#44475a"
+                    }
+                },
+                "tooltip": [
+                    {
+                        "field": "Activity",
+                        "type": "nominal",
+                        "title": "Activity"
+                    },
+                    {
+                        "field": "Time",
+                        "type": "quantitative",
+                        "title": "Time (minutes)"
+                    }
+                ]
+            }
+        }
+    ],
+    "view": {
+        "stroke": null
+    },
+    "config": {
+        "background": "#f0f8ff",
+        "arc": {
+            "outerRadius": 180
+        }
+    },
+    "title": {
+        "text": "Daily Activity Time",
+        "fontSize": 22,
+        "font": "Roboto",
+        "align": "center",
+        "dy": -190
+    }
+}

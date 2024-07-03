@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: '600',
+    height: '400'
+});
+
+var option;
+
+option = {
+  title: {
+    text: 'Monthly Expenditures in Key Sectors',
+    left: 'center',
+    top: 'top',
+    textStyle: {
+      fontWeight: 'normal',
+      fontSize: 20,
+    }
+  },
+  tooltip: {
+    trigger: 'axis',
+    axisPointer: {
+      type: 'cross',
+      label: {
+        backgroundColor: '#6a7985'
+      }
+    }
+  },
+  legend: {
+    data: ['Education', 'Entertainment', 'Travel'],
+    top: 'bottom'
+  },
+  grid: {
+    left: '3%',
+    right: '4%',
+    bottom: '3%',
+    containLabel: true
+  },
+  xAxis: [
+    {
+      type: 'category',
+      boundaryGap: false,
+      data: ['2020-01', '2020-02', '2020-03', '2020-04', '2020-05', '2020-06',
+             '2020-07', '2020-08', '2020-09', '2020-10', '2020-11', '2020-12',
+             '2021-01', '2021-02']
+    }
+  ],
+  yAxis: [
+    {
+      type: 'value'
+    }
+  ],
+  series: [
+    {
+      name: 'Education',
+      type: 'line',
+      stack: 'Total',
+      areaStyle: {},
+      emphasis: {
+        focus: 'series'
+      },
+      data: [120, 100, 140, 130, 150, 160, 170, 180, 150, 160, 170, 140, 150, 155],
+      color: '#34a853', // Green
+    },
+    {
+      name: 'Entertainment',
+      type: 'line',
+      stack: 'Total',
+      areaStyle: {},
+      emphasis: {
+        focus: 'series'
+      },
+      data: [80, 100, 90, 110, 130, 140, 130, 120, 160, 150, 140, 170, 165, 160],
+      color: '#ea4335', // Red
+    },
+    {
+      name: 'Travel',
+      type: 'line',
+      stack: 'Total',
+      areaStyle: {},
+      emphasis: {
+        focus: 'series'
+      },
+      data: [50, 60, 70, 80, 90, 95, 96, 97, 98, 100, 120, 130, 135, 140],
+      color: '#4285f4', // Blue
+    }
+  ],
+  markPoint: {
+    data: [
+      {type: 'max', name: 'Max'},
+      {type: 'min', name: 'Min'}
+    ]
+  }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

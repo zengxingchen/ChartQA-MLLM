@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+option = {
+    title: {
+        text: 'Innovations Shaping Future',
+        left: 'center',
+        top: 20,
+    },
+    tooltip: {
+        trigger: 'item'
+    },
+    legend: {
+        orient: 'vertical',
+        left: 'left',
+        top: 'middle',
+        padding: [0, 80], // Keep distance from the chart
+    },
+    series: [
+        {
+            name: 'Innovations',
+            type: 'pie',
+            radius: '55%',
+            center: ['50%', '60%'],
+            data: [
+                {value: 335, name: 'Wearable Devices', itemStyle: {color: '#FF7F0E'}},
+                {value: 310, name: 'AI Development', itemStyle: {color: '#2CA02C'}},
+                {value: 234, name: 'Blockchain Technology', itemStyle: {color: '#1F77B4'}},
+                {value: 135, name: 'Quantum Computing', itemStyle: {color: '#D62728'}},
+                {value: 154, name: 'Robotics', itemStyle: {color: '#9467BD'}},
+                {value: 130, name: 'Biotechnology', itemStyle: {color: '#8C564B'}},
+                {value: 104, name: 'Renewable Energy', itemStyle: {color: '#E377C2'}},
+                {value: 99, name: 'Space Exploration', itemStyle: {color: '#7F7F7F'}},
+                {value: 86, name: '5G Technology', itemStyle: {color: '#BCBD22'}},
+                {value: 78, name: 'Cybersecurity', itemStyle: {color: '#17BECF'}}
+            ],
+            emphasis: {
+                itemStyle: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            }
+        }
+    ],
+    color: ['#FF7F0E', '#2CA02C', '#1F77B4', '#D62728', '#9467BD', '#8C564B', '#E377C2', '#7F7F7F', '#BCBD22', '#17BECF']
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

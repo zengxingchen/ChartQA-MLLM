@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 700, height: 400});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Market Trends in Different Sectors',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            label: {
+                backgroundColor: '#6a7985'
+            }
+        }
+    },
+    legend: {
+        data: ['High Tech', 'Healthcare', 'Energy', 'E-commerce'],
+        top: 'bottom'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: [
+        {
+            type: 'category',
+            boundaryGap: false,
+            data: [
+                '2023-01-01', '2023-01-02', '2023-01-03', '2023-01-04', '2023-01-05',
+                '2023-01-06', '2023-01-07', '2023-01-08', '2023-01-09', '2023-01-10',
+                '2023-01-11', '2023-01-12', '2023-01-13', '2023-01-14', '2023-01-15',
+                '2023-01-16', '2023-01-17', '2023-01-18', '2023-01-19', '2023-01-20'
+            ]
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value'
+        }
+    ],
+    series: [
+        {
+            name: 'High Tech',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {normal: {color:'#FFD700'}},
+            emphasis: {focus: 'series'},
+            data: [
+                12000, 12120, 12310, 12500, 12700, 12920, 13140, 13360, 13500, 13620,
+                13720, 13840, 14000, 14120, 14300, 14500, 14600, 14700, 14800, 14900
+            ]
+        },
+        {
+            name: 'Healthcare',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {normal: {color:'#32CD32'}},
+            emphasis: {focus: 'series'},
+            data: [
+                9500, 9700, 9100, 9200, 9300, 9400, 9600, 9800, 9900, 10000, 
+                10100, 10250, 10300, 10400, 10500, 10600, 10700, 10820, 10940, 11050
+            ]
+        },
+        {
+            name: 'Energy',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {normal: {color:'#1E90FF'}},
+            emphasis: {focus: 'series'},
+            data: [
+                7100, 7200, 7300, 7400, 7500, 7600, 7700, 7800, 7900, 8000, 
+                8100, 8200, 8300, 8400, 8500, 8600, 8700, 8800, 8900, 9000
+            ]
+        },
+        {
+            name: 'E-commerce',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {normal: {color:'#EE82EE'}},
+            emphasis: {focus: 'series'},
+            data: [
+                8400, 8500, 8600, 8700, 8800, 8900, 9000, 9100, 9200, 9300, 
+                9400, 9500, 9600, 9700, 9800, 9900, 10000, 10100, 10200, 10300
+            ]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

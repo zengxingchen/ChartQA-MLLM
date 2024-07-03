@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+const data = [
+  {'Day': 'Monday', 'Espresso': 60, 'Americano': 40, 'Cappuccino': 50, 'Latte': 70, 'Mocha': 30, 'Tea': 45},
+  {'Day': 'Tuesday', 'Espresso': 45, 'Americano': 35, 'Cappuccino': 60, 'Latte': 80, 'Mocha': 25, 'Tea': 50},
+  {'Day': 'Wednesday', 'Espresso': 50, 'Americano': 45, 'Cappuccino': 55, 'Latte': 90, 'Mocha': 35, 'Tea': 60},
+  {'Day': 'Thursday', 'Espresso': 40, 'Americano': 50, 'Cappuccino': 40, 'Latte': 85, 'Mocha': 32, 'Tea': 55},
+  {'Day': 'Friday', 'Espresso': 70, 'Americano': 60, 'Cappuccino': 70, 'Latte': 100, 'Mocha': 40, 'Tea': 65},
+  {'Day': 'Saturday', 'Espresso': 85, 'Americano': 70, 'Cappuccino': 80, 'Latte': 120, 'Mocha': 50, 'Tea': 70},
+  {'Day': 'Sunday', 'Espresso': 75, 'Americano': 65, 'Cappuccino': 75, 'Latte': 110, 'Mocha': 45, 'Tea': 65}
+];
+
+const days = data.map(item => item.Day);
+const espresso = data.map(item => item.Espresso);
+const americano = data.map(item => item.Americano);
+const cappuccino = data.map(item => item.Cappuccino);
+const latte = data.map(item => item.Latte);
+const mocha = data.map(item => item.Mocha);
+const tea = data.map(item => item.Tea);
+
+option = {
+  tooltip: {
+    trigger: 'axis',
+    axisPointer: {
+      type: 'shadow' // 'shadow' as tooltip style
+    }
+  },
+  legend: {
+    data: ['Espresso', 'Americano', 'Cappuccino', 'Latte', 'Mocha', 'Tea']
+  },
+  grid: {
+    left: '3%',
+    right: '4%',
+    bottom: '3%',
+    containLabel: true
+  },
+  xAxis: {
+    type: 'value',
+    boundaryGap: [0, 0.01]
+  },
+  yAxis: {
+    type: 'category',
+    data: days
+  },
+  series: [
+    {
+      name: 'Espresso',
+      type: 'bar',
+      data: espresso,
+      itemStyle: {
+        color: '#c23531'
+      }
+    },
+    {
+      name: 'Americano',
+      type: 'bar',
+      data: americano,
+      itemStyle: {
+        color: '#2f4554'
+      }
+    },
+    {
+      name: 'Cappuccino',
+      type: 'bar',
+      data: cappuccino,
+      itemStyle: {
+        color: '#61a0a8'
+      }
+    },
+    {
+      name: 'Latte',
+      type: 'bar',
+      data: latte,
+      itemStyle: {
+        color: '#d48265'
+      }
+    },
+    {
+      name: 'Mocha',
+      type: 'bar',
+      data: mocha,
+      itemStyle: {
+        color: '#91c7ae'
+      }
+    },
+    {
+      name: 'Tea',
+      type: 'bar',
+      data: tea,
+      itemStyle: {
+        color: '#749f83'
+      }
+    }
+  ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

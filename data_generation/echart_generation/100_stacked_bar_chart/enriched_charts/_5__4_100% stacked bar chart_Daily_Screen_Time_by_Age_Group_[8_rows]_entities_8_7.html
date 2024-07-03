@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {renderer: 'canvas', width: '600', height: '400'});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Annual Trends in Lifestyle Categories',
+        subtext: 'Data from Lifestyle Surveys',
+        left: 'center',
+        padding: 20
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Food & Nutrition', 'Travel & Adventure', 'Fashion & Beauty', 'Education & Learning'],
+        top: '10%'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01],
+        max: 100,
+        axisLabel: {
+            formatter: '{value} %'
+        }
+    },
+    yAxis: {
+        type: 'category',
+        data: ['2018', '2019', '2020', '2021', '2022']
+    },
+    series: [
+        {
+            name: 'Food & Nutrition',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                formatter: '{b}\n{c}%'
+            },
+            data: [45, 50, 40, 45, 60],
+            itemStyle: {
+                color: '#FF6F61'
+            },
+            barWidth: 20
+        },
+        {
+            name: 'Travel & Adventure',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                formatter: '{c}%'
+            },
+            data: [30, 25, 35, 20, 20],
+            itemStyle: {
+                color: '#6B5B95'
+            },
+            barWidth: 20
+        },
+        {
+            name: 'Fashion & Beauty',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                formatter: '{c}%'
+            },
+            data: [15, 15, 10, 25, 10],
+            itemStyle: {
+                color: '#88B04B'
+            },
+            barWidth: 20
+        },
+        {
+            name: 'Education & Learning',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                formatter: '{c}%'
+            },
+            data: [10, 10, 15, 10, 10],
+            itemStyle: {
+                color: '#F7CAC9'
+            },
+            barWidth: 20
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var option;
+
+// Process your data
+const data = [{'Beverage': 'Espresso', 'Sales': 150}, {'Beverage': 'Americano', 'Sales': 180}, {'Beverage': 'Latte', 'Sales': 220}, {'Beverage': 'Cappuccino', 'Sales': 190}, {'Beverage': 'Mocha', 'Sales': 140}, {'Beverage': 'Flat White', 'Sales': 130}, {'Beverage': 'Iced Coffee', 'Sales': 160}, {'Beverage': 'Chai Latte', 'Sales': 80}, {'Beverage': 'Matcha Latte', 'Sales': 110}, {'Beverage': 'Hot Chocolate', 'Sales': 145}, {'Beverage': 'Herbal Tea', 'Sales': 90}, {'Beverage': 'Black Tea', 'Sales': 75}, {'Beverage': 'Fruit Smoothie', 'Sales': 120}];
+const categories = data.map(item => item.Beverage);
+const salesData = data.map(item => item.Sales);
+
+option = {
+    title: {
+        text: 'Beverage Sales Data'
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['Sales']
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: categories
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [{
+        name: 'Sales',
+        type: 'line',
+        stack: 'total',
+        areaStyle: {},
+        emphasis: {
+            focus: 'series'
+        },
+        data: salesData,
+        smooth: true, // smooth curve
+        symbol: 'circle', // type of point
+        symbolSize: 8, // size of point
+        itemStyle: {
+            color: '#c23531', // chart line color
+            borderColor: '#c23531', // border color of data points
+            borderWidth: 1.5, // border width of data points
+            borderType: 'solid' // border type of data points
+        },
+        lineStyle: {
+            width: 3, // line thickness
+            shadowColor: 'rgba(0,0,0,0.3)', // shadow color for line
+            shadowBlur: 10, // shadow blur for line
+            shadowOffsetY: 5 // shadow Y offset for line
+        },
+        markPoint: {
+            data: [
+                {type: 'max', name: 'Max'},
+                {type: 'min', name: 'Min'}
+            ]
+        },
+        markLine: {
+            data: [{type: 'average', name: 'Avg'}]
+        }
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

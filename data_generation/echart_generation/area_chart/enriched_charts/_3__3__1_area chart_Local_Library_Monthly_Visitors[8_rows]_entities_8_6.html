@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 400});
+var app = {};
+var option;
+
+var data = [
+  ['2023-01-01', 2100], ['2023-01-02', 2095], ['2023-01-03', 2087], ['2023-01-04', 2080],
+  ['2023-01-05', 2072], ['2023-01-06', 2065], ['2023-01-07', 2050], ['2023-01-08', 2045],
+  ['2023-01-09', 2037], ['2023-01-10', 2031], ['2023-01-11', 2025], ['2023-01-12', 2019],
+  ['2023-01-13', 2012], ['2023-01-14', 2001], ['2023-01-15', 1995]
+  // ... (Continue with the rest of the data points following the downward trend)
+];
+
+option = {
+  title: {
+    text: 'Stock Market Trends',
+    subtext: 'Index Value Over Time',
+    left: 'center',
+    top: 20
+  },
+  tooltip: {
+    trigger: 'axis',
+    axisPointer: {
+      type: 'cross',
+      label: {
+        backgroundColor: '#6a7985'
+      }
+    }
+  },
+  grid: {
+    left: '3%',
+    right: '4%',
+    bottom: '3%',
+    containLabel: true
+  },
+  xAxis: {
+    type: 'category',
+    boundaryGap: false,
+    data: data.map(function (item) {
+      return item[0];
+    })
+  },
+  yAxis: {
+    type: 'value'
+  },
+  series: [
+    {
+      name: 'Index Value',
+      type: 'line',
+      stack: 'Total',
+      areaStyle: {},
+      emphasis: {
+        focus: 'series'
+      },
+      data: data.map(function (item) {
+        return item[1];
+      }),
+      color: ['#f44336'],
+      label: {
+        show: true,
+        position: 'top'
+      }
+    }
+  ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

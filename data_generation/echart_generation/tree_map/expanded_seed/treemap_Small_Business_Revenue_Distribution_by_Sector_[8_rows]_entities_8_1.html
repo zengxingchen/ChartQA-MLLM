@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var data = [
+  {'Business Sector': 'Retail', 'Subsector': 'Fashion', 'Monthly Revenue (USD)': 20000},
+  {'Business Sector': 'Retail', 'Subsector': 'Electronics', 'Monthly Revenue (USD)': 15000},
+  {'Business Sector': 'Services', 'Subsector': 'Consulting', 'Monthly Revenue (USD)': 25000},
+  {'Business Sector': 'Services', 'Subsector': 'Beauty & Spa', 'Monthly Revenue (USD)': 12000},
+  {'Business Sector': 'Food & Beverage', 'Subsector': 'Restaurants', 'Monthly Revenue (USD)': 22000},
+  {'Business Sector': 'Food & Beverage', 'Subsector': 'Bakeries', 'Monthly Revenue (USD)': 8000},
+  {'Business Sector': 'Health & Wellness', 'Subsector': 'Fitness Centers', 'Monthly Revenue (USD)': 16000},
+  {'Business Sector': 'Health & Wellness', 'Subsector': 'Pharmacies', 'Monthly Revenue (USD)': 19000}
+];
+
+// Transform the data to be used in the treemap
+var treeData = {
+  name: 'root',
+  children: []
+};
+
+var sectorMap = {};
+
+data.forEach(function (item) {
+  // Create a map for each business sector and add subsectors as children
+  if (!sectorMap[item['Business Sector']]) {
+    sectorMap[item['Business Sector']] = {
+      name: item['Business Sector'],
+      children: []
+    };
+    treeData.children.push(sectorMap[item['Business Sector']]);
+  }
+  
+  sectorMap[item['Business Sector']].children.push({
+    name: item['Subsector'],
+    value: item['Monthly Revenue (USD)']
+  });
+});
+
+option = {
+  tooltip: {
+    formatter: function (info) {
+      var value = info.value;
+      var treePathInfo = info.treePathInfo;
+      var treePath = [];
+
+      for (var i = 1; i < treePathInfo.length; i++) {
+        treePath.push(treePathInfo[i].name);
+      }
+
+      return [
+        '<div class="tooltip-title">' + echarts.format.encodeHTML(treePath.join('/')) + '</div>',
+        'Monthly Revenue (USD): ' + echarts.format.addCommas(value)
+      ].join('');
+    }
+  },
+  series: [
+    {
+      name: 'Treemap',
+      type: 'treemap',
+      visibleMin: 300,
+      label: {
+        show: true,
+        formatter: '{b}'
+      },
+      upperLabel: {
+        show: true,
+        height: 30
+      },
+      itemStyle: {
+        borderColor: '#fff'
+      },
+      levels: [
+        {
+          itemStyle: {
+            borderWidth: 0,
+            gapWidth: 5
+          }
+        },
+        {
+          itemStyle: {
+            gapWidth: 1
+          }
+        },
+        {
+          colorSaturation: [0.35, 0.5],
+          itemStyle: {
+            gapWidth: 1,
+            borderColorSaturation: 0.6
+          }
+        }
+      ],
+      data: treeData.children // Setting the data
+    }
+  ]
+};
+
+if (option && typeof option === 'object') {
+  myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

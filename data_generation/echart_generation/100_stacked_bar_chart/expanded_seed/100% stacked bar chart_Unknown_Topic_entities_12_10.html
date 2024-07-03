@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+            var dom = document.getElementById('container');
+            var myChart = echarts.init(dom, null, {
+            renderer: 'canvas',
+            useDirtyRect: false
+            });
+            var app = {};
+            
+            var option;
+
+            
+option = {
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        },
+        formatter: function(params) {
+            var tooltipData = [];
+            params.forEach(function (item) {
+                tooltipData.push(item.marker + " " + item.seriesName + ": " + item.value + "%");
+            });
+            return tooltipData.join('<br/>');
+        }
+    },
+    legend: {
+        data: ['Coffee', 'Tea', 'Juice', 'Water', 'Soft Drinks', 'Herbal Drinks']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01],
+        max: 100
+    },
+    yAxis: {
+        type: 'category',
+        data: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+    },
+    series: [
+        {
+            name: 'Coffee',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'insideRight',
+                formatter: '{c}%'
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [60, 65, 70, 55, 80, 90, 75, 65, 60, 70, 55, 85]
+        },
+        {
+            name: 'Tea',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'insideRight',
+                formatter: '{c}%'
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [10, 12, 10, 13, 8, 6, 10, 9, 11, 10, 10, 7]
+        },
+        {
+            name: 'Juice',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'insideRight',
+                formatter: '{c}%'
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [15, 10, 5, 15, 7, 2, 5, 12, 10, 8, 20, 5]
+        },
+        {
+            name: 'Water',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'insideRight',
+                formatter: '{c}%'
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [5, 4, 6, 6, 2, 1, 5, 6, 8, 7, 10, 1]
+        },
+        {
+            name: 'Soft Drinks',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'insideRight',
+                formatter: '{c}%'
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [5, 4, 4, 6, 2, 0, 3, 5, 5, 4, 3, 1]
+        },
+        {
+            name: 'Herbal Drinks',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'insideRight',
+                formatter: '{c}%'
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [5, 5, 5, 5, 1, 1, 2, 3, 6, 1, 2, 1]
+        }
+    ]
+};
+
+            if (option && typeof option === 'object') {
+            myChart.setOption(option);
+            }
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

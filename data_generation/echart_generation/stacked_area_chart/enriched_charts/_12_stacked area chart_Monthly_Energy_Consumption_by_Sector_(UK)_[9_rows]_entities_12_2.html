@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Quarterly Tech Giants Revenue Growth',
+        left: 'center',
+        textStyle: {
+            color: '#333',
+            fontWeight: 'bold',
+            fontSize: 20
+        }
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            label: {
+                backgroundColor: '#6a7985'
+            }
+        }
+    },
+    legend: {
+        data: ['Apple Inc', 'Alphabet Inc', 'Microsoft Corp'],
+        top: '30'
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: [
+        {
+            type: 'category',
+            boundaryGap: false,
+            data: ['2019-Q1', '2019-Q2', '2019-Q3', '2019-Q4', '2020-Q1', '2020-Q2', '2020-Q3', '2020-Q4', '2021-Q1', '2021-Q2', '2021-Q3', '2021-Q4', '2022-Q1', '2022-Q2', '2022-Q3', '2022-Q4']
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value'
+        }
+    ],
+    series: [
+        {
+            name: 'Apple Inc',
+            type: 'line',
+            stack: 'Total Revenue',
+            areaStyle: {},
+            emphasis: { focus: 'series' },
+            data: [58036, 53809, 64040, 91819, 58313, 59685, 64698, 111439, 89584, 83360, 65782, 123945, 89195, 81550, 72798, 123583],
+            color: '#FF7F0E',
+            smooth: true
+        },
+        {
+            name: 'Alphabet Inc',
+            type: 'line',
+            stack: 'Total Revenue',
+            areaStyle: {},
+            emphasis: { focus: 'series' },
+            data: [36148, 38644, 40540, 46101, 41159, 38297, 46824, 56276, 55222, 61256, 65344, 75213, 68233, 72453, 78896, 75689],
+            color: '#2CA02C',
+            smooth: true
+        },
+        {
+            name: 'Microsoft Corp',
+            type: 'line',
+            stack: 'Total Revenue',
+            areaStyle: {},
+            emphasis: { focus: 'series' },
+            data: [30571, 33035, 33117, 36906, 35021, 38033, 37154, 43076, 41741, 46150, 45797, 51314, 49416, 57207, 52846, 63988],
+            color: '#1F77B4',
+            smooth: true
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

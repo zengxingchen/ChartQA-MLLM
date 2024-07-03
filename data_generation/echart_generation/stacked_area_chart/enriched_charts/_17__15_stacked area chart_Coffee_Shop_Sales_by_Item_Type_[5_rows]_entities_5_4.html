@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+option = null;
+
+app.title = 'Quarterly Revenue Growth of Tech Companies';
+
+option = {
+    title: {
+        text: 'Quarterly Revenue Growth of Tech Companies',
+        left: 'center',
+        top: 20,
+        textStyle: {
+            color: '#333'
+        }
+    },
+    tooltip : {
+        trigger: 'axis'
+    },
+    legend: {
+        data:['Apple', 'Google', 'Amazon', 'Facebook'],
+        top: 50
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    color: ['#FF7F50', '#32CD32', '#6495ED', '#FF69B4'],
+    xAxis: [
+        {
+            type: 'category',
+            boundaryGap: false,
+            data: ['Q1-2019','Q2-2019','Q3-2019','Q4-2019','Q1-2020','Q2-2020','Q3-2020','Q4-2020','Q1-2021','Q2-2021','Q3-2021','Q4-2021','Q1-2022','Q2-2022','Q3-2022','Q4-2022']
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value'
+        }
+    ],
+    series: [
+        {
+            name:'Apple',
+            type:'line',
+            stack: 'Total',
+            areaStyle: {},
+            data:[58000,53800,64000,91800,58300,59500,64600,111400,76900,81400,83300,123900,94000,83300,87900,123200]
+        },
+        {
+            name:'Google',
+            type:'line',
+            stack: 'Total',
+            areaStyle: {},
+            data:[36500,38600,40200,45600,41100,38200,46800,56100,55600,61800,65300,75800,68000,65400,67500,75900]
+        },
+        {
+            name:'Amazon',
+            type:'line',
+            stack: 'Total',
+            areaStyle: {},
+            data:[59750,63410,69980,87450,75420,88900,96190,125630,108510,113080,110810,137410,116850,121780,110100,142690]
+        },
+        {
+            name:'Facebook',
+            type:'line',
+            stack: 'Total',
+            areaStyle: {},
+            data:[15040,16820,17760,21020,17780,18560,21340,28090,26140,29080,29020,33620,30980,31720,30680,34750]
+        }
+    ]
+};
+
+myChart.setOption(option, true);
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

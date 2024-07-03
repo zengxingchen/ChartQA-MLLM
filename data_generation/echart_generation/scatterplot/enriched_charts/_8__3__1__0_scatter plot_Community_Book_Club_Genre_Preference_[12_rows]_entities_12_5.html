@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Temperature Decrease Over Days',
+        left: 'center',
+        top: '5%'
+    },
+    tooltip: {
+        trigger: 'item'
+    },
+    legend: {
+        data: ['Temperature'],
+        left: 'right',
+        top: '5%'
+    },
+    xAxis: {
+        name: 'Days',
+        type: 'category',
+        data: Array.from({length: 30}, (_, i) => (i + 1).toString())
+    },
+    yAxis: {
+        name: 'Temperature (°C)',
+        type: 'value'
+    },
+    series: [{
+        name: 'Temperature',
+        type: 'scatter',
+        itemStyle: {
+            color: '#FF5733'
+        },
+        data: [
+            [1, 90], [2, 85], [3, 88], [4, 80], [5, 82], [6, 78], [7, 74], [8, 70], [9, 68], [10, 66],
+            [11, 63], [12, 60], [13, 58], [14, 55], [15, 52], [16, 50], [17, 48], [18, 45], [19, 42], [20, 40],
+            [21, 37], [22, 35], [23, 33], [24, 31], [25, 28], [26, 26], [27, 24], [28, 22], [29, 20], [30, 18]
+        ]
+    }],
+    grid: {
+        left: '10%',
+        right: '10%',
+        top: '20%',
+        bottom: '10%'
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

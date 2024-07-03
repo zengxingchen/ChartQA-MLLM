@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {renderer: 'canvas', useDirtyRect: false});
+var option;
+
+option = {
+    title: {
+        text: 'Revenue Growth Over Years',
+        left: 'center',
+        top: '5%',
+        textStyle: {
+            color: '#333333'
+        }
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['Revenue'],
+        top: '10%'
+    },
+    xAxis: {
+        type: 'category',
+        data: ['2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022'],
+        axisLabel: {
+            rotate: 45,
+            interval: 0,
+            textStyle: {
+                color: '#666666'
+            }
+        }
+    },
+    yAxis: {
+        type: 'value',
+        axisLabel: {
+            textStyle: {
+                color: '#666666'
+            }
+        }
+    },
+    series: [
+        {
+            name: 'Revenue',
+            type: 'line',
+            data: [500, 550, 600, 650, 700, 750, 800, 850, 900, 950, 1000, 1050, 1100, 1150, 1200, 1250, 1300, 1350, 1400, 1450, 1500, 1550, 1600],
+            label: {
+                show: true,
+                position: 'top',
+                color: '#000000'
+            },
+            itemStyle: {
+                color: '#1f77b4'
+            },
+            lineStyle: {
+                color: '#ff7f0e'
+            }
+        }
+    ],
+    grid: {
+        width: '80%',
+        height: '70%',
+        left: '10%',
+        top: '20%'
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

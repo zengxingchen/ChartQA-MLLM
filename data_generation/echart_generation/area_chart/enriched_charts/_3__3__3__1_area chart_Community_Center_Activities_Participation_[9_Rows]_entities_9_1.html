@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 600, height: 400});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Average Daily Hours of Sleep',
+        left: 'center',
+        top: 5
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        left: 'left',
+        data: ['Sleep Hours'],
+        top: 30
+    },
+    xAxis: {
+        data: [
+            '1', '2', '3', '4', '5', '6', '7', '8', '9', '10',
+            '11', '12', '13', '14', '15', '16', '17', '18', '19', '20',
+            '21', '22', '23', '24', '25', '26', '27', '28', '29', '30'
+        ],
+        boundaryGap: false
+    },
+    yAxis: {},
+    series: [{
+        name: 'Sleep Hours',
+        type: 'line',
+        stack: 'total',
+        areaStyle: {},
+        emphasis: {
+            focus: 'series'
+        },
+        data: [
+            8.0, 7.9, 7.8, 7.7, 7.6, 7.5, 7.4, 7.3, 7.2, 7.1,
+            7.0, 6.9, 6.8, 6.7, 6.6, 6.5, 6.4, 6.3, 6.2, 6.1,
+            6.0, 5.9, 5.8, 5.7, 5.6, 5.5, 5.4, 5.3, 5.2, 5.1
+        ],
+        markPoint: {
+            data: [
+                {type: 'max', name: 'Max Sleep'},
+                {type: 'min', name: 'Min Sleep'}
+            ]
+        },
+        color: ['#1f78b4'],
+        smooth: true
+    }],
+    visualMap: [{
+        show: false,
+        pieces: [{
+            gt: 3,
+            lte: 6,
+            color: '#ff7f0e'
+        }],
+        outOfRange: {
+            color: '#2ca02c'
+        }
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

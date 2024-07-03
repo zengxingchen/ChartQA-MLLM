@@ -1,0 +1,193 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "100% Stacked Bar Chart of Energy Usage by Month",
+    "data": {
+        "values": [
+            {
+                "Month": "January",
+                "Heating": 40,
+                "Cooling": 5,
+                "Water Heating": 20,
+                "Appliances": 15,
+                "Lighting": 10,
+                "Electronics": 10
+            },
+            {
+                "Month": "February",
+                "Heating": 35,
+                "Cooling": 5,
+                "Water Heating": 20,
+                "Appliances": 15,
+                "Lighting": 10,
+                "Electronics": 15
+            },
+            {
+                "Month": "March",
+                "Heating": 20,
+                "Cooling": 10,
+                "Water Heating": 25,
+                "Appliances": 15,
+                "Lighting": 10,
+                "Electronics": 20
+            },
+            {
+                "Month": "April",
+                "Heating": 10,
+                "Cooling": 15,
+                "Water Heating": 25,
+                "Appliances": 20,
+                "Lighting": 10,
+                "Electronics": 20
+            },
+            {
+                "Month": "May",
+                "Heating": 5,
+                "Cooling": 20,
+                "Water Heating": 20,
+                "Appliances": 25,
+                "Lighting": 10,
+                "Electronics": 20
+            },
+            {
+                "Month": "June",
+                "Heating": 5,
+                "Cooling": 30,
+                "Water Heating": 15,
+                "Appliances": 20,
+                "Lighting": 10,
+                "Electronics": 20
+            },
+            {
+                "Month": "July",
+                "Heating": 5,
+                "Cooling": 35,
+                "Water Heating": 10,
+                "Appliances": 20,
+                "Lighting": 10,
+                "Electronics": 20
+            },
+            {
+                "Month": "August",
+                "Heating": 5,
+                "Cooling": 30,
+                "Water Heating": 15,
+                "Appliances": 20,
+                "Lighting": 10,
+                "Electronics": 20
+            },
+            {
+                "Month": "September",
+                "Heating": 10,
+                "Cooling": 25,
+                "Water Heating": 20,
+                "Appliances": 20,
+                "Lighting": 10,
+                "Electronics": 15
+            },
+            {
+                "Month": "October",
+                "Heating": 15,
+                "Cooling": 20,
+                "Water Heating": 20,
+                "Appliances": 20,
+                "Lighting": 10,
+                "Electronics": 15
+            },
+            {
+                "Month": "November",
+                "Heating": 25,
+                "Cooling": 10,
+                "Water Heating": 25,
+                "Appliances": 15,
+                "Lighting": 10,
+                "Electronics": 15
+            },
+            {
+                "Month": "December",
+                "Heating": 40,
+                "Cooling": 5,
+                "Water Heating": 20,
+                "Appliances": 15,
+                "Lighting": 10,
+                "Electronics": 10
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Heating",
+                "Cooling",
+                "Water Heating",
+                "Appliances",
+                "Lighting",
+                "Electronics"
+            ],
+            "as": [
+                "category",
+                "percentage"
+            ]
+        }
+    ],
+    "width": 500,
+    "height": 300,
+    "mark": {
+        "type": "bar",
+        "tooltip": true
+    },
+    "encoding": {
+        "x": {
+            "field": "Month",
+            "type": "ordinal",
+            "axis": {
+                "title": "Month"
+            }
+        },
+        "y": {
+            "field": "percentage",
+            "type": "quantitative",
+            "axis": {
+                "title": "Percentage",
+                "format": "%"
+            },
+            "stack": "normalize"
+        },
+        "color": {
+            "field": "category",
+            "type": "nominal",
+            "scale": {
+                "scheme": "tableau10"
+            },
+            "legend": {
+                "title": "Energy Usage Category"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Month",
+                "type": "ordinal"
+            },
+            {
+                "field": "category",
+                "type": "nominal"
+            },
+            {
+                "field": "percentage",
+                "type": "quantitative",
+                "title": "Percentage",
+                "format": ".2%"
+            }
+        ]
+    },
+    "config": {
+        "axis": {
+            "labelFontSize": 12,
+            "titleFontSize": 14
+        },
+        "legend": {
+            "labelFontSize": 12,
+            "titleFontSize": 14,
+            "orient": "right"
+        }
+    }
+}

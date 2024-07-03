@@ -1,0 +1,162 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+        "values": [
+            {
+                "Day": "Monday",
+                "Espresso": 50,
+                "Americano": 75,
+                "Cappuccino": 25,
+                "Latte": 100,
+                "Mocha": 50,
+                "Macchiato": 80
+            },
+            {
+                "Day": "Tuesday",
+                "Espresso": 60,
+                "Americano": 80,
+                "Cappuccino": 30,
+                "Latte": 110,
+                "Mocha": 60,
+                "Macchiato": 90
+            },
+            {
+                "Day": "Wednesday",
+                "Espresso": 55,
+                "Americano": 85,
+                "Cappuccino": 35,
+                "Latte": 120,
+                "Mocha": 55,
+                "Macchiato": 85
+            },
+            {
+                "Day": "Thursday",
+                "Espresso": 45,
+                "Americano": 70,
+                "Cappuccino": 40,
+                "Latte": 115,
+                "Mocha": 65,
+                "Macchiato": 75
+            },
+            {
+                "Day": "Friday",
+                "Espresso": 70,
+                "Americano": 90,
+                "Cappuccino": 45,
+                "Latte": 130,
+                "Mocha": 70,
+                "Macchiato": 95
+            },
+            {
+                "Day": "Saturday",
+                "Espresso": 80,
+                "Americano": 100,
+                "Cappuccino": 50,
+                "Latte": 140,
+                "Mocha": 75,
+                "Macchiato": 105
+            },
+            {
+                "Day": "Sunday",
+                "Espresso": 65,
+                "Americano": 95,
+                "Cappuccino": 55,
+                "Latte": 150,
+                "Mocha": 80,
+                "Macchiato": 90
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Espresso",
+                "Americano",
+                "Cappuccino",
+                "Latte",
+                "Mocha",
+                "Macchiato"
+            ],
+            "as": [
+                "CoffeeType",
+                "Sales"
+            ]
+        }
+    ],
+    "mark": "bar",
+    "width": 350,
+    "height": 200,
+    "title": {
+        "text": "Weekly Coffee Sales by Day",
+        "anchor": "start"
+    },
+    "encoding": {
+        "y": {
+            "field": "Day",
+            "type": "ordinal",
+            "axis": {
+                "title": "Day of Week"
+            }
+        },
+        "x": {
+            "field": "Sales",
+            "type": "quantitative",
+            "stack": "zero",
+            "axis": {
+                "title": "Total Sales"
+            },
+            "scale": {
+                "domain": [
+                    0,
+                    600
+                ]
+            }
+        },
+        "color": {
+            "field": "CoffeeType",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Espresso",
+                    "Americano",
+                    "Cappuccino",
+                    "Latte",
+                    "Mocha",
+                    "Macchiato"
+                ],
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e",
+                    "#2ca02c",
+                    "#d62728",
+                    "#9467bd",
+                    "#8c564b"
+                ]
+            },
+            "legend": {
+                "orient": "right",
+                "title": "Coffee Type"
+            }
+        },
+        "width": {
+            "band": 0.6
+        },
+        "tooltip": [
+            {
+                "field": "Day",
+                "type": "nominal",
+                "title": "Day of Week"
+            },
+            {
+                "field": "CoffeeType",
+                "type": "nominal",
+                "title": "Coffee Type"
+            },
+            {
+                "field": "Sales",
+                "type": "quantitative",
+                "title": "Sales"
+            }
+        ]
+    }
+}

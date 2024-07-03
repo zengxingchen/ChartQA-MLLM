@@ -1,0 +1,137 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+        "values": [
+            {
+                "Year": 2019,
+                "AI": 25000,
+                "Blockchain": 15000,
+                "IoT": 20000,
+                "VR": 8000
+            },
+            {
+                "Year": 2020,
+                "AI": 28000,
+                "Blockchain": 17000,
+                "IoT": 22000,
+                "VR": 9000
+            },
+            {
+                "Year": 2021,
+                "AI": 32000,
+                "Blockchain": 20000,
+                "IoT": 24000,
+                "VR": 9500
+            },
+            {
+                "Year": 2022,
+                "AI": 36000,
+                "Blockchain": 22000,
+                "IoT": 28000,
+                "VR": 10000
+            },
+            {
+                "Year": 2023,
+                "AI": 40000,
+                "Blockchain": 25000,
+                "IoT": 30000,
+                "VR": 12000
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "AI",
+                "Blockchain",
+                "IoT",
+                "VR"
+            ],
+            "as": [
+                "Sector",
+                "Investment"
+            ]
+        }
+    ],
+    "width": 400,
+    "height": 200,
+    "mark": {
+        "type": "bar",
+        "height": {
+            "band": 0.6
+        }
+    },
+    "title": {
+        "text": "Annual Investments in Technology Sectors",
+        "subtitle": "Millions of Dollars Invested, source: Tech Investment Report",
+        "subtitleFontStyle": "italic",
+        "subtitleFontSize": 10,
+        "anchor": "start",
+        "color": "black",
+        "offset": 20
+    },
+    "encoding": {
+        "x": {
+            "field": "Year",
+            "type": "ordinal",
+            "axis": {
+                "title": "Year"
+            }
+        },
+        "y": {
+            "field": "Investment",
+            "type": "quantitative",
+            "axis": {
+                "title": "Millions of Dollars Invested"
+            }
+        },
+        "color": {
+            "field": "Sector",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "AI",
+                    "Blockchain",
+                    "IoT",
+                    "VR"
+                ],
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e",
+                    "#2ca02c",
+                    "#d62728"
+                ]
+            },
+            "legend": {
+                "orient": "bottom-right"
+            },
+            "title": "Technology Sector"
+        },
+        "tooltip": [
+            {
+                "field": "Year",
+                "type": "ordinal",
+                "title": "Year"
+            },
+            {
+                "field": "Investment",
+                "type": "quantitative",
+                "title": "Investment"
+            },
+            {
+                "field": "Sector",
+                "type": "nominal",
+                "title": "Sector"
+            }
+        ]
+    },
+    "config": {
+        "axis": {
+            "labelAngle": 0
+        },
+        "axisY": {
+            "labelAngle": 0,
+            "labelPadding": 5
+        }
+    }
+}

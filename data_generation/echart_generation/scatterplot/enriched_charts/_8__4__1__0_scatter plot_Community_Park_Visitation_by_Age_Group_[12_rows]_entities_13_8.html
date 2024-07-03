@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, { width: 800, height: 600 });
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Height vs Weight Scatterplot',
+        left: 'center',
+        top: '5%'
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: function (params) {
+            return `X: ${params.value[0]}<br/>Y: ${params.value[1]}`;
+        }
+    },
+    legend: {
+        data: ['Height vs Weight'],
+        left: 'right',
+        top: '5%'
+    },
+    xAxis: {
+        name: 'Height (cm)',
+        type: 'value'
+    },
+    yAxis: {
+        name: 'Weight (kg)',
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Height vs Weight',
+            type: 'scatter',
+            data: [
+                [1,30], [2,28], [3,26], [4,27], [5,25], [6,24], [7,23], [8,22], 
+                [9,21], [10,20], [11,22], [12,19], [13,18], [14,17], [15,16], 
+                [16,17], [17,15], [18,14], [19,13], [20,12], [21,14], [22,11], 
+                [23,10], [24,9], [25,8], [26,7], [27,8], [28,6], [29,5], [30,4], 
+                [31,3], [32,2], [33,1], [34,3], [35,2], [36,1]
+            ],
+            itemStyle: {
+                color: '#FF5733'
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

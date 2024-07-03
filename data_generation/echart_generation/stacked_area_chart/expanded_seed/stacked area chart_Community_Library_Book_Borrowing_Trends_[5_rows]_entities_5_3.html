@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+option = {
+    title: {
+        text: 'Book Sales by Genre Over Time',
+        subtext: 'Stacked Area Chart'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            label: {
+                backgroundColor: '#6a7985'
+            }
+        }
+    },
+    legend: {
+        data: ["Children's Literature", 'Novels', 'Non-Fiction', 'Science Fiction', 'Young Adult']
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {},
+            dataView: {},
+            magicType: {
+                type: ['line', 'bar', 'stack', 'tiled']
+            },
+            restore: {}
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: [
+        {
+            type: 'category',
+            boundaryGap: false,
+            data: [2018, 2019, 2020, 2021, 2022]
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value'
+        }
+    ],
+    series: [
+        {
+            name: "Children's Literature",
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: { focus: 'series' },
+            data: [3200, 3100, 2500, 2600, 2700]
+        },
+        {
+            name: 'Novels',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: { focus: 'series' },
+            data: [2700, 2800, 2900, 3000, 3100]
+        },
+        {
+            name: 'Non-Fiction',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: { focus: 'series' },
+            data: [3000, 3200, 3500, 3400, 3300]
+        },
+        {
+            name: 'Science Fiction',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: { focus: 'series' },
+            data: [1500, 1600, 1700, 1800, 1900]
+        },
+        {
+            name: 'Young Adult',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: { focus: 'series' },
+            data: [2200, 2300, 2400, 2500, 2600]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

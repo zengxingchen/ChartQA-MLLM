@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Daily Steps Count Distribution',
+        left: 'center',
+        top: '20px'
+    },
+    xAxis: {
+        type: 'category',
+        data: ['5000-6000', '6000-7000', '7000-8000', '8000-9000', '9000-10000', '10000-11000', '11000-12000', '12000-13000', '13000-14000', '14000-15000', '15000-16000', '16000-17000', '17000-18000', '18000-19000', '19000-20000', '20000-21000'],
+        axisLabel: {
+            rotate: 45,
+            interval: 0
+        }
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [{
+        data: [3, 4, 6, 5, 8, 7, 6, 5, 4, 3, 2, 1, 1, 1, 1, 1],
+        type: 'bar',
+        barWidth: '40%',
+        itemStyle: {
+            color: '#007acc'
+        },
+        label: {
+            show: true,
+            position: 'top'
+        }
+    }],
+    grid: {
+        left: '5%',
+        right: '5%',
+        bottom: '15%',
+        containLabel: true
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

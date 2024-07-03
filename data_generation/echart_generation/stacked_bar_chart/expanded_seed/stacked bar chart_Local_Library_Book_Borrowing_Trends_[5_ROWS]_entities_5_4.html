@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+const data = [
+  {'Month': 'January', 'Adult Fiction': 120, 'Adult Non-Fiction': 80, 'Young Adult': 65, "Children's Books": 140, 'Reference Books': 15},
+  {'Month': 'February', 'Adult Fiction': 95, 'Adult Non-Fiction': 70, 'Young Adult': 75, "Children's Books": 130, 'Reference Books': 10},
+  {'Month': 'March', 'Adult Fiction': 110, 'Adult Non-Fiction': 90, 'Young Adult': 60, "Children's Books": 150, 'Reference Books': 20},
+  {'Month': 'April', 'Adult Fiction': 130, 'Adult Non-Fiction': 85, 'Young Adult': 80, "Children's Books": 160, 'Reference Books': 18},
+  {'Month': 'May', 'Adult Fiction': 125, 'Adult Non-Fiction': 82, 'Young Adult': 70, "Children's Books": 175, 'Reference Books': 22},
+];
+
+const chartData = {
+  months: data.map(item => item.Month),
+  'Adult Fiction': data.map(item => item['Adult Fiction']),
+  'Adult Non-Fiction': data.map(item => item['Adult Non-Fiction']),
+  'Young Adult': data.map(item => item['Young Adult']),
+  "Children's Books": data.map(item => item["Children's Books"]),
+  'Reference Books': data.map(item => item['Reference Books']),
+};
+
+option = {
+  tooltip: {
+    trigger: 'axis',
+    axisPointer: {
+      type: 'shadow'
+    }
+  },
+  legend: {
+    data: ['Adult Fiction', 'Adult Non-Fiction', 'Young Adult', "Children's Books", 'Reference Books']
+  },
+  toolbox: {
+    show: true,
+    feature: {
+      dataView: { show: true, readOnly: false },
+      magicType: { show: true, type: ['line', 'bar', 'stack', 'tiled'] },
+      restore: { show: true },
+      saveAsImage: { show: true }
+    }
+  },
+  xAxis: {
+    type: 'category',
+    axisTick: { show: false },
+    data: chartData.months
+  },
+  yAxis: {
+    type: 'value'
+  },
+  series: [
+    {
+      name: 'Adult Fiction',
+      type: 'bar',
+      stack: 'total',
+      emphasis: { focus: 'series' },
+      data: chartData['Adult Fiction']
+    },
+    {
+      name: 'Adult Non-Fiction',
+      type: 'bar',
+      stack: 'total',
+      emphasis: { focus: 'series' },
+      data: chartData['Adult Non-Fiction']
+    },
+    {
+      name: 'Young Adult',
+      type: 'bar',
+      stack: 'total',
+      emphasis: { focus: 'series' },
+      data: chartData['Young Adult']
+    },
+    {
+      name: "Children's Books",
+      type: 'bar',
+      stack: 'total',
+      emphasis: { focus: 'series' },
+      data: chartData["Children's Books"]
+    },
+    {
+      name: 'Reference Books',
+      type: 'bar',
+      stack: 'total',
+      emphasis: { focus: 'series' },
+      data: chartData['Reference Books']
+    }
+  ],
+  itemStyle: {
+    //This is an optional style setting, for more fancy visual encoding
+    borderRadius: 5
+  }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

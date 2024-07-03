@@ -1,0 +1,141 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "100% Stacked Horizontal Bar Chart of Spending Categories by Quarter",
+    "data": {
+        "values": [
+            {
+                "Quarter": "Q1",
+                "Food": 20,
+                "Rent": 50,
+                "Entertainment": 5,
+                "Utilities": 10,
+                "Travel": 5,
+                "Other": 10
+            },
+            {
+                "Quarter": "Q2",
+                "Food": 25,
+                "Rent": 45,
+                "Entertainment": 10,
+                "Utilities": 10,
+                "Travel": 5,
+                "Other": 5
+            },
+            {
+                "Quarter": "Q3",
+                "Food": 30,
+                "Rent": 40,
+                "Entertainment": 15,
+                "Utilities": 10,
+                "Travel": 2,
+                "Other": 3
+            },
+            {
+                "Quarter": "Q4",
+                "Food": 25,
+                "Rent": 40,
+                "Entertainment": 20,
+                "Utilities": 10,
+                "Travel": 3,
+                "Other": 2
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Food",
+                "Rent",
+                "Entertainment",
+                "Utilities",
+                "Travel",
+                "Other"
+            ],
+            "as": [
+                "category",
+                "percentage"
+            ]
+        }
+    ],
+    "width": 400,
+    "height": 200,
+    "mark": {
+        "type": "bar",
+        "tooltip": true,
+        "orient": "horizontal"
+    },
+    "encoding": {
+        "y": {
+            "field": "Quarter",
+            "type": "ordinal",
+            "axis": {
+                "title": "Quarter"
+            }
+        },
+        "x": {
+            "field": "percentage",
+            "type": "quantitative",
+            "axis": {
+                "title": "Percentage",
+                "format": "%"
+            },
+            "stack": "normalize"
+        },
+        "color": {
+            "field": "category",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Food",
+                    "Rent",
+                    "Entertainment",
+                    "Utilities",
+                    "Travel",
+                    "Other"
+                ],
+                "range": [
+                    "#ff6347",
+                    "#4682b4",
+                    "#ffd700",
+                    "#32cd32",
+                    "#800080",
+                    "#a9a9a9"
+                ]
+            },
+            "legend": {
+                "title": "Spending Category"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Quarter",
+                "type": "ordinal"
+            },
+            {
+                "field": "category",
+                "type": "nominal"
+            },
+            {
+                "field": "percentage",
+                "type": "quantitative",
+                "title": "Percentage",
+                "format": ".2%"
+            }
+        ]
+    },
+    "config": {
+        "axis": {
+            "labelFontSize": 12,
+            "titleFontSize": 14
+        },
+        "legend": {
+            "labelFontSize": 12,
+            "titleFontSize": 14,
+            "orient": "right"
+        },
+        "bar": {
+            "binSpacing": 0,
+            "strokeWidth": 0
+        }
+    }
+}

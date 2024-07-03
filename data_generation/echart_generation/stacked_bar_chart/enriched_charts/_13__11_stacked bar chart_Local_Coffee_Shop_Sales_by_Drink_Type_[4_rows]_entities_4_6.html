@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Travel & Adventure: Popular Travel Destinations and Their Tourist Arrivals',
+        left: 'center',
+        top: '10'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Arrivals (in millions)', 'Spending (in billions USD)'],
+        top: '50'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01]
+    },
+    yAxis: {
+        type: 'category',
+        data: ['Paris', 'Bangkok', 'New York', 'Tokyo'],
+        axisLabel: {
+            formatter: function (value) {
+                var yearMapping = {
+                    'Paris': '2019\n2020\n2021\n2022',
+                    'Bangkok': '2019\n2020\n2021\n2022',
+                    'New York': '2019\n2020\n2021\n2022',
+                    'Tokyo': '2019\n2020\n2021\n2022'
+                };
+                return yearMapping[value];
+            }
+        }
+    },
+    series: [
+        {
+            name: 'Arrivals (in millions)',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            data: [
+                38.3, 15.8, 25.2, 31.7,
+                22.7, 7.2, 12.5, 18.9,
+                30.1, 12.5, 20.3, 27.4,
+                15.3, 5.8, 9.4, 13.8
+            ],
+            itemStyle: {
+                color: '#3398DB'
+            }
+        },
+        {
+            name: 'Spending (in billions USD)',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            data: [
+                28.5, 12.1, 19.6, 24.9,
+                20.5, 6.4, 11.0, 16.8,
+                28.2, 10.3, 18.1, 24.7,
+                14.5, 4.7, 8.2, 12.4
+            ],
+            itemStyle: {
+                color: '#FF7F50'
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

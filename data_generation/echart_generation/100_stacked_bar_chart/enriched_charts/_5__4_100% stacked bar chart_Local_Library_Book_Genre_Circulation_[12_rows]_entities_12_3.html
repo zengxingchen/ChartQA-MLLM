@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false
+});
+var app = {};
+
+var option;
+
+option = {
+    color: ['#33A1C9', '#A52A2A', '#6B8E23', '#FFA500'],
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {            
+            type: 'shadow'        
+        }
+    },
+    legend: {
+        data: ['Artificial Intelligence', 'Cyber Security', 'Quantum Computing', 'Augmented Reality'],
+        bottom: 0
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '10%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01],
+        max: 100
+    },
+    yAxis: {
+        type: 'category',
+        data: ['Education', 'Healthcare', 'Finance', 'Manufacturing', 'Agriculture']
+    },
+    series: [
+        {
+            name: 'Artificial Intelligence',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                formatter: '{c}%'
+            },
+            data: [25, 30, 40, 35, 15],
+            barWidth: 35
+        },
+        {
+            name: 'Cyber Security',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                formatter: '{c}%'
+            },
+            data: [20, 25, 30, 15, 35],
+            barWidth: 35
+        },
+        {
+            name: 'Quantum Computing',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                formatter: '{c}%'
+            },
+            data: [35, 15, 20, 25, 30],
+            barWidth: 35
+        },
+        {
+            name: 'Augmented Reality',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                formatter: '{c}%'
+            },
+            data: [20, 30, 10, 25, 20],
+            barWidth: 35
+        }
+    ],
+    title: {
+        text: 'Sector Engagement in Future Technologies & Society',
+        left: 'center',
+        padding: 20
+    },
+    toolbox: {
+        right: '10%',
+        feature: {
+            saveAsImage: {}
+        }
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

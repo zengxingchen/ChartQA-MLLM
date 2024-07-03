@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+option = {
+    title: {
+        text: 'Weekly Activity Hours',
+        left: 'center',
+        textStyle: {
+            fontSize: 20,
+            color: '#333'
+        }
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    xAxis: {
+        type: 'category',
+        data: ['2-4', '4-6', '6-8', '8-10', '10-12', '12-14', '14-16', '16-18', '18-20', '20-22', '22-24', '24-26'],
+        axisLabel: {
+            rotate: 45,
+            textStyle: {
+                fontSize: 12,
+                color: '#666'
+            }
+        }
+    },
+    yAxis: {
+        type: 'value',
+        axisLabel: {
+            textStyle: {
+                fontSize: 12,
+                color: '#666'
+            }
+        }
+    },
+    series: [
+        {
+            name: 'Frequency',
+            type: 'bar',
+            barWidth: '50%',
+            data: [
+                {value: 1, itemStyle: {color: '#5470C6'}},
+                {value: 1, itemStyle: {color: '#91CC75'}},
+                {value: 3, itemStyle: {color: '#FAC858'}},
+                {value: 2, itemStyle: {color: '#EE6666'}},
+                {value: 2, itemStyle: {color: '#73C0DE'}},
+                {value: 1, itemStyle: {color: '#3BA272'}},
+                {value: 2, itemStyle: {color: '#FC8452'}},
+                {value: 2, itemStyle: {color: '#9A60B4'}},
+                {value: 2, itemStyle: {color: '#EA7CCC'}},
+                {value: 1, itemStyle: {color: '#5470C6'}},
+                {value: 2, itemStyle: {color: '#91CC75'}},
+                {value: 1, itemStyle: {color: '#FAC858'}}
+            ]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,131 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Donut chart showing the popularity of various adventure activities",
+    "data": {
+        "values": [
+            {
+                "Activity Type": "Hiking",
+                "Participants (in thousands)": 200
+            },
+            {
+                "Activity Type": "Camping",
+                "Participants (in thousands)": 150
+            },
+            {
+                "Activity Type": "Rock Climbing",
+                "Participants (in thousands)": 90
+            },
+            {
+                "Activity Type": "Skiing",
+                "Participants (in thousands)": 130
+            },
+            {
+                "Activity Type": "Kayaking",
+                "Participants (in thousands)": 110
+            },
+            {
+                "Activity Type": "Surfing",
+                "Participants (in thousands)": 85
+            },
+            {
+                "Activity Type": "Mountain Biking",
+                "Participants (in thousands)": 70
+            }
+        ]
+    },
+    "width": 450,
+    "height": 450,
+    "mark": {
+        "type": "arc",
+        "tooltip": true,
+        "innerRadius": 60
+    },
+    "encoding": {
+        "theta": {
+            "field": "Participants (in thousands)",
+            "type": "quantitative"
+        },
+        "color": {
+            "field": "Activity Type",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Hiking",
+                    "Camping",
+                    "Rock Climbing",
+                    "Skiing",
+                    "Kayaking",
+                    "Surfing",
+                    "Mountain Biking"
+                ],
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e",
+                    "#2ca02c",
+                    "#d62728",
+                    "#9467bd",
+                    "#8c564b",
+                    "#e377c2"
+                ]
+            },
+            "legend": {
+                "title": "Activity Type"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Activity Type",
+                "type": "nominal"
+            },
+            {
+                "field": "Participants (in thousands)",
+                "type": "quantitative"
+            }
+        ]
+    },
+    "layer": [
+        {
+            "mark": {
+                "type": "arc",
+                "tooltip": true
+            }
+        },
+        {
+            "mark": {
+                "type": "text",
+                "radiusOffset": 15
+            },
+            "encoding": {
+                "text": {
+                    "field": "Activity Type",
+                    "type": "nominal"
+                },
+                "radius": {
+                    "field": "Participants (in thousands)",
+                    "scale": {
+                        "type": "sqrt",
+                        "zero": true,
+                        "range": [
+                            20,
+                            100
+                        ]
+                    },
+                    "type": "quantitative"
+                },
+                "theta": {
+                    "field": "Participants (in thousands)",
+                    "type": "quantitative"
+                }
+            }
+        }
+    ],
+    "view": {
+        "stroke": null
+    },
+    "title": {
+        "text": "Popularity of Various Adventure Activities",
+        "anchor": "start",
+        "fontSize": 20,
+        "dy": -230
+    }
+}

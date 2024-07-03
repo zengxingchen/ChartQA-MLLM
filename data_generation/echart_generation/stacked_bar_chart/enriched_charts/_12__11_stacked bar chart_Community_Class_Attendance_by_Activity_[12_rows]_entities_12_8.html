@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+var option;
+
+option = {
+    title: {
+        text: 'Nutrient Composition in Different Foods',
+        left: 'center',
+        top: '10%'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Protein', 'Fat', 'Carbohydrates', 'Calories'],
+        top: '15%'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        axisLabel: {
+            formatter: '{value}'
+        }
+    },
+    yAxis: {
+        type: 'category',
+        data: ['Chicken', 'Beef', 'Salmon', 'Tofu', 'Broccoli', 'Spinach', 'Almonds', 'Eggs', 'Quinoa', 'Milk'],
+        axisLabel: {
+            interval: 0
+        }
+    },
+    series: [
+        {
+            name: 'Protein',
+            type: 'bar',
+            stack: 'Total',
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            data: [25, 26, 20, 8, 2.8, 2.9, 21, 13, 4.4, 3.4],
+            itemStyle: {
+                color: '#FF6347'
+            }
+        },
+        {
+            name: 'Fat',
+            type: 'bar',
+            stack: 'Total',
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            data: [3.6, 15, 13, 4.8, 0.4, 0.4, 50, 11, 1.9, 1],
+            itemStyle: {
+                color: '#4682B4'
+            }
+        },
+        {
+            name: 'Carbohydrates',
+            type: 'bar',
+            stack: 'Total',
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            data: [0, 0, 0, 2, 6, 3.6, 22, 1.1, 21.3, 5],
+            itemStyle: {
+                color: '#32CD32'
+            }
+        },
+        {
+            name: 'Calories',
+            type: 'bar',
+            stack: 'Total',
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            data: [165, 250, 208, 76, 34, 23, 579, 155, 120, 42],
+            itemStyle: {
+                color: '#FFD700'
+            }
+        }
+    ],
+    barWidth: '50%',
+    barGap: '20%',
+    width: '600px',
+    height: '400px'
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

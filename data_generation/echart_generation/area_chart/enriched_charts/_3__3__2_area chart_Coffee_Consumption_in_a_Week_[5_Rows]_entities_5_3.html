@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 600, height: 400});
+var app = {};
+
+var option;
+option = {
+    title: {
+        text: 'Stock Market Index Over Time',
+        left: 'center',
+        textStyle: {
+            color: '#333',
+            fontFamily: 'Arial',
+            fontSize: 20
+        }
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            label: {
+                backgroundColor: '#6a7985'
+            }
+        }
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: [
+            '2023-01-01', '2023-01-02', '2023-01-03', '2023-01-04', 
+            '2023-01-05', '2023-01-06', '2023-01-07', '2023-01-08', 
+            '2023-01-09', '2023-01-10', '2023-01-11', '2023-01-12', 
+            '2023-01-13', '2023-01-14', '2023-01-15', '2023-01-16', 
+            '2023-01-17', '2023-01-18', '2023-01-19', '2023-01-20', 
+            '2023-01-21', '2023-01-22', '2023-01-23', '2023-01-24', 
+            '2023-01-25', '2023-01-26', '2023-01-27', '2023-01-28', 
+            '2023-01-29', '2023-01-30'
+        ]
+    },
+    yAxis: {
+        type: 'value',
+        axisLabel: {
+            formatter: '{value}'
+        },
+        axisPointer: {
+            snap: true
+        }
+    },
+    series: [{
+        name: 'Stock Index',
+        type: 'line',
+        smooth: true,
+        symbol: 'none',
+        sampling: 'average',
+        itemStyle: {
+            color: '#37A2DA'
+        },
+        areaStyle: {
+            color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                offset: 0,
+                color: '#A2CCF5'
+            }, {
+                offset: 1,
+                color: '#37A2DA'
+            }])
+        },
+        data: [
+            10405, 10395, 10382, 10360, 10345, 10320, 10300, 10288, 
+            10270, 10245, 10230, 10215, 10200, 10185, 10165, 10150, 
+            10125, 10100, 10085, 10070, 10055, 10038, 10020, 10000, 
+            9980, 9962, 9945, 9930, 9915, 9900
+        ]
+    }],
+    markLine: {
+        symbol: 'none',
+        data: [
+            {
+                yAxis: 10100,
+                label: {
+                    show: true,
+                    position: 'start',
+                    formatter: 'Benchmark'
+                },
+                lineStyle: {
+                    color: '#FF3333'
+                }
+            }
+        ]
+    }
+};
+
+if (option && typeof option === 'object') myChart.setOption(option);
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

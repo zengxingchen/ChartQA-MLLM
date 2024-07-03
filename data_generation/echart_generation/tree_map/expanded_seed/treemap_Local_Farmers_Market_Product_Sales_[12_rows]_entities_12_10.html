@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+// Generate treemap data from the given chart table data
+var chartTableData = [
+    {'Product': 'Bushels', 'Unit Sold': 240, 'Total Revenue ($)': 1200},
+    {'Product': 'Bushels', 'Unit Sold': 200, 'Total Revenue ($)': 1100},
+    {'Product': 'Bushels', 'Unit Sold': 180, 'Total Revenue ($)': 900},
+    {'Product': 'Pints', 'Unit Sold': 320, 'Total Revenue ($)': 1440},
+    {'Product': 'Bushels', 'Unit Sold': 150, 'Total Revenue ($)': 750},
+    {'Product': 'Heads', 'Unit Sold': 410, 'Total Revenue ($)': 1230},
+    {'Product': 'Bunches', 'Unit Sold': 180, 'Total Revenue ($)': 540},
+    {'Product': 'Bushels', 'Unit Sold': 230, 'Total Revenue ($)': 920},
+    {'Product': 'Pounds', 'Unit Sold': 210, 'Total Revenue ($)': 840},
+    {'Product': 'Bundles', 'Unit Sold': 260, 'Total Revenue ($)': 780},
+    {'Product': 'Jars', 'Unit Sold': 150, 'Total Revenue ($)': 2250},
+    {'Product': 'Jars', 'Unit Sold': 190, 'Total Revenue ($)': 2850}
+];
+
+// Process data to fit into the treemap format
+var processedData = chartTableData.map(function (item) {
+    return {
+        name: item.Product + '\nRevenue: $' + item['Total Revenue ($)'] + '\nUnits Sold: ' + item['Unit Sold'],
+        value: item['Total Revenue ($)'], // Size of the block
+        visualMin: item['Unit Sold'], // Min value for visual encoding (optional)
+        visualMax: item['Unit Sold']  // Max value for visual encoding (optional)
+    };
+});
+
+var option = {
+    tooltip: {
+        formatter: function (info) {
+            var value = info.value;
+            var name = info.name;
+            return [
+                '<div class="tooltip-title">' + echarts.format.encodeHTML(name) + '</div>',
+                'Revenue, Units: ' + echarts.format.addCommas(value)
+            ].join('');
+        }
+    },
+    series: [{
+        name: 'Sales Data',
+        type: 'treemap',
+        visibleMin: 300,
+        label: {
+            show: true,
+            formatter: '{b}'
+        },
+        itemStyle: {
+            normal: {
+                borderColor: '#fff'
+            }
+        },
+        data: processedData,
+        leafDepth: 1, // show a breadcrumb
+        levels: [
+            {
+                itemStyle: {
+                    borderWidth: 2,
+                    gapWidth: 2
+                }
+            }
+        ],
+        visualDimension: 1,   // Mapping 'Unit Sold' to color
+        visualRange: [100, 500],  // Range of colors based on 'Unit Sold'
+        colorMappingBy: 'value' // Color mapping by the value field
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

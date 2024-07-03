@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+
+var option;
+
+option = {
+    color: ['#c23531', '#2f4554', '#61a0a8'], // different colors for each series
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow' // 'shadow' as tooltip type
+        }
+    },
+    legend: {
+        data: ['Android Users', 'iPhone Users', 'Other Smartphones']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: [
+        {
+            type: 'category',
+            data: ['13-17', '18-24', '25-34', '35-44', '45-54', '55-64', '65-74', '75-84', '85+'],
+            axisTick: {
+                alignWithLabel: true
+            }
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value'
+        }
+    ],
+    series: [
+        {
+            name: 'Android Users',
+            type: 'bar',
+            barWidth: '20%', // bar width
+            data: [500, 1500, 2200, 1800, 1600, 1200, 800, 300, 50],
+            markPoint: {
+                data: [
+                    { type: 'max', name: 'Max' },
+                    { type: 'min', name: 'Min' }
+                ]
+            }
+        },
+        {
+            name: 'iPhone Users',
+            type: 'bar',
+            barWidth: '20%',
+            data: [700, 2400, 2600, 2300, 2100, 1800, 1000, 400, 70],
+            markPoint: {
+                data: [
+                    { type: 'max', name: 'Max' },
+                    { type: 'min', name: 'Min' }
+                ]
+            }
+        },
+        {
+            name: 'Other Smartphones',
+            type: 'bar',
+            barWidth: '20%',
+            data: [100, 200, 250, 300, 250, 200, 180, 120, 30],
+            markPoint: {
+                data: [
+                    { type: 'max', name: 'Max' },
+                    { type: 'min', name: 'Min' }
+                ]
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

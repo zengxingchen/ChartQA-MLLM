@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+        width: '700', // Reasonable width
+        height: '500' // Reasonable height
+});
+
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Growth of E-Learning Tools Over Years', // Headline in the appropriate place
+        left: 'center',
+        textStyle: {
+            fontSize: 24,
+        }
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: [
+            'Education Technology', 
+            'Language Learning Tools', 
+            'Interactive Classrooms', 
+            'Online Certifications'
+        ],
+        right: 10, // Adjust legend position to prevent overlap with the headline
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ['2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022']
+    },
+    yAxis: {
+        type: 'value',
+        axisLabel: {
+            formatter: '{value}'
+        }
+    },
+    series: [
+        {
+            name: 'Education Technology',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [300, 320, 360, 380, 400, 420, 450, 470, 480, 500, 520, 540, 560],
+            itemStyle: {
+                color: '#1f77b4' // Specific color code
+            }
+        },
+        {
+            name: 'Language Learning Tools',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [120, 130, 150, 165, 175, 185, 195, 205, 215, 225, 235, 245, 255],
+            itemStyle: {
+                color: '#ff7f0e' // Specific color code
+            }
+        },
+        {
+            name: 'Interactive Classrooms',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [180, 190, 210, 220, 240, 260, 280, 300, 310, 320, 330, 340, 350],
+            itemStyle: {
+                color: '#2ca02c' // Specific color code
+            }
+        },
+        {
+            name: 'Online Certifications',
+            type: 'line',
+            stack: 'Total',
+            label: {
+                show: true,
+                position: 'top'
+            },
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [90, 110, 120, 130, 140, 150, 165, 175, 185, 195, 205, 215, 225],
+            itemStyle: {
+                color: '#d62728' // Specific color code
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

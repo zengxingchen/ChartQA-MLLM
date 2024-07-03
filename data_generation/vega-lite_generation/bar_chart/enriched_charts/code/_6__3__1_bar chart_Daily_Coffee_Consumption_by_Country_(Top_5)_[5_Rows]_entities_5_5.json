@@ -1,0 +1,132 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Average Hours of Sleep by Age Group",
+    "width": 800,
+    "height": 600,
+    "title": {
+        "text": "Average Hours of Sleep",
+        "subtitle": [
+            "Average hours of sleep per night by age group",
+            "Source: National Sleep Foundation"
+        ],
+        "subtitleFontSize": 10,
+        "subtitleFontStyle": "italic",
+        "anchor": "start",
+        "frame": "group"
+    },
+    "data": {
+        "values": [
+            {
+                "AgeGroup": "0-3 months",
+                "HoursOfSleep": 14.5
+            },
+            {
+                "AgeGroup": "4-11 months",
+                "HoursOfSleep": 12.5
+            },
+            {
+                "AgeGroup": "1-2 years",
+                "HoursOfSleep": 11.5
+            },
+            {
+                "AgeGroup": "3-5 years",
+                "HoursOfSleep": 10.5
+            },
+            {
+                "AgeGroup": "6-13 years",
+                "HoursOfSleep": 9.5
+            },
+            {
+                "AgeGroup": "14-17 years",
+                "HoursOfSleep": 8.5
+            },
+            {
+                "AgeGroup": "18-25 years",
+                "HoursOfSleep": 7.5
+            },
+            {
+                "AgeGroup": "26-64 years",
+                "HoursOfSleep": 7
+            },
+            {
+                "AgeGroup": "65+ years",
+                "HoursOfSleep": 6.5
+            }
+        ]
+    },
+    "params": [
+        {
+            "name": "highlight",
+            "select": {
+                "type": "point",
+                "on": "mouseover"
+            }
+        }
+    ],
+    "mark": {
+        "type": "bar",
+        "width": {
+            "band": 0.5
+        },
+        "color": "#2ecc71",
+        "strokeWidth": 1,
+        "opacity": {
+            "condition": {
+                "param": "highlight",
+                "empty": false,
+                "value": 1
+            },
+            "value": 0.8
+        },
+        "cursor": "pointer"
+    },
+    "encoding": {
+        "x": {
+            "field": "HoursOfSleep",
+            "type": "quantitative",
+            "axis": {
+                "grid": false,
+                "title": "Average Hours of Sleep"
+            },
+            "titleFontSize": 12
+        },
+        "y": {
+            "field": "AgeGroup",
+            "type": "ordinal",
+            "axis": {
+                "labelFontSize": 12,
+                "title": "Age Group"
+            },
+            "titleFontSize": 12
+        },
+        "tooltip": [
+            {
+                "field": "AgeGroup",
+                "type": "nominal",
+                "title": "Age Group"
+            },
+            {
+                "field": "HoursOfSleep",
+                "type": "quantitative",
+                "title": "Hours of Sleep"
+            }
+        ],
+        "text": {
+            "field": "HoursOfSleep",
+            "type": "quantitative",
+            "format": ".1f"
+        }
+    },
+    "config": {
+        "bar": {
+            "binSpacing": 0,
+            "continuousBandSize": 30
+        },
+        "text": {
+            "fontSize": 12,
+            "align": "center",
+            "baseline": "middle",
+            "dy": -5
+        }
+    }
+}

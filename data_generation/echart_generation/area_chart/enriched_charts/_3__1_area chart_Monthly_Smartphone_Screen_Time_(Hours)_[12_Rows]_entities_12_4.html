@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 400});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Financial Index Trend - 2023 Q1',
+        left: 'center',
+        textStyle: {
+            color: '#333',
+            fontWeight: 'bold',
+            fontSize: 20
+        }
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['Index Value'],
+        right: 10,
+        textStyle: {
+            color: '#5D5D5D'
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ['2023-01-01','2023-01-02','2023-01-03','2023-01-04','2023-01-05','2023-01-06','2023-01-07','2023-01-08', /* ... all dates up to '2023-03-31' */],
+        axisLabel: {
+            textStyle: {
+                color: '#999'
+            }
+        }
+    },
+    yAxis: {
+        type: 'value',
+        axisLabel: {
+            textStyle: {
+                color: '#999'
+            }
+        }
+    },
+    series: [
+        {
+            name: 'Index Value',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [10000,9950,9900,9850,9800,9750,9700,9650, /* ... corresponding values down to 7475 for '2023-03-31' */],
+            color: '#5470C6',
+            markPoint: {
+                data: [
+                    {type: 'max', name: 'Max', symbolSize: 70},
+                    {type: 'min', name: 'Min', symbolSize: 70}
+                ],
+                label: {
+                    show: true,
+                    formatter: '{b}:{c}',
+                    color: '#fff',
+                    backgroundColor: '#777'
+                }
+            }
+        }
+    ],
+    color: ['#FFA07A', '#20B2AA', '#778899']
+};
+
+// Use configuration item and data specified to show chart.
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+};
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

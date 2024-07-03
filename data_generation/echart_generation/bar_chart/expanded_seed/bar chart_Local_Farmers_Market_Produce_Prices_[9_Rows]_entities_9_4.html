@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+// Transpose the data from the provided table format to fit the eCharts series format
+var produceData = [
+  {'Produce': 'Tomatoes', 'Price per lb (Week 1)': 1.5, 'Price per lb (Week 2)': 1.75, 'Price per lb (Week 3)': 1.6, 'Price per lb (Week 4)': 1.55},
+  {'Produce': 'Cucumbers', 'Price per lb (Week 1)': 0.99, 'Price per lb (Week 2)': 1.1, 'Price per lb (Week 3)': 1.05, 'Price per lb (Week 4)': 1.0},
+  {'Produce': 'Carrots', 'Price per lb (Week 1)': 0.7, 'Price per lb (Week 2)': 0.65, 'Price per lb (Week 3)': 0.75, 'Price per lb (Week 4)': 0.8},
+  {'Produce': 'Apples', 'Price per lb (Week 1)': 1.2, 'Price per lb (Week 2)': 1.3, 'Price per lb (Week 3)': 1.25, 'Price per lb (Week 4)': 1.15},
+  {'Produce': 'Oranges', 'Price per lb (Week 1)': 0.8, 'Price per lb (Week 2)': 0.85, 'Price per lb (Week 3)': 0.82, 'Price per lb (Week 4)': 0.78},
+  {'Produce': 'Bananas', 'Price per lb (Week 1)': 0.6, 'Price per lb (Week 2)': 0.55, 'Price per lb (Week 3)': 0.58, 'Price per lb (Week 4)': 0.62},
+  {'Produce': 'Potatoes', 'Price per lb (Week 1)': 0.45, 'Price per lb (Week 2)': 0.5, 'Price per lb (Week 3)': 0.48, 'Price per lb (Week 4)': 0.46},
+  {'Produce': 'Lettuce', 'Price per lb (Week 1)': 1.0, 'Price per lb (Week 2)': 1.05, 'Price per lb (Week 3)': 0.95, 'Price per lb (Week 4)': 0.9},
+  {'Produce': 'Berries', 'Price per lb (Week 1)': 2.5, 'Price per lb (Week 2)': 2.6, 'Price per lb (Week 3)': 2.55, 'Price per lb (Week 4)': 2.45}
+];
+
+// Columns represent the different weeks
+var weeks = ['Week 1', 'Week 2', 'Week 3', 'Week 4'];
+
+// Set up series array, one for each week
+var seriesData = weeks.map(function (week) {
+  return {
+    name: week,
+    type: 'bar',
+    data: produceData.map((item) => item[`Price per lb (${week})`]),
+    markPoint: {
+      data: [
+        {type: 'max', name: 'Max'},
+        {type: 'min', name: 'Min'}
+      ]
+    },
+    markLine: {
+      data: [{type: 'average', name: 'Average'}]
+    }
+  };
+});
+
+var option = {
+  tooltip: {
+    trigger: 'axis',
+    axisPointer: {
+      type: 'shadow'
+    }
+  },
+  legend: {
+    data: weeks
+  },
+  grid: {
+    left: '3%',
+    right: '4%',
+    bottom: '3%',
+    containLabel: true
+  },
+  xAxis: {
+    type: 'value'
+  },
+  yAxis: {
+    type: 'category',
+    data: produceData.map((item) => item.Produce)
+  },
+  series: seriesData
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

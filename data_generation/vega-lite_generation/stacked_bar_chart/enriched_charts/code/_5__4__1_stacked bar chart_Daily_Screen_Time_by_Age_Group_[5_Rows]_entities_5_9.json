@@ -1,0 +1,194 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+        "values": [
+            {
+                "Month": "January",
+                "Fruits": 3,
+                "Vegetables": 5,
+                "Dairy": 2,
+                "Meat": 4,
+                "Grains": 6
+            },
+            {
+                "Month": "February",
+                "Fruits": 4,
+                "Vegetables": 6,
+                "Dairy": 3,
+                "Meat": 3,
+                "Grains": 5
+            },
+            {
+                "Month": "March",
+                "Fruits": 5,
+                "Vegetables": 7,
+                "Dairy": 4,
+                "Meat": 2,
+                "Grains": 4
+            },
+            {
+                "Month": "April",
+                "Fruits": 6,
+                "Vegetables": 8,
+                "Dairy": 5,
+                "Meat": 1,
+                "Grains": 3
+            },
+            {
+                "Month": "May",
+                "Fruits": 7,
+                "Vegetables": 9,
+                "Dairy": 6,
+                "Meat": 2,
+                "Grains": 4
+            },
+            {
+                "Month": "June",
+                "Fruits": 8,
+                "Vegetables": 10,
+                "Dairy": 7,
+                "Meat": 3,
+                "Grains": 5
+            },
+            {
+                "Month": "July",
+                "Fruits": 9,
+                "Vegetables": 11,
+                "Dairy": 8,
+                "Meat": 4,
+                "Grains": 6
+            },
+            {
+                "Month": "August",
+                "Fruits": 10,
+                "Vegetables": 12,
+                "Dairy": 9,
+                "Meat": 5,
+                "Grains": 7
+            },
+            {
+                "Month": "September",
+                "Fruits": 9,
+                "Vegetables": 11,
+                "Dairy": 8,
+                "Meat": 4,
+                "Grains": 6
+            },
+            {
+                "Month": "October",
+                "Fruits": 8,
+                "Vegetables": 10,
+                "Dairy": 7,
+                "Meat": 3,
+                "Grains": 5
+            },
+            {
+                "Month": "November",
+                "Fruits": 7,
+                "Vegetables": 9,
+                "Dairy": 6,
+                "Meat": 2,
+                "Grains": 4
+            },
+            {
+                "Month": "December",
+                "Fruits": 6,
+                "Vegetables": 8,
+                "Dairy": 5,
+                "Meat": 1,
+                "Grains": 3
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Fruits",
+                "Vegetables",
+                "Dairy",
+                "Meat",
+                "Grains"
+            ],
+            "as": [
+                "Food Category",
+                "Consumption"
+            ]
+        }
+    ],
+    "width": 400,
+    "height": 600,
+    "mark": {
+        "type": "bar",
+        "height": {
+            "band": 0.7
+        }
+    },
+    "title": {
+        "text": "Monthly Food Consumption by Category",
+        "subtitle": "Source: Nutrition Data",
+        "subtitleFontStyle": "italic",
+        "subtitleFontSize": 12,
+        "align": "center",
+        "anchor": "start",
+        "color": "#333333"
+    },
+    "encoding": {
+        "y": {
+            "field": "Month",
+            "type": "ordinal",
+            "axis": {
+                "title": "Month"
+            }
+        },
+        "x": {
+            "field": "Consumption",
+            "type": "quantitative",
+            "stack": "zero",
+            "axis": {
+                "title": "Food Consumption (kg)"
+            }
+        },
+        "color": {
+            "field": "Food Category",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Fruits",
+                    "Vegetables",
+                    "Dairy",
+                    "Meat",
+                    "Grains"
+                ],
+                "range": [
+                    "#FF6347",
+                    "#32CD32",
+                    "#FFD700",
+                    "#FF4500",
+                    "#8B4513"
+                ]
+            },
+            "legend": {
+                "title": "Food Category",
+                "orient": "top",
+                "titleAlign": "center"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Month",
+                "type": "ordinal",
+                "title": "Month"
+            },
+            {
+                "field": "Food Category",
+                "type": "nominal",
+                "title": "Food Category"
+            },
+            {
+                "field": "Consumption",
+                "type": "quantitative",
+                "title": "Consumption (kg)"
+            }
+        ]
+    }
+}

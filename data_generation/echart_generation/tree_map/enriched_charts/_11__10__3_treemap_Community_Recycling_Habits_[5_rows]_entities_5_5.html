@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {renderer: 'canvas', useDirtyRect: false, width: 800, height: 600});
+var app = {};
+var option;
+
+option = {
+    title: {
+        text: 'Nutrition and Diet',
+        left: 'center',
+        top: '10'
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: '{b}: {c}'
+    },
+    series: [{
+        type: 'treemap',
+        data: [
+            {
+                name: 'Fruits',
+                value: 40,
+                children: [
+                    {name: 'Apples', value: 15},
+                    {name: 'Bananas', value: 10},
+                    {name: 'Oranges', value: 15}
+                ]
+            },
+            {
+                name: 'Vegetables',
+                value: 35,
+                children: [
+                    {name: 'Carrots', value: 10},
+                    {name: 'Broccoli', value: 10},
+                    {name: 'Spinach', value: 15}
+                ]
+            },
+            {
+                name: 'Proteins',
+                value: 25,
+                children: [
+                    {name: 'Chicken', value: 10},
+                    {name: 'Fish', value: 8},
+                    {name: 'Beef', value: 7}
+                ]
+            },
+            {
+                name: 'Grains',
+                value: 30,
+                children: [
+                    {name: 'Rice', value: 12},
+                    {name: 'Wheat', value: 10},
+                    {name: 'Oats', value: 8}
+                ]
+            },
+            {
+                name: 'Dairy',
+                value: 20,
+                children: [
+                    {name: 'Milk', value: 10},
+                    {name: 'Cheese', value: 5},
+                    {name: 'Yogurt', value: 5}
+                ]
+            },
+            {
+                name: 'Sweets',
+                value: 10,
+                children: [
+                    {name: 'Chocolate', value: 5},
+                    {name: 'Candy', value: 5}
+                ]
+            },
+            {
+                name: 'Beverages',
+                value: 15,
+                children: [
+                    {name: 'Water', value: 7},
+                    {name: 'Juice', value: 8}
+                ]
+            }
+        ],
+        label: {
+            show: true,
+            formatter: '{b}\n{c}'
+        },
+        itemStyle: {
+            borderColor: '#fff'
+        },
+        levels: [
+            {
+                color: ['#FFD700', '#FF6347', '#8B4513', '#4682B4', '#6A5ACD', '#FF69B4', '#32CD32']
+            }
+        ]
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

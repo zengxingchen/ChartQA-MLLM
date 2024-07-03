@@ -1,0 +1,142 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+        "values": [
+            {
+                "Day": "Monday",
+                "Fiction": 175,
+                "Non-Fiction": 130,
+                "Children": 80,
+                "Research": 50
+            },
+            {
+                "Day": "Tuesday",
+                "Fiction": 200,
+                "Non-Fiction": 120,
+                "Children": 85,
+                "Research": 60
+            },
+            {
+                "Day": "Wednesday",
+                "Fiction": 190,
+                "Non-Fiction": 150,
+                "Children": 90,
+                "Research": 45
+            },
+            {
+                "Day": "Thursday",
+                "Fiction": 205,
+                "Non-Fiction": 135,
+                "Children": 95,
+                "Research": 55
+            },
+            {
+                "Day": "Friday",
+                "Fiction": 180,
+                "Non-Fiction": 145,
+                "Children": 75,
+                "Research": 65
+            },
+            {
+                "Day": "Saturday",
+                "Fiction": 220,
+                "Non-Fiction": 140,
+                "Children": 100,
+                "Research": 70
+            },
+            {
+                "Day": "Sunday",
+                "Fiction": 210,
+                "Non-Fiction": 130,
+                "Children": 85,
+                "Research": 75
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Fiction",
+                "Non-Fiction",
+                "Children",
+                "Research"
+            ],
+            "as": [
+                "Section",
+                "Visits"
+            ]
+        }
+    ],
+    "width": 400,
+    "height": 200,
+    "title": {
+        "text": "Weekly Library Visits by Section",
+        "subtitle": "Total visits per section",
+        "subtitleFontStyle": "italic",
+        "subtitleFontSize": 10,
+        "anchor": "start",
+        "color": "black"
+    },
+    "mark": {
+        "type": "bar",
+        "height": {
+            "band": 0.8
+        }
+    },
+    "encoding": {
+        "y": {
+            "field": "Day",
+            "type": "ordinal",
+            "title": "Day of the Week"
+        },
+        "x": {
+            "field": "Visits",
+            "type": "quantitative",
+            "title": "Number of Visits"
+        },
+        "color": {
+            "field": "Section",
+            "type": "nominal",
+            "legend": {
+                "orient": "right"
+            },
+            "scale": {
+                "domain": [
+                    "Fiction",
+                    "Non-Fiction",
+                    "Children",
+                    "Research"
+                ],
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e",
+                    "#2ca02c",
+                    "#d62728"
+                ]
+            },
+            "title": "Section"
+        },
+        "tooltip": [
+            {
+                "field": "Day",
+                "type": "ordinal",
+                "title": "Day of the Week"
+            },
+            {
+                "field": "Section",
+                "type": "nominal",
+                "title": "Section"
+            },
+            {
+                "field": "Visits",
+                "type": "quantitative",
+                "title": "Visits"
+            }
+        ]
+    },
+    "config": {
+        "axisY": {
+            "labelAngle": 0
+        }
+    }
+}

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+var option = {
+    title: {
+        text: 'Correlation between Two Variables in Astronomy & Space Exploration',
+        left: 'center',
+        top: '10%'
+    },
+    legend: {
+        data: ['Group 1', 'Group 2'],
+        top: 'bottom'
+    },
+    xAxis: {
+        name: 'Variable X',
+        type: 'value'
+    },
+    yAxis: {
+        name: 'Variable Y',
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Group 1',
+            type: 'scatter',
+            itemStyle: {
+                color: '#FF6347'
+            },
+            data: [
+                [1, 2], [2, 3], [3, 4], [4, 3.5], [5, 5], [6, 5.5], 
+                [7, 6.2], [8, 6.8], [9, 7.3], [10, 7.9], [11, 8.5], 
+                [12, 9.1], [13, 9.6], [14, 10.2], [15, 10.7], [16, 11.1], 
+                [17, 11.5], [18, 12.2], [19, 12.9], [20, 13.4]
+            ]
+        },
+        {
+            name: 'Group 2',
+            type: 'scatter',
+            itemStyle: {
+                color: '#4682B4'
+            },
+            data: [
+                [1.5, 2.5], [2.8, 3.6], [3.2, 4.8], [4.5, 3.2], [5.1, 4.6], 
+                [6.2, 5.7], [7.5, 6.5], [8.1, 6.9], [9.5, 7.6], [10.1, 8.4], 
+                [11.3, 8.9], [12.5, 9.5], [13.8, 10.3], [14.5, 10.9], [15.2, 11.5], 
+                [16.4, 12.1], [17.8, 12.6], [18.3, 13.1], [19.1, 13.8], [20.5, 14.2]
+            ]
+        }
+    ]
+};
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

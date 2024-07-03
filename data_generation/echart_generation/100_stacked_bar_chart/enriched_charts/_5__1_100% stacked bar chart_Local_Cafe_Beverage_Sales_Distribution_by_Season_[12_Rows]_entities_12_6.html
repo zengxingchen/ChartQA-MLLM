@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 600, height: 400});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Future Technologies & Society Funding Distribution',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Artificial Intelligence', 'Biotechnology', 'Quantum Computing', 'Space Exploration'],
+        top: 30
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: false,
+        min: 0,
+        max: 100,
+        axisLabel: {
+            formatter: '{value}%'
+        }
+    },
+    yAxis: {
+        type: 'category',
+        data: ['2019', '2020', '2021', '2022', '2023']
+    },
+    series: [
+        {
+            name: 'Artificial Intelligence',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            itemStyle: {
+                color: '#1f77b4'
+            },
+            data: [30, 35, 40, 45, 50]
+        },
+        {
+            name: 'Biotechnology',
+            type: 'bar',
+            stack: 'total',
+            itemStyle: {
+                color: '#2ca02c'
+            },
+            data: [25, 25, 20, 15, 10]
+        },
+        {
+            name: 'Quantum Computing',
+            type: 'bar',
+            stack: 'total',
+            itemStyle: {
+                color: '#d62728'
+            },
+            data: [20, 15, 15, 15, 15]
+        },
+        {
+            name: 'Space Exploration',
+            type: 'bar',
+            stack: 'total',
+            itemStyle: {
+                color: '#ff7f0e'
+            },
+            data: [25, 25, 25, 25, 25]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

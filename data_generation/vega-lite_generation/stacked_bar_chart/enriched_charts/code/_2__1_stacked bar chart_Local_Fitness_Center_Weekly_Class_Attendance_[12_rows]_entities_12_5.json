@@ -1,0 +1,176 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "A vertical stacked bar chart representing the sales of various product categories in a retail store over months.",
+    "data": {
+        "values": [
+            {
+                "Month": "Jan",
+                "Electronics": 300,
+                "Clothing": 200,
+                "Home Goods": 250,
+                "Groceries": 350,
+                "Sports Equipment": 150
+            },
+            {
+                "Month": "Feb",
+                "Electronics": 320,
+                "Clothing": 210,
+                "Home Goods": 260,
+                "Groceries": 360,
+                "Sports Equipment": 160
+            },
+            {
+                "Month": "Mar",
+                "Electronics": 340,
+                "Clothing": 220,
+                "Home Goods": 270,
+                "Groceries": 370,
+                "Sports Equipment": 170
+            },
+            {
+                "Month": "Apr",
+                "Electronics": 360,
+                "Clothing": 230,
+                "Home Goods": 280,
+                "Groceries": 380,
+                "Sports Equipment": 180
+            },
+            {
+                "Month": "May",
+                "Electronics": 380,
+                "Clothing": 240,
+                "Home Goods": 290,
+                "Groceries": 390,
+                "Sports Equipment": 190
+            },
+            {
+                "Month": "Jun",
+                "Electronics": 400,
+                "Clothing": 250,
+                "Home Goods": 300,
+                "Groceries": 400,
+                "Sports Equipment": 200
+            },
+            {
+                "Month": "Jul",
+                "Electronics": 420,
+                "Clothing": 260,
+                "Home Goods": 310,
+                "Groceries": 410,
+                "Sports Equipment": 210
+            },
+            {
+                "Month": "Aug",
+                "Electronics": 440,
+                "Clothing": 270,
+                "Home Goods": 320,
+                "Groceries": 420,
+                "Sports Equipment": 220
+            },
+            {
+                "Month": "Sep",
+                "Electronics": 460,
+                "Clothing": 280,
+                "Home Goods": 330,
+                "Groceries": 430,
+                "Sports Equipment": 230
+            },
+            {
+                "Month": "Oct",
+                "Electronics": 480,
+                "Clothing": 290,
+                "Home Goods": 340,
+                "Groceries": 440,
+                "Sports Equipment": 240
+            },
+            {
+                "Month": "Nov",
+                "Electronics": 500,
+                "Clothing": 300,
+                "Home Goods": 350,
+                "Groceries": 450,
+                "Sports Equipment": 250
+            },
+            {
+                "Month": "Dec",
+                "Electronics": 520,
+                "Clothing": 310,
+                "Home Goods": 360,
+                "Groceries": 460,
+                "Sports Equipment": 260
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Electronics",
+                "Clothing",
+                "Home Goods",
+                "Groceries",
+                "Sports Equipment"
+            ],
+            "as": [
+                "Category",
+                "Sales"
+            ]
+        }
+    ],
+    "width": 800,
+    "height": 600,
+    "mark": {
+        "type": "bar",
+        "width": {
+            "band": 0.7
+        }
+    },
+    "encoding": {
+        "x": {
+            "field": "Month",
+            "type": "nominal",
+            "axis": {
+                "title": "Month"
+            }
+        },
+        "y": {
+            "field": "Sales",
+            "type": "quantitative",
+            "stack": "zero",
+            "axis": {
+                "title": "Sales (in units)"
+            }
+        },
+        "color": {
+            "field": "Category",
+            "type": "nominal",
+            "scale": {
+                "range": [
+                    "#4B0082",
+                    "#FF4500",
+                    "#FFD700",
+                    "#228B22",
+                    "#00CED1"
+                ]
+            },
+            "legend": {
+                "title": "Product Categories"
+            }
+        }
+    },
+    "title": {
+        "text": "Monthly Sales of Product Categories in a Retail Store",
+        "anchor": "start",
+        "offset": 20,
+        "frame": "group"
+    },
+    "config": {
+        "background": "#f0f0f0",
+        "view": {
+            "stroke": "transparent"
+        },
+        "axis": {
+            "labelFontSize": 12,
+            "titleFontSize": 14
+        }
+    }
+}

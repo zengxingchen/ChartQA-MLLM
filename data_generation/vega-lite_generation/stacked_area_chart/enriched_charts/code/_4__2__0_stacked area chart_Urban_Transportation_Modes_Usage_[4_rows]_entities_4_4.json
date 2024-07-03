@@ -1,0 +1,126 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Quarterly Expenses for Different Departments in a Tech Company Over a Year",
+    "width": 500,
+    "height": 300,
+    "title": {
+        "text": "Quarterly Expenses by Department",
+        "fontSize": 18,
+        "anchor": "start",
+        "color": "#444444",
+        "frame": "group"
+    },
+    "data": {
+        "values": [
+            {
+                "Quarter": "Q1",
+                "Engineering": 50000,
+                "Marketing": 30000,
+                "Sales": 20000,
+                "HR": 15000
+            },
+            {
+                "Quarter": "Q2",
+                "Engineering": 62000,
+                "Marketing": 34000,
+                "Sales": 22000,
+                "HR": 17000
+            },
+            {
+                "Quarter": "Q3",
+                "Engineering": 58000,
+                "Marketing": 31000,
+                "Sales": 25000,
+                "HR": 20000
+            },
+            {
+                "Quarter": "Q4",
+                "Engineering": 64000,
+                "Marketing": 33000,
+                "Sales": 27000,
+                "HR": 23000
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Engineering",
+                "Marketing",
+                "Sales",
+                "HR"
+            ],
+            "as": [
+                "Department",
+                "Expenses"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "area",
+        "line": true,
+        "opacity": 0.7
+    },
+    "encoding": {
+        "x": {
+            "field": "Quarter",
+            "type": "ordinal",
+            "axis": {
+                "title": "Quarter"
+            }
+        },
+        "y": {
+            "field": "Expenses",
+            "type": "quantitative",
+            "stack": "zero",
+            "axis": {
+                "title": "Expenses (in USD)"
+            }
+        },
+        "color": {
+            "field": "Department",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Engineering",
+                    "Marketing",
+                    "Sales",
+                    "HR"
+                ],
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e",
+                    "#2ca02c",
+                    "#d62728"
+                ]
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Quarter",
+                "type": "ordinal",
+                "title": "Quarter"
+            },
+            {
+                "field": "Department",
+                "type": "nominal",
+                "title": "Department"
+            },
+            {
+                "field": "Expenses",
+                "type": "quantitative",
+                "title": "Expenses",
+                "format": "$,.2f"
+            }
+        ]
+    },
+    "config": {
+        "view": {
+            "stroke": "transparent"
+        },
+        "axis": {
+            "domain": false
+        },
+        "background": "#fafafa"
+    }
+}

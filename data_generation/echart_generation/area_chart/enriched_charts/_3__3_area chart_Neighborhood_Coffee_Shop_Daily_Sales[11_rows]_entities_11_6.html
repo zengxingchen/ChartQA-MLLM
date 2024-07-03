@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 800, // modified width
+    height: 600 // modified height
+});
+
+var colors = ['#5470C6', '#91CC75', '#EE6666'];
+
+option = {
+    title: {
+        text: 'Monthly Economic Index Trend',
+        left: 'center',
+        top: '5'
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['Index'],
+        top: '5%',
+        textStyle: {
+            color: colors[0]
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+        axisLine: {
+            lineStyle: {
+                color: colors[0]
+            }
+        }
+    },
+    yAxis: {
+        type: 'value',
+        axisLabel: {
+            formatter: '{value}'
+        },
+        axisLine: {
+            lineStyle: {
+                color: colors[0]
+            }
+        }
+    },
+    series: [
+        {
+            name: 'Index',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [1120, 1160, 1200, 1250, 1280, 1340, 1380, 1430, 1475, 1530, 1580, 1630],
+            color: '#FFA07A' // modified color
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

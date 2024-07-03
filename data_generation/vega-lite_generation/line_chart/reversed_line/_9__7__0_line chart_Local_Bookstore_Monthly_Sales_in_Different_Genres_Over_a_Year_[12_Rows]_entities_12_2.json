@@ -1,0 +1,173 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Monthly Sales Performance by Region",
+    "data": {
+        "values": [
+            {
+                "Month": "January",
+                "North": 200,
+                "South": 250,
+                "East": 220,
+                "West": 210,
+                "Central": 240
+            },
+            {
+                "Month": "February",
+                "North": 210,
+                "South": 260,
+                "East": 230,
+                "West": 220,
+                "Central": 250
+            },
+            {
+                "Month": "March",
+                "North": 220,
+                "South": 270,
+                "East": 240,
+                "West": 230,
+                "Central": 260
+            },
+            {
+                "Month": "April",
+                "North": 230,
+                "South": 280,
+                "East": 250,
+                "West": 240,
+                "Central": 270
+            },
+            {
+                "Month": "May",
+                "North": 240,
+                "South": 290,
+                "East": 260,
+                "West": 250,
+                "Central": 280
+            },
+            {
+                "Month": "June",
+                "North": 250,
+                "South": 300,
+                "East": 270,
+                "West": 260,
+                "Central": 290
+            },
+            {
+                "Month": "July",
+                "North": 260,
+                "South": 310,
+                "East": 280,
+                "West": 270,
+                "Central": 300
+            },
+            {
+                "Month": "August",
+                "North": 270,
+                "South": 320,
+                "East": 290,
+                "West": 280,
+                "Central": 310
+            },
+            {
+                "Month": "September",
+                "North": 280,
+                "South": 330,
+                "East": 300,
+                "West": 290,
+                "Central": 320
+            },
+            {
+                "Month": "October",
+                "North": 290,
+                "South": 340,
+                "East": 310,
+                "West": 300,
+                "Central": 330
+            },
+            {
+                "Month": "November",
+                "North": 300,
+                "South": 350,
+                "East": 320,
+                "West": 310,
+                "Central": 340
+            },
+            {
+                "Month": "December",
+                "North": 310,
+                "South": 360,
+                "East": 330,
+                "West": 320,
+                "Central": 350
+            }
+        ]
+    },
+    "width": 600,
+    "height": 300,
+    "transform": [
+        {
+            "fold": [
+                "North",
+                "South",
+                "East",
+                "West",
+                "Central"
+            ],
+            "as": [
+                "Region",
+                "Sales"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "line",
+        "point": true,
+        "tooltip": true
+    },
+    "encoding": {
+        "x": {
+            "field": "Month",
+            "type": "ordinal",
+            "title": "Month",
+            "axis": {
+                "labelAngle": 0
+            }
+        },
+        "y": {
+            "field": "Sales",
+            "type": "quantitative",
+            "title": "Sales (in Thousands)"
+        },
+        "color": {
+            "field": "Region",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "North",
+                    "South",
+                    "East",
+                    "West",
+                    "Central"
+                ],
+                "range": [
+                    "#1E90FF",
+                    "#32CD32",
+                    "#FF4500",
+                    "#8A2BE2",
+                    "#FFD700"
+                ]
+            },
+            "title": "Region"
+        },
+        "text": {
+            "field": "Sales",
+            "type": "quantitative"
+        }
+    },
+    "config": {
+        "line": {
+            "label": {
+                "expr": "datum.Sales"
+            }
+        }
+    }
+}

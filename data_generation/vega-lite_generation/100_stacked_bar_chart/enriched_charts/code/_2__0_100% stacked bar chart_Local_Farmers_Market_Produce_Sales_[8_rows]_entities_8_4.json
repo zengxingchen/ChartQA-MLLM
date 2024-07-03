@@ -1,0 +1,163 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "A 100% stacked horizontal bar chart showing the distribution of weekly exercise hours across different activities.",
+    "data": {
+        "values": [
+            {
+                "Week": "Week 1",
+                "Running": 10,
+                "Cycling": 5,
+                "Swimming": 2,
+                "Yoga": 3
+            },
+            {
+                "Week": "Week 2",
+                "Running": 8,
+                "Cycling": 7,
+                "Swimming": 3,
+                "Yoga": 2
+            },
+            {
+                "Week": "Week 3",
+                "Running": 9,
+                "Cycling": 6,
+                "Swimming": 2,
+                "Yoga": 3
+            },
+            {
+                "Week": "Week 4",
+                "Running": 7,
+                "Cycling": 8,
+                "Swimming": 4,
+                "Yoga": 1
+            },
+            {
+                "Week": "Week 5",
+                "Running": 10,
+                "Cycling": 5,
+                "Swimming": 3,
+                "Yoga": 2
+            },
+            {
+                "Week": "Week 6",
+                "Running": 9,
+                "Cycling": 6,
+                "Swimming": 2,
+                "Yoga": 3
+            },
+            {
+                "Week": "Week 7",
+                "Running": 8,
+                "Cycling": 7,
+                "Swimming": 3,
+                "Yoga": 2
+            },
+            {
+                "Week": "Week 8",
+                "Running": 7,
+                "Cycling": 8,
+                "Swimming": 4,
+                "Yoga": 1
+            },
+            {
+                "Week": "Week 9",
+                "Running": 10,
+                "Cycling": 5,
+                "Swimming": 3,
+                "Yoga": 2
+            },
+            {
+                "Week": "Week 10",
+                "Running": 8,
+                "Cycling": 7,
+                "Swimming": 3,
+                "Yoga": 2
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Running",
+                "Cycling",
+                "Swimming",
+                "Yoga"
+            ],
+            "as": [
+                "Activity",
+                "Hours"
+            ]
+        },
+        {
+            "calculate": "datum.Hours / (datum.Running + datum.Cycling + datum.Swimming + datum.Yoga) * 100",
+            "as": "Percentage"
+        }
+    ],
+    "title": {
+        "text": "Weekly Exercise Distribution by Activity Type",
+        "color": "black",
+        "anchor": "middle"
+    },
+    "width": 500,
+    "height": 300,
+    "mark": {
+        "type": "bar",
+        "tooltip": true
+    },
+    "encoding": {
+        "y": {
+            "field": "Percentage",
+            "type": "quantitative",
+            "axis": {
+                "title": "Exercise Hours (%)"
+            },
+            "stack": "normalize"
+        },
+        "x": {
+            "field": "Week",
+            "type": "nominal",
+            "axis": {
+                "title": "Week"
+            }
+        },
+        "color": {
+            "field": "Activity",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Running",
+                    "Cycling",
+                    "Swimming",
+                    "Yoga"
+                ],
+                "range": [
+                    "#4daf4a",
+                    "#377eb8",
+                    "#ff7f00",
+                    "#984ea3"
+                ]
+            },
+            "legend": {
+                "title": "Activity Type"
+            }
+        },
+        "height": {
+            "band": 0.8
+        },
+        "tooltip": [
+            {
+                "field": "Week",
+                "type": "nominal"
+            },
+            {
+                "field": "Activity",
+                "type": "nominal"
+            },
+            {
+                "field": "Percentage",
+                "type": "quantitative",
+                "title": "Percentage"
+            }
+        ]
+    }
+}

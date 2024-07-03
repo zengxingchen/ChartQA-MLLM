@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {height: '500px', width: '800px'});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'City Energy Consumption by Sector',
+        left: 'center',
+        textStyle: { color: '#333' }
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['Residential', 'Commercial', 'Industrial'],
+        top: '6%'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+        axisLabel: {
+            formatter: function(value) {
+                return value.substring(0, 3); // Show just the first three letters of the month
+            }
+        }
+    },
+    yAxis: {
+        type: 'value',
+        name: 'kWh'
+    },
+    series: [
+        {
+            name: 'Residential',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: { focus: 'series' },
+            data: [4000, 3500, 3200, 2800, 2400, 2000, 1800, 2000, 2300, 2700, 3000, 3500],
+            color: '#ff7f0e'
+        },
+        {
+            name: 'Commercial',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: { focus: 'series' },
+            data: [3000, 3200, 3400, 3100, 3300, 3400, 3200, 3100, 3300, 3400, 3300, 3200],
+            color: '#2ca02c'
+        },
+        {
+            name: 'Industrial',
+            type: 'line',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'top'
+            },
+            areaStyle: {},
+            emphasis: { focus: 'series' },
+            data: [2000, 2500, 2700, 3000, 3100, 3200, 3300, 3400, 3500, 3600, 3700, 3800],
+            color: '#1f77b4'
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

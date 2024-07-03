@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Economics & Finance: GDP Growth by Year',
+        left: 'center',
+        top: 20
+    },
+    color: [
+        '#0066cc', '#ff99c8', '#ffcc00', '#66ff33',
+        '#cc66ff', '#ff6666', '#99cc00', '#0099cc',
+        '#ffcc33', '#ff33ff', '#ff00ff', '#33cc33',
+        '#00ccff', '#9933cc', '#ccff33', '#ff9966',
+        '#66cc00', '#ff0099', '#cccc00', '#33cccc'
+    ],
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: [
+        {
+            type: 'category',
+            data: ['2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022'],
+            axisTick: {
+                alignWithLabel: true
+            }
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value'
+        }
+    ],
+    series: [
+        {
+            name: 'GDP Growth (%)',
+            type: 'bar',
+            barWidth: '60%',
+            data: [4.1, 1.0, 1.7, 2.9, 3.8, 3.5, 2.9, 1.9, -0.1, -2.5, 2.6, 1.6, 2.2, 1.8, 2.5, 2.9, 1.6, 2.4, 2.9, 2.3, -3.5, 6.0, 4.0],
+            label: {
+                show: true,
+                position: 'top'
+            },
+            itemStyle: {
+                barBorderRadius: [4, 4, 0, 0] // top-left, top-right, bottom-right, bottom-left
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

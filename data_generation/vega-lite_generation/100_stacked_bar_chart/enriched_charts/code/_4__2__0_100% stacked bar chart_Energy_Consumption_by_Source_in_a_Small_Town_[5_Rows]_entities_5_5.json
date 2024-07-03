@@ -1,0 +1,179 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": {
+        "text": "Nutritional Intake Distribution Over the Years",
+        "subtitle": "Horizontal stacked bar chart representing the proportion of intake in different nutrients",
+        "anchor": "start",
+        "color": "black"
+    },
+    "description": "A stacked bar chart showing the intake percentage in Proteins, Carbohydrates, and Fats.",
+    "width": 800,
+    "height": 600,
+    "data": {
+        "values": [
+            {
+                "Year": 2015,
+                "Proteins": 30,
+                "Carbohydrates": 50,
+                "Fats": 20
+            },
+            {
+                "Year": 2016,
+                "Proteins": 35,
+                "Carbohydrates": 45,
+                "Fats": 20
+            },
+            {
+                "Year": 2017,
+                "Proteins": 32,
+                "Carbohydrates": 48,
+                "Fats": 20
+            },
+            {
+                "Year": 2018,
+                "Proteins": 33,
+                "Carbohydrates": 47,
+                "Fats": 20
+            },
+            {
+                "Year": 2019,
+                "Proteins": 34,
+                "Carbohydrates": 46,
+                "Fats": 20
+            },
+            {
+                "Year": 2020,
+                "Proteins": 37,
+                "Carbohydrates": 43,
+                "Fats": 20
+            },
+            {
+                "Year": 2021,
+                "Proteins": 39,
+                "Carbohydrates": 41,
+                "Fats": 20
+            },
+            {
+                "Year": 2022,
+                "Proteins": 41,
+                "Carbohydrates": 39,
+                "Fats": 20
+            },
+            {
+                "Year": 2023,
+                "Proteins": 42,
+                "Carbohydrates": 38,
+                "Fats": 20
+            },
+            {
+                "Year": 2024,
+                "Proteins": 45,
+                "Carbohydrates": 35,
+                "Fats": 20
+            },
+            {
+                "Year": 2025,
+                "Proteins": 46,
+                "Carbohydrates": 34,
+                "Fats": 20
+            },
+            {
+                "Year": 2026,
+                "Proteins": 48,
+                "Carbohydrates": 32,
+                "Fats": 20
+            },
+            {
+                "Year": 2027,
+                "Proteins": 50,
+                "Carbohydrates": 30,
+                "Fats": 20
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Proteins",
+                "Carbohydrates",
+                "Fats"
+            ],
+            "as": [
+                "Nutrient",
+                "Percentage"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "bar",
+        "width": {
+            "band": 0.6
+        }
+    },
+    "encoding": {
+        "y": {
+            "field": "Year",
+            "type": "ordinal",
+            "title": "Year"
+        },
+        "x": {
+            "field": "Percentage",
+            "type": "quantitative",
+            "title": "Intake Percentage",
+            "stack": "normalize",
+            "axis": {
+                "format": ".0%"
+            }
+        },
+        "color": {
+            "field": "Nutrient",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Proteins",
+                    "Carbohydrates",
+                    "Fats"
+                ],
+                "range": [
+                    "#FF9999",
+                    "#99CCFF",
+                    "#99FF99"
+                ]
+            },
+            "title": "Nutrient"
+        },
+        "tooltip": [
+            {
+                "field": "Year",
+                "type": "ordinal",
+                "title": "Year"
+            },
+            {
+                "field": "Nutrient",
+                "type": "nominal",
+                "title": "Nutrient"
+            },
+            {
+                "field": "Percentage",
+                "type": "quantitative",
+                "title": "Percentage (%)",
+                "format": ".2f"
+            }
+        ]
+    },
+    "config": {
+        "axisY": {
+            "titleAngle": 0,
+            "titleAlign": "left",
+            "titleY": -10,
+            "titleX": -10,
+            "labelPadding": 5,
+            "titleFontSize": 12
+        },
+        "legend": {
+            "titleFontSize": 12,
+            "labelFontSize": 12,
+            "symbolType": "square"
+        }
+    }
+}

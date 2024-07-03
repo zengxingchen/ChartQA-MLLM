@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+var option;
+
+option = {
+    title: {
+        text: 'Distribution of Art & Design Survey Scores',
+        left: 'center',
+        top: '10%'
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: '{b}: {c}'
+    },
+    xAxis: {
+        type: 'category',
+        data: ['60-65', '66-70', '71-75', '76-80', '81-85', '86-90', '91-95'],
+        axisLabel: {
+            formatter: '{value} points'
+        }
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Frequency',
+        nameLocation: 'middle',
+        nameGap: 30
+    },
+    series: [{
+        type: 'bar',
+        data: [2, 5, 7, 12, 14, 9, 6],
+        barWidth: '50%',
+        itemStyle: {
+            color: function(params) {
+                var colorList = ['#FF7F50', '#87CEFA', '#DA70D6', '#32CD32', '#6495ED', '#FF69B4', '#BA55D3'];
+                return colorList[params.dataIndex];
+            }
+        },
+        label: {
+            show: true,
+            position: 'top'
+        }
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

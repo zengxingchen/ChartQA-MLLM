@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {renderer: 'canvas', width: 500, height: 400});
+var app = {};
+option = null;
+option = {
+    title: {
+        text: 'Advancements in Technology and Impact on Society',
+        left: 'center',
+        top: 20
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: '{a} <br/>{b}: {c} ({d}%)'
+    },
+    legend: {
+        orient: 'vertical',
+        left: 10,
+        top: 'middle',
+        textStyle: {
+            padding: [0, 5] // Keep distance between legend and pie
+        }
+    },
+    color: [
+        '#3366CC', '#109618', '#FF9900', '#3B3EAC', 
+        '#0099C6', '#DD4477', '#66AA00', '#B82E2E', 
+        '#316395', '#994499', '#22AA99', '#AAAA11', 
+        '#6633CC', '#E67300', '#8B0707', '#329262', 
+        '#5574A6', '#3B3EAC'
+    ],
+    series: [
+        {
+            name: 'Technology Trend',
+            type: 'pie',
+            radius: '55%',
+            center: ['50%', '60%'],
+            data: [
+                {value: 25.7, name: 'Mobile Payment Adoption'},
+                {value: 18.4, name: 'Artificial Intelligence Proliferation'},
+                {value: 15.6, name: 'Blockchain Technology Usage'},
+                {value: 12.3, name: 'Quantum Computing Developments'},
+                {value: 9.8, name: 'Space Tourism Advances'},
+                {value: 8.2, name: 'Electric Vehicle Enhancements'},
+                {value: 6.4, name: 'Renewable Energy Integration'},
+                {value: 3.6, name: 'Genetic Editing Breakthroughs'}
+            ],
+            emphasis: {
+                itemStyle: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            }
+        }
+    ]
+};
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

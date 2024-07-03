@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var app = {};
+
+var option;
+
+app.title = 'Expense Tracking - Education & Leisure';
+
+option = {
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            label: {
+                backgroundColor: '#6a7985'
+            }
+        }
+    },
+    legend: {
+        data: ['Education', 'Entertainment', 'Groceries'],
+        textStyle: {
+            color: '#333'
+        },
+        top: '5%'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: [
+        {
+            type: 'category',
+            boundaryGap: false,
+            data: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value'
+        }
+    ],
+    color: ['#00A8FF', '#C8E6C9', '#FF8A65'],
+    series: [
+        {
+            name: 'Education',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [340, 320, 350, 370, 360, 380, 400, 390, 410, 420, 415, 430]
+        },
+        {
+            name: 'Entertainment',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [120, 110, 115, 130, 140, 150, 160, 155, 145, 138, 142, 148]
+        },
+        {
+            name: 'Groceries',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [460, 480, 470, 450, 440, 430, 420, 410, 415, 405, 418, 422]
+        }
+    ],
+    title: {
+        left: 'center',
+        text: 'Monthly Expenses Breakdown'
+    },
+    markPoint: {
+        data: [
+            {type: 'max', name: 'Max', itemStyle: {color: '#1F78B4'}},
+            {type: 'min', name: 'Min', itemStyle: {color: '#B2DF8A'}}
+        ]
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

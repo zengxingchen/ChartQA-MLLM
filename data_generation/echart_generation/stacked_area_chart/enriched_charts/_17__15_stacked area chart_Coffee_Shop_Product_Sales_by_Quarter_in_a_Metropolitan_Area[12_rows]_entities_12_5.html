@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {renderer: 'canvas', width: '800', height: '600'});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Graduates in Different Fields of Study Over Time',
+        left: 'center',
+        textStyle: {
+            fontSize: 24
+        }
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['Engineering', 'Humanities', 'Health Sciences', 'Business'],
+        bottom: '1%'
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ['2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Engineering',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            data: [12000, 12500, 13000, 13500, 14000, 14500, 15000, 15500, 16000, 16500, 17000],
+            color: '#FFA07A'
+        },
+        {
+            name: 'Humanities',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            data: [11000, 11500, 12000, 12500, 13000, 13500, 14000, 14500, 15000, 15500, 16000],
+            color: '#20B2AA'
+        },
+        {
+            name: 'Health Sciences',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            data: [9000, 9500, 9800, 10000, 10500, 11000, 11500, 12000, 12500, 13000, 13500],
+            color: '#778899'
+        },
+        {
+            name: 'Business',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            data: [10000, 10500, 11000, 11500, 12000, 12500, 13000, 13500, 14000, 14500, 15000],
+            color: '#FFD700'
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

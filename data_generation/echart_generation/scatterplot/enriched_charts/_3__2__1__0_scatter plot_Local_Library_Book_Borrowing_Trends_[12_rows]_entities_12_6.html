@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 800,
+    height: 600
+});
+var option;
+
+option = {
+    title: {
+        text: 'Astronomical Observation Pattern',
+        left: 'center',
+        top: 20,
+        textStyle: {
+            color: '#333',
+            fontSize: 20
+        }
+    },
+    tooltip: {
+        trigger: 'item',
+        axisPointer: {
+            type: 'cross'
+        }
+    },
+    legend: {
+        left: 'left',
+        top: 'bottom'
+    },
+    xAxis: {
+        type: 'value',
+        name: 'Time (s)',
+        nameLocation: 'middle',
+        nameTextStyle: {
+            fontSize: 14
+        },
+        nameGap: 30
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Telescope Intensity',
+        nameLocation: 'middle',
+        nameTextStyle: {
+            fontSize: 14
+        },
+        nameGap: 50
+    },
+    series: [{
+        symbolSize: 10,
+        data: [
+            [12, 76],
+            [19, 85],
+            [23, 65],
+            [28, 92],
+            [35, 70],
+            [42, 89],
+            [50, 75],
+            [55, 95],
+            [60, 80],
+            [64, 88],
+            [75, 73],
+            [79, 91],
+            [83, 69],
+            [89, 86],
+            [93, 77],
+            [98, 93],
+            [100, 87],
+            [105, 79],
+            [110, 90],
+            [115, 82],
+            [120, 84],
+            [125, 94],
+            [130, 78],
+            [135, 85],
+            [140, 81]
+        ],
+        type: 'scatter',
+        itemStyle: {
+            color: '#FF5733'
+        }
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

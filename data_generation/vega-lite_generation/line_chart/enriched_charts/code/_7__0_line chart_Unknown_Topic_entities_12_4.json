@@ -1,0 +1,140 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+        "values": [
+            {
+                "Month": "January",
+                "Stock Prices": 150,
+                "Trading Volume": 5000
+            },
+            {
+                "Month": "February",
+                "Stock Prices": 160,
+                "Trading Volume": 5500
+            },
+            {
+                "Month": "March",
+                "Stock Prices": 170,
+                "Trading Volume": 6000
+            },
+            {
+                "Month": "April",
+                "Stock Prices": 165,
+                "Trading Volume": 5800
+            },
+            {
+                "Month": "May",
+                "Stock Prices": 180,
+                "Trading Volume": 6200
+            },
+            {
+                "Month": "June",
+                "Stock Prices": 190,
+                "Trading Volume": 7000
+            },
+            {
+                "Month": "July",
+                "Stock Prices": 200,
+                "Trading Volume": 7500
+            },
+            {
+                "Month": "August",
+                "Stock Prices": 210,
+                "Trading Volume": 7800
+            },
+            {
+                "Month": "September",
+                "Stock Prices": 220,
+                "Trading Volume": 8000
+            },
+            {
+                "Month": "October",
+                "Stock Prices": 230,
+                "Trading Volume": 8200
+            },
+            {
+                "Month": "November",
+                "Stock Prices": 240,
+                "Trading Volume": 8500
+            },
+            {
+                "Month": "December",
+                "Stock Prices": 250,
+                "Trading Volume": 9000
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Stock Prices",
+                "Trading Volume"
+            ],
+            "as": [
+                "Measure",
+                "Value"
+            ]
+        }
+    ],
+    "width": 1000,
+    "height": 500,
+    "mark": {
+        "type": "line",
+        "point": {
+            "filled": true,
+            "fill": "white"
+        },
+        "tooltip": true
+    },
+    "encoding": {
+        "x": {
+            "field": "Month",
+            "type": "ordinal",
+            "title": "Month",
+            "axis": {
+                "labelAngle": 0
+            }
+        },
+        "y": {
+            "field": "Value",
+            "type": "quantitative",
+            "title": "Value"
+        },
+        "color": {
+            "field": "Measure",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Stock Prices",
+                    "Trading Volume"
+                ],
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e"
+                ]
+            },
+            "legend": {
+                "title": "Measure"
+            }
+        }
+    },
+    "title": {
+        "text": "Stock Market Trends: Stock Prices and Trading Volume",
+        "subtitle": "Monthly data over a year",
+        "anchor": "start"
+    },
+    "layer": [
+        {
+            "mark": {
+                "type": "line",
+                "point": true
+            },
+            "encoding": {
+                "text": {
+                    "field": "Value",
+                    "type": "quantitative"
+                }
+            }
+        }
+    ]
+}

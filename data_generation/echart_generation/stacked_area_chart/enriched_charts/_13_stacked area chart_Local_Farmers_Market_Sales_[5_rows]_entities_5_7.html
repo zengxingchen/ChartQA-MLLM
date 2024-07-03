@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 400});
+
+var option = {
+    title: {
+        text: 'Music Genre Popularity Over Time',
+        top: '2%',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            label: {
+                backgroundColor: '#6a7985'
+            }
+        }
+    },
+    legend: {
+        data: ['Pop Music', 'Jazz Music', 'Classical Music'],
+        top: '10%'
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: [
+        {
+            type: 'category',
+            boundaryGap: false,
+            data: ['2021-01', '2021-02', '2021-03', '2021-04', '2021-05', '2021-06', '2021-07', '2021-08', '2021-09', '2021-10', '2021-11', '2021-12']
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value'
+        }
+    ],
+    series: [
+        {
+            name: 'Pop Music',
+            type: 'line',
+            stack: 'music',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [120, 150, 170, 180, 200, 220, 210, 230, 240, 250, 260, 270],
+            color: '#ffa726'
+        },
+        {
+            name: 'Jazz Music',
+            type: 'line',
+            stack: 'music',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [80, 95, 110, 115, 130, 125, 135, 140, 155, 150, 165, 160],
+            color: '#26a69a'
+        },
+        {
+            name: 'Classical Music',
+            type: 'line',
+            stack: 'music',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [50, 65, 70, 85, 95, 100, 110, 115, 120, 130, 135, 145],
+            color: '#ef5350'
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

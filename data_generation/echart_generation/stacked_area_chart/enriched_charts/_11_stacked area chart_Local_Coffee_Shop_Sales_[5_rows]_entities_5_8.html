@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+option = {
+  title: {
+    text: 'Quarterly Revenue Growth Trends for Tech Companies',
+    left: 'center'
+  },
+  tooltip: {
+    trigger: 'axis',
+    axisPointer: {
+      type: 'cross',
+      label: {
+        backgroundColor: '#6a7985'
+      }
+    }
+  },
+  legend: {
+    data: ['Apple', 'Google', 'Amazon', 'Facebook'],
+    top: 'bottom'
+  },
+  grid: {
+    left: '3%',
+    right: '4%',
+    bottom: '3%',
+    containLabel: true
+  },
+  xAxis: {
+    type: 'category',
+    boundaryGap: false,
+    data: ['Q1-2019', 'Q2-2019', 'Q3-2019', 'Q4-2019', 'Q1-2020', 'Q2-2020', 'Q3-2020', 'Q4-2020', 'Q1-2021', 'Q2-2021', 'Q3-2021', 'Q4-2021']
+  },
+  yAxis: {
+    type: 'value'
+  },
+  series: [
+    {
+      name: 'Apple',
+      type: 'line',
+      stack: 'total',
+      areaStyle: { color: '#FFA07A' },
+      emphasis: { focus: 'series' },
+      data: [58000, 53810, 57050, 91840, 58360, 59670, 64980, 111440, 76330, 79960, 83360, 123940]
+    },
+    {
+      name: 'Google',
+      type: 'line',
+      stack: 'total',
+      areaStyle: { color: '#20B2AA' },
+      emphasis: { focus: 'series' },
+      data: [36500, 38670, 40650, 46120, 41180, 44020, 46110, 52230, 55810, 61820, 65340, 70230]
+    },
+    {
+      name: 'Amazon',
+      type: 'line',
+      stack: 'total',
+      areaStyle: { color: '#778899' },
+      emphasis: { focus: 'series' },
+      data: [59850, 63410, 68320, 87450, 75420, 88920, 96120, 125840, 108520, 113080, 110560, 137210]
+    },
+    {
+      name: 'Facebook',
+      type: 'line',
+      stack: 'total',
+      areaStyle: { color: '#9370DB' },
+      emphasis: { focus: 'series' },
+      data: [15040, 16890, 18950, 21040, 17840, 18560, 21450, 28760, 25680, 29020, 31980, 33080]
+    }
+  ],
+  color: ['#FFA07A', '#20B2AA', '#778899', '#9370DB'],
+  toolbox: {
+    feature: {
+      saveAsImage: {}
+    }
+  },
+  markPoint: {
+    data: [
+      { type: 'max', name: 'Max' },
+      { type: 'min', name: 'Min' }
+    ]
+  },
+  textStyle: {
+    fontFamily: 'Verdana, sans-serif'
+  }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

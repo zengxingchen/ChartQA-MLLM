@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 800,
+    height: 600
+});
+var app = {};
+
+var option = {
+    title: {
+        text: 'Income Distribution in 2023',
+        left: 'center',
+        top: '10'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    xAxis: {
+        name: 'Income ($)',
+        type: 'category',
+        data: ['10K-20K', '20K-30K', '30K-40K', '40K-50K', '50K-60K', '60K-70K', '70K-80K', '80K-90K', '90K-100K', '100K-110K', '110K-120K', '120K-130K', '130K-140K', '140K-150K', '150K-160K'],
+        axisLabel: {
+            interval: 0,
+            rotate: 45
+        }
+    },
+    yAxis: {
+        name: 'Frequency',
+        type: 'value'
+    },
+    series: [{
+        name: 'Income',
+        type: 'bar',
+        data: [2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3],
+        itemStyle: {
+            color: '#5470C6'
+        },
+        barWidth: '50%'
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

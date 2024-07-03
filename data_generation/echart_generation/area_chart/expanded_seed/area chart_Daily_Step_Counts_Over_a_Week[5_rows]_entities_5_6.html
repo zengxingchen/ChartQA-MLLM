@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
+const stepsData = [7500, 5300, 9200, 6100, 7000];
+
+option = {
+    title: {
+        text: 'Weekly Steps Analysis',
+        left: 'center',
+        textStyle: {
+            color: '#333',
+            fontStyle: 'normal',
+            fontWeight: 'bold',
+            fontSize: 20
+        }
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            label: {
+                backgroundColor: '#6a7985'
+            }
+        },
+        backgroundColor: 'rgba(255,255,255,0.7)',
+        padding: [5, 10],
+        textStyle: {
+            color: '#333',
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: [
+        {
+            type: 'category',
+            boundaryGap: false,
+            data: days,
+            axisTick: {
+                alignWithLabel: true
+            },
+            axisLine: {
+                onZero: false
+            },
+            axisPointer: {
+                label: {
+                    formatter: function (params) {
+                        return 'Steps ' + params.value
+                            + (params.seriesData.length ? '：' + params.seriesData[0].data : '');
+                    }
+                }
+            }
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value',
+            axisLabel: {
+                formatter: '{value} steps'
+            }
+        }
+    ],
+    series: [
+        {
+            name: 'Steps',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: stepsData,
+            smooth: true,
+            symbol: 'circle',
+            symbolSize: 10,
+            itemStyle: {
+                normal: {
+                    color: '#5470C6',
+                    lineStyle: {
+                        width: 3
+                    }
+                }
+            },
+            markPoint: {
+                data: [
+                    {type: 'max', name: 'Max'},
+                    {type: 'min', name: 'Min'}
+                ]
+            },
+            markLine: {
+                data: [{type: 'average', name: 'Avg'}]
+            }
+        }
+    ],
+    color: ['#8EC9EB']
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

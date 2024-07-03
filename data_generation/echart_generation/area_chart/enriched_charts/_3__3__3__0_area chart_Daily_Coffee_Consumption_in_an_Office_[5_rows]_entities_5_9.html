@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var app = {};
+
+option = {
+    title: {
+        text: 'Monthly Trend of Hypothetical Stock Index',
+        left: 'center',
+        top: '20'
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: [
+            '1', '2', '3', '4', '5', '6', '7', '8', 
+            '9', '10', '11', '12', '13', '14', '15', 
+            '16', '17', '18', '19', '20', '21', '22', 
+            '23', '24', '25', '26', '27', '28', '29', '30'
+        ]
+    },
+    yAxis: {
+        type: 'value',
+        axisLabel: {
+            formatter: '{value}'
+        }
+    },
+    series: [
+        {
+            name: 'Index Value',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [
+                1500, 1495, 1487, 1470, 1460, 1455, 1450, 1440, 
+                1425, 1410, 1405, 1390, 1380, 1370, 1350, 1340, 
+                1325, 1310, 1300, 1295, 1280, 1265, 1250, 1235, 
+                1225, 1210, 1200, 1185, 1170, 1150
+            ],
+            itemStyle: {
+                color: '#1e90ff'
+            }
+        }
+    ],
+    markPoint: {
+        data: [
+            {type: 'max', name: 'Max value', itemStyle: {color: '#ff4500'}},
+            {type: 'min', name: 'Min value', itemStyle: {color: '#32cd32'}}
+        ]
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

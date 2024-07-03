@@ -1,0 +1,103 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Favorite Musical Genres in 2024",
+    "title": {
+        "text": "Favorite Musical Genres in 2024",
+        "fontSize": 20,
+        "anchor": "start",
+        "color": "#333333"
+    },
+    "width": 600,
+    "height": 450,
+    "data": {
+        "values": [
+            {
+                "Genre": "Pop",
+                "Preference": 30
+            },
+            {
+                "Genre": "Rock",
+                "Preference": 20
+            },
+            {
+                "Genre": "Jazz",
+                "Preference": 15
+            },
+            {
+                "Genre": "Classical",
+                "Preference": 10
+            },
+            {
+                "Genre": "Hip Hop",
+                "Preference": 10
+            },
+            {
+                "Genre": "Country",
+                "Preference": 8
+            },
+            {
+                "Genre": "Electronic",
+                "Preference": 7
+            }
+        ]
+    },
+    "transform": [
+        {
+            "calculate": "datum['Preference']",
+            "as": "PreferenceValue"
+        }
+    ],
+    "mark": {
+        "type": "arc",
+        "innerRadius": 80,
+        "outerRadius": 180,
+        "tooltip": true
+    },
+    "encoding": {
+        "theta": {
+            "field": "PreferenceValue",
+            "type": "quantitative",
+            "stack": true
+        },
+        "color": {
+            "field": "Genre",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Pop",
+                    "Rock",
+                    "Jazz",
+                    "Classical",
+                    "Hip Hop",
+                    "Country",
+                    "Electronic"
+                ],
+                "range": [
+                    "#ff9999",
+                    "#ffcc99",
+                    "#ff6666",
+                    "#ffcc00",
+                    "#9999ff",
+                    "#cc99ff",
+                    "#99ff99"
+                ]
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Genre",
+                "type": "nominal",
+                "title": "Genre"
+            },
+            {
+                "field": "PreferenceValue",
+                "type": "quantitative",
+                "title": "Preference (%)",
+                "format": ".1f"
+            }
+        ]
+    },
+    "view": {
+        "stroke": null
+    }
+}

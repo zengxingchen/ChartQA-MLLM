@@ -1,0 +1,186 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": {
+        "text": "Monthly Travel Expenditure by Age Group",
+        "subtitle": [
+            "Trends in travel spending across different age brackets",
+            ""
+        ],
+        "subtitleFontStyle": "italic",
+        "subtitleFontSize": 10,
+        "anchor": "start",
+        "color": "#333333",
+        "subtitleColor": "#555555"
+    },
+    "config": {
+        "background": "#f9f9f9",
+        "view": {
+            "stroke": "transparent"
+        }
+    },
+    "data": {
+        "values": [
+            {
+                "Month": "January",
+                "Under 18": 1000,
+                "18-35": 2500,
+                "36-55": 2200,
+                "56+": 1500
+            },
+            {
+                "Month": "February",
+                "Under 18": 950,
+                "18-35": 2450,
+                "36-55": 2250,
+                "56+": 1400
+            },
+            {
+                "Month": "March",
+                "Under 18": 1100,
+                "18-35": 2600,
+                "36-55": 2350,
+                "56+": 1300
+            },
+            {
+                "Month": "April",
+                "Under 18": 1200,
+                "18-35": 2700,
+                "36-55": 2400,
+                "56+": 1450
+            },
+            {
+                "Month": "May",
+                "Under 18": 1250,
+                "18-35": 2800,
+                "36-55": 2500,
+                "56+": 1550
+            },
+            {
+                "Month": "June",
+                "Under 18": 1300,
+                "18-35": 2900,
+                "36-55": 2550,
+                "56+": 1600
+            },
+            {
+                "Month": "July",
+                "Under 18": 1350,
+                "18-35": 2950,
+                "36-55": 2600,
+                "56+": 1650
+            },
+            {
+                "Month": "August",
+                "Under 18": 1400,
+                "18-35": 3000,
+                "36-55": 2650,
+                "56+": 1700
+            },
+            {
+                "Month": "September",
+                "Under 18": 1450,
+                "18-35": 3050,
+                "36-55": 2700,
+                "56+": 1750
+            },
+            {
+                "Month": "October",
+                "Under 18": 1500,
+                "18-35": 3100,
+                "36-55": 2750,
+                "56+": 1800
+            },
+            {
+                "Month": "November",
+                "Under 18": 1550,
+                "18-35": 3200,
+                "36-55": 2800,
+                "56+": 1850
+            },
+            {
+                "Month": "December",
+                "Under 18": 1600,
+                "18-35": 3250,
+                "36-55": 2900,
+                "56+": 1900
+            }
+        ]
+    },
+    "height": 600,
+    "width": 400,
+    "mark": {
+        "type": "bar",
+        "width": 20
+    },
+    "encoding": {
+        "y": {
+            "field": "Month",
+            "type": "ordinal",
+            "axis": {
+                "title": "Month"
+            }
+        },
+        "x": {
+            "type": "quantitative",
+            "axis": {
+                "title": "Expenditure (USD)"
+            }
+        },
+        "color": {
+            "field": "AgeGroup",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Under 18",
+                    "18-35",
+                    "36-55",
+                    "56+"
+                ],
+                "range": [
+                    "#4c78a8",
+                    "#f58518",
+                    "#54a24b",
+                    "#e45756"
+                ]
+            },
+            "legend": {
+                "title": "Age Group"
+            }
+        }
+    },
+    "transform": [
+        {
+            "fold": [
+                "Under 18",
+                "18-35",
+                "36-55",
+                "56+"
+            ],
+            "as": [
+                "AgeGroup",
+                "Expenditure"
+            ]
+        }
+    ],
+    "layer": [
+        {
+            "mark": {
+                "type": "bar",
+                "orient": "horizontal"
+            },
+            "encoding": {
+                "x": {
+                    "field": "Expenditure",
+                    "type": "quantitative"
+                },
+                "y": {
+                    "field": "Month",
+                    "type": "ordinal",
+                    "scale": {
+                        "band": 0.5
+                    }
+                }
+            }
+        }
+    ]
+}

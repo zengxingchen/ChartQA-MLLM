@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 700,
+    height: 500
+});
+var app = {};
+
+var option = {
+    title: {
+        text: 'Astronomy: Star Brightness vs. Distance from Earth',
+        left: 'center',
+        top: '10'
+    },
+    tooltip: {},
+    legend: {
+        data: ['Brightness'],
+        top: '10%',
+        left: 'right'
+    },
+    xAxis: {
+        name: 'Distance from Earth (light years)',
+        type: 'value'
+    },
+    yAxis: {
+        name: 'Brightness (magnitude)',
+        type: 'value'
+    },
+    series: [{
+        name: 'Brightness',
+        type: 'scatter',
+        itemStyle: {
+            color: '#1f77b4'
+        },
+        data: [
+            [8, 9], [15, 10], [10, 12], [14, 16], [18, 14], [22, 13], [7, 15],
+            [6, 16], [20, 18], [13, 11], [16, 17], [11, 19], [19, 20], [21, 11],
+            [17, 22], [12, 21], [25, 24], [23, 27], [26, 28], [24, 25],
+            [27, 23], [28, 20], [29, 18], [30, 15], [31, 13], [32, 11],
+            [33, 10], [34, 15], [35, 17], [36, 19], [37, 21], [38, 23],
+            [39, 20], [40, 18], [41, 17], [42, 16], [43, 15], [44, 14],
+            [45, 13], [46, 12], [47, 10], [48, 11], [49, 9], [50, 8]
+        ]
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

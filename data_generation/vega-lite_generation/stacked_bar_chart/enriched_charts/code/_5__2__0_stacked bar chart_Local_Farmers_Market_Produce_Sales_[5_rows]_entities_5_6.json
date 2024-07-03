@@ -1,0 +1,170 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Monthly Astronomy Data",
+    "data": {
+        "values": [
+            {
+                "Month": "January",
+                "Stars Observed": 300,
+                "Meteor Showers": 20,
+                "Comets Seen": 15,
+                "Planet Sightings": 8
+            },
+            {
+                "Month": "February",
+                "Stars Observed": 320,
+                "Meteor Showers": 18,
+                "Comets Seen": 10,
+                "Planet Sightings": 9
+            },
+            {
+                "Month": "March",
+                "Stars Observed": 310,
+                "Meteor Showers": 25,
+                "Comets Seen": 12,
+                "Planet Sightings": 10
+            },
+            {
+                "Month": "April",
+                "Stars Observed": 340,
+                "Meteor Showers": 30,
+                "Comets Seen": 17,
+                "Planet Sightings": 11
+            },
+            {
+                "Month": "May",
+                "Stars Observed": 360,
+                "Meteor Showers": 22,
+                "Comets Seen": 20,
+                "Planet Sightings": 13
+            },
+            {
+                "Month": "June",
+                "Stars Observed": 380,
+                "Meteor Showers": 28,
+                "Comets Seen": 25,
+                "Planet Sightings": 15
+            },
+            {
+                "Month": "July",
+                "Stars Observed": 400,
+                "Meteor Showers": 35,
+                "Comets Seen": 30,
+                "Planet Sightings": 16
+            },
+            {
+                "Month": "August",
+                "Stars Observed": 420,
+                "Meteor Showers": 40,
+                "Comets Seen": 35,
+                "Planet Sightings": 18
+            },
+            {
+                "Month": "September",
+                "Stars Observed": 440,
+                "Meteor Showers": 38,
+                "Comets Seen": 32,
+                "Planet Sightings": 17
+            },
+            {
+                "Month": "October",
+                "Stars Observed": 460,
+                "Meteor Showers": 42,
+                "Comets Seen": 28,
+                "Planet Sightings": 19
+            },
+            {
+                "Month": "November",
+                "Stars Observed": 480,
+                "Meteor Showers": 45,
+                "Comets Seen": 26,
+                "Planet Sightings": 20
+            },
+            {
+                "Month": "December",
+                "Stars Observed": 500,
+                "Meteor Showers": 50,
+                "Comets Seen": 30,
+                "Planet Sightings": 22
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Stars Observed",
+                "Meteor Showers",
+                "Comets Seen",
+                "Planet Sightings"
+            ],
+            "as": [
+                "Event",
+                "Count"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "bar",
+        "height": {
+            "band": 0.7
+        }
+    },
+    "width": 600,
+    "height": 400,
+    "title": {
+        "text": "Monthly Astronomy Data",
+        "anchor": "start",
+        "color": "black"
+    },
+    "encoding": {
+        "y": {
+            "field": "Month",
+            "type": "ordinal",
+            "axis": {
+                "title": "Month"
+            }
+        },
+        "x": {
+            "field": "Count",
+            "type": "quantitative",
+            "stack": "zero",
+            "axis": {
+                "title": "Event Count"
+            }
+        },
+        "color": {
+            "field": "Event",
+            "type": "nominal",
+            "legend": {
+                "orient": "top"
+            },
+            "scale": {
+                "domain": [
+                    "Stars Observed",
+                    "Meteor Showers",
+                    "Comets Seen",
+                    "Planet Sightings"
+                ],
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e",
+                    "#2ca02c",
+                    "#d62728"
+                ]
+            },
+            "title": "Astronomy Event"
+        },
+        "tooltip": [
+            {
+                "field": "Event",
+                "type": "nominal",
+                "title": "Event"
+            },
+            {
+                "field": "Count",
+                "type": "quantitative",
+                "title": "Count"
+            }
+        ]
+    }
+}

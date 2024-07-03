@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 400});
+
+var option;
+
+option = {
+    title: {
+        text: 'Technology Adoption Trends',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: [
+            '2021-01','2021-02','2021-03','2021-04','2021-05','2021-06',
+            '2021-07','2021-08','2021-09','2021-10','2021-11','2021-12',
+            '2022-01','2022-02','2022-03','2022-04','2022-05','2022-06',
+            '2022-07','2022-08','2022-09','2022-10','2022-11','2022-12'
+        ]
+    },
+    yAxis: {
+        type: 'value',
+        axisLabel: {
+            formatter: '{value}'
+        }
+    },
+    series: [{
+        data: [
+            100,120,140,130,150,170,
+            160,180,190,210,200,220,
+            230,240,260,250,270,290,
+            280,300,310,330,320,340
+        ],
+        type: 'line',
+        areaStyle: {},
+        smooth: true,
+        label: {
+            normal: {
+                show: true,
+                position: 'top'
+            }
+        },
+        markPoint: {
+            data: [
+                {type: 'max', name: 'Max'},
+                {type: 'min', name: 'Min'}
+            ]
+        },
+        itemStyle: {
+            color: "#1E90FF"
+        }
+    }],
+    color: ["#FF6347", "#20B2AA", "#FFD700"],
+    legend: {
+        data:['Adoption Rate'],
+        right: 10
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

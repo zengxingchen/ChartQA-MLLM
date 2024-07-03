@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var data = [
+    {'Drink': 'Latte', 'Number of Orders': 150},
+    {'Drink': 'Cappuccino', 'Number of Orders': 95},
+    {'Drink': 'Americano', 'Number of Orders': 78},
+    {'Drink': 'Espresso', 'Number of Orders': 60},
+    {'Drink': 'Mocha', 'Number of Orders': 55}
+];
+
+option = {
+    color: ['#c23531','#2f4554','#61a0a8','#d48265','#91c7ae'],
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        },
+        formatter: function(params) {
+            var data = params[0].data;
+            return data.name + '<br/>' + 'Number of Orders: ' + data.value;
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: [
+        {
+            type: 'category',
+            data: data.map(function (item) { return item.Drink; }),
+            axisTick: {
+                alignWithLabel: true
+            },
+            axisLine: {
+                show: true
+            },
+            axisLabel: {
+                formatter: function (name) {
+                    return echarts.format.truncateText(name, 80, '14px Microsoft Yahei', '…');
+                }
+            }
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value',
+            axisLabel: {
+                formatter: '{value}'
+            }
+        }
+    ],
+    series: [
+        {
+            name: 'Orders',
+            type: 'bar',
+            barWidth: '60%',
+            data: data.map(function (item) { return {name: item.Drink, value: item['Number of Orders']};})
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

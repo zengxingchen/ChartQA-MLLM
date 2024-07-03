@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Popularity vs Creativity in Art Pieces',
+        left: 'center',
+        top: '20'
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['Art Piece'],
+        left: '10',
+        top: '10'
+    },
+    xAxis: {
+        type: 'value',
+        name: 'Popularity'
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Creativity'
+    },
+    series: [
+        {
+            name: 'Art Piece',
+            type: 'scatter',
+            itemStyle: {
+                color: '#FF6347'
+            },
+            data: [
+                [87, 92],
+                [65, 78],
+                [92, 88],
+                [78, 81],
+                [84, 90],
+                [70, 75],
+                [60, 80],
+                [75, 85],
+                [82, 89],
+                [90, 95],
+                [77, 83],
+                [88, 91],
+                [85, 87],
+                [76, 80],
+                [67, 73],
+                [83, 88],
+                [72, 77],
+                [89, 93],
+                [91, 90],
+                [65, 70]
+            ]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

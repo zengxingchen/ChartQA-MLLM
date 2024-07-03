@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var app = {};
+option = null;
+var data = {
+    categories: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+    meteors: [120, 135, 130, 145, 160, 175, 165, 170, 180, 190, 200, 210],
+    comets: [30, 22, 25, 20, 18, 12, 15, 25, 10, 15, 18, 25]
+};
+
+option = {
+    title: {
+        text: 'Monthly Observed Meteors and Comets',
+        left: 'center',
+        top: 20
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['Meteors', 'Comets'],
+        top: 60
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: data.categories
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Meteors',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: data.meteors,
+            color: '#34c6bb'
+        },
+        {
+            name: 'Comets',
+            type: 'line',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'top'
+            },
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: data.comets,
+            color: '#f9e264'
+        }
+    ],
+    color: ['#34c6bb', '#f9e264']
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

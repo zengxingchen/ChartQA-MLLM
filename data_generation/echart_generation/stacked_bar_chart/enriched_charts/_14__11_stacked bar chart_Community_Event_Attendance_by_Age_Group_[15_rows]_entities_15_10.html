@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+var option;
+
+option = {
+    title: {
+        text: 'Popular Art Forms by Medium',
+        left: 'center',
+        top: '5%'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Type A', 'Type B', 'Type C'],
+        top: '10%'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01]
+    },
+    yAxis: {
+        type: 'category',
+        data: ['Sculpture', 'Painting', 'Drawing', 'Architecture', 'Design', 'Photography', 'Digital Art', 'Performance Art', 'Film', 'Literature']
+    },
+    series: [
+        {
+            name: 'Type A',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            itemStyle: {
+                color: '#FF6347'
+            },
+            data: [150, 200, 250, 300, 320, 280, 350, 180, 260, 240]
+        },
+        {
+            name: 'Type B',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            itemStyle: {
+                color: '#4682B4'
+            },
+            data: [230, 182, 290, 320, 230, 300, 320, 200, 270, 220]
+        },
+        {
+            name: 'Type C',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            itemStyle: {
+                color: '#32CD32'
+            },
+            data: [224, 191, 220, 302, 220, 240, 310, 210, 220, 210]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

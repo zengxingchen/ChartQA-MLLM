@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 900,
+    height: 500
+});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Yearly Interest in Various Topics',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        bottom: 0,
+        data: ['Art & Design', 'Science & Nature', 'Health & Psychology', 'Culture & Society', 'Economics & Finance']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '10%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value'
+    },
+    yAxis: {
+        type: 'category',
+        data: ['2019', '2020', '2021', '2022', '2023']
+    },
+    series: [
+        {
+            name: 'Art & Design',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            itemStyle: {
+                color: '#FF6F61'
+            },
+            data: [320, 332, 301, 334, 390]
+        },
+        {
+            name: 'Science & Nature',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            itemStyle: {
+                color: '#6B5B95'
+            },
+            data: [182, 191, 234, 290, 310]
+        },
+        {
+            name: 'Health & Psychology',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            itemStyle: {
+                color: '#88B04B'
+            },
+            data: [191, 234, 290, 310, 330]
+        },
+        {
+            name: 'Culture & Society',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            itemStyle: {
+                color: '#F7CAC9'
+            },
+            data: [234, 290, 310, 330, 340]
+        },
+        {
+            name: 'Economics & Finance',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            itemStyle: {
+                color: '#92A8D1'
+            },
+            data: [290, 310, 330, 340, 360]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

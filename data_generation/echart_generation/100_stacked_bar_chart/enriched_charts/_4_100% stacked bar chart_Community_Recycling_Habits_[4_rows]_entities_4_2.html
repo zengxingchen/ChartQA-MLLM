@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 800,
+    height: 600
+});
+
+var option;
+
+option = {
+    title: {
+        text: 'Fields of Study Popularity - Education & Learning',
+        left: 'center',
+        textStyle: {
+            fontSize: 24
+        }
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        bottom: 0
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '10%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: false
+    },
+    yAxis: {
+        type: 'category',
+        data: ['2016', '2017', '2018', '2019', '2020']
+    },
+    series: [
+        {
+            name: 'Science & Technology',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 40,
+            data: [30.5, 31.8, 33.0, 34.5, 35.5],
+            itemStyle: {
+                color: '#1f77b4'
+            }
+        },
+        {
+            name: 'Humanities',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 40,
+            data: [22.3, 21.1, 20.5, 19.8, 18.6],
+            itemStyle: {
+                color: '#ff7f0e'
+            }
+        },
+        {
+            name: 'Engineering & IT',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 40,
+            data: [25.4, 26.2, 26.8, 27.2, 27.6],
+            itemStyle: {
+                color: '#2ca02c'
+            }
+        },
+        {
+            name: 'Business & Economics',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 40,
+            data: [15.2, 14.7, 14.2, 13.7, 13.1],
+            itemStyle: {
+                color: '#d62728'
+            }
+        },
+        {
+            name: 'Arts & Design',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 40,
+            data: [6.6, 6.2, 5.5, 4.8, 5.2],
+            itemStyle: {
+                color: '#9467bd'
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

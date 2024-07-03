@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 400});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Monthly Rainfall Trend',
+        left: 'center',
+        textStyle: {
+            color: '#333',
+            fontWeight: 'normal',
+            fontSize: 20,
+        },
+        padding: [15, 5, 5, 5],
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['Rainfall (mm)'],
+        left: 'left'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+    },
+    yAxis: {
+        type: 'value',
+        axisLabel: {
+            formatter: '{value} mm'
+        }
+    },
+    series: [
+        {
+            name: 'Rainfall (mm)',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [120, 110, 100, 90, 80, 70, 60, 50, 40, 30, 20, 10],
+            color: '#4E9AF1', // Light blue area color
+            lineStyle: {
+                color: '#2D7DD2' // Darker blue line color
+            }
+        }
+    ],
+    markPoint: {
+        data: [
+            {type: 'max', name: 'Max Rainfall'},
+            {type: 'min', name: 'Min Rainfall'}
+        ],
+    },
+    markLine: {
+        data: [
+            {type: 'average', name: 'Average'}
+        ]
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

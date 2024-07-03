@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+dom.style.width = "800px";
+dom.style.height = "600px";
+var myChart = echarts.init(dom);
+var app = {};
+option = null;
+option = {
+    title: {
+        text: 'Global Energy Consumption by Source',
+        left: 'center',
+        top: '5%',
+        textStyle: {
+            color: '#333',
+            fontWeight: 'bold',
+            fontSize: 24
+        }
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: '{a} <br/>{b} : {c} ({d}%)'
+    },
+    legend: {
+        orient: 'vertical',
+        left: 'left',
+        top: '15%',
+        data: [
+            'Hydropower',
+            'Wind Power',
+            'Solar Power',
+            'Bio-energy',
+            'Geothermal',
+            'Nuclear',
+            'Fossil Fuels'
+        ]
+    },
+    series: [
+        {
+            name: 'Energy Source',
+            type: 'pie',
+            radius: '55%',
+            center: ['50%', '60%'],
+            data: [
+                {value: 175, name: 'Hydropower'},
+                {value: 132, name: 'Wind Power'},
+                {value: 318, name: 'Solar Power'},
+                {value: 65, name: 'Bio-energy'},
+                {value: 42, name: 'Geothermal'},
+                {value: 627, name: 'Nuclear'},
+                {value: 965, name: 'Fossil Fuels'}
+            ],
+            emphasis: {
+                itemStyle: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            },
+            itemStyle: {
+                normal: {
+                    color: function(params) {
+                        var colorList = [
+                            '#009688', '#ff5722', '#ffc107', '#4caf50', '#9c27b0', '#2196f3', '#607d8b'
+                        ];
+                        return colorList[params.dataIndex]
+                    },
+                    label: {
+                        show: true,
+                        formatter: '{b} : {c} ({d}%)'
+                    }
+                }
+            }
+        }
+    ]
+};
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

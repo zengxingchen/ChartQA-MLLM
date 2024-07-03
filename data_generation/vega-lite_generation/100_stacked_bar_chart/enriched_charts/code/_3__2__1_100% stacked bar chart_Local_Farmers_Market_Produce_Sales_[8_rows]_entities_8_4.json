@@ -1,0 +1,243 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "A 100% stacked bar chart showing the impact of different foods on overall nutrition over time.",
+    "data": {
+        "values": [
+            {
+                "Year": 2000,
+                "Fruits": 10,
+                "Vegetables": 20,
+                "Grains": 30,
+                "Proteins": 15,
+                "Dairy": 10,
+                "Sweets": 15
+            },
+            {
+                "Year": 2001,
+                "Fruits": 12,
+                "Vegetables": 22,
+                "Grains": 28,
+                "Proteins": 16,
+                "Dairy": 11,
+                "Sweets": 11
+            },
+            {
+                "Year": 2002,
+                "Fruits": 15,
+                "Vegetables": 24,
+                "Grains": 26,
+                "Proteins": 14,
+                "Dairy": 12,
+                "Sweets": 9
+            },
+            {
+                "Year": 2003,
+                "Fruits": 17,
+                "Vegetables": 26,
+                "Grains": 24,
+                "Proteins": 13,
+                "Dairy": 13,
+                "Sweets": 7
+            },
+            {
+                "Year": 2004,
+                "Fruits": 18,
+                "Vegetables": 28,
+                "Grains": 22,
+                "Proteins": 14,
+                "Dairy": 12,
+                "Sweets": 6
+            },
+            {
+                "Year": 2005,
+                "Fruits": 19,
+                "Vegetables": 29,
+                "Grains": 21,
+                "Proteins": 15,
+                "Dairy": 10,
+                "Sweets": 6
+            },
+            {
+                "Year": 2006,
+                "Fruits": 20,
+                "Vegetables": 30,
+                "Grains": 20,
+                "Proteins": 15,
+                "Dairy": 9,
+                "Sweets": 6
+            },
+            {
+                "Year": 2007,
+                "Fruits": 21,
+                "Vegetables": 32,
+                "Grains": 18,
+                "Proteins": 16,
+                "Dairy": 8,
+                "Sweets": 5
+            },
+            {
+                "Year": 2008,
+                "Fruits": 22,
+                "Vegetables": 33,
+                "Grains": 17,
+                "Proteins": 17,
+                "Dairy": 7,
+                "Sweets": 4
+            },
+            {
+                "Year": 2009,
+                "Fruits": 24,
+                "Vegetables": 34,
+                "Grains": 15,
+                "Proteins": 18,
+                "Dairy": 6,
+                "Sweets": 3
+            },
+            {
+                "Year": 2010,
+                "Fruits": 25,
+                "Vegetables": 35,
+                "Grains": 13,
+                "Proteins": 19,
+                "Dairy": 5,
+                "Sweets": 3
+            },
+            {
+                "Year": 2011,
+                "Fruits": 26,
+                "Vegetables": 36,
+                "Grains": 12,
+                "Proteins": 20,
+                "Dairy": 4,
+                "Sweets": 2
+            },
+            {
+                "Year": 2012,
+                "Fruits": 27,
+                "Vegetables": 37,
+                "Grains": 11,
+                "Proteins": 21,
+                "Dairy": 3,
+                "Sweets": 1
+            },
+            {
+                "Year": 2013,
+                "Fruits": 28,
+                "Vegetables": 38,
+                "Grains": 10,
+                "Proteins": 22,
+                "Dairy": 2,
+                "Sweets": 0
+            },
+            {
+                "Year": 2014,
+                "Fruits": 29,
+                "Vegetables": 39,
+                "Grains": 9,
+                "Proteins": 23,
+                "Dairy": 1,
+                "Sweets": 0
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Fruits",
+                "Vegetables",
+                "Grains",
+                "Proteins",
+                "Dairy",
+                "Sweets"
+            ],
+            "as": [
+                "Food",
+                "Percentage"
+            ]
+        },
+        {
+            "calculate": "datum.Percentage / 100",
+            "as": "NormalizedPercentage"
+        }
+    ],
+    "title": {
+        "text": "Impact of Foods on Overall Nutrition",
+        "color": "black",
+        "fontSize": 16,
+        "anchor": "start",
+        "dx": 10,
+        "dy": -20
+    },
+    "width": 800,
+    "height": 600,
+    "mark": {
+        "type": "bar",
+        "tooltip": true
+    },
+    "encoding": {
+        "y": {
+            "field": "Year",
+            "type": "ordinal",
+            "axis": {
+                "title": "Year"
+            }
+        },
+        "x": {
+            "field": "NormalizedPercentage",
+            "type": "quantitative",
+            "axis": {
+                "title": "Percentage"
+            },
+            "stack": "normalize"
+        },
+        "color": {
+            "field": "Food",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Fruits",
+                    "Vegetables",
+                    "Grains",
+                    "Proteins",
+                    "Dairy",
+                    "Sweets"
+                ],
+                "range": [
+                    "#e41a1c",
+                    "#377eb8",
+                    "#4daf4a",
+                    "#984ea3",
+                    "#ff7f00",
+                    "#ffff33"
+                ]
+            },
+            "legend": {
+                "title": "Food",
+                "orient": "bottom-right",
+                "titleFontSize": 12,
+                "labelFontSize": 10
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Year",
+                "type": "ordinal"
+            },
+            {
+                "field": "Food",
+                "type": "nominal"
+            },
+            {
+                "field": "Percentage",
+                "type": "quantitative",
+                "title": "Percentage"
+            }
+        ]
+    },
+    "config": {
+        "bar": {
+            "binSpacing": 4,
+            "continuousBandSize": 20
+        }
+    }
+}

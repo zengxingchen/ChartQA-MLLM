@@ -1,0 +1,203 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Average Monthly Rainfall by Continent",
+    "data": {
+        "values": [
+            {
+                "Month": "January",
+                "Continent 1": 50,
+                "Continent 2": 80,
+                "Continent 3": 100,
+                "Continent 4": 70,
+                "Continent 5": 60
+            },
+            {
+                "Month": "February",
+                "Continent 1": 40,
+                "Continent 2": 90,
+                "Continent 3": 95,
+                "Continent 4": 60,
+                "Continent 5": 70
+            },
+            {
+                "Month": "March",
+                "Continent 1": 55,
+                "Continent 2": 75,
+                "Continent 3": 110,
+                "Continent 4": 85,
+                "Continent 5": 65
+            },
+            {
+                "Month": "April",
+                "Continent 1": 70,
+                "Continent 2": 60,
+                "Continent 3": 120,
+                "Continent 4": 80,
+                "Continent 5": 75
+            },
+            {
+                "Month": "May",
+                "Continent 1": 85,
+                "Continent 2": 65,
+                "Continent 3": 130,
+                "Continent 4": 90,
+                "Continent 5": 80
+            },
+            {
+                "Month": "June",
+                "Continent 1": 95,
+                "Continent 2": 70,
+                "Continent 3": 140,
+                "Continent 4": 100,
+                "Continent 5": 85
+            },
+            {
+                "Month": "July",
+                "Continent 1": 100,
+                "Continent 2": 85,
+                "Continent 3": 150,
+                "Continent 4": 110,
+                "Continent 5": 90
+            },
+            {
+                "Month": "August",
+                "Continent 1": 90,
+                "Continent 2": 80,
+                "Continent 3": 145,
+                "Continent 4": 105,
+                "Continent 5": 95
+            },
+            {
+                "Month": "September",
+                "Continent 1": 85,
+                "Continent 2": 75,
+                "Continent 3": 135,
+                "Continent 4": 95,
+                "Continent 5": 100
+            },
+            {
+                "Month": "October",
+                "Continent 1": 70,
+                "Continent 2": 60,
+                "Continent 3": 120,
+                "Continent 4": 85,
+                "Continent 5": 90
+            },
+            {
+                "Month": "November",
+                "Continent 1": 60,
+                "Continent 2": 55,
+                "Continent 3": 110,
+                "Continent 4": 80,
+                "Continent 5": 75
+            },
+            {
+                "Month": "December",
+                "Continent 1": 50,
+                "Continent 2": 45,
+                "Continent 3": 100,
+                "Continent 4": 70,
+                "Continent 5": 65
+            }
+        ]
+    },
+    "width": 1000,
+    "height": 600,
+    "transform": [
+        {
+            "fold": [
+                "Continent 1",
+                "Continent 2",
+                "Continent 3",
+                "Continent 4",
+                "Continent 5"
+            ],
+            "as": [
+                "Continent",
+                "Rainfall"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "line",
+        "point": true
+    },
+    "encoding": {
+        "x": {
+            "field": "Month",
+            "type": "ordinal",
+            "title": "Month",
+            "axis": {
+                "labelAngle": 0
+            }
+        },
+        "y": {
+            "field": "Rainfall",
+            "type": "quantitative",
+            "title": "Average Rainfall (mm)",
+            "axis": {
+                "labelAngle": 0
+            },
+            "scale": {
+                "reverse": true
+            }
+        },
+        "color": {
+            "field": "Continent",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Continent 1",
+                    "Continent 2",
+                    "Continent 3",
+                    "Continent 4",
+                    "Continent 5"
+                ],
+                "range": [
+                    "#ff0000",
+                    "#00ff00",
+                    "#0000ff",
+                    "#ff00ff",
+                    "#00ffff"
+                ]
+            },
+            "title": "Continent"
+        },
+        "tooltip": [
+            {
+                "field": "Month",
+                "type": "nominal"
+            },
+            {
+                "field": "Continent",
+                "type": "nominal"
+            },
+            {
+                "field": "Rainfall",
+                "type": "quantitative"
+            }
+        ]
+    },
+    "layer": [
+        {
+            "mark": "line"
+        },
+        {
+            "mark": "text",
+            "encoding": {
+                "text": {
+                    "field": "Rainfall",
+                    "type": "quantitative"
+                },
+                "x": {
+                    "field": "Month",
+                    "type": "ordinal"
+                },
+                "y": {
+                    "field": "Rainfall",
+                    "type": "quantitative"
+                }
+            }
+        }
+    ]
+}

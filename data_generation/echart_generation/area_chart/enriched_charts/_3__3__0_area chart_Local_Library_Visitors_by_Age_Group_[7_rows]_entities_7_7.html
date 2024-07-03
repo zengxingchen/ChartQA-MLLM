@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {renderer: 'canvas', width: '800', height: '600'});
+var app = {};
+
+var option;
+
+option = {
+  title: {
+    text: 'Education Budget Trends',
+    left: 'center'
+  },
+  tooltip: {
+    trigger: 'axis'
+  },
+  legend: {
+      data: ['Budget'],
+      top: '5%'
+  },
+  grid: {
+    left: '3%',
+    right: '4%',
+    bottom: '3%',
+    containLabel: true
+  },
+  xAxis: {
+    type: 'category',
+    boundaryGap: false,
+    data: [
+      '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007',
+      '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015',
+      '2016', '2017', '2018', '2019', '2020'
+    ]
+  },
+  yAxis: {
+    type: 'value',
+    axisLabel: {
+      formatter: '${value}'
+    }
+  },
+  series: [
+    {
+      name: 'Budget',
+      type: 'line',
+      stack: 'total',
+      areaStyle: {},
+      emphasis: {
+          focus: 'series'
+      },
+      data: [
+        45000, 44500, 44000, 43500, 43000, 42500, 42000, 41500,
+        41000, 40500, 40000, 39500, 39000, 38500, 38000, 37500,
+        37000, 36500, 36000, 35500, 35000
+       ],
+      markPoint: {
+        data: [
+          {type: 'max', name: 'Max'},
+          {type: 'min', name: 'Min'}
+        ]
+      },
+      color: [
+        'rgba(220, 20, 60, 0.8)' // Crimson color with some transparency
+      ]
+    }
+  ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

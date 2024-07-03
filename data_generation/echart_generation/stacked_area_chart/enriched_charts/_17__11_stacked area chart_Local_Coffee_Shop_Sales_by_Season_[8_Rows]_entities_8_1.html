@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 400});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Celestial Body Observations Over a Year',
+        left: 'center',
+        top: 20
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['Mars Observations', 'Jupiter Observations', 'Saturn Observations'],
+        top: 50
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Mars Observations',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [20, 22, 25, 28, 26, 24, 30, 32, 34, 36, 38, 40],
+            color: '#ff6f61', // Mars color
+        },
+        {
+            name: 'Jupiter Observations',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [25, 28, 30, 35, 33, 32, 40, 42, 43, 45, 50, 55],
+            color: '#ffd662', // Jupiter color
+        },
+        {
+            name: 'Saturn Observations',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [15, 18, 20, 22, 24, 26, 28, 30, 35, 38, 40, 42],
+            color: '#68b0ab', // Saturn color
+        }
+    ],
+    markPoint: {
+        data: [
+            {type: 'max', name: 'Max', seriesName: 'Mars Observations', symbol: 'diamond'},
+            {type: 'max', name: 'Max', seriesName: 'Jupiter Observations', symbol: 'circle'},
+            {type: 'max', name: 'Max', seriesName: 'Saturn Observations', symbol: 'triangle'}
+        ]
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,169 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+        "values": [
+            {
+                "Year": "2010",
+                "Solar": 120,
+                "Wind": 150,
+                "Hydro": 350,
+                "Geothermal": 80
+            },
+            {
+                "Year": "2011",
+                "Solar": 140,
+                "Wind": 180,
+                "Hydro": 370,
+                "Geothermal": 85
+            },
+            {
+                "Year": "2012",
+                "Solar": 160,
+                "Wind": 200,
+                "Hydro": 380,
+                "Geothermal": 90
+            },
+            {
+                "Year": "2013",
+                "Solar": 200,
+                "Wind": 240,
+                "Hydro": 400,
+                "Geothermal": 95
+            },
+            {
+                "Year": "2014",
+                "Solar": 220,
+                "Wind": 260,
+                "Hydro": 420,
+                "Geothermal": 100
+            },
+            {
+                "Year": "2015",
+                "Solar": 250,
+                "Wind": 300,
+                "Hydro": 450,
+                "Geothermal": 110
+            },
+            {
+                "Year": "2016",
+                "Solar": 300,
+                "Wind": 330,
+                "Hydro": 460,
+                "Geothermal": 120
+            },
+            {
+                "Year": "2017",
+                "Solar": 350,
+                "Wind": 360,
+                "Hydro": 470,
+                "Geothermal": 125
+            },
+            {
+                "Year": "2018",
+                "Solar": 400,
+                "Wind": 390,
+                "Hydro": 480,
+                "Geothermal": 130
+            },
+            {
+                "Year": "2019",
+                "Solar": 450,
+                "Wind": 420,
+                "Hydro": 500,
+                "Geothermal": 135
+            },
+            {
+                "Year": "2020",
+                "Solar": 500,
+                "Wind": 450,
+                "Hydro": 520,
+                "Geothermal": 140
+            }
+        ]
+    },
+    "width": 800,
+    "height": 400,
+    "title": {
+        "text": "Renewable Energy Production Over Time",
+        "anchor": "start",
+        "offset": 5,
+        "frame": "group"
+    },
+    "transform": [
+        {
+            "fold": [
+                "Solar",
+                "Wind",
+                "Hydro",
+                "Geothermal"
+            ],
+            "as": [
+                "Energy Type",
+                "Production"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "area",
+        "opacity": 0.6
+    },
+    "encoding": {
+        "x": {
+            "field": "Year",
+            "type": "ordinal",
+            "title": "Year",
+            "axis": {
+                "labelAngle": 0
+            }
+        },
+        "y": {
+            "field": "Production",
+            "type": "quantitative",
+            "title": "Energy Production (in GWh)",
+            "stack": "zero"
+        },
+        "color": {
+            "field": "Energy Type",
+            "type": "nominal",
+            "scale": {
+                "range": [
+                    "#ff8c00",
+                    "#6b486b",
+                    "#a05d56",
+                    "#d0743c"
+                ]
+            },
+            "title": "Type of Energy",
+            "legend": {
+                "orient": "top-left",
+                "titleOrient": "left"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Year",
+                "type": "ordinal"
+            },
+            {
+                "field": "Energy Type",
+                "type": "nominal"
+            },
+            {
+                "field": "Production",
+                "type": "quantitative",
+                "title": "Energy Production"
+            }
+        ]
+    },
+    "config": {
+        "view": {
+            "stroke": "transparent"
+        },
+        "axis": {
+            "domainWidth": 1
+        },
+        "title": {
+            "fontSize": 14
+        }
+    }
+}

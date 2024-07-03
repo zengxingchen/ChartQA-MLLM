@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+option = {
+    title: {
+        text: 'Car Sales Over Time by Fuel Types',
+        left: 'center',
+        top: '20'
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['Electric Cars', 'Hybrid Cars', 'Diesel Cars', 'Petrol Cars'],
+        left: 10,
+        top: '50',
+        orient: 'vertical'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ['2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', 
+               '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Electric Cars',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: { focus: 'series' },
+            data: [10, 15, 20, 25, 30, 35, 40, 45, 50, 60, 70, 85, 100, 120, 135, 150, 170, 190, 210, 230],
+            color: '#35a9e0'
+        },
+        {
+            name: 'Hybrid Cars',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: { focus: 'series' },
+            data: [20, 25, 30, 35, 40, 45, 50, 55, 60, 70, 85, 100, 110, 125, 140, 155, 165, 180, 200, 220],
+            color: '#90cd58'
+        },
+        {
+            name: 'Diesel Cars',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: { focus: 'series' },
+            data: [200, 180, 160, 150, 140, 130, 120, 110, 100, 90, 80, 70, 60, 50, 40, 30, 25, 20, 15, 10],
+            color: '#ffa500'
+        },
+        {
+            name: 'Petrol Cars',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: { focus: 'series' },
+            data: [300, 280, 270, 260, 250, 240, 230, 220, 210, 200, 195, 190, 185, 175, 165, 155, 145, 135, 125, 115],
+            color: '#ff4500'
+        }
+    ]
+};
+
+app.title = 'stacked area chart';
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

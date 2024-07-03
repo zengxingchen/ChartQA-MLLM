@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Economic Sector Contributions Over Years',
+        subtext: 'Economics & Finance',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            // Use axis to trigger tooltip
+            type: 'shadow' // 'shadow' as default; can also be 'line' or 'shadow'
+        }
+    },
+    legend: {
+        data: ['Agriculture', 'Industry', 'Services'],
+        top: '10%'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: true
+    },
+    yAxis: {
+        type: 'category',
+        data: ['2016', '2017', '2018', '2019', '2020', '2021']
+    },
+    series: [
+        {
+            name: 'Agriculture',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                formatter: '{c}%'
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [12.4, 11.9, 11.7, 10.5, 10.2, 10.0],
+            color: '#228B22', // ForestGreen
+            barWidth: 35
+        },
+        {
+            name: 'Industry',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                formatter: '{c}%'
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [30.5, 31.1, 31.8, 33.2, 34.3, 35.0],
+            color: '#4682B4', // SteelBlue
+            barWidth: 35
+        },
+        {
+            name: 'Services',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                formatter: '{c}%'
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [57.1, 57.0, 56.5, 56.3, 55.5, 55.0],
+            color: '#D2691E', // Chocolate
+            barWidth: 35
+        }
+    ],
+    option: {
+        series: {
+            barWidth: 35
+        }
+    },
+    toolbox: {
+        show: true,
+        feature: {
+            saveAsImage: { show: true }
+        }
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

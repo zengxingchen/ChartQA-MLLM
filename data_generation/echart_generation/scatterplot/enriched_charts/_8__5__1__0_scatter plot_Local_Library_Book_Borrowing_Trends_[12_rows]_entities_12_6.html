@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var app = {};
+
+var option = {
+    title: {
+        text: 'Fitness Progress Over Time',
+        left: 'center',
+        top: '10%'
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: function (params) {
+            return 'Day: ' + params.value[0] + '<br>Score: ' + params.value[1];
+        }
+    },
+    legend: {
+        data: ['Fitness Score'],
+        left: 'left',
+        top: '10%'
+    },
+    xAxis: {
+        name: 'Day',
+        type: 'value'
+    },
+    yAxis: {
+        name: 'Fitness Score',
+        type: 'value'
+    },
+    series: [{
+        name: 'Fitness Score',
+        type: 'scatter',
+        itemStyle: {
+            color: '#FF5733'
+        },
+        data: [
+            [1, 20], [2, 18], [3, 16], [4, 15], [5, 14], [6, 13], [7, 12], [8, 11], [9, 10], [10, 9], 
+            [11, 8], [12, 7], [13, 6], [14, 5], [15, 4], [16, 3], [17, 2], [18, 1], [19, 0], [20, -1], 
+            [21, -2], [22, -3], [23, -4], [24, -5], [25, -6], [26, -5], [27, -4], [28, -3], [29, -2], [30, -1], 
+            [31, 0], [32, 1], [33, 2], [34, 3], [35, 4], [36, 5], [37, 6], [38, 7], [39, 8], [40, 9], 
+            [41, 10], [42, 11], [43, 12], [44, 13], [45, 14], [46, 15], [47, 16], [48, 17], [49, 18], [50, 19]
+        ]
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

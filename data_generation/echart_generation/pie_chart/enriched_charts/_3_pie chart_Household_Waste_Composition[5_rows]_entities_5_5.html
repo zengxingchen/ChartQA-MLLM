@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var app = {};
+
+var option;
+
+option = {
+  title: {
+    text: 'Programming Languages Popularity in 2023',
+    left: 'center',
+    top: 20,
+    textStyle: {
+      color: '#333',
+      fontSize: 24
+    }
+  },
+  tooltip: {
+    trigger: 'item'
+  },
+  legend: {
+    orient: 'vertical',
+    left: 'left',
+    top: 'middle',
+    textStyle: {
+      color: '#666'
+    }
+  },
+  series: [
+    {
+      name: 'Percentage',
+      type: 'pie',
+      radius: '50%',
+      data: [
+        { value: 15.4, name: 'JavaScript' },
+        { value: 14.3, name: 'Python' },
+        { value: 11.7, name: 'Java' },
+        { value: 9.2, name: 'C#' },
+        { value: 6.9, name: 'PHP' },
+        { value: 5.4, name: 'TypeScript' },
+        { value: 5.1, name: 'C++' },
+        { value: 4.7, name: 'Ruby' },
+        { value: 4.2, name: 'Swift' },
+        { value: 3.5, name: 'Objective-C' },
+        { value: 3.0, name: 'Kotlin' },
+        { value: 2.8, name: 'Go' },
+        { value: 2.6, name: 'R' },
+        { value: 2.3, name: 'Rust' },
+        { value: 1.8, name: 'Dart' },
+        { value: 1.5, name: 'Scala' },
+        { value: 1.2, name: 'Perl' },
+        { value: 0.9, name: 'Haskell' },
+        { value: 0.7, name: 'Lua' },
+        { value: 0.5, name: 'Elm' }
+      ],
+      emphasis: {
+        itemStyle: {
+          shadowBlur: 10,
+          shadowOffsetX: 0,
+          shadowColor: 'rgba(0, 0, 0, 0.5)'
+        }
+      },
+      label: {
+        formatter: '{b}: {d}%',
+        color: '#000',
+      }
+    }
+  ],
+  color: [
+    '#e6194b', '#3cb44b', '#ffe119', '#4363d8', '#f58231',
+    '#911eb4', '#46f0f0', '#f032e6', '#bcf60c', '#fabebe',
+    '#008080', '#e6beff', '#9a6324', '#fffac8', '#800000',
+    '#aaffc3', '#808000', '#ffd8b1', '#000075', '#808080'
+  ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

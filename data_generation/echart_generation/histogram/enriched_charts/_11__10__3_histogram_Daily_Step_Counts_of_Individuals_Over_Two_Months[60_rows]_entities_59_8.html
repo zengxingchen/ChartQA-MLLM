@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var app = {};
+
+var data = [
+    1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2.0,
+    2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 2.7, 2.8, 2.9, 3.0,
+    3.1, 3.2, 3.3, 3.4, 3.5, 3.6, 3.7, 3.8, 3.9, 4.0,
+    4.1, 4.2, 4.3, 4.4, 4.5, 4.6, 4.7, 4.8, 4.9, 5.0,
+    5.1, 5.2, 5.3, 5.4, 5.5, 5.6, 5.7, 5.8, 5.9, 6.0,
+    6.1, 6.2, 6.3, 6.4, 6.5, 6.6, 6.7, 6.8, 6.9, 7.0,
+    7.1, 7.2, 7.3, 7.4, 7.5, 7.6, 7.7, 7.8, 7.9, 8.0,
+    8.1, 8.2, 8.3, 8.4, 8.5, 8.6, 8.7, 8.8, 8.9, 9.0,
+    9.1, 9.2, 9.3, 9.4, 9.5, 9.6, 9.7, 9.8, 9.9, 10.0
+];
+
+var option = {
+    title: {
+        text: 'Distribution of Sample Values',
+        left: 'center',
+        top: '10%'
+    },
+    tooltip: {},
+    xAxis: {
+        type: 'category',
+        data: ['1-2', '2-3', '3-4', '4-5', '5-6', '6-7', '7-8', '8-9', '9-10']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [{
+        name: 'Frequency',
+        type: 'bar',
+        data: [
+            data.filter(v => v >= 1 && v < 2).length,
+            data.filter(v => v >= 2 && v < 3).length,
+            data.filter(v => v >= 3 && v < 4).length,
+            data.filter(v => v >= 4 && v < 5).length,
+            data.filter(v => v >= 5 && v < 6).length,
+            data.filter(v => v >= 6 && v < 7).length,
+            data.filter(v => v >= 7 && v < 8).length,
+            data.filter(v => v >= 8 && v < 9).length,
+            data.filter(v => v >= 9 && v <= 10).length
+        ],
+        itemStyle: {
+            color: '#3498db'
+        },
+        barWidth: '40%',
+        label: {
+            show: true,
+            position: 'top',
+            formatter: '{c}'
+        }
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

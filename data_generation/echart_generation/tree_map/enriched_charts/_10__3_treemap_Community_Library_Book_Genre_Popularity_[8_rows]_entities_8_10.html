@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var option;
+
+option = {
+    title: {
+        text: 'Diverse Global Cuisines',
+        left: 'center',
+        top: 20
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: '{b}: {c}'
+    },
+    series: [{
+        type: 'treemap',
+        width: '90%',
+        height: '80%',
+        top: '15%',
+        data: [
+            {
+                name: 'Europe',
+                value: 105,
+                children: [
+                    { name: 'Italian Cuisine', value: 40 },
+                    { name: 'French Cuisine', value: 35 },
+                    { name: 'Spanish Cuisine', value: 30 }
+                ]
+            },
+            {
+                name: 'Asia',
+                value: 180,
+                children: [
+                    { name: 'Chinese Cuisine', value: 50 },
+                    { name: 'Japanese Cuisine', value: 45 },
+                    { name: 'Indian Cuisine', value: 60 },
+                    { name: 'Thai Cuisine', value: 25 }
+                ]
+            },
+            {
+                name: 'North America',
+                value: 95,
+                children: [
+                    { name: 'Mexican Cuisine', value: 55 },
+                    { name: 'American Cuisine', value: 40 }
+                ]
+            },
+            {
+                name: 'South America',
+                value: 55,
+                children: [
+                    { name: 'Brazilian Cuisine', value: 30 },
+                    { name: 'Argentinian Cuisine', value: 25 }
+                ]
+            },
+            {
+                name: 'Africa',
+                value: 35,
+                children: [
+                    { name: 'Moroccan Cuisine', value: 20 },
+                    { name: 'Ethiopian Cuisine', value: 15 }
+                ]
+            },
+            {
+                name: 'Oceania',
+                value: 10,
+                children: [
+                    { name: 'Australian Cuisine', value: 10 }
+                ]
+            }
+        ],
+        color: ['#FFA07A', '#8A2BE2', '#5F9EA0', '#D2691E', '#FF7F50', '#6495ED', '#DC143C']
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Yearly Revenue in the Gaming Industry by Region (in billions)',
+        left: 'center',
+        top: 20
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['North America', 'Europe', 'Asia', 'Rest of the World'],
+        top: 50
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ['2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'North America',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [25.1, 26.3, 27.5, 28.8, 30.2, 31.7, 33.5, 36.0, 37.9, 40.0],
+            color: '#1f77b4'
+        },
+        {
+            name: 'Europe',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [20.0, 20.5, 21.0, 21.6, 22.4, 23.4, 24.3, 25.5, 26.0, 27.0],
+            color: '#ff7f0e'
+        },
+        {
+            name: 'Asia',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [18.1, 18.9, 19.8, 21.0, 22.5, 24.3, 26.0, 28.0, 29.5, 31.4],
+            color: '#2ca02c'
+        },
+        {
+            name: 'Rest of the World',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [8.5, 9.0, 9.5, 10.1, 10.8, 11.6, 12.5, 13.7, 14.2, 15.0],
+            color: '#d62728'
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

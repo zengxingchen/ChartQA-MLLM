@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, { width: 800, height: 600 });
+var option;
+
+option = {
+    title: {
+        text: 'Investment in Future Technologies (2020-2024)',
+        left: 'center',
+        textStyle: {
+            color: '#333333',
+            fontSize: 20
+        }
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['2020', '2021', '2022', '2023', '2024'],
+        top: 'bottom'
+    },
+    xAxis: {
+        type: 'category',
+        data: ['Electric Vehicles', 'Renewable Energy', 'AI & Robotics', 'Biotechnology', 'Quantum Computing'],
+        axisLabel: {
+            textStyle: {
+                color: '#333333',
+                fontSize: 12
+            }
+        }
+    },
+    yAxis: {
+        type: 'value',
+        axisLabel: {
+            textStyle: {
+                color: '#333333',
+                fontSize: 12
+            }
+        }
+    },
+    series: [
+        {
+            name: '2020',
+            type: 'bar',
+            data: [20000, 15000, 10000, 8000, 5000],
+            itemStyle: {
+                color: '#1f77b4'
+            },
+            barWidth: 20
+        },
+        {
+            name: '2021',
+            type: 'bar',
+            data: [25000, 20000, 15000, 12000, 7000],
+            itemStyle: {
+                color: '#ff7f0e'
+            },
+            barWidth: 20
+        },
+        {
+            name: '2022',
+            type: 'bar',
+            data: [30000, 25000, 20000, 18000, 10000],
+            itemStyle: {
+                color: '#2ca02c'
+            },
+            barWidth: 20
+        },
+        {
+            name: '2023',
+            type: 'bar',
+            data: [40000, 30000, 25000, 24000, 15000],
+            itemStyle: {
+                color: '#d62728'
+            },
+            barWidth: 20
+        },
+        {
+            name: '2024',
+            type: 'bar',
+            data: [50000, 35000, 30000, 30000, 20000],
+            itemStyle: {
+                color: '#9467bd'
+            },
+            barWidth: 20
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

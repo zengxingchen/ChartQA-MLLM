@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var option;
+
+option = {
+    title: {
+        text: 'Annual Revenue Growth',
+        left: 'center',
+        top: '10%'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    color: ['#FF5733', '#33FF57', '#3357FF', '#FF33A1', '#FFD333', '#33FFD8', '#FF6F33', '#B833FF', '#33A1FF'],
+    xAxis: {
+        type: 'category',
+        data: ['2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023'],
+        axisLabel: {
+            textStyle: {
+                fontSize: 12,
+                fontWeight: 'bold'
+            }
+        }
+    },
+    yAxis: {
+        type: 'value',
+        axisLabel: {
+            formatter: '{value} M'
+        }
+    },
+    series: [{
+        name: 'Revenue',
+        type: 'bar',
+        data: [120, 150, 180, 220, 260, 300, 340, 380, 420],
+        barWidth: '60%',
+        label: {
+            show: true,
+            position: 'top',
+            formatter: '{c} M'
+        }
+    }],
+    grid: {
+        top: '20%',
+        left: '10%',
+        right: '10%',
+        bottom: '10%',
+        containLabel: true
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

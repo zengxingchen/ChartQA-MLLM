@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 800,
+    height: 600
+});
+var option;
+option = {
+    title: {
+        text: 'Art & Nature Statistics',
+        left: 'center',
+        top: '10'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Art', 'Nature', 'Health'],
+        top: 'bottom'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '10%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01],
+        axisLabel: {
+            show: true,
+            textStyle: {
+                fontSize: 12
+            }
+        }
+    },
+    yAxis: {
+        type: 'category',
+        data: ['Painting', 'Sculpture', 'Digital', 'Animals', 'Plants', 'Geography', 'Exercise', 'Nutrition', 'Mental'],
+        axisLabel: {
+            show: true,
+            textStyle: {
+                fontSize: 12
+            }
+        }
+    },
+    series: [
+        {
+            name: 'Art',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            itemStyle: {
+                color: '#FF6347'
+            },
+            data: [120, 90, 150, 0, 0, 0, 0, 0, 0]
+        },
+        {
+            name: 'Nature',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            itemStyle: {
+                color: '#4682B4'
+            },
+            data: [0, 0, 0, 130, 110, 100, 0, 0, 0]
+        },
+        {
+            name: 'Health',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            itemStyle: {
+                color: '#3CB371'
+            },
+            data: [0, 0, 0, 0, 0, 0, 140, 160, 80]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

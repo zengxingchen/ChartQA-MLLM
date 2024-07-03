@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+// Prepare the data
+var data = [{'Year': 2013, 'Fitness Center A': 450, 'Fitness Center B': 375, 'Fitness Center C': 320, 'Fitness Center D': 500, 'Fitness Center E': 250}, {'Year': 2014, 'Fitness Center A': 460, 'Fitness Center B': 400, 'Fitness Center C': 330, 'Fitness Center D': 550, 'Fitness Center E': 300}, {'Year': 2015, 'Fitness Center A': 470, 'Fitness Center B': 420, 'Fitness Center C': 350, 'Fitness Center D': 540, 'Fitness Center E': 320}, {'Year': 2016, 'Fitness Center A': 480, 'Fitness Center B': 430, 'Fitness Center C': 370, 'Fitness Center D': 530, 'Fitness Center E': 330}, {'Year': 2017, 'Fitness Center A': 500, 'Fitness Center B': 450, 'Fitness Center C': 400, 'Fitness Center D': 560, 'Fitness Center E': 340}, {'Year': 2018, 'Fitness Center A': 530, 'Fitness Center B': 470, 'Fitness Center C': 420, 'Fitness Center D': 580, 'Fitness Center E': 350}, {'Year': 2019, 'Fitness Center A': 550, 'Fitness Center B': 490, 'Fitness Center C': 440, 'Fitness Center D': 600, 'Fitness Center E': 370}, {'Year': 2020, 'Fitness Center A': 400, 'Fitness Center B': 320, 'Fitness Center C': 300, 'Fitness Center D': 450, 'Fitness Center E': 300}, {'Year': 2021, 'Fitness Center A': 420, 'Fitness Center B': 330, 'Fitness Center C': 310, 'Fitness Center D': 460, 'Fitness Center E': 310}, {'Year': 2022, 'Fitness Center A': 460, 'Fitness Center B': 410, 'Fitness Center C': 400, 'Fitness Center D': 520, 'Fitness Center E': 350}, {'Year': 2023, 'Fitness Center A': 480, 'Fitness Center B': 430, 'Fitness Center C': 420, 'Fitness Center D': 550, 'Fitness Center E': 370}];
+
+// Extract year data for the xAxis
+var years = data.map(function (item) {
+    return item.Year;
+});
+
+// Extract data for Fitness Centers A-E
+var fitnessDataA = data.map(function (item) {
+    return item['Fitness Center A'];
+});
+var fitnessDataB = data.map(function (item) {
+    return item['Fitness Center B'];
+});
+var fitnessDataC = data.map(function (item) {
+    return item['Fitness Center C'];
+});
+var fitnessDataD = data.map(function (item) {
+    return item['Fitness Center D'];
+});
+var fitnessDataE = data.map(function (item) {
+    return item['Fitness Center E'];
+});
+
+// Set up visual encoding for colors, axis, tooltip, etc.
+option = {
+    color: ['#003366', '#006699', '#4cabce', '#e5323e', '#6fbe44'],
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Fitness Center A', 'Fitness Center B', 'Fitness Center C', 'Fitness Center D', 'Fitness Center E']
+    },
+    toolbox: {
+        show: true,
+        feature: {
+            dataView: { show: true, readOnly: false },
+            restore: { show: true },
+            saveAsImage: { show: true }
+        }
+    },
+    calculable: true,
+    xAxis: [
+        {
+            type: 'category',
+            axisTick: { show: false },
+            data: years
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value'
+        }
+    ],
+    series: [
+        {
+            name: 'Fitness Center A',
+            type: 'bar',
+            emphasis: {
+                focus: 'series'
+            },
+            data: fitnessDataA
+        },
+        {
+            name: 'Fitness Center B',
+            type: 'bar',
+            emphasis: {
+                focus: 'series'
+            },
+            data: fitnessDataB
+        },
+        {
+            name: 'Fitness Center C',
+            type: 'bar',
+            emphasis: {
+                focus: 'series'
+            },
+            data: fitnessDataC
+        },
+        {
+            name: 'Fitness Center D',
+            type: 'bar',
+            emphasis: {
+                focus: 'series'
+            },
+            data: fitnessDataD
+        },
+        {
+            name: 'Fitness Center E',
+            type: 'bar',
+            emphasis: {
+                focus: 'series'
+            },
+            data: fitnessDataE
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

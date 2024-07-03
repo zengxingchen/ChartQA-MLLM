@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var option;
+
+option = {
+    title: {
+        text: 'Project Phases Analysis',
+        left: 'center',
+        top: 20
+    },
+    legend: {
+        data: ['Brainstorming', 'Planning', 'Design', 'Implementation'],
+        top: 60,
+        left: 'center'
+    },
+    xAxis: {
+        type: 'value',
+        name: 'Days',
+        min: 0,
+        max: 60
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Effort (hours)',
+        min: 0,
+        max: 700
+    },
+    series: [
+        {
+            name: 'Brainstorming',
+            type: 'scatter',
+            data: [
+                [5, 120], [10, 300], [15, 210], [20, 450], [25, 320],
+                [30, 500], [35, 470], [40, 600], [45, 560], [50, 630]
+            ],
+            itemStyle: {
+                color: '#FF5733'
+            }
+        },
+        {
+            name: 'Planning',
+            type: 'scatter',
+            data: [
+                [5, 80], [10, 220], [15, 130], [20, 280], [25, 200],
+                [30, 400], [35, 370], [40, 510], [45, 470], [50, 550]
+            ],
+            itemStyle: {
+                color: '#33FF57'
+            }
+        },
+        {
+            name: 'Design',
+            type: 'scatter',
+            data: [
+                [5, 140], [10, 260], [15, 180], [20, 360], [25, 290],
+                [30, 420], [35, 390], [40, 540], [45, 490], [50, 610]
+            ],
+            itemStyle: {
+                color: '#3357FF'
+            }
+        },
+        {
+            name: 'Implementation',
+            type: 'scatter',
+            data: [
+                [5, 100], [10, 240], [15, 160], [20, 310], [25, 230],
+                [30, 440], [35, 410], [40, 570], [45, 530], [50, 590]
+            ],
+            itemStyle: {
+                color: '#FF33A8'
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

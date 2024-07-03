@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Renewable Energy Production by Source (2016-2025)',
+        left: 'center',
+        top: 20
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        top: 50,
+        left: 'center',
+        data: ['Solar', 'Wind', 'Hydro', 'Geothermal', 'Biomass']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        data: ['2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'],
+        axisLabel: {
+            rotate: 45,
+            interval: 0
+        }
+    },
+    yAxis: {
+        type: 'value',
+        axisLabel: {
+            formatter: '{value} TWh'
+        }
+    },
+    series: [
+        {
+            name: 'Solar',
+            type: 'bar',
+            stack: 'Total',
+            label: {
+                show: true
+            },
+            itemStyle: {
+                color: '#FFA500'
+            },
+            data: [50, 70, 90, 110, 130, 150, 170, 190, 210, 230]
+        },
+        {
+            name: 'Wind',
+            type: 'bar',
+            stack: 'Total',
+            label: {
+                show: true
+            },
+            itemStyle: {
+                color: '#87CEEB'
+            },
+            data: [80, 90, 100, 115, 125, 135, 145, 155, 165, 175]
+        },
+        {
+            name: 'Hydro',
+            type: 'bar',
+            stack: 'Total',
+            label: {
+                show: true
+            },
+            itemStyle: {
+                color: '#4682B4'
+            },
+            data: [120, 130, 135, 140, 150, 160, 170, 180, 190, 200]
+        },
+        {
+            name: 'Geothermal',
+            type: 'bar',
+            stack: 'Total',
+            label: {
+                show: true
+            },
+            itemStyle: {
+                color: '#6B8E23'
+            },
+            data: [30, 40, 50, 55, 60, 65, 70, 75, 80, 85]
+        },
+        {
+            name: 'Biomass',
+            type: 'bar',
+            stack: 'Total',
+            label: {
+                show: true
+            },
+            itemStyle: {
+                color: '#8B4513'
+            },
+            data: [60, 65, 70, 75, 80, 85, 90, 95, 100, 105]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

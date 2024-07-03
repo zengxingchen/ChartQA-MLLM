@@ -1,0 +1,191 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": 600,
+    "height": 400,
+    "data": {
+        "values": [
+            {
+                "Month": "January",
+                "IT": 20000,
+                "Marketing": 18000,
+                "Sales": 24000,
+                "HR": 8000,
+                "R&D": 15000
+            },
+            {
+                "Month": "February",
+                "IT": 22000,
+                "Marketing": 18500,
+                "Sales": 25000,
+                "HR": 8500,
+                "R&D": 16000
+            },
+            {
+                "Month": "March",
+                "IT": 23000,
+                "Marketing": 19000,
+                "Sales": 26000,
+                "HR": 9000,
+                "R&D": 16500
+            },
+            {
+                "Month": "April",
+                "IT": 24000,
+                "Marketing": 19500,
+                "Sales": 27000,
+                "HR": 9500,
+                "R&D": 17500
+            },
+            {
+                "Month": "May",
+                "IT": 25000,
+                "Marketing": 20000,
+                "Sales": 28000,
+                "HR": 10000,
+                "R&D": 18000
+            },
+            {
+                "Month": "June",
+                "IT": 26000,
+                "Marketing": 20500,
+                "Sales": 29000,
+                "HR": 11000,
+                "R&D": 18500
+            },
+            {
+                "Month": "July",
+                "IT": 27000,
+                "Marketing": 21000,
+                "Sales": 30000,
+                "HR": 11500,
+                "R&D": 19000
+            },
+            {
+                "Month": "August",
+                "IT": 28000,
+                "Marketing": 21500,
+                "Sales": 31000,
+                "HR": 12000,
+                "R&D": 20000
+            },
+            {
+                "Month": "September",
+                "IT": 29000,
+                "Marketing": 22000,
+                "Sales": 32000,
+                "HR": 12500,
+                "R&D": 21000
+            },
+            {
+                "Month": "October",
+                "IT": 30000,
+                "Marketing": 22500,
+                "Sales": 33000,
+                "HR": 13000,
+                "R&D": 21500
+            },
+            {
+                "Month": "November",
+                "IT": 31000,
+                "Marketing": 23000,
+                "Sales": 34000,
+                "HR": 13500,
+                "R&D": 22000
+            },
+            {
+                "Month": "December",
+                "IT": 32000,
+                "Marketing": 23500,
+                "Sales": 35000,
+                "HR": 14000,
+                "R&D": 23000
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "IT",
+                "Marketing",
+                "Sales",
+                "HR",
+                "R&D"
+            ],
+            "as": [
+                "Department",
+                "Revenue"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "area",
+        "opacity": 0.7
+    },
+    "encoding": {
+        "x": {
+            "field": "Month",
+            "type": "ordinal",
+            "title": "Month"
+        },
+        "y": {
+            "field": "Revenue",
+            "type": "quantitative",
+            "title": "Monthly Revenue",
+            "stack": "zero"
+        },
+        "color": {
+            "field": "Department",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "IT",
+                    "Marketing",
+                    "Sales",
+                    "HR",
+                    "R&D"
+                ],
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e",
+                    "#2ca02c",
+                    "#d62728",
+                    "#9467bd"
+                ]
+            },
+            "title": "Department"
+        },
+        "tooltip": [
+            {
+                "field": "Department",
+                "type": "nominal"
+            },
+            {
+                "field": "Revenue",
+                "type": "quantitative",
+                "format": ",.0f"
+            }
+        ]
+    },
+    "title": {
+        "text": "Monthly Revenue by Department",
+        "fontSize": 18,
+        "subtitleFontSize": 12,
+        "anchor": "start",
+        "color": "black"
+    },
+    "config": {
+        "axis": {
+            "labelFontSize": 12,
+            "titleFontSize": 14
+        },
+        "legend": {
+            "labelFontSize": 12,
+            "titleFontSize": 14
+        },
+        "style": {
+            "cell": {
+                "stroke": "transparent"
+            }
+        }
+    }
+}

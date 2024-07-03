@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {renderer: 'canvas', width: '600', height: '400'});
+
+var option;
+
+const data = [
+    ['1970', 3.5], ['1971', 3.7], ['1972', 4.0], ['1973', 4.3], ['1974', 4.1],
+    ['1975', 3.8], ['1976', 4.2], ['1977', 4.5], ['1978', 4.8], ['1979', 5.0],
+    ['1980', 5.3], ['1981', 5.1], ['1982', 4.9], ['1983', 4.7], ['1984', 5.1],
+    ['1985', 5.4], ['1986', 5.6], ['1987', 5.9], ['1988', 6.1], ['1989', 6.0],
+    ['1990', 5.8], ['1991', 5.2], ['1992', 5.5], ['1993', 5.7], ['1994', 5.9],
+    ['1995', 6.2], ['1996', 6.0], ['1997', 6.3], ['1998', 6.5], ['1999', 6.1],
+    ['2000', 5.5], ['2001', 5.9], ['2002', 5.8], ['2003', 6.0], ['2004', 6.4],
+    ['2005', 6.8], ['2006', 7.0], ['2007', 7.3], ['2008', 7.0], ['2009', 5.7],
+    ['2010', 6.1], ['2011', 6.4], ['2012', 6.6], ['2013', 6.9], ['2014', 7.1],
+    ['2015', 6.8], ['2016', 6.5], ['2017', 6.7], ['2018', 6.9], ['2019', 6.3],
+    ['2020', 4.5]
+];
+
+option = {
+    title: {
+        text: 'GDP Growth Rate (1970-2020)',
+        left: 'center',
+        top: '20'
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: data.map(item => item[0])
+    },
+    yAxis: {
+        type: 'value',
+        axisLabel: {
+            formatter: '{value} %'
+        }
+    },
+    series: [
+        {
+            name: 'GDP Growth',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: data.map(item => item[1]),
+            color: '#40a9ff',
+            markPoint: {
+                data: [
+                    { type: 'max', name: 'Max' },
+                    { type: 'min', name: 'Min' }
+                ]
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Emerging Tech Market Distribution in 2023',
+        left: 'center',
+        top: 20
+    },
+    tooltip: {
+        trigger: 'item'
+    },
+    legend: {
+        orient: 'vertical',
+        left: 20,
+        top: 'middle',
+        textStyle: {
+            color: '#666',
+            fontSize: 12
+        },
+        formatter: function (name) {
+            return echarts.format.truncateText(name, 100, '14px Microsoft Yahei', '…');
+        },
+        tooltip: {
+            show: true
+        }
+    },
+    series: [
+        {
+            name: 'Tech Market Share',
+            type: 'pie',
+            radius: ['40%', '70%'],
+            avoidLabelOverlap: false,
+            itemStyle: {
+                borderRadius: 5,
+                borderColor: '#fff',
+                borderWidth: 1
+            },
+            label: {
+                show: false,
+                position: 'center'
+            },
+            emphasis: {
+                label: {
+                    show: true,
+                    fontSize: '18',
+                    fontWeight: 'bold'
+                }
+            },
+            labelLine: {
+                show: false
+            },
+            data: [
+                { value: 120, name: 'Smart Home Devices' },
+                { value: 110, name: 'Wearable Technology' },
+                { value: 80, name: 'Quantum Computing' },
+                { value: 95, name: 'Blockchain Applications' },
+                { value: 150, name: 'Artificial Intelligence' },
+                { value: 75, name: 'Robotic Process Automation' },
+                { value: 65, name: 'Edge Computing' },
+                { value: 100, name: '5G Technology' },
+                { value: 85, name: 'Biotechnology' },
+                { value: 70, name: 'Nanotechnology' },
+                { value: 90, name: 'Virtual Reality' },
+                { value: 105, name: 'Cybersecurity Solutions' }
+            ],
+            color: ['#1F77B4', '#FF7F0E', '#2CA02C', '#D62728', '#9467BD', '#8C564B', '#E377C2', '#7F7F7F', '#BCBD22', '#17BECF', '#1FAA00', '#DB0A5B']
+        }
+    ]
+};
+
+if (option && typeof option === 'object') myChart.setOption(option);
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

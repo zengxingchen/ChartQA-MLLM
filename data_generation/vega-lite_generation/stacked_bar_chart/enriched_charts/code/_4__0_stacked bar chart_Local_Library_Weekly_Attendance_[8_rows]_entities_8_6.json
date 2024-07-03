@@ -1,0 +1,164 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+        "values": [
+            {
+                "Quarter": "Q1",
+                "Revenue": 30000,
+                "Expenses": 25000,
+                "Profit": 5000
+            },
+            {
+                "Quarter": "Q2",
+                "Revenue": 35000,
+                "Expenses": 27000,
+                "Profit": 8000
+            },
+            {
+                "Quarter": "Q3",
+                "Revenue": 40000,
+                "Expenses": 30000,
+                "Profit": 10000
+            },
+            {
+                "Quarter": "Q4",
+                "Revenue": 45000,
+                "Expenses": 32000,
+                "Profit": 13000
+            },
+            {
+                "Quarter": "Q5",
+                "Revenue": 48000,
+                "Expenses": 33000,
+                "Profit": 15000
+            },
+            {
+                "Quarter": "Q6",
+                "Revenue": 51000,
+                "Expenses": 35000,
+                "Profit": 16000
+            },
+            {
+                "Quarter": "Q7",
+                "Revenue": 53000,
+                "Expenses": 36000,
+                "Profit": 17000
+            },
+            {
+                "Quarter": "Q8",
+                "Revenue": 55000,
+                "Expenses": 37000,
+                "Profit": 18000
+            },
+            {
+                "Quarter": "Q9",
+                "Revenue": 58000,
+                "Expenses": 38000,
+                "Profit": 20000
+            },
+            {
+                "Quarter": "Q10",
+                "Revenue": 60000,
+                "Expenses": 39000,
+                "Profit": 21000
+            },
+            {
+                "Quarter": "Q11",
+                "Revenue": 62000,
+                "Expenses": 40000,
+                "Profit": 22000
+            },
+            {
+                "Quarter": "Q12",
+                "Revenue": 64000,
+                "Expenses": 41000,
+                "Profit": 23000
+            }
+        ]
+    },
+    "width": 700,
+    "height": 500,
+    "mark": {
+        "type": "bar",
+        "width": {
+            "band": 0.5
+        }
+    },
+    "title": {
+        "text": "Quarterly Financial Performance",
+        "subtitle": "Revenue, Expenses, and Profit over twelve quarters",
+        "subtitleFontStyle": "italic",
+        "subtitleFontSize": 12,
+        "anchor": "start",
+        "color": "black"
+    },
+    "transform": [
+        {
+            "fold": [
+                "Revenue",
+                "Expenses",
+                "Profit"
+            ],
+            "as": [
+                "Metric",
+                "Amount"
+            ]
+        }
+    ],
+    "encoding": {
+        "x": {
+            "field": "Quarter",
+            "type": "ordinal",
+            "axis": {
+                "title": "Quarter"
+            }
+        },
+        "y": {
+            "field": "Amount",
+            "type": "quantitative",
+            "stack": "zero",
+            "axis": {
+                "title": "Amount ($)"
+            }
+        },
+        "color": {
+            "field": "Metric",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Revenue",
+                    "Expenses",
+                    "Profit"
+                ],
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e",
+                    "#2ca02c"
+                ]
+            },
+            "legend": {
+                "orient": "top-left"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Quarter",
+                "type": "nominal"
+            },
+            {
+                "field": "Metric",
+                "type": "nominal"
+            },
+            {
+                "field": "Amount",
+                "type": "quantitative"
+            }
+        ]
+    },
+    "config": {
+        "axis": {
+            "labelFontSize": 10,
+            "titleFontSize": 12
+        }
+    }
+}

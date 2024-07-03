@@ -1,0 +1,165 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+        "values": [
+            {
+                "Month": "Jan",
+                "Pop": 500,
+                "Rock": 300,
+                "Jazz": 200,
+                "Classical": 100
+            },
+            {
+                "Month": "Feb",
+                "Pop": 600,
+                "Rock": 400,
+                "Jazz": 250,
+                "Classical": 150
+            },
+            {
+                "Month": "Mar",
+                "Pop": 700,
+                "Rock": 450,
+                "Jazz": 300,
+                "Classical": 200
+            },
+            {
+                "Month": "Apr",
+                "Pop": 800,
+                "Rock": 500,
+                "Jazz": 350,
+                "Classical": 250
+            },
+            {
+                "Month": "May",
+                "Pop": 900,
+                "Rock": 550,
+                "Jazz": 400,
+                "Classical": 300
+            },
+            {
+                "Month": "Jun",
+                "Pop": 1000,
+                "Rock": 600,
+                "Jazz": 450,
+                "Classical": 350
+            },
+            {
+                "Month": "Jul",
+                "Pop": 1100,
+                "Rock": 650,
+                "Jazz": 500,
+                "Classical": 400
+            },
+            {
+                "Month": "Aug",
+                "Pop": 1200,
+                "Rock": 700,
+                "Jazz": 550,
+                "Classical": 450
+            },
+            {
+                "Month": "Sep",
+                "Pop": 1300,
+                "Rock": 750,
+                "Jazz": 600,
+                "Classical": 500
+            },
+            {
+                "Month": "Oct",
+                "Pop": 1400,
+                "Rock": 800,
+                "Jazz": 650,
+                "Classical": 550
+            },
+            {
+                "Month": "Nov",
+                "Pop": 1500,
+                "Rock": 850,
+                "Jazz": 700,
+                "Classical": 600
+            },
+            {
+                "Month": "Dec",
+                "Pop": 1600,
+                "Rock": 900,
+                "Jazz": 750,
+                "Classical": 650
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Pop",
+                "Rock",
+                "Jazz",
+                "Classical"
+            ],
+            "as": [
+                "Genre",
+                "Listeners"
+            ]
+        }
+    ],
+    "mark": "bar",
+    "width": 700,
+    "height": 400,
+    "title": {
+        "text": "Monthly Listeners of Different Music Genres",
+        "subtitleFontStyle": "italic",
+        "subtitleFontSize": 12,
+        "anchor": "middle",
+        "offset": 5,
+        "subtitleColor": "gray"
+    },
+    "encoding": {
+        "y": {
+            "field": "Month",
+            "type": "ordinal",
+            "title": "Month"
+        },
+        "x": {
+            "field": "Listeners",
+            "type": "quantitative",
+            "title": "Number of Listeners"
+        },
+        "color": {
+            "field": "Genre",
+            "type": "nominal",
+            "legend": {
+                "title": "Genres",
+                "orient": "bottom"
+            },
+            "scale": {
+                "domain": [
+                    "Pop",
+                    "Rock",
+                    "Jazz",
+                    "Classical"
+                ],
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e",
+                    "#2ca02c",
+                    "#d62728"
+                ]
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Month",
+                "type": "nominal"
+            },
+            {
+                "field": "Genre",
+                "type": "nominal"
+            },
+            {
+                "field": "Listeners",
+                "type": "quantitative",
+                "title": "Listeners"
+            }
+        ]
+    }
+}

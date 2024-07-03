@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 600, height: 400});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Popular Programming Languages in 2023',
+        left: 'center',
+        top: 20,
+        textStyle: {
+            color: '#333',
+            fontSize: 16
+        }
+    },
+    tooltip: {
+        trigger: 'item'
+    },
+    legend: {
+        orient: 'vertical',
+        left: 'left',
+        top: 'middle',
+        textStyle: {
+            fontSize: 12
+        }
+    },
+    series: [
+        {
+            name: 'Usage',
+            type: 'pie',
+            radius: '50%',
+            data: [
+                {value: 22.2, name: 'JavaScript'},
+                {value: 17.6, name: 'Python'},
+                {value: 11.3, name: 'Java'},
+                {value: 8.2, name: 'C#'},
+                {value: 6.9, name: 'PHP'},
+                {value: 5.8, name: 'TypeScript'},
+                {value: 4.6, name: 'Ruby'},
+                {value: 3.3, name: 'Swift'},
+                {value: 2.1, name: 'Objective-C'},
+                {value: 2.0, name: 'Kotlin'},
+                {value: 1.9, name: 'Go'},
+                {value: 1.5, name: 'Rust'},
+                {value: 1.4, name: 'Dart'},
+                {value: 1.2, name: 'Lua'},
+                {value: 1.1, name: 'Scala'},
+                {value: 0.9, name: 'Perl'},
+                {value: 0.8, name: 'Haskell'},
+                {value: 0.7, name: 'Julia'}
+            ],
+            emphasis: {
+                itemStyle: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            }
+        }
+    ],
+    color: [
+        '#4e79a7', '#f28e2b', '#e15759', '#76b7b2', '#59a14f',
+        '#edc948', '#b07aa1', '#ff9da7', '#9c755f', '#bab0ac',
+        '#d37295', '#decbe4', '#bc80bd', '#ccebc5', '#ffed6f',
+        '#8dd3c7', '#bebada', '#fb8072'
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

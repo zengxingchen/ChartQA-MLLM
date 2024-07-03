@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var option;
+
+option = {
+    title: {
+        text: 'Future Technologies & Society',
+        left: 'center',
+        top: 10
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: { type: 'shadow' }
+    },
+    xAxis: {
+        type: 'category',
+        data: ['Renewable Energy', 'Artificial Intelligence', 'Virtual Reality', 'Quantum Computing', 'Biotechnology', 'Space Exploration', 'Clean Water Technologies', 'Electric Vehicles', 'Nanotechnology', 'Genomics', 'Smart Cities', 'Green Architecture', 'Wearable Technology'],
+        axisLabel: {
+            rotate: 45,
+            fontSize: 12,
+            interval: 0
+        }
+    },
+    yAxis: {
+        type: 'value',
+        axisLabel: {
+            formatter: '{value}'
+        }
+    },
+    series: [
+        {
+            name: 'Value',
+            type: 'bar',
+            data: [200, 350, 280, 150, 300, 220, 180, 320, 210, 270, 310, 230, 250],
+            itemStyle: {
+                color: function(params) {
+                    var colorList = [
+                        '#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd',
+                        '#8c564b', '#e377c2', '#7f7f7f', '#bcbd22', '#17becf',
+                        '#9edae5', '#dbdb8d', '#c7c7c7'
+                    ];
+                    return colorList[params.dataIndex];
+                }
+            },
+            barWidth: '50%',
+            label: {
+                show: true,
+                position: 'top',
+                formatter: '{c}'
+            }
+        }
+    ],
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '20%',
+        containLabel: true
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

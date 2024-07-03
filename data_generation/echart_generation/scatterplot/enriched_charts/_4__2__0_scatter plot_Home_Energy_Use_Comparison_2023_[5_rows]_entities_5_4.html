@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, "light", {renderer: "canvas", useDirtyRect: false});
+var option;
+
+option = {
+    title: {
+        text: 'Exercise Patterns in Different Age Groups',
+        left: 'center',
+        top: '20'
+    },
+    legend: {
+        top: 'bottom',
+        data:['Exercise Data']
+    },
+    tooltip: {
+        trigger: 'axis',
+        showDelay: 0,
+        formatter: function (params) {
+            if (params.value.length > 1) {
+                return params.seriesName + ' :<br/>' 
+                + params.value[0] + ' minutes, ' 
+                + params.value[1] + ' years ';
+            } else {
+                return params.seriesName + ' :<br/>' 
+                + params.name + ' : ' 
+                + params.value + ' years ';
+            }
+        },  
+        axisPointer: {
+            type: 'cross',
+            lineStyle: {
+                type: 'dashed',
+                width: 1
+            }
+        }
+    },
+    xAxis: [
+        {
+            type: 'value',
+            scale: true,
+            axisLabel: {
+                formatter: '{value} minutes'
+            },
+            splitLine: {
+                lineStyle: {
+                    type: 'dashed'
+                }
+            }
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value',
+            scale: true,
+            axisLabel: {
+                formatter: '{value} years'
+            },
+            splitLine: {
+                lineStyle: {
+                    type: 'dashed'
+                }
+            }
+        }
+    ],
+    series: [
+        {
+            name: 'Exercise Data',
+            type: 'scatter',
+            itemStyle: {
+                color: '#FF5733'
+            },
+            symbolSize: 10,
+            data: [
+                [35, 20],
+                [45, 25],
+                [55, 30],
+                [65, 28],
+                [75, 50],
+                [85, 35],
+                [95, 60],
+                [105, 65],
+                [115, 70],
+                [125, 80],
+                [135, 85],
+                [145, 90],
+                [155, 95],
+                [165, 100]
+            ]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

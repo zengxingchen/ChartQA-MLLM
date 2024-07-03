@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var option;
+
+option = {
+    title: {
+        text: 'Monthly Average Temperatures',
+        left: 'center',
+        top: '5%',
+        textStyle: {
+            color: '#333333'
+        }
+    },
+    tooltip: {
+        trigger: 'axis',
+        formatter: function (params) {
+            return params[0].name + ': ' + params[0].value + '°C';
+        }
+    },
+    xAxis: {
+        type: 'category',
+        data: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+    },
+    yAxis: {
+        type: 'value',
+        axisLabel: {
+            formatter: '{value} °C'
+        }
+    },
+    series: [{
+        data: [4.5, 5.8, 8.2, 12.5, 16.8, 20.2, 22.5, 22.3, 19.0, 14.2, 9.0, 5.0],
+        type: 'line',
+        smooth: true,
+        lineStyle: {
+            color: '#FF5733'
+        },
+        itemStyle: {
+            color: '#FF5733'
+        },
+        label: {
+            show: true,
+            position: 'top',
+            formatter: '{c} °C'
+        }
+    }],
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

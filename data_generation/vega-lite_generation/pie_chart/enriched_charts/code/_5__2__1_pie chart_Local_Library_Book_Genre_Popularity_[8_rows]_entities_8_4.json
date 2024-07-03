@@ -1,0 +1,95 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Pie chart showing the distribution of various activities in a daily routine.",
+    "title": {
+        "text": "Daily Routine Composition",
+        "fontSize": 20,
+        "font": "Roboto",
+        "anchor": "start",
+        "color": "#333333"
+    },
+    "width": 500,
+    "height": 500,
+    "data": {
+        "values": [
+            {
+                "Activity": "Sleeping",
+                "Percentage": 35
+            },
+            {
+                "Activity": "Working",
+                "Percentage": 30
+            },
+            {
+                "Activity": "Eating",
+                "Percentage": 10
+            },
+            {
+                "Activity": "Exercise",
+                "Percentage": 5
+            },
+            {
+                "Activity": "Leisure",
+                "Percentage": 20
+            }
+        ]
+    },
+    "mark": {
+        "type": "arc",
+        "tooltip": true
+    },
+    "encoding": {
+        "theta": {
+            "field": "Percentage",
+            "type": "quantitative",
+            "stack": true
+        },
+        "color": {
+            "field": "Activity",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Sleeping",
+                    "Working",
+                    "Eating",
+                    "Exercise",
+                    "Leisure"
+                ],
+                "range": [
+                    "#1E90FF",
+                    "#FF6347",
+                    "#FFD700",
+                    "#32CD32",
+                    "#FF69B4"
+                ]
+            },
+            "legend": {
+                "title": "Activity",
+                "orient": "right",
+                "labelFont": "Roboto",
+                "labelColor": "#44475a"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Activity",
+                "type": "nominal",
+                "title": "Activity"
+            },
+            {
+                "field": "Percentage",
+                "type": "quantitative",
+                "title": "Percentage (%)"
+            }
+        ]
+    },
+    "view": {
+        "stroke": null
+    },
+    "config": {
+        "background": "#f5f5f5",
+        "arc": {
+            "outerRadius": 200
+        }
+    }
+}

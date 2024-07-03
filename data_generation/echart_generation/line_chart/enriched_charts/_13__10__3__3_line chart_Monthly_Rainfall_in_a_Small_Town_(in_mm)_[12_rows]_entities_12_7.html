@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+option = {
+    title: {
+        text: 'Monthly Revenue Growth',
+        left: 'center',
+        top: '10%'
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['Revenue'],
+        top: '5%',
+        left: 'center'
+    },
+    xAxis: {
+        type: 'category',
+        data: ['2023-01-01', '2023-02-01', '2023-03-01', '2023-04-01', '2023-05-01', '2023-06-01', '2023-07-01', '2023-08-01', '2023-09-01', '2023-10-01', '2023-11-01', '2023-12-01'],
+        axisLabel: {
+            rotate: 45
+        }
+    },
+    yAxis: {
+        type: 'value',
+        inverse: true
+    },
+    series: [
+        {
+            name: 'Revenue',
+            type: 'line',
+            data: [100, 120, 140, 160, 180, 200, 220, 240, 260, 280, 300, 320],
+            label: {
+                show: true,
+                position: 'top'
+            },
+            lineStyle: {
+                color: '#FF5733'
+            },
+            itemStyle: {
+                color: '#FF5733'
+            }
+        }
+    ],
+    grid: {
+        width: '80%',
+        height: '70%',
+        top: '20%',
+        left: '10%'
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

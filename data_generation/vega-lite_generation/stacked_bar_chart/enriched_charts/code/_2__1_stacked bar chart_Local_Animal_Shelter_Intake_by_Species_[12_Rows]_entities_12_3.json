@@ -1,0 +1,180 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Horizontal stacked bar chart displaying the monthly sales revenue of different sports equipment.",
+    "data": {
+        "values": [
+            {
+                "Month": "January",
+                "Bicycles": 120,
+                "Treadmills": 80,
+                "Dumbbells": 100,
+                "Yoga Mats": 60,
+                "Running Shoes": 90
+            },
+            {
+                "Month": "February",
+                "Bicycles": 150,
+                "Treadmills": 95,
+                "Dumbbells": 110,
+                "Yoga Mats": 70,
+                "Running Shoes": 100
+            },
+            {
+                "Month": "March",
+                "Bicycles": 130,
+                "Treadmills": 100,
+                "Dumbbells": 120,
+                "Yoga Mats": 65,
+                "Running Shoes": 110
+            },
+            {
+                "Month": "April",
+                "Bicycles": 160,
+                "Treadmills": 110,
+                "Dumbbells": 130,
+                "Yoga Mats": 80,
+                "Running Shoes": 120
+            },
+            {
+                "Month": "May",
+                "Bicycles": 170,
+                "Treadmills": 120,
+                "Dumbbells": 140,
+                "Yoga Mats": 90,
+                "Running Shoes": 130
+            },
+            {
+                "Month": "June",
+                "Bicycles": 180,
+                "Treadmills": 130,
+                "Dumbbells": 150,
+                "Yoga Mats": 95,
+                "Running Shoes": 140
+            },
+            {
+                "Month": "July",
+                "Bicycles": 190,
+                "Treadmills": 140,
+                "Dumbbells": 160,
+                "Yoga Mats": 100,
+                "Running Shoes": 150
+            },
+            {
+                "Month": "August",
+                "Bicycles": 200,
+                "Treadmills": 150,
+                "Dumbbells": 170,
+                "Yoga Mats": 110,
+                "Running Shoes": 160
+            },
+            {
+                "Month": "September",
+                "Bicycles": 210,
+                "Treadmills": 160,
+                "Dumbbells": 180,
+                "Yoga Mats": 120,
+                "Running Shoes": 170
+            },
+            {
+                "Month": "October",
+                "Bicycles": 220,
+                "Treadmills": 170,
+                "Dumbbells": 190,
+                "Yoga Mats": 130,
+                "Running Shoes": 180
+            },
+            {
+                "Month": "November",
+                "Bicycles": 230,
+                "Treadmills": 180,
+                "Dumbbells": 200,
+                "Yoga Mats": 140,
+                "Running Shoes": 190
+            },
+            {
+                "Month": "December",
+                "Bicycles": 240,
+                "Treadmills": 190,
+                "Dumbbells": 210,
+                "Yoga Mats": 150,
+                "Running Shoes": 200
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Bicycles",
+                "Treadmills",
+                "Dumbbells",
+                "Yoga Mats",
+                "Running Shoes"
+            ],
+            "as": [
+                "Equipment",
+                "Revenue"
+            ]
+        }
+    ],
+    "width": 800,
+    "height": 400,
+    "mark": {
+        "type": "bar",
+        "width": {
+            "band": 0.5
+        }
+    },
+    "encoding": {
+        "x": {
+            "field": "Month",
+            "type": "ordinal",
+            "axis": {
+                "title": "Month"
+            }
+        },
+        "y": {
+            "field": "Revenue",
+            "type": "quantitative",
+            "axis": {
+                "title": "Revenue (in thousands)"
+            },
+            "stack": "zero"
+        },
+        "color": {
+            "field": "Equipment",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Bicycles",
+                    "Treadmills",
+                    "Dumbbells",
+                    "Yoga Mats",
+                    "Running Shoes"
+                ],
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e",
+                    "#2ca02c",
+                    "#d62728",
+                    "#9467bd"
+                ]
+            },
+            "legend": {
+                "title": "Equipment",
+                "orient": "top",
+                "offset": 10
+            }
+        }
+    },
+    "title": {
+        "text": "Monthly Sales Revenue of Sports Equipment",
+        "anchor": "start",
+        "offset": 20
+    },
+    "config": {
+        "background": "#ffffff",
+        "view": {
+            "stroke": "transparent"
+        }
+    }
+}

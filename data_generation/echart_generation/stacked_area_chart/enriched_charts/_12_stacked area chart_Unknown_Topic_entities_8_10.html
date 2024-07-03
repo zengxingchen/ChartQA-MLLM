@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+option = null;
+
+option = {
+    title: {
+        text: 'Government Sector Spending Over Time',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['Education Spending', 'Technology Investment', 'Infrastructure Costs', 'Sports & Fitness Development'],
+        bottom: 0
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '10%',
+        containLabel: true
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ['2021-01', '2021-02', '2021-03', '2021-04', '2021-05', '2021-06', '2021-07', '2021-08', '2021-09', '2021-10', '2021-11', '2021-12',
+                '2022-01', '2022-02', '2022-03', '2022-04', '2022-05', '2022-06', '2022-07', '2022-08', '2022-09', '2022-10', '2022-11', '2022-12']
+    },
+    yAxis: {
+        type: 'value',
+        axisLabel: {
+            formatter: '{value} USD'
+        }
+    },
+    series: [
+        {
+            name: 'Education Spending',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [12000, 12200, 12400, 12100, 12600, 12900, 13300, 13000, 13400, 13800, 14000, 14500, 14700, 15000, 15500, 15200, 15800, 16200, 16500, 16800, 17200, 17500, 17700, 18000]
+        },
+        {
+            name: 'Technology Investment',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [6800, 7100, 7300, 7500, 7700, 7400, 7600, 7800, 8000, 8200, 8400, 8600, 8800, 9000, 9200, 9400, 9600, 9800, 10000, 10300, 10600, 10800, 11000, 11300]
+        },
+        {
+            name: 'Infrastructure Costs',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [9300, 9500, 9700, 9400, 9800, 9900, 10000, 9800, 9600, 9900, 9700, 10000, 10300, 10500, 10600, 10800, 11000, 10900, 11300, 11200, 11400, 11700, 11500, 11900]
+        },
+        {
+            name: 'Sports & Fitness Development',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [5000, 5200, 5400, 5150, 5550, 5350, 5600, 5500, 5700, 5900, 6100, 6350, 6500, 6600, 6700, 6750, 6850, 6900, 7050, 7100, 7200, 7300, 7400, 7500]
+        }
+    ],
+    color: ['#3366CC', '#DC3912', '#FF9900', '#109618'],
+    itemStyle: {
+        normal: {
+            lineStyle: {
+                width: 2
+            }
+        }
+    },
+    textStyle: {
+        fontSize: 12
+    },
+};
+
+myChart.setOption(option, true);
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

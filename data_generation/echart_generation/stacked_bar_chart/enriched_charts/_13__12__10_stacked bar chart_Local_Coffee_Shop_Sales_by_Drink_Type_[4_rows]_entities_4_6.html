@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Trends in Various Fields Over Years',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        top: 'bottom',
+        data: ['2019', '2020', '2021']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '10%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01],
+        axisLabel: {
+            interval: 0
+        }
+    },
+    yAxis: {
+        type: 'category',
+        data: ['Art & Design', 'Science & Nature', 'Health & Psychology', 'Culture & Society', 'Economics & Finance', 'Education & Learning', 'Entertainment & Leisure', 'Environment & Climate Change', 'Food & Nutrition', 'Travel & Adventure', 'Fashion & Beauty', 'Politics & Governance', 'Sports & Fitness', 'History & Archaeology', 'Philosophy & Ethics', 'Music & Performing Arts', 'Literature & Writing', 'Business & Entrepreneurship', 'Astronomy & Space Exploration']
+    },
+    series: [
+        {
+            name: '2019',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            itemStyle: {
+                color: '#5470C6'
+            },
+            data: [120, 150, 160, 200, 210, 180, 230, 110, 140, 190, 170, 220, 130, 160, 150, 180, 140, 200, 170]
+        },
+        {
+            name: '2020',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            itemStyle: {
+                color: '#91CC75'
+            },
+            data: [132, 182, 170, 232, 200, 172, 210, 132, 152, 212, 142, 202, 122, 132, 162, 192, 152, 222, 182]
+        },
+        {
+            name: '2021',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            itemStyle: {
+                color: '#EE6666'
+            },
+            data: [101, 191, 220, 210, 240, 199, 230, 101, 170, 230, 150, 240, 150, 180, 170, 200, 170, 250, 210]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

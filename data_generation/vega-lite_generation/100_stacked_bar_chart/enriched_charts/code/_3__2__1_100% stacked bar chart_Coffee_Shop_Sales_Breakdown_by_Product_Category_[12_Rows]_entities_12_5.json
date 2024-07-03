@@ -1,0 +1,152 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Horizontal 100% Stacked bar chart of preferred travel modes by age group.",
+    "width": 500,
+    "height": 300,
+    "data": {
+        "values": [
+            {
+                "Age Group": "10-20",
+                "Car": 20,
+                "Bike": 10,
+                "Public Transport": 30,
+                "Walking": 25,
+                "Other": 15
+            },
+            {
+                "Age Group": "21-30",
+                "Car": 25,
+                "Bike": 20,
+                "Public Transport": 20,
+                "Walking": 15,
+                "Other": 20
+            },
+            {
+                "Age Group": "31-40",
+                "Car": 30,
+                "Bike": 10,
+                "Public Transport": 25,
+                "Walking": 10,
+                "Other": 25
+            },
+            {
+                "Age Group": "41-50",
+                "Car": 35,
+                "Bike": 15,
+                "Public Transport": 15,
+                "Walking": 20,
+                "Other": 15
+            },
+            {
+                "Age Group": "51-60",
+                "Car": 30,
+                "Bike": 10,
+                "Public Transport": 20,
+                "Walking": 20,
+                "Other": 20
+            },
+            {
+                "Age Group": "61+",
+                "Car": 25,
+                "Bike": 5,
+                "Public Transport": 25,
+                "Walking": 30,
+                "Other": 15
+            },
+            {
+                "Age Group": "71+",
+                "Car": 15,
+                "Bike": 5,
+                "Public Transport": 30,
+                "Walking": 35,
+                "Other": 15
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Car",
+                "Bike",
+                "Public Transport",
+                "Walking",
+                "Other"
+            ],
+            "as": [
+                "Category",
+                "Percentage"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "bar",
+        "height": {
+            "band": 0.6
+        }
+    },
+    "encoding": {
+        "y": {
+            "field": "Age Group",
+            "title": "Age Groups",
+            "type": "ordinal",
+            "axis": {
+                "labelAngle": 0
+            }
+        },
+        "x": {
+            "field": "Percentage",
+            "type": "quantitative",
+            "title": "Percentage",
+            "stack": "normalize",
+            "axis": {
+                "format": "%"
+            }
+        },
+        "color": {
+            "field": "Category",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Car",
+                    "Bike",
+                    "Public Transport",
+                    "Walking",
+                    "Other"
+                ],
+                "range": [
+                    "#FF6347",
+                    "#4682B4",
+                    "#32CD32",
+                    "#FFD700",
+                    "#6A5ACD"
+                ]
+            },
+            "legend": {
+                "title": "Travel Mode"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Age Group",
+                "type": "ordinal"
+            },
+            {
+                "field": "Category",
+                "type": "nominal"
+            },
+            {
+                "field": "Percentage",
+                "type": "quantitative",
+                "title": "Percentage",
+                "format": ".2f"
+            }
+        ]
+    },
+    "title": {
+        "text": "Travel & Adventure: Preferred Travel Modes by Age Group",
+        "anchor": "start",
+        "offset": 5,
+        "frame": "group",
+        "fontSize": 20
+    }
+}

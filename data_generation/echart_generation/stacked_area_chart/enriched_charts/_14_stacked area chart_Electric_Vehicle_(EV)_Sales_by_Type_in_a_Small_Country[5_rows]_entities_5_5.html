@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 720, height: 480});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Annually Generated Clean Energy',
+        left: 'center',
+        textStyle: {
+            fontSize: 24,
+            fontWeight: 'bold'
+        }
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            label: {
+                backgroundColor: '#6a7985'
+            }
+        }
+    },
+    legend: {
+        data: ['Solar Energy', 'Hydro Energy', 'Wind Energy', 'Nuclear Energy'],
+        top: 30,
+        textStyle: {
+            fontSize: 16
+        }
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: [
+        {
+            type: 'category',
+            boundaryGap: false,
+            data: ['2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021']
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value'
+        }
+    ],
+    series: [
+        {
+            name: 'Solar Energy',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [43, 67, 86, 99, 115, 130, 150, 165, 180, 200, 220, 240],
+            color: '#FFD700' // Golden
+        },
+        {
+            name: 'Hydro Energy',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [83, 76, 68, 60, 55, 50, 46, 43, 39, 36, 33, 30],
+            color: '#00BFFF' // Deep Sky Blue
+        },
+        {
+            name: 'Wind Energy',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [55, 85, 92, 103, 110, 120, 132, 143, 156, 170, 185, 200],
+            color: '#32CD32' // Lime Green
+        },
+        {
+            name: 'Nuclear Energy',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [80, 89, 95, 100, 104, 111, 115, 123, 130, 137, 145, 155],
+            color: '#DC143C' // Crimson
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

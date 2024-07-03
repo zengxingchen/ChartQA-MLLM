@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Future Technologies & Society',
+        left: 'center',
+        top: 20
+    },
+    tooltip: {
+        trigger: 'item'
+    },
+    legend: {
+        orient: 'vertical',
+        left: 'left',
+        top: 50
+    },
+    series: [
+        {
+            name: 'Tech Category',
+            type: 'pie',
+            radius: '55%',
+            center: ['50%', '60%'],
+            data: [
+                {value: 120, name: 'Smart Homes'},
+                {value: 300, name: 'Electric Vehicles'},
+                {value: 250, name: 'AI in Medicine'},
+                {value: 420, name: 'Renewable Energy'},
+                {value: 80, name: 'Space Tourism'},
+                {value: 150, name: 'Augmented Reality'},
+                {value: 220, name: 'Blockchain Tech'},
+                {value: 90, name: 'Quantum Computing'},
+                {value: 260, name: 'Robotics'},
+                {value: 200, name: 'Biotechnology'}
+            ],
+            emphasis: {
+                itemStyle: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            },
+            label: {
+                position: 'outside',
+                formatter: '{b}: {c}'
+            }
+        }
+    ],
+    color: [
+        "#c23531", "#2f4554", "#61a0a8", "#d48265",
+        "#91c7ae", "#749f83",  "#ca8622", "#bda29a",
+        "#6e7074", "#546570"
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

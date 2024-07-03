@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {renderer: 'canvas', width: 800, height: 600});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: "Monthly Expenses Breakdown - 2023",
+        left: 'center',
+        padding: 15
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            label: {
+                backgroundColor: '#6a7985'
+            }
+        }
+    },
+    legend: {
+        data: ['Utilities', 'Groceries', 'Entertainment', 'Healthcare'],
+        bottom: 10
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: [
+        {
+            type: 'category',
+            boundaryGap: false,
+            data: ['January', 'February', 'March', 'April', 'May', 'June','July', 'August', 'September', 'October', 'November', 'December']
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value'
+        }
+    ],
+    series: [
+        {
+            name: 'Utilities',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {color: '#ff7875'},
+            emphasis: {focus: 'series'},
+            data: [120, 130, 150, 120, 140, 135, 150, 155, 160, 165, 170, 180],
+            label: {show: true, position: 'top'}
+        },
+        {
+            name: 'Groceries',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {color: '#69c0ff'},
+            emphasis: {focus: 'series'},
+            data: [400, 420, 450, 480, 460, 470, 480, 490, 500, 520, 540, 560],
+            label: {show: true, position: 'top'}
+        },
+        {
+            name: 'Entertainment',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {color: '#ffc069'},
+            emphasis: {focus: 'series'},
+            data: [150, 180, 160, 170, 180, 190, 200, 210, 220, 230, 240, 250],
+            label: {show: true, position: 'top'}
+        },
+        {
+            name: 'Healthcare',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {color: '#95de64'},
+            emphasis: {focus: 'series'},
+            data: [200, 220, 230, 240, 250, 260, 270, 285, 290, 295, 300, 310],
+            label: {show: true, position: 'top'}
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

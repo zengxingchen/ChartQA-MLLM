@@ -1,0 +1,141 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Physical Activity Levels by Age Group",
+    "width": 400,
+    "height": 600,
+    "title": {
+        "text": "Physical Activity Levels",
+        "subtitle": [
+            "Percentage of people engaging in physical activity",
+            "Source: Health Survey 2023"
+        ],
+        "subtitleFontSize": 10,
+        "subtitleFontStyle": "italic",
+        "anchor": "start",
+        "frame": "group"
+    },
+    "data": {
+        "values": [
+            {
+                "Age Group": "10-19",
+                "Percentage": 60.5
+            },
+            {
+                "Age Group": "20-29",
+                "Percentage": 70.2
+            },
+            {
+                "Age Group": "30-39",
+                "Percentage": 65.3
+            },
+            {
+                "Age Group": "40-49",
+                "Percentage": 60.1
+            },
+            {
+                "Age Group": "50-59",
+                "Percentage": 55.7
+            },
+            {
+                "Age Group": "60-69",
+                "Percentage": 50.2
+            },
+            {
+                "Age Group": "70-79",
+                "Percentage": 45.1
+            },
+            {
+                "Age Group": "80+",
+                "Percentage": 40.3
+            },
+            {
+                "Age Group": "Children (0-9)",
+                "Percentage": 85.0
+            },
+            {
+                "Age Group": "Teens (10-19)",
+                "Percentage": 78.0
+            },
+            {
+                "Age Group": "Young Adults (20-29)",
+                "Percentage": 75.0
+            },
+            {
+                "Age Group": "Adults (30-49)",
+                "Percentage": 68.0
+            },
+            {
+                "Age Group": "Middle-aged (50-69)",
+                "Percentage": 58.0
+            },
+            {
+                "Age Group": "Seniors (70+)",
+                "Percentage": 43.0
+            }
+        ]
+    },
+    "params": [
+        {
+            "name": "highlight",
+            "select": {
+                "type": "point",
+                "on": "mouseover"
+            }
+        }
+    ],
+    "mark": {
+        "type": "bar",
+        "height": {
+            "band": 0.6
+        },
+        "color": "#1f77b4",
+        "strokeWidth": 1,
+        "opacity": {
+            "condition": {
+                "param": "highlight",
+                "empty": false,
+                "value": 1
+            },
+            "value": 0.7
+        },
+        "cursor": "pointer"
+    },
+    "encoding": {
+        "x": {
+            "field": "Percentage",
+            "type": "quantitative",
+            "axis": {
+                "grid": false,
+                "title": "Physical Activity Levels (%)",
+                "labelFontSize": 12
+            }
+        },
+        "y": {
+            "field": "Age Group",
+            "type": "ordinal",
+            "axis": {
+                "labelAngle": 0,
+                "labelFontSize": 12,
+                "title": "Age Group"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Age Group",
+                "type": "nominal",
+                "title": "Age Group"
+            },
+            {
+                "field": "Percentage",
+                "type": "quantitative",
+                "title": "Percentage"
+            }
+        ]
+    },
+    "config": {
+        "bar": {
+            "binSpacing": 0,
+            "continuousBandSize": 30
+        }
+    }
+}

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Product Sales Comparison (2020-2022)',
+        left: 'center',
+        top: '5%'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Year 2020', 'Year 2021', 'Year 2022'],
+        top: '10%'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        data: ['Electronics', 'Clothing', 'Home Appliances', 'Toys', 'Books', 'Sports Equipment', 'Furniture', 'Beauty Products', 'Groceries', 'Automobiles', 'Travel Gear', 'Musical Instruments', 'Stationery', 'Gardening Tools', 'Pet Supplies'],
+        axisLabel: {
+            rotate: 45,
+            interval: 0
+        }
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Year 2020',
+            type: 'bar',
+            stack: 'total',
+            barWidth: '40%',
+            itemStyle: {
+                color: '#5470C6'
+            },
+            data: [120, 220, 150, 98, 85, 70, 110, 115, 190, 130, 100, 80, 60, 50, 40]
+        },
+        {
+            name: 'Year 2021',
+            type: 'bar',
+            stack: 'total',
+            barWidth: '40%',
+            itemStyle: {
+                color: '#91CC75'
+            },
+            data: [132, 182, 232, 77, 65, 85, 120, 135, 210, 140, 105, 90, 70, 60, 45]
+        },
+        {
+            name: 'Year 2022',
+            type: 'bar',
+            stack: 'total',
+            barWidth: '40%',
+            itemStyle: {
+                color: '#FAC858'
+            },
+            data: [101, 191, 201, 101, 78, 95, 150, 121, 230, 160, 110, 95, 80, 70, 55]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

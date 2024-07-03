@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+// Prepare data
+var data = [
+   {'Date': '2023-03-01', 'Visitors': 350},
+   {'Date': '2023-03-08', 'Visitors': 290},
+   {'Date': '2023-03-15', 'Visitors': 320},
+   {'Date': '2023-03-22', 'Visitors': 400},
+   {'Date': '2023-03-29', 'Visitors': 375}
+];
+
+// Processing data to fit into eCharts format
+var dates = data.map(function (item) {
+  return item.Date;
+});
+var visitors = data.map(function (item) {
+  return item.Visitors;
+});
+
+option = {
+    tooltip: {
+        trigger: 'axis'
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: dates
+    },
+    yAxis: {
+        type: 'value'
+    },
+    dataZoom: [
+        {
+            type: 'slider',
+            start: 0,
+            end: 100
+        },
+        {
+            type: 'inside',
+            start: 0,
+            end: 100
+        }
+    ],
+    series: [
+        {
+            name: 'Visitors',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: visitors
+        }
+    ],
+    visualMap: {
+        top: 50,
+        right: 10,
+        pieces: [{
+            gt: 0,
+            lte: 300,
+            color: '#096'
+        }, {
+            gt: 300,
+            lte: 350,
+            color: '#ffde33'
+        }, {
+            gt: 350,
+            lte: 400,
+            color: '#ff9933'
+        }, {
+            gt: 400,
+            color: '#cc0033'
+        }],
+        outOfRange: {
+            color: '#999'
+        }
+    },
+    color: ['#80FFA5', '#00DDFF', '#37A2FF', '#FF0087', '#FFBF00']
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

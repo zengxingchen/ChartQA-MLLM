@@ -1,0 +1,195 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "A vertical bar chart showing the average annual rainfall in various cities.",
+    "title": {
+        "text": "Average Annual Rainfall by City (2020-2030)",
+        "font": "Verdana",
+        "anchor": "start",
+        "offset": 5
+    },
+    "data": {
+        "values": [
+            {
+                "City": "New York",
+                "Rainfall (mm)": 1200
+            },
+            {
+                "City": "Los Angeles",
+                "Rainfall (mm)": 380
+            },
+            {
+                "City": "Chicago",
+                "Rainfall (mm)": 920
+            },
+            {
+                "City": "Houston",
+                "Rainfall (mm)": 1400
+            },
+            {
+                "City": "Phoenix",
+                "Rainfall (mm)": 200
+            },
+            {
+                "City": "Philadelphia",
+                "Rainfall (mm)": 1050
+            },
+            {
+                "City": "San Antonio",
+                "Rainfall (mm)": 800
+            },
+            {
+                "City": "San Diego",
+                "Rainfall (mm)": 300
+            },
+            {
+                "City": "Dallas",
+                "Rainfall (mm)": 900
+            },
+            {
+                "City": "San Jose",
+                "Rainfall (mm)": 450
+            },
+            {
+                "City": "Austin",
+                "Rainfall (mm)": 850
+            },
+            {
+                "City": "Jacksonville",
+                "Rainfall (mm)": 1250
+            },
+            {
+                "City": "Fort Worth",
+                "Rainfall (mm)": 890
+            },
+            {
+                "City": "Columbus",
+                "Rainfall (mm)": 950
+            },
+            {
+                "City": "Charlotte",
+                "Rainfall (mm)": 1100
+            }
+        ]
+    },
+    "width": 600,
+    "height": 400,
+    "mark": {
+        "type": "bar",
+        "width": {
+            "band": 0.7
+        }
+    },
+    "encoding": {
+        "x": {
+            "field": "City",
+            "type": "ordinal",
+            "title": "City",
+            "axis": {
+                "labelAngle": -45
+            }
+        },
+        "y": {
+            "field": "Rainfall (mm)",
+            "type": "quantitative",
+            "title": "Rainfall (mm)"
+        },
+        "color": {
+            "field": "City",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "New York",
+                    "Los Angeles",
+                    "Chicago",
+                    "Houston",
+                    "Phoenix",
+                    "Philadelphia",
+                    "San Antonio",
+                    "San Diego",
+                    "Dallas",
+                    "San Jose",
+                    "Austin",
+                    "Jacksonville",
+                    "Fort Worth",
+                    "Columbus",
+                    "Charlotte"
+                ],
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e",
+                    "#2ca02c",
+                    "#d62728",
+                    "#9467bd",
+                    "#8c564b",
+                    "#e377c2",
+                    "#7f7f7f",
+                    "#bcbd22",
+                    "#17becf",
+                    "#aec7e8",
+                    "#ffbb78",
+                    "#98df8a",
+                    "#ff9896",
+                    "#c5b0d5"
+                ]
+            },
+            "legend": null
+        },
+        "tooltip": [
+            {
+                "field": "City",
+                "type": "nominal"
+            },
+            {
+                "field": "Rainfall (mm)",
+                "type": "quantitative"
+            }
+        ]
+    },
+    "layer": [
+        {
+            "mark": "rule",
+            "encoding": {
+                "y": {
+                    "aggregate": "mean",
+                    "field": "Rainfall (mm)",
+                    "type": "quantitative",
+                    "title": "Mean Rainfall (mm)"
+                },
+                "color": {
+                    "value": "#D81B60"
+                },
+                "size": {
+                    "value": 2
+                },
+                "tooltip": [
+                    {
+                        "aggregate": "mean",
+                        "field": "Rainfall (mm)",
+                        "type": "quantitative",
+                        "title": "Mean Rainfall"
+                    }
+                ]
+            }
+        },
+        {
+            "mark": {
+                "type": "text",
+                "align": "center",
+                "baseline": "middle",
+                "dx": 0,
+                "dy": -5
+            },
+            "encoding": {
+                "text": {
+                    "field": "Rainfall (mm)",
+                    "type": "quantitative"
+                }
+            }
+        }
+    ],
+    "config": {
+        "bar": {
+            "stroke": "transparent"
+        }
+    }
+}

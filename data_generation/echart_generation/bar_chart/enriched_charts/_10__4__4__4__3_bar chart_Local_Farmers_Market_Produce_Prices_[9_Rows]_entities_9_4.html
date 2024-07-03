@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+var app = {};
+var option;
+
+option = {
+    title: {
+        text: 'Future Technologies & Society',
+        left: 'center',
+        top: '5%'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    xAxis: {
+        type: 'category',
+        data: ['Robotics', 'AI', 'VR', 'Quantum Computing', 'Blockchain', 'Biotech', 'Nanotech', '3D Printing', 'Space Exploration', 'Autonomous Vehicles'],
+        axisLabel: {
+            rotate: 45
+        }
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [{
+        name: 'Technological Advancements',
+        type: 'bar',
+        data: [120, 150, 100, 80, 140, 90, 110, 130, 170, 160],
+        itemStyle: {
+            color: function(params) {
+                var colorList = [
+                    '#FF6F61', '#6B5B95', '#88B04B', '#F7CAC9', '#92A8D1',
+                    '#955251', '#B565A7', '#009B77', '#DD4124', '#D65076'
+                ];
+                return colorList[params.dataIndex];
+            }
+        },
+        label: {
+            show: true,
+            position: 'top'
+        },
+        barWidth: '60%'
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

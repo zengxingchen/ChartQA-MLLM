@@ -1,0 +1,159 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Vertical 100% Stacked bar chart of popular leisure activities by different professions.",
+    "width": 500,
+    "height": 300,
+    "data": {
+        "values": [
+            {
+                "Profession": "Engineer",
+                "Reading": 20,
+                "Traveling": 30,
+                "Cooking": 10,
+                "Gaming": 25,
+                "Photography": 15
+            },
+            {
+                "Profession": "Doctor",
+                "Reading": 25,
+                "Traveling": 15,
+                "Cooking": 20,
+                "Gaming": 15,
+                "Photography": 25
+            },
+            {
+                "Profession": "Teacher",
+                "Reading": 30,
+                "Traveling": 10,
+                "Cooking": 15,
+                "Gaming": 20,
+                "Photography": 25
+            },
+            {
+                "Profession": "Artist",
+                "Reading": 10,
+                "Traveling": 25,
+                "Cooking": 20,
+                "Gaming": 10,
+                "Photography": 35
+            },
+            {
+                "Profession": "Lawyer",
+                "Reading": 15,
+                "Traveling": 20,
+                "Cooking": 25,
+                "Gaming": 10,
+                "Photography": 30
+            },
+            {
+                "Profession": "Scientist",
+                "Reading": 35,
+                "Traveling": 5,
+                "Cooking": 15,
+                "Gaming": 25,
+                "Photography": 20
+            },
+            {
+                "Profession": "Architect",
+                "Reading": 20,
+                "Traveling": 15,
+                "Cooking": 25,
+                "Gaming": 20,
+                "Photography": 20
+            },
+            {
+                "Profession": "Nurse",
+                "Reading": 25,
+                "Traveling": 20,
+                "Cooking": 20,
+                "Gaming": 15,
+                "Photography": 20
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Reading",
+                "Traveling",
+                "Cooking",
+                "Gaming",
+                "Photography"
+            ],
+            "as": [
+                "Activity",
+                "Percentage"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "bar",
+        "width": {
+            "band": 0.6
+        }
+    },
+    "encoding": {
+        "x": {
+            "field": "Profession",
+            "title": "Professions",
+            "type": "ordinal",
+            "axis": {
+                "labelAngle": 0
+            }
+        },
+        "y": {
+            "field": "Percentage",
+            "type": "quantitative",
+            "title": "Percentage",
+            "stack": "normalize",
+            "axis": {
+                "format": "%"
+            }
+        },
+        "color": {
+            "field": "Activity",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Reading",
+                    "Traveling",
+                    "Cooking",
+                    "Gaming",
+                    "Photography"
+                ],
+                "range": [
+                    "#FF5733",
+                    "#33FF57",
+                    "#3357FF",
+                    "#FF33A1",
+                    "#33FFF3"
+                ]
+            },
+            "legend": {
+                "title": "Leisure Activities"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Profession",
+                "type": "ordinal"
+            },
+            {
+                "field": "Activity",
+                "type": "nominal"
+            },
+            {
+                "field": "Percentage",
+                "type": "quantitative",
+                "title": "Percentage",
+                "format": ".2f"
+            }
+        ]
+    },
+    "title": {
+        "text": "Leisure Activities by Profession",
+        "anchor": "middle",
+        "offset": 10,
+        "fontSize": 20
+    }
+}

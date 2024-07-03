@@ -1,0 +1,223 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Monthly Rainfall by City",
+    "data": {
+        "values": [
+            {
+                "Month": "January",
+                "New York": 3.0,
+                "Los Angeles": 3.1,
+                "Chicago": 1.5,
+                "Houston": 3.5,
+                "Phoenix": 0.8,
+                "Philadelphia": 2.9,
+                "San Antonio": 2.1,
+                "Miami": 2.5
+            },
+            {
+                "Month": "February",
+                "New York": 2.8,
+                "Los Angeles": 3.4,
+                "Chicago": 1.7,
+                "Houston": 3.1,
+                "Phoenix": 0.7,
+                "Philadelphia": 2.6,
+                "San Antonio": 2.4,
+                "Miami": 2.7
+            },
+            {
+                "Month": "March",
+                "New York": 3.5,
+                "Los Angeles": 2.9,
+                "Chicago": 2.4,
+                "Houston": 3.7,
+                "Phoenix": 0.6,
+                "Philadelphia": 3.3,
+                "San Antonio": 2.7,
+                "Miami": 2.9
+            },
+            {
+                "Month": "April",
+                "New York": 3.8,
+                "Los Angeles": 0.8,
+                "Chicago": 3.5,
+                "Houston": 3.2,
+                "Phoenix": 0.2,
+                "Philadelphia": 3.1,
+                "San Antonio": 2.4,
+                "Miami": 3.5
+            },
+            {
+                "Month": "May",
+                "New York": 3.5,
+                "Los Angeles": 0.3,
+                "Chicago": 3.7,
+                "Houston": 4.4,
+                "Phoenix": 0.1,
+                "Philadelphia": 3.4,
+                "San Antonio": 3.6,
+                "Miami": 5.9
+            },
+            {
+                "Month": "June",
+                "New York": 3.9,
+                "Los Angeles": 0.1,
+                "Chicago": 4.1,
+                "Houston": 5.9,
+                "Phoenix": 0.0,
+                "Philadelphia": 3.3,
+                "San Antonio": 4.2,
+                "Miami": 8.6
+            },
+            {
+                "Month": "July",
+                "New York": 4.6,
+                "Los Angeles": 0.0,
+                "Chicago": 4.4,
+                "Houston": 3.6,
+                "Phoenix": 0.4,
+                "Philadelphia": 4.2,
+                "San Antonio": 2.6,
+                "Miami": 6.3
+            },
+            {
+                "Month": "August",
+                "New York": 3.9,
+                "Los Angeles": 0.1,
+                "Chicago": 4.3,
+                "Houston": 3.9,
+                "Phoenix": 1.1,
+                "Philadelphia": 3.8,
+                "San Antonio": 3.3,
+                "Miami": 7.5
+            },
+            {
+                "Month": "September",
+                "New York": 3.7,
+                "Los Angeles": 0.3,
+                "Chicago": 3.2,
+                "Houston": 4.2,
+                "Phoenix": 0.8,
+                "Philadelphia": 3.4,
+                "San Antonio": 3.8,
+                "Miami": 8.1
+            },
+            {
+                "Month": "October",
+                "New York": 3.8,
+                "Los Angeles": 0.6,
+                "Chicago": 2.9,
+                "Houston": 4.5,
+                "Phoenix": 0.7,
+                "Philadelphia": 3.6,
+                "San Antonio": 4.1,
+                "Miami": 6.2
+            },
+            {
+                "Month": "November",
+                "New York": 3.3,
+                "Los Angeles": 1.1,
+                "Chicago": 2.7,
+                "Houston": 4.0,
+                "Phoenix": 0.5,
+                "Philadelphia": 3.0,
+                "San Antonio": 3.3,
+                "Miami": 3.6
+            },
+            {
+                "Month": "December",
+                "New York": 3.6,
+                "Los Angeles": 2.4,
+                "Chicago": 2.3,
+                "Houston": 3.6,
+                "Phoenix": 0.9,
+                "Philadelphia": 3.2,
+                "San Antonio": 2.9,
+                "Miami": 2.8
+            }
+        ]
+    },
+    "width": 1000,
+    "height": 600,
+    "transform": [
+        {
+            "fold": [
+                "New York",
+                "Los Angeles",
+                "Chicago",
+                "Houston",
+                "Phoenix",
+                "Philadelphia",
+                "San Antonio",
+                "Miami"
+            ],
+            "as": [
+                "City",
+                "Rainfall"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "line",
+        "point": true
+    },
+    "encoding": {
+        "x": {
+            "field": "Month",
+            "type": "ordinal",
+            "title": "Month",
+            "axis": {
+                "labelAngle": 0
+            }
+        },
+        "y": {
+            "field": "Rainfall",
+            "type": "quantitative",
+            "title": "Rainfall (inches)",
+            "scale": {
+                "reverse": true
+            }
+        },
+        "color": {
+            "field": "City",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "New York",
+                    "Los Angeles",
+                    "Chicago",
+                    "Houston",
+                    "Phoenix",
+                    "Philadelphia",
+                    "San Antonio",
+                    "Miami"
+                ],
+                "range": [
+                    "#FF5733",
+                    "#33FF57",
+                    "#3357FF",
+                    "#FFFF33",
+                    "#FF33FF",
+                    "#33FFFF",
+                    "#FFAA33",
+                    "#AA33FF"
+                ]
+            },
+            "title": "City"
+        },
+        "tooltip": [
+            {
+                "field": "Month",
+                "type": "nominal"
+            },
+            {
+                "field": "City",
+                "type": "nominal"
+            },
+            {
+                "field": "Rainfall",
+                "type": "quantitative"
+            }
+        ]
+    }
+}

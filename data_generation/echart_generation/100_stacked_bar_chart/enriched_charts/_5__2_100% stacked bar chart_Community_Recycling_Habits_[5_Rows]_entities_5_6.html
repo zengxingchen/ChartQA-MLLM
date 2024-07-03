@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 600,
+    height: 400
+});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Graduate Distribution by Field of Study (2018-2022)',
+        left: 'center',
+        top: 10
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Science & Technology', 'Humanities', 'Arts', 'Business', 'Education'],
+        top: 40
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01]
+    },
+    yAxis: {
+        type: 'category',
+        data: ['2018', '2019', '2020', '2021', '2022']
+    },
+    series: [
+        {
+            name: 'Science & Technology',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            itemStyle: {color: '#1f78b4'},
+            data: [25, 30, 35, 33, 32]
+        },
+        {
+            name: 'Humanities',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            itemStyle: {color: '#b2df8a'},
+            data: [20, 18, 16, 15, 17]
+        },
+        {
+            name: 'Arts',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            itemStyle: {color: '#33a02c'},
+            data: [15, 12, 10, 13, 14]
+        },
+        {
+            name: 'Business',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            itemStyle: {color: '#fb9a99'},
+            data: [25, 28, 30, 29, 27]
+        },
+        {
+            name: 'Education',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            itemStyle: {color: '#e31a1c'},
+            data: [15, 12, 9, 10, 10]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

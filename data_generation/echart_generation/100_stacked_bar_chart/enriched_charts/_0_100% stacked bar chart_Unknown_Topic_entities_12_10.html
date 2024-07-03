@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+option = {
+    color: ['#5470C6', '#91CC75', '#EE6666', '#73C0DE', '#3BA272', '#FC8452', '#9A60B4', '#EA7CCC'],
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {         
+            type: 'shadow'        
+        }
+    },
+    legend: {
+        data: ['Chrome', 'Internet Explorer', 'Firefox', 'Safari', 'Opera', 'Others']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value'
+    },
+    yAxis: {
+        type: 'category',
+        data: ['2016', '2017', '2018', '2019', '2020', '2021']
+    },
+    series: [
+        {
+            name: 'Chrome',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            data: [60, 63, 67, 70, 75, 78]
+        },
+        {
+            name: 'Internet Explorer',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            data: [10, 9, 7, 6, 4, 3]
+        },
+        {
+            name: 'Firefox',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            data: [20, 18, 16, 14, 11, 9]
+        },
+        {
+            name: 'Safari',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            data: [5, 5, 5, 5, 5, 5]
+        },
+        {
+            name: 'Opera',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            data: [2, 2, 2, 2, 2, 3]
+        },
+        {
+            name: 'Others',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            data: [3, 3, 3, 3, 3, 2]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

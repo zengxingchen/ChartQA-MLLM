@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var option;
+
+option = {
+    title: {
+        text: 'Topics and Their Popularity',
+        left: 'center',
+        top: 20,
+        textStyle: {
+            color: '#333',
+            fontSize: 20
+        }
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    xAxis: {
+        type: 'value',
+        axisLabel: {
+            formatter: '{value}'
+        }
+    },
+    yAxis: {
+        type: 'category',
+        data: ['Education', 'Health', 'Environment', 'Technology', 'Economics', 'Entertainment', 'Culture', 'Politics', 'Sports', 'Food', 'Travel', 'Fashion', 'Science', 'Philosophy', 'Literature', 'Music', 'Business', 'Astronomy'],
+        axisLabel: {
+            interval: 0
+        }
+    },
+    series: [
+        {
+            name: 'Popularity',
+            type: 'bar',
+            data: [
+                {value: 78, itemStyle: {color: '#FF5733'}},
+                {value: 85, itemStyle: {color: '#33FF57'}},
+                {value: 95, itemStyle: {color: '#3357FF'}},
+                {value: 88, itemStyle: {color: '#FF33A8'}},
+                {value: 76, itemStyle: {color: '#33FFF6'}},
+                {value: 91, itemStyle: {color: '#FF9633'}},
+                {value: 82, itemStyle: {color: '#FF33C4'}},
+                {value: 69, itemStyle: {color: '#8C33FF'}},
+                {value: 77, itemStyle: {color: '#FF8C33'}},
+                {value: 80, itemStyle: {color: '#33FF96'}},
+                {value: 84, itemStyle: {color: '#3396FF'}},
+                {value: 72, itemStyle: {color: '#F633FF'}},
+                {value: 90, itemStyle: {color: '#FFC433'}},
+                {value: 67, itemStyle: {color: '#33FFC4'}},
+                {value: 79, itemStyle: {color: '#FF5733'}},
+                {value: 86, itemStyle: {color: '#33FF57'}},
+                {value: 93, itemStyle: {color: '#3357FF'}},
+                {value: 81, itemStyle: {color: '#FF33A8'}}
+            ],
+            barWidth: '60%',
+            label: {
+                show: true,
+                position: 'right'
+            }
+        }
+    ],
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

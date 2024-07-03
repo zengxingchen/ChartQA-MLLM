@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: '600',
+    height: '400'
+});
+var option;
+
+option = {
+    title: {
+        text: 'Quarterly Revenue by Product Type',
+        left: 'center',
+        top: '2%'
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['Electronics', 'Clothing', 'Groceries'],
+        top: '8%'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ['2020 Q1', '2020 Q2', '2020 Q3', '2020 Q4', '2021 Q1', '2021 Q2', '2021 Q3', '2021 Q4', '2022 Q1', '2022 Q2', '2022 Q3', '2022 Q4', '2023 Q1', '2023 Q2', '2023 Q3', '2023 Q4']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Electronics',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [12000, 15000, 13000, 16000, 14000, 15500, 13500, 16500, 14500, 15800, 13800, 17000, 15000, 16000, 14000, 17500],
+            color: '#1f78b4'
+        },
+        {
+            name: 'Clothing',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [5000, 6000, 5500, 7500, 4800, 6300, 5700, 7800, 5000, 6500, 5900, 8200, 5200, 6700, 6100, 8500],
+            color: '#33a02c'
+        },
+        {
+            name: 'Groceries',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [7000, 8000, 7500, 8500, 7200, 8700, 8100, 9000, 7400, 8800, 8300, 9200, 7600, 8900, 8500, 9500],
+            color: '#fb9a99'
+        }
+    ],
+    markPoint: {
+        data: [
+            { type: 'max', name: 'Max', seriesName: 'Electronics' },
+            { type: 'min', name: 'Min', seriesName: 'Electronics' }
+        ]
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

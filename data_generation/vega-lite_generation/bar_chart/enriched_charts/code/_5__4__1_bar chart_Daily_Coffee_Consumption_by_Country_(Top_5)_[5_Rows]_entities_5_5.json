@@ -1,0 +1,208 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Average Annual Rainfall by City",
+    "width": 800,
+    "height": 400,
+    "title": {
+        "text": "Average Annual Rainfall",
+        "subtitle": [
+            "Rainfall in millimeters",
+            "Source: World Meteorological Organization"
+        ],
+        "subtitleFontSize": 10,
+        "subtitleFontStyle": "italic",
+        "anchor": "start",
+        "frame": "group"
+    },
+    "data": {
+        "values": [
+            {
+                "City": "New York",
+                "Rainfall": 1200
+            },
+            {
+                "City": "Los Angeles",
+                "Rainfall": 380
+            },
+            {
+                "City": "Chicago",
+                "Rainfall": 940
+            },
+            {
+                "City": "Houston",
+                "Rainfall": 1320
+            },
+            {
+                "City": "Phoenix",
+                "Rainfall": 210
+            },
+            {
+                "City": "Philadelphia",
+                "Rainfall": 1040
+            },
+            {
+                "City": "San Antonio",
+                "Rainfall": 820
+            },
+            {
+                "City": "San Diego",
+                "Rainfall": 280
+            },
+            {
+                "City": "Dallas",
+                "Rainfall": 950
+            },
+            {
+                "City": "San Jose",
+                "Rainfall": 390
+            },
+            {
+                "City": "Austin",
+                "Rainfall": 860
+            },
+            {
+                "City": "Jacksonville",
+                "Rainfall": 1300
+            },
+            {
+                "City": "San Francisco",
+                "Rainfall": 600
+            },
+            {
+                "City": "Columbus",
+                "Rainfall": 980
+            },
+            {
+                "City": "Indianapolis",
+                "Rainfall": 1000
+            },
+            {
+                "City": "Fort Worth",
+                "Rainfall": 880
+            },
+            {
+                "City": "Charlotte",
+                "Rainfall": 1150
+            },
+            {
+                "City": "Seattle",
+                "Rainfall": 950
+            },
+            {
+                "City": "Denver",
+                "Rainfall": 400
+            },
+            {
+                "City": "Washington",
+                "Rainfall": 1070
+            },
+            {
+                "City": "Boston",
+                "Rainfall": 1150
+            },
+            {
+                "City": "El Paso",
+                "Rainfall": 230
+            },
+            {
+                "City": "Nashville",
+                "Rainfall": 1200
+            },
+            {
+                "City": "Detroit",
+                "Rainfall": 950
+            },
+            {
+                "City": "Oklahoma City",
+                "Rainfall": 860
+            },
+            {
+                "City": "Portland",
+                "Rainfall": 930
+            },
+            {
+                "City": "Las Vegas",
+                "Rainfall": 110
+            },
+            {
+                "City": "Memphis",
+                "Rainfall": 1300
+            },
+            {
+                "City": "Louisville",
+                "Rainfall": 1050
+            },
+            {
+                "City": "Baltimore",
+                "Rainfall": 1040
+            }
+        ]
+    },
+    "params": [
+        {
+            "name": "highlight",
+            "select": {
+                "type": "point",
+                "on": "mouseover"
+            }
+        }
+    ],
+    "mark": {
+        "type": "bar",
+        "width": {
+            "band": 0.7
+        },
+        "color": "#4682B4",
+        "strokeWidth": 1,
+        "opacity": {
+            "condition": {
+                "param": "highlight",
+                "empty": false,
+                "value": 1
+            },
+            "value": 0.8
+        },
+        "cursor": "pointer"
+    },
+    "encoding": {
+        "x": {
+            "field": "Rainfall",
+            "type": "quantitative",
+            "axis": {
+                "grid": false,
+                "title": "Rainfall (mm)",
+                "labelFontSize": 12
+            },
+            "label": {
+                "format": ".1f"
+            }
+        },
+        "y": {
+            "field": "City",
+            "type": "nominal",
+            "axis": {
+                "labelAngle": 0,
+                "labelFontSize": 12,
+                "title": "City"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "City",
+                "type": "nominal",
+                "title": "City"
+            },
+            {
+                "field": "Rainfall",
+                "type": "quantitative",
+                "title": "Rainfall (mm)"
+            }
+        ]
+    },
+    "config": {
+        "bar": {
+            "binSpacing": 0,
+            "continuousBandSize": 30
+        }
+    }
+}

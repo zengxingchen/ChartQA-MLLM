@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+            var dom = document.getElementById('container');
+            var myChart = echarts.init(dom, null, {
+            renderer: 'canvas',
+            useDirtyRect: false
+            });
+            var app = {};
+            
+            var option;
+
+            
+option = {
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        },
+        formatter: function (params) {
+            var tooltipData = "<div>" + params[0].name + "</div>";
+            params.forEach(function (item) {
+                tooltipData += "<div>" + item.marker + " " + item.seriesName + ": " + item.value + "%" + "</div>";
+            });
+            return tooltipData;
+        }
+    },
+    legend: {
+        data: ['Electricity', 'Natural Gas', 'Oil', 'Renewable'],
+        align: 'left'
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01],
+        max: 100,
+        axisLabel: {
+            formatter: '{value}%'
+        }
+    },
+    yAxis: {
+        type: 'category',
+        data: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']
+    },
+    series: [
+        {
+            name: 'Electricity',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                formatter: '{c}%'
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [30, 25, 20, 35, 40]
+        },
+        {
+            name: 'Natural Gas',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                formatter: '{c}%'
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [50, 55, 60, 45, 40]
+        },
+        {
+            name: 'Oil',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                formatter: '{c}%'
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [10, 10, 10, 10, 10]
+        },
+        {
+            name: 'Renewable',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                formatter: '{c}%'
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [10, 10, 10, 10, 10]
+        }
+    ]
+};
+
+            if (option && typeof option === 'object') {
+            myChart.setOption(option);
+            }
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

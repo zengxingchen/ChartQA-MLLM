@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var app = {};
+
+var option = {
+    title: {
+        text: 'Correlation between Study Hours and GPA',
+        left: 'center',
+        top: '10%'
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: function (params) {
+            return 'Study Hours: ' + params.value[0] + '<br>GPA: ' + params.value[1];
+        }
+    },
+    legend: {
+        data: ['Data Points'],
+        left: '10%',
+        top: '15%'
+    },
+    xAxis: {
+        name: 'Study Hours',
+        nameLocation: 'middle',
+        nameTextStyle: {
+            fontSize: 14
+        },
+        nameGap: 25,
+        type: 'value',
+        splitLine: {
+            lineStyle: {
+                type: 'dashed'
+            }
+        }
+    },
+    yAxis: {
+        name: 'GPA',
+        nameLocation: 'middle',
+        nameTextStyle: {
+            fontSize: 14
+        },
+        nameGap: 50,
+        type: 'value',
+        splitLine: {
+            lineStyle: {
+                type: 'dashed'
+            }
+        }
+    },
+    series: [
+        {
+            name: 'Data Points',
+            type: 'scatter',
+            itemStyle: {
+                color: '#3398DB'
+            },
+            data: [
+                [1.2, 3.4],
+                [2.1, 4.2],
+                [3.6, 1.8],
+                [4.5, 3.9],
+                [5.3, 2.7],
+                [6.8, 4.1],
+                [7.2, 3.3],
+                [8.1, 5.0],
+                [9.6, 2.4],
+                [10.5, 4.8],
+                [11.3, 3.1],
+                [12.6, 4.6],
+                [13.7, 2.9],
+                [14.4, 5.2],
+                [15.8, 3.7],
+                [16.3, 4.0],
+                [17.1, 2.6],
+                [18.9, 4.3],
+                [19.5, 3.5],
+                [20.7, 4.9],
+                [21.3, 3.2],
+                [22.6, 4.5],
+                [23.8, 2.8],
+                [24.4, 5.1],
+                [25.7, 3.6],
+                [26.3, 4.4],
+                [27.1, 2.5],
+                [28.9, 4.7],
+                [29.5, 3.4],
+                [30.7, 5.3]
+            ]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false
+});
+var option;
+
+option = {
+    title: {
+        text: 'Future Technologies & Society',
+        left: 'center',
+        top: '5%'
+    },
+    xAxis: {
+        type: 'value',
+        name: 'Adoption Rate (%)',
+        nameLocation: 'middle',
+        nameTextStyle: {
+            padding: [10, 0, 0, 0]
+        }
+    },
+    yAxis: {
+        type: 'category',
+        data: ['Artificial Intelligence', 'Quantum Computing', 'Renewable Energy', 'Augmented Reality', 'Blockchain', 'Cybersecurity', 'Biotechnology', 'Robotics', '3D Printing', 'Nanotechnology', 'Smart Cities', 'Virtual Reality', 'Internet of Things', 'Genomics', 'Wearable Technology'],
+        name: 'Technologies',
+        nameLocation: 'middle',
+        nameTextStyle: {
+            padding: [0, 0, 10, 0]
+        }
+    },
+    series: [{
+        name: 'Adoption Rate',
+        type: 'bar',
+        data: [85, 70, 90, 65, 75, 80, 88, 72, 68, 83, 79, 74, 77, 82, 69],
+        itemStyle: {
+            color: function (params) {
+                var colorList = ['#FF5733', '#33FF57', '#3357FF', '#FF33A6', '#FFBD33', '#75FF33', '#3380FF', '#FF334C', '#33FFEB', '#6B33FF', '#FF3388', '#FF8433', '#33FF8C', '#3366FF', '#FF335D'];
+                return colorList[params.dataIndex];
+            }
+        },
+        label: {
+            show: true,
+            position: 'insideRight',
+            formatter: '{c}%'
+        },
+        barWidth: '50%',
+        barCategoryGap: '10%'
+    }],
+    grid: {
+        left: '10%',
+        right: '10%',
+        bottom: '15%',
+        top: '15%'
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

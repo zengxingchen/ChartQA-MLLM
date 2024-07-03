@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 800,
+    height: 600
+});
+var app = {};
+var option;
+
+option = {
+    title: {
+        text: 'Future Technologies & Society',
+        left: 'center',
+        top: '10'
+    },
+    color: ['#FF5733', '#33FF57', '#3357FF', '#FF33A1', '#A133FF', '#33FFD7', '#FFBB33', '#337BFF', '#FF3333', '#75FF33', '#FF33E6', '#FFAF33', '#33FFBB', '#FF6F33', '#3399FF'],
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        data: ['Artificial Intelligence', 'Virtual Reality', 'Quantum Computing', 'Robotics', '3D Printing', 'Blockchain', 'Internet of Things', 'Augmented Reality', 'Nanotechnology', 'Biotechnology', 'Renewable Energy', 'Autonomous Vehicles', 'Cybersecurity', 'Wearable Technology', 'Smart Home'],
+        axisLabel: {
+            interval: 0,
+            rotate: 45
+        }
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Value',
+            type: 'bar',
+            barWidth: '60%',
+            data: [85, 90, 70, 80, 75, 95, 88, 92, 78, 82, 87, 91, 89, 77, 86],
+            label: {
+                show: true,
+                position: 'inside'
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+
+var data = [
+    {name: 'Apples', value: [150, 1.2], children: [
+        {name: 'Granny Smith', value: [150, 1.2]}
+    ]},
+    {name: 'Apples', value: [200, 1.5], children: [
+        {name: 'Fuji', value: [200, 1.5]}
+    ]},
+    {name: 'Oranges', value: [180, 1.0], children: [
+        {name: 'Navel', value: [180, 1.0]}
+    ]},
+    {name: 'Oranges', value: [120, 1.3], children: [
+        {name: 'Blood Orange', value: [120, 1.3]}
+    ]},
+    {name: 'Peaches', value: [90, 1.8], children: [
+        {name: 'Yellow Flesh', value: [90, 1.8]}
+    ]},
+    {name: 'Peaches', value: [70, 2.0], children: [
+        {name: 'White Flesh', value: [70, 2.0]}
+    ]},
+    {name: 'Berries', value: [160, 2.5], children: [
+        {name: 'Strawberries', value: [160, 2.5]}
+    ]},
+    {name: 'Berries', value: [140, 3.0], children: [
+        {name: 'Blueberries', value: [140, 3.0]}
+    ]},
+    {name: 'Plums', value: [80, 1.4], children: [
+        {name: 'Black Diamond', value: [80, 1.4]}
+    ]}
+];
+
+var levels = [
+    {
+        itemStyle: {
+            borderColor: '#777',
+            borderWidth: 0,
+            gapWidth: 1
+        },
+        upperLabel: {
+            show: true,
+            height: 30
+        }
+    },
+    {
+        colorSaturation: [0.2, 0.8],
+        itemStyle: {
+            borderWidth: 5,
+            gapWidth: 1,
+            borderColorSaturation: 0.6
+        }
+    }
+];
+
+var option = {
+    tooltip: {
+        formatter: function (info) {
+            var value = info.value;
+            var treePathInfo = info.treePathInfo;
+            var treePath = [];
+
+            for (var i = 1; i < treePathInfo.length; i++) {
+                treePath.push(treePathInfo[i].name);
+            }
+
+            return [
+                '<div class="tooltip-title">' + echarts.format.encodeHTML(treePath.join('/')) + '</div>',
+                'Sales Volume (kg): ' + echarts.format.addCommas(value[0]),
+                'Average Price per kg (USD): ' + echarts.format.addCommas(value[1])
+            ].join('<br>');
+        }
+    },
+    series: [
+        {
+            name: 'Fruit',
+            type: 'treemap',
+            visibleMin: 300,
+            label: {
+                show: true,
+                formatter: '{b}'
+            },
+            itemStyle: {
+                normal: {
+                    borderColor: '#fff'
+                }
+            },
+            levels: levels,
+            data: data
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

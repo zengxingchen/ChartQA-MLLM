@@ -1,0 +1,239 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": {
+        "text": "Annual Sales Revenue by Product Category",
+        "anchor": "start",
+        "offset": 5,
+        "fontWeight": "bold",
+        "fontSize": 18,
+        "frame": "group",
+        "color": "#2e2e2e"
+    },
+    "width": 600,
+    "height": 300,
+    "data": {
+        "values": [
+            {
+                "Year": 2000,
+                "Electronics": 100,
+                "Clothing": 150,
+                "Grocery": 200,
+                "Books": 50
+            },
+            {
+                "Year": 2001,
+                "Electronics": 110,
+                "Clothing": 170,
+                "Grocery": 220,
+                "Books": 55
+            },
+            {
+                "Year": 2002,
+                "Electronics": 120,
+                "Clothing": 190,
+                "Grocery": 230,
+                "Books": 60
+            },
+            {
+                "Year": 2003,
+                "Electronics": 125,
+                "Clothing": 200,
+                "Grocery": 240,
+                "Books": 65
+            },
+            {
+                "Year": 2004,
+                "Electronics": 130,
+                "Clothing": 210,
+                "Grocery": 250,
+                "Books": 70
+            },
+            {
+                "Year": 2005,
+                "Electronics": 140,
+                "Clothing": 220,
+                "Grocery": 260,
+                "Books": 75
+            },
+            {
+                "Year": 2006,
+                "Electronics": 150,
+                "Clothing": 230,
+                "Grocery": 270,
+                "Books": 80
+            },
+            {
+                "Year": 2007,
+                "Electronics": 160,
+                "Clothing": 240,
+                "Grocery": 280,
+                "Books": 85
+            },
+            {
+                "Year": 2008,
+                "Electronics": 170,
+                "Clothing": 250,
+                "Grocery": 290,
+                "Books": 90
+            },
+            {
+                "Year": 2009,
+                "Electronics": 175,
+                "Clothing": 260,
+                "Grocery": 300,
+                "Books": 95
+            },
+            {
+                "Year": 2010,
+                "Electronics": 180,
+                "Clothing": 270,
+                "Grocery": 310,
+                "Books": 100
+            },
+            {
+                "Year": 2011,
+                "Electronics": 190,
+                "Clothing": 280,
+                "Grocery": 320,
+                "Books": 110
+            },
+            {
+                "Year": 2012,
+                "Electronics": 200,
+                "Clothing": 290,
+                "Grocery": 330,
+                "Books": 120
+            },
+            {
+                "Year": 2013,
+                "Electronics": 210,
+                "Clothing": 300,
+                "Grocery": 340,
+                "Books": 130
+            },
+            {
+                "Year": 2014,
+                "Electronics": 220,
+                "Clothing": 310,
+                "Grocery": 350,
+                "Books": 140
+            },
+            {
+                "Year": 2015,
+                "Electronics": 230,
+                "Clothing": 320,
+                "Grocery": 360,
+                "Books": 150
+            },
+            {
+                "Year": 2016,
+                "Electronics": 240,
+                "Clothing": 330,
+                "Grocery": 370,
+                "Books": 160
+            },
+            {
+                "Year": 2017,
+                "Electronics": 250,
+                "Clothing": 340,
+                "Grocery": 380,
+                "Books": 170
+            },
+            {
+                "Year": 2018,
+                "Electronics": 260,
+                "Clothing": 350,
+                "Grocery": 390,
+                "Books": 180
+            },
+            {
+                "Year": 2019,
+                "Electronics": 270,
+                "Clothing": 360,
+                "Grocery": 400,
+                "Books": 190
+            },
+            {
+                "Year": 2020,
+                "Electronics": 280,
+                "Clothing": 370,
+                "Grocery": 420,
+                "Books": 200
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Electronics",
+                "Clothing",
+                "Grocery",
+                "Books"
+            ],
+            "as": [
+                "Category",
+                "Revenue"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "area",
+        "opacity": 0.75
+    },
+    "encoding": {
+        "x": {
+            "field": "Year",
+            "type": "ordinal",
+            "title": "Year",
+            "axis": {
+                "labelAngle": 0
+            }
+        },
+        "y": {
+            "field": "Revenue",
+            "type": "quantitative",
+            "stack": "zero",
+            "title": "Sales Revenue (in millions $)"
+        },
+        "color": {
+            "field": "Category",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Electronics",
+                    "Clothing",
+                    "Grocery",
+                    "Books"
+                ],
+                "range": [
+                    "#00a1f1",
+                    "#ff7f0e",
+                    "#2ca02c",
+                    "#d62728"
+                ]
+            },
+            "title": "Product Category"
+        },
+        "tooltip": [
+            {
+                "field": "Category",
+                "type": "nominal",
+                "title": "Category"
+            },
+            {
+                "field": "Revenue",
+                "type": "quantitative",
+                "title": "Revenue",
+                "format": ",.1f"
+            }
+        ]
+    },
+    "config": {
+        "view": {
+            "stroke": "transparent"
+        },
+        "axisY": {
+            "grid": true
+        }
+    }
+}

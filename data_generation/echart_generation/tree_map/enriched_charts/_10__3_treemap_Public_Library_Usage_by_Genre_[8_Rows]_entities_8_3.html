@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false
+});
+var option = {
+    title: {
+        text: 'Diverse Art & Design Categories',
+        left: 'center',
+        top: '20px',
+        textStyle: {
+            color: '#333333',
+            fontSize: 20
+        }
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: '{b}: {c}'
+    },
+    series: [
+        {
+            name: 'Art & Design',
+            type: 'treemap',
+            width: '90%',
+            height: '80%',
+            top: '70px',
+            data: [
+                {name: 'Painting', value: 120, itemStyle: {color: '#FF5733'}},
+                {name: 'Sculpture', value: 80, itemStyle: {color: '#33FF57'}},
+                {name: 'Graphic Design', value: 150, itemStyle: {color: '#3357FF'}},
+                {name: 'Photography', value: 90, itemStyle: {color: '#FF33A1'}},
+                {name: 'Architecture', value: 130, itemStyle: {color: '#A1FF33'}},
+                {name: 'Fashion Design', value: 110, itemStyle: {color: '#33A1FF'}},
+                {name: 'Interior Design', value: 70, itemStyle: {color: '#FF5733'}},
+                {name: 'Industrial Design', value: 95, itemStyle: {color: '#33FF57'}},
+                {name: 'Textile Design', value: 85, itemStyle: {color: '#3357FF'}},
+                {name: 'Jewelry Design', value: 75, itemStyle: {color: '#FF33A1'}},
+                {name: 'Animation', value: 65, itemStyle: {color: '#A1FF33'}},
+                {name: 'Digital Art', value: 125, itemStyle: {color: '#33A1FF'}},
+                {name: 'Ceramics', value: 60, itemStyle: {color: '#FF5733'}},
+                {name: 'Printmaking', value: 50, itemStyle: {color: '#33FF57'}},
+                {name: 'Illustration', value: 100, itemStyle: {color: '#3357FF'}},
+                {name: 'Calligraphy', value: 55, itemStyle: {color: '#FF33A1'}},
+                {name: 'Film', value: 105, itemStyle: {color: '#A1FF33'}},
+                {name: 'Theater Design', value: 115, itemStyle: {color: '#33A1FF'}},
+                {name: 'Set Design', value: 45, itemStyle: {color: '#FF5733'}}
+            ]
+        }
+    ]
+};
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+option = {
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Electric Cars', 'Solar Energy', 'Wind Energy', 'Biofuels']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01]
+    },
+    yAxis: {
+        type: 'category',
+        data: ['2020', '2021', '2022', '2023', '2024']
+    },
+    series: [
+        {
+            name: 'Electric Cars',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [5, 15, 25, 35, 45],
+            color: '#33A1C9',
+            barWidth: 20,
+        },
+        {
+            name: 'Solar Energy',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [20, 25, 30, 35, 25],
+            color: '#FFD700',
+            barWidth: 20,
+        },
+        {
+            name: 'Wind Energy',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [30, 30, 20, 15, 15],
+            color: '#20B2AA',
+            barWidth: 20,
+        },
+        {
+            name: 'Biofuels',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [45, 30, 25, 15, 15],
+            color: '#98FB98',
+            barWidth: 20,
+        }
+    ],
+    title: {
+        text: 'Projected Growth in Clean Energy Sectors',
+        subtext: 'Economics & Finance',
+        left: 'center'
+    }
+};
+
+myChart.setOption(option, true);
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

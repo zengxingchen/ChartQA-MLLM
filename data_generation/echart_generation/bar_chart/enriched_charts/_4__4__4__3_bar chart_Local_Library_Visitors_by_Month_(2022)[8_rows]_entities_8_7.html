@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Major Elements in the Earth\'s Crust',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01]
+    },
+    yAxis: {
+        type: 'category',
+        data: ['Oxygen', 'Silicon', 'Aluminum', 'Iron', 'Calcium', 'Sodium', 'Potassium', 'Magnesium', 'Others'],
+        axisLabel: {
+            interval: 0
+        }
+    },
+    series: [
+        {
+            name: 'Percentage',
+            type: 'bar',
+            data: [46.6, 27.7, 8.1, 5.0, 3.6, 2.8, 2.6, 2.1, 1.5],
+            itemStyle: {
+                color: function(params) {
+                    var colorList = [
+                        '#c23531', '#2f4554', '#61a0a8', '#d48265', '#91c7ae', 
+                        '#749f83', '#ca8622', '#bda29a', '#6e7074'
+                    ];
+                    return colorList[params.dataIndex];
+                },
+                barBorderRadius: [5, 5, 0, 0],
+                borderWidth: 1,
+                borderColor: '#ccc'
+            },
+            barWidth: '30%'
+        }
+    ],
+    label: {
+        show: true,
+        position: 'right',
+        formatter: '{c}%'
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

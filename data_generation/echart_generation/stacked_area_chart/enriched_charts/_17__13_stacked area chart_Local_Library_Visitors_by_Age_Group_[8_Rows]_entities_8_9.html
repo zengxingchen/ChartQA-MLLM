@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Retail Sales Trends',
+        left: 'center',
+        top: '20'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            label: {
+                backgroundColor: '#6a7985'
+            }
+        }
+    },
+    legend: {
+        data: ['E-commerce Sales', 'In-store Sales', 'Direct-to-Consumer Sales'],
+        top: '50'
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: [
+        {
+            type: 'category',
+            boundaryGap: false,
+            data: ['2021-01', '2021-02', '2021-03', '2021-04', '2021-05', '2021-06',
+                   '2021-07', '2021-08', '2021-09', '2021-10', '2021-11', '2021-12']
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value'
+        }
+    ],
+    series: [
+        {
+            name: 'E-commerce Sales',
+            type: 'line',
+            stack: 'totals',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [200, 220, 250, 280, 300, 320, 340, 360, 380, 400, 420, 450],
+            color: '#FF6347'
+        },
+        {
+            name: 'In-store Sales',
+            type: 'line',
+            stack: 'totals',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [150, 160, 170, 180, 190, 200, 210, 220, 230, 240, 250, 260],
+            color: '#32CD32'
+        },
+        {
+            name: 'Direct-to-Consumer Sales',
+            type: 'line',
+            stack: 'totals',
+            label: {
+                show: true,
+                position: 'top'
+            },
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [80, 90, 100, 110, 120, 130, 140, 150, 160, 170, 180, 190],
+            color: '#1E90FF'
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

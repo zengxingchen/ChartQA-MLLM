@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Innovations in HealthTech',
+        left: 'center',
+        top: '5%'
+    },
+    tooltip: {
+        trigger: 'item'
+    },
+    legend: {
+        orient: 'vertical',
+        left: 'left',
+        top: '15%',
+        textStyle: {
+            fontSize: 14
+        }
+    },
+    series: [
+        {
+            name: 'HealthTech Category',
+            type: 'pie',
+            radius: '55%',
+            center: ['50%', '60%'],
+            data: [
+                {value: 20, name: 'AI in Healthcare'},
+                {value: 15, name: 'Robot-Assisted Surgery'},
+                {value: 30, name: 'Predictive Analytics in Medicine'},
+                {value: 10, name: 'Virtual Health Assistants'},
+                {value: 25, name: 'Drug Discovery'}
+            ],
+            emphasis: {
+                itemStyle: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            },
+            itemStyle: {
+                normal: {
+                    color: function(params) {
+                        var colorList = [
+                            '#4E40D8', '#23D8AB', '#FFB74D', '#FF6384', '#36A2EB'
+                        ];
+                        return colorList[params.dataIndex]
+                    }
+                }
+            },
+            labelLine: {
+                smooth: 0.2,
+                length: 10,
+                length2: 20
+            },
+            label: {
+                formatter: '{b}: {d}%'
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

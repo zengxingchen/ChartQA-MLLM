@@ -1,0 +1,227 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Travel Activity Frequency by Months",
+    "width": 600,
+    "height": 400,
+    "data": {
+        "values": [
+            {
+                "Month": "January",
+                "Hiking": 120,
+                "Skiing": 160,
+                "CityTour": 80,
+                "BeachVacation": 40,
+                "Cruise": 60,
+                "Camping": 100,
+                "Safari": 30
+            },
+            {
+                "Month": "February",
+                "Hiking": 110,
+                "Skiing": 170,
+                "CityTour": 85,
+                "BeachVacation": 45,
+                "Cruise": 70,
+                "Camping": 90,
+                "Safari": 25
+            },
+            {
+                "Month": "March",
+                "Hiking": 130,
+                "Skiing": 175,
+                "CityTour": 90,
+                "BeachVacation": 55,
+                "Cruise": 80,
+                "Camping": 95,
+                "Safari": 35
+            },
+            {
+                "Month": "April",
+                "Hiking": 140,
+                "Skiing": 150,
+                "CityTour": 95,
+                "BeachVacation": 65,
+                "Cruise": 85,
+                "Camping": 110,
+                "Safari": 40
+            },
+            {
+                "Month": "May",
+                "Hiking": 160,
+                "Skiing": 130,
+                "CityTour": 100,
+                "BeachVacation": 70,
+                "Cruise": 90,
+                "Camping": 120,
+                "Safari": 50
+            },
+            {
+                "Month": "June",
+                "Hiking": 170,
+                "Skiing": 120,
+                "CityTour": 105,
+                "BeachVacation": 75,
+                "Cruise": 95,
+                "Camping": 130,
+                "Safari": 60
+            },
+            {
+                "Month": "July",
+                "Hiking": 180,
+                "Skiing": 110,
+                "CityTour": 110,
+                "BeachVacation": 85,
+                "Cruise": 100,
+                "Camping": 140,
+                "Safari": 70
+            },
+            {
+                "Month": "August",
+                "Hiking": 185,
+                "Skiing": 105,
+                "CityTour": 115,
+                "BeachVacation": 90,
+                "Cruise": 105,
+                "Camping": 150,
+                "Safari": 80
+            },
+            {
+                "Month": "September",
+                "Hiking": 160,
+                "Skiing": 125,
+                "CityTour": 100,
+                "BeachVacation": 80,
+                "Cruise": 90,
+                "Camping": 120,
+                "Safari": 55
+            },
+            {
+                "Month": "October",
+                "Hiking": 150,
+                "Skiing": 135,
+                "CityTour": 90,
+                "BeachVacation": 65,
+                "Cruise": 80,
+                "Camping": 110,
+                "Safari": 45
+            },
+            {
+                "Month": "November",
+                "Hiking": 140,
+                "Skiing": 140,
+                "CityTour": 85,
+                "BeachVacation": 60,
+                "Cruise": 75,
+                "Camping": 100,
+                "Safari": 40
+            },
+            {
+                "Month": "December",
+                "Hiking": 130,
+                "Skiing": 150,
+                "CityTour": 80,
+                "BeachVacation": 50,
+                "Cruise": 70,
+                "Camping": 90,
+                "Safari": 35
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Hiking",
+                "Skiing",
+                "CityTour",
+                "BeachVacation",
+                "Cruise",
+                "Camping",
+                "Safari"
+            ],
+            "as": [
+                "Activity",
+                "Frequency"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "area",
+        "opacity": 0.7
+    },
+    "encoding": {
+        "x": {
+            "field": "Month",
+            "type": "ordinal",
+            "axis": {
+                "title": "Month of the Year",
+                "labelAngle": 0
+            }
+        },
+        "y": {
+            "field": "Frequency",
+            "type": "quantitative",
+            "stack": "zero",
+            "axis": {
+                "title": "Frequency of Travel Activities"
+            }
+        },
+        "color": {
+            "field": "Activity",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Hiking",
+                    "Skiing",
+                    "CityTour",
+                    "BeachVacation",
+                    "Cruise",
+                    "Camping",
+                    "Safari"
+                ],
+                "range": [
+                    "#33a02c",
+                    "#1f78b4",
+                    "#b2df8a",
+                    "#fb9a99",
+                    "#e31a1c",
+                    "#fdbf6f",
+                    "#ff7f00"
+                ]
+            },
+            "legend": {
+                "title": "Travel Activities",
+                "orient": "top-left"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Month",
+                "type": "ordinal"
+            },
+            {
+                "field": "Activity",
+                "type": "nominal"
+            },
+            {
+                "field": "Frequency",
+                "type": "quantitative"
+            }
+        ]
+    },
+    "title": {
+        "text": "Frequency of Travel Activities Throughout the Year",
+        "anchor": "start",
+        "offset": 4,
+        "frame": "group",
+        "orient": "top",
+        "dx": 100
+    },
+    "config": {
+        "view": {
+            "stroke": "transparent"
+        },
+        "axis": {
+            "domainWidth": 1
+        }
+    }
+}

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {renderer: 'canvas', useDirtyRect: false, width: 800, height: 600});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Distribution of Data Points in Future Technologies',
+        left: 'center',
+        top: 20,
+        textStyle: {
+            color: '#333',
+            fontSize: 18,
+            fontWeight: 'bold'
+        }
+    },
+    xAxis: {
+        type: 'category',
+        name: 'Bins',
+        nameLocation: 'middle',
+        nameGap: 25,
+        data: ['0-5', '5-10', '10-15', '15-20', '20-25', '25-30', '30-35'],
+        axisLabel: {
+            interval: 0,
+            rotate: 30,
+            textStyle: {
+                fontSize: 12
+            }
+        }
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Frequency',
+        nameLocation: 'middle',
+        nameGap: 40,
+        axisLabel: {
+            textStyle: {
+                fontSize: 12
+            }
+        }
+    },
+    series: [{
+        type: 'bar',
+        data: [
+            {value: 8, itemStyle: {color: '#4CAF50'}},
+            {value: 6, itemStyle: {color: '#2196F3'}},
+            {value: 5, itemStyle: {color: '#FFC107'}},
+            {value: 4, itemStyle: {color: '#FF5722'}},
+            {value: 3, itemStyle: {color: '#9C27B0'}},
+            {value: 2, itemStyle: {color: '#00BCD4'}},
+            {value: 2, itemStyle: {color: '#673AB7'}}
+        ],
+        label: {
+            show: true,
+            position: 'top',
+            formatter: '{c}'
+        },
+        barWidth: '40%'
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

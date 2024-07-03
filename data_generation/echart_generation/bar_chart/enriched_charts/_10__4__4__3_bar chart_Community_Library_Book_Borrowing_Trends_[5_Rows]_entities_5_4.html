@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Future Technologies & Society',
+        left: 'center',
+        top: '10%'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    xAxis: {
+        type: 'category',
+        data: ['Electric Cars', 'Smart Homes', 'VR Technology', 'Wearable Tech', '3D Printing', 'Robotics', 'AI & Machine Learning', 'Quantum Computing', 'Biotechnology', 'Nanotechnology', 'Cybersecurity', 'Blockchain', 'Renewable Energy', 'Space Exploration', 'Drones', 'Autonomous Vehicles', 'Augmented Reality', 'Genomics', 'Internet of Things', '5G Networks'],
+        axisLabel: {
+            rotate: 45,
+            interval: 0
+        }
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Value',
+            type: 'bar',
+            data: [75, 62, 88, 54, 43, 91, 95, 70, 66, 78, 82, 57, 86, 72, 64, 80, 68, 85, 77, 89],
+            itemStyle: {
+                color: function(params) {
+                    var colorList = ['#FF5733','#33FF57','#3357FF','#FF33A5','#FF9633','#33FFC6','#A533FF','#FFBD33','#FF3333','#33FFBD','#3357FF','#8D33FF','#33FF83','#8DFF33','#FF5733','#33A5FF','#FF33C2','#57FF33','#FF3389','#33FF57'];
+                    return colorList[params.dataIndex];
+                }
+            },
+            barWidth: '60%'
+        }
+    ],
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '15%',
+        containLabel: true
+    },
+    textStyle: {
+        fontFamily: 'Arial',
+        fontSize: 12
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

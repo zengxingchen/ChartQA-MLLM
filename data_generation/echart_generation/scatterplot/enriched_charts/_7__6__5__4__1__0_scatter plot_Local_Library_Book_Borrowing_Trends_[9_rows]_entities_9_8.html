@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Travel & Adventure: Cost vs. Tourists',
+        left: 'center',
+        top: '10%'
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: function (params) {
+            return params.data[2] + '<br/>Cost: $' + params.data[0] + '<br/>Tourists: ' + params.data[1] + 'M';
+        }
+    },
+    xAxis: {
+        name: 'Average Cost (USD)',
+        nameLocation: 'middle',
+        nameTextStyle: {
+            padding: [20, 0, 0, 0]
+        }
+    },
+    yAxis: {
+        name: 'Number of Tourists (in millions)',
+        nameLocation: 'middle',
+        nameTextStyle: {
+            padding: [0, 0, 20, 0]
+        }
+    },
+    series: [{
+        name: 'Travel & Adventure',
+        type: 'scatter',
+        itemStyle: {
+            color: '#3399FF'
+        },
+        data: [
+            [1000, 19, 'Paris'],
+            [1500, 13, 'New York'],
+            [1200, 15, 'Tokyo'],
+            [1400, 18, 'London'],
+            [1600, 8, 'Sydney'],
+            [700, 20, 'Bangkok'],
+            [1100, 10, 'Rome'],
+            [1700, 14, 'Dubai'],
+            [900, 12, 'Istanbul'],
+            [1300, 17, 'Singapore'],
+            [1050, 9, 'Barcelona'],
+            [1250, 11, 'Amsterdam'],
+            [1350, 7, 'Vienna'],
+            [850, 6, 'Prague'],
+            [1450, 16, 'Hong Kong'],
+            [1550, 5, 'Cape Town'],
+            [1150, 4, 'Moscow'],
+            [950, 13, 'Seoul'],
+            [800, 10, 'Rio de Janeiro'],
+            [1400, 14, 'Los Angeles']
+        ]
+    }],
+    legend: {
+        data: ['Travel & Adventure'],
+        left: 'right',
+        top: '10%'
+    },
+    grid: {
+        left: '10%',
+        right: '10%',
+        top: '20%',
+        bottom: '10%'
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

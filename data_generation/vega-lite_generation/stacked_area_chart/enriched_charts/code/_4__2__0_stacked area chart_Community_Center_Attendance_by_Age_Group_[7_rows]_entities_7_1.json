@@ -1,0 +1,198 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Monthly Membership Sign-ups by Gym Facilities",
+    "width": 500,
+    "height": 300,
+    "title": {
+        "text": "Monthly Membership Sign-ups by Gym Facilities",
+        "offset": 30,
+        "frame": "group"
+    },
+    "data": {
+        "values": [
+            {
+                "Month": "Jan",
+                "Weights": 120,
+                "Cardio": 200,
+                "Swimming": 150,
+                "Yoga": 180,
+                "Boxing": 100
+            },
+            {
+                "Month": "Feb",
+                "Weights": 115,
+                "Cardio": 195,
+                "Swimming": 160,
+                "Yoga": 175,
+                "Boxing": 95
+            },
+            {
+                "Month": "Mar",
+                "Weights": 130,
+                "Cardio": 210,
+                "Swimming": 155,
+                "Yoga": 195,
+                "Boxing": 120
+            },
+            {
+                "Month": "Apr",
+                "Weights": 140,
+                "Cardio": 220,
+                "Swimming": 165,
+                "Yoga": 200,
+                "Boxing": 130
+            },
+            {
+                "Month": "May",
+                "Weights": 150,
+                "Cardio": 230,
+                "Swimming": 170,
+                "Yoga": 205,
+                "Boxing": 140
+            },
+            {
+                "Month": "Jun",
+                "Weights": 155,
+                "Cardio": 240,
+                "Swimming": 180,
+                "Yoga": 210,
+                "Boxing": 145
+            },
+            {
+                "Month": "Jul",
+                "Weights": 160,
+                "Cardio": 245,
+                "Swimming": 190,
+                "Yoga": 220,
+                "Boxing": 150
+            },
+            {
+                "Month": "Aug",
+                "Weights": 165,
+                "Cardio": 250,
+                "Swimming": 200,
+                "Yoga": 230,
+                "Boxing": 160
+            },
+            {
+                "Month": "Sep",
+                "Weights": 170,
+                "Cardio": 255,
+                "Swimming": 205,
+                "Yoga": 225,
+                "Boxing": 155
+            },
+            {
+                "Month": "Oct",
+                "Weights": 180,
+                "Cardio": 260,
+                "Swimming": 210,
+                "Yoga": 235,
+                "Boxing": 165
+            },
+            {
+                "Month": "Nov",
+                "Weights": 175,
+                "Cardio": 250,
+                "Swimming": 195,
+                "Yoga": 228,
+                "Boxing": 158
+            },
+            {
+                "Month": "Dec",
+                "Weights": 185,
+                "Cardio": 265,
+                "Swimming": 215,
+                "Yoga": 240,
+                "Boxing": 170
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Weights",
+                "Cardio",
+                "Swimming",
+                "Yoga",
+                "Boxing"
+            ],
+            "as": [
+                "Facility",
+                "SignUps"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "area",
+        "opacity": 0.6
+    },
+    "encoding": {
+        "x": {
+            "field": "Month",
+            "type": "ordinal",
+            "axis": {
+                "labelAngle": 0,
+                "title": "Month"
+            }
+        },
+        "y": {
+            "field": "SignUps",
+            "type": "quantitative",
+            "axis": {
+                "title": "Membership Sign-ups"
+            }
+        },
+        "color": {
+            "field": "Facility",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Weights",
+                    "Cardio",
+                    "Swimming",
+                    "Yoga",
+                    "Boxing"
+                ],
+                "range": [
+                    "#ff7f0e",
+                    "#1f77b4",
+                    "#2ca02c",
+                    "#d62728",
+                    "#9467bd"
+                ]
+            },
+            "legend": {
+                "orient": "top",
+                "title": "Gym Facility",
+                "offset": 60
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Month",
+                "type": "ordinal"
+            },
+            {
+                "field": "Facility",
+                "type": "nominal",
+                "title": "Facility"
+            },
+            {
+                "field": "SignUps",
+                "type": "quantitative",
+                "title": "Sign-ups"
+            }
+        ]
+    },
+    "config": {
+        "style": {
+            "cell": {
+                "stroke": "transparent"
+            }
+        },
+        "axis": {
+            "grid": true
+        }
+    }
+}

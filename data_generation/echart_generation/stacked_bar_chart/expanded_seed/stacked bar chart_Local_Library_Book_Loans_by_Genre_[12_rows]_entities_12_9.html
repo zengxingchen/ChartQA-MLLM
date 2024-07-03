@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById("container");
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+// Data processing to fit eCharts data format for series
+let seriesData = {};
+let months = [];
+
+// Loop through each record and process data
+for (let record of data) {
+    months.push(record.Month);
+    for (let [key, value] of Object.entries(record)) {
+        if (key !== 'Month') {
+            if (!seriesData[key]) {
+                seriesData[key] = [];
+            }
+            seriesData[key].push(value);
+        }
+    }
+}
+
+// Construct series array for eCharts
+let series = Object.keys(seriesData).map((key) => {
+    return {
+        name: key,
+        type: 'bar',
+        stack: 'total',
+        emphasis: {
+            focus: 'series'
+        },
+        data: seriesData[key]
+    };
+});
+
+option = {
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            // Use a shadow rather than a line
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: Object.keys(seriesData)
+    },
+    toolbox: {
+        show: true,
+        feature: {
+            mark: { show: true },
+            dataView: { show: true, readOnly: false },
+            magicType: { show: true, type: ['line', 'bar', 'stack', 'tiled'] },
+            restore: { show: true },
+            saveAsImage: { show: true }
+        }
+    },
+    xAxis: [
+        {
+            type: 'category',
+            axisTick: { show: false },
+            data: months
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value'
+        }
+    ],
+    series: series
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Relationship Between Study Hours and Exam Scores',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: function (params) {
+            return 'Hours: ' + params.value[0] + '<br>Score: ' + params.value[1];
+        }
+    },
+    legend: {
+        data: ['Study Hours vs Exam Scores'],
+        left: 'right',
+        top: '10%'
+    },
+    xAxis: {
+        type: 'value',
+        name: 'Study Hours',
+        nameLocation: 'middle',
+        nameGap: 25,
+        min: 0,
+        max: 110
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Exam Scores',
+        nameLocation: 'middle',
+        nameGap: 50,
+        min: 0,
+        max: 550
+    },
+    series: [{
+        name: 'Study Hours vs Exam Scores',
+        type: 'scatter',
+        itemStyle: {
+            color: '#FF6347'
+        },
+        data: [
+            [10, 100],
+            [15, 110],
+            [20, 150],
+            [25, 180],
+            [30, 200],
+            [35, 220],
+            [40, 250],
+            [45, 270],
+            [50, 290],
+            [55, 310],
+            [60, 330],
+            [65, 350],
+            [70, 370],
+            [75, 400],
+            [80, 420],
+            [85, 440],
+            [90, 460],
+            [95, 480],
+            [100, 500]
+        ]
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById("container");
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+// Formatting the data for pie chart use
+const data = [
+  {'Beverage': 'Espresso', 'Percentage': '12%'},
+  {'Beverage': 'Cappuccino', 'Percentage': '20%'},
+  {'Beverage': 'Latte', 'Percentage': '18%'},
+  {'Beverage': 'American', 'Percentage': '5%'},
+  {'Beverage': 'Flat White', 'Percentage': '10%'},
+  {'Beverage': 'Mocha', 'Percentage': '9%'},
+  {'Beverage': 'Hot Chocolate', 'Percentage': '6%'},
+  {'Beverage': 'Iced Coffee', 'Percentage': '8%'},
+  {'Beverage': 'Herbal Tea', 'Percentage': '4%'},
+  {'Beverage': 'Green Tea', 'Percentage': '3%'},
+  {'Beverage': 'Chai Latte', 'Percentage': '5%'}
+];
+
+// Convert percentage strings to numbers and create series data
+const seriesData = data.map(item => ({
+  value: parseFloat(item.Percentage),
+  name: item.Beverage
+}));
+
+option = {
+  tooltip: {
+    trigger: 'item'
+  },
+  legend: {
+    orient: 'vertical',
+    left: 'left',
+  },
+  series: [
+    {
+      name: 'Beverage Consumption',
+      type: 'pie',
+      radius: '50%',
+      data: seriesData,
+      emphasis: {
+        itemStyle: {
+          shadowBlur: 10,
+          shadowOffsetX: 0,
+          shadowColor: 'rgba(0, 0, 0, 0.5)'
+        }
+      }
+    }
+  ],
+  label: {
+    normal: {
+      formatter: '{b}: {d}%'
+    }
+  },
+  labelLine: {
+    normal: {
+      show: true
+    }
+  },
+  itemStyle: {
+    borderRadius: 3,
+    borderColor: '#fff',
+    borderWidth: 2
+  }
+};
+
+if (option && typeof option === 'object') {
+  myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

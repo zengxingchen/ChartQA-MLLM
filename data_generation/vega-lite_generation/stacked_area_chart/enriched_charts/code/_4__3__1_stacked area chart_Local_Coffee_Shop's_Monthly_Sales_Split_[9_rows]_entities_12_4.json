@@ -1,0 +1,276 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Annual CO2 Emissions by Sector",
+    "width": 800,
+    "height": 400,
+    "data": {
+        "values": [
+            {
+                "Year": 2000,
+                "Energy": 25,
+                "Agriculture": 15,
+                "Industry": 10,
+                "Transportation": 20,
+                "Waste Management": 5
+            },
+            {
+                "Year": 2001,
+                "Energy": 26,
+                "Agriculture": 15,
+                "Industry": 11,
+                "Transportation": 21,
+                "Waste Management": 5
+            },
+            {
+                "Year": 2002,
+                "Energy": 27,
+                "Agriculture": 16,
+                "Industry": 11,
+                "Transportation": 22,
+                "Waste Management": 6
+            },
+            {
+                "Year": 2003,
+                "Energy": 28,
+                "Agriculture": 17,
+                "Industry": 12,
+                "Transportation": 23,
+                "Waste Management": 6
+            },
+            {
+                "Year": 2004,
+                "Energy": 29,
+                "Agriculture": 18,
+                "Industry": 13,
+                "Transportation": 24,
+                "Waste Management": 6
+            },
+            {
+                "Year": 2005,
+                "Energy": 30,
+                "Agriculture": 19,
+                "Industry": 13,
+                "Transportation": 25,
+                "Waste Management": 7
+            },
+            {
+                "Year": 2006,
+                "Energy": 32,
+                "Agriculture": 19,
+                "Industry": 14,
+                "Transportation": 26,
+                "Waste Management": 7
+            },
+            {
+                "Year": 2007,
+                "Energy": 33,
+                "Agriculture": 20,
+                "Industry": 15,
+                "Transportation": 27,
+                "Waste Management": 7
+            },
+            {
+                "Year": 2008,
+                "Energy": 34,
+                "Agriculture": 21,
+                "Industry": 15,
+                "Transportation": 28,
+                "Waste Management": 7
+            },
+            {
+                "Year": 2009,
+                "Energy": 32,
+                "Agriculture": 20,
+                "Industry": 14,
+                "Transportation": 27,
+                "Waste Management": 7
+            },
+            {
+                "Year": 2010,
+                "Energy": 33,
+                "Agriculture": 21,
+                "Industry": 15,
+                "Transportation": 28,
+                "Waste Management": 7
+            },
+            {
+                "Year": 2011,
+                "Energy": 34,
+                "Agriculture": 22,
+                "Industry": 16,
+                "Transportation": 29,
+                "Waste Management": 8
+            },
+            {
+                "Year": 2012,
+                "Energy": 35,
+                "Agriculture": 23,
+                "Industry": 16,
+                "Transportation": 30,
+                "Waste Management": 8
+            },
+            {
+                "Year": 2013,
+                "Energy": 36,
+                "Agriculture": 23,
+                "Industry": 17,
+                "Transportation": 31,
+                "Waste Management": 8
+            },
+            {
+                "Year": 2014,
+                "Energy": 37,
+                "Agriculture": 24,
+                "Industry": 18,
+                "Transportation": 32,
+                "Waste Management": 9
+            },
+            {
+                "Year": 2015,
+                "Energy": 36,
+                "Agriculture": 24,
+                "Industry": 17,
+                "Transportation": 31,
+                "Waste Management": 9
+            },
+            {
+                "Year": 2016,
+                "Energy": 37,
+                "Agriculture": 25,
+                "Industry": 18,
+                "Transportation": 32,
+                "Waste Management": 10
+            },
+            {
+                "Year": 2017,
+                "Energy": 38,
+                "Agriculture": 26,
+                "Industry": 19,
+                "Transportation": 33,
+                "Waste Management": 10
+            },
+            {
+                "Year": 2018,
+                "Energy": 39,
+                "Agriculture": 26,
+                "Industry": 19,
+                "Transportation": 34,
+                "Waste Management": 11
+            },
+            {
+                "Year": 2019,
+                "Energy": 40,
+                "Agriculture": 27,
+                "Industry": 20,
+                "Transportation": 35,
+                "Waste Management": 11
+            },
+            {
+                "Year": 2020,
+                "Energy": 38,
+                "Agriculture": 26,
+                "Industry": 19,
+                "Transportation": 34,
+                "Waste Management": 11
+            },
+            {
+                "Year": 2021,
+                "Energy": 39,
+                "Agriculture": 27,
+                "Industry": 20,
+                "Transportation": 35,
+                "Waste Management": 12
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Energy",
+                "Agriculture",
+                "Industry",
+                "Transportation",
+                "Waste Management"
+            ],
+            "as": [
+                "Sector",
+                "Emissions"
+            ]
+        }
+    ],
+    "title": {
+        "text": "Annual CO2 Emissions by Sector",
+        "anchor": "start",
+        "offset": 5,
+        "dx": 10
+    },
+    "mark": {
+        "type": "area",
+        "opacity": 0.7
+    },
+    "encoding": {
+        "x": {
+            "field": "Year",
+            "type": "ordinal",
+            "axis": {
+                "title": "Year",
+                "labelAngle": 0
+            }
+        },
+        "y": {
+            "field": "Emissions",
+            "type": "quantitative",
+            "stack": "zero",
+            "axis": {
+                "title": "CO2 Emissions (in million metric tons)"
+            }
+        },
+        "color": {
+            "field": "Sector",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Energy",
+                    "Agriculture",
+                    "Industry",
+                    "Transportation",
+                    "Waste Management"
+                ],
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e",
+                    "#2ca02c",
+                    "#d62728",
+                    "#9467bd"
+                ]
+            },
+            "legend": {
+                "title": "Sector",
+                "orient": "bottom-right",
+                "offset": 5
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Year",
+                "type": "ordinal"
+            },
+            {
+                "field": "Sector",
+                "type": "nominal"
+            },
+            {
+                "field": "Emissions",
+                "type": "quantitative"
+            }
+        ]
+    },
+    "config": {
+        "view": {
+            "stroke": "transparent"
+        },
+        "axis": {
+            "domainWidth": 1
+        }
+    }
+}

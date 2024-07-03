@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Nutritional Comparison of Protein Bars and Energy Drinks',
+        left: 'center',
+        top: '20'
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: function (params) {
+            return params.seriesName + '<br/>' + params.name + ': ' + params.value[1];
+        }
+    },
+    legend: {
+        data: ['Protein Bars', 'Energy Drinks'],
+        top: '10',
+        left: 'right'
+    },
+    xAxis: {
+        name: 'Sample Number',
+        type: 'category',
+        boundaryGap: false,
+        data: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
+    },
+    yAxis: {
+        name: 'Nutritional Value',
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Protein Bars',
+            type: 'scatter',
+            itemStyle: {
+                color: '#FF6347'
+            },
+            data: [
+                [1, 4.2], [2, 5.0], [3, 4.8], [4, 5.3], [5, 4.9],
+                [6, 5.5], [7, 5.1], [8, 5.4], [9, 5.0], [10, 5.6]
+            ]
+        },
+        {
+            name: 'Energy Drinks',
+            type: 'scatter',
+            itemStyle: {
+                color: '#4682B4'
+            },
+            data: [
+                [1, 3.5], [2, 3.8], [3, 4.0], [4, 3.9], [5, 4.1],
+                [6, 3.7], [7, 4.2], [8, 3.6], [9, 3.8], [10, 4.0]
+            ]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

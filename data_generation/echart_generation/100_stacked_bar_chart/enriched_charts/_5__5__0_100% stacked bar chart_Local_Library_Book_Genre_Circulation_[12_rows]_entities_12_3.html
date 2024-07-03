@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Education & Learning Activity Distribution by Age Group',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Reading & Writing', 'Online Courses', 'Workshops & Seminars', 'Peer Learning', 'Field Research'],
+        orient: 'horizontal',
+        top: 'bottom'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '8%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01],
+        max: 100
+    },
+    yAxis: {
+        type: 'category',
+        data: ['0-18', '19-30', '31-45', '46-60', '60+']
+    },
+    series: [
+        {
+            name: 'Reading & Writing',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            itemStyle: { color: '#FFD700' }, // Golden
+            data: [25, 20, 15, 10, 5]
+        },
+        {
+            name: 'Online Courses',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            itemStyle: { color: '#3498DB' }, // Blue
+            data: [15, 40, 35, 30, 25]
+        },
+        {
+            name: 'Workshops & Seminars',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            itemStyle: { color: '#2ECC71' }, // Green
+            data: [5, 10, 25, 30, 35]
+        },
+        {
+            name: 'Peer Learning',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            itemStyle: { color: '#E74C3C' }, // Red
+            data: [30, 20, 15, 20, 25]
+        },
+        {
+            name: 'Field Research',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            itemStyle: { color: '#9B59B6' }, // Purple
+            data: [25, 10, 10, 10, 10]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, { width: 800, height: 600 });
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Nutrient Content in Fruits',
+        left: 'center',
+        top: '20'
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: function (params) {
+            return params.data[2] + '<br/>Vitamin C: ' + params.data[0] + 'mg<br/>Calcium: ' + params.data[1] + 'mg';
+        }
+    },
+    legend: {
+        data: ['Fruits'],
+        top: '10',
+        left: 'right'
+    },
+    xAxis: {
+        name: 'Vitamin C (mg)',
+        type: 'value'
+    },
+    yAxis: {
+        name: 'Calcium (mg)',
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Fruits',
+            type: 'scatter',
+            data: [
+                [52, 6, 'Apple'],
+                [10, 5, 'Banana'],
+                [70, 40, 'Orange'],
+                [59, 16, 'Strawberry'],
+                [4, 10, 'Grapes'],
+                [48, 13, 'Pineapple'],
+                [9, 6, 'Blueberry'],
+                [60, 11, 'Mango'],
+                [8, 7, 'Watermelon'],
+                [6, 5, 'Peach'],
+                [92, 34, 'Kiwi'],
+                [77, 26, 'Lemon'],
+                [10, 7, 'Cherry'],
+                [9, 6, 'Plum'],
+                [21, 5, 'Blackberry'],
+                [4, 9, 'Pear'],
+                [62, 20, 'Papaya'],
+                [10, 13, 'Apricot'],
+                [67, 14, 'Cantaloupe'],
+                [2, 35, 'Fig']
+            ],
+            itemStyle: {
+                color: '#FF6347'
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

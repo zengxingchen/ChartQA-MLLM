@@ -1,0 +1,173 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Line chart showing the average steps per day for different cities over a week.",
+    "title": {
+        "text": "Average Steps by City",
+        "fontSize": 16,
+        "anchor": "start",
+        "color": "black"
+    },
+    "width": 900,
+    "height": 600,
+    "data": {
+        "values": [
+            {
+                "City": "New York",
+                "Monday": 8000,
+                "Tuesday": 8500,
+                "Wednesday": 8200,
+                "Thursday": 8700,
+                "Friday": 8900,
+                "Saturday": 9500,
+                "Sunday": 9000
+            },
+            {
+                "City": "Los Angeles",
+                "Monday": 7000,
+                "Tuesday": 7500,
+                "Wednesday": 7800,
+                "Thursday": 8000,
+                "Friday": 8200,
+                "Saturday": 8800,
+                "Sunday": 8500
+            },
+            {
+                "City": "Chicago",
+                "Monday": 6000,
+                "Tuesday": 6300,
+                "Wednesday": 6500,
+                "Thursday": 6800,
+                "Friday": 6700,
+                "Saturday": 7100,
+                "Sunday": 6900
+            },
+            {
+                "City": "Houston",
+                "Monday": 6800,
+                "Tuesday": 6900,
+                "Wednesday": 7000,
+                "Thursday": 7200,
+                "Friday": 7400,
+                "Saturday": 7500,
+                "Sunday": 7300
+            },
+            {
+                "City": "Phoenix",
+                "Monday": 7100,
+                "Tuesday": 7200,
+                "Wednesday": 6800,
+                "Thursday": 7500,
+                "Friday": 7300,
+                "Saturday": 7800,
+                "Sunday": 7400
+            },
+            {
+                "City": "San Francisco",
+                "Monday": 6200,
+                "Tuesday": 6500,
+                "Wednesday": 6700,
+                "Thursday": 7000,
+                "Friday": 7200,
+                "Saturday": 7500,
+                "Sunday": 7100
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday",
+                "Friday",
+                "Saturday",
+                "Sunday"
+            ],
+            "as": [
+                "Day",
+                "Steps"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "line",
+        "point": {
+            "size": 50,
+            "shape": "circle"
+        },
+        "tooltip": {
+            "content": "data"
+        }
+    },
+    "encoding": {
+        "x": {
+            "field": "Day",
+            "type": "ordinal",
+            "title": "Day of the Week",
+            "axis": {
+                "titleFontSize": 12,
+                "labelAngle": -45
+            }
+        },
+        "y": {
+            "field": "Steps",
+            "type": "quantitative",
+            "title": "Average Steps",
+            "axis": {
+                "titleFontSize": 12
+            },
+            "scale": {
+                "reverse": true
+            }
+        },
+        "color": {
+            "field": "City",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "New York",
+                    "Los Angeles",
+                    "Chicago",
+                    "Houston",
+                    "Phoenix",
+                    "San Francisco"
+                ],
+                "range": [
+                    "#FF5733",
+                    "#33FF57",
+                    "#3357FF",
+                    "#FF33A8",
+                    "#57FF33",
+                    "#A833FF"
+                ]
+            },
+            "legend": {
+                "title": "City"
+            }
+        },
+        "text": {
+            "field": "Steps",
+            "type": "quantitative"
+        },
+        "tooltip": [
+            {
+                "field": "City",
+                "type": "nominal"
+            },
+            {
+                "field": "Day",
+                "type": "ordinal"
+            },
+            {
+                "field": "Steps",
+                "type": "quantitative"
+            }
+        ]
+    },
+    "config": {
+        "axisY": {
+            "minExtent": 30
+        }
+    }
+}

@@ -1,0 +1,169 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+        "values": [
+            {
+                "Category": "Classical",
+                "Q1": 50,
+                "Q2": 70,
+                "Q3": 65,
+                "Q4": 80
+            },
+            {
+                "Category": "Rock",
+                "Q1": 85,
+                "Q2": 100,
+                "Q3": 90,
+                "Q4": 120
+            },
+            {
+                "Category": "Jazz",
+                "Q1": 40,
+                "Q2": 60,
+                "Q3": 55,
+                "Q4": 70
+            },
+            {
+                "Category": "Hip-Hop",
+                "Q1": 75,
+                "Q2": 85,
+                "Q3": 80,
+                "Q4": 100
+            },
+            {
+                "Category": "Pop",
+                "Q1": 90,
+                "Q2": 110,
+                "Q3": 100,
+                "Q4": 130
+            },
+            {
+                "Category": "Electronic",
+                "Q1": 60,
+                "Q2": 75,
+                "Q3": 70,
+                "Q4": 90
+            },
+            {
+                "Category": "Country",
+                "Q1": 55,
+                "Q2": 65,
+                "Q3": 60,
+                "Q4": 75
+            },
+            {
+                "Category": "Reggae",
+                "Q1": 45,
+                "Q2": 55,
+                "Q3": 50,
+                "Q4": 65
+            },
+            {
+                "Category": "Blues",
+                "Q1": 35,
+                "Q2": 45,
+                "Q3": 40,
+                "Q4": 55
+            },
+            {
+                "Category": "Latin",
+                "Q1": 65,
+                "Q2": 80,
+                "Q3": 75,
+                "Q4": 95
+            },
+            {
+                "Category": "Metal",
+                "Q1": 70,
+                "Q2": 85,
+                "Q3": 80,
+                "Q4": 100
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Q1",
+                "Q2",
+                "Q3",
+                "Q4"
+            ],
+            "as": [
+                "Quarter",
+                "Revenue"
+            ]
+        }
+    ],
+    "width": 800,
+    "height": 600,
+    "mark": {
+        "type": "bar",
+        "height": 30
+    },
+    "title": {
+        "text": "Quarterly Revenue by Music Genre",
+        "subtitle": "Source: Music Industry Report",
+        "subtitleFontStyle": "italic",
+        "subtitleFontSize": 12,
+        "anchor": "start",
+        "color": "black"
+    },
+    "encoding": {
+        "x": {
+            "field": "Category",
+            "type": "ordinal",
+            "axis": {
+                "title": "Music Genre"
+            }
+        },
+        "y": {
+            "field": "Revenue",
+            "type": "quantitative",
+            "stack": "zero",
+            "axis": {
+                "title": "Revenue in Millions"
+            },
+            "band": 0.7
+        },
+        "color": {
+            "field": "Quarter",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Q1",
+                    "Q2",
+                    "Q3",
+                    "Q4"
+                ],
+                "range": [
+                    "#e6194b",
+                    "#3cb44b",
+                    "#ffe119",
+                    "#4363d8"
+                ]
+            },
+            "legend": {
+                "orient": "top-right",
+                "title": "Quarter"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Category",
+                "type": "ordinal",
+                "title": "Music Genre"
+            },
+            {
+                "field": "Quarter",
+                "type": "nominal",
+                "title": "Quarter"
+            },
+            {
+                "field": "Revenue",
+                "type": "quantitative",
+                "title": "Revenue (Millions)"
+            }
+        ]
+    }
+}

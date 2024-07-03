@@ -1,0 +1,163 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "A 100% stacked vertical bar chart showing the distribution of popular music genres over years",
+    "title": {
+        "text": "Distribution of Popular Music Genres Over Years",
+        "fontSize": 20,
+        "anchor": "middle"
+    },
+    "width": 800,
+    "height": 500,
+    "data": {
+        "values": [
+            {
+                "Year": 2016,
+                "Rock": 25,
+                "Pop": 30,
+                "HipHop": 20,
+                "Jazz": 10,
+                "Classical": 15
+            },
+            {
+                "Year": 2017,
+                "Rock": 24,
+                "Pop": 32,
+                "HipHop": 21,
+                "Jazz": 9,
+                "Classical": 14
+            },
+            {
+                "Year": 2018,
+                "Rock": 23,
+                "Pop": 34,
+                "HipHop": 22,
+                "Jazz": 8,
+                "Classical": 13
+            },
+            {
+                "Year": 2019,
+                "Rock": 22,
+                "Pop": 36,
+                "HipHop": 23,
+                "Jazz": 7,
+                "Classical": 12
+            },
+            {
+                "Year": 2020,
+                "Rock": 21,
+                "Pop": 38,
+                "HipHop": 24,
+                "Jazz": 6,
+                "Classical": 11
+            },
+            {
+                "Year": 2021,
+                "Rock": 20,
+                "Pop": 40,
+                "HipHop": 25,
+                "Jazz": 5,
+                "Classical": 10
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Rock",
+                "Pop",
+                "HipHop",
+                "Jazz",
+                "Classical"
+            ],
+            "as": [
+                "Genre",
+                "Percentage"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "bar",
+        "height": {
+            "band": 0.5
+        }
+    },
+    "encoding": {
+        "x": {
+            "field": "Year",
+            "type": "ordinal",
+            "axis": {
+                "title": "Year"
+            }
+        },
+        "y": {
+            "stack": "normalize",
+            "field": "Percentage",
+            "type": "quantitative",
+            "axis": {
+                "format": ".0%",
+                "title": "Percentage (%)"
+            }
+        },
+        "color": {
+            "field": "Genre",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Rock",
+                    "Pop",
+                    "HipHop",
+                    "Jazz",
+                    "Classical"
+                ],
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e",
+                    "#2ca02c",
+                    "#d62728",
+                    "#9467bd"
+                ]
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Year",
+                "type": "ordinal",
+                "title": "Year"
+            },
+            {
+                "field": "Genre",
+                "type": "nominal",
+                "title": "Music Genre"
+            },
+            {
+                "field": "Percentage",
+                "type": "quantitative",
+                "title": "Percentage"
+            }
+        ]
+    },
+    "layer": [
+        {
+            "mark": "bar"
+        },
+        {
+            "mark": {
+                "type": "text",
+                "align": "left",
+                "baseline": "middle",
+                "dx": 3
+            },
+            "encoding": {
+                "text": {
+                    "field": "Percentage",
+                    "type": "quantitative"
+                }
+            }
+        }
+    ],
+    "config": {
+        "axisX": {
+            "minExtent": 30
+        }
+    }
+}

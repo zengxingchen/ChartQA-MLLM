@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Future Technologies & Society',
+        left: 'center',
+        top: '5%'
+    },
+    xAxis: {
+        type: 'category',
+        data: [
+            'Artificial Intelligence', 'Blockchain', 'Quantum Computing', 
+            'Biotechnology', 'Virtual Reality', '5G Technology', 'Robotics', 
+            'Nanotechnology', 'Autonomous Vehicles', 'Smart Cities', 
+            'Internet of Things', 'Cybersecurity', 'Wearable Devices', 
+            'Augmented Reality', 'Renewable Energy', 'Space Exploration', 
+            'Advanced Materials', '3D Printing', 'Genomics', 'Big Data'
+        ],
+        axisLabel: {
+            interval: 0,
+            rotate: 30
+        }
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [{
+        data: [
+            120, 90, 60, 150, 80, 110, 130, 70, 100, 140, 
+            95, 85, 75, 65, 155, 125, 105, 115, 135, 145
+        ],
+        type: 'bar',
+        barWidth: '50%',
+        itemStyle: {
+            color: function(params) {
+                var colorList = [
+                    '#FF6F61', '#6B5B95', '#88B04B', '#F7CAC9', '#92A8D1',
+                    '#955251', '#B565A7', '#009B77', '#DD4124', '#45B8AC',
+                    '#EFC050', '#5B5EA6', '#9B2335', '#DFCFBE', '#55B4B0',
+                    '#E15D44', '#7FCDCD', '#BC243C', '#C3447A', '#98B4D4'
+                ];
+                return colorList[params.dataIndex];
+            }
+        },
+        label: {
+            show: true,
+            position: 'top'
+        }
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

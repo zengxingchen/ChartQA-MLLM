@@ -1,0 +1,210 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Nutrition Intake of Individuals Over a Week",
+    "width": 700,
+    "height": 400,
+    "data": {
+        "values": [
+            {
+                "Date": "2023-03-01",
+                "Proteins": 80,
+                "Carbs": 200,
+                "Fats": 70,
+                "Vitamins": 20,
+                "Minerals": 10
+            },
+            {
+                "Date": "2023-03-02",
+                "Proteins": 90,
+                "Carbs": 180,
+                "Fats": 60,
+                "Vitamins": 25,
+                "Minerals": 15
+            },
+            {
+                "Date": "2023-03-03",
+                "Proteins": 85,
+                "Carbs": 190,
+                "Fats": 75,
+                "Vitamins": 30,
+                "Minerals": 12
+            },
+            {
+                "Date": "2023-03-04",
+                "Proteins": 95,
+                "Carbs": 210,
+                "Fats": 65,
+                "Vitamins": 28,
+                "Minerals": 20
+            },
+            {
+                "Date": "2023-03-05",
+                "Proteins": 78,
+                "Carbs": 220,
+                "Fats": 72,
+                "Vitamins": 22,
+                "Minerals": 18
+            },
+            {
+                "Date": "2023-03-06",
+                "Proteins": 88,
+                "Carbs": 205,
+                "Fats": 68,
+                "Vitamins": 26,
+                "Minerals": 14
+            },
+            {
+                "Date": "2023-03-07",
+                "Proteins": 92,
+                "Carbs": 195,
+                "Fats": 74,
+                "Vitamins": 24,
+                "Minerals": 16
+            },
+            {
+                "Date": "2023-03-08",
+                "Proteins": 85,
+                "Carbs": 185,
+                "Fats": 67,
+                "Vitamins": 27,
+                "Minerals": 13
+            },
+            {
+                "Date": "2023-03-09",
+                "Proteins": 90,
+                "Carbs": 200,
+                "Fats": 72,
+                "Vitamins": 23,
+                "Minerals": 15
+            },
+            {
+                "Date": "2023-03-10",
+                "Proteins": 80,
+                "Carbs": 210,
+                "Fats": 70,
+                "Vitamins": 25,
+                "Minerals": 12
+            },
+            {
+                "Date": "2023-03-11",
+                "Proteins": 95,
+                "Carbs": 215,
+                "Fats": 65,
+                "Vitamins": 28,
+                "Minerals": 14
+            },
+            {
+                "Date": "2023-03-12",
+                "Proteins": 78,
+                "Carbs": 205,
+                "Fats": 75,
+                "Vitamins": 20,
+                "Minerals": 16
+            },
+            {
+                "Date": "2023-03-13",
+                "Proteins": 88,
+                "Carbs": 195,
+                "Fats": 68,
+                "Vitamins": 26,
+                "Minerals": 18
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Proteins",
+                "Carbs",
+                "Fats",
+                "Vitamins",
+                "Minerals"
+            ],
+            "as": [
+                "Nutrient",
+                "Intake"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "area",
+        "opacity": 0.6
+    },
+    "encoding": {
+        "x": {
+            "field": "Date",
+            "type": "temporal",
+            "axis": {
+                "title": "Date",
+                "format": "%Y-%m-%d",
+                "labelAngle": -45
+            }
+        },
+        "y": {
+            "field": "Intake",
+            "type": "quantitative",
+            "stack": "zero",
+            "axis": {
+                "title": "Total Intake (grams)"
+            }
+        },
+        "color": {
+            "field": "Nutrient",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Proteins",
+                    "Carbs",
+                    "Fats",
+                    "Vitamins",
+                    "Minerals"
+                ],
+                "range": [
+                    "#ff0000",
+                    "#00ff00",
+                    "#0000ff",
+                    "#ff00ff",
+                    "#00ffff"
+                ]
+            },
+            "legend": {
+                "title": "Nutrient Type"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Date",
+                "type": "temporal",
+                "title": "Date"
+            },
+            {
+                "field": "Nutrient",
+                "type": "nominal",
+                "title": "Nutrient Type"
+            },
+            {
+                "field": "Intake",
+                "type": "quantitative",
+                "title": "Intake (grams)"
+            }
+        ]
+    },
+    "config": {
+        "view": {
+            "stroke": "transparent"
+        },
+        "axis": {
+            "labelFontSize": 12,
+            "titleFontSize": 14
+        },
+        "legend": {
+            "labelFontSize": 12,
+            "titleFontSize": 14
+        },
+        "title": {
+            "text": "Nutrition Intake Over a Week",
+            "anchor": "start",
+            "fontSize": 16
+        }
+    }
+}

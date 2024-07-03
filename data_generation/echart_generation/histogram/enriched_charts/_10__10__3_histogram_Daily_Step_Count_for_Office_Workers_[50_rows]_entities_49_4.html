@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Health & Psychology: Exercise Frequency Distribution',
+        left: 'center',
+        top: '20'
+    },
+    xAxis: {
+        type: 'category',
+        data: ['27-29', '30-32', '33-35', '36-38', '39-41', '42-44', '45-47', '48-50'],
+        name: 'Exercise Sessions per Week'
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Number of People'
+    },
+    series: [{
+        data: [1, 3, 3, 3, 3, 3, 3, 1],
+        type: 'bar',
+        itemStyle: {
+            color: '#4CAF50'
+        },
+        barWidth: '40%',
+        label: {
+            show: true,
+            position: 'top'
+        }
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

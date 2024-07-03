@@ -1,0 +1,170 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Quarterly Revenue by Product Category",
+    "width": 500,
+    "height": 400,
+    "title": {
+        "text": "Quarterly Revenue Across Product Categories",
+        "anchor": "start",
+        "offset": 35,
+        "fontSize": 16
+    },
+    "data": {
+        "values": [
+            {
+                "Quarter": "Q1 2023",
+                "Electronics": 20000,
+                "Clothing": 15000,
+                "Furniture": 8000,
+                "Books": 12000,
+                "Food": 10000
+            },
+            {
+                "Quarter": "Q2 2023",
+                "Electronics": 22000,
+                "Clothing": 18000,
+                "Furniture": 6500,
+                "Books": 13000,
+                "Food": 11000
+            },
+            {
+                "Quarter": "Q3 2023",
+                "Electronics": 26000,
+                "Clothing": 20000,
+                "Furniture": 7000,
+                "Books": 15000,
+                "Food": 12000
+            },
+            {
+                "Quarter": "Q4 2023",
+                "Electronics": 30000,
+                "Clothing": 22000,
+                "Furniture": 7500,
+                "Books": 15500,
+                "Food": 13000
+            },
+            {
+                "Quarter": "Q1 2024",
+                "Electronics": 28000,
+                "Clothing": 21000,
+                "Furniture": 7200,
+                "Books": 14000,
+                "Food": 12500
+            },
+            {
+                "Quarter": "Q2 2024",
+                "Electronics": 23000,
+                "Clothing": 19000,
+                "Furniture": 6800,
+                "Books": 14500,
+                "Food": 11500
+            },
+            {
+                "Quarter": "Q3 2024",
+                "Electronics": 25000,
+                "Clothing": 22000,
+                "Furniture": 6900,
+                "Books": 16000,
+                "Food": 13500
+            },
+            {
+                "Quarter": "Q4 2024",
+                "Electronics": 32000,
+                "Clothing": 23000,
+                "Furniture": 7800,
+                "Books": 16500,
+                "Food": 14000
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Electronics",
+                "Clothing",
+                "Furniture",
+                "Books",
+                "Food"
+            ],
+            "as": [
+                "Category",
+                "Revenue"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "area",
+        "opacity": 0.7
+    },
+    "encoding": {
+        "x": {
+            "field": "Quarter",
+            "type": "ordinal",
+            "axis": {
+                "title": "Quarter",
+                "labelAngle": 0
+            }
+        },
+        "y": {
+            "field": "Revenue",
+            "type": "quantitative",
+            "stack": "zero",
+            "axis": {
+                "title": "Revenue (USD)"
+            }
+        },
+        "color": {
+            "field": "Category",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Electronics",
+                    "Clothing",
+                    "Furniture",
+                    "Books",
+                    "Food"
+                ],
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e",
+                    "#2ca02c",
+                    "#d62728",
+                    "#9467bd"
+                ]
+            },
+            "legend": {
+                "title": "Product Category",
+                "labelFontSize": 10,
+                "titleFontSize": 12,
+                "titleLimit": 150,
+                "offset": 60
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Quarter",
+                "type": "ordinal",
+                "title": "Quarter"
+            },
+            {
+                "field": "Category",
+                "type": "nominal",
+                "title": "Product Category"
+            },
+            {
+                "field": "Revenue",
+                "type": "quantitative",
+                "title": "Revenue (USD)"
+            }
+        ]
+    },
+    "config": {
+        "view": {
+            "stroke": "transparent"
+        },
+        "axis": {
+            "labelFontSize": 10,
+            "titleFontSize": 12
+        }
+    }
+}

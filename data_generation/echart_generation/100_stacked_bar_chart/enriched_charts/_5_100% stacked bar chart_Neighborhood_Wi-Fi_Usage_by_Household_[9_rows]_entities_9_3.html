@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, { renderer: 'canvas', width: 800, height: 500 });
+var app = {};
+
+var colors = ['#5470C6', '#91CC75', '#EE6666', '#FAC858', '#73C0DE'];
+
+var option = {
+    title: {
+        text: 'Sectors Contributing to Greenhouse Gas Emissions',
+        subtext: 'Environment & Climate Change',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Agriculture', 'Energy', 'Industry', 'Transportation', 'Residential'],
+        left: 10,
+        top: 'bottom'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        show: true
+    },
+    yAxis: {
+        type: 'category',
+        data: ['2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019']
+    },
+    series: [
+        {
+            name: 'Agriculture',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            itemStyle: {
+                color: colors[0]
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [24, 23, 22, 21, 22, 21, 20, 19, 18, 17]
+        },
+        {
+            name: 'Energy',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            itemStyle: {
+                color: colors[1]
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [36, 35, 37, 38, 36, 35, 34, 33, 33, 32]
+        },
+        {
+            name: 'Industry',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            itemStyle: {
+                color: colors[2]
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [14, 15, 13, 15, 14, 15, 16, 17, 17, 18]
+        },
+        {
+            name: 'Transportation',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            itemStyle: {
+                color: colors[3]
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [18, 19, 20, 18, 20, 21, 22, 23, 24, 25]
+        },
+        {
+            name: 'Residential',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            itemStyle: {
+                color: colors[4]
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [8, 8, 8, 8, 8, 8, 8, 8, 8, 8]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

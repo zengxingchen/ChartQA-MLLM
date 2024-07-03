@@ -1,0 +1,132 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "A 100% Stacked Bar Chart showing the distribution of household chores.",
+    "data": {
+        "values": [
+            {
+                "Person": "Alex",
+                "Cooking": 20,
+                "Cleaning": 25,
+                "Laundry": 15,
+                "Gardening": 30,
+                "Repairs": 10
+            },
+            {
+                "Person": "Jordan",
+                "Cooking": 15,
+                "Cleaning": 20,
+                "Laundry": 25,
+                "Gardening": 15,
+                "Repairs": 25
+            },
+            {
+                "Person": "Casey",
+                "Cooking": 30,
+                "Cleaning": 15,
+                "Laundry": 30,
+                "Gardening": 10,
+                "Repairs": 15
+            },
+            {
+                "Person": "Taylor",
+                "Cooking": 25,
+                "Cleaning": 30,
+                "Laundry": 20,
+                "Gardening": 35,
+                "Repairs": 20
+            },
+            {
+                "Person": "Jamie",
+                "Cooking": 10,
+                "Cleaning": 10,
+                "Laundry": 10,
+                "Gardening": 10,
+                "Repairs": 30
+            }
+        ]
+    },
+    "padding": {
+        "left": 20,
+        "top": 5,
+        "right": 5,
+        "bottom": 40
+    },
+    "width": 500,
+    "height": 300,
+    "transform": [
+        {
+            "fold": [
+                "Cooking",
+                "Cleaning",
+                "Laundry",
+                "Gardening",
+                "Repairs"
+            ]
+        }
+    ],
+    "mark": "bar",
+    "encoding": {
+        "x": {
+            "field": "Person",
+            "type": "nominal",
+            "axis": {
+                "title": "Person"
+            }
+        },
+        "y": {
+            "aggregate": "sum",
+            "field": "value",
+            "type": "quantitative",
+            "axis": {
+                "title": "Percentage",
+                "format": ".0%"
+            },
+            "stack": "normalize"
+        },
+        "color": {
+            "field": "key",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Cooking",
+                    "Cleaning",
+                    "Laundry",
+                    "Gardening",
+                    "Repairs"
+                ],
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e",
+                    "#2ca02c",
+                    "#d62728",
+                    "#9467bd"
+                ]
+            },
+            "legend": {
+                "title": "Chore Type"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Person",
+                "type": "nominal"
+            },
+            {
+                "field": "key",
+                "type": "nominal",
+                "title": "Chore"
+            },
+            {
+                "field": "value",
+                "type": "quantitative",
+                "title": "Percentage"
+            }
+        ]
+    },
+    "config": {
+        "bar": {
+            "cornerRadiusTopLeft": 3,
+            "cornerRadiusTopRight": 3
+        }
+    }
+}

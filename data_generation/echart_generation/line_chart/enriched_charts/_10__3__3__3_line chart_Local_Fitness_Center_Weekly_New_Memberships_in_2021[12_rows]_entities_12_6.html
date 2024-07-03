@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+var option;
+
+option = {
+    title: {
+        text: 'Sales Over Time',
+        left: 'center',
+        textStyle: {
+            color: '#333333'
+        }
+    },
+    xAxis: {
+        type: 'category',
+        data: ['2024-01', '2024-02', '2024-03', '2024-04', '2024-05', '2024-06', '2024-07', '2024-08', '2024-09', '2024-10', '2024-11', '2024-12', 
+               '2025-01', '2025-02', '2025-03', '2025-04', '2025-05', '2025-06', '2025-07', '2025-08', '2025-09', '2025-10', '2025-11', '2025-12']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            data: [100, 200, 150, 300, 250, 400, 350, 450, 500, 550, 600, 650, 700, 750, 800, 850, 900, 950, 1000, 1050, 1100, 1150, 1200, 1250],
+            type: 'line',
+            smooth: true,
+            lineStyle: {
+                color: '#FF5733'
+            },
+            label: {
+                show: true,
+                position: 'top',
+                color: '#333333'
+            },
+            markPoint: {
+                data: [
+                    { type: 'max', name: 'Max', itemStyle: { color: '#27AE60' } },
+                    { type: 'min', name: 'Min', itemStyle: { color: '#2980B9' } }
+                ]
+            }
+        }
+    ],
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['Sales'],
+        top: '10%'
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

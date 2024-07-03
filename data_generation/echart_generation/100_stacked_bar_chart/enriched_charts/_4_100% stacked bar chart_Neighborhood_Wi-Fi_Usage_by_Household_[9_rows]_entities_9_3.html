@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false
+});
+var app = {};
+
+var option;
+
+var data = [
+    {value: [20, 25, 30, 25]},
+    {value: [18, 28, 32, 22]},
+    {value: [22, 24, 33, 21]},
+    {value: [25, 24, 28, 23]},
+    {value: [19, 27, 31, 23]},
+    {value: [21, 22, 34, 23]},
+    {value: [20, 26, 30, 24]},
+    {value: [23, 21, 32, 24]},
+    {value: [24, 23, 29, 24]},
+    {value: [25, 25, 30, 20]}
+];
+
+option = {
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Education & Learning', 'Entertainment & Leisure', 'Business & Entrepreneurship', 'Environment & Climate Change'],
+        orient: 'horizontal',
+        x: 'center',
+        y: 'top'
+    },
+    title: {
+        text: 'Trends in Interest by Sector',
+        left: 'center',
+        top: 5
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value'
+    },
+    yAxis: {
+        type: 'category',
+        data: ['2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019']
+    },
+    series: [
+        {
+            name: 'Education & Learning',
+            type: 'bar',
+            stack: 'total',
+            barWidth: '35%',
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [20, 18, 22, 25, 19, 21, 20, 23, 24, 25],
+            itemStyle: {
+                color: '#1f77b4'
+            }
+        },
+        {
+            name: 'Entertainment & Leisure',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [25, 28, 24, 24, 27, 22, 26, 21, 23, 25],
+            itemStyle: {
+                color: '#ff7f0e'
+            }
+        },
+        {
+            name: 'Business & Entrepreneurship',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [30, 32, 33, 28, 31, 34, 30, 32, 29, 30],
+            itemStyle: {
+                color: '#2ca02c'
+            }
+        },
+        {
+            name: 'Environment & Climate Change',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [25, 22, 21, 23, 23, 23, 24, 24, 24, 20],
+            itemStyle: {
+                color: '#d62728'
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

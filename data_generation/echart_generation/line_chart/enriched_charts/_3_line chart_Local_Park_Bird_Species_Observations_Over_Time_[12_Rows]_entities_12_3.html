@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 400});
+var app = {};
+
+var option;
+
+option = {
+  title: {
+    text: 'Weekly Stock Price Trend',
+    left: 'center',
+    top: 20
+  },
+  tooltip: {
+    trigger: 'axis'
+  },
+  grid: {
+    left: '3%',
+    right: '4%',
+    bottom: '3%',
+    containLabel: true
+  },
+  xAxis: {
+    type: 'category',
+    boundaryGap: false,
+    data: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31', '32', '33', '34', '35', '36', '37', '38', '39', '40', '41', '42', '43', '44', '45', '46', '47', '48', '49', '50', '51', '52']
+  },
+  yAxis: {
+    type: 'value',
+    axisLabel: {
+      formatter: '${value}'
+    }
+  },
+  series: [
+    {
+      name: 'Stock Price',
+      type: 'line',
+      data: [100, 102, 105, 107, 106, 110, 115, 112, 116, 118, 120, 125, 130, 131, 129, 135, 140, 139, 141, 145, 147, 149, 148, 150, 155, 157, 158, 160, 162, 160, 158, 159, 161, 165, 167, 170, 172, 175, 180, 182, 185, 187, 190, 192, 195, 197, 200, 202, 205, 210, 215, 220],
+      markLine: {
+        data: [{type: 'average', name: 'Average'}]
+      },
+      itemStyle: {
+        color: '#ff7f50'
+      },
+      lineStyle: {
+        color: '#377eb8',
+        width: 3
+      }
+    }
+  ],
+  dataZoom: [
+    {
+      type: 'inside',
+      start: 0,
+      end: 100
+    },
+    {
+      start: 0,
+      end: 10,
+      handleIcon: 'M8,0 L12,0 L12,6 L8,6 L8,0 M12,0 L16,0 L16,6 L12,6 L12,0 M12,6 L12,26 L16,26 L16,22 L12,22 L12,6 M12,22 L8,22 L8,26 L12,26 L12,22',
+      handleSize: '80%',
+      handleStyle: {
+        color: '#fff',
+        shadowBlur: 3,
+        shadowColor: 'rgba(0, 0, 0, 0.6)',
+        shadowOffsetX: 2,
+        shadowOffsetY: 2
+      }
+    }
+  ],
+  legend: {
+    data: ['Stock Price'],
+    left: 'left'
+  }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

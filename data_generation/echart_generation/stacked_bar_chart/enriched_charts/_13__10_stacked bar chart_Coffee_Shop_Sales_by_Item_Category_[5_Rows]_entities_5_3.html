@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Monthly Environmental Data',
+        left: 'center',
+        top: '10%'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Nature', 'Wildlife', 'Climate', 'Environment', 'Conservation'],
+        top: 'bottom'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01]
+    },
+    yAxis: {
+        type: 'category',
+        data: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+    },
+    series: [
+        {
+            name: 'Nature',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            itemStyle: {
+                color: '#2ca02c'
+            },
+            data: [120, 132, 101, 134, 90, 230, 210, 232, 256, 278, 210, 230]
+        },
+        {
+            name: 'Wildlife',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            itemStyle: {
+                color: '#1f77b4'
+            },
+            data: [220, 182, 191, 234, 290, 330, 310, 302, 341, 374, 330, 320]
+        },
+        {
+            name: 'Climate',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            itemStyle: {
+                color: '#ff7f0e'
+            },
+            data: [150, 232, 201, 154, 190, 330, 410, 312, 356, 378, 310, 320]
+        },
+        {
+            name: 'Environment',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            itemStyle: {
+                color: '#d62728'
+            },
+            data: [320, 332, 301, 334, 390, 330, 320, 362, 376, 398, 330, 340]
+        },
+        {
+            name: 'Conservation',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            itemStyle: {
+                color: '#9467bd'
+            },
+            data: [820, 932, 901, 934, 1290, 1330, 1320, 1352, 1366, 1378, 1330, 1320]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

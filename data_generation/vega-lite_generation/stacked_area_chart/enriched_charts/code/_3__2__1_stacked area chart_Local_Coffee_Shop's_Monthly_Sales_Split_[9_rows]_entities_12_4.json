@@ -1,0 +1,155 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Average Minutes of Daily Fitness Activities in a Week",
+    "width": 700,
+    "height": 500,
+    "data": {
+        "values": [
+            {
+                "Day": "Monday",
+                "Running": 30,
+                "Swimming": 25,
+                "Cycling": 20,
+                "Yoga": 15,
+                "Gym Workout": 45
+            },
+            {
+                "Day": "Tuesday",
+                "Running": 35,
+                "Swimming": 20,
+                "Cycling": 25,
+                "Yoga": 10,
+                "Gym Workout": 40
+            },
+            {
+                "Day": "Wednesday",
+                "Running": 25,
+                "Swimming": 30,
+                "Cycling": 15,
+                "Yoga": 20,
+                "Gym Workout": 35
+            },
+            {
+                "Day": "Thursday",
+                "Running": 40,
+                "Swimming": 22,
+                "Cycling": 18,
+                "Yoga": 11,
+                "Gym Workout": 50
+            },
+            {
+                "Day": "Friday",
+                "Running": 20,
+                "Swimming": 25,
+                "Cycling": 30,
+                "Yoga": 10,
+                "Gym Workout": 45
+            },
+            {
+                "Day": "Saturday",
+                "Running": 15,
+                "Swimming": 35,
+                "Cycling": 28,
+                "Yoga": 16,
+                "Gym Workout": 40
+            },
+            {
+                "Day": "Sunday",
+                "Running": 45,
+                "Swimming": 18,
+                "Cycling": 24,
+                "Yoga": 9,
+                "Gym Workout": 50
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Running",
+                "Swimming",
+                "Cycling",
+                "Yoga",
+                "Gym Workout"
+            ],
+            "as": [
+                "Activity",
+                "Minutes"
+            ]
+        }
+    ],
+    "title": {
+        "text": "Weekly Profile of Fitness Activities",
+        "anchor": "start",
+        "offset": 5
+    },
+    "mark": {
+        "type": "area",
+        "opacity": 0.7
+    },
+    "encoding": {
+        "x": {
+            "field": "Day",
+            "type": "ordinal",
+            "axis": {
+                "title": "Day of the Week",
+                "labelAngle": 0
+            }
+        },
+        "y": {
+            "field": "Minutes",
+            "type": "quantitative",
+            "stack": "zero",
+            "axis": {
+                "title": "Average Minutes per Activity"
+            }
+        },
+        "color": {
+            "field": "Activity",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Running",
+                    "Swimming",
+                    "Cycling",
+                    "Yoga",
+                    "Gym Workout"
+                ],
+                "range": [
+                    "#56B4E9",
+                    "#009E73",
+                    "#F0E442",
+                    "#0072B2",
+                    "#D55E00"
+                ]
+            },
+            "legend": {
+                "title": "Fitness Activity",
+                "orient": "top-right",
+                "offset": 10
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Day",
+                "type": "ordinal"
+            },
+            {
+                "field": "Activity",
+                "type": "nominal"
+            },
+            {
+                "field": "Minutes",
+                "type": "quantitative"
+            }
+        ]
+    },
+    "config": {
+        "view": {
+            "stroke": "transparent"
+        },
+        "axis": {
+            "domainWidth": 1
+        }
+    }
+}

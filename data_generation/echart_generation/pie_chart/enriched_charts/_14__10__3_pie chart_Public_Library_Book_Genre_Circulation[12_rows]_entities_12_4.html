@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Alternative Vehicle Market Share',
+        left: 'center',
+        top: 20
+    },
+    tooltip: {
+        trigger: 'item'
+    },
+    legend: {
+        orient: 'vertical',
+        left: 20,
+        top: 'middle',
+        textStyle: {
+            fontSize: 14
+        }
+    },
+    series: [
+        {
+            name: 'Market Share',
+            type: 'pie',
+            radius: '50%',
+            data: [
+                { value: 500000, name: 'Electric Cars', itemStyle: { color: '#EF5350' } },
+                { value: 300000, name: 'Hybrid Vehicles', itemStyle: { color: '#EC407A' } },
+                { value: 150000, name: 'Hydrogen Fuel Cars', itemStyle: { color: '#AB47BC' } },
+                { value: 100000, name: 'Bio-diesel Vehicles', itemStyle: { color: '#7E57C2' } },
+                { value: 50000, name: 'Solar Powered Cars', itemStyle: { color: '#5C6BC0' } },
+            ],
+            emphasis: {
+                itemStyle: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            },
+            label: {
+                position: 'outside',
+                formatter: '{b}: {d}%'
+            }
+        }
+    ],
+    color: ['#EF5350', '#EC407A', '#AB47BC', '#7E57C2', '#5C6BC0']
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

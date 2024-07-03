@@ -1,0 +1,180 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": {
+        "text": "Fitness Equipment Market Share by Month",
+        "anchor": "start",
+        "offset": 5
+    },
+    "description": "A 100% stacked bar chart showing the market share of fitness equipment sales over different months.",
+    "data": {
+        "values": [
+            {
+                "Month": "January",
+                "Treadmills": 35,
+                "Exercise Bikes": 25,
+                "Elliptical Trainers": 20,
+                "Rowing Machines": 15,
+                "Yoga Mats": 5
+            },
+            {
+                "Month": "February",
+                "Treadmills": 30,
+                "Exercise Bikes": 26,
+                "Elliptical Trainers": 21,
+                "Rowing Machines": 16,
+                "Yoga Mats": 7
+            },
+            {
+                "Month": "March",
+                "Treadmills": 28,
+                "Exercise Bikes": 30,
+                "Elliptical Trainers": 22,
+                "Rowing Machines": 14,
+                "Yoga Mats": 6
+            },
+            {
+                "Month": "April",
+                "Treadmills": 26,
+                "Exercise Bikes": 25,
+                "Elliptical Trainers": 23,
+                "Rowing Machines": 17,
+                "Yoga Mats": 9
+            },
+            {
+                "Month": "May",
+                "Treadmills": 27,
+                "Exercise Bikes": 28,
+                "Elliptical Trainers": 20,
+                "Rowing Machines": 15,
+                "Yoga Mats": 10
+            },
+            {
+                "Month": "June",
+                "Treadmills": 30,
+                "Exercise Bikes": 25,
+                "Elliptical Trainers": 20,
+                "Rowing Machines": 15,
+                "Yoga Mats": 10
+            },
+            {
+                "Month": "July",
+                "Treadmills": 25,
+                "Exercise Bikes": 25,
+                "Elliptical Trainers": 25,
+                "Rowing Machines": 15,
+                "Yoga Mats": 10
+            },
+            {
+                "Month": "August",
+                "Treadmills": 33,
+                "Exercise Bikes": 21,
+                "Elliptical Trainers": 21,
+                "Rowing Machines": 15,
+                "Yoga Mats": 10
+            },
+            {
+                "Month": "September",
+                "Treadmills": 29,
+                "Exercise Bikes": 26,
+                "Elliptical Trainers": 25,
+                "Rowing Machines": 13,
+                "Yoga Mats": 7
+            },
+            {
+                "Month": "October",
+                "Treadmills": 32,
+                "Exercise Bikes": 24,
+                "Elliptical Trainers": 20,
+                "Rowing Machines": 15,
+                "Yoga Mats": 9
+            },
+            {
+                "Month": "November",
+                "Treadmills": 35,
+                "Exercise Bikes": 20,
+                "Elliptical Trainers": 25,
+                "Rowing Machines": 12,
+                "Yoga Mats": 8
+            },
+            {
+                "Month": "December",
+                "Treadmills": 38,
+                "Exercise Bikes": 22,
+                "Elliptical Trainers": 18,
+                "Rowing Machines": 12,
+                "Yoga Mats": 10
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Treadmills",
+                "Exercise Bikes",
+                "Elliptical Trainers",
+                "Rowing Machines",
+                "Yoga Mats"
+            ],
+            "as": [
+                "Equipment Type",
+                "Sales"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "bar",
+        "cursor": "pointer"
+    },
+    "width": 300,
+    "height": 500,
+    "encoding": {
+        "x": {
+            "field": "Month",
+            "type": "nominal",
+            "axis": {
+                "title": "Month"
+            }
+        },
+        "y": {
+            "field": "Sales",
+            "type": "quantitative",
+            "axis": {
+                "title": "Percentage"
+            },
+            "stack": "normalize"
+        },
+        "color": {
+            "field": "Equipment Type",
+            "type": "nominal",
+            "scale": {
+                "range": [
+                    "#d62728",
+                    "#9467bd",
+                    "#8c564b",
+                    "#e377c2",
+                    "#7f7f7f"
+                ]
+            },
+            "legend": {
+                "title": "Equipment Type",
+                "orient": "bottom"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Equipment Type",
+                "type": "nominal"
+            },
+            {
+                "field": "Sales",
+                "type": "quantitative",
+                "title": "Sales Percentage"
+            }
+        ]
+    },
+    "config": {
+        "bar": {
+            "binSpacing": 2
+        }
+    }
+}

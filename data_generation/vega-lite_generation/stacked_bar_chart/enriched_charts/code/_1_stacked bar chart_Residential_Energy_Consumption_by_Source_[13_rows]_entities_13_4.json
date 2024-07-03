@@ -1,0 +1,180 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Horizontal stacked bar chart showing the investment in different sectors over years.",
+    "title": {
+        "text": "Annual Sector Investment over Years",
+        "fontSize": 15,
+        "anchor": "start",
+        "color": "black",
+        "offset": 10
+    },
+    "width": 400,
+    "height": 600,
+    "data": {
+        "values": [
+            {
+                "Year": 2010,
+                "Healthcare": 200,
+                "Technology": 300,
+                "Retail": 150,
+                "Energy": 350
+            },
+            {
+                "Year": 2011,
+                "Healthcare": 210,
+                "Technology": 310,
+                "Retail": 160,
+                "Energy": 340
+            },
+            {
+                "Year": 2012,
+                "Healthcare": 220,
+                "Technology": 320,
+                "Retail": 170,
+                "Energy": 330
+            },
+            {
+                "Year": 2013,
+                "Healthcare": 230,
+                "Technology": 340,
+                "Retail": 180,
+                "Energy": 320
+            },
+            {
+                "Year": 2014,
+                "Healthcare": 240,
+                "Technology": 350,
+                "Retail": 190,
+                "Energy": 310
+            },
+            {
+                "Year": 2015,
+                "Healthcare": 250,
+                "Technology": 360,
+                "Retail": 200,
+                "Energy": 300
+            },
+            {
+                "Year": 2016,
+                "Healthcare": 260,
+                "Technology": 370,
+                "Retail": 220,
+                "Energy": 290
+            },
+            {
+                "Year": 2017,
+                "Healthcare": 280,
+                "Technology": 380,
+                "Retail": 240,
+                "Energy": 280
+            },
+            {
+                "Year": 2018,
+                "Healthcare": 290,
+                "Technology": 390,
+                "Retail": 260,
+                "Energy": 270
+            },
+            {
+                "Year": 2019,
+                "Healthcare": 310,
+                "Technology": 400,
+                "Retail": 280,
+                "Energy": 260
+            },
+            {
+                "Year": 2020,
+                "Healthcare": 320,
+                "Technology": 410,
+                "Retail": 290,
+                "Energy": 250
+            },
+            {
+                "Year": 2021,
+                "Healthcare": 335,
+                "Technology": 420,
+                "Retail": 295,
+                "Energy": 240
+            },
+            {
+                "Year": 2022,
+                "Healthcare": 340,
+                "Technology": 430,
+                "Retail": 300,
+                "Energy": 230
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Healthcare",
+                "Technology",
+                "Retail",
+                "Energy"
+            ],
+            "as": [
+                "Sector",
+                "Investment"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "bar",
+        "height": {
+            "band": 0.1
+        }
+    },
+    "encoding": {
+        "y": {
+            "field": "Year",
+            "type": "ordinal",
+            "axis": {
+                "labelAngle": 0,
+                "title": "Year"
+            }
+        },
+        "x": {
+            "field": "Investment",
+            "type": "quantitative",
+            "stack": "zero",
+            "axis": {
+                "title": "Investment (in millions)"
+            }
+        },
+        "color": {
+            "field": "Sector",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Healthcare",
+                    "Technology",
+                    "Retail",
+                    "Energy"
+                ],
+                "range": [
+                    "#e7ba52",
+                    "#c7c7c7",
+                    "#aec7e8",
+                    "#1f77b4"
+                ]
+            },
+            "title": "Sector"
+        },
+        "tooltip": [
+            {
+                "field": "Year",
+                "type": "ordinal"
+            },
+            {
+                "field": "Sector",
+                "type": "nominal"
+            },
+            {
+                "field": "Investment",
+                "type": "quantitative",
+                "title": "Investment (in millions)"
+            }
+        ]
+    }
+}

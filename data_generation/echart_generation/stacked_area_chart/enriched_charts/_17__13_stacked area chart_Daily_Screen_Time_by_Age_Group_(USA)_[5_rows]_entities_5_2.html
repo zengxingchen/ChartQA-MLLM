@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 500});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Decade Coffee Consumption Trends',
+        left: 'center',
+        textStyle: {
+            fontSize: 18,
+            fontWeight: 'bold'
+        }
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            label: {
+                backgroundColor: '#6a7985'
+            }
+        }
+    },
+    legend: {
+        data: ['Brazil', 'Vietnam', 'Colombia'],
+        top: '7%',
+        textStyle: {
+            color: '#555'
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ['2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021']
+    },
+    yAxis: {
+        type: 'value',
+        axisLabel: {
+            formatter: '{value}k Bags'
+        }
+    },
+    series: [
+        {
+            name: 'Brazil',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [4500, 4700, 4600, 4800, 4950, 5100, 5300, 5450, 5500, 5590, 5650, 5700],
+            color: '#FF7F0E'
+        },
+        {
+            name: 'Vietnam',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [1800, 1850, 1900, 2000, 2100, 2150, 2200, 2250, 2300, 2350, 2400, 2450],
+            color: '#2CA02C'
+        },
+        {
+            name: 'Colombia',
+            type: 'line',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'top'
+            },
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [900, 920, 950, 975, 1000, 1025, 1050, 1075, 1100, 1130, 1160, 1200],
+            color: '#1F77B4'
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Music Genre Trends on Streaming Platform',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        left: 'left',
+        data: ['Pop', 'Rock', 'Electronic', 'Hip-Hop', 'Classical']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ['Jan-2021', 'Feb-2021', 'Mar-2021', 'Apr-2021', 'May-2021',
+               'Jun-2021', 'Jul-2021', 'Aug-2021', 'Sep-2021', 'Oct-2021',
+               'Nov-2021', 'Dec-2021', 'Jan-2022', 'Feb-2022', 'Mar-2022',
+               'Apr-2022', 'May-2022', 'Jun-2022', 'Jul-2022', 'Aug-2022',
+               'Sep-2022', 'Oct-2022', 'Nov-2022', 'Dec-2022']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Pop',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: { focus: 'series' },
+            data: [12000, 10000, 9800, 11500, 12000, 12500, 13000,
+                   13500, 14000, 14500, 15000, 15500, 16000, 16500,
+                   17000, 17500, 18000, 18500, 19000, 19500, 20000,
+                   18000, 16000, 14000]
+        },
+        {
+            name: 'Rock',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: { focus: 'series' },
+            data: [15000, 16000, 16500, 14000, 13000, 12000, 11000,
+                   11500, 12000, 12500, 13000, 13500, 14000, 14500,
+                   15000, 15500, 16000, 16500, 17000, 17500, 18000,
+                   18500, 19000, 19500]
+        },
+        {
+            name: 'Electronic',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: { focus: 'series' },
+            data: [8000, 8500, 8700, 9000, 9500, 10000, 10500, 11000,
+                   11500, 12000, 12500, 13000, 13500, 14000, 14500,
+                   15000, 15500, 16000, 16500, 17000, 17500, 18000,
+                   18500, 19000]
+        },
+        {
+            name: 'Hip-Hop',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: { focus: 'series' },
+            data: [10000, 11000, 15000, 14000, 13500, 13000, 12000,
+                   12500, 14500, 15500, 16000, 16500, 17000, 17500,
+                   18000, 18500, 19000, 19500, 20000, 20500, 21000,
+                   21500, 22000, 22500]
+        },
+        {
+            name: 'Classical',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: { focus: 'series' },
+            data: [5000, 5200, 5300, 4900, 4500, 4600, 4700, 4800,
+                   4850, 4800, 4750, 4700, 4650, 4600, 4550, 4500, 
+                   4450, 4400, 4350, 4300, 4250, 4200, 4150, 4100]
+        }
+    ],
+    color: ['#3366CC', '#DC3912', '#FF9900', '#109618', '#990099'],
+    responsive: true,
+    maintainAspectRatio: false
+};
+
+myChart.setOption(option, true);
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,143 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "A bubble chart showing the number of research publications and average citation counts for different academic disciplines.",
+    "title": {
+        "text": "Research Publications vs Citation Counts by Discipline",
+        "subtitle": "Exploring academic impact through publication volume and citation counts.",
+        "subtitleFontStyle": "italic",
+        "subtitleFontSize": 10,
+        "anchor": "start",
+        "color": "black",
+        "fontSize": 14,
+        "offset": 30
+    },
+    "data": {
+        "values": [
+            {
+                "Discipline": "Physics",
+                "Publications": 1500,
+                "Citations": 5.2
+            },
+            {
+                "Discipline": "Chemistry",
+                "Publications": 1300,
+                "Citations": 4.8
+            },
+            {
+                "Discipline": "Biology",
+                "Publications": 1600,
+                "Citations": 5.6
+            },
+            {
+                "Discipline": "Mathematics",
+                "Publications": 900,
+                "Citations": 3.7
+            },
+            {
+                "Discipline": "Computer Science",
+                "Publications": 1400,
+                "Citations": 5.9
+            },
+            {
+                "Discipline": "Engineering",
+                "Publications": 1200,
+                "Citations": 4.3
+            },
+            {
+                "Discipline": "Medicine",
+                "Publications": 1700,
+                "Citations": 6.1
+            },
+            {
+                "Discipline": "Economics",
+                "Publications": 800,
+                "Citations": 3.4
+            },
+            {
+                "Discipline": "Psychology",
+                "Publications": 1100,
+                "Citations": 4.1
+            },
+            {
+                "Discipline": "Sociology",
+                "Publications": 1000,
+                "Citations": 3.8
+            }
+        ]
+    },
+    "repeat": {
+        "layer": [
+            "Citations"
+        ]
+    },
+    "spec": {
+        "mark": "point",
+        "encoding": {
+            "x": {
+                "field": "Publications",
+                "type": "quantitative",
+                "title": "Number of Publications"
+            },
+            "y": {
+                "field": {
+                    "repeat": "layer"
+                },
+                "type": "quantitative",
+                "title": "Average Citation Count"
+            },
+            "color": {
+                "datum": {
+                    "repeat": "layer"
+                },
+                "type": "nominal",
+                "legend": {
+                    "title": "Measurement",
+                    "orient": "none",
+                    "offset": 0,
+                    "legendX": 350,
+                    "legendY": -10
+                },
+                "scale": {
+                    "domain": [
+                        "Citations"
+                    ],
+                    "range": [
+                        "#FF6347"
+                    ]
+                }
+            },
+            "size": {
+                "value": 200
+            },
+            "opacity": {
+                "value": 0.7
+            },
+            "tooltip": [
+                {
+                    "field": "Discipline",
+                    "type": "nominal",
+                    "title": "Discipline"
+                },
+                {
+                    "field": "Publications",
+                    "type": "quantitative",
+                    "title": "Number of Publications"
+                },
+                {
+                    "field": {
+                        "repeat": "layer"
+                    },
+                    "type": "quantitative",
+                    "title": "Average Citation Count"
+                }
+            ]
+        },
+        "width": 600,
+        "height": 400,
+        "resolve": {
+            "scale": {
+                "y": "independent"
+            }
+        }
+    }
+}

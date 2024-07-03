@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {renderer: 'canvas', width: 700, height: 500});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Popularity of Academic Disciplines',
+        left: 'center',
+        top: 20
+    },
+    tooltip: {
+        trigger: 'item'
+    },
+    legend: {
+        orient: 'vertical',
+        left: 'left',
+        top: 'middle'
+    },
+    color: [
+        '#3366CC', '#DC3912', '#FF9900', '#109618', '#990099',
+        '#3B3EAC', '#0099C6', '#DD4477', '#66AA00', '#B82E2E',
+        '#316395', '#994499', '#22AA99', '#AAAA11', '#6633CC',
+        '#E67300', '#8B0707', '#329262'
+    ],
+    series: [
+        {
+            name: 'Enrollment',
+            type: 'pie',
+            radius: '65%',
+            center: ['50%', '60%'],
+            data: [
+                {value: 3500, name: 'Mathematics'},
+                {value: 4200, name: 'Computer Science'},
+                {value: 2800, name: 'Physics'},
+                {value: 3000, name: 'Chemistry'},
+                {value: 3200, name: 'Biology'},
+                {value: 4000, name: 'Medicine'},
+                {value: 3800, name: 'Engineering'},
+                {value: 3600, name: 'Economics'},
+                {value: 3100, name: 'Psychology'},
+                {value: 2700, name: 'History'},
+                {value: 2400, name: 'Literature'},
+                {value: 2300, name: 'Art'},
+                {value: 1900, name: 'Music'},
+                {value: 3100, name: 'Education'},
+                {value: 1700, name: 'Philosophy'},
+                {value: 2900, name: 'Political Science'},
+                {value: 2000, name: 'Sociology'}
+            ],
+            emphasis: {
+                itemStyle: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            }
+        }
+    ],
+    label: {
+        normal: {
+            formatter: '{b}: {d}%'
+        }
+    }
+};
+
+// Use the current configuration to set the chart instance
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

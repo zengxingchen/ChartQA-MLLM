@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+var option;
+
+option = {
+    title: {
+        text: 'Vitamin Content in Different Food Categories',
+        left: 'center',
+        top: '10%'
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['Fruits', 'Vegetables', 'Grains'],
+        top: 'bottom',
+        left: 'center'
+    },
+    xAxis: {
+        type: 'category',
+        name: 'Food Index',
+        data: [1,2,3,4,5,6,7,8,9,10]
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Vitamin Content (mg)'
+    },
+    series: [
+        {
+            name: 'Fruits',
+            type: 'scatter',
+            itemStyle: {
+                color: '#FF6347'
+            },
+            data: [100, 150, 50, 200, 130, 180, 75, 90, 160, 115]
+        },
+        {
+            name: 'Vegetables',
+            type: 'scatter',
+            itemStyle: {
+                color: '#32CD32'
+            },
+            data: [300, 380, 320, 400, 350, 375, 290, 310, 330, 295]
+        },
+        {
+            name: 'Grains',
+            type: 'scatter',
+            itemStyle: {
+                color: '#FFD700'
+            },
+            data: [50, 75, 60, 80, 90, 85, 100, 110, 115, 95]
+        }
+    ],
+    grid: {
+        width: '80%',
+        height: '70%',
+        left: '10%',
+        top: '15%'
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

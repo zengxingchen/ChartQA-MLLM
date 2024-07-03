@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 800,
+    height: 600
+});
+var option;
+
+option = {
+    title: {
+        text: 'Monthly Sales of Tech Products',
+        left: 'center',
+        padding: [20, 0, 0, 0] // top, right, bottom, left
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['Product A', 'Product B', 'Product C'],
+        top: 40
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ['2021-01', '2021-02', '2021-03', '2021-04', '2021-05', 
+               '2021-06', '2021-07', '2021-08', '2021-09', '2021-10', 
+               '2021-11', '2021-12']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Product A',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: { focus: 'series' },
+            data: [1500, 1600, 1700, 1650, 1800, 2000, 2100, 2200, 2300, 2400, 2500, 2600],
+            color: '#FF4500', // Orangish red
+        },
+        {
+            name: 'Product B',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: { focus: 'series' },
+            data: [1200, 1400, 1500, 1580, 1700, 1900, 1950, 2050, 2150, 2250, 2350, 2450],
+            color: '#1E90FF', // DodgerBlue
+        },
+        {
+            name: 'Product C',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: { focus: 'series' },
+            data: [1100, 1300, 1450, 1550, 1600, 1750, 1850, 2000, 2100, 2200, 2300, 2400],
+            color: '#32CD32', // LimeGreen
+        }
+    ],
+    markPoint: {
+        data: [
+            {type: 'max', name: 'Max value', valueDim: 'highest'},
+            {type: 'min', name: 'Min value', valueDim: 'lowest'}
+        ]
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

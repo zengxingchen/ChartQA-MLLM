@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Economic Growth Over Time',
+        left: 'center',
+        top: '10'
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: function (params) {
+            return 'X: ' + params.value[0] + '<br/>Y: ' + params.value[1];
+        }
+    },
+    xAxis: {
+        type: 'value',
+        name: 'Year'
+    },
+    yAxis: {
+        type: 'value',
+        name: 'GDP Growth (%)'
+    },
+    legend: {
+        data: ['GDP Growth'],
+        left: 'left',
+        top: 'bottom'
+    },
+    series: [{
+        name: 'GDP Growth',
+        type: 'scatter',
+        data: [
+            [1, 10],
+            [2, 9],
+            [3, 11],
+            [4, 8],
+            [5, 12],
+            [6, 7],
+            [7, 13],
+            [8, 6],
+            [9, 14],
+            [10, 5],
+            [11, 15],
+            [12, 4],
+            [13, 16],
+            [14, 3],
+            [15, 17],
+            [16, 2],
+            [17, 18],
+            [18, 1],
+            [19, 19],
+            [20, 0],
+            [21, 20],
+            [22, -1],
+            [23, 21],
+            [24, -2],
+            [25, 22]
+        ],
+        itemStyle: {
+            color: '#3398DB'
+        }
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

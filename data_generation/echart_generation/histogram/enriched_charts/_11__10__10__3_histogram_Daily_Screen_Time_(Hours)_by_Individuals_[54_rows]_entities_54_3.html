@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var option;
+
+option = {
+    title: {
+        text: 'Global Distribution of Renewable Energy Capacity (in GW)',
+        left: 'center',
+        top: '5%',
+        textStyle: {
+            color: '#333',
+            fontSize: 18
+        }
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    xAxis: {
+        type: 'category',
+        data: ['15-30', '30-45', '45-60', '60-75', '75-90', '90-105', '105-120', '120-135', '135-150', '150-165', '165-180', '180-195', '195-210', '210-225', '225-240', '240-255', '255-270', '270-285', '285-300', '300-315', '315-330', '330-345', '345-360', '360-375', '375-390', '390-405', '405-420', '420-435', '435-450', '450-465', '465-480', '480-495', '495-510'],
+        axisLabel: {
+            interval: 0,
+            rotate: 45,
+            textStyle: {
+                color: '#000',
+                fontSize: 12
+            }
+        },
+        name: 'Capacity Range (GW)',
+        nameLocation: 'middle',
+        nameGap: 30
+    },
+    yAxis: {
+        type: 'value',
+        axisLabel: {
+            formatter: '{value}',
+            textStyle: {
+                color: '#000',
+                fontSize: 12
+            }
+        },
+        name: 'Frequency',
+        nameLocation: 'end',
+        nameGap: 15
+    },
+    series: [{
+        type: 'bar',
+        data: [2, 4, 6, 3, 5, 4, 8, 2, 4, 6, 3, 5, 4, 8, 2, 4, 6, 3, 5, 4, 8, 2, 4, 6, 3, 5, 4, 8, 2, 4, 6, 3, 5],
+        itemStyle: {
+            color: '#4CAF50'
+        },
+        barWidth: '60%',
+        label: {
+            show: true,
+            position: 'top',
+            formatter: '{c}',
+            color: '#333'
+        }
+    }],
+    grid: {
+        left: '10%',
+        right: '10%',
+        bottom: '20%',
+        containLabel: true
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: { show: true }
+        }
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,195 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Average Monthly Precipitation for Selected Cities",
+    "width": 600,
+    "height": 450,
+    "data": {
+        "values": [
+            {
+                "Month": "January",
+                "New York": 78.2,
+                "Los Angeles": 79.5,
+                "Tokyo": 52.1,
+                "London": 54.3,
+                "Sydney": 126.2
+            },
+            {
+                "Month": "February",
+                "New York": 73.6,
+                "Los Angeles": 74.3,
+                "Tokyo": 57.2,
+                "London": 41.2,
+                "Sydney": 109.3
+            },
+            {
+                "Month": "March",
+                "New York": 91.3,
+                "Los Angeles": 62.5,
+                "Tokyo": 118.7,
+                "London": 52.8,
+                "Sydney": 131.4
+            },
+            {
+                "Month": "April",
+                "New York": 92.1,
+                "Los Angeles": 25.4,
+                "Tokyo": 123.2,
+                "London": 47.6,
+                "Sydney": 101.7
+            },
+            {
+                "Month": "May",
+                "New York": 101.6,
+                "Los Angeles": 12.3,
+                "Tokyo": 134.3,
+                "London": 45.7,
+                "Sydney": 98.2
+            },
+            {
+                "Month": "June",
+                "New York": 95.7,
+                "Los Angeles": 2.1,
+                "Tokyo": 160.9,
+                "London": 52.2,
+                "Sydney": 115.1
+            },
+            {
+                "Month": "July",
+                "New York": 112.1,
+                "Los Angeles": 0.1,
+                "Tokyo": 154.4,
+                "London": 53.4,
+                "Sydney": 79.5
+            },
+            {
+                "Month": "August",
+                "New York": 103.2,
+                "Los Angeles": 0.0,
+                "Tokyo": 132.8,
+                "London": 55.7,
+                "Sydney": 84.2
+            },
+            {
+                "Month": "September",
+                "New York": 108.5,
+                "Los Angeles": 1.7,
+                "Tokyo": 181.5,
+                "London": 60.1,
+                "Sydney": 91.3
+            },
+            {
+                "Month": "October",
+                "New York": 103.3,
+                "Los Angeles": 6.3,
+                "Tokyo": 158.2,
+                "London": 68.7,
+                "Sydney": 85.6
+            },
+            {
+                "Month": "November",
+                "New York": 89.1,
+                "Los Angeles": 18.2,
+                "Tokyo": 92.1,
+                "London": 60.9,
+                "Sydney": 77.4
+            },
+            {
+                "Month": "December",
+                "New York": 83.2,
+                "Los Angeles": 53.1,
+                "Tokyo": 51.3,
+                "London": 61.4,
+                "Sydney": 99.1
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "New York",
+                "Los Angeles",
+                "Tokyo",
+                "London",
+                "Sydney"
+            ],
+            "as": [
+                "City",
+                "Precipitation"
+            ]
+        }
+    ],
+    "title": {
+        "text": "Monthly Average Precipitation across Cities",
+        "anchor": "start",
+        "offset": 5
+    },
+    "mark": {
+        "type": "area",
+        "opacity": 0.6
+    },
+    "encoding": {
+        "x": {
+            "field": "Month",
+            "type": "ordinal",
+            "axis": {
+                "title": "Month",
+                "labelAngle": 0
+            }
+        },
+        "y": {
+            "field": "Precipitation",
+            "type": "quantitative",
+            "stack": "zero",
+            "axis": {
+                "title": "Average Precipitation (mm)"
+            }
+        },
+        "color": {
+            "field": "City",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "New York",
+                    "Los Angeles",
+                    "Tokyo",
+                    "London",
+                    "Sydney"
+                ],
+                "range": [
+                    "#4c78a8",
+                    "#f58518",
+                    "#54a24b",
+                    "#e45756",
+                    "#72b7b2"
+                ]
+            },
+            "legend": {
+                "title": "City",
+                "orient": "top-right",
+                "offset": 50
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Month",
+                "type": "ordinal"
+            },
+            {
+                "field": "City",
+                "type": "nominal"
+            },
+            {
+                "field": "Precipitation",
+                "type": "quantitative"
+            }
+        ]
+    },
+    "config": {
+        "view": {
+            "stroke": "transparent"
+        },
+        "axis": {
+            "domainWidth": 1
+        }
+    }
+}

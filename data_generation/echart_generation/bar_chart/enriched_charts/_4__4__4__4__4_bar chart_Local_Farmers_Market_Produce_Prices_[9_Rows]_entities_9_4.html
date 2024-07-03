@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+var option;
+
+option = {
+    title: {
+        text: 'Future Technologies & Society',
+        left: 'center',
+        top: 20
+    },
+    xAxis: {
+        type: 'value',
+        axisLabel: {
+            formatter: '{value} %'
+        }
+    },
+    yAxis: {
+        type: 'category',
+        data: ['Artificial Intelligence', 'Virtual Reality', 'Blockchain', 'Quantum Computing', '5G Networks', 'Biotechnology', 'Renewable Energy', 'Cybersecurity', 'Autonomous Vehicles', 'Internet of Things', 'Nanotechnology', 'Robotics', 'Augmented Reality', 'Big Data', '3D Printing', 'Smart Cities'],
+        axisLabel: {
+            interval: 0,
+            rotate: 30
+        }
+    },
+    series: [
+        {
+            name: 'Adoption Rate',
+            type: 'bar',
+            data: [85, 75, 65, 50, 90, 70, 80, 60, 55, 95, 65, 72, 78, 82, 88, 62],
+            itemStyle: {
+                color: '#3498db'
+            },
+            barWidth: 15,
+            label: {
+                show: true,
+                position: 'right',
+                formatter: '{c} %'
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

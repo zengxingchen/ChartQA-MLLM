@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+// Extract weeks for the x-axis
+const weeks = [];
+// Prepare series data entries for each category
+const seriesData = {
+    'Fruits': [],
+    'Vegetables': [],
+    'Herbs': [],
+    'Baked Goods': [],
+    'Honey': [],
+    'Jams': []
+};
+
+// Populate the weeks array and seriesData object
+const data = [
+    {'Week': '1st Week January', 'Fruits': 500, 'Vegetables': 700, 'Herbs': 300, 'Baked Goods': 450, 'Honey': 200, 'Jams': 150},
+    {'Week': '2nd Week January', 'Fruits': 530, 'Vegetables': 680, 'Herbs': 320, 'Baked Goods': 470, 'Honey': 210, 'Jams': 165},
+    {'Week': '3rd Week January', 'Fruits': 550, 'Vegetables': 710, 'Herbs': 330, 'Baked Goods': 480, 'Honey': 220, 'Jams': 170},
+    {'Week': '4th Week January', 'Fruits': 570, 'Vegetables': 730, 'Herbs': 340, 'Baked Goods': 500, 'Honey': 230, 'Jams': 180},
+    {'Week': '1st Week February', 'Fruits': 600, 'Vegetables': 750, 'Herbs': 350, 'Baked Goods': 520, 'Honey': 240, 'Jams': 190},
+    {'Week': '2nd Week February', 'Fruits': 580, 'Vegetables': 740, 'Herbs': 360, 'Baked Goods': 510, 'Honey': 250, 'Jams': 200},
+    {'Week': '3rd Week February', 'Fruits': 610, 'Vegetables': 770, 'Herbs': 370, 'Baked Goods': 530, 'Honey': 260, 'Jams': 220},
+    {'Week': '4th Week February', 'Fruits': 630, 'Vegetables': 790, 'Herbs': 380, 'Baked Goods': 540, 'Honey': 270, 'Jams': 230}
+];
+
+for (const item of data) {
+    weeks.push(item.Week);
+    for (const category in seriesData) {
+        if (seriesData.hasOwnProperty(category)) {
+            seriesData[category].push(item[category]);
+        }
+    }
+}
+
+// Convert the seriesData object into an array structure echarts expects
+const series = Object.keys(seriesData).map(key => {
+    return {
+        name: key,
+        type: 'line',
+        stack: 'Total',
+        areaStyle: {},
+        emphasis: {
+            focus: 'series'
+        },
+        data: seriesData[key]
+    };
+});
+
+option = {
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            label: {
+                backgroundColor: '#6a7985'
+            }
+        }
+    },
+    legend: {
+        data: Object.keys(seriesData)
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: weeks
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: series
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

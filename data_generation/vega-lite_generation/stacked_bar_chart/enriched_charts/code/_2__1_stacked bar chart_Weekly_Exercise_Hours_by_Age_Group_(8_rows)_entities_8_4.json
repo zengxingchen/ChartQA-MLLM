@@ -1,0 +1,176 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": {
+        "text": "Monthly Sales by Region",
+        "subtitle": "Stacked representation of monthly sales in USD",
+        "subtitleFontStyle": "italic",
+        "subtitleFontSize": 10,
+        "anchor": "start"
+    },
+    "data": {
+        "values": [
+            {
+                "Month": "Jan",
+                "North America": 2300,
+                "Europe": 2100,
+                "Asia": 1800,
+                "South America": 1500
+            },
+            {
+                "Month": "Feb",
+                "North America": 2400,
+                "Europe": 2200,
+                "Asia": 1900,
+                "South America": 1600
+            },
+            {
+                "Month": "Mar",
+                "North America": 2500,
+                "Europe": 2300,
+                "Asia": 2000,
+                "South America": 1700
+            },
+            {
+                "Month": "Apr",
+                "North America": 2600,
+                "Europe": 2400,
+                "Asia": 2100,
+                "South America": 1800
+            },
+            {
+                "Month": "May",
+                "North America": 2700,
+                "Europe": 2500,
+                "Asia": 2200,
+                "South America": 1900
+            },
+            {
+                "Month": "Jun",
+                "North America": 2800,
+                "Europe": 2600,
+                "Asia": 2300,
+                "South America": 2000
+            },
+            {
+                "Month": "Jul",
+                "North America": 2900,
+                "Europe": 2700,
+                "Asia": 2400,
+                "South America": 2100
+            },
+            {
+                "Month": "Aug",
+                "North America": 3000,
+                "Europe": 2800,
+                "Asia": 2500,
+                "South America": 2200
+            },
+            {
+                "Month": "Sep",
+                "North America": 3100,
+                "Europe": 2900,
+                "Asia": 2600,
+                "South America": 2300
+            },
+            {
+                "Month": "Oct",
+                "North America": 3200,
+                "Europe": 3000,
+                "Asia": 2700,
+                "South America": 2400
+            },
+            {
+                "Month": "Nov",
+                "North America": 3300,
+                "Europe": 3100,
+                "Asia": 2800,
+                "South America": 2500
+            },
+            {
+                "Month": "Dec",
+                "North America": 3400,
+                "Europe": 3200,
+                "Asia": 2900,
+                "South America": 2600
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "North America",
+                "Europe",
+                "Asia",
+                "South America"
+            ],
+            "as": [
+                "Region",
+                "Sales"
+            ]
+        }
+    ],
+    "width": 700,
+    "height": 400,
+    "mark": {
+        "type": "bar",
+        "height": {
+            "band": 0.8
+        }
+    },
+    "encoding": {
+        "x": {
+            "field": "Month",
+            "type": "nominal",
+            "axis": {
+                "title": "Month",
+                "labelAngle": 0
+            }
+        },
+        "y": {
+            "field": "Sales",
+            "type": "quantitative",
+            "axis": {
+                "title": "Total Sales (USD)"
+            },
+            "stack": "normalize"
+        },
+        "color": {
+            "field": "Region",
+            "type": "nominal",
+            "scale": {
+                "range": [
+                    "#FF6347",
+                    "#4682B4",
+                    "#8A2BE2",
+                    "#3CB371"
+                ]
+            },
+            "legend": {
+                "title": "Region",
+                "orient": "bottom"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Region",
+                "type": "nominal",
+                "title": "Region"
+            },
+            {
+                "field": "Month",
+                "type": "nominal",
+                "title": "Month"
+            },
+            {
+                "field": "Sales",
+                "type": "quantitative",
+                "title": "Sales (USD)"
+            }
+        ]
+    },
+    "config": {
+        "axisX": {
+            "minExtent": 30
+        }
+    }
+}

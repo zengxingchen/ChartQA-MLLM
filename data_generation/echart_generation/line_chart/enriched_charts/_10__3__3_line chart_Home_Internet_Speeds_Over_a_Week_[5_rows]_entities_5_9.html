@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+var option;
+
+option = {
+    title: {
+        text: 'Daily Steps Count Over a Month',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    xAxis: {
+        type: 'category',
+        data: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', 
+               '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', 
+               '21', '22', '23', '24', '25', '26', '27', '28', '29', '30'],
+        name: 'Day'
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Steps'
+    },
+    series: [
+        {
+            name: 'Steps',
+            type: 'line',
+            data: [4321, 5100, 4782, 6300, 5800, 6021, 5400, 5900, 6200, 6050, 
+                   6300, 5900, 6500, 6100, 7000, 6800, 7100, 6900, 7200, 7300, 
+                   7500, 7700, 7800, 8000, 8200, 8400, 8600, 8800, 9000, 9200],
+            lineStyle: {
+                color: '#FF5733'
+            },
+            label: {
+                show: true,
+                position: 'top'
+            },
+            markPoint: {
+                data: [
+                    {type: 'max', name: 'Max'},
+                    {type: 'min', name: 'Min'}
+                ]
+            }
+        }
+    ],
+    color: ['#FF5733', '#33FF57', '#3357FF']
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

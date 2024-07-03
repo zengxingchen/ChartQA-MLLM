@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var option;
+
+option = {
+    title: {
+        text: 'Various Art Forms and Their Popularity',
+        left: 'center',
+        top: '20px'
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: '{b}: {c}'
+    },
+    series: [{
+        name: 'Art Forms',
+        type: 'treemap',
+        width: '90%',
+        height: '80%',
+        roam: false,
+        label: {
+            show: true,
+            formatter: '{b}'
+        },
+        itemStyle: {
+            borderColor: '#fff'
+        },
+        data: [
+            {name: 'Painting', value: 90, itemStyle: {color: '#FF5733'}},
+            {name: 'Sculpture', value: 75, itemStyle: {color: '#33FF57'}},
+            {name: 'Digital Art', value: 60, itemStyle: {color: '#3357FF'}},
+            {name: 'Photography', value: 85, itemStyle: {color: '#FF33A6'}},
+            {name: 'Graphic Design', value: 70, itemStyle: {color: '#FF8F33'}},
+            {name: 'Ceramics', value: 55, itemStyle: {color: '#33FFF0'}},
+            {name: 'Textile Art', value: 45, itemStyle: {color: '#A633FF'}},
+            {name: 'Installation Art', value: 80, itemStyle: {color: '#FF3333'}},
+            {name: 'Calligraphy', value: 50, itemStyle: {color: '#33FF8F'}},
+            {name: 'Illustration', value: 65, itemStyle: {color: '#3375FF'}},
+            {name: 'Printmaking', value: 40, itemStyle: {color: '#8FFF33'}},
+            {name: 'Mixed Media', value: 58, itemStyle: {color: '#FF33E6'}},
+            {name: 'Collage', value: 62, itemStyle: {color: '#FFA633'}},
+            {name: 'Land Art', value: 68, itemStyle: {color: '#33A6FF'}},
+            {name: 'Performance Art', value: 77, itemStyle: {color: '#FF5733'}}
+        ]
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

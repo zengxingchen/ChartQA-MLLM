@@ -1,0 +1,198 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "A 100% stacked bar chart showing the distribution of different music genres over years.",
+    "data": {
+        "values": [
+            {
+                "Year": 2010,
+                "Pop": 10,
+                "Rock": 30,
+                "Hip Hop": 20,
+                "Jazz": 15,
+                "Classical": 15,
+                "Country": 10
+            },
+            {
+                "Year": 2011,
+                "Pop": 12,
+                "Rock": 28,
+                "Hip Hop": 22,
+                "Jazz": 14,
+                "Classical": 14,
+                "Country": 10
+            },
+            {
+                "Year": 2012,
+                "Pop": 15,
+                "Rock": 25,
+                "Hip Hop": 23,
+                "Jazz": 13,
+                "Classical": 14,
+                "Country": 10
+            },
+            {
+                "Year": 2013,
+                "Pop": 18,
+                "Rock": 23,
+                "Hip Hop": 25,
+                "Jazz": 12,
+                "Classical": 12,
+                "Country": 10
+            },
+            {
+                "Year": 2014,
+                "Pop": 20,
+                "Rock": 20,
+                "Hip Hop": 28,
+                "Jazz": 11,
+                "Classical": 11,
+                "Country": 10
+            },
+            {
+                "Year": 2015,
+                "Pop": 22,
+                "Rock": 18,
+                "Hip Hop": 30,
+                "Jazz": 10,
+                "Classical": 10,
+                "Country": 10
+            },
+            {
+                "Year": 2016,
+                "Pop": 24,
+                "Rock": 16,
+                "Hip Hop": 32,
+                "Jazz": 9,
+                "Classical": 9,
+                "Country": 10
+            },
+            {
+                "Year": 2017,
+                "Pop": 26,
+                "Rock": 14,
+                "Hip Hop": 35,
+                "Jazz": 8,
+                "Classical": 8,
+                "Country": 9
+            },
+            {
+                "Year": 2018,
+                "Pop": 28,
+                "Rock": 12,
+                "Hip Hop": 38,
+                "Jazz": 7,
+                "Classical": 7,
+                "Country": 8
+            },
+            {
+                "Year": 2019,
+                "Pop": 30,
+                "Rock": 10,
+                "Hip Hop": 40,
+                "Jazz": 6,
+                "Classical": 6,
+                "Country": 8
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Pop",
+                "Rock",
+                "Hip Hop",
+                "Jazz",
+                "Classical",
+                "Country"
+            ],
+            "as": [
+                "Music Genre",
+                "Percentage"
+            ]
+        },
+        {
+            "calculate": "datum.Percentage / 100",
+            "as": "NormalizedPercentage"
+        }
+    ],
+    "title": {
+        "text": "Distribution of Music Genres Over Years",
+        "color": "black",
+        "fontSize": 16,
+        "anchor": "middle",
+        "dy": -20
+    },
+    "width": 800,
+    "height": 600,
+    "mark": {
+        "type": "bar",
+        "tooltip": true,
+        "size": 25
+    },
+    "encoding": {
+        "x": {
+            "field": "Year",
+            "type": "ordinal",
+            "axis": {
+                "title": "Year"
+            }
+        },
+        "y": {
+            "field": "NormalizedPercentage",
+            "type": "quantitative",
+            "axis": {
+                "title": "Percentage"
+            },
+            "stack": "normalize"
+        },
+        "color": {
+            "field": "Music Genre",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Pop",
+                    "Rock",
+                    "Hip Hop",
+                    "Jazz",
+                    "Classical",
+                    "Country"
+                ],
+                "range": [
+                    "#FF6347",
+                    "#4682B4",
+                    "#32CD32",
+                    "#FFD700",
+                    "#8A2BE2",
+                    "#FF69B4"
+                ]
+            },
+            "legend": {
+                "title": "Music Genre",
+                "orient": "bottom-right",
+                "titleFontSize": 12,
+                "labelFontSize": 10
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Year",
+                "type": "ordinal"
+            },
+            {
+                "field": "Music Genre",
+                "type": "nominal"
+            },
+            {
+                "field": "Percentage",
+                "type": "quantitative",
+                "title": "Percentage"
+            }
+        ]
+    },
+    "config": {
+        "bar": {
+            "binSpacing": 0,
+            "continuousBandSize": 15
+        }
+    }
+}

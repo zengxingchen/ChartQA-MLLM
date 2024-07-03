@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 800,  // modified width
+    height: 500  // modified height
+});
+var app = {};
+
+var option;
+
+option = {
+    color: ['#3398DB', '#33DB9E', '#DB33DB', '#DB9633'],
+    title: {
+        text: 'Quarterly Revenue of Tech Titan Inc. - 2021 & 2022',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: [
+        {
+            type: 'category',
+            data: ['Q1 2021', 'Q2 2021', 'Q3 2021', 'Q4 2021', 
+                   'Q1 2022', 'Q2 2022', 'Q3 2022', 'Q4 2022'],
+            axisTick: {
+                alignWithLabel: true
+            }
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value'
+        }
+    ],
+    series: [
+        {
+            name: 'Revenue',
+            type: 'bar',
+            barWidth: '40%', // changed width of bars
+            label: {
+                show: true,
+                position: 'top',
+            },
+            data: [
+                {value: 12000, itemStyle: {color: '#7451EB'}},
+                {value: 15000, itemStyle: {color: '#8AEB51'}},
+                {value: 18000, itemStyle: {color: '#EBC351'}},
+                {value: 22000, itemStyle: {color: '#EB5151'}},
+                {value: 14000, itemStyle: {color: '#51EBDA'}},
+                {value: 17000, itemStyle: {color: '#C851EB'}},
+                {value: 19000, itemStyle: {color: '#EB9851'}},
+                {value: 24000, itemStyle: {color: '#51EB77'}}
+            ],
+            barGap: '10%' // changed band width/height for bars
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

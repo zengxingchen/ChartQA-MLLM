@@ -1,0 +1,163 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+        "values": [
+            {
+                "Activity": "Exercise",
+                "Morning": 8,
+                "Noon": 6,
+                "Evening": 7,
+                "Night": 3
+            },
+            {
+                "Activity": "Reading",
+                "Morning": 5,
+                "Noon": 3,
+                "Evening": 6,
+                "Night": 4
+            },
+            {
+                "Activity": "Meditation",
+                "Morning": 4,
+                "Noon": 5,
+                "Evening": 3,
+                "Night": 2
+            },
+            {
+                "Activity": "Socializing",
+                "Morning": 3,
+                "Noon": 7,
+                "Evening": 5,
+                "Night": 4
+            },
+            {
+                "Activity": "Work/Study",
+                "Morning": 6,
+                "Noon": 8,
+                "Evening": 6,
+                "Night": 2
+            },
+            {
+                "Activity": "Entertainment",
+                "Morning": 4,
+                "Noon": 5,
+                "Evening": 8,
+                "Night": 5
+            },
+            {
+                "Activity": "Hobbies",
+                "Morning": 3,
+                "Noon": 4,
+                "Evening": 5,
+                "Night": 4
+            },
+            {
+                "Activity": "Rest/Relaxation",
+                "Morning": 6,
+                "Noon": 5,
+                "Evening": 7,
+                "Night": 6
+            },
+            {
+                "Activity": "Healthy Eating",
+                "Morning": 7,
+                "Noon": 6,
+                "Evening": 5,
+                "Night": 4
+            },
+            {
+                "Activity": "Mindfulness",
+                "Morning": 5,
+                "Noon": 4,
+                "Evening": 6,
+                "Night": 3
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Morning",
+                "Noon",
+                "Evening",
+                "Night"
+            ],
+            "as": [
+                "TimeOfDay",
+                "Duration"
+            ]
+        }
+    ],
+    "width": 400,
+    "height": 300,
+    "mark": {
+        "type": "bar",
+        "width": 30
+    },
+    "title": {
+        "text": "Daily Mental Wellness Activities",
+        "subtitle": "Source: Health Survey 2024",
+        "subtitleFontStyle": "italic",
+        "subtitleFontSize": 10,
+        "anchor": "start",
+        "color": "black",
+        "align": "center"
+    },
+    "encoding": {
+        "y": {
+            "field": "Activity",
+            "type": "ordinal",
+            "axis": {
+                "title": "Activity"
+            }
+        },
+        "x": {
+            "field": "Duration",
+            "type": "quantitative",
+            "stack": "zero",
+            "axis": {
+                "title": "Duration (hours)"
+            },
+            "band": 0.7
+        },
+        "color": {
+            "field": "TimeOfDay",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Morning",
+                    "Noon",
+                    "Evening",
+                    "Night"
+                ],
+                "range": [
+                    "#8c564b",
+                    "#e377c2",
+                    "#7f7f7f",
+                    "#bcbd22"
+                ]
+            },
+            "legend": {
+                "orient": "top-right",
+                "title": "Time of Day"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Activity",
+                "type": "ordinal",
+                "title": "Activity"
+            },
+            {
+                "field": "TimeOfDay",
+                "type": "nominal",
+                "title": "Time of Day"
+            },
+            {
+                "field": "Duration",
+                "type": "quantitative",
+                "title": "Duration (hours)"
+            }
+        ]
+    }
+}

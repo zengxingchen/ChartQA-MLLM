@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: '800', // Reasonable chart width
+    height: '500' // Reasonable chart height
+});
+var app = {};
+
+var option;
+
+option = {
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Country A - Recycled', 'Country A - Not Recycled', 'Country B - Recycled', 'Country B - Not Recycled', 'Country C - Recycled', 'Country C - Not Recycled']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value'
+    },
+    yAxis: {
+        type: 'category',
+        data: ['2016', '2017', '2018', '2019']
+    },
+    series: [
+        {
+            name: 'Country A - Recycled',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 20, // Changed bar width
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            itemStyle: {
+                color: '#32CD32' // Specific color
+            },
+            data: [25, 30, 35, 40]
+        },
+        {
+            name: 'Country A - Not Recycled',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 20, // Changed bar width
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            itemStyle: {
+                color: '#FF6347' // Specific color
+            },
+            data: [75, 70, 65, 60]
+        },
+        {
+            name: 'Country B - Recycled',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 20, // Changed bar width
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            itemStyle: {
+                color: '#4169E1' // Specific color
+            },
+            data: [30, 40, 50, 60]
+        },
+        {
+            name: 'Country B - Not Recycled',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 20, // Changed bar width
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            itemStyle: {
+                color: '#FFD700' // Specific color
+            },
+            data: [70, 60, 50, 40]
+        },
+        {
+            name: 'Country C - Recycled',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 20, // Changed bar width
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            itemStyle: {
+                color: '#6A5ACD' // Specific color
+            },
+            data: [45, 50, 55, 60]
+        },
+        {
+            name: 'Country C - Not Recycled',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 20, // Changed bar width
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            itemStyle: {
+                color: '#20B2AA' // Specific color
+            },
+            data: [55, 50, 45, 40]
+        }
+    ]
+};
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

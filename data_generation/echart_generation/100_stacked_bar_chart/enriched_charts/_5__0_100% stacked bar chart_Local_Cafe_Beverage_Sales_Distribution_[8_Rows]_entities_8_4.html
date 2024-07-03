@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Trends in Future Technologies Adoption',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Robotics', 'AI', 'VR', 'AR', 'IoT', 'Big Data'],
+        bottom: '1%'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '10%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: false,
+        // Change bar width by changing the max value and min value.
+        min: 0,
+        max: 100,
+        // Changing axis label to show percentages
+        axisLabel: {
+            formatter: '{value}%'
+        }
+    },
+    yAxis: {
+        type: 'category',
+        data: ['2019', '2020', '2021', '2022', '2023'],
+        axisLabel: {
+            margin: 10
+        },
+        // Set the bandwidth here to change the bar height.
+        axisTick: {
+            alignWithLabel: true
+        }
+    },
+    series: [
+        {
+            name: 'Robotics',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'inside',
+                formatter: '{c}%'
+            },
+            // Diversified color for the Robotics series
+            itemStyle: {
+                color: '#1F78B4'
+            },
+            barWidth: '60%', // Change the bar width
+            data: [15, 18, 20, 22, 25]
+        },
+        {
+            name: 'AI',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'inside',
+                formatter: '{c}%'
+            },
+            itemStyle: {
+                color: '#33A02C'
+            },
+            barWidth: '60%',
+            data: [25, 28, 30, 33, 35]
+        },
+        {
+            name: 'VR',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'inside',
+                formatter: '{c}%'
+            },
+            itemStyle: {
+                color: '#6A3D9A'
+            },
+            barWidth: '60%',
+            data: [18, 14, 15, 10, 12]
+        },
+        {
+            name: 'AR',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'inside',
+                formatter: '{c}%'
+            },
+            itemStyle: {
+                color: '#FF7F00'
+            },
+            barWidth: '60%',
+            data: [12, 15, 10, 15, 13]
+        },
+        {
+            name: 'IoT',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'inside',
+                formatter: '{c}%'
+            },
+            itemStyle: {
+                color: '#A6CEE3'
+            },
+            barWidth: '60%',
+            data: [20, 15, 15, 10, 5]
+        },
+        {
+            name: 'Big Data',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'inside',
+                formatter: '{c}%'
+            },
+            itemStyle: {
+                color: '#B2DF8A'
+            },
+            barWidth: '60%',
+            data: [10, 10, 10, 10, 10]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

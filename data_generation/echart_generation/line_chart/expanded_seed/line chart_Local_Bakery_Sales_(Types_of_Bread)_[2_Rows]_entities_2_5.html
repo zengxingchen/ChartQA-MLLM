@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+
+var option;
+
+// Data
+var dates = ['2023-01-01', '2023-01-02'];
+var sourdoughData = [47, 50];
+var ciabattaData = [30, 25];
+var baguetteData = [58, 65];
+var wholeWheatData = [42, 38];
+
+option = {
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['Sourdough Loaves', 'Ciabatta Loaves', 'Baguette Loaves', 'Whole Wheat Loaves']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: dates
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Sourdough Loaves',
+            type: 'line',
+            stack: 'Total',
+            data: sourdoughData,
+            markPoint: {
+                data: [
+                    { type: 'max', name: 'Max' },
+                    { type: 'min', name: 'Min' }
+                ]
+            }
+        },
+        {
+            name: 'Ciabatta Loaves',
+            type: 'line',
+            stack: 'Total',
+            data: ciabattaData
+        },
+        {
+            name: 'Baguette Loaves',
+            type: 'line',
+            stack: 'Total',
+            data: baguetteData,
+            markLine: {
+                data: [
+                    { type: 'average', name: 'Avg' }
+                ]
+            }
+        },
+        {
+            name: 'Whole Wheat Loaves',
+            type: 'line',
+            stack: 'Total',
+            data: wholeWheatData
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

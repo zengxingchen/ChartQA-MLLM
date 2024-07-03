@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 400});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Monthly Average Temperature Drop',
+        left: 'center',
+        top: 15,
+        textStyle: {
+            color: '#333'
+        }
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['Temperature'],
+        top: 'bottom'
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: [
+            '2023-01-01', '2023-01-02', '2023-01-03', '2023-01-04', '2023-01-05',
+            '2023-01-06', '2023-01-07', '2023-01-08', '2023-01-09', '2023-01-10',
+            '2023-01-11', '2023-01-12', '2023-01-13', '2023-01-14', '2023-01-15',
+            '2023-01-16', '2023-01-17', '2023-01-18', '2023-01-19', '2023-01-20',
+            '2023-01-21', '2023-01-22', '2023-01-23', '2023-01-24', '2023-01-25',
+            '2023-01-26', '2023-01-27', '2023-01-28', '2023-01-29', '2023-01-30',
+            '2023-01-31'
+        ],
+        axisTick: {
+            alignWithLabel: true
+        }
+    },
+    yAxis: {
+        type: 'value',
+        axisLabel: {
+            formatter: '{value} °C'
+        }
+    },
+    series: [
+        {
+            name: 'Temperature',
+            type: 'line',
+            stack: 'Total',
+            smooth: true,
+            symbol: 'none',
+            areaStyle: {},
+            data: [
+                18, 17.8, 17.3, 17.1, 16.8, 16.4, 16.0, 15.6, 15.2, 14.9,
+                14.5, 14.0, 13.9, 13.5, 13.2, 12.8, 12.6, 12.4, 12.1, 11.9,
+                11.6, 11.2, 11.0, 10.7, 10.4, 10.1, 9.9, 9.5, 9.2, 8.9, 8.6
+            ],
+            markPoint: {
+                data: [
+                    {type: 'max', name: 'Max'},
+                    {type: 'min', name: 'Min'}
+                ]
+            },
+            itemStyle: {
+                normal: {
+                    color: '#1e90ff'
+                }
+            },
+            lineStyle: {
+                color: '#1e90ff'
+            }
+        }
+    ],
+    color: [
+        '#1e90ff', // Series 1
+        // Additional series can use other colors like '#ff0000', '#00ff00', etc.
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

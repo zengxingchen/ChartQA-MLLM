@@ -1,0 +1,161 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "The distribution of study hours by subject over a week.",
+    "title": {
+        "text": "Weekly Study Hours by Subject",
+        "anchor": "middle",
+        "offset": 10,
+        "color": "#333"
+    },
+    "data": {
+        "values": [
+            {
+                "Day": "Monday",
+                "Math": 2,
+                "Science": 1,
+                "History": 1,
+                "Art": 2,
+                "Physical Education": 1
+            },
+            {
+                "Day": "Tuesday",
+                "Math": 3,
+                "Science": 2,
+                "History": 1,
+                "Art": 1,
+                "Physical Education": 1
+            },
+            {
+                "Day": "Wednesday",
+                "Math": 2,
+                "Science": 1,
+                "History": 2,
+                "Art": 1,
+                "Physical Education": 1
+            },
+            {
+                "Day": "Thursday",
+                "Math": 3,
+                "Science": 2,
+                "History": 1,
+                "Art": 1,
+                "Physical Education": 2
+            },
+            {
+                "Day": "Friday",
+                "Math": 2,
+                "Science": 2,
+                "History": 1,
+                "Art": 2,
+                "Physical Education": 1
+            },
+            {
+                "Day": "Saturday",
+                "Math": 1,
+                "Science": 2,
+                "History": 2,
+                "Art": 1,
+                "Physical Education": 1
+            },
+            {
+                "Day": "Sunday",
+                "Math": 2,
+                "Science": 2,
+                "History": 2,
+                "Art": 1,
+                "Physical Education": 1
+            }
+        ]
+    },
+    "width": 400,
+    "height": 300,
+    "transform": [
+        {
+            "fold": [
+                "Math",
+                "Science",
+                "History",
+                "Art",
+                "Physical Education"
+            ],
+            "as": [
+                "Subject",
+                "Hours"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "bar",
+        "width": {
+            "band": 0.4
+        }
+    },
+    "encoding": {
+        "x": {
+            "field": "Day",
+            "type": "nominal",
+            "axis": {
+                "title": "Day of the Week"
+            }
+        },
+        "y": {
+            "field": "Hours",
+            "type": "quantitative",
+            "axis": {
+                "title": "Hours"
+            },
+            "stack": "normalize"
+        },
+        "color": {
+            "field": "Subject",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Math",
+                    "Science",
+                    "History",
+                    "Art",
+                    "Physical Education"
+                ],
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e",
+                    "#2ca02c",
+                    "#d62728",
+                    "#9467bd"
+                ]
+            },
+            "legend": {
+                "title": "Subject",
+                "orient": "bottom",
+                "offset": 20
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Day",
+                "type": "nominal",
+                "title": "Day"
+            },
+            {
+                "field": "Subject",
+                "type": "nominal",
+                "title": "Subject"
+            },
+            {
+                "field": "Hours",
+                "type": "quantitative",
+                "title": "Hours",
+                "format": ".2f"
+            }
+        ]
+    },
+    "config": {
+        "view": {
+            "stroke": "transparent"
+        },
+        "axis": {
+            "domainWidth": 1
+        }
+    }
+}

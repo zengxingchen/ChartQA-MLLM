@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Caloric Content vs. Protein Content of Various Foods',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: function (params) {
+            return `${params.data[2]}<br/>Calories: ${params.data[0]}<br/>Protein: ${params.data[1]}g`;
+        }
+    },
+    legend: {
+        data: ['Food Items'],
+        left: 'right'
+    },
+    xAxis: {
+        name: 'Calories',
+        type: 'value',
+        min: 0,
+        max: 600
+    },
+    yAxis: {
+        name: 'Protein (g)',
+        type: 'value',
+        min: 0,
+        max: 35
+    },
+    series: [
+        {
+            name: 'Food Items',
+            type: 'scatter',
+            itemStyle: {
+                color: '#FF6347'
+            },
+            data: [
+                [52, 0.3, 'Apple'],
+                [89, 1.1, 'Banana'],
+                [165, 31, 'Chicken Breast'],
+                [55, 3.7, 'Broccoli'],
+                [579, 21, 'Almonds'],
+                [208, 20, 'Salmon'],
+                [160, 2, 'Avocado'],
+                [68, 2.4, 'Oatmeal'],
+                [155, 13, 'Eggs'],
+                [23, 2.9, 'Spinach'],
+                [250, 26, 'Beef'],
+                [42, 3.4, 'Milk'],
+                [402, 25, 'Cheese'],
+                [59, 10, 'Yogurt'],
+                [120, 4.1, 'Quinoa'],
+                [76, 8, 'Tofu'],
+                [588, 25, 'Peanut Butter'],
+                [116, 9, 'Lentils'],
+                [86, 1.6, 'Sweet Potato'],
+                [132, 8.9, 'Black Beans']
+            ]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

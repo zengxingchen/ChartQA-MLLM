@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {renderer: 'canvas', width: '800', height: '600'});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Mental Health Research Funding Over the Years',
+        subtext: 'in millions of US dollars',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            label: {
+                backgroundColor: '#6a7985',
+            },
+        },
+    },
+    legend: {
+        data: ['Anxiety', 'Depression', 'Eating Disorders', 'ADHD', 'Substance Abuse'],
+        orient: 'vertical',
+        left: 'right'
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '14%',
+        bottom: '3%',
+        containLabel: true,
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ['2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020'],
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Anxiety',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [120, 130, 140, 145, 155, 160, 165, 170, 175, 180, 190],
+            color: '#37A2DA',
+        },
+        {
+            name: 'Depression',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [200, 210, 215, 225, 230, 240, 250, 260, 265, 270, 280],
+            color: '#32C5E9',
+        },
+        {
+            name: 'Eating Disorders',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [60, 70, 75, 80, 85, 90, 100, 110, 115, 120, 130],
+            color: '#67E0E3',
+        },
+        {
+            name: 'ADHD',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [90, 95, 105, 110, 115, 120, 125, 130, 135, 140, 150],
+            color: '#9FE6B8',
+        },
+        {
+            name: 'Substance Abuse',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [150, 155, 160, 165, 170, 175, 185, 190, 195, 200, 210],
+            color: '#FFDB5C',
+        }
+    ],
+    markPoint : {
+        data : [
+            {type : 'max', name: 'Max'},
+            {type : 'min', name: 'Min'}
+        ]
+    },
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

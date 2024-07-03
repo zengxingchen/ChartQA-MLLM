@@ -1,0 +1,160 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+        "values": [
+            {
+                "Year": "2021",
+                "Basketball": 1200,
+                "Football": 1500,
+                "Tennis": 800,
+                "Swimming": 900
+            },
+            {
+                "Year": "2022",
+                "Basketball": 1300,
+                "Football": 1600,
+                "Tennis": 850,
+                "Swimming": 950
+            },
+            {
+                "Year": "2023",
+                "Basketball": 1400,
+                "Football": 1700,
+                "Tennis": 900,
+                "Swimming": 1000
+            },
+            {
+                "Year": "2024",
+                "Basketball": 1500,
+                "Football": 1800,
+                "Tennis": 950,
+                "Swimming": 1050
+            },
+            {
+                "Year": "2025",
+                "Basketball": 1600,
+                "Football": 1900,
+                "Tennis": 1000,
+                "Swimming": 1100
+            },
+            {
+                "Year": "2026",
+                "Basketball": 1700,
+                "Football": 2000,
+                "Tennis": 1050,
+                "Swimming": 1150
+            },
+            {
+                "Year": "2027",
+                "Basketball": 1800,
+                "Football": 2100,
+                "Tennis": 1100,
+                "Swimming": 1200
+            },
+            {
+                "Year": "2028",
+                "Basketball": 1900,
+                "Football": 2200,
+                "Tennis": 1150,
+                "Swimming": 1250
+            },
+            {
+                "Year": "2029",
+                "Basketball": 2000,
+                "Football": 2300,
+                "Tennis": 1200,
+                "Swimming": 1300
+            },
+            {
+                "Year": "2030",
+                "Basketball": 2100,
+                "Football": 2400,
+                "Tennis": 1250,
+                "Swimming": 1350
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Basketball",
+                "Football",
+                "Tennis",
+                "Swimming"
+            ],
+            "as": [
+                "Category",
+                "Participation"
+            ]
+        }
+    ],
+    "mark": "bar",
+    "width": 800,
+    "height": 500,
+    "title": {
+        "text": "Annual Sports Participation",
+        "subtitle": "Participation in various sports (in thousands)",
+        "fontSize": 16,
+        "anchor": "start",
+        "offset": 20,
+        "subtitleColor": "gray"
+    },
+    "encoding": {
+        "x": {
+            "field": "Year",
+            "type": "ordinal",
+            "title": "Year",
+            "axis": {
+                "labelAngle": 0
+            }
+        },
+        "y": {
+            "field": "Participation",
+            "type": "quantitative",
+            "title": "Participation (in thousands)"
+        },
+        "color": {
+            "field": "Category",
+            "type": "nominal",
+            "legend": {
+                "title": "Sports Categories",
+                "orient": "top-right",
+                "offset": 5
+            },
+            "scale": {
+                "domain": [
+                    "Basketball",
+                    "Football",
+                    "Tennis",
+                    "Swimming"
+                ],
+                "range": [
+                    "#e41a1c",
+                    "#377eb8",
+                    "#4daf4a",
+                    "#984ea3"
+                ]
+            }
+        },
+        "width": {
+            "field": "Participation",
+            "type": "quantitative",
+            "band": 0.5
+        },
+        "tooltip": [
+            {
+                "field": "Year",
+                "type": "ordinal"
+            },
+            {
+                "field": "Category",
+                "type": "nominal"
+            },
+            {
+                "field": "Participation",
+                "type": "quantitative",
+                "title": "Participation"
+            }
+        ]
+    }
+}

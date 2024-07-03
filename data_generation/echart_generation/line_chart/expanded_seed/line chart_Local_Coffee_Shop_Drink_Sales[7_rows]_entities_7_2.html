@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+var espressoData = [45, 50, 55, 40, 60, 70, 65];
+var americanoData = [60, 65, 70, 55, 80, 95, 85];
+var cappuccinoData = [55, 60, 65, 50, 75, 85, 80];
+var latteData = [70, 75, 80, 65, 90, 100, 95];
+
+option = {
+    title: {
+        text: 'Coffee Sales Data',
+        subtext: 'Weekly',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['Espresso', 'Americano', 'Cappuccino', 'Latte'],
+        top: '10%'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: days
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Espresso',
+            type: 'line',
+            stack: 'total',
+            data: espressoData
+        },
+        {
+            name: 'Americano',
+            type: 'line',
+            stack: 'total',
+            data: americanoData,
+            markPoint: {
+                data: [
+                    {type: 'max', name: 'Max Sales'},
+                    {type: 'min', name: 'Min Sales'}
+                ]
+            }
+        },
+        {
+            name: 'Cappuccino',
+            type: 'line',
+            stack: 'total',
+            data: cappuccinoData
+        },
+        {
+            name: 'Latte',
+            type: 'line',
+            stack: 'total',
+            data: latteData,
+            markLine: {
+                data: [{type: 'average', name: 'Avg Sales'}]
+            }
+        }
+    ],
+    dataZoom: [
+        {
+            type: 'inside',
+            start: 0,
+            end: 100
+        },
+        {
+            start: 0,
+            end: 10,
+            handleIcon: 'M8.2,13.5a4.6,4.6,0,1,0,0-9h0v9Z',
+            handleSize: '80%',
+            handleStyle: {
+                color: '#fff',
+                shadowBlur: 3,
+                shadowColor: 'rgba(0, 0, 0, 0.6)',
+                shadowOffsetX: 2,
+                shadowOffsetY: 2
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

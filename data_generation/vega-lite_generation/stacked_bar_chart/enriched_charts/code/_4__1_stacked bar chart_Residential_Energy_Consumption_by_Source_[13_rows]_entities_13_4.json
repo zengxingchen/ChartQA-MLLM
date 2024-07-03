@@ -1,0 +1,180 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Vertical stacked bar chart showing the annual budget allocation in various sectors from 2010 to 2022.",
+    "title": {
+        "text": "Annual Budget Allocation (2010-2022)",
+        "fontSize": 18,
+        "anchor": "middle",
+        "color": "#333333",
+        "offset": 20
+    },
+    "width": 800,
+    "height": 400,
+    "data": {
+        "values": [
+            {
+                "Year": 2010,
+                "Education": 120,
+                "Healthcare": 200,
+                "Infrastructure": 150,
+                "Defense": 300
+            },
+            {
+                "Year": 2011,
+                "Education": 130,
+                "Healthcare": 210,
+                "Infrastructure": 160,
+                "Defense": 310
+            },
+            {
+                "Year": 2012,
+                "Education": 140,
+                "Healthcare": 220,
+                "Infrastructure": 170,
+                "Defense": 320
+            },
+            {
+                "Year": 2013,
+                "Education": 150,
+                "Healthcare": 230,
+                "Infrastructure": 180,
+                "Defense": 330
+            },
+            {
+                "Year": 2014,
+                "Education": 160,
+                "Healthcare": 240,
+                "Infrastructure": 190,
+                "Defense": 340
+            },
+            {
+                "Year": 2015,
+                "Education": 170,
+                "Healthcare": 250,
+                "Infrastructure": 200,
+                "Defense": 350
+            },
+            {
+                "Year": 2016,
+                "Education": 180,
+                "Healthcare": 260,
+                "Infrastructure": 220,
+                "Defense": 360
+            },
+            {
+                "Year": 2017,
+                "Education": 190,
+                "Healthcare": 280,
+                "Infrastructure": 240,
+                "Defense": 370
+            },
+            {
+                "Year": 2018,
+                "Education": 200,
+                "Healthcare": 290,
+                "Infrastructure": 260,
+                "Defense": 380
+            },
+            {
+                "Year": 2019,
+                "Education": 210,
+                "Healthcare": 310,
+                "Infrastructure": 280,
+                "Defense": 390
+            },
+            {
+                "Year": 2020,
+                "Education": 220,
+                "Healthcare": 320,
+                "Infrastructure": 290,
+                "Defense": 400
+            },
+            {
+                "Year": 2021,
+                "Education": 230,
+                "Healthcare": 335,
+                "Infrastructure": 295,
+                "Defense": 410
+            },
+            {
+                "Year": 2022,
+                "Education": 240,
+                "Healthcare": 340,
+                "Infrastructure": 300,
+                "Defense": 420
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Education",
+                "Healthcare",
+                "Infrastructure",
+                "Defense"
+            ],
+            "as": [
+                "Sector",
+                "Budget"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "bar",
+        "width": {
+            "band": 0.8
+        }
+    },
+    "encoding": {
+        "x": {
+            "field": "Year",
+            "type": "ordinal",
+            "axis": {
+                "labelAngle": 0,
+                "title": "Year"
+            }
+        },
+        "y": {
+            "field": "Budget",
+            "type": "quantitative",
+            "stack": "zero",
+            "axis": {
+                "title": "Budget (in billions)"
+            }
+        },
+        "color": {
+            "field": "Sector",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Education",
+                    "Healthcare",
+                    "Infrastructure",
+                    "Defense"
+                ],
+                "range": [
+                    "#ff5733",
+                    "#33ff57",
+                    "#3357ff",
+                    "#ff33a1"
+                ]
+            },
+            "title": "Sector"
+        },
+        "tooltip": [
+            {
+                "field": "Year",
+                "type": "ordinal"
+            },
+            {
+                "field": "Sector",
+                "type": "nominal"
+            },
+            {
+                "field": "Budget",
+                "type": "quantitative",
+                "title": "Budget (in billions)"
+            }
+        ]
+    }
+}

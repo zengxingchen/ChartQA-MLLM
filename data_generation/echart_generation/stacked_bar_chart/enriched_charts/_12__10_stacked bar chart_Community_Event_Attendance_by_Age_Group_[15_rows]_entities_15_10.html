@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var option = {
+    title: {
+        text: 'Daily Calorie Intake of Different Age Groups',
+        left: 'center',
+        top: 20
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        bottom: 10
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '15%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01]
+    },
+    yAxis: {
+        type: 'category',
+        data: ['Children (4-8)', 'Adolescents (9-13)', 'Teens (14-18)', 'Adults (19-50)', 'Seniors (51+)']
+    },
+    series: [
+        {
+            name: 'Protein',
+            type: 'bar',
+            stack: 'Total',
+            barWidth: '40%',
+            label: {
+                show: true,
+                position: 'inside'
+            },
+            itemStyle: {
+                color: '#FF6F61'
+            },
+            data: [10, 15, 20, 25, 20]
+        },
+        {
+            name: 'Carbohydrates',
+            type: 'bar',
+            stack: 'Total',
+            label: {
+                show: true,
+                position: 'inside'
+            },
+            itemStyle: {
+                color: '#6B5B95'
+            },
+            data: [30, 40, 50, 60, 45]
+        },
+        {
+            name: 'Fats',
+            type: 'bar',
+            stack: 'Total',
+            label: {
+                show: true,
+                position: 'inside'
+            },
+            itemStyle: {
+                color: '#88B04B'
+            },
+            data: [10, 20, 30, 40, 30]
+        },
+        {
+            name: 'Vitamins',
+            type: 'bar',
+            stack: 'Total',
+            label: {
+                show: true,
+                position: 'inside'
+            },
+            itemStyle: {
+                color: '#FFA07A'
+            },
+            data: [5, 7, 9, 10, 8]
+        },
+        {
+            name: 'Minerals',
+            type: 'bar',
+            stack: 'Total',
+            label: {
+                show: true,
+                position: 'inside'
+            },
+            itemStyle: {
+                color: '#20B2AA'
+            },
+            data: [3, 4, 5, 6, 5]
+        }
+    ]
+};
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

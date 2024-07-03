@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+
+var app = {};
+var option;
+
+// Chart data
+var data = [{
+    'Month': 'January',
+    'Children (0-14)': 600,
+    'Teens (15-19)': 350,
+    'Adults (20-64)': 900,
+    'Seniors (65+)': 400
+}, {
+    'Month': 'February',
+    'Children (0-14)': 500,
+    'Teens (15-19)': 300,
+    'Adults (20-64)': 870,
+    'Seniors (65+)': 375
+}, /* ... (put the rest of your data here) ... */ {
+    'Month': 'December',
+    'Children (0-14)': 640,
+    'Teens (15-19)': 400,
+    'Adults (20-64)': 950,
+    'Seniors (65+)': 450
+}];
+
+// Parse data
+var months = data.map(item => item.Month);
+var seriesData = Object.keys(data[0]).slice(1).map(key => {
+    return {
+        name: key,
+        type: 'bar',
+        stack: 'total',
+        emphasis: {
+            focus: 'series'
+        },
+        data: data.map(item => item[key])
+    };
+});
+
+// Configure the chart
+option = {
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: seriesData.map(item => item.name)
+    },
+    toolbox: {
+        show: true,
+        feature: {
+            magicType: {show: true, type: ['stack', 'tiled']},
+            saveAsImage: {show: true}
+        }
+    },
+    xAxis: {
+        type: 'category',
+        axisTick: {show: false},
+        data: months
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: seriesData
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

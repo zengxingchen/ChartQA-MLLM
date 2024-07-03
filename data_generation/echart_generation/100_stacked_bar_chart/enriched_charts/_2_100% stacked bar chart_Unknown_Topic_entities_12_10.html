@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Education & Learning: Enrollment by Course Type (2016-2021)',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Arts', 'Science', 'Technology', 'Medicine', 'Business'],
+        orient: 'vertical',
+        left: 'right'
+    },
+    grid: {
+        left: '3%',
+        right: '10%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value'
+    },
+    yAxis: {
+        type: 'category',
+        data: ['2016', '2017', '2018', '2019', '2020', '2021']
+    },
+    series: [
+        {
+            name: 'Arts',
+            type: 'bar',
+            stack: 'total',
+            emphasis: {
+                focus: 'series'
+            },
+            data: [10, 15, 20, 15, 10, 12],
+            itemStyle: {
+                color: '#ff7f50'
+            },
+            barWidth: 20
+        },
+        {
+            name: 'Science',
+            type: 'bar',
+            stack: 'total',
+            emphasis: {
+                focus: 'series'
+            },
+            data: [30, 35, 30, 25, 20, 18],
+            itemStyle: {
+                color: '#87cefa'
+            },
+            barWidth: 20
+        },
+        {
+            name: 'Technology',
+            type: 'bar',
+            stack: 'total',
+            emphasis: {
+                focus: 'series'
+            },
+            data: [25, 25, 30, 35, 40, 45],
+            itemStyle: {
+                color: '#32cd32'
+            },
+            barWidth: 20
+        },
+        {
+            name: 'Medicine',
+            type: 'bar',
+            stack: 'total',
+            emphasis: {
+                focus: 'series'
+            },
+            data: [20, 10, 5, 10, 15, 10],
+            itemStyle: {
+                color: '#ff69b4'
+            },
+            barWidth: 20
+        },
+        {
+            name: 'Business',
+            type: 'bar',
+            stack: 'total',
+            emphasis: {
+                focus: 'series'
+            },
+            data: [15, 15, 15, 15, 15, 15],
+            itemStyle: {
+                color: '#f0e68c'
+            },
+            barWidth: 20
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

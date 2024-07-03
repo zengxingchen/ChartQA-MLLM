@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var app = {};
+
+var option;
+option = {
+    title: {
+        text: 'Distribution of Art and Design Categories',
+        left: 'center',
+        top: '20',
+        textStyle: {
+            fontSize: 18
+        }
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Type A', 'Type B', 'Type C'],
+        top: '10%',
+        left: 'center'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        data: ['Art', 'Design', 'Sculpture', 'Painting', 'Graphic', 'Digital', 'Photography'],
+        axisLabel: {
+            interval: 0
+        }
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Type A',
+            type: 'bar',
+            stack: 'total',
+            barWidth: '50%',
+            data: [120, 180, 220, 150, 210, 230, 170],
+            itemStyle: {
+                color: '#1f77b4'
+            }
+        },
+        {
+            name: 'Type B',
+            type: 'bar',
+            stack: 'total',
+            barWidth: '50%',
+            data: [200, 150, 180, 160, 170, 140, 210],
+            itemStyle: {
+                color: '#ff7f0e'
+            }
+        },
+        {
+            name: 'Type C',
+            type: 'bar',
+            stack: 'total',
+            barWidth: '50%',
+            data: [150, 130, 190, 120, 200, 160, 180],
+            itemStyle: {
+                color: '#2ca02c'
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

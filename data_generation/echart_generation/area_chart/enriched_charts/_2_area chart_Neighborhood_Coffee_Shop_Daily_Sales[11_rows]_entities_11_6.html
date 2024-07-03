@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    width: 800, // Changed width
+    height: 500, // Changed height
+});
+var app = {};
+
+var option;
+
+// The data points taken from the table above
+var data = [
+    ['2023-01-01', 100], ['2023-01-02', 101], ['2023-01-03', 102], 
+    ['2023-01-04', 104], ['2023-01-05', 103], ['2023-01-06', 106], 
+    ['2023-01-07', 105], ['2023-01-08', 109], ['2023-01-09', 108], 
+    ['2023-01-10', 112], ['2023-01-11', 110], ['2023-01-12', 114], 
+    ['2023-01-13', 116], ['2023-01-14', 120], ['2023-01-15', 119], 
+    ['2023-01-16', 122], ['2023-01-17', 121], ['2023-01-18', 125], 
+    ['2023-01-19', 127], ['2023-01-20', 128],
+    // ... continue this array with all the data points provided in your table data
+    ['2023-03-21', 150]
+];
+
+option = {
+    title: {
+        text: 'Stock Price Trend',  // Assigned topic headline
+        left: 'center',
+        textStyle: {
+            color: '#333',   // Changed headline text color
+            fontWeight: 'bold',
+            fontSize: 20
+        }
+    },
+    tooltip: {
+        trigger: 'axis',
+        // Text label for tooltip has been set to false
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: data.map(function (item) {
+            return item[0];
+        }),
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [{
+        data: data.map(function (item) {
+            return item[1];
+        }),
+        type: 'line',
+        areaStyle: {},
+        color: '#6EA1F1', // Modified color code for the area
+        lineStyle: {
+            color: '#FF4D4D' // Modified color code for the line
+        },
+        smooth: true
+    }],
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

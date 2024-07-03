@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 400});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Electric Car Sales Over Time',
+        left: 'center',
+        textStyle: {
+            color: '#333'
+        }
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['Electric Car Sales'],
+        right: 10,
+        textStyle: {
+            color: '#000'
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: [
+            '2020-01','2020-02','2020-03','2020-04','2020-05','2020-06',
+            '2020-07','2020-08','2020-09','2020-10','2020-11','2020-12',
+            '2021-01','2021-02','2021-03','2021-04','2021-05','2021-06',
+            '2021-07','2021-08','2021-09','2021-10','2021-11','2021-12',
+            '2022-01','2022-02','2022-03','2022-04','2022-05','2022-06',
+            '2022-07','2022-08','2022-09','2022-10','2022-11','2022-12'
+        ],
+        axisLabel: { color: '#555' }
+    },
+    yAxis: {
+        type: 'value',
+        axisLabel: { color: '#555' }
+    },
+    series: [
+        {
+            name: 'Electric Car Sales',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [
+                1000, 1200, 1400, 1600, 1800, 2000,
+                2200, 2400, 2600, 2800, 3000, 3200,
+                3400, 3600, 3800, 4000, 4200, 4400,
+                4600, 4800, 5000, 5200, 5400, 5600,
+                5800, 6000, 6200, 6400, 6600, 6800,
+                7000, 7200, 7400, 7600, 7800, 8000
+            ],
+            color: '#FFA07A',
+            markPoint: {
+                data: [
+                    {type: 'max', name: 'Maximum'},
+                    {type: 'min', name: 'Minimum'}
+                ]
+            },
+            markLine: {
+                data: [{type: 'average', name: 'Average'}]
+            }
+        }
+    ],
+    itemStyle: {
+        normal: {
+            color: '#FF6347',
+            lineStyle: {
+                color: '#FF6347'
+            }
+        }
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

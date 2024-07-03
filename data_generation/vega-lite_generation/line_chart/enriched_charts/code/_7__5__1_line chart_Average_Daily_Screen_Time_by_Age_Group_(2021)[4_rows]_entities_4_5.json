@@ -1,0 +1,208 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Line chart showing average monthly temperature by region.",
+    "title": {
+        "text": "Average Monthly Temperature by Region",
+        "fontSize": 16,
+        "anchor": "start",
+        "color": "black"
+    },
+    "width": 800,
+    "height": 500,
+    "data": {
+        "values": [
+            {
+                "Region": "Arctic",
+                "January": -30,
+                "February": -28,
+                "March": -25,
+                "April": -20,
+                "May": -10,
+                "June": 0,
+                "July": 5,
+                "August": 3,
+                "September": -5,
+                "October": -15,
+                "November": -25,
+                "December": -30
+            },
+            {
+                "Region": "North America",
+                "January": 0,
+                "February": 2,
+                "March": 5,
+                "April": 10,
+                "May": 15,
+                "June": 20,
+                "July": 25,
+                "August": 24,
+                "September": 20,
+                "October": 15,
+                "November": 10,
+                "December": 5
+            },
+            {
+                "Region": "Europe",
+                "January": 2,
+                "February": 3,
+                "March": 7,
+                "April": 12,
+                "May": 18,
+                "June": 22,
+                "July": 25,
+                "August": 24,
+                "September": 20,
+                "October": 14,
+                "November": 8,
+                "December": 4
+            },
+            {
+                "Region": "Asia",
+                "January": 10,
+                "February": 12,
+                "March": 15,
+                "April": 20,
+                "May": 25,
+                "June": 30,
+                "July": 35,
+                "August": 33,
+                "September": 28,
+                "October": 22,
+                "November": 16,
+                "December": 12
+            },
+            {
+                "Region": "Antarctica",
+                "January": -50,
+                "February": -48,
+                "March": -45,
+                "April": -40,
+                "May": -35,
+                "June": -30,
+                "July": -25,
+                "August": -28,
+                "September": -35,
+                "October": -40,
+                "November": -45,
+                "December": -48
+            },
+            {
+                "Region": "Africa",
+                "January": 25,
+                "February": 27,
+                "March": 30,
+                "April": 32,
+                "May": 35,
+                "June": 38,
+                "July": 40,
+                "August": 39,
+                "September": 36,
+                "October": 32,
+                "November": 28,
+                "December": 26
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "January",
+                "February",
+                "March",
+                "April",
+                "May",
+                "June",
+                "July",
+                "August",
+                "September",
+                "October",
+                "November",
+                "December"
+            ],
+            "as": [
+                "Month",
+                "Temperature"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "line",
+        "point": {
+            "filled": true,
+            "fill": "white"
+        }
+    },
+    "encoding": {
+        "x": {
+            "field": "Month",
+            "type": "ordinal",
+            "title": "Month",
+            "axis": {
+                "titleFontSize": 12,
+                "labelAngle": -45
+            }
+        },
+        "y": {
+            "field": "Temperature",
+            "type": "quantitative",
+            "title": "Temperature (\u00b0C)",
+            "axis": {
+                "titleFontSize": 12
+            }
+        },
+        "color": {
+            "field": "Region",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Arctic",
+                    "North America",
+                    "Europe",
+                    "Asia",
+                    "Antarctica",
+                    "Africa"
+                ],
+                "range": [
+                    "#005f73",
+                    "#0a9396",
+                    "#94d2bd",
+                    "#e9d8a6",
+                    "#ee9b00",
+                    "#bb3e03"
+                ]
+            },
+            "legend": {
+                "title": "Region"
+            }
+        },
+        "strokeDash": {
+            "condition": {
+                "test": "datum['Region'] == 'Antarctica'",
+                "value": [
+                    5,
+                    5
+                ]
+            },
+            "value": []
+        },
+        "tooltip": [
+            {
+                "field": "Region",
+                "type": "nominal"
+            },
+            {
+                "field": "Month",
+                "type": "ordinal"
+            },
+            {
+                "field": "Temperature",
+                "type": "quantitative"
+            }
+        ]
+    },
+    "config": {
+        "axisY": {
+            "minExtent": 30
+        }
+    }
+}

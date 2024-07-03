@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, { width: 800, height: 600 });
+var app = {};
+
+var option = {
+    title: {
+        text: 'Popularity of Art & Design Fields',
+        left: 'center',
+        top: '20'
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: '{a} <br/>{b} : {c}'
+    },
+    legend: {
+        left: 'right',
+        top: '20'
+    },
+    xAxis: {
+        type: 'category',
+        data: ['Sculpture', 'Painting', 'Photography', 'Architecture', 'Graphic Design', 'Interior Design', 'Landscape Design', 'Ceramics', 'Digital Art', 'Textile Art', 'Fashion Design', 'Theater Set Design', 'Jewelry Design', 'Printmaking', 'Calligraphy', 'Tattoo Art', 'Film', 'Animation', 'Video Art', 'Sound Art'],
+        axisLabel: {
+            rotate: 45,
+            interval: 0
+        }
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [{
+        name: 'Popularity',
+        type: 'scatter',
+        data: [
+            45, 70, 55, 80, 65, 75, 60, 50, 85, 40, 90, 78, 67, 53, 72, 60, 68, 76, 82, 88
+        ],
+        itemStyle: {
+            color: '#3398DB'
+        }
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+option = {
+    title: {
+        text: 'Monthly Exercise Trends',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['Running', 'Cycling', 'Swimming'],
+        top: 'bottom'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: [
+            '2023-01-01', '2023-01-02', '2023-01-03', '2023-01-04', '2023-01-05', 
+            '2023-01-06', '2023-01-07', '2023-01-08', '2023-01-09', '2023-01-10',
+            '2023-01-11', '2023-01-12', '2023-01-13', '2023-01-14', '2023-01-15',
+            '2023-01-16', '2023-01-17', '2023-01-18', '2023-01-19', '2023-01-20',
+            '2023-01-21', '2023-01-22', '2023-01-23', '2023-01-24', '2023-01-25',
+            '2023-01-26', '2023-01-27', '2023-01-28', '2023-01-29', '2023-01-30', '2023-01-31'
+        ]
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Running',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [
+                100, 120, 140, 130, 150, 160, 170, 180, 200, 190,
+                210, 220, 230, 240, 250, 240, 230, 220, 210, 205,
+                215, 225, 235, 245, 255, 250, 245, 235, 230, 225, 220
+            ],
+            markPoint: {
+                data: [
+                    {type: 'max', name: 'Max'},
+                    {type: 'min', name: 'Min'}
+                ]
+            },
+            color: '#3366CC'
+        },
+        {
+            name: 'Cycling',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [
+                80, 60, 75, 90, 100, 110, 95, 105, 115, 120,
+                130, 140, 150, 160, 170, 165, 155, 145, 135, 125,
+                135, 145, 155, 165, 175, 180, 185, 175, 165, 155, 150
+            ],
+            color: '#DC3912'
+        },
+        {
+            name: 'Swimming',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [
+                200, 180, 190, 220, 210, 230, 240, 250, 260, 270,
+                280, 290, 300, 310, 320, 330, 340, 350, 360, 370,
+                380, 390, 400, 410, 420, 430, 440, 450, 460, 470, 480
+            ],
+            color: '#FF9900'
+        }
+    ]
+};
+
+option && myChart.setOption(option);
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

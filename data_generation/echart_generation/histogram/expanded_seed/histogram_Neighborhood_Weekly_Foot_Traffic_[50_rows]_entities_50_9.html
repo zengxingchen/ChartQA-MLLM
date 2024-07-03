@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+
+var rawData = [
+    {'Week': 'Week 1', 'Foot Traffic Count': 830},
+    {'Week': 'Week 2', 'Foot Traffic Count': 790},
+    {'Week': 'Week 3', 'Foot Traffic Count': 940},
+    {'Week': 'Week 4', 'Foot Traffic Count': 1000},
+    {'Week': 'Week 5', 'Foot Traffic Count': 1103},
+    {'Week': 'Week 6', 'Foot Traffic Count': 855},
+    {'Week': 'Week 7', 'Foot Traffic Count': 705},
+    {'Week': 'Week 8', 'Foot Traffic Count': 950},
+    {'Week': 'Week 9', 'Foot Traffic Count': 920},
+    {'Week': 'Week 10', 'Foot Traffic Count': 1012},
+    {'Week': 'Week 11', 'Foot Traffic Count': 1130},
+    {'Week': 'Week 12', 'Foot Traffic Count': 840},
+    {'Week': 'Week 13', 'Foot Traffic Count': 780},
+    {'Week': 'Week 14', 'Foot Traffic Count': 970},
+    {'Week': 'Week 15', 'Foot Traffic Count': 950}
+];
+
+// Define bins for the histogram
+var bins = [700, 800, 900, 1000, 1100, 1200]; // You can define bins as needed
+var binnedData = bins.map(bin => {
+    return {
+        binRange: `${bin} - ${bin+99}`,
+        frequency: rawData.filter(item => (item['Foot Traffic Count'] >= bin && item['Foot Traffic Count'] < bin + 100)).length
+    };
+});
+
+var option = {
+    title: {
+        text: 'Foot Traffic Histogram',
+        subtext: 'Binned by Foot Traffic Count'
+    },
+    tooltip: {},
+    xAxis: [{
+        type: 'category',
+        data: binnedData.map(item => item.binRange),
+        name: 'Foot Traffic Count Range',
+    }],
+    yAxis: [{
+        type: 'value',
+        name: 'Frequency'
+    }],
+    series: [{
+        name: 'Frequency',
+        type: 'bar',
+        data: binnedData.map(item => item.frequency),
+        itemStyle: {
+            color: '#5470C6', // You can change color as you like
+            barBorderRadius: 5
+        },
+        markPoint: {
+            data: [
+                {type: 'max', name: 'Max'},
+                {type: 'min', name: 'Min'}
+            ]
+        },
+        markLine: {
+            data: [{type: 'average', name: 'Average'}]
+        }
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,228 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "A vertical stacked bar chart representing monthly average temperatures in various cities.",
+    "data": {
+        "values": [
+            {
+                "Month": "Jan",
+                "New York": 30,
+                "Los Angeles": 60,
+                "Chicago": 20,
+                "Houston": 50,
+                "Phoenix": 65,
+                "Philadelphia": 35,
+                "San Antonio": 55,
+                "San Diego": 60
+            },
+            {
+                "Month": "Feb",
+                "New York": 32,
+                "Los Angeles": 62,
+                "Chicago": 25,
+                "Houston": 55,
+                "Phoenix": 68,
+                "Philadelphia": 38,
+                "San Antonio": 58,
+                "San Diego": 62
+            },
+            {
+                "Month": "Mar",
+                "New York": 40,
+                "Los Angeles": 65,
+                "Chicago": 35,
+                "Houston": 60,
+                "Phoenix": 72,
+                "Philadelphia": 45,
+                "San Antonio": 65,
+                "San Diego": 65
+            },
+            {
+                "Month": "Apr",
+                "New York": 50,
+                "Los Angeles": 68,
+                "Chicago": 45,
+                "Houston": 70,
+                "Phoenix": 78,
+                "Philadelphia": 55,
+                "San Antonio": 75,
+                "San Diego": 68
+            },
+            {
+                "Month": "May",
+                "New York": 60,
+                "Los Angeles": 70,
+                "Chicago": 55,
+                "Houston": 75,
+                "Phoenix": 85,
+                "Philadelphia": 65,
+                "San Antonio": 80,
+                "San Diego": 70
+            },
+            {
+                "Month": "Jun",
+                "New York": 70,
+                "Los Angeles": 75,
+                "Chicago": 65,
+                "Houston": 80,
+                "Phoenix": 95,
+                "Philadelphia": 75,
+                "San Antonio": 85,
+                "San Diego": 75
+            },
+            {
+                "Month": "Jul",
+                "New York": 75,
+                "Los Angeles": 78,
+                "Chicago": 70,
+                "Houston": 85,
+                "Phoenix": 100,
+                "Philadelphia": 80,
+                "San Antonio": 90,
+                "San Diego": 78
+            },
+            {
+                "Month": "Aug",
+                "New York": 73,
+                "Los Angeles": 78,
+                "Chicago": 68,
+                "Houston": 88,
+                "Phoenix": 102,
+                "Philadelphia": 78,
+                "San Antonio": 88,
+                "San Diego": 78
+            },
+            {
+                "Month": "Sep",
+                "New York": 68,
+                "Los Angeles": 75,
+                "Chicago": 65,
+                "Houston": 85,
+                "Phoenix": 98,
+                "Philadelphia": 70,
+                "San Antonio": 85,
+                "San Diego": 75
+            },
+            {
+                "Month": "Oct",
+                "New York": 60,
+                "Los Angeles": 70,
+                "Chicago": 55,
+                "Houston": 75,
+                "Phoenix": 85,
+                "Philadelphia": 65,
+                "San Antonio": 75,
+                "San Diego": 70
+            },
+            {
+                "Month": "Nov",
+                "New York": 50,
+                "Los Angeles": 65,
+                "Chicago": 45,
+                "Houston": 65,
+                "Phoenix": 75,
+                "Philadelphia": 55,
+                "San Antonio": 65,
+                "San Diego": 65
+            },
+            {
+                "Month": "Dec",
+                "New York": 35,
+                "Los Angeles": 60,
+                "Chicago": 30,
+                "Houston": 55,
+                "Phoenix": 68,
+                "Philadelphia": 40,
+                "San Antonio": 58,
+                "San Diego": 60
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "New York",
+                "Los Angeles",
+                "Chicago",
+                "Houston",
+                "Phoenix",
+                "Philadelphia",
+                "San Antonio",
+                "San Diego"
+            ],
+            "as": [
+                "City",
+                "Temperature"
+            ]
+        }
+    ],
+    "width": 700,
+    "height": 500,
+    "mark": {
+        "type": "bar",
+        "width": {
+            "band": 0.7
+        }
+    },
+    "encoding": {
+        "x": {
+            "field": "Month",
+            "type": "nominal",
+            "axis": {
+                "title": "Month"
+            }
+        },
+        "y": {
+            "field": "Temperature",
+            "type": "quantitative",
+            "stack": "zero",
+            "axis": {
+                "title": "Average Temperature (\u00b0F)"
+            }
+        },
+        "color": {
+            "field": "City",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "New York",
+                    "Los Angeles",
+                    "Chicago",
+                    "Houston",
+                    "Phoenix",
+                    "Philadelphia",
+                    "San Antonio",
+                    "San Diego"
+                ],
+                "range": [
+                    "#FF5733",
+                    "#33FF57",
+                    "#3357FF",
+                    "#FF33A1",
+                    "#57FF33",
+                    "#FF5733",
+                    "#33A1FF",
+                    "#A1FF33"
+                ]
+            },
+            "legend": {
+                "title": "City"
+            }
+        }
+    },
+    "title": {
+        "text": "Monthly Average Temperatures in Various Cities",
+        "anchor": "start",
+        "offset": 20,
+        "frame": "group"
+    },
+    "config": {
+        "background": "#ffffff",
+        "view": {
+            "stroke": "transparent"
+        },
+        "axis": {
+            "labelFontSize": 12,
+            "titleFontSize": 14
+        }
+    }
+}

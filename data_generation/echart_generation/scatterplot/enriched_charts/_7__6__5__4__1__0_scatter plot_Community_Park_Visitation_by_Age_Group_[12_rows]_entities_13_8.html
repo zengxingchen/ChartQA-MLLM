@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var option;
+
+option = {
+    title: {
+        text: 'Vitamin Levels in Various Fruits',
+        left: 'center',
+        top: '20'
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: function(params) {
+            return params.name + '<br/>' + 'Vitamin C: ' + params.value[1] + ' mg' + '<br/>' + 'Vitamin A: ' + params.value[2] + ' IU';
+        }
+    },
+    legend: {
+        data: ['Fruits'],
+        left: '10',
+        top: '30'
+    },
+    xAxis: {
+        name: 'Fruits',
+        type: 'category',
+        data: ['Apple', 'Banana', 'Orange', 'Strawberry', 'Kiwi', 'Papaya', 'Grapefruit', 'Pineapple', 'Mango', 'Blueberry', 'Watermelon', 'Peach', 'Plum', 'Raspberry', 'Blackberry', 'Guava', 'Lychee']
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Vitamin Levels'
+    },
+    series: [{
+        name: 'Fruits',
+        type: 'scatter',
+        itemStyle: {
+            color: '#61a0a8'
+        },
+        symbolSize: function (data) {
+            return Math.sqrt(data[2]) / 5;
+        },
+        data: [
+            ['Apple', 4.6, 54],
+            ['Banana', 8.7, 64],
+            ['Orange', 53.2, 225],
+            ['Strawberry', 58.8, 12],
+            ['Kiwi', 92.7, 87],
+            ['Papaya', 60.9, 950],
+            ['Grapefruit', 31.2, 1150],
+            ['Pineapple', 47.8, 900],
+            ['Mango', 36.4, 1082],
+            ['Blueberry', 9.7, 54],
+            ['Watermelon', 8.1, 569],
+            ['Peach', 6.6, 326],
+            ['Plum', 9.5, 345],
+            ['Raspberry', 26.2, 33],
+            ['Blackberry', 21.0, 214],
+            ['Guava', 228.3, 624],
+            ['Lychee', 71.5, 0]
+        ]
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

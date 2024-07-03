@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+option = {
+    title: {
+        text: 'Correlation of Study Hours and Test Scores',
+        left: 'center',
+        top: '5%'
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: function (params) {
+            return 'X: ' + params.value[0] + '<br>Y: ' + params.value[1];
+        }
+    },
+    legend: {
+        data: ['Data Points'],
+        left: '10%',
+        top: '10%'
+    },
+    xAxis: {
+        type: 'value',
+        name: 'Study Hours',
+        nameLocation: 'middle',
+        nameGap: 25
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Test Scores',
+        nameLocation: 'middle',
+        nameGap: 40
+    },
+    series: [{
+        name: 'Data Points',
+        type: 'scatter',
+        itemStyle: {
+            color: '#FF6347'
+        },
+        data: [
+            [10, 25],
+            [20, 45],
+            [30, 30],
+            [40, 70],
+            [50, 55],
+            [60, 80],
+            [70, 60],
+            [80, 90],
+            [90, 75],
+            [100, 95],
+            [110, 85],
+            [120, 105],
+            [130, 95],
+            [140, 115],
+            [150, 100],
+            [160, 120],
+            [170, 110],
+            [180, 130],
+            [190, 115],
+            [200, 135],
+            [210, 125],
+            [220, 140],
+            [230, 130],
+            [240, 150],
+            [250, 135],
+            [260, 155],
+            [270, 145],
+            [280, 160],
+            [290, 150],
+            [300, 165],
+            [310, 155],
+            [320, 170],
+            [330, 160],
+            [340, 175],
+            [350, 165],
+            [360, 180],
+            [370, 170],
+            [380, 185],
+            [390, 175],
+            [400, 190]
+        ]
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

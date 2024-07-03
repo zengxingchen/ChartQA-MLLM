@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Trend of Topics Over Years',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {            
+            type: 'shadow'        
+        }
+    },
+    legend: {
+        data: ['Art & Design', 'Science & Nature', 'Health & Psychology', 'Culture & Society'],
+        top: 'bottom'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        data: ['2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022'],
+        axisLabel: {
+            rotate: 45
+        }
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Art & Design',
+            type: 'bar',
+            stack: 'total',
+            barWidth: '40%',
+            data: [30, 40, 35, 50, 55, 60, 70, 75],
+            itemStyle: {
+                color: '#1f78b4'
+            }
+        },
+        {
+            name: 'Science & Nature',
+            type: 'bar',
+            stack: 'total',
+            barWidth: '40%',
+            data: [20, 25, 30, 35, 40, 50, 55, 60],
+            itemStyle: {
+                color: '#33a02c'
+            }
+        },
+        {
+            name: 'Health & Psychology',
+            type: 'bar',
+            stack: 'total',
+            barWidth: '40%',
+            data: [10, 15, 20, 25, 30, 35, 40, 45],
+            itemStyle: {
+                color: '#e31a1c'
+            }
+        },
+        {
+            name: 'Culture & Society',
+            type: 'bar',
+            stack: 'total',
+            barWidth: '40%',
+            data: [25, 30, 35, 40, 45, 50, 55, 60],
+            itemStyle: {
+                color: '#ff7f00'
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    width: 800,
+    height: 600
+});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Monthly Sales & Customer Growth in Online Retail',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            label: {
+                backgroundColor: '#6a7985'
+            }
+        }
+    },
+    legend: {
+        data: ['Sales', 'New Customers', 'Returning Customers'],
+        top: 30
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: [
+        {
+            type: 'category',
+            boundaryGap: false,
+            data: [
+                'Jan-2021', 'Feb-2021', 'Mar-2021', 'Apr-2021', 'May-2021',
+                'Jun-2021', 'Jul-2021', 'Aug-2021', 'Sep-2021', 'Oct-2021',
+                'Nov-2021', 'Dec-2021', 'Jan-2022', 'Feb-2022', 'Mar-2022',
+                'Apr-2022', 'May-2022', 'Jun-2022', 'Jul-2022', 'Aug-2022',
+                'Sep-2022', 'Oct-2022', 'Nov-2022', 'Dec-2022'
+            ]
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value'
+        }
+    ],
+    series: [
+        {
+            name: 'Sales',
+            type: 'line',
+            stack: 'Total amount',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [
+                12000, 13500, 15000, 16000, 15500, 17000, 18000, 18500,
+                19000, 20000, 21000, 22000, 23000, 24000, 25000, 26000,
+                25500, 26500, 27000, 28000, 29000, 30000, 31000, 32000
+            ],
+            color: '#00aaff'
+        },
+        {
+            name: 'New Customers',
+            type: 'line',
+            stack: 'Total amount',
+            label: {
+                show: true,
+                position: 'top'
+            },
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [
+                200, 220, 250, 270, 260, 300, 320, 310,
+                330, 340, 360, 380, 390, 410, 420, 430,
+                425, 440, 450, 460, 470, 480, 490, 500
+            ],
+            color: '#ff7f0e'
+        },
+        {
+            name: 'Returning Customers',
+            type: 'line',
+            stack: 'Total amount',
+            label: {
+                show: true,
+                position: 'top'
+            },
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [
+                300, 350, 320, 370, 400, 450, 420, 480,
+                470, 510, 530, 550, 560, 520, 580, 590,
+                600, 610, 620, 630, 640, 650, 660, 670
+            ],
+            color: '#2ca02c'
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

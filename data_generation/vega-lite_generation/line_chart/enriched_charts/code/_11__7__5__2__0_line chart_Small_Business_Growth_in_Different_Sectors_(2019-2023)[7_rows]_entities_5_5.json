@@ -1,0 +1,166 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Line chart of average annual consumption of different food categories over recent years",
+    "data": {
+        "values": [
+            {
+                "Year": 2019,
+                "Fruits": 120,
+                "Vegetables": 100,
+                "Dairy": 80,
+                "Meat": 70,
+                "Grains": 90
+            },
+            {
+                "Year": 2020,
+                "Fruits": 125,
+                "Vegetables": 105,
+                "Dairy": 82,
+                "Meat": 72,
+                "Grains": 92
+            },
+            {
+                "Year": 2021,
+                "Fruits": 130,
+                "Vegetables": 110,
+                "Dairy": 85,
+                "Meat": 74,
+                "Grains": 95
+            },
+            {
+                "Year": 2022,
+                "Fruits": 135,
+                "Vegetables": 115,
+                "Dairy": 87,
+                "Meat": 76,
+                "Grains": 98
+            },
+            {
+                "Year": 2023,
+                "Fruits": 140,
+                "Vegetables": 120,
+                "Dairy": 90,
+                "Meat": 78,
+                "Grains": 100
+            },
+            {
+                "Year": 2024,
+                "Fruits": 145,
+                "Vegetables": 125,
+                "Dairy": 92,
+                "Meat": 80,
+                "Grains": 102
+            },
+            {
+                "Year": 2025,
+                "Fruits": 150,
+                "Vegetables": 130,
+                "Dairy": 95,
+                "Meat": 82,
+                "Grains": 105
+            },
+            {
+                "Year": 2026,
+                "Fruits": 155,
+                "Vegetables": 135,
+                "Dairy": 97,
+                "Meat": 84,
+                "Grains": 107
+            },
+            {
+                "Year": 2027,
+                "Fruits": 160,
+                "Vegetables": 140,
+                "Dairy": 100,
+                "Meat": 86,
+                "Grains": 110
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Fruits",
+                "Vegetables",
+                "Dairy",
+                "Meat",
+                "Grains"
+            ],
+            "as": [
+                "Category",
+                "Consumption"
+            ]
+        }
+    ],
+    "width": 800,
+    "height": 500,
+    "mark": {
+        "type": "line",
+        "point": true
+    },
+    "encoding": {
+        "x": {
+            "field": "Year",
+            "type": "ordinal",
+            "title": "Year"
+        },
+        "y": {
+            "field": "Consumption",
+            "type": "quantitative",
+            "title": "Average Annual Consumption (kg per capita)",
+            "scale": {
+                "reverse": true
+            },
+            "axis": {
+                "format": ".1f"
+            }
+        },
+        "color": {
+            "field": "Category",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Fruits",
+                    "Vegetables",
+                    "Dairy",
+                    "Meat",
+                    "Grains"
+                ],
+                "range": [
+                    "#FF5733",
+                    "#33FF57",
+                    "#3357FF",
+                    "#FF33A8",
+                    "#FFC733"
+                ]
+            },
+            "title": "Food Category"
+        }
+    },
+    "config": {
+        "axisY": {
+            "minExtent": 30
+        },
+        "text": {
+            "fontSize": 12,
+            "fontWeight": "bold",
+            "fill": "black"
+        }
+    },
+    "layer": [
+        {
+            "mark": {
+                "type": "text",
+                "align": "left",
+                "dx": 5,
+                "dy": -5
+            },
+            "encoding": {
+                "text": {
+                    "field": "Consumption",
+                    "type": "quantitative"
+                }
+            }
+        }
+    ]
+}

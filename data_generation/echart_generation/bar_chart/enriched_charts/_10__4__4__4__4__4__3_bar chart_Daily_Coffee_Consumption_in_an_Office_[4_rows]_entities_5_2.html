@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var option;
+
+option = {
+    title: {
+        text: 'Future Technologies & Society',
+        left: 'center',
+        top: 20
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: { type: 'shadow' }
+    },
+    legend: {
+        data: ['2020', '2021', '2022', '2023', '2024'],
+        top: 60
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        data: ['Renewable Energy', 'Electric Vehicles', 'AI & Machine Learning', 'Biotechnology', 'Quantum Computing', 'Cybersecurity', 'Blockchain Technology', 'Robotics', '3D Printing', 'Smart Cities', 'Virtual Reality', 'Augmented Reality', 'Internet of Things', 'Big Data', 'Space Exploration', 'Genomics'],
+        axisLabel: {
+            rotate: 45,
+            interval: 0
+        }
+    },
+    yAxis: {
+        type: 'value',
+        axisLabel: {
+            formatter: '{value}'
+        }
+    },
+    series: [
+        {
+            name: '2020',
+            type: 'bar',
+            data: [45, 30, 38, 25, 15, 40, 10, 20, 12, 22, 18, 20, 35, 45, 5, 8],
+            itemStyle: {
+                color: '#1f77b4'
+            },
+            barWidth: '40%'
+        },
+        {
+            name: '2021',
+            type: 'bar',
+            data: [50, 40, 45, 30, 20, 45, 15, 25, 18, 28, 22, 24, 40, 50, 10, 12],
+            itemStyle: {
+                color: '#ff7f0e'
+            },
+            barWidth: '40%'
+        },
+        {
+            name: '2022',
+            type: 'bar',
+            data: [55, 48, 50, 35, 25, 50, 20, 30, 22, 33, 27, 29, 45, 55, 15, 18],
+            itemStyle: {
+                color: '#2ca02c'
+            },
+            barWidth: '40%'
+        },
+        {
+            name: '2023',
+            type: 'bar',
+            data: [60, 55, 60, 40, 30, 55, 25, 35, 28, 40, 33, 35, 50, 60, 20, 24],
+            itemStyle: {
+                color: '#d62728'
+            },
+            barWidth: '40%'
+        },
+        {
+            name: '2024',
+            type: 'bar',
+            data: [68, 63, 70, 50, 38, 60, 30, 40, 35, 45, 40, 42, 55, 65, 28, 30],
+            itemStyle: {
+                color: '#9467bd'
+            },
+            barWidth: '40%'
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

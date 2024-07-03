@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var option;
+
+option = {
+    title: {
+        text: 'Books Sold Over Time',
+        left: 'center',
+        textStyle: {
+            color: '#333333',
+            fontSize: 20,
+        }
+    },
+    xAxis: {
+        type: 'category',
+        data: ['2023-01-01', '2023-01-02', '2023-01-03', '2023-01-04', '2023-01-05', '2023-01-06', '2023-01-07', '2023-01-08', '2023-01-09', '2023-01-10', '2023-01-11', '2023-01-12', '2023-01-13', '2023-01-14', '2023-01-15']
+    },
+    yAxis: {
+        type: 'value',
+        inverse: true
+    },
+    series: [{
+        data: [100, 150, 130, 200, 180, 220, 210, 230, 250, 240, 260, 270, 290, 280, 300],
+        type: 'line',
+        label: {
+            show: true,
+            position: 'top'
+        },
+        itemStyle: {
+            color: '#FF5733'
+        },
+        lineStyle: {
+            color: '#1F618D'
+        }
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

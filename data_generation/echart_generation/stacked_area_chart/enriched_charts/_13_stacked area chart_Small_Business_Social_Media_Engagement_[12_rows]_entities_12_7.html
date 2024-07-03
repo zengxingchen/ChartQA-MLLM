@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var app = {};
+
+var option;
+
+const data = [
+  ["Q1-2021", 12000, 15000, 9000],
+  ["Q2-2021", 18000, 17000, 13000],
+  ["Q3-2021", 25000, 22000, 18000],
+  ["Q4-2021", 31000, 30000, 25000],
+  ["Q1-2022", 32000, 33000, 28000],
+  ["Q2-2022", 33000, 35000, 31000],
+  ["Q3-2022", 34000, 37000, 35000],
+  ["Q4-2022", 36000, 39000, 37000]
+];
+
+option = {
+  title: {
+    text: 'Quarterly Revenue Trends - Tech Companies',
+    left: 'center',
+    top: '3%'
+  },
+  tooltip: {
+    trigger: 'axis',
+    axisPointer: {
+      type: 'cross',
+      label: {
+        backgroundColor: '#6a7985'
+      }
+    }
+  },
+  legend: {
+    data: ['Company A', 'Company B', 'Company C'],
+    top: '8%'
+  },
+  toolbox: {
+    feature: {
+      saveAsImage: {}
+    }
+  },
+  grid: {
+    left: '3%',
+    right: '4%',
+    bottom: '3%',
+    containLabel: true
+  },
+  xAxis: [
+    {
+      type: 'category',
+      boundaryGap: false,
+      data: data.map(item => item[0])
+    }
+  ],
+  yAxis: [
+    {
+      type: 'value'
+    }
+  ],
+  series: [
+    {
+      name: 'Company A',
+      type: 'line',
+      stack: 'total',
+      areaStyle: {},
+      emphasis: { focus: 'series' },
+      data: data.map(item => item[1]),
+      color: '#ff7f50' // coral
+    },
+    {
+      name: 'Company B',
+      type: 'line',
+      stack: 'total',
+      areaStyle: {},
+      emphasis: { focus: 'series' },
+      data: data.map(item => item[2]),
+      color: '#5e4fa2' // indigo
+    },
+    {
+      name: 'Company C',
+      type: 'line',
+      stack: 'total',
+      areaStyle: {},
+      emphasis: { focus: 'series' },
+      data: data.map(item => item[3]),
+      color: '#3288bd' // blue
+    }
+  ]
+};
+
+if (option && typeof option === 'object') {
+  myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

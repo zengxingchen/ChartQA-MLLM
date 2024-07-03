@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 600, height: 400});
+
+var option = {
+    title: {
+        text: 'Renewable Energy Production: 2016-2020',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Solar', 'Hydropower', 'Wind', 'Bioenergy', 'Geothermal'],
+        left: 10
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {show: true}
+        }
+    },
+    grid: {
+        left: '2%',
+        right: '4%',
+        bottom: '3%',
+        top: '20%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value'
+    },
+    yAxis: {
+        type: 'category',
+        data: ['2016', '2017', '2018', '2019', '2020'],
+        axisLabel: {
+            formatter: function (value) {
+                return value.toString();
+            }
+        }
+    },
+    series: [
+        {
+            name: 'Solar',
+            type: 'bar',
+            stack: 'total',
+            barCategoryGap: '35%',
+            itemStyle: {
+                color: '#ffcc00'
+            },
+            data: [18, 20, 25, 28, 30]
+        },
+        {
+            name: 'Hydropower',
+            type: 'bar',
+            stack: 'total',
+            itemStyle: {
+                color: '#66ccff'
+            },
+            data: [35, 34, 30, 28, 25]
+        },
+        {
+            name: 'Wind',
+            type: 'bar',
+            stack: 'total',
+            itemStyle: {
+                color: '#99ff99'
+            },
+            data: [27, 28, 30, 30, 30]
+        },
+        {
+            name: 'Bioenergy',
+            type: 'bar',
+            stack: 'total',
+            itemStyle: {
+                color: '#ff9900'
+            },
+            data: [15, 14, 10, 10, 10]
+        },
+        {
+            name: 'Geothermal',
+            type: 'bar',
+            stack: 'total',
+            itemStyle: {
+                color: '#cc66ff'
+            },
+            data: [5, 4, 5, 4, 5]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+     myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

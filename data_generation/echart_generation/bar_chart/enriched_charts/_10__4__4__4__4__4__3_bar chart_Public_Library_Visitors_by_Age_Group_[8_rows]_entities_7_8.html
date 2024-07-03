@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var option;
+option = {
+    title: {
+        text: 'Exploration of Various Topics in Society',
+        left: 'center',
+        top: '10%'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    xAxis: {
+        type: 'category',
+        data: ['Art & Design', 'Science & Nature', 'Health & Psychology', 'Culture & Society', 'Economics & Finance', 'Education & Learning', 'Entertainment & Leisure', 'Environment & Climate Change', 'Food & Nutrition', 'Travel & Adventure', 'Fashion & Beauty', 'Politics & Governance', 'Sports & Fitness', 'History & Archaeology', 'Philosophy & Ethics', 'Music & Performing Arts', 'Literature & Writing', 'Business & Entrepreneurship', 'Astronomy & Space Exploration'],
+        axisLabel: {
+            interval: 0,
+            rotate: 30
+        }
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [{
+        data: [120, 150, 180, 140, 170, 160, 130, 200, 110, 190, 175, 145, 155, 135, 165, 125, 115, 185, 195],
+        type: 'bar',
+        itemStyle: {
+            color: function(params) {
+                var colorList = ['#FF5733', '#33FF57', '#3357FF', '#FF33A1', '#A1FF33', '#33A1FF', '#FF5733', '#33FF57', '#3357FF', '#FF33A1', '#A1FF33', '#33A1FF', '#FF5733', '#33FF57', '#3357FF', '#FF33A1', '#A1FF33', '#33A1FF', '#FF5733'];
+                return colorList[params.dataIndex];
+            }
+        },
+        barWidth: '50%',
+    }],
+    grid: {
+        left: '10%',
+        right: '10%',
+        bottom: '30%',
+        top: '20%',
+        containLabel: true
+    }
+};
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

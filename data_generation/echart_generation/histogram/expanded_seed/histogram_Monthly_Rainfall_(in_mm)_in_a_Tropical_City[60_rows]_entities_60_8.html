@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false
+});
+
+var rawData = [
+    {'Month': 'January', 'Rainfall': 89},
+    {'Month': 'February', 'Rainfall': 120},
+    {'Month': 'March', 'Rainfall': 140},
+    {'Month': 'April', 'Rainfall': 210},
+    {'Month': 'May', 'Rainfall': 300},
+    {'Month': 'June', 'Rainfall': 410},
+    {'Month': 'July', 'Rainfall': 350},
+    {'Month': 'August', 'Rainfall': 330},
+    {'Month': 'September', 'Rainfall': 240},
+    {'Month': 'October', 'Rainfall': 190},
+    {'Month': 'November', 'Rainfall': 110},
+    {'Month': 'December', 'Rainfall': 90},
+    {'Month': 'January', 'Rainfall': 95},
+    {'Month': 'February', 'Rainfall': 125},
+    {'Month': 'March', 'Rainfall': 130}
+];
+
+// Bin the data by rainfall
+var binSize = 50;
+var maxRainfall = Math.max.apply(Math, rawData.map(function (o) { return o.Rainfall; }));
+var bins = Array.from({ length: Math.ceil(maxRainfall / binSize) }, function(){ return 0; });
+rawData.forEach(function (dataItem) {
+    var binIndex = Math.floor(dataItem.Rainfall / binSize);
+    bins[binIndex]++;
+});
+
+var seriesData = bins.map(function (bin, index) {
+    return {
+        value: bin,
+        name: (index * binSize) + "-" + ((index + 1) * binSize - 1)
+    };
+});
+
+option = {
+    title: {
+        text: 'Monthly Rainfall Histogram',
+        subtext: 'Bin Size: 50mm',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'item',
+        axisPointer: {
+            type: 'shadow'
+        },
+        formatter: '{b0}: {c0}'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        data: seriesData.map(function (item) { return item.name; }),
+        name: 'Rainfall (mm)',
+        nameLocation: 'middle',
+        nameGap: 30,
+        axisLabel: {
+            interval: 0,
+            rotate: 45
+        }
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Frequency'
+    },
+    series: [
+        {
+            name: 'Frequency',
+            type: 'bar',
+            barWidth: '60%',
+            data: seriesData
+        }
+    ],
+    dataZoom: [
+        {
+            type: 'inside'
+        },
+        {
+            type: 'slider'
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

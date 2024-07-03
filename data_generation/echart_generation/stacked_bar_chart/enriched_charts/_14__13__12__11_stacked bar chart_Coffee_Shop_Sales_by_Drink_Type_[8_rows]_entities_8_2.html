@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+option = {
+    title: {
+        text: 'Monthly Sales Data',
+        left: 'center',
+        top: '20'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Product A', 'Product B', 'Product C', 'Product D', 'Product E'],
+        top: '40',
+        left: 'center'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        data: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+        axisLabel: {
+            rotate: 45,
+            interval: 0
+        }
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Sales (units)',
+        axisLabel: {
+            formatter: '{value}'
+        }
+    },
+    series: [
+        {
+            name: 'Product A',
+            type: 'bar',
+            stack: 'Total',
+            barWidth: '50%',
+            itemStyle: {
+                color: '#FF5733'
+            },
+            data: [120, 220, 150, 260, 300, 450, 520, 630, 720, 820, 900, 1000],
+            label: {
+                show: true,
+                position: 'inside'
+            }
+        },
+        {
+            name: 'Product B',
+            type: 'bar',
+            stack: 'Total',
+            barWidth: '50%',
+            itemStyle: {
+                color: '#33FF57'
+            },
+            data: [132, 182, 232, 232, 312, 372, 412, 432, 512, 552, 592, 632],
+            label: {
+                show: true,
+                position: 'inside'
+            }
+        },
+        {
+            name: 'Product C',
+            type: 'bar',
+            stack: 'Total',
+            barWidth: '50%',
+            itemStyle: {
+                color: '#3357FF'
+            },
+            data: [101, 191, 201, 181, 261, 401, 391, 431, 491, 531, 571, 611],
+            label: {
+                show: true,
+                position: 'inside'
+            }
+        },
+        {
+            name: 'Product D',
+            type: 'bar',
+            stack: 'Total',
+            barWidth: '50%',
+            itemStyle: {
+                color: '#FF33A1'
+            },
+            data: [134, 234, 154, 294, 384, 454, 484, 514, 584, 624, 674, 724],
+            label: {
+                show: true,
+                position: 'inside'
+            }
+        },
+        {
+            name: 'Product E',
+            type: 'bar',
+            stack: 'Total',
+            barWidth: '50%',
+            itemStyle: {
+                color: '#FFD133'
+            },
+            data: [90, 290, 190, 330, 420, 510, 560, 590, 670, 730, 790, 850],
+            label: {
+                show: true,
+                position: 'inside'
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

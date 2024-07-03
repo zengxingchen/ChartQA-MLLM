@@ -1,0 +1,192 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Stacked vertical bar chart showing the production of different tech gadgets over years.",
+    "title": {
+        "text": "Tech Gadgets Production by Type Over Years",
+        "fontSize": 15,
+        "anchor": "start",
+        "color": "black"
+    },
+    "width": 300,
+    "height": 400,
+    "data": {
+        "values": [
+            {
+                "Year": 2010,
+                "Smartphones": 150,
+                "Laptops": 100,
+                "Tablets": 50,
+                "Wearables": 5
+            },
+            {
+                "Year": 2011,
+                "Smartphones": 160,
+                "Laptops": 105,
+                "Tablets": 55,
+                "Wearables": 10
+            },
+            {
+                "Year": 2012,
+                "Smartphones": 170,
+                "Laptops": 110,
+                "Tablets": 60,
+                "Wearables": 15
+            },
+            {
+                "Year": 2013,
+                "Smartphones": 180,
+                "Laptops": 115,
+                "Tablets": 65,
+                "Wearables": 20
+            },
+            {
+                "Year": 2014,
+                "Smartphones": 190,
+                "Laptops": 120,
+                "Tablets": 70,
+                "Wearables": 25
+            },
+            {
+                "Year": 2015,
+                "Smartphones": 200,
+                "Laptops": 125,
+                "Tablets": 75,
+                "Wearables": 30
+            },
+            {
+                "Year": 2016,
+                "Smartphones": 210,
+                "Laptops": 130,
+                "Tablets": 80,
+                "Wearables": 35
+            },
+            {
+                "Year": 2017,
+                "Smartphones": 220,
+                "Laptops": 140,
+                "Tablets": 85,
+                "Wearables": 40
+            },
+            {
+                "Year": 2018,
+                "Smartphones": 230,
+                "Laptops": 150,
+                "Tablets": 90,
+                "Wearables": 45
+            },
+            {
+                "Year": 2019,
+                "Smartphones": 240,
+                "Laptops": 160,
+                "Tablets": 95,
+                "Wearables": 50
+            },
+            {
+                "Year": 2020,
+                "Smartphones": 250,
+                "Laptops": 165,
+                "Tablets": 100,
+                "Wearables": 60
+            },
+            {
+                "Year": 2021,
+                "Smartphones": 260,
+                "Laptops": 170,
+                "Tablets": 110,
+                "Wearables": 70
+            },
+            {
+                "Year": 2022,
+                "Smartphones": 270,
+                "Laptops": 175,
+                "Tablets": 120,
+                "Wearables": 80
+            },
+            {
+                "Year": 2023,
+                "Smartphones": 280,
+                "Laptops": 180,
+                "Tablets": 130,
+                "Wearables": 90
+            },
+            {
+                "Year": 2024,
+                "Smartphones": 290,
+                "Laptops": 185,
+                "Tablets": 140,
+                "Wearables": 100
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Smartphones",
+                "Laptops",
+                "Tablets",
+                "Wearables"
+            ],
+            "as": [
+                "Gadget Type",
+                "Quantity"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "bar",
+        "height": {
+            "band": 0.7
+        }
+    },
+    "encoding": {
+        "x": {
+            "field": "Year",
+            "type": "ordinal",
+            "axis": {
+                "title": "Year"
+            }
+        },
+        "y": {
+            "field": "Quantity",
+            "type": "quantitative",
+            "stack": "zero",
+            "axis": {
+                "title": "Production Quantity (in millions)"
+            }
+        },
+        "color": {
+            "field": "Gadget Type",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Smartphones",
+                    "Laptops",
+                    "Tablets",
+                    "Wearables"
+                ],
+                "range": [
+                    "#ff5733",
+                    "#33ff57",
+                    "#3357ff",
+                    "#ff33a1"
+                ]
+            },
+            "title": "Gadget Type"
+        },
+        "tooltip": [
+            {
+                "field": "Year",
+                "type": "ordinal"
+            },
+            {
+                "field": "Gadget Type",
+                "type": "nominal"
+            },
+            {
+                "field": "Quantity",
+                "type": "quantitative",
+                "title": "Production Quantity"
+            }
+        ]
+    }
+}

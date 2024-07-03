@@ -1,0 +1,176 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": {
+        "text": "Annual Spending by Expense Category",
+        "subtitle": "Vertical stacked representation of expense categories over a year",
+        "subtitleFontStyle": "italic",
+        "subtitleFontSize": 10,
+        "anchor": "start"
+    },
+    "data": {
+        "values": [
+            {
+                "Month": "January",
+                "Rent": 800,
+                "Groceries": 300,
+                "Utilities": 150,
+                "Entertainment": 100
+            },
+            {
+                "Month": "February",
+                "Rent": 800,
+                "Groceries": 310,
+                "Utilities": 160,
+                "Entertainment": 120
+            },
+            {
+                "Month": "March",
+                "Rent": 800,
+                "Groceries": 320,
+                "Utilities": 155,
+                "Entertainment": 130
+            },
+            {
+                "Month": "April",
+                "Rent": 800,
+                "Groceries": 330,
+                "Utilities": 150,
+                "Entertainment": 140
+            },
+            {
+                "Month": "May",
+                "Rent": 800,
+                "Groceries": 340,
+                "Utilities": 160,
+                "Entertainment": 150
+            },
+            {
+                "Month": "June",
+                "Rent": 800,
+                "Groceries": 350,
+                "Utilities": 170,
+                "Entertainment": 160
+            },
+            {
+                "Month": "July",
+                "Rent": 800,
+                "Groceries": 360,
+                "Utilities": 180,
+                "Entertainment": 170
+            },
+            {
+                "Month": "August",
+                "Rent": 800,
+                "Groceries": 370,
+                "Utilities": 190,
+                "Entertainment": 180
+            },
+            {
+                "Month": "September",
+                "Rent": 800,
+                "Groceries": 380,
+                "Utilities": 200,
+                "Entertainment": 190
+            },
+            {
+                "Month": "October",
+                "Rent": 800,
+                "Groceries": 390,
+                "Utilities": 210,
+                "Entertainment": 200
+            },
+            {
+                "Month": "November",
+                "Rent": 800,
+                "Groceries": 400,
+                "Utilities": 220,
+                "Entertainment": 210
+            },
+            {
+                "Month": "December",
+                "Rent": 800,
+                "Groceries": 410,
+                "Utilities": 230,
+                "Entertainment": 220
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Rent",
+                "Groceries",
+                "Utilities",
+                "Entertainment"
+            ],
+            "as": [
+                "Expense Category",
+                "Amount"
+            ]
+        }
+    ],
+    "width": 600,
+    "height": 400,
+    "mark": {
+        "type": "bar",
+        "width": {
+            "band": 0.7
+        }
+    },
+    "encoding": {
+        "x": {
+            "field": "Month",
+            "type": "nominal",
+            "axis": {
+                "title": "Month",
+                "labelAngle": 0
+            }
+        },
+        "y": {
+            "field": "Amount",
+            "type": "quantitative",
+            "axis": {
+                "title": "Total Amount"
+            },
+            "stack": "normalize"
+        },
+        "color": {
+            "field": "Expense Category",
+            "type": "nominal",
+            "scale": {
+                "range": [
+                    "#FF6347",
+                    "#4682B4",
+                    "#32CD32",
+                    "#8A2BE2"
+                ]
+            },
+            "legend": {
+                "title": "Expense Category",
+                "orient": "bottom"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Expense Category",
+                "type": "nominal",
+                "title": "Expense Category"
+            },
+            {
+                "field": "Month",
+                "type": "nominal",
+                "title": "Month"
+            },
+            {
+                "field": "Amount",
+                "type": "quantitative",
+                "title": "Amount"
+            }
+        ]
+    },
+    "config": {
+        "axisX": {
+            "minExtent": 30
+        }
+    }
+}

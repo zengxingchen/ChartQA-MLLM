@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Prime Number Distribution',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: '({c})'
+    },
+    legend: {
+        data: ['Primes'],
+        left: 'left',
+        top: 'top'
+    },
+    xAxis: {
+        name: 'X',
+        type: 'value'
+    },
+    yAxis: {
+        name: 'Y',
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Primes',
+            type: 'scatter',
+            itemStyle: {
+                color: '#FF5733'
+            },
+            data: [
+                [1, 2], [2, 3], [3, 5], [4, 7], [5, 11], [6, 13],
+                [7, 17], [8, 19], [9, 23], [10, 29], [11, 31], [12, 37],
+                [13, 41], [14, 43], [15, 47], [16, 53], [17, 59], [18, 61],
+                [19, 67], [20, 71], [21, 73], [22, 79], [23, 83], [24, 89],
+                [25, 97], [26, 101], [27, 103], [28, 107], [29, 109], [30, 113]
+            ]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

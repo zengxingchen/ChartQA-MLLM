@@ -1,0 +1,153 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Annual Sales Volume for Different Product Categories",
+    "width": 600,
+    "height": 300,
+    "data": {
+        "values": [
+            {
+                "Year": 2015,
+                "Electronics": 25,
+                "Books": 15,
+                "Clothing": 10,
+                "Furniture": 20
+            },
+            {
+                "Year": 2016,
+                "Electronics": 30,
+                "Books": 18,
+                "Clothing": 12,
+                "Furniture": 22
+            },
+            {
+                "Year": 2017,
+                "Electronics": 35,
+                "Books": 20,
+                "Clothing": 14,
+                "Furniture": 25
+            },
+            {
+                "Year": 2018,
+                "Electronics": 40,
+                "Books": 15,
+                "Clothing": 16,
+                "Furniture": 28
+            },
+            {
+                "Year": 2019,
+                "Electronics": 45,
+                "Books": 25,
+                "Clothing": 20,
+                "Furniture": 30
+            },
+            {
+                "Year": 2020,
+                "Electronics": 50,
+                "Books": 28,
+                "Clothing": 22,
+                "Furniture": 35
+            },
+            {
+                "Year": 2021,
+                "Electronics": 55,
+                "Books": 30,
+                "Clothing": 24,
+                "Furniture": 37
+            },
+            {
+                "Year": 2022,
+                "Electronics": 60,
+                "Books": 35,
+                "Clothing": 26,
+                "Furniture": 40
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Electronics",
+                "Books",
+                "Clothing",
+                "Furniture"
+            ],
+            "as": [
+                "Category",
+                "Sales"
+            ]
+        }
+    ],
+    "title": {
+        "text": "Annual Sales Volume by Product Category",
+        "anchor": "start",
+        "offset": 5,
+        "dx": 100
+    },
+    "mark": {
+        "type": "area",
+        "opacity": 0.6
+    },
+    "encoding": {
+        "x": {
+            "field": "Year",
+            "type": "ordinal",
+            "axis": {
+                "title": "Year",
+                "labelAngle": 0
+            }
+        },
+        "y": {
+            "field": "Sales",
+            "type": "quantitative",
+            "stack": "zero",
+            "axis": {
+                "title": "Sales Volume (in million units)"
+            }
+        },
+        "color": {
+            "field": "Category",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Electronics",
+                    "Books",
+                    "Clothing",
+                    "Furniture"
+                ],
+                "range": [
+                    "#3e95cd",
+                    "#8e5ea2",
+                    "#3cba9f",
+                    "#e8c3b9"
+                ]
+            },
+            "legend": {
+                "title": "Category",
+                "orient": "bottom-right",
+                "offset": 15
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Year",
+                "type": "ordinal"
+            },
+            {
+                "field": "Category",
+                "type": "nominal"
+            },
+            {
+                "field": "Sales",
+                "type": "quantitative"
+            }
+        ]
+    },
+    "config": {
+        "view": {
+            "stroke": "transparent"
+        },
+        "axis": {
+            "domainWidth": 1
+        }
+    }
+}

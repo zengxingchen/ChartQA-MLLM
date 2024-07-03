@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Annual Sector Growth Projections',
+        left: 'center',
+        top: 20
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Environment', 'Education', 'Health', 'Entertainment', 'Business'],
+        top: 50
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01]
+    },
+    yAxis: {
+        type: 'category',
+        data: ['2021', '2022', '2023']
+    },
+    series: [
+        {
+            name: 'Environment',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            label: {
+                show: true,
+                formatter: '{b}'
+            },
+            itemStyle: {
+                color: '#1F77B4'
+            },
+            data: [25, 35, 30]
+        },
+        {
+            name: 'Education',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            label: {
+                show: true,
+                formatter: '{b}'
+            },
+            itemStyle: {
+                color: '#FF7F0E'
+            },
+            data: [15, 20, 25]
+        },
+        {
+            name: 'Health',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            label: {
+                show: true,
+                formatter: '{b}'
+            },
+            itemStyle: {
+                color: '#2CA02C'
+            },
+            data: [30, 25, 20]
+        },
+        {
+            name: 'Entertainment',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            label: {
+                show: true,
+                formatter: '{b}'
+            },
+            itemStyle: {
+                color: '#D62728'
+            },
+            data: [20, 10, 15]
+        },
+        {
+            name: 'Business',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            label: {
+                show: true,
+                formatter: '{b}'
+            },
+            itemStyle: {
+                color: '#9467BD'
+            },
+            data: [10, 10, 10]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

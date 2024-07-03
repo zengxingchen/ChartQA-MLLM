@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var app = {};
+
+var option = {
+    title: {
+        text: 'Popularity of Art Styles',
+        left: 'center',
+        top: '10%'
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: '{a} <br/>{b} : {c}'
+    },
+    legend: {
+        data: ['Art Styles'],
+        left: '10%',
+        top: 'bottom'
+    },
+    xAxis: {
+        type: 'category',
+        name: 'Art Style',
+        data: ['Realism', 'Impressionism', 'Cubism', 'Surrealism', 'Abstract', 'Expressionism', 'PopArt', 'Futurism', 'Minimalism', 'ConceptualArt', 'Photorealism', 'ArtNouveau', 'ArtDeco', 'Dadaism', 'StreetArt', 'Baroque', 'Renaissance', 'Romanticism', 'Neoclassicism', 'Gothic', 'Symbolism'],
+        axisLabel: {
+            rotate: 45
+        }
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Popularity'
+    },
+    series: [{
+        name: 'Popularity',
+        type: 'scatter',
+        itemStyle: {
+            color: '#FF5733'
+        },
+        data: [
+            {name: 'Realism', value: 85},
+            {name: 'Impressionism', value: 78},
+            {name: 'Cubism', value: 92},
+            {name: 'Surrealism', value: 69},
+            {name: 'Abstract', value: 88},
+            {name: 'Expressionism', value: 74},
+            {name: 'PopArt', value: 81},
+            {name: 'Futurism', value: 65},
+            {name: 'Minimalism', value: 83},
+            {name: 'ConceptualArt', value: 77},
+            {name: 'Photorealism', value: 91},
+            {name: 'ArtNouveau', value: 80},
+            {name: 'ArtDeco', value: 84},
+            {name: 'Dadaism', value: 70},
+            {name: 'StreetArt', value: 87},
+            {name: 'Baroque', value: 73},
+            {name: 'Renaissance', value: 90},
+            {name: 'Romanticism', value: 76},
+            {name: 'Neoclassicism', value: 79},
+            {name: 'Gothic', value: 82},
+            {name: 'Symbolism', value: 66}
+        ]
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

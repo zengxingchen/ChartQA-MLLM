@@ -1,0 +1,174 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Stacked area chart of mental health service usage by sector over the years",
+    "width": 700,
+    "height": 450,
+    "data": {
+        "values": [
+            {
+                "Year": 2010,
+                "Counseling": 200,
+                "Therapy": 150,
+                "Medication": 300,
+                "Alternative": 100
+            },
+            {
+                "Year": 2011,
+                "Counseling": 220,
+                "Therapy": 160,
+                "Medication": 320,
+                "Alternative": 110
+            },
+            {
+                "Year": 2012,
+                "Counseling": 230,
+                "Therapy": 170,
+                "Medication": 330,
+                "Alternative": 120
+            },
+            {
+                "Year": 2013,
+                "Counseling": 240,
+                "Therapy": 180,
+                "Medication": 340,
+                "Alternative": 130
+            },
+            {
+                "Year": 2014,
+                "Counseling": 250,
+                "Therapy": 190,
+                "Medication": 350,
+                "Alternative": 140
+            },
+            {
+                "Year": 2015,
+                "Counseling": 260,
+                "Therapy": 200,
+                "Medication": 360,
+                "Alternative": 150
+            },
+            {
+                "Year": 2016,
+                "Counseling": 270,
+                "Therapy": 210,
+                "Medication": 370,
+                "Alternative": 160
+            },
+            {
+                "Year": 2017,
+                "Counseling": 280,
+                "Therapy": 220,
+                "Medication": 380,
+                "Alternative": 170
+            },
+            {
+                "Year": 2018,
+                "Counseling": 290,
+                "Therapy": 230,
+                "Medication": 390,
+                "Alternative": 180
+            },
+            {
+                "Year": 2019,
+                "Counseling": 300,
+                "Therapy": 240,
+                "Medication": 400,
+                "Alternative": 190
+            },
+            {
+                "Year": 2020,
+                "Counseling": 310,
+                "Therapy": 250,
+                "Medication": 410,
+                "Alternative": 200
+            },
+            {
+                "Year": 2021,
+                "Counseling": 320,
+                "Therapy": 260,
+                "Medication": 420,
+                "Alternative": 210
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Counseling",
+                "Therapy",
+                "Medication",
+                "Alternative"
+            ],
+            "as": [
+                "Sector",
+                "Service Usage"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "area",
+        "opacity": 0.6
+    },
+    "encoding": {
+        "x": {
+            "field": "Year",
+            "type": "ordinal",
+            "title": "Year",
+            "axis": {
+                "labelAngle": 0
+            }
+        },
+        "y": {
+            "field": "Service Usage",
+            "type": "quantitative",
+            "stack": "zero",
+            "title": "Service Usage (in Thousands)"
+        },
+        "color": {
+            "field": "Sector",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Counseling",
+                    "Therapy",
+                    "Medication",
+                    "Alternative"
+                ],
+                "range": [
+                    "#e6194b",
+                    "#3cb44b",
+                    "#ffe119",
+                    "#4363d8"
+                ]
+            },
+            "title": "Mental Health Service"
+        },
+        "tooltip": [
+            {
+                "field": "Sector",
+                "type": "nominal",
+                "title": "Sector"
+            },
+            {
+                "field": "Service Usage",
+                "type": "quantitative",
+                "title": "Service Usage",
+                "format": ",.0f"
+            }
+        ]
+    },
+    "title": {
+        "text": "Mental Health Service Usage Over the Years",
+        "fontSize": 20,
+        "anchor": "start",
+        "offset": 10
+    },
+    "config": {
+        "view": {
+            "stroke": "transparent"
+        },
+        "axis": {
+            "grid": false
+        }
+    }
+}

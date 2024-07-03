@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Global Learning Styles Distribution',
+        subtext: 'Education & Learning',
+        left: 'center',
+        top: 20
+    },
+    tooltip: {
+        trigger: 'item'
+    },
+    legend: {
+        orient: 'vertical',
+        left: 'left',
+        top: 'bottom'
+    },
+    series: [
+        {
+            name: 'Learning Style',
+            type: 'pie',
+            radius: '50%',
+            data: [
+                { value: 354, name: 'Visual' },
+                { value: 287, name: 'Auditory' },
+                { value: 165, name: 'Kinesthetic' },
+                { value: 312, name: 'Reading/Writing' },
+                { value: 218, name: 'Group Learning' },
+                { value: 264, name: 'Solo Learning' },
+                { value: 321, name: 'Online Learning' },
+                { value: 198, name: 'In-Person Learning' }
+            ],
+            emphasis: {
+                itemStyle: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            },
+            label: {
+                show: true,
+                formatter: '{b}: {c} ({d}%)'
+            },
+            labelLine: {
+                show: true
+            }
+        }
+    ],
+    color: [
+        '#2980b9', // Visual
+        '#e74c3c', // Auditory
+        '#f39c12', // Kinesthetic
+        '#8e44ad', // Reading/Writing
+        '#2ecc71', // Group Learning
+        '#16a085', // Solo Learning
+        '#3498db', // Online Learning
+        '#95a5a6' // In-Person Learning
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

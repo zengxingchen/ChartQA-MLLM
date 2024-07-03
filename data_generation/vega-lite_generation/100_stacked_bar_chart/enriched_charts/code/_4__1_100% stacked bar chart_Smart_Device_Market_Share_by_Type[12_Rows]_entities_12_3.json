@@ -1,0 +1,138 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": {
+        "text": "Sales Performance by Quarter",
+        "anchor": "start",
+        "offset": 5
+    },
+    "description": "A 100% stacked bar chart showing the sales performance of different products over different quarters.",
+    "data": {
+        "values": [
+            {
+                "Quarter": "Q1",
+                "Product A": 40,
+                "Product B": 30,
+                "Product C": 20,
+                "Product D": 10
+            },
+            {
+                "Quarter": "Q2",
+                "Product A": 35,
+                "Product B": 25,
+                "Product C": 25,
+                "Product D": 15
+            },
+            {
+                "Quarter": "Q3",
+                "Product A": 30,
+                "Product B": 30,
+                "Product C": 25,
+                "Product D": 15
+            },
+            {
+                "Quarter": "Q4",
+                "Product A": 25,
+                "Product B": 35,
+                "Product C": 30,
+                "Product D": 10
+            },
+            {
+                "Quarter": "Q1",
+                "Product A": 45,
+                "Product B": 20,
+                "Product C": 25,
+                "Product D": 10
+            },
+            {
+                "Quarter": "Q2",
+                "Product A": 40,
+                "Product B": 30,
+                "Product C": 20,
+                "Product D": 10
+            },
+            {
+                "Quarter": "Q3",
+                "Product A": 35,
+                "Product B": 25,
+                "Product C": 25,
+                "Product D": 15
+            },
+            {
+                "Quarter": "Q4",
+                "Product A": 30,
+                "Product B": 35,
+                "Product C": 20,
+                "Product D": 15
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Product A",
+                "Product B",
+                "Product C",
+                "Product D"
+            ],
+            "as": [
+                "Product Type",
+                "Sales"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "bar",
+        "cursor": "pointer"
+    },
+    "width": 500,
+    "height": 300,
+    "encoding": {
+        "x": {
+            "field": "Sales",
+            "type": "quantitative",
+            "axis": {
+                "title": "Percentage"
+            },
+            "stack": "normalize"
+        },
+        "y": {
+            "field": "Quarter",
+            "type": "nominal",
+            "axis": {
+                "title": "Quarter"
+            }
+        },
+        "color": {
+            "field": "Product Type",
+            "type": "nominal",
+            "scale": {
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e",
+                    "#2ca02c",
+                    "#d62728"
+                ]
+            },
+            "legend": {
+                "title": "Product Type",
+                "orient": "bottom"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Product Type",
+                "type": "nominal"
+            },
+            {
+                "field": "Sales",
+                "type": "quantitative",
+                "title": "Sales Percentage"
+            }
+        ]
+    },
+    "config": {
+        "bar": {
+            "binSpacing": 3
+        }
+    }
+}

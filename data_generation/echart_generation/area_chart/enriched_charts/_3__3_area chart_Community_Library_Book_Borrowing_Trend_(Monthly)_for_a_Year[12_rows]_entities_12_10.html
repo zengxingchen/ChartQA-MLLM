@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {height: '500px', width: '800px'});
+var app = {};
+
+var option;
+option = {
+    title: {
+        text: 'The Decline of Space Debris Over Time',
+        left: 'center',
+        top: 20
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['Space Debris'],
+        top: 50
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ['1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997',
+               '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005',
+               '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013',
+               '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', 
+               '2022']
+    },
+    yAxis: {
+        type: 'value',
+        axisLabel: {
+            formatter: '{value} pcs'
+        }
+    },
+    series: [
+        {
+            name: 'Space Debris',
+            type: 'line',
+            stack: 'Total amount',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [
+                20000, 19800, 19600, 19420, 19250, 19030, 18820, 18560, 18330,
+                18040, 17800, 17500, 17240, 16930, 16600, 16300, 15950, 15600,
+                15200, 14800, 14420, 14000, 13580, 13160, 12740, 12300, 11860,
+                11420, 10980, 10540, 10100, 9650, 9200
+            ],
+            markPoint: {
+                data: [
+                    {type: 'max', name: 'Max'},
+                    {type: 'min', name: 'Min'}
+                ]
+            },
+            lineStyle: {
+                color: '#FF6347'
+            },
+            itemStyle: {
+                color: '#FF4500'
+            },
+            areaStyle: {
+                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                    offset: 0,
+                    color: '#FFB6C1'
+                }, {
+                    offset: 1,
+                    color: '#FF6347'
+                }])
+            }
+        }
+    ]
+};
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

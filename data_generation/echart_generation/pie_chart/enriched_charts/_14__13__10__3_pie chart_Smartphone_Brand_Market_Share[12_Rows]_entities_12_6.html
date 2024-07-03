@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+// Define the color palette for the chart
+var colorPalette = ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd'];
+
+option = {
+    title: {
+        text: 'Energy Production by Source',
+        left: 'center',
+        top: 20
+    },
+    tooltip: {
+        trigger: 'item'
+    },
+    legend: {
+        orient: 'vertical',
+        left: 'left',
+        top: 50,
+        textStyle: {
+            color: '#666',
+            fontSize: 12
+        }
+    },
+    series: [
+        {
+            name: 'Production Source',
+            type: 'pie',
+            radius: '50%',
+            data: [
+                { value: 35, name: 'Renewable Energy' },
+                { value: 25, name: 'Nuclear Power' },
+                { value: 20, name: 'Coal Power' },
+                { value: 15, name: 'Natural Gas' },
+                { value: 5, name: 'Oil' }
+            ],
+            emphasis: {
+                itemStyle: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            },
+            itemStyle: {
+                normal: {
+                    color: function(params) {
+                        return colorPalette[params.dataIndex] // Assign color from palette
+                    }
+                }
+            }
+        }
+    ],
+    color: colorPalette, // Set the color scheme
+    label: {
+        show: true,
+        formatter: '{b}: {c} ({d}%)' // Show label with percentage
+    },
+    labelLine: {
+        show: true
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

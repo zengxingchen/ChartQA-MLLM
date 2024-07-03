@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var app = {};
+
+var option;
+
+const data = [
+    ["2000", 16.2],
+    ["2001", 16.1],
+    ["2002", 15.9],
+    ["2003", 15.7],
+    ["2004", 15.6],
+    ["2005", 15.5],
+    ["2006", 15.4],
+    ["2007", 15.2],
+    ["2008", 15.1],
+    ["2009", 14.9],
+    ["2010", 14.8],
+    ["2011", 14.6],
+    ["2012", 14.4],
+    ["2013", 14.2],
+    ["2014", 14.0],
+    ["2015", 13.8],
+    ["2016", 13.7],
+    ["2017", 13.5],
+    ["2018", 13.3],
+    ["2019", 13.1],
+    ["2020", 12.9]
+];
+
+option = {
+    title: {
+        text: 'Annual Average Temperatures',
+        left: 'center',
+        top: 'top'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            label: {
+                backgroundColor: '#6a7985'
+            }
+        }
+    },
+    legend: {
+        data: ['Temperature'],
+        bottom: 'bottom'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: [{
+        type: 'category',
+        boundaryGap: false,
+        data: data.map(item => item[0]),
+        axisTick: {
+            alignWithLabel: true
+        }
+    }],
+    yAxis: [{
+        type: 'value',
+        axisLabel: {
+            formatter: '{value} °C'
+        }
+    }],
+    series: [{
+        name: 'Temperature',
+        type: 'line',
+        stack: 'total',
+        areaStyle: {},
+        emphasis: {
+            focus: 'series'
+        },
+        data: data.map(item => item[1]),
+        color: '#FF7F0E', // Example of specific HEX color
+        markPoint: {
+            data: [
+                {type: 'max', name: 'Max'},
+                {type: 'min', name: 'Min'}
+            ]
+        }
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

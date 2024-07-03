@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 600, height: 400});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Trends in Education & Learning',
+        subtext: 'Percentage Breakdown by Year',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        },
+        formatter: '{b}<br/>{a0}: {c0}%<br/>{a1}: {c1}%<br/>{a2}: {c2}%<br/>{a3}: {c3}%<br/>{a4}: {c4}%'
+    },
+    legend: {
+        orient: 'horizontal',
+        left: 10,
+        data: ['Education & Learning', 'Entertainment & Leisure', 'Environment & Climate Change', 'Economics & Finance', 'Health & Psychology']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        min: 0,
+        max: 100,
+        interval: 10,
+        axisLabel: {
+            formatter: '{value} %'
+        }
+    },
+    yAxis: {
+        type: 'category',
+        axisTick: { show: false },
+        data: ['2016', '2017', '2018', '2019', '2020', '2021']
+    },
+    series: [
+        {
+            name: 'Education & Learning',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 30, // Change the bar width
+            data: [30, 35, 40, 45, 50, 55],
+            itemStyle: {
+                color: '#1f77b4'
+            }
+        },
+        {
+            name: 'Entertainment & Leisure',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 30, // Change the bar width
+            data: [20, 18, 16, 14, 12, 10],
+            itemStyle: {
+                color: '#ff7f0e'
+            }
+        },
+        {
+            name: 'Environment & Climate Change',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 30, // Change the bar width
+            data: [25, 22, 20, 18, 16, 14],
+            itemStyle: {
+                color: '#2ca02c'
+            }
+        },
+        {
+            name: 'Economics & Finance',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 30, // Change the bar width
+            data: [15, 15, 15, 13, 12, 11],
+            itemStyle: {
+                color: '#d62728'
+            }
+        },
+        {
+            name: 'Health & Psychology',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 30, // Change the bar width
+            data: [10, 10, 9, 10, 10, 10],
+            itemStyle: {
+                color: '#9467bd'
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') myChart.setOption(option);
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

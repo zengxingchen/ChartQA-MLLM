@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var option;
+
+option = {
+    title: {
+        text: 'Population vs. Life Expectancy',
+        left: 'center',
+        top: '10'
+    },
+    legend: {
+        data: ['Population'],
+        left: 'right',
+        top: 'middle'
+    },
+    xAxis: {
+        type: 'value',
+        name: 'Population (millions)',
+        nameLocation: 'middle',
+        nameGap: 30
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Life Expectancy (years)',
+        nameLocation: 'middle',
+        nameGap: 40
+    },
+    series: [{
+        name: 'Population',
+        type: 'scatter',
+        itemStyle: {
+            color: '#FF5733'
+        },
+        data: [
+            [1, 2], [2, 3], [3, 1], [4, 5], [5, 4], [6, 6], [7, 3], [8, 7], [9, 8], 
+            [10, 5], [11, 6], [12, 9], [13, 7], [14, 8], [15, 10], [16, 9], [17, 11], 
+            [18, 12], [19, 13], [20, 11], [21, 14], [22, 15], [23, 12], [24, 16], 
+            [25, 14], [26, 17], [27, 19], [28, 18], [29, 20], [30, 19]
+        ]
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

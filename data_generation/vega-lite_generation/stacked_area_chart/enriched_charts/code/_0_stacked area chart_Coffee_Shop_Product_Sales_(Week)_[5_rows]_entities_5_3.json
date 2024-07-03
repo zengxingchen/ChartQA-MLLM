@@ -1,0 +1,157 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Daily Activities duration of individuals over a week",
+    "width": 500,
+    "height": 300,
+    "data": {
+        "values": [
+            {
+                "Date": "2023-03-01",
+                "Work": 8,
+                "Leisure": 4,
+                "Exercise": 2,
+                "Sleep": 8,
+                "Chores": 2
+            },
+            {
+                "Date": "2023-03-02",
+                "Work": 7,
+                "Leisure": 5,
+                "Exercise": 1,
+                "Sleep": 8,
+                "Chores": 3
+            },
+            {
+                "Date": "2023-03-03",
+                "Work": 6,
+                "Leisure": 4,
+                "Exercise": 2,
+                "Sleep": 9,
+                "Chores": 3
+            },
+            {
+                "Date": "2023-03-04",
+                "Work": 4,
+                "Leisure": 6,
+                "Exercise": 3,
+                "Sleep": 7,
+                "Chores": 4
+            },
+            {
+                "Date": "2023-03-05",
+                "Work": 6,
+                "Leisure": 5,
+                "Exercise": 2,
+                "Sleep": 8,
+                "Chores": 3
+            },
+            {
+                "Date": "2023-03-06",
+                "Work": 8,
+                "Leisure": 3,
+                "Exercise": 2,
+                "Sleep": 8,
+                "Chores": 3
+            },
+            {
+                "Date": "2023-03-07",
+                "Work": 9,
+                "Leisure": 2,
+                "Exercise": 3,
+                "Sleep": 7,
+                "Chores": 3
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Work",
+                "Leisure",
+                "Exercise",
+                "Sleep",
+                "Chores"
+            ],
+            "as": [
+                "Activity",
+                "Hours"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "area",
+        "opacity": 0.7
+    },
+    "encoding": {
+        "x": {
+            "field": "Date",
+            "type": "temporal",
+            "axis": {
+                "title": "Date",
+                "format": "%Y-%m-%d",
+                "labelAngle": -45
+            }
+        },
+        "y": {
+            "field": "Hours",
+            "type": "quantitative",
+            "stack": "zero",
+            "axis": {
+                "title": "Total Hours"
+            }
+        },
+        "color": {
+            "field": "Activity",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Work",
+                    "Leisure",
+                    "Exercise",
+                    "Sleep",
+                    "Chores"
+                ],
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e",
+                    "#2ca02c",
+                    "#d62728",
+                    "#9467bd"
+                ]
+            },
+            "legend": {
+                "title": "Activity Type"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Date",
+                "type": "temporal",
+                "title": "Date"
+            },
+            {
+                "field": "Activity",
+                "type": "nominal",
+                "title": "Activity Type"
+            },
+            {
+                "field": "Hours",
+                "type": "quantitative",
+                "title": "Hours"
+            }
+        ]
+    },
+    "config": {
+        "view": {
+            "stroke": "transparent"
+        },
+        "axis": {
+            "labelFontSize": 12,
+            "titleFontSize": 14
+        },
+        "legend": {
+            "labelFontSize": 12,
+            "titleFontSize": 14
+        }
+    }
+}

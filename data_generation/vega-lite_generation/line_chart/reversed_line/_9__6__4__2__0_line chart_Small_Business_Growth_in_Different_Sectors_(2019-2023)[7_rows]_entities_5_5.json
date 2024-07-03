@@ -1,0 +1,139 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Line chart of annual investments in future technologies over recent years",
+    "data": {
+        "values": [
+            {
+                "Year": 2019,
+                "AI": 7000,
+                "Blockchain": 8000,
+                "Quantum": 9000
+            },
+            {
+                "Year": 2020,
+                "AI": 7500,
+                "Blockchain": 8500,
+                "Quantum": 9500
+            },
+            {
+                "Year": 2021,
+                "AI": 8000,
+                "Blockchain": 9000,
+                "Quantum": 10000
+            },
+            {
+                "Year": 2022,
+                "AI": 8500,
+                "Blockchain": 9500,
+                "Quantum": 10500
+            },
+            {
+                "Year": 2023,
+                "AI": 9000,
+                "Blockchain": 10000,
+                "Quantum": 11000
+            },
+            {
+                "Year": 2024,
+                "AI": 9500,
+                "Blockchain": 10500,
+                "Quantum": 11500
+            },
+            {
+                "Year": 2025,
+                "AI": 10000,
+                "Blockchain": 11000,
+                "Quantum": 12000
+            },
+            {
+                "Year": 2026,
+                "AI": 10500,
+                "Blockchain": 11500,
+                "Quantum": 12500
+            },
+            {
+                "Year": 2027,
+                "AI": 11000,
+                "Blockchain": 12000,
+                "Quantum": 13000
+            },
+            {
+                "Year": 2028,
+                "AI": 11500,
+                "Blockchain": 12500,
+                "Quantum": 13500
+            },
+            {
+                "Year": 2029,
+                "AI": 12000,
+                "Blockchain": 13000,
+                "Quantum": 14000
+            },
+            {
+                "Year": 2030,
+                "AI": 12500,
+                "Blockchain": 13500,
+                "Quantum": 14500
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "AI",
+                "Blockchain",
+                "Quantum"
+            ],
+            "as": [
+                "Technology",
+                "Investment"
+            ]
+        }
+    ],
+    "width": 900,
+    "height": 600,
+    "mark": {
+        "type": "line",
+        "point": true,
+        "tooltip": {
+            "content": "data"
+        }
+    },
+    "encoding": {
+        "x": {
+            "field": "Year",
+            "type": "ordinal",
+            "title": "Year"
+        },
+        "y": {
+            "field": "Investment",
+            "type": "quantitative",
+            "title": "Annual Investment (USD)",
+            "axis": {
+                "format": "$.2f"
+            }
+        },
+        "color": {
+            "field": "Technology",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "AI",
+                    "Blockchain",
+                    "Quantum"
+                ],
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e",
+                    "#2ca02c"
+                ]
+            },
+            "title": "Technology"
+        }
+    },
+    "config": {
+        "axisY": {
+            "minExtent": 30
+        }
+    }
+}

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 800,
+    height: 600
+});
+var option = {
+    title: {
+        text: 'Distribution of Survey Scores',
+        left: 'center',
+        top: 10
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    xAxis: {
+        type: 'category',
+        data: ['25-30', '31-36', '37-42', '43-48', '49-54', '55-60', '61-66'],
+        name: 'Score Range'
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Frequency'
+    },
+    series: [{
+        type: 'bar',
+        data: [3, 7, 6, 10, 6, 8, 2],
+        itemStyle: {
+            color: '#4caf50'
+        },
+        barWidth: '40%',
+        label: {
+            show: true,
+            position: 'inside',
+            formatter: '{c}'
+        }
+    }]
+};
+if (option && typeof option === 'object') myChart.setOption(option);
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

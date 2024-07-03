@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+  renderer: 'canvas',
+  useDirtyRect: false
+});
+var app = {};
+
+var option;
+
+option = {
+  tooltip: {
+    trigger: 'axis',
+    axisPointer: {
+      type: 'shadow'
+    }
+  },
+  legend: {
+    data: ['Technology Adoption', 'New Services', 'Investment in R&D', 'Manufacturing Improvement'],
+    textStyle: {
+      color: '#666'
+    },
+    top: '3%'
+  },
+  title: {
+    text: 'Future Technologies & Society: Industry Progress',
+    subtext: 'Stacked Percentage Data',
+    left: 'center',
+    textStyle: {
+      color: '#333'
+    }
+  },
+  grid: {
+    left: '3%',
+    right: '4%',
+    bottom: '3%',
+    containLabel: true
+  },
+  xAxis: {
+    type: 'value',
+    boundaryGap: [0, 0.01],
+    max: 100
+  },
+  yAxis: {
+    type: 'category',
+    data: ['2018', '2019', '2020', '2021', '2022']
+  },
+  series: [
+    {
+      name: 'Technology Adoption',
+      type: 'bar',
+      stack: 'total',
+      barWidth: 30,
+      itemStyle: {
+        borderColor: '#fff',
+        color: '#1f77b4'
+      },
+      emphasis: {
+        focus: 'series'
+      },
+      data: [20, 22, 25, 28, 30]
+    },
+    {
+      name: 'New Services',
+      type: 'bar',
+      stack: 'total',
+      barWidth: 30,
+      itemStyle: {
+        borderColor: '#fff',
+        color: '#2ca02c'
+      },
+      emphasis: {
+        focus: 'series'
+      },
+      data: [30, 28, 25, 22, 20]
+    },
+    {
+      name: 'Investment in R&D',
+      type: 'bar',
+      stack: 'total',
+      barWidth: 30,
+      itemStyle: {
+        borderColor: '#fff',
+        color: '#d62728'
+      },
+      emphasis: {
+        focus: 'series'
+      },
+      data: [25, 27, 30, 32, 35]
+    },
+    {
+      name: 'Manufacturing Improvement',
+      type: 'bar',
+      stack: 'total',
+      barWidth: 30,
+      itemStyle: {
+        borderColor: '#fff',
+        color: '#ff7f0e'
+      },
+      emphasis: {
+        focus: 'series'
+      },
+      data: [25, 23, 20, 18, 15]
+    }
+  ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

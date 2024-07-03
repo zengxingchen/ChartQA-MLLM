@@ -1,0 +1,175 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Monthly Average Stock Prices by Industry",
+    "data": {
+        "values": [
+            {
+                "Month": "January",
+                "Technology": 120,
+                "Healthcare": 90,
+                "Finance": 100,
+                "Energy": 80,
+                "Retail": 95
+            },
+            {
+                "Month": "February",
+                "Technology": 125,
+                "Healthcare": 92,
+                "Finance": 102,
+                "Energy": 83,
+                "Retail": 98
+            },
+            {
+                "Month": "March",
+                "Technology": 130,
+                "Healthcare": 95,
+                "Finance": 104,
+                "Energy": 85,
+                "Retail": 100
+            },
+            {
+                "Month": "April",
+                "Technology": 135,
+                "Healthcare": 97,
+                "Finance": 106,
+                "Energy": 88,
+                "Retail": 102
+            },
+            {
+                "Month": "May",
+                "Technology": 140,
+                "Healthcare": 100,
+                "Finance": 108,
+                "Energy": 90,
+                "Retail": 104
+            },
+            {
+                "Month": "June",
+                "Technology": 145,
+                "Healthcare": 103,
+                "Finance": 110,
+                "Energy": 93,
+                "Retail": 106
+            },
+            {
+                "Month": "July",
+                "Technology": 150,
+                "Healthcare": 105,
+                "Finance": 112,
+                "Energy": 95,
+                "Retail": 108
+            },
+            {
+                "Month": "August",
+                "Technology": 155,
+                "Healthcare": 108,
+                "Finance": 115,
+                "Energy": 97,
+                "Retail": 110
+            },
+            {
+                "Month": "September",
+                "Technology": 160,
+                "Healthcare": 110,
+                "Finance": 117,
+                "Energy": 100,
+                "Retail": 112
+            },
+            {
+                "Month": "October",
+                "Technology": 165,
+                "Healthcare": 113,
+                "Finance": 119,
+                "Energy": 102,
+                "Retail": 114
+            },
+            {
+                "Month": "November",
+                "Technology": 170,
+                "Healthcare": 115,
+                "Finance": 121,
+                "Energy": 105,
+                "Retail": 116
+            },
+            {
+                "Month": "December",
+                "Technology": 175,
+                "Healthcare": 118,
+                "Finance": 123,
+                "Energy": 107,
+                "Retail": 118
+            }
+        ]
+    },
+    "width": 800,
+    "height": 600,
+    "transform": [
+        {
+            "fold": [
+                "Technology",
+                "Healthcare",
+                "Finance",
+                "Energy",
+                "Retail"
+            ],
+            "as": [
+                "Industry",
+                "Stock Price"
+            ]
+        }
+    ],
+    "mark": "line",
+    "encoding": {
+        "x": {
+            "field": "Month",
+            "type": "ordinal",
+            "title": "Month",
+            "axis": {
+                "labelAngle": 0
+            }
+        },
+        "y": {
+            "field": "Stock Price",
+            "type": "quantitative",
+            "title": "Average Stock Price ($)",
+            "scale": {
+                "reverse": true
+            }
+        },
+        "color": {
+            "field": "Industry",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Technology",
+                    "Healthcare",
+                    "Finance",
+                    "Energy",
+                    "Retail"
+                ],
+                "range": [
+                    "#FF5733",
+                    "#33FF57",
+                    "#3357FF",
+                    "#FF33A1",
+                    "#FFDD33"
+                ]
+            },
+            "title": "Industry"
+        },
+        "tooltip": [
+            {
+                "field": "Month",
+                "type": "nominal"
+            },
+            {
+                "field": "Industry",
+                "type": "nominal"
+            },
+            {
+                "field": "Stock Price",
+                "type": "quantitative"
+            }
+        ]
+    }
+}

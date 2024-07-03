@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {renderer: 'canvas', useDirtyRect: false});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Various Fields of Study',
+        left: 'center',
+        top: '20px',
+        textStyle: {
+            fontSize: 24,
+            color: '#333'
+        }
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: '{b}: {c}'
+    },
+    series: [{
+        name: 'Fields of Study',
+        type: 'treemap',
+        width: '80%',
+        height: '80%',
+        top: '10%',
+        left: '10%',
+        label: {
+            show: true,
+            formatter: '{b}'
+        },
+        itemStyle: {
+            borderColor: '#fff'
+        },
+        data: [
+            {
+                name: 'Art & Design',
+                value: 165,
+                itemStyle: {
+                    color: '#FF5733'
+                },
+                children: [
+                    {name: 'Painting', value: 50},
+                    {name: 'Sculpture', value: 30},
+                    {name: 'Digital Art', value: 20},
+                    {name: 'Photography', value: 40},
+                    {name: 'Fashion Design', value: 25}
+                ]
+            },
+            {
+                name: 'Science & Nature',
+                value: 260,
+                itemStyle: {
+                    color: '#33FF57'
+                },
+                children: [
+                    {name: 'Botany', value: 60},
+                    {name: 'Zoology', value: 45},
+                    {name: 'Astronomy', value: 35},
+                    {name: 'Geology', value: 55},
+                    {name: 'Ecology', value: 65}
+                ]
+            },
+            {
+                name: 'Health & Psychology',
+                value: 400,
+                itemStyle: {
+                    color: '#3357FF'
+                },
+                children: [
+                    {name: 'Mental Health', value: 70},
+                    {name: 'Nutrition', value: 80},
+                    {name: 'Fitness', value: 90},
+                    {name: 'Diseases', value: 75},
+                    {name: 'Healthcare', value: 85}
+                ]
+            },
+            {
+                name: 'Culture & Society',
+                value: 275,
+                itemStyle: {
+                    color: '#F3FF33'
+                },
+                children: [
+                    {name: 'Anthropology', value: 40},
+                    {name: 'Sociology', value: 50},
+                    {name: 'History', value: 60},
+                    {name: 'Religion', value: 70},
+                    {name: 'Ethics', value: 55}
+                ]
+            }
+        ]
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

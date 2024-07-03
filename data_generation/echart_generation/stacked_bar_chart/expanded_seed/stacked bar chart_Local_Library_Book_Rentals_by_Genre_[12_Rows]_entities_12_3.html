@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var option;
+
+const months = [
+  'January', 'February', 'March', 'April', 'May', 'June',
+  'July', 'August', 'September', 'October', 'November', 'December'
+];
+
+const seriesData = {
+  'Mystery': [],
+  'Fantasy': [],
+  'Science Fiction': [],
+  'Non-Fiction': [],
+  'Biography': [],
+  "Children's Books": []
+};
+
+const data = [
+  {'Month': 'January', 'Mystery': 320, 'Fantasy': 450, 'Science Fiction': 370, 'Non-Fiction': 420, 'Biography': 300, "Children's Books": 620},
+  {'Month': 'February', 'Mystery': 310, 'Fantasy': 480, 'Science Fiction': 350, 'Non-Fiction': 400, 'Biography': 280, "Children's Books": 600},
+  {'Month': 'March', 'Mystery': 330, 'Fantasy': 500, 'Science Fiction': 390, 'Non-Fiction': 450, 'Biography': 320, "Children's Books": 650},
+  {'Month': 'April', 'Mystery': 360, 'Fantasy': 470, 'Science Fiction': 420, 'Non-Fiction': 480, 'Biography': 350, "Children's Books": 670},
+  {'Month': 'May', 'Mystery': 340, 'Fantasy': 520, 'Science Fiction': 440, 'Non-Fiction': 500, 'Biography': 340, "Children's Books": 700},
+  {'Month': 'June', 'Mystery': 310, 'Fantasy': 430, 'Science Fiction': 380, 'Non-Fiction': 470, 'Biography': 310, "Children's Books": 690},
+  {'Month': 'July', 'Mystery': 370, 'Fantasy': 440, 'Science Fiction': 400, 'Non-Fiction': 510, 'Biography': 320, "Children's Books": 720},
+  {'Month': 'August', 'Mystery': 360, 'Fantasy': 460, 'Science Fiction': 390, 'Non-Fiction': 530, 'Biography': 340, "Children's Books": 710},
+  {'Month': 'September', 'Mystery': 380, 'Fantasy': 480, 'Science Fiction': 410, 'Non-Fiction': 540, 'Biography': 350, "Children's Books": 730},
+  {'Month': 'October', 'Mystery': 390, 'Fantasy': 470, 'Science Fiction': 420, 'Non-Fiction': 500, 'Biography': 360, "Children's Books": 740},
+  {'Month': 'November', 'Mystery': 400, 'Fantasy': 490, 'Science Fiction': 430, 'Non-Fiction': 520, 'Biography': 370, "Children's Books": 750},
+  {'Month': 'December', 'Mystery': 420, 'Fantasy': 510, 'Science Fiction': 450, 'Non-Fiction': 550, 'Biography': 380, "Children's Books": 760}
+];
+
+data.forEach(item => {
+  for (let key in seriesData) {
+    if (seriesData.hasOwnProperty(key)) {
+      seriesData[key].push(item[key]);
+    }
+  }
+});
+
+option = {
+  tooltip: {
+    trigger: 'axis',
+    axisPointer: {
+      type: 'shadow'
+    }
+  },
+  legend: {
+    data: Object.keys(seriesData)
+  },
+  grid: {
+    left: '3%',
+    right: '4%',
+    bottom: '3%',
+    containLabel: true
+  },
+  xAxis: {
+    type: 'category',
+    data: months
+  },
+  yAxis: {
+    type: 'value'
+  },
+  series: Object.keys(seriesData).map(key => ({
+    name: key,
+    type: 'bar',
+    stack: 'total',
+    emphasis: {
+      focus: 'series'
+    },
+    data: seriesData[key]
+  })),
+  color: ['#003366', '#006699', '#4cabce', '#e5323e', '#9f9f5f', '#d9444e', '#6f8ab1', '#c3b4df', '#bda29a', '#6e7074', '#546570', '#c4ccd3']
+};
+
+if (option && typeof option === 'object') {
+  myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

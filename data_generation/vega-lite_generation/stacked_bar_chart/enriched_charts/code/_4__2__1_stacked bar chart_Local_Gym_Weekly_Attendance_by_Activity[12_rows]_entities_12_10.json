@@ -1,0 +1,188 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Horizontal stacked bar chart showing weekly exercise hours by activity.",
+    "data": {
+        "values": [
+            {
+                "Week": "Week 1",
+                "Running": 2,
+                "Swimming": 1,
+                "Cycling": 1.5,
+                "Yoga": 1,
+                "Gym": 2,
+                "Walking": 1
+            },
+            {
+                "Week": "Week 2",
+                "Running": 2.5,
+                "Swimming": 1.5,
+                "Cycling": 2,
+                "Yoga": 1.5,
+                "Gym": 2.5,
+                "Walking": 1.5
+            },
+            {
+                "Week": "Week 3",
+                "Running": 3,
+                "Swimming": 2,
+                "Cycling": 2.5,
+                "Yoga": 1.5,
+                "Gym": 3,
+                "Walking": 2
+            },
+            {
+                "Week": "Week 4",
+                "Running": 3.5,
+                "Swimming": 2.5,
+                "Cycling": 3,
+                "Yoga": 2,
+                "Gym": 3.5,
+                "Walking": 2.5
+            },
+            {
+                "Week": "Week 5",
+                "Running": 4,
+                "Swimming": 3,
+                "Cycling": 3.5,
+                "Yoga": 2.5,
+                "Gym": 4,
+                "Walking": 3
+            },
+            {
+                "Week": "Week 6",
+                "Running": 4.5,
+                "Swimming": 3.5,
+                "Cycling": 4,
+                "Yoga": 3,
+                "Gym": 4.5,
+                "Walking": 3.5
+            },
+            {
+                "Week": "Week 7",
+                "Running": 5,
+                "Swimming": 4,
+                "Cycling": 4.5,
+                "Yoga": 3.5,
+                "Gym": 5,
+                "Walking": 4
+            },
+            {
+                "Week": "Week 8",
+                "Running": 5.5,
+                "Swimming": 4.5,
+                "Cycling": 5,
+                "Yoga": 4,
+                "Gym": 5.5,
+                "Walking": 4.5
+            },
+            {
+                "Week": "Week 9",
+                "Running": 6,
+                "Swimming": 5,
+                "Cycling": 5.5,
+                "Yoga": 4.5,
+                "Gym": 6,
+                "Walking": 5
+            },
+            {
+                "Week": "Week 10",
+                "Running": 6.5,
+                "Swimming": 5.5,
+                "Cycling": 6,
+                "Yoga": 5,
+                "Gym": 6.5,
+                "Walking": 5.5
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Running",
+                "Swimming",
+                "Cycling",
+                "Yoga",
+                "Gym",
+                "Walking"
+            ],
+            "as": [
+                "Activity",
+                "Hours"
+            ]
+        }
+    ],
+    "width": 600,
+    "height": 400,
+    "mark": {
+        "type": "bar",
+        "height": {
+            "band": 0.6
+        }
+    },
+    "title": {
+        "text": "Weekly Exercise Hours by Activity",
+        "subtitle": "Each bar represents a week with activities stacked horizontally",
+        "subtitleFontStyle": "italic",
+        "subtitleFontSize": 12,
+        "anchor": "start",
+        "color": "black",
+        "frame": "group"
+    },
+    "encoding": {
+        "y": {
+            "field": "Week",
+            "type": "ordinal",
+            "title": "Week",
+            "axis": {
+                "labelAngle": 0
+            }
+        },
+        "x": {
+            "field": "Hours",
+            "type": "quantitative",
+            "title": "Exercise Hours"
+        },
+        "color": {
+            "field": "Activity",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Running",
+                    "Swimming",
+                    "Cycling",
+                    "Yoga",
+                    "Gym",
+                    "Walking"
+                ],
+                "range": [
+                    "#e6194b",
+                    "#3cb44b",
+                    "#ffe119",
+                    "#4363d8",
+                    "#f58231",
+                    "#911eb4"
+                ]
+            },
+            "legend": {
+                "orient": "bottom"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Week",
+                "type": "ordinal",
+                "title": "Week"
+            },
+            {
+                "field": "Activity",
+                "type": "nominal",
+                "title": "Activity"
+            },
+            {
+                "field": "Hours",
+                "type": "quantitative",
+                "title": "Hours"
+            }
+        ]
+    }
+}

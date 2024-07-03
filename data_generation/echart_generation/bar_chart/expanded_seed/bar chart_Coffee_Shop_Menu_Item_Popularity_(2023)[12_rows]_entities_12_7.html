@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+// Parse the provided table data and prepare arrays for the series
+const data = [
+  {'Item': 'Espresso', 'Small Size Orders': 1200, 'Medium Size Orders': 300, 'Large Size Orders': 50},
+  {'Item': 'Americano', 'Small Size Orders': 1400, 'Medium Size Orders': 800, 'Large Size Orders': 300},
+  // ... include all items here
+  {'Item': 'Iced Coffee', 'Small Size Orders': 980, 'Medium Size Orders': 1130, 'Large Size Orders': 1050},
+];
+
+const itemNames = data.map(item => item.Item);
+const smallSizeOrders = data.map(item => item['Small Size Orders']);
+const mediumSizeOrders = data.map(item => item['Medium Size Orders']);
+const largeSizeOrders = data.map(item => item['Large Size Orders']);
+
+option = {
+  // Configure the color gradient for each bar
+  color: ['#c23531', '#2f4554', '#61a0a8', '#d48265', '#91c7ae', '#749f83', '#ca8622', '#bda29a','#6e7074', '#546570', '#c4ccd3'],
+  tooltip: {
+    trigger: 'axis',
+    axisPointer: {
+      type: 'shadow'
+    }
+  },
+  legend: {
+    data: ['Small Size Orders', 'Medium Size Orders', 'Large Size Orders']
+  },
+  grid: {
+    left: '3%',
+    right: '4%',
+    bottom: '3%',
+    containLabel: true
+  },
+  xAxis: {
+    type: 'value',
+    boundaryGap: [0, 0.01]
+  },
+  yAxis: {
+    type: 'category',
+    data: itemNames
+  },
+  series: [
+    {
+      name: 'Small Size Orders',
+      type: 'bar',
+      data: smallSizeOrders
+    },
+    {
+      name: 'Medium Size Orders',
+      type: 'bar',
+      data: mediumSizeOrders
+    },
+    {
+      name: 'Large Size Orders',
+      type: 'bar',
+      data: largeSizeOrders
+    }
+  ]
+};
+
+if (option && typeof option === 'object') {
+  myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

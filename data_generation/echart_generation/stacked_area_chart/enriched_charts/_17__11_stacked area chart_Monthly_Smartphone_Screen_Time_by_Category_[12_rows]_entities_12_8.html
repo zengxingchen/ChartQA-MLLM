@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 'auto', height: '600'});
+
+var data = {
+    'Year': ['2001','2002','2003','2004','2005','2006','2007','2008','2009','2010','2011','2012','2013','2014','2015','2016','2017','2018','2019','2020'],
+    'Solar Energy': [120,135,150,160,175,190,205,220,235,250,270,290,310,330,350,370,390,410,430,450],
+    'Wind Energy': [150,165,180,200,225,245,265,285,300,320,340,360,380,395,410,430,450,470,490,510],
+    'Hydro Energy': [220,235,250,270,290,310,330,350,370,390,410,430,450,470,490,510,530,550,570,590],
+    'Geothermal Energy': [30,35,40,45,50,55,60,65,70,75,80,85,90,95,100,105,110,115,120,125],
+    'Biomass Energy': [80,90,100,110,120,130,140,150,160,170,180,190,200,210,220,230,240,250,260,270]
+};
+
+option = {
+    title: {
+        text: 'Renewable Energy Production Over Time',
+        subtext: 'Data from Renewable Energy Association',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['Solar Energy', 'Wind Energy', 'Hydro Energy', 'Geothermal Energy', 'Biomass Energy'],
+        top: 'bottom'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: data.Year
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Solar Energy',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: data['Solar Energy'],
+            color: '#FFD700'
+        },
+        {
+            name: 'Wind Energy',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: data['Wind Energy'],
+            color: '#1E90FF'
+        },
+        {
+            name: 'Hydro Energy',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: data['Hydro Energy'],
+            color: '#3CB371'
+        },
+        {
+            name: 'Geothermal Energy',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: data['Geothermal Energy'],
+            color: '#D2691E'
+        },
+        {
+            name: 'Biomass Energy',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: data['Biomass Energy'],
+            color: '#8B4513'
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

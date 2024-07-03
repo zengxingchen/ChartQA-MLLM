@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {renderer: 'canvas', useDirtyRect: false, width: 800, height: 600});
+var option;
+
+option = {
+    title: {
+        text: 'Monthly Popularity of Different Exercises',
+        left: 'center',
+        top: '5%'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        bottom: '5%',
+        left: 'center'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '15%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        data: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Running',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            itemStyle: {
+                color: '#FF5733'
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [120, 130, 140, 150, 160, 170, 180, 190, 200, 210, 220, 230]
+        },
+        {
+            name: 'Swimming',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            itemStyle: {
+                color: '#33C3FF'
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [80, 70, 75, 60, 90, 85, 95, 100, 110, 105, 115, 120]
+        },
+        {
+            name: 'Cycling',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            itemStyle: {
+                color: '#FF33D4'
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [90, 85, 100, 95, 110, 120, 130, 140, 150, 160, 170, 180]
+        },
+        {
+            name: 'Weightlifting',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            itemStyle: {
+                color: '#8C33FF'
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [60, 55, 70, 65, 80, 75, 85, 90, 95, 100, 105, 110]
+        },
+        {
+            name: 'Yoga',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            itemStyle: {
+                color: '#33FF57'
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [50, 65, 60, 55, 75, 70, 80, 85, 90, 95, 100, 105]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,197 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": 600,
+    "height": 400,
+    "data": {
+        "values": [
+            {
+                "Month": "January",
+                "Football": 20000,
+                "Basketball": 15000,
+                "Swimming": 8000,
+                "Cycling": 5000,
+                "Running": 12000
+            },
+            {
+                "Month": "February",
+                "Football": 20500,
+                "Basketball": 15300,
+                "Swimming": 8200,
+                "Cycling": 5100,
+                "Running": 12200
+            },
+            {
+                "Month": "March",
+                "Football": 21000,
+                "Basketball": 15600,
+                "Swimming": 8400,
+                "Cycling": 5200,
+                "Running": 12400
+            },
+            {
+                "Month": "April",
+                "Football": 21500,
+                "Basketball": 15900,
+                "Swimming": 8600,
+                "Cycling": 5300,
+                "Running": 12600
+            },
+            {
+                "Month": "May",
+                "Football": 22000,
+                "Basketball": 16200,
+                "Swimming": 8800,
+                "Cycling": 5400,
+                "Running": 12800
+            },
+            {
+                "Month": "June",
+                "Football": 22500,
+                "Basketball": 16500,
+                "Swimming": 9000,
+                "Cycling": 5500,
+                "Running": 13000
+            },
+            {
+                "Month": "July",
+                "Football": 23000,
+                "Basketball": 16800,
+                "Swimming": 9200,
+                "Cycling": 5600,
+                "Running": 13200
+            },
+            {
+                "Month": "August",
+                "Football": 23500,
+                "Basketball": 17100,
+                "Swimming": 9400,
+                "Cycling": 5700,
+                "Running": 13400
+            },
+            {
+                "Month": "September",
+                "Football": 24000,
+                "Basketball": 17400,
+                "Swimming": 9600,
+                "Cycling": 5800,
+                "Running": 13600
+            },
+            {
+                "Month": "October",
+                "Football": 24500,
+                "Basketball": 17700,
+                "Swimming": 9800,
+                "Cycling": 5900,
+                "Running": 13800
+            },
+            {
+                "Month": "November",
+                "Football": 25000,
+                "Basketball": 18000,
+                "Swimming": 10000,
+                "Cycling": 6000,
+                "Running": 14000
+            },
+            {
+                "Month": "December",
+                "Football": 25500,
+                "Basketball": 18300,
+                "Swimming": 10200,
+                "Cycling": 6100,
+                "Running": 14200
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Football",
+                "Basketball",
+                "Swimming",
+                "Cycling",
+                "Running"
+            ],
+            "as": [
+                "Sport",
+                "Popularity"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "area",
+        "opacity": 0.6
+    },
+    "encoding": {
+        "x": {
+            "field": "Month",
+            "type": "ordinal",
+            "title": "Month"
+        },
+        "y": {
+            "field": "Popularity",
+            "type": "quantitative",
+            "title": "Popularity Index"
+        },
+        "color": {
+            "field": "Sport",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Football",
+                    "Basketball",
+                    "Swimming",
+                    "Cycling",
+                    "Running"
+                ],
+                "range": [
+                    "#e41a1c",
+                    "#377eb8",
+                    "#4daf4a",
+                    "#984ea3",
+                    "#ff7f00"
+                ]
+            },
+            "title": "Sport Type"
+        },
+        "tooltip": [
+            {
+                "field": "Sport",
+                "type": "nominal"
+            },
+            {
+                "field": "Popularity",
+                "type": "quantitative",
+                "format": ",.0f"
+            }
+        ]
+    },
+    "title": {
+        "text": "Monthly Popularity of Sports",
+        "fontSize": 16,
+        "anchor": "start",
+        "align": "left",
+        "dy": -5,
+        "dx": 60
+    },
+    "config": {
+        "axis": {
+            "labelFontSize": 11,
+            "titleFontSize": 13
+        },
+        "legend": {
+            "labelFontSize": 11,
+            "titleFontSize": 13,
+            "orient": "top-left",
+            "offset": 0,
+            "titlePadding": 10,
+            "titleOrient": "left",
+            "titleAlign": "left",
+            "titleAnchor": "start"
+        },
+        "style": {
+            "cell": {
+                "stroke": "transparent"
+            }
+        }
+    }
+}

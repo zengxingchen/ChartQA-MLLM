@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 800,
+    height: 600
+});
+var app = {};
+var option;
+
+option = {
+    title: {
+        text: 'Decline of Daily Active Users Over Time',
+        left: 'center',
+        top: '10%'
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: '{a} <br/>{b} : {c}'
+    },
+    legend: {
+        data: ['Daily Active Users'],
+        left: '10%',
+        top: '20%'
+    },
+    xAxis: {
+        type: 'category',
+        name: 'Day',
+        data: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38]
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Active Users'
+    },
+    series: [{
+        name: 'Daily Active Users',
+        type: 'scatter',
+        itemStyle: {
+            color: '#FF4500'
+        },
+        data: [
+            [1, 50], [2, 48], [3, 46], [4, 43], [5, 41], [6, 39], [7, 37], [8, 35], 
+            [9, 33], [10, 32], [11, 30], [12, 29], [13, 28], [14, 27], [15, 25], 
+            [16, 24], [17, 23], [18, 21], [19, 20], [20, 19], [21, 18], [22, 17], 
+            [23, 16], [24, 15], [25, 14], [26, 13], [27, 12], [28, 11], [29, 10], 
+            [30, 9], [31, 8], [32, 7], [33, 6], [34, 5], [35, 4], [36, 3], [37, 2], 
+            [38, 1]
+        ]
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,162 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+        "values": [
+            {
+                "Category": "Sports",
+                "Spring": 4,
+                "Summer": 6,
+                "Fall": 7,
+                "Winter": 2
+            },
+            {
+                "Category": "Music",
+                "Spring": 3,
+                "Summer": 5,
+                "Fall": 6,
+                "Winter": 4
+            },
+            {
+                "Category": "Travel",
+                "Spring": 5,
+                "Summer": 9,
+                "Fall": 3,
+                "Winter": 1
+            },
+            {
+                "Category": "Reading",
+                "Spring": 6,
+                "Summer": 7,
+                "Fall": 5,
+                "Winter": 8
+            },
+            {
+                "Category": "Exercise",
+                "Spring": 4,
+                "Summer": 6,
+                "Fall": 8,
+                "Winter": 5
+            },
+            {
+                "Category": "Cooking",
+                "Spring": 5,
+                "Summer": 4,
+                "Fall": 6,
+                "Winter": 3
+            },
+            {
+                "Category": "Gaming",
+                "Spring": 2,
+                "Summer": 7,
+                "Fall": 4,
+                "Winter": 6
+            },
+            {
+                "Category": "Socializing",
+                "Spring": 7,
+                "Summer": 8,
+                "Fall": 6,
+                "Winter": 2
+            },
+            {
+                "Category": "Work",
+                "Spring": 8,
+                "Summer": 5,
+                "Fall": 3,
+                "Winter": 7
+            },
+            {
+                "Category": "Meditation",
+                "Spring": 2,
+                "Summer": 4,
+                "Fall": 7,
+                "Winter": 3
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Spring",
+                "Summer",
+                "Fall",
+                "Winter"
+            ],
+            "as": [
+                "Season",
+                "Hours"
+            ]
+        }
+    ],
+    "width": 500,
+    "height": 300,
+    "mark": {
+        "type": "bar",
+        "height": 20
+    },
+    "title": {
+        "text": "Activity Distribution Across Seasons",
+        "subtitle": "Source: Annual Survey on Hobbies",
+        "subtitleFontStyle": "italic",
+        "subtitleFontSize": 10,
+        "anchor": "start",
+        "color": "black"
+    },
+    "encoding": {
+        "x": {
+            "field": "Category",
+            "type": "ordinal",
+            "axis": {
+                "title": "Activity Category"
+            }
+        },
+        "y": {
+            "field": "Hours",
+            "type": "quantitative",
+            "stack": "zero",
+            "axis": {
+                "title": "Number of Hours"
+            },
+            "band": 0.7
+        },
+        "color": {
+            "field": "Season",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Spring",
+                    "Summer",
+                    "Fall",
+                    "Winter"
+                ],
+                "range": [
+                    "#ff69b4",
+                    "#ffa500",
+                    "#00ff00",
+                    "#1e90ff"
+                ]
+            },
+            "legend": {
+                "orient": "right",
+                "title": "Season"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Category",
+                "type": "ordinal",
+                "title": "Activity Category"
+            },
+            {
+                "field": "Season",
+                "type": "nominal",
+                "title": "Season"
+            },
+            {
+                "field": "Hours",
+                "type": "quantitative",
+                "title": "Hours"
+            }
+        ]
+    }
+}

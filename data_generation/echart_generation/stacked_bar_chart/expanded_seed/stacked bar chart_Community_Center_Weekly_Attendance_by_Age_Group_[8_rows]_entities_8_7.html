@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById("container");
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+// Data
+var data = [
+  {'Week': '2023-02-06 to 2023-02-12', 'Children (0-14)': 85, 'Teens (15-18)': 67, 'Adults (19-64)': 150, 'Seniors (65+)': 70},
+  {'Week': '2023-02-13 to 2023-02-19', 'Children (0-14)': 90, 'Teens (15-18)': 70, 'Adults (19-64)': 160, 'Seniors (65+)': 75},
+  {'Week': '2023-02-20 to 2023-02-26', 'Children (0-14)': 87, 'Teens (15-18)': 65, 'Adults (19-64)': 155, 'Seniors (65+)': 80},
+  {'Week': '2023-02-27 to 2023-03-05', 'Children (0-14)': 93, 'Teens (15-18)': 68, 'Adults (19-64)': 158, 'Seniors (65+)': 82},
+  {'Week': '2023-03-06 to 2023-03-12', 'Children (0-14)': 95, 'Teens (15-18)': 70, 'Adults (19-64)': 162, 'Seniors (65+)': 85},
+  {'Week': '2023-03-13 to 2023-03-19', 'Children (0-14)': 100, 'Teens (15-18)': 73, 'Adults (19-64)': 167, 'Seniors (65+)': 90},
+  {'Week': '2023-03-20 to 2023-03-26', 'Children (0-14)': 102, 'Teens (15-18)': 75, 'Adults (19-64)': 170, 'Seniors (65+)': 95},
+  {'Week': '2023-03-27 to 2023-04-02', 'Children (0-14)': 105, 'Teens (15-18)': 78, 'Adults (19-64)': 175, 'Seniors (65+)': 100}
+];
+
+// Processing data
+var weeks = data.map(function (item) {
+  return item.Week;
+});
+var ageGroups = ['Children (0-14)', 'Teens (15-18)', 'Adults (19-64)', 'Seniors (65+)'];
+var seriesData = ageGroups.map(function (group) {
+  var seriesData = data.map(function (item) {
+    return item[group];
+  });
+  return {
+    name: group,
+    type: 'bar',
+    stack: 'total',
+    emphasis: {
+      focus: 'series'
+    },
+    data: seriesData
+  };
+});
+
+// Configure the chart
+option = {
+  tooltip: {
+    trigger: 'axis',
+    axisPointer: {            // Use axis to trigger tooltip
+      type: 'shadow'        // 'shadow' as default; can also be 'line' or 'shadow'
+    }
+  },
+  legend: {
+    data: ageGroups
+  },
+  toolbox: {
+    show: true,
+    feature: {
+      saveAsImage: { show: true }
+    }
+  },
+  xAxis: [
+    {
+      type: 'category',
+      axisTick: { show: false },
+      data: weeks
+    }
+  ],
+  yAxis: [
+    {
+      type: 'value'
+    }
+  ],
+  series: seriesData,
+  dataZoom: [
+    {
+      show: true,
+      start: 0,
+      end: 100
+    },
+    {
+      type: 'inside',
+      start: 0,
+      end: 100
+    }
+  ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 400});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Global Deforestation Over Time',
+        left: 'center',
+        top: '20'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            label: {
+                backgroundColor: '#6a7985'
+            }
+        }
+    },
+    legend: {
+        data: ['Deforestation Area'],
+        bottom: '10'
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '15%',
+        containLabel: true
+    },
+    xAxis: [
+        {
+            type: 'category',
+            boundaryGap: false,
+            data: [
+              '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', 
+              '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', 
+              '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013',
+              '2014', '2015', '2016', '2017', '2018', '2019', '2020'
+            ]
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value'
+        }
+    ],
+    series: [
+        {
+            name: 'Deforestation Area',
+            type: 'line',
+            stack: 'Total area',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [
+              15000000, 14750000, 14500000, 14250000, 14000000, 13750000, 
+              13500000, 13250000, 13000000, 12750000, 12500000, 12250000, 
+              12000000, 11750000, 11500000, 11250000, 11000000, 10750000,
+              10500000, 10250000, 10000000, 9750000, 9500000, 9250000, 
+              9000000, 8750000, 8500000, 8250000, 8000000, 7750000, 7500000
+            ],
+            color: '#FFA07A',
+            markPoint: {
+                data: [
+                    {type: 'max', name: 'Max'},
+                    {type: 'min', name: 'Min'}
+                ]
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,180 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Horizontal stacked bar chart displaying the monthly average temperatures of different cities.",
+    "data": {
+        "values": [
+            {
+                "Month": "January",
+                "New York": -1,
+                "Los Angeles": 14,
+                "Chicago": -5,
+                "Houston": 11,
+                "Phoenix": 12
+            },
+            {
+                "Month": "February",
+                "New York": 0,
+                "Los Angeles": 15,
+                "Chicago": -3,
+                "Houston": 13,
+                "Phoenix": 14
+            },
+            {
+                "Month": "March",
+                "New York": 5,
+                "Los Angeles": 17,
+                "Chicago": 4,
+                "Houston": 17,
+                "Phoenix": 18
+            },
+            {
+                "Month": "April",
+                "New York": 11,
+                "Los Angeles": 19,
+                "Chicago": 10,
+                "Houston": 20,
+                "Phoenix": 22
+            },
+            {
+                "Month": "May",
+                "New York": 17,
+                "Los Angeles": 21,
+                "Chicago": 16,
+                "Houston": 24,
+                "Phoenix": 27
+            },
+            {
+                "Month": "June",
+                "New York": 22,
+                "Los Angeles": 24,
+                "Chicago": 22,
+                "Houston": 28,
+                "Phoenix": 32
+            },
+            {
+                "Month": "July",
+                "New York": 25,
+                "Los Angeles": 26,
+                "Chicago": 25,
+                "Houston": 30,
+                "Phoenix": 35
+            },
+            {
+                "Month": "August",
+                "New York": 24,
+                "Los Angeles": 27,
+                "Chicago": 24,
+                "Houston": 30,
+                "Phoenix": 34
+            },
+            {
+                "Month": "September",
+                "New York": 20,
+                "Los Angeles": 25,
+                "Chicago": 20,
+                "Houston": 28,
+                "Phoenix": 31
+            },
+            {
+                "Month": "October",
+                "New York": 14,
+                "Los Angeles": 22,
+                "Chicago": 13,
+                "Houston": 23,
+                "Phoenix": 25
+            },
+            {
+                "Month": "November",
+                "New York": 8,
+                "Los Angeles": 18,
+                "Chicago": 5,
+                "Houston": 17,
+                "Phoenix": 18
+            },
+            {
+                "Month": "December",
+                "New York": 2,
+                "Los Angeles": 15,
+                "Chicago": -2,
+                "Houston": 13,
+                "Phoenix": 14
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "New York",
+                "Los Angeles",
+                "Chicago",
+                "Houston",
+                "Phoenix"
+            ],
+            "as": [
+                "City",
+                "Temperature"
+            ]
+        }
+    ],
+    "width": 700,
+    "height": 400,
+    "mark": {
+        "type": "bar",
+        "width": {
+            "band": 0.7
+        }
+    },
+    "encoding": {
+        "x": {
+            "field": "Month",
+            "type": "ordinal",
+            "axis": {
+                "title": "Month"
+            }
+        },
+        "y": {
+            "field": "Temperature",
+            "type": "quantitative",
+            "axis": {
+                "title": "Average Temperature (\u00b0C)"
+            },
+            "stack": "zero"
+        },
+        "color": {
+            "field": "City",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "New York",
+                    "Los Angeles",
+                    "Chicago",
+                    "Houston",
+                    "Phoenix"
+                ],
+                "range": [
+                    "#FF6347",
+                    "#32CD32",
+                    "#FFD700",
+                    "#1E90FF",
+                    "#FF4500"
+                ]
+            },
+            "legend": {
+                "title": "City",
+                "orient": "top",
+                "offset": 10
+            }
+        }
+    },
+    "title": {
+        "text": "Monthly Average Temperatures of Different Cities",
+        "anchor": "start",
+        "offset": 20
+    },
+    "config": {
+        "background": "#f0f0f0",
+        "view": {
+            "stroke": "transparent"
+        }
+    }
+}

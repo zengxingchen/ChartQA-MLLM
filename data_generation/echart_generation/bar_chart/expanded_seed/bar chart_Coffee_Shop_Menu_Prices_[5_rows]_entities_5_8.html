@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+// Prepare the data
+const data = [
+    {'Item': 'Espresso', 'Small (USD)': 1.95, 'Medium (USD)': 2.45, 'Large (USD)': 2.95},
+    {'Item': 'Cappuccino', 'Small (USD)': 3.0, 'Medium (USD)': 3.5, 'Large (USD)': 4.0},
+    {'Item': 'Latte', 'Small (USD)': 3.5, 'Medium (USD)': 4.0, 'Large (USD)': 4.5},
+    {'Item': 'Americano', 'Small (USD)': 2.5, 'Medium (USD)': 3.0, 'Large (USD)': 3.5},
+    {'Item': 'Iced Coffee', 'Small (USD)': 2.0, 'Medium (USD)': 2.5, 'Large (USD)': 3.0}
+];
+
+// Extract the 'Item' names to use as the category axis labels
+const items = data.map(function (item) {
+    return item.Item;
+});
+
+// Extract the size data for each series
+const sizeSmall = data.map(function (item) {
+    return item['Small (USD)'];
+});
+
+const sizeMedium = data.map(function (item) {
+    return item['Medium (USD)'];
+});
+
+const sizeLarge = data.map(function (item) {
+    return item['Large (USD)'];
+});
+
+// Options for the chart
+option = {
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Small', 'Medium', 'Large']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01]
+    },
+    yAxis: {
+        type: 'category',
+        data: items
+    },
+    series: [
+        {
+            name: 'Small',
+            type: 'bar',
+            data: sizeSmall,
+            itemStyle: {
+                barBorderRadius: [0, 30, 30, 0], // Rounded corners
+                color: 'rgba(120, 200, 80)'
+            }
+        },
+        {
+            name: 'Medium',
+            type: 'bar',
+            data: sizeMedium,
+            itemStyle: {
+                barBorderRadius: [0, 30, 30, 0],
+                color: 'rgba(252, 179, 77)'
+            }
+        },
+        {
+            name: 'Large',
+            type: 'bar',
+            data: sizeLarge,
+            itemStyle: {
+                barBorderRadius: [0, 30, 30, 0],
+                color: 'rgba(220, 57, 18)'
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

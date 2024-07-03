@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 600, height: 400});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Monthly Expenses Breakdown',
+        left: 'center',
+        top: '20'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            label: {
+                backgroundColor: '#6a7985'
+            }
+        }
+    },
+    legend: {
+        data: ['Utilities', 'Rent', 'Marketing', 'Salaries', 'Miscellaneous'],
+        bottom: '10'
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '10%',
+        containLabel: true
+    },
+    xAxis: [
+        {
+            type: 'category',
+            boundaryGap: false,
+            data: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value'
+        }
+    ],
+    series: [
+        {
+            name: 'Utilities',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {opacity: 0.8},
+            emphasis: {focus: 'series'},
+            data: [1500, 1600, 1400, 1300, 1700, 1500, 1600, 1550, 1600, 1650, 1700, 1750],
+            color: '#ff7f50'
+        },
+        {
+            name: 'Rent',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {opacity: 0.8},
+            emphasis: {focus: 'series'},
+            data: [2500, 2500, 2500, 2500, 2600, 2600, 2700, 2700, 2800, 2800, 2900, 2900],
+            color: '#87cefa'
+        },
+        {
+            name: 'Marketing',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {opacity: 0.8},
+            emphasis: {focus: 'series'},
+            data: [1200, 1300, 1350, 1400, 1250, 1500, 1600, 1550, 1450, 1500, 1550, 1600],
+            color: '#da70d6'
+        },
+        {
+            name: 'Salaries',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {opacity: 0.8},
+            emphasis: {focus: 'series'},
+            data: [8000, 8200, 8500, 8700, 9000, 9100, 9200, 9300, 9400, 9500, 9600, 9800],
+            color: '#32cd32'
+        },
+        {
+            name: 'Miscellaneous',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {opacity: 0.8},
+            emphasis: {focus: 'series'},
+            data: [500, 550, 580, 590, 600, 610, 620, 630, 640, 650, 660, 670],
+            color: '#6495ed'
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

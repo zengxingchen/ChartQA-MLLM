@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 850, height: 500});
+var option;
+
+option = {
+    title: {
+        text: 'Website Traffic Sources - January 2021',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            label: {
+                backgroundColor: '#6a7985'
+            }
+        }
+    },
+    legend: {
+        data: ['Organic Traffic', 'Email Marketing', 'Social Media', 'Direct Traffic'],
+        top: '8%'
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: [
+        {
+            type: 'category',
+            boundaryGap: false,
+            data: [
+                '2021-01-01', '2021-01-02', '2021-01-03', '2021-01-04', '2021-01-05',
+                '2021-01-06', '2021-01-07', '2021-01-08', '2021-01-09', '2021-01-10',
+                '2021-01-11', '2021-01-12', '2021-01-13', '2021-01-14', '2021-01-15',
+                '2021-01-16', '2021-01-17', '2021-01-18', '2021-01-19', '2021-01-20',
+                '2021-01-21', '2021-01-22', '2021-01-23', '2021-01-24', '2021-01-25',
+                '2021-01-26', '2021-01-27', '2021-01-28', '2021-01-29', '2021-01-30',
+                '2021-01-31'
+            ]
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value'
+        }
+    ],
+    series: [
+        {
+            name: 'Organic Traffic',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [
+                1200, 1180, 1150, 1200, 1250, 1300, 1380, 1450, 1500, 1550,
+                1600, 1620, 1640, 1660, 1690, 1710, 1720, 1740, 1750, 1770,
+                1800, 1820, 1850, 1890, 1900, 1950, 2000, 2050, 2100, 2120,
+                2150
+            ],
+            color: '#ff7f50'
+        },
+        {
+            name: 'Email Marketing',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [
+                300, 310, 320, 330, 340, 350, 360, 370, 380, 390,
+                400, 410, 420, 430, 440, 450, 460, 470, 480, 490,
+                500, 510, 520, 530, 540, 550, 560, 570, 580, 590,
+                600
+            ],
+            color: '#98fb98'
+        },
+        {
+            name: 'Social Media',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [
+                450, 460, 470, 480, 490, 500, 510, 520, 530, 540,
+                550, 560, 570, 580, 590, 600, 610, 620, 630, 640,
+                650, 660, 670, 680, 690, 700, 710, 720, 730, 740,
+                750
+            ],
+            color: '#87cefa'
+        },
+        {
+            name: 'Direct Traffic',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [
+                700, 710, 720, 730, 740, 750, 760, 770, 780, 790,
+                800, 810, 820, 830, 840, 850, 860, 870, 880, 890,
+                900, 910, 920, 930, 940, 950, 960, 970, 980, 990,
+                1000
+            ],
+            color: '#dda0dd'
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

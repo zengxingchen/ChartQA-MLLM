@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+var option = {
+    title: {
+        text: 'Diverse Aspects of Art & Design',
+        left: 'center',
+        top: 20
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Metric1', 'Metric2', 'Metric3'],
+        bottom: 10
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '10%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value'
+    },
+    yAxis: {
+        type: 'category',
+        data: ['Design', 'Photography', 'Painting', 'Sculpture', 'Architecture', 'Illustration', 'Film', 'Crafts', 'Digital Art', 'Fashion Design', 'Graphic Design', 'Animation', 'Interior Design', 'Calligraphy', 'Industrial Design', 'Ceramics', 'Textile Design', 'Jewelry Design', 'Web Design', 'Game Design']
+    },
+    series: [
+        {
+            name: 'Metric1',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            itemStyle: {
+                color: '#FF6347'
+            },
+            barWidth: 20,
+            data: [120, 110, 140, 150, 130, 115, 100, 105, 135, 125, 145, 155, 130, 115, 140, 120, 110, 135, 125, 145]
+        },
+        {
+            name: 'Metric2',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            itemStyle: {
+                color: '#4682B4'
+            },
+            barWidth: 20,
+            data: [90, 95, 120, 130, 115, 85, 75, 80, 125, 105, 135, 140, 110, 95, 130, 100, 90, 115, 105, 125]
+        },
+        {
+            name: 'Metric3',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            itemStyle: {
+                color: '#32CD32'
+            },
+            barWidth: 20,
+            data: [60, 70, 100, 110, 105, 65, 55, 60, 115, 95, 125, 130, 100, 85, 120, 90, 80, 105, 95, 115]
+        }
+    ]
+};
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

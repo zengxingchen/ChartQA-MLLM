@@ -1,0 +1,164 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "A 100% stacked horizontal bar chart showing the percentage distribution of types of cuisine preference by different regions.",
+    "title": {
+        "text": "Cuisine Preferences by Region",
+        "anchor": "start",
+        "offset": 4,
+        "color": "#333",
+        "fontSize": 14
+    },
+    "width": 600,
+    "height": 400,
+    "padding": {
+        "left": 20,
+        "top": 50,
+        "right": 20,
+        "bottom": 20
+    },
+    "data": {
+        "values": [
+            {
+                "Region": "North America",
+                "Italian": 25,
+                "Chinese": 20,
+                "Mexican": 30,
+                "Indian": 25
+            },
+            {
+                "Region": "South America",
+                "Italian": 20,
+                "Chinese": 15,
+                "Mexican": 40,
+                "Indian": 25
+            },
+            {
+                "Region": "Europe",
+                "Italian": 35,
+                "Chinese": 25,
+                "Mexican": 20,
+                "Indian": 20
+            },
+            {
+                "Region": "Asia",
+                "Italian": 15,
+                "Chinese": 40,
+                "Mexican": 20,
+                "Indian": 25
+            },
+            {
+                "Region": "Africa",
+                "Italian": 10,
+                "Chinese": 15,
+                "Mexican": 30,
+                "Indian": 45
+            },
+            {
+                "Region": "Australia",
+                "Italian": 30,
+                "Chinese": 20,
+                "Mexican": 25,
+                "Indian": 25
+            },
+            {
+                "Region": "Middle East",
+                "Italian": 20,
+                "Chinese": 20,
+                "Mexican": 20,
+                "Indian": 40
+            },
+            {
+                "Region": "Antarctica",
+                "Italian": 10,
+                "Chinese": 10,
+                "Mexican": 40,
+                "Indian": 40
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Italian",
+                "Chinese",
+                "Mexican",
+                "Indian"
+            ],
+            "as": [
+                "Cuisine Type",
+                "Percentage"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "bar",
+        "tooltip": true
+    },
+    "encoding": {
+        "y": {
+            "field": "Region",
+            "type": "nominal",
+            "axis": {
+                "title": "Region"
+            }
+        },
+        "x": {
+            "field": "Percentage",
+            "type": "quantitative",
+            "axis": {
+                "title": "Percentage",
+                "format": ".0%"
+            },
+            "stack": "normalize"
+        },
+        "color": {
+            "field": "Cuisine Type",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Italian",
+                    "Chinese",
+                    "Mexican",
+                    "Indian"
+                ],
+                "range": [
+                    "#4682b4",
+                    "#ff6347",
+                    "#3cb371",
+                    "#8a2be2"
+                ]
+            },
+            "legend": {
+                "title": "Cuisine Type",
+                "orient": "top"
+            }
+        },
+        "height": {
+            "field": {
+                "group": "height"
+            },
+            "band": 0.8
+        },
+        "tooltip": [
+            {
+                "field": "Cuisine Type",
+                "type": "nominal",
+                "title": "Cuisine"
+            },
+            {
+                "field": "Percentage",
+                "type": "quantitative",
+                "title": "Percentage"
+            }
+        ]
+    },
+    "config": {
+        "axisY": {
+            "labelColor": "#000"
+        },
+        "bar": {
+            "cornerRadiusTopLeft": 3,
+            "cornerRadiusTopRight": 3
+        }
+    }
+}

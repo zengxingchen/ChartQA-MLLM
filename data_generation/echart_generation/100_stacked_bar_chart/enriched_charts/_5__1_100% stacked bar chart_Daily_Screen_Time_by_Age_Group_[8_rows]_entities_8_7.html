@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Energy Generation Sources: Environment & Climate Change',
+        left: 'center'
+    },
+    color: ['#FFD700', '#008000', '#00BFFF', '#FF8C00', '#FF69B4', '#A9A9A9'],
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        bottom: 0
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '15%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01],
+    },
+    yAxis: {
+        type: 'category',
+        data: ['2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020']
+    },
+    series: [
+        {
+            name: 'Solar Power',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            data: [3, 4, 4, 5, 6, 7, 8, 10, 11, 13, 14]
+        },
+        {
+            name: 'Wind Power',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            data: [7, 8, 9, 11, 12, 14, 16, 18, 19, 21, 22]
+        },
+        {
+            name: 'Hydro Power',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            data: [12, 12, 13, 13, 15, 16, 17, 18, 19, 20, 21]
+        },
+        {
+            name: 'Other Renewable',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            data: [3, 3, 3, 4, 4, 5, 6, 6, 7, 8, 9]
+        },
+        {
+            name: 'Nuclear',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            data: [10, 11, 11, 10, 10, 9, 8, 7, 7, 6, 5]
+        },
+        {
+            name: 'Non-Renewable',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            data: [65, 62, 60, 57, 53, 49, 45, 41, 37, 32, 29]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

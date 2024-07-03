@@ -1,0 +1,126 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Line chart of average annual book sales by genre over recent years",
+    "data": {
+        "values": [
+            {
+                "Year": 2019,
+                "Fiction": 54.4,
+                "Non-Fiction": 62.7,
+                "Science": 28.2,
+                "History": 15.3,
+                "Comics": 11.1
+            },
+            {
+                "Year": 2020,
+                "Fiction": 52.2,
+                "Non-Fiction": 60.5,
+                "Science": 29.4,
+                "History": 16.4,
+                "Comics": 12.0
+            },
+            {
+                "Year": 2021,
+                "Fiction": 51.1,
+                "Non-Fiction": 59.3,
+                "Science": 30.6,
+                "History": 17.5,
+                "Comics": 12.9
+            },
+            {
+                "Year": 2022,
+                "Fiction": 53.3,
+                "Non-Fiction": 61.6,
+                "Science": 31.8,
+                "History": 18.7,
+                "Comics": 13.2
+            },
+            {
+                "Year": 2023,
+                "Fiction": 55.5,
+                "Non-Fiction": 63.8,
+                "Science": 33.0,
+                "History": 19.8,
+                "Comics": 13.5
+            },
+            {
+                "Year": 2024,
+                "Fiction": 56.6,
+                "Non-Fiction": 64.9,
+                "Science": 34.2,
+                "History": 20.9,
+                "Comics": 14.4
+            },
+            {
+                "Year": 2025,
+                "Fiction": 57.7,
+                "Non-Fiction": 66.0,
+                "Science": 35.3,
+                "History": 22.0,
+                "Comics": 15.1
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Fiction",
+                "Non-Fiction",
+                "Science",
+                "History",
+                "Comics"
+            ],
+            "as": [
+                "Genre",
+                "Sales"
+            ]
+        }
+    ],
+    "width": 800,
+    "height": 500,
+    "mark": {
+        "type": "line",
+        "point": true
+    },
+    "encoding": {
+        "x": {
+            "field": "Year",
+            "type": "ordinal",
+            "title": "Year"
+        },
+        "y": {
+            "field": "Sales",
+            "type": "quantitative",
+            "title": "Average Annual Book Sales (in millions)",
+            "axis": {
+                "format": ".1f"
+            }
+        },
+        "color": {
+            "field": "Genre",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Fiction",
+                    "Non-Fiction",
+                    "Science",
+                    "History",
+                    "Comics"
+                ],
+                "range": [
+                    "#FF6347",
+                    "#4682B4",
+                    "#8A2BE2",
+                    "#3CB371",
+                    "#FFD700"
+                ]
+            },
+            "title": "Genre"
+        }
+    },
+    "config": {
+        "axisY": {
+            "minExtent": 30
+        }
+    }
+}

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var app = {};
+
+var option;
+
+option = {
+    color: ['#34a853', '#4285F4', '#FBBC05', '#EA4335'],
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Technology', 'Art', 'Society', 'Science'],
+        right: 10,
+        top: 30,
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01]
+    },
+    yAxis: {
+        type: 'category',
+        data: ['2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019']
+    },
+    series: [
+        {
+            name: 'Technology',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            data: [40, 35, 45, 30, 25, 30, 35, 40, 45, 50]
+        },
+        {
+            name: 'Art',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            data: [10, 15, 5, 20, 25, 15, 10, 15, 10, 5]
+        },
+        {
+            name: 'Society',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            data: [30, 35, 25, 30, 20, 40, 45, 25, 25, 30]
+        },
+        {
+            name: 'Science',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            data: [20, 15, 25, 20, 30, 15, 10, 20, 20, 15]
+        }
+    ],
+    title: {
+        text: 'Yearly Distribution of Focus Areas',
+        left: 'center',
+        top: 'top'
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

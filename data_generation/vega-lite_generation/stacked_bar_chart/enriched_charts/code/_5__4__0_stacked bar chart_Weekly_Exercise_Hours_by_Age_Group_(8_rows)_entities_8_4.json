@@ -1,0 +1,147 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": {
+        "text": "Quarterly Fitness Class Attendance",
+        "subtitle": "Horizontal stacked representation of fitness class attendance over a year",
+        "subtitleFontStyle": "italic",
+        "subtitleFontSize": 10,
+        "anchor": "start"
+    },
+    "data": {
+        "values": [
+            {
+                "Quarter": "Q1",
+                "Yoga": 310,
+                "Pilates": 390,
+                "Spin": 265,
+                "CrossFit": 225
+            },
+            {
+                "Quarter": "Q2",
+                "Yoga": 420,
+                "Pilates": 480,
+                "Spin": 330,
+                "CrossFit": 270
+            },
+            {
+                "Quarter": "Q3",
+                "Yoga": 510,
+                "Pilates": 570,
+                "Spin": 380,
+                "CrossFit": 315
+            },
+            {
+                "Quarter": "Q4",
+                "Yoga": 600,
+                "Pilates": 660,
+                "Spin": 430,
+                "CrossFit": 360
+            },
+            {
+                "Quarter": "Q1",
+                "Yoga": 310,
+                "Pilates": 390,
+                "Spin": 265,
+                "CrossFit": 225
+            },
+            {
+                "Quarter": "Q2",
+                "Yoga": 420,
+                "Pilates": 480,
+                "Spin": 330,
+                "CrossFit": 270
+            },
+            {
+                "Quarter": "Q3",
+                "Yoga": 510,
+                "Pilates": 570,
+                "Spin": 380,
+                "CrossFit": 315
+            },
+            {
+                "Quarter": "Q4",
+                "Yoga": 600,
+                "Pilates": 660,
+                "Spin": 430,
+                "CrossFit": 360
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Yoga",
+                "Pilates",
+                "Spin",
+                "CrossFit"
+            ],
+            "as": [
+                "Class Type",
+                "Attendance"
+            ]
+        }
+    ],
+    "width": 700,
+    "height": 500,
+    "mark": {
+        "type": "bar",
+        "height": {
+            "band": 0.7
+        }
+    },
+    "encoding": {
+        "y": {
+            "field": "Quarter",
+            "type": "nominal",
+            "axis": {
+                "title": "Quarter"
+            }
+        },
+        "x": {
+            "field": "Attendance",
+            "type": "quantitative",
+            "axis": {
+                "title": "Total Attendance"
+            },
+            "stack": "normalize"
+        },
+        "color": {
+            "field": "Class Type",
+            "type": "nominal",
+            "scale": {
+                "range": [
+                    "#ff5733",
+                    "#33ff57",
+                    "#3357ff",
+                    "#ff33a8"
+                ]
+            },
+            "legend": {
+                "title": "Class Type",
+                "orient": "top"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Class Type",
+                "type": "nominal",
+                "title": "Class Type"
+            },
+            {
+                "field": "Quarter",
+                "type": "nominal",
+                "title": "Quarter"
+            },
+            {
+                "field": "Attendance",
+                "type": "quantitative",
+                "title": "Attendance"
+            }
+        ]
+    },
+    "config": {
+        "axisY": {
+            "minExtent": 30
+        }
+    }
+}

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+// Parse the chart data
+var chartData = [
+    {'Date': '2023-01-01', 'Hot Beverages': 1250, 'Cold Beverages': 980, 'Baked Goods': 540, 'Packaged Snacks': 300},
+    {'Date': '2023-01-02', 'Hot Beverages': 1370, 'Cold Beverages': 1020, 'Baked Goods': 550, 'Packaged Snacks': 310},
+    {'Date': '2023-01-03', 'Hot Beverages': 1430, 'Cold Beverages': 1130, 'Baked Goods': 605, 'Packaged Snacks': 320},
+    {'Date': '2023-01-04', 'Hot Beverages': 1290, 'Cold Beverages': 1075, 'Baked Goods': 590, 'Packaged Snacks': 330},
+    {'Date': '2023-01-05', 'Hot Beverages': 1350, 'Cold Beverages': 1100, 'Baked Goods': 640, 'Packaged Snacks': 340}
+];
+
+var dates = chartData.map(function (item) {
+    return item.Date;
+});
+
+var hotBeverages = chartData.map(function (item) {
+    return item['Hot Beverages'];
+});
+
+var coldBeverages = chartData.map(function (item) {
+    return item['Cold Beverages'];
+});
+
+var bakedGoods = chartData.map(function (item) {
+    return item['Baked Goods'];
+});
+
+var packagedSnacks = chartData.map(function (item) {
+    return item['Packaged Snacks'];
+});
+
+option = {
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {            
+            type: 'shadow'        
+        }
+    },
+    legend: {
+        data: ['Hot Beverages', 'Cold Beverages', 'Baked Goods', 'Packaged Snacks']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        data: dates
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Hot Beverages',
+            type: 'bar',
+            stack: 'sales',
+            data: hotBeverages
+        },
+        {
+            name: 'Cold Beverages',
+            type: 'bar',
+            stack: 'sales',
+            data: coldBeverages
+        },
+        {
+            name: 'Baked Goods',
+            type: 'bar',
+            stack: 'sales',
+            data: bakedGoods
+        },
+        {
+            name: 'Packaged Snacks',
+            type: 'bar',
+            stack: 'sales',
+            data: packagedSnacks
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

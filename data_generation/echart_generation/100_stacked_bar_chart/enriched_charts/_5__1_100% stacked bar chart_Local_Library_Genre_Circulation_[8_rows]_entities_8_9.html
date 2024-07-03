@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var option;
+
+option = {
+    title: {
+        text: 'Education Level Distribution Over Years',
+        left: 'center'
+    },
+    color: ['#1F77B4', '#FF7F0E', '#2CA02C', '#D62728', '#9467BD'],
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Elementary', 'Middle School', 'High School', 'Undergraduate', 'Postgraduate'],
+        top: 30
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01]
+    },
+    yAxis: {
+        type: 'category',
+        data: ['2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020'],
+        axisLabel: {
+            interval: 0
+        }
+    },
+    series: [
+        {
+            name: 'Elementary',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            data: [20, 18, 22, 19, 20, 18, 21, 23, 22, 20, 19]
+        },
+        {
+            name: 'Middle School',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            data: [25, 23, 24, 26, 24, 27, 23, 25, 26, 27, 26]
+        },
+        {
+            name: 'High School',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            data: [30, 32, 29, 30, 31, 28, 33, 27, 28, 29, 30]
+        },
+        {
+            name: 'Undergraduate',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            data: [15, 17, 18, 15, 17, 19, 15, 17, 18, 16, 16]
+        },
+        {
+            name: 'Postgraduate',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            data: [10, 10, 7, 10, 8, 8, 8, 8, 6, 8, 9]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

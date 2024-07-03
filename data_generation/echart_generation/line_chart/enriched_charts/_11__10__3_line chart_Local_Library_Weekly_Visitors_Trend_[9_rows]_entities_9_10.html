@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 800,
+    height: 600
+});
+var option = {
+    title: {
+        text: 'Economics & Finance: Market Trends Over the Year',
+        left: 'center',
+        top: 20
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['Value'],
+        top: 50,
+        left: 'center'
+    },
+    xAxis: {
+        type: 'category',
+        data: ['2024-01-01', '2024-02-01', '2024-03-01', '2024-04-01', '2024-05-01', '2024-06-01', '2024-07-01', '2024-08-01', '2024-09-01', '2024-10-01', '2024-11-01', '2024-12-01']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [{
+        name: 'Value',
+        type: 'line',
+        data: [150, 140, 130, 125, 120, 115, 110, 105, 100, 95, 90, 85],
+        lineStyle: {
+            color: '#FF5733'
+        },
+        itemStyle: {
+            color: '#FF5733'
+        },
+        markPoint: {
+            data: [
+                { type: 'max', name: 'Max' },
+                { type: 'min', name: 'Min' },
+                { name: 'Start', value: 150, xAxis: 0, yAxis: 150 },
+                { name: 'End', value: 85, xAxis: 11, yAxis: 85 }
+            ]
+        }
+    }]
+};
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

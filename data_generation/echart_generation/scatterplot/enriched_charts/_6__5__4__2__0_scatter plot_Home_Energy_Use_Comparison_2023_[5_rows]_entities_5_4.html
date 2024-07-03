@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {renderer: 'canvas', useDirtyRect: false, width: 800, height: 600});
+var option;
+
+option = {
+    title: {
+        text: 'Scatterplot of Various Data Points',
+        left: 'center',
+        top: '5%'
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: '{a} <br/>{b} : {c}'
+    },
+    legend: {
+        data: ['Data Points'],
+        left: '10%',
+        top: '10%'
+    },
+    xAxis: {
+        type: 'value',
+        name: 'X Axis',
+        nameLocation: 'middle',
+        nameGap: 30
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Y Axis',
+        nameLocation: 'middle',
+        nameGap: 50
+    },
+    series: [{
+        name: 'Data Points',
+        type: 'scatter',
+        itemStyle: {
+            color: '#3498db'
+        },
+        data: [
+            [1.2, 3.4], [2.1, 4.3], [3.6, 5.8], [4.7, 6.1], [5.2, 7.4],
+            [6.3, 8.5], [7.1, 9.2], [8.4, 10.3], [9.7, 11.1], [10.2, 12.5],
+            [11.5, 13.7], [12.6, 14.8], [13.4, 15.3], [14.7, 16.5], [15.8, 17.6],
+            [16.9, 18.1], [17.2, 19.4], [18.3, 20.5], [19.1, 21.2], [20.4, 22.3]
+        ]
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

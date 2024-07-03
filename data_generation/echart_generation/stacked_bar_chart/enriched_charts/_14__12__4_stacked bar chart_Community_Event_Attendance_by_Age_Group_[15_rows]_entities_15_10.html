@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 1000,
+    height: 600
+});
+var option;
+
+option = {
+    title: {
+        text: 'Monthly Revenue Breakdown',
+        left: 'center',
+        top: 20,
+        textStyle: {
+            color: '#333',
+            fontSize: 18,
+            fontWeight: 'bold'
+        }
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Product A', 'Product B', 'Product C', 'Product D'],
+        top: 50
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        data: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+        axisLabel: {
+            rotate: 45,
+            interval: 0
+        }
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Product A',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [120, 110, 140, 130, 150, 160, 170, 180, 190, 200, 210, 220],
+            itemStyle: {
+                color: '#FF5733'
+            },
+            barWidth: '20%',
+        },
+        {
+            name: 'Product B',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [200, 220, 230, 210, 250, 270, 280, 290, 300, 310, 320, 330],
+            itemStyle: {
+                color: '#33FF57'
+            },
+            barWidth: '20%',
+        },
+        {
+            name: 'Product C',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [150, 130, 160, 170, 180, 190, 200, 210, 220, 230, 240, 250],
+            itemStyle: {
+                color: '#3357FF'
+            },
+            barWidth: '20%',
+        },
+        {
+            name: 'Product D',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [80, 90, 100, 110, 120, 130, 140, 150, 160, 170, 180, 190],
+            itemStyle: {
+                color: '#FF33A1'
+            },
+            barWidth: '20%',
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

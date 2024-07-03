@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var app = {};
+
+var option = {
+    title: {
+        text: 'Electricity Generation by Energy Source',
+        left: 'center',
+        top: 20
+    },
+    tooltip: {
+        trigger: 'item'
+    },
+    legend: {
+        orient: 'vertical',
+        left: 'left',
+        top: 'middle',
+        textStyle: {
+            color: '#666'
+        }
+    },
+    color: ['#c23531', '#2f4554', '#61a0a8', '#d48265', '#91c7ae', '#749f83', '#ca8622'],
+    series: [{
+        name: 'Energy Source',
+        type: 'pie',
+        radius: '55%',
+        center: ['50%', '60%'],
+        data: [
+            {value: 38, name: 'Coal'},
+            {value: 23, name: 'Natural Gas'},
+            {value: 16, name: 'Hydroelectric'},
+            {value: 12, name: 'Wind'},
+            {value: 8, name: 'Nuclear'},
+            {value: 2, name: 'Solar'},
+            {value: 1, name: 'Biomass'}
+        ],
+        emphasis: {
+            itemStyle: {
+                shadowBlur: 10,
+                shadowOffsetX: 0,
+                shadowColor: 'rgba(0, 0, 0, 0.5)'
+            }
+        },
+        label: {
+            show: true,
+            formatter: '{b}: {c}%',
+            color: '#000'
+        }
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

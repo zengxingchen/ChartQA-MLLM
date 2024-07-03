@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+// Prepare data
+var data = [
+    {'Country': 'Finland', ' Cups Per Day': 12},
+    {'Country': 'Norway', ' Cups Per Day': 9},
+    {'Country': 'Iceland', ' Cups Per Day': 8},
+    {'Country': 'Denmark', ' Cups Per Day': 8},
+    {'Country': 'Netherlands', ' Cups Per Day': 7}
+];
+
+// Extract data for the x and y axes
+var countries = data.map(function (item) {
+    return item.Country;
+});
+var cupsData = data.map(function (item) {
+    return item[' Cups Per Day'];
+});
+
+// Configure the area chart
+option = {
+    title: {
+        text: 'Coffee Consumption by Country',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            label: {
+                backgroundColor: '#6a7985'
+            }
+        }
+    },
+    legend: {
+        data: ['Cups Per Day'],
+        left: 'left'
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: [
+        {
+            type: 'category',
+            boundaryGap: false,
+            data: countries
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value'
+        }
+    ],
+    series: [
+        {
+            name: 'Cups Per Day',
+            type: 'line',
+            stack: 'Total amount',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: cupsData,
+            smooth: true
+        }
+    ],
+    color: ['#5470C6'], // Sets the color for the area chart
+    textStyle: {
+        fontFamily: 'Arial, Verdana, sans-serif'
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

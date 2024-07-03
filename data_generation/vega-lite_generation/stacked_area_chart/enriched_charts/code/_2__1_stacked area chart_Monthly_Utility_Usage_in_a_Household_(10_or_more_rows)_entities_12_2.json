@@ -1,0 +1,153 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+        "values": [
+            {
+                "Quarter": "Q1 2021",
+                "Jazz": 3500,
+                "Rock": 4200,
+                "Pop": 6200,
+                "Hip-Hop": 3000,
+                "Classical": 1500
+            },
+            {
+                "Quarter": "Q2 2021",
+                "Jazz": 3600,
+                "Rock": 4400,
+                "Pop": 6400,
+                "Hip-Hop": 3200,
+                "Classical": 1600
+            },
+            {
+                "Quarter": "Q3 2021",
+                "Jazz": 3700,
+                "Rock": 4600,
+                "Pop": 6600,
+                "Hip-Hop": 3400,
+                "Classical": 1700
+            },
+            {
+                "Quarter": "Q4 2021",
+                "Jazz": 3800,
+                "Rock": 4800,
+                "Pop": 6800,
+                "Hip-Hop": 3600,
+                "Classical": 1800
+            },
+            {
+                "Quarter": "Q1 2022",
+                "Jazz": 3900,
+                "Rock": 5000,
+                "Pop": 7000,
+                "Hip-Hop": 3800,
+                "Classical": 1900
+            },
+            {
+                "Quarter": "Q2 2022",
+                "Jazz": 4000,
+                "Rock": 5200,
+                "Pop": 7200,
+                "Hip-Hop": 4000,
+                "Classical": 2000
+            },
+            {
+                "Quarter": "Q3 2022",
+                "Jazz": 4100,
+                "Rock": 5400,
+                "Pop": 7400,
+                "Hip-Hop": 4200,
+                "Classical": 2100
+            },
+            {
+                "Quarter": "Q4 2022",
+                "Jazz": 4200,
+                "Rock": 5600,
+                "Pop": 7600,
+                "Hip-Hop": 4400,
+                "Classical": 2200
+            }
+        ]
+    },
+    "width": 600,
+    "height": 400,
+    "title": {
+        "text": "Quarterly Music Genre Popularity Trends",
+        "anchor": "start",
+        "offset": 5
+    },
+    "transform": [
+        {
+            "fold": [
+                "Jazz",
+                "Rock",
+                "Pop",
+                "Hip-Hop",
+                "Classical"
+            ],
+            "as": [
+                "Genre",
+                "Popularity"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "area",
+        "opacity": 0.6
+    },
+    "encoding": {
+        "x": {
+            "field": "Quarter",
+            "type": "ordinal",
+            "title": "Quarter",
+            "axis": {
+                "labelAngle": 0
+            }
+        },
+        "y": {
+            "field": "Popularity",
+            "type": "quantitative",
+            "title": "Popularity Score",
+            "stack": "zero"
+        },
+        "color": {
+            "field": "Genre",
+            "type": "nominal",
+            "scale": {
+                "range": [
+                    "#ff5733",
+                    "#33ff57",
+                    "#3357ff",
+                    "#ff33a8",
+                    "#a833ff"
+                ]
+            },
+            "title": "Music Genre"
+        },
+        "tooltip": [
+            {
+                "field": "Quarter",
+                "type": "ordinal"
+            },
+            {
+                "field": "Genre",
+                "type": "nominal"
+            },
+            {
+                "field": "Popularity",
+                "type": "quantitative",
+                "title": "Popularity Score"
+            }
+        ]
+    },
+    "config": {
+        "view": {
+            "stroke": "transparent"
+        },
+        "axis": {
+            "domainWidth": 1
+        },
+        "title": {
+            "fontSize": 14
+        }
+    }
+}

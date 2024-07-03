@@ -1,0 +1,95 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Pie chart showing the distribution of various food groups in a balanced diet.",
+    "title": {
+        "text": "Balanced Diet Composition",
+        "fontSize": 20,
+        "font": "Roboto",
+        "anchor": "start",
+        "color": "#333333"
+    },
+    "width": 400,
+    "height": 400,
+    "data": {
+        "values": [
+            {
+                "Food Group": "Vegetables",
+                "Percentage": 30
+            },
+            {
+                "Food Group": "Fruits",
+                "Percentage": 20
+            },
+            {
+                "Food Group": "Grains",
+                "Percentage": 25
+            },
+            {
+                "Food Group": "Protein Foods",
+                "Percentage": 15
+            },
+            {
+                "Food Group": "Dairy",
+                "Percentage": 10
+            }
+        ]
+    },
+    "mark": {
+        "type": "arc",
+        "tooltip": true
+    },
+    "encoding": {
+        "theta": {
+            "field": "Percentage",
+            "type": "quantitative",
+            "stack": true
+        },
+        "color": {
+            "field": "Food Group",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Vegetables",
+                    "Fruits",
+                    "Grains",
+                    "Protein Foods",
+                    "Dairy"
+                ],
+                "range": [
+                    "#4CAF50",
+                    "#FF5722",
+                    "#FFC107",
+                    "#3F51B5",
+                    "#FFEB3B"
+                ]
+            },
+            "legend": {
+                "title": "Food Group",
+                "orient": "right",
+                "labelFont": "Roboto",
+                "labelColor": "#44475a"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Food Group",
+                "type": "nominal",
+                "title": "Food Group"
+            },
+            {
+                "field": "Percentage",
+                "type": "quantitative",
+                "title": "Percentage (%)"
+            }
+        ]
+    },
+    "view": {
+        "stroke": null
+    },
+    "config": {
+        "background": "#f5f5f5",
+        "arc": {
+            "outerRadius": 150
+        }
+    }
+}

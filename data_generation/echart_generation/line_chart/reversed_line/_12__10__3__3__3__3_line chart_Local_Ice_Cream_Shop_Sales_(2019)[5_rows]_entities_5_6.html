@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Popularity of Music & Performing Arts',
+        left: 'center',
+        top: '10%',
+        textStyle: {
+            color: '#333333',
+            fontSize: 24,
+        }
+    },
+    xAxis: {
+        type: 'category',
+        data: ['Music', 'Art', 'Dance', 'Theater', 'Opera', 'Ballet', 'Jazz', 'Classical', 'HipHop', 'Rock', 'Pop', 'Electronic', 'Folk', 'Blues', 'Reggae', 'Country', 'Latin', 'Metal', 'Punk'],
+        axisLabel: {
+            rotate: 45,
+            interval: 0
+        }
+    },
+    yAxis: {
+        type: 'value',
+        inverse: true,
+        axisLabel: {
+            formatter: '{value} %'
+        }
+    },
+    series: [{
+        data: [95, 90, 85, 80, 75, 70, 65, 60, 55, 50, 45, 40, 35, 30, 25, 20, 15, 10, 5],
+        type: 'line',
+        smooth: true,
+        lineStyle: {
+            color: '#FF5733'
+        },
+        itemStyle: {
+            color: '#C70039'
+        },
+        label: {
+            show: true,
+            position: 'top',
+            formatter: '{c} %'
+        }
+    }],
+    grid: {
+        containLabel: true,
+        width: '80%',
+        height: '70%',
+        bottom: '10%'
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

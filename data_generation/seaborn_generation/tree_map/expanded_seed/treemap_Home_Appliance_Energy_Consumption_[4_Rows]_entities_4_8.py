@@ -1,0 +1,2 @@
+sh
+pip install squarify

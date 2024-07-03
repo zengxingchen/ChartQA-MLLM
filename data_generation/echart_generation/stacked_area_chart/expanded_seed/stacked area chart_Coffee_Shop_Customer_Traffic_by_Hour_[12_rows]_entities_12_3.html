@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+// parse the data
+var rawData = [
+  {'Hour': '6am-7am', 'Hot Drinks': 150, 'Cold Drinks': 30, 'Pastries': 50, 'Sandwiches': 10, 'Salads': 5},
+  {'Hour': '7am-8am', 'Hot Drinks': 300, 'Cold Drinks': 50, 'Pastries': 100, 'Sandwiches': 20, 'Salads': 10},
+  {'Hour': '8am-9am', 'Hot Drinks': 400, 'Cold Drinks': 70, 'Pastries': 120, 'Sandwiches': 30, 'Salads': 15},
+  {'Hour': '9am-10am', 'Hot Drinks': 350, 'Cold Drinks': 60, 'Pastries': 110, 'Sandwiches': 25, 'Salads': 12},
+  {'Hour': '10am-11am', 'Hot Drinks': 300, 'Cold Drinks': 50, 'Pastries': 100, 'Sandwiches': 20, 'Salads': 10},
+  {'Hour': '11am-12pm', 'Hot Drinks': 250, 'Cold Drinks': 75, 'Pastries': 90, 'Sandwiches': 35, 'Salads': 14},
+  {'Hour': '12pm-1pm', 'Hot Drinks': 200, 'Cold Drinks': 150, 'Pastries': 80, 'Sandwiches': 50, 'Salads': 20},
+  {'Hour': '1pm-2pm', 'Hot Drinks': 180, 'Cold Drinks': 140, 'Pastries': 70, 'Sandwiches': 45, 'Salads': 18},
+  {'Hour': '2pm-3pm', 'Hot Drinks': 160, 'Cold Drinks': 130, 'Pastries': 60, 'Sandwiches': 40, 'Salads': 16},
+  {'Hour': '3pm-4pm', 'Hot Drinks': 140, 'Cold Drinks': 120, 'Pastries': 50, 'Sandwiches': 30, 'Salads': 14},
+  {'Hour': '4pm-5pm', 'Hot Drinks': 120, 'Cold Drinks': 110, 'Pastries': 40, 'Sandwiches': 20, 'Salads': 12},
+  {'Hour': '5pm-6pm', 'Hot Drinks': 100, 'Cold Drinks': 100, 'Pastries': 30, 'Sandwiches': 15, 'Salads': 10}
+];
+
+var categories = rawData.map(function (item) {
+  return item.Hour;
+});
+
+var types = [
+  {name: 'Hot Drinks', color: '#ff7f50'},
+  {name: 'Cold Drinks', color: '#87cefa'},
+  {name: 'Pastries', color: '#da70d6'},
+  {name: 'Sandwiches', color: '#32cd32'},
+  {name: 'Salads', color: '#6495ed'}
+];
+
+var stackedData = types.map(function (type) {
+  var typeName = type.name;
+  var typeColor = type.color;
+  return {
+    name: typeName,
+    type: 'line',
+    stack: 'Total',
+    areaStyle: { opacity: 0.5 },
+    emphasis: { focus: 'series' },
+    itemStyle: { color: typeColor },
+    data: rawData.map(function (item) {
+      return item[typeName];
+    })
+  };
+});
+
+option = {
+  tooltip: {
+    trigger: 'axis',
+    axisPointer: {
+      type: 'cross',
+      label: {
+        backgroundColor: '#6a7985'
+      }
+    }
+  },
+  legend: {
+    data: types.map(function (type) {
+      return type.name;
+    })
+  },
+  toolbox: {
+    feature: {
+      saveAsImage: {}
+    }
+  },
+  grid: {
+    left: '3%',
+    right: '4%',
+    bottom: '3%',
+    containLabel: true
+  },
+  xAxis: [
+    {
+      type: 'category',
+      boundaryGap: false,
+      data: categories
+    }
+  ],
+  yAxis: [
+    {
+      type: 'value'
+    }
+  ],
+  series: stackedData
+};
+if (option && typeof option === 'object') {
+  myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

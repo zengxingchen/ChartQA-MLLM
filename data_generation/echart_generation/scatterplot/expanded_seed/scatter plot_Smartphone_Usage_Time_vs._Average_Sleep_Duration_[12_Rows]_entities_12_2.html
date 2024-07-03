@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var data = [
+  {'Day of the Week': 'Monday', 'Smartphone Usage (Hours)': 3.5, 'Average Sleep Duration (Hours)': 6.8},
+  {'Day of the Week': 'Tuesday', 'Smartphone Usage (Hours)': 4.0, 'Average Sleep Duration (Hours)': 7.0},
+  {'Day of the Week': 'Wednesday', 'Smartphone Usage (Hours)': 3.8, 'Average Sleep Duration (Hours)': 6.9},
+  {'Day of the Week': 'Thursday', 'Smartphone Usage (Hours)': 4.2, 'Average Sleep Duration (Hours)': 6.5},
+  {'Day of the Week': 'Friday', 'Smartphone Usage (Hours)': 5.0, 'Average Sleep Duration (Hours)': 7.3},
+  {'Day of the Week': 'Saturday', 'Smartphone Usage (Hours)': 6.0, 'Average Sleep Duration (Hours)': 7.8},
+  {'Day of the Week': 'Sunday', 'Smartphone Usage (Hours)': 6.5, 'Average Sleep Duration (Hours)': 8.0},
+  {'Day of the Week': 'Monday', 'Smartphone Usage (Hours)': 3.4, 'Average Sleep Duration (Hours)': 6.7},
+  {'Day of the Week': 'Tuesday', 'Smartphone Usage (Hours)': 4.1, 'Average Sleep Duration (Hours)': 6.9},
+  {'Day of the Week': 'Wednesday', 'Smartphone Usage (Hours)': 3.9, 'Average Sleep Duration (Hours)': 7.1},
+  {'Day of the Week': 'Thursday', 'Smartphone Usage (Hours)': 4.3, 'Average Sleep Duration (Hours)': 6.4},
+  {'Day of the Week': 'Friday', 'Smartphone Usage (Hours)': 5.1, 'Average Sleep Duration (Hours)': 7.4}
+];
+
+var daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+
+// Process data into scatter data points
+var scatterData = data.map(function (item) {
+  return [ 
+    daysOfWeek.indexOf(item['Day of the Week']),
+    item['Smartphone Usage (Hours)'],
+    item['Average Sleep Duration (Hours)']
+  ];
+});
+
+var option = {
+  title: {
+    text: 'Smartphone Usage vs. Sleep Duration Scatterplot'
+  },
+  tooltip: {
+    trigger: 'axis',
+    formatter: function (params) {
+      var point = params[0];
+      return daysOfWeek[point.data[0]] + '<br>Smartphone Usage: ' + point.data[1] + ' hours<br>' + 'Average Sleep: ' + point.data[2] + ' hours';
+    },
+    axisPointer: {
+      type: 'cross'
+    }
+  },
+  xAxis: {
+    type: 'category',
+    data: daysOfWeek
+  },
+  yAxis: [
+    {
+      type: 'value',
+      name: 'Smartphone Usage (Hours)',
+      min: 0,
+      max: 7,
+      position: 'left',
+      axisLine: {
+        lineStyle: {
+          color: 'blue'
+        }
+      },
+      axisLabel: {
+        formatter: '{value} h'
+      }
+    },
+    {
+      type: 'value',
+      name: 'Average Sleep Duration (Hours)',
+      min: 6,
+      max: 9,
+      position: 'right',
+      axisLine: {
+        lineStyle: {
+          color: 'red'
+        }
+      },
+      axisLabel: {
+        formatter: '{value} h'
+      }
+    }
+  ],
+  series: [
+    {
+      name: 'Smartphone Usage and Sleep Duration',
+      type: 'scatter',
+      data: scatterData,
+      dimensions: ['Day of the Week', 'Smartphone Usage (Hours)', 'Average Sleep Duration (Hours)'],
+      encode: {
+        x: 0,
+        y: [1, 2]
+      },
+      markLine: {
+        silent: true,
+        data: [
+          {type: 'average', name: 'Average Smartphone Usage', yAxis: 'Smartphone Usage (Hours)'},
+          {type: 'average', name: 'Average Sleep Duration', xAxis: 'Average Sleep Duration (Hours)'}
+        ]
+      }
+    }
+  ],
+  color: ['#5470C6', '#EE6666']
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

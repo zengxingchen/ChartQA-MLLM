@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: '800', height: '500'});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Monthly Sales Analysis',
+        top: '2%',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['Electronics', 'Clothing', 'Accessories', 'Household'],
+        top: '10%'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: [
+            'January', 'February', 'March', 'April', 'May', 'June',
+            'July', 'August', 'September', 'October', 'November', 'December'
+        ]
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Electronics',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [
+                12000, 15000, 16000, 16500, 17000, 18000,
+                18500, 19000, 19500, 20000, 21000, 23000
+            ],
+            color: '#3366CC'
+        },
+        {
+            name: 'Clothing',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [
+                5000, 6000, 5500, 5800, 6200, 5900,
+                6100, 6300, 6400, 6500, 6600, 6800
+            ],
+            color: '#DC3912'
+        },
+        {
+            name: 'Accessories',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [
+                3000, 4000, 4200, 3500, 3300, 4000,
+                3800, 3900, 4200, 4400, 4500, 4600
+            ],
+            color: '#FF9900'
+        },
+        {
+            name: 'Household',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [
+                7000, 8000, 9000, 8500, 8600, 8700,
+                9200, 9400, 9800, 11000, 12000, 13000
+            ],
+            color: '#109618'
+        }
+    ]
+};
+
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

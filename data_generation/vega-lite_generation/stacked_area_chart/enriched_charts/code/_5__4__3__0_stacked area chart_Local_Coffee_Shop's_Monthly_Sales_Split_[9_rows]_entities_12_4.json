@@ -1,0 +1,227 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Monthly Observations of Various Climate Variables",
+    "width": 400,
+    "height": 300,
+    "data": {
+        "values": [
+            {
+                "Month": "January",
+                "Temperature": 2,
+                "Precipitation": 50,
+                "WindSpeed": 12,
+                "UVIndex": 1,
+                "AirQuality": 80,
+                "SeaLevelPressure": 1020,
+                "SunshineHours": 50
+            },
+            {
+                "Month": "February",
+                "Temperature": 3,
+                "Precipitation": 40,
+                "WindSpeed": 14,
+                "UVIndex": 1.5,
+                "AirQuality": 75,
+                "SeaLevelPressure": 1015,
+                "SunshineHours": 60
+            },
+            {
+                "Month": "March",
+                "Temperature": 6,
+                "Precipitation": 45,
+                "WindSpeed": 10,
+                "UVIndex": 2,
+                "AirQuality": 70,
+                "SeaLevelPressure": 1018,
+                "SunshineHours": 70
+            },
+            {
+                "Month": "April",
+                "Temperature": 10,
+                "Precipitation": 70,
+                "WindSpeed": 15,
+                "UVIndex": 3,
+                "AirQuality": 60,
+                "SeaLevelPressure": 1012,
+                "SunshineHours": 80
+            },
+            {
+                "Month": "May",
+                "Temperature": 14,
+                "Precipitation": 60,
+                "WindSpeed": 10,
+                "UVIndex": 4,
+                "AirQuality": 65,
+                "SeaLevelPressure": 1016,
+                "SunshineHours": 90
+            },
+            {
+                "Month": "June",
+                "Temperature": 17,
+                "Precipitation": 75,
+                "WindSpeed": 8,
+                "UVIndex": 5,
+                "AirQuality": 55,
+                "SeaLevelPressure": 1013,
+                "SunshineHours": 100
+            },
+            {
+                "Month": "July",
+                "Temperature": 19,
+                "Precipitation": 80,
+                "WindSpeed": 6,
+                "UVIndex": 6,
+                "AirQuality": 50,
+                "SeaLevelPressure": 1017,
+                "SunshineHours": 110
+            },
+            {
+                "Month": "August",
+                "Temperature": 20,
+                "Precipitation": 65,
+                "WindSpeed": 7,
+                "UVIndex": 6.5,
+                "AirQuality": 50,
+                "SeaLevelPressure": 1015,
+                "SunshineHours": 105
+            },
+            {
+                "Month": "September",
+                "Temperature": 16,
+                "Precipitation": 55,
+                "WindSpeed": 9,
+                "UVIndex": 4,
+                "AirQuality": 65,
+                "SeaLevelPressure": 1018,
+                "SunshineHours": 95
+            },
+            {
+                "Month": "October",
+                "Temperature": 11,
+                "Precipitation": 60,
+                "WindSpeed": 13,
+                "UVIndex": 3,
+                "AirQuality": 70,
+                "SeaLevelPressure": 1019,
+                "SunshineHours": 85
+            },
+            {
+                "Month": "November",
+                "Temperature": 7,
+                "Precipitation": 50,
+                "WindSpeed": 11,
+                "UVIndex": 2,
+                "AirQuality": 75,
+                "SeaLevelPressure": 1021,
+                "SunshineHours": 75
+            },
+            {
+                "Month": "December",
+                "Temperature": 3,
+                "Precipitation": 45,
+                "WindSpeed": 12,
+                "UVIndex": 1.2,
+                "AirQuality": 80,
+                "SeaLevelPressure": 1022,
+                "SunshineHours": 65
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Temperature",
+                "Precipitation",
+                "WindSpeed",
+                "UVIndex",
+                "AirQuality",
+                "SeaLevelPressure",
+                "SunshineHours"
+            ],
+            "as": [
+                "ClimateVariable",
+                "Value"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "area",
+        "opacity": 0.6
+    },
+    "encoding": {
+        "x": {
+            "field": "Month",
+            "type": "ordinal",
+            "axis": {
+                "title": "Month of the Year",
+                "labelAngle": 0
+            }
+        },
+        "y": {
+            "field": "Value",
+            "type": "quantitative",
+            "stack": "zero",
+            "axis": {
+                "title": "Observation Value"
+            }
+        },
+        "color": {
+            "field": "ClimateVariable",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Temperature",
+                    "Precipitation",
+                    "WindSpeed",
+                    "UVIndex",
+                    "AirQuality",
+                    "SeaLevelPressure",
+                    "SunshineHours"
+                ],
+                "range": [
+                    "#4575b4",
+                    "#91bfdb",
+                    "#e0f3f8",
+                    "#fee090",
+                    "#fc8d59",
+                    "#d73027",
+                    "#a50026"
+                ]
+            },
+            "legend": {
+                "title": "Climate Variables",
+                "orient": "top-left"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Month",
+                "type": "ordinal"
+            },
+            {
+                "field": "ClimateVariable",
+                "type": "nominal"
+            },
+            {
+                "field": "Value",
+                "type": "quantitative"
+            }
+        ]
+    },
+    "title": {
+        "text": "Climate Variable Observations by Month",
+        "anchor": "start",
+        "offset": 4,
+        "orient": "top",
+        "dx": 10,
+        "dy": -10
+    },
+    "config": {
+        "view": {
+            "stroke": "transparent"
+        },
+        "axis": {
+            "domainWidth": 1
+        }
+    }
+}

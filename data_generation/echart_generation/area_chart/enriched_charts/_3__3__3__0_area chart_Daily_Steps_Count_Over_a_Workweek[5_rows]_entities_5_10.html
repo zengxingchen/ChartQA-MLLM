@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 400});
+
+var option;
+option = {
+  title: {
+    text: 'Monthly Stock Index Performance',
+    left: 'center'
+  },
+  tooltip: {
+    trigger: 'axis'
+  },
+  legend: {
+    data: ['Index Value'],
+    right: '10%'
+  },
+  grid: {
+    left: '3%',
+    right: '4%',
+    bottom: '3%',
+    containLabel: true
+  },
+  xAxis: {
+    type: 'category',
+    boundaryGap: false,
+    data: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
+  },
+  yAxis: {
+    type: 'value',
+    axisLabel: {
+      formatter: '{value}'
+    }
+  },
+  series: [
+    {
+      name: 'Index Value',
+      type: 'line',
+      stack: 'Total',
+      areaStyle: {},
+      emphasis: {
+        focus: 'series'
+      },
+      data: [1500, 1485, 1460, 1445, 1420, 1400, 1380, 1365, 1340, 1325, 1305, 1280, 1260, 1235, 1210, 1185, 1160, 1140, 1120, 1105, 1090, 1075, 1050, 1030, 1010, 990, 970, 950, 930, 910, 890],
+      lineStyle: {
+        color: '#FF6347'
+      },
+      itemStyle: {
+        color: '#FF6347'
+      }
+    }
+  ],
+  graphic: {
+    type: 'text',
+    left: 'center',
+    top: '90%',
+    style: {
+      text: 'Data source: Finance Inc.',
+      textAlign: 'center',
+      fill: '#333',
+      fontSize: 12
+    }
+  }
+};
+
+if (option && typeof option === 'object') {
+  myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

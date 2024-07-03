@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+var option;
+
+option = {
+    title: {
+        text: 'Future Technologies & Society',
+        left: 'center',
+        top: '5%'
+    },
+    color: ['#FF5733', '#33FF57', '#3357FF', '#FF33A1', '#A133FF', '#33FFA1', '#FFA133', '#5733FF', '#33A1FF', '#FF3357'],
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        data: ['Artificial Intelligence', 'Quantum Computing', 'Robotics', 'Virtual Reality', '5G Technology', 'Blockchain', 'Internet of Things', 'Augmented Reality', 'Big Data', 'Autonomous Vehicles'],
+        axisLabel: {
+            rotate: 30,
+            interval: 0
+        }
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Value',
+            type: 'bar',
+            barWidth: '30%',
+            data: [
+                { value: 150, itemStyle: { color: '#FF5733' }, label: { show: true, position: 'top', formatter: '150' } },
+                { value: 200, itemStyle: { color: '#33FF57' }, label: { show: true, position: 'top', formatter: '200' } },
+                { value: 180, itemStyle: { color: '#3357FF' }, label: { show: true, position: 'top', formatter: '180' } },
+                { value: 120, itemStyle: { color: '#FF33A1' }, label: { show: true, position: 'top', formatter: '120' } },
+                { value: 170, itemStyle: { color: '#A133FF' }, label: { show: true, position: 'top', formatter: '170' } },
+                { value: 140, itemStyle: { color: '#33FFA1' }, label: { show: true, position: 'top', formatter: '140' } },
+                { value: 210, itemStyle: { color: '#FFA133' }, label: { show: true, position: 'top', formatter: '210' } },
+                { value: 130, itemStyle: { color: '#5733FF' }, label: { show: true, position: 'top', formatter: '130' } },
+                { value: 160, itemStyle: { color: '#33A1FF' }, label: { show: true, position: 'top', formatter: '160' } },
+                { value: 190, itemStyle: { color: '#FF3357' }, label: { show: true, position: 'top', formatter: '190' } }
+            ]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

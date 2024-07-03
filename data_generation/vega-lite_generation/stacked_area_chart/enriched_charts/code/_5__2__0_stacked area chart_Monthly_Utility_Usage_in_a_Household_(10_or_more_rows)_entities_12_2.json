@@ -1,0 +1,175 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+        "values": [
+            {
+                "Date": "2021-01-01",
+                "Fiction Sales (thousands)": 75,
+                "Non-Fiction Sales (thousands)": 55,
+                "Textbook Sales (thousands)": 35,
+                "Children Literature Sales (thousands)": 50
+            },
+            {
+                "Date": "2021-02-01",
+                "Fiction Sales (thousands)": 72,
+                "Non-Fiction Sales (thousands)": 58,
+                "Textbook Sales (thousands)": 38,
+                "Children Literature Sales (thousands)": 48
+            },
+            {
+                "Date": "2021-03-01",
+                "Fiction Sales (thousands)": 78,
+                "Non-Fiction Sales (thousands)": 60,
+                "Textbook Sales (thousands)": 37,
+                "Children Literature Sales (thousands)": 52
+            },
+            {
+                "Date": "2021-04-01",
+                "Fiction Sales (thousands)": 82,
+                "Non-Fiction Sales (thousands)": 62,
+                "Textbook Sales (thousands)": 40,
+                "Children Literature Sales (thousands)": 55
+            },
+            {
+                "Date": "2021-05-01",
+                "Fiction Sales (thousands)": 77,
+                "Non-Fiction Sales (thousands)": 65,
+                "Textbook Sales (thousands)": 42,
+                "Children Literature Sales (thousands)": 53
+            },
+            {
+                "Date": "2021-06-01",
+                "Fiction Sales (thousands)": 75,
+                "Non-Fiction Sales (thousands)": 67,
+                "Textbook Sales (thousands)": 44,
+                "Children Literature Sales (thousands)": 51
+            },
+            {
+                "Date": "2021-07-01",
+                "Fiction Sales (thousands)": 80,
+                "Non-Fiction Sales (thousands)": 70,
+                "Textbook Sales (thousands)": 43,
+                "Children Literature Sales (thousands)": 57
+            },
+            {
+                "Date": "2021-08-01",
+                "Fiction Sales (thousands)": 85,
+                "Non-Fiction Sales (thousands)": 72,
+                "Textbook Sales (thousands)": 45,
+                "Children Literature Sales (thousands)": 59
+            },
+            {
+                "Date": "2021-09-01",
+                "Fiction Sales (thousands)": 83,
+                "Non-Fiction Sales (thousands)": 68,
+                "Textbook Sales (thousands)": 42,
+                "Children Literature Sales (thousands)": 56
+            },
+            {
+                "Date": "2021-10-01",
+                "Fiction Sales (thousands)": 88,
+                "Non-Fiction Sales (thousands)": 66,
+                "Textbook Sales (thousands)": 40,
+                "Children Literature Sales (thousands)": 61
+            },
+            {
+                "Date": "2021-11-01",
+                "Fiction Sales (thousands)": 92,
+                "Non-Fiction Sales (thousands)": 68,
+                "Textbook Sales (thousands)": 43,
+                "Children Literature Sales (thousands)": 63
+            },
+            {
+                "Date": "2021-12-01",
+                "Fiction Sales (thousands)": 95,
+                "Non-Fiction Sales (thousands)": 70,
+                "Textbook Sales (thousands)": 45,
+                "Children Literature Sales (thousands)": 67
+            }
+        ]
+    },
+    "width": 500,
+    "height": 300,
+    "title": {
+        "text": "Literature Categories Sales Trends",
+        "anchor": "start",
+        "offset": 5,
+        "fontSize": 18
+    },
+    "transform": [
+        {
+            "fold": [
+                "Fiction Sales (thousands)",
+                "Non-Fiction Sales (thousands)",
+                "Textbook Sales (thousands)",
+                "Children Literature Sales (thousands)"
+            ],
+            "as": [
+                "Genre",
+                "Sales"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "area",
+        "opacity": 0.7
+    },
+    "encoding": {
+        "x": {
+            "field": "Date",
+            "type": "ordinal",
+            "title": "Date",
+            "axis": {
+                "labelAngle": 0
+            }
+        },
+        "y": {
+            "field": "Sales",
+            "type": "quantitative",
+            "title": "Sales (Thousands) - Stacked",
+            "stack": "zero"
+        },
+        "color": {
+            "field": "Genre",
+            "type": "nominal",
+            "scale": {
+                "range": [
+                    "#6baed6",
+                    "#fd8d3c",
+                    "#31a354",
+                    "#756bb1"
+                ]
+            },
+            "title": "Literature Genre"
+        },
+        "tooltip": [
+            {
+                "field": "Date",
+                "type": "ordinal",
+                "title": "Date"
+            },
+            {
+                "field": "Genre",
+                "type": "nominal",
+                "title": "Genre"
+            },
+            {
+                "field": "Sales",
+                "type": "quantitative",
+                "title": "Sales (thousands)"
+            }
+        ]
+    },
+    "config": {
+        "view": {
+            "stroke": "none"
+        },
+        "axis": {
+            "domainWidth": 1
+        },
+        "legend": {
+            "titleAnchor": "end",
+            "orient": "right"
+        }
+    }
+}

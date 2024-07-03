@@ -1,0 +1,122 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Line chart of average annual sleep duration by region over recent years",
+    "data": {
+        "values": [
+            {
+                "Year": 2019,
+                "Americas": 7.4,
+                "Europe": 8.2,
+                "Asia": 6.5,
+                "Africa": 7.1,
+                "Oceania": 8.0
+            },
+            {
+                "Year": 2020,
+                "Americas": 7.3,
+                "Europe": 8.1,
+                "Asia": 6.6,
+                "Africa": 7.2,
+                "Oceania": 7.9
+            },
+            {
+                "Year": 2021,
+                "Americas": 7.2,
+                "Europe": 8.0,
+                "Asia": 6.7,
+                "Africa": 7.3,
+                "Oceania": 7.8
+            },
+            {
+                "Year": 2022,
+                "Americas": 7.5,
+                "Europe": 8.3,
+                "Asia": 6.8,
+                "Africa": 7.4,
+                "Oceania": 8.1
+            },
+            {
+                "Year": 2023,
+                "Americas": 7.6,
+                "Europe": 8.4,
+                "Asia": 6.9,
+                "Africa": 7.5,
+                "Oceania": 8.2
+            },
+            {
+                "Year": 2024,
+                "Americas": 7.7,
+                "Europe": 8.5,
+                "Asia": 7.0,
+                "Africa": 7.6,
+                "Oceania": 8.3
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Americas",
+                "Europe",
+                "Asia",
+                "Africa",
+                "Oceania"
+            ],
+            "as": [
+                "Region",
+                "Sleep Duration"
+            ]
+        }
+    ],
+    "width": 700,
+    "height": 500,
+    "mark": {
+        "type": "line",
+        "point": true
+    },
+    "encoding": {
+        "x": {
+            "field": "Year",
+            "type": "ordinal",
+            "title": "Year"
+        },
+        "y": {
+            "field": "Sleep Duration",
+            "type": "quantitative",
+            "title": "Average Annual Sleep Duration (hours)",
+            "axis": {
+                "format": ".1f"
+            }
+        },
+        "color": {
+            "field": "Region",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Americas",
+                    "Europe",
+                    "Asia",
+                    "Africa",
+                    "Oceania"
+                ],
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e",
+                    "#2ca02c",
+                    "#d62728",
+                    "#9467bd"
+                ]
+            },
+            "title": "Region"
+        }
+    },
+    "config": {
+        "axisY": {
+            "minExtent": 30
+        },
+        "text": {
+            "labelFontSize": 12,
+            "labelFontWeight": "bold"
+        }
+    }
+}

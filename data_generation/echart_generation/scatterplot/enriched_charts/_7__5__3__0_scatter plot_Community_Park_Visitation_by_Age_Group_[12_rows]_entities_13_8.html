@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Athlete Performance Metrics',
+        left: 'center',
+        top: '20'
+    },
+    legend: {
+        data: ['Score', 'Speed', 'Stamina'],
+        left: 'right',
+        top: '50'
+    },
+    xAxis: {
+        type: 'category',
+        name: 'Athlete',
+        data: ['Athlete A', 'Athlete B', 'Athlete C', 'Athlete D', 'Athlete E', 'Athlete F', 'Athlete G', 'Athlete H', 'Athlete I', 'Athlete J', 'Athlete K', 'Athlete L', 'Athlete M', 'Athlete N', 'Athlete O']
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Performance Metrics'
+    },
+    series: [
+        {
+            name: 'Score',
+            type: 'scatter',
+            data: [85, 78, 90, 74, 88, 82, 76, 81, 87, 79, 91, 80, 83, 77, 84],
+            itemStyle: {
+                color: '#FF5733'
+            }
+        },
+        {
+            name: 'Speed',
+            type: 'scatter',
+            data: [23, 20, 25, 18, 22, 21, 19, 23, 24, 20, 26, 21, 22, 19, 23],
+            itemStyle: {
+                color: '#33FF57'
+            }
+        },
+        {
+            name: 'Stamina',
+            type: 'scatter',
+            data: [92, 88, 95, 85, 90, 87, 83, 89, 91, 86, 96, 88, 89, 84, 90],
+            itemStyle: {
+                color: '#3357FF'
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

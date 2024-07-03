@@ -1,0 +1,173 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+        "values": [
+            {
+                "Month": "2023-01",
+                "Game Sales": 90,
+                "Merchandise": 45,
+                "In-Game Purchases": 120,
+                "Subscription Services": 80
+            },
+            {
+                "Month": "2023-02",
+                "Game Sales": 85,
+                "Merchandise": 48,
+                "In-Game Purchases": 125,
+                "Subscription Services": 82
+            },
+            {
+                "Month": "2023-03",
+                "Game Sales": 88,
+                "Merchandise": 50,
+                "In-Game Purchases": 130,
+                "Subscription Services": 85
+            },
+            {
+                "Month": "2023-04",
+                "Game Sales": 80,
+                "Merchandise": 55,
+                "In-Game Purchases": 115,
+                "Subscription Services": 78
+            },
+            {
+                "Month": "2023-05",
+                "Game Sales": 92,
+                "Merchandise": 60,
+                "In-Game Purchases": 140,
+                "Subscription Services": 90
+            },
+            {
+                "Month": "2023-06",
+                "Game Sales": 95,
+                "Merchandise": 62,
+                "In-Game Purchases": 150,
+                "Subscription Services": 95
+            },
+            {
+                "Month": "2023-07",
+                "Game Sales": 98,
+                "Merchandise": 65,
+                "In-Game Purchases": 160,
+                "Subscription Services": 97
+            },
+            {
+                "Month": "2023-08",
+                "Game Sales": 87,
+                "Merchandise": 67,
+                "In-Game Purchases": 135,
+                "Subscription Services": 82
+            },
+            {
+                "Month": "2023-09",
+                "Game Sales": 90,
+                "Merchandise": 70,
+                "In-Game Purchases": 145,
+                "Subscription Services": 85
+            },
+            {
+                "Month": "2023-10",
+                "Game Sales": 93,
+                "Merchandise": 72,
+                "In-Game Purchases": 155,
+                "Subscription Services": 88
+            },
+            {
+                "Month": "2023-11",
+                "Game Sales": 96,
+                "Merchandise": 75,
+                "In-Game Purchases": 165,
+                "Subscription Services": 93
+            },
+            {
+                "Month": "2023-12",
+                "Game Sales": 100,
+                "Merchandise": 80,
+                "In-Game Purchases": 170,
+                "Subscription Services": 98
+            }
+        ]
+    },
+    "width": 800,
+    "height": 500,
+    "title": {
+        "text": "Monthly Gaming Industry Revenue Streams",
+        "anchor": "start",
+        "frame": "group",
+        "offset": 10
+    },
+    "transform": [
+        {
+            "fold": [
+                "Game Sales",
+                "Merchandise",
+                "In-Game Purchases",
+                "Subscription Services"
+            ],
+            "as": [
+                "Revenue Type",
+                "Revenue"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "area",
+        "opacity": 0.7
+    },
+    "encoding": {
+        "x": {
+            "field": "Month",
+            "type": "ordinal",
+            "title": "Month in 2023",
+            "axis": {
+                "labelAngle": 0
+            }
+        },
+        "y": {
+            "field": "Revenue",
+            "type": "quantitative",
+            "title": "Revenue (in Million USD)",
+            "stack": "zero"
+        },
+        "color": {
+            "field": "Revenue Type",
+            "type": "nominal",
+            "scale": {
+                "range": [
+                    "#1f77b4",
+                    "#aec7e8",
+                    "#ff7f0e",
+                    "#ffbb78"
+                ]
+            },
+            "title": "Revenue Stream",
+            "legend": {
+                "orient": "top-left",
+                "offset": 20
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Month",
+                "type": "ordinal"
+            },
+            {
+                "field": "Revenue Type",
+                "type": "nominal"
+            },
+            {
+                "field": "Revenue",
+                "type": "quantitative",
+                "title": "Revenue (Millions)"
+            }
+        ]
+    },
+    "config": {
+        "view": {
+            "stroke": "transparent"
+        },
+        "axis": {
+            "domainWidth": 1
+        }
+    }
+}

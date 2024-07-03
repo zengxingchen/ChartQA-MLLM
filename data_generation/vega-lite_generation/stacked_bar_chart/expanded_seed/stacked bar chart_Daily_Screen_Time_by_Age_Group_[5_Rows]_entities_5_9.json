@@ -1,0 +1,112 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+        "values": [
+            {
+                "Age Group": "<18",
+                "Work/School": 1,
+                "Entertainment": 2.0,
+                "Social Media": 3,
+                "Other": 0.5
+            },
+            {
+                "Age Group": "18-24",
+                "Work/School": 3,
+                "Entertainment": 2.0,
+                "Social Media": 5,
+                "Other": 0.5
+            },
+            {
+                "Age Group": "25-34",
+                "Work/School": 4,
+                "Entertainment": 1.5,
+                "Social Media": 3,
+                "Other": 1.0
+            },
+            {
+                "Age Group": "35-50",
+                "Work/School": 3,
+                "Entertainment": 1.0,
+                "Social Media": 2,
+                "Other": 1.5
+            },
+            {
+                "Age Group": "50+",
+                "Work/School": 1,
+                "Entertainment": 2.0,
+                "Social Media": 1,
+                "Other": 2.0
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Work/School",
+                "Entertainment",
+                "Social Media",
+                "Other"
+            ],
+            "as": [
+                "Activity",
+                "Hours"
+            ]
+        }
+    ],
+    "width": 250,
+    "height": 300,
+    "mark": "bar",
+    "title": {
+        "text": "Daily Hours Allocation by Age Group",
+        "subtitle": "Source: Survey Data",
+        "subtitleFontStyle": "italic",
+        "subtitleFontSize": 10,
+        "anchor": "start",
+        "color": "black"
+    },
+    "encoding": {
+        "x": {
+            "field": "Age Group",
+            "type": "ordinal",
+            "axis": {
+                "title": "Age Group"
+            }
+        },
+        "y": {
+            "field": "Hours",
+            "type": "quantitative",
+            "stack": "zero",
+            "axis": {
+                "title": "Hours"
+            }
+        },
+        "color": {
+            "field": "Activity",
+            "type": "nominal",
+            "scale": {
+                "scheme": "category20"
+            },
+            "legend": {
+                "orient": "bottom-right",
+                "title": "Activity Type"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Age Group",
+                "type": "ordinal",
+                "title": "Age Group"
+            },
+            {
+                "field": "Activity",
+                "type": "nominal",
+                "title": "Activity"
+            },
+            {
+                "field": "Hours",
+                "type": "quantitative",
+                "title": "Hours"
+            }
+        ]
+    }
+}

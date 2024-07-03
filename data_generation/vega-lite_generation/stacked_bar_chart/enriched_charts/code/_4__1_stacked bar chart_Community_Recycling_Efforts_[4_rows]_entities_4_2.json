@@ -1,0 +1,164 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+        "values": [
+            {
+                "Year": 2019,
+                "Football": 12000,
+                "Basketball": 8000,
+                "Baseball": 9000,
+                "Hockey": 4000
+            },
+            {
+                "Year": 2020,
+                "Football": 14000,
+                "Basketball": 10000,
+                "Baseball": 9500,
+                "Hockey": 4500
+            },
+            {
+                "Year": 2021,
+                "Football": 16000,
+                "Basketball": 11000,
+                "Baseball": 10000,
+                "Hockey": 5000
+            },
+            {
+                "Year": 2022,
+                "Football": 18000,
+                "Basketball": 13000,
+                "Baseball": 11000,
+                "Hockey": 6000
+            },
+            {
+                "Year": 2023,
+                "Football": 20000,
+                "Basketball": 15000,
+                "Baseball": 12000,
+                "Hockey": 7000
+            },
+            {
+                "Year": 2024,
+                "Football": 22000,
+                "Basketball": 17000,
+                "Baseball": 13000,
+                "Hockey": 7500
+            },
+            {
+                "Year": 2025,
+                "Football": 24000,
+                "Basketball": 18000,
+                "Baseball": 14000,
+                "Hockey": 8000
+            },
+            {
+                "Year": 2026,
+                "Football": 26000,
+                "Basketball": 20000,
+                "Baseball": 15000,
+                "Hockey": 8500
+            },
+            {
+                "Year": 2027,
+                "Football": 28000,
+                "Basketball": 22000,
+                "Baseball": 16000,
+                "Hockey": 9000
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Football",
+                "Basketball",
+                "Baseball",
+                "Hockey"
+            ],
+            "as": [
+                "Sport",
+                "Revenue"
+            ]
+        }
+    ],
+    "width": 500,
+    "height": 300,
+    "mark": {
+        "type": "bar",
+        "width": {
+            "band": 0.5
+        }
+    },
+    "title": {
+        "text": "Annual Revenue in Sports",
+        "subtitle": "Millions of Dollars, source: Sports Revenue Report",
+        "subtitleFontStyle": "italic",
+        "subtitleFontSize": 10,
+        "anchor": "start",
+        "color": "black",
+        "offset": 20
+    },
+    "encoding": {
+        "y": {
+            "field": "Year",
+            "type": "ordinal",
+            "axis": {
+                "title": "Year"
+            }
+        },
+        "x": {
+            "field": "Revenue",
+            "type": "quantitative",
+            "axis": {
+                "title": "Millions of Dollars"
+            }
+        },
+        "color": {
+            "field": "Sport",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Football",
+                    "Basketball",
+                    "Baseball",
+                    "Hockey"
+                ],
+                "range": [
+                    "#4e79a7",
+                    "#f28e2c",
+                    "#e15759",
+                    "#76b7b2"
+                ]
+            },
+            "legend": {
+                "orient": "bottom"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Year",
+                "type": "ordinal",
+                "title": "Year"
+            },
+            {
+                "field": "Revenue",
+                "type": "quantitative",
+                "title": "Revenue"
+            },
+            {
+                "field": "Sport",
+                "type": "nominal",
+                "title": "Sport"
+            }
+        ]
+    },
+    "config": {
+        "axis": {
+            "labelAngle": 0
+        },
+        "axisY": {
+            "labelAngle": 0,
+            "labelPadding": 5
+        }
+    }
+}

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var option;
+option = {
+    title: {
+        text: 'Health & Psychology: Various Aspects',
+        left: 'center',
+        top: 10,
+        textStyle: {
+            color: '#333',
+            fontSize: 18
+        }
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01]
+    },
+    yAxis: {
+        type: 'category',
+        data: ['Mental Health', 'Physical Health', 'Nutrition', 'Exercise', 'Sleep', 'Stress Management', 'Social Well-being', 'Preventive Care', 'Chronic Diseases', 'Lifestyle Choices']
+    },
+    series: [
+        {
+            name: 'Score',
+            type: 'bar',
+            barWidth: '40%',
+            itemStyle: {
+                color: '#4CAF50'
+            },
+            data: [75, 85, 70, 90, 80, 65, 77, 88, 60, 73],
+            label: {
+                show: true,
+                position: 'right',
+                color: '#000',
+                formatter: '{c}'
+            }
+        }
+    ]
+};
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

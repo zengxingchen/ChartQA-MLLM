@@ -1,0 +1,225 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "A 100% vertical stacked bar chart showing the distribution of different types of exercises performed over two weeks",
+    "width": 500,
+    "height": 300,
+    "data": {
+        "values": [
+            {
+                "Day": "Monday",
+                "Cardio": 30,
+                "Strength": 20,
+                "Flexibility": 10,
+                "Balance": 5,
+                "Endurance": 15
+            },
+            {
+                "Day": "Tuesday",
+                "Cardio": 25,
+                "Strength": 15,
+                "Flexibility": 12,
+                "Balance": 10,
+                "Endurance": 18
+            },
+            {
+                "Day": "Wednesday",
+                "Cardio": 20,
+                "Strength": 30,
+                "Flexibility": 15,
+                "Balance": 8,
+                "Endurance": 20
+            },
+            {
+                "Day": "Thursday",
+                "Cardio": 28,
+                "Strength": 18,
+                "Flexibility": 13,
+                "Balance": 7,
+                "Endurance": 19
+            },
+            {
+                "Day": "Friday",
+                "Cardio": 26,
+                "Strength": 25,
+                "Flexibility": 14,
+                "Balance": 6,
+                "Endurance": 19
+            },
+            {
+                "Day": "Saturday",
+                "Cardio": 22,
+                "Strength": 20,
+                "Flexibility": 16,
+                "Balance": 10,
+                "Endurance": 18
+            },
+            {
+                "Day": "Sunday",
+                "Cardio": 24,
+                "Strength": 22,
+                "Flexibility": 11,
+                "Balance": 9,
+                "Endurance": 20
+            },
+            {
+                "Day": "Monday",
+                "Cardio": 27,
+                "Strength": 18,
+                "Flexibility": 12,
+                "Balance": 8,
+                "Endurance": 20
+            },
+            {
+                "Day": "Tuesday",
+                "Cardio": 29,
+                "Strength": 20,
+                "Flexibility": 14,
+                "Balance": 5,
+                "Endurance": 18
+            },
+            {
+                "Day": "Wednesday",
+                "Cardio": 23,
+                "Strength": 25,
+                "Flexibility": 13,
+                "Balance": 10,
+                "Endurance": 19
+            },
+            {
+                "Day": "Thursday",
+                "Cardio": 26,
+                "Strength": 22,
+                "Flexibility": 15,
+                "Balance": 6,
+                "Endurance": 21
+            },
+            {
+                "Day": "Friday",
+                "Cardio": 21,
+                "Strength": 28,
+                "Flexibility": 16,
+                "Balance": 7,
+                "Endurance": 18
+            },
+            {
+                "Day": "Saturday",
+                "Cardio": 24,
+                "Strength": 23,
+                "Flexibility": 12,
+                "Balance": 9,
+                "Endurance": 20
+            },
+            {
+                "Day": "Sunday",
+                "Cardio": 25,
+                "Strength": 26,
+                "Flexibility": 14,
+                "Balance": 8,
+                "Endurance": 17
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Cardio",
+                "Strength",
+                "Flexibility",
+                "Balance",
+                "Endurance"
+            ],
+            "as": [
+                "ExerciseType",
+                "Count"
+            ]
+        },
+        {
+            "joinaggregate": [
+                {
+                    "op": "sum",
+                    "field": "Count",
+                    "as": "TotalCount"
+                }
+            ],
+            "groupby": [
+                "Day"
+            ]
+        },
+        {
+            "calculate": "datum.Count / datum.TotalCount",
+            "as": "PercentOfTotal"
+        }
+    ],
+    "mark": {
+        "type": "bar",
+        "width": {
+            "band": 0.7
+        }
+    },
+    "encoding": {
+        "x": {
+            "field": "Day",
+            "type": "ordinal",
+            "title": "Day of the Week"
+        },
+        "y": {
+            "field": "PercentOfTotal",
+            "type": "quantitative",
+            "axis": {
+                "format": "%",
+                "title": "Percentage of Total Exercise"
+            }
+        },
+        "color": {
+            "field": "ExerciseType",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Cardio",
+                    "Strength",
+                    "Flexibility",
+                    "Balance",
+                    "Endurance"
+                ],
+                "range": [
+                    "#FF5733",
+                    "#33FF57",
+                    "#3357FF",
+                    "#FF33A1",
+                    "#33FFF5"
+                ]
+            },
+            "legend": {
+                "title": "Type of Exercise",
+                "orient": "bottom"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "ExerciseType",
+                "type": "nominal",
+                "title": "Type of Exercise"
+            },
+            {
+                "field": "PercentOfTotal",
+                "type": "quantitative",
+                "title": "Percentage",
+                "format": ".1%"
+            }
+        ],
+        "order": {
+            "field": "ExerciseType",
+            "type": "nominal"
+        }
+    },
+    "config": {
+        "axis": {
+            "labelFontSize": 12,
+            "titleFontSize": 14
+        },
+        "legend": {
+            "labelFontSize": 12,
+            "titleFontSize": 14
+        }
+    }
+}

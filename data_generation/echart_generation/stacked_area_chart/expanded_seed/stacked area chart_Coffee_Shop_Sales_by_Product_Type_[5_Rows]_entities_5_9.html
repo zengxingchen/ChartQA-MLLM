@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var option;
+
+// Data
+var rawData = [
+    {'Date': '2023-01-01', 'Espresso': 50, 'Latte': 60, 'Cappuccino': 45, 'Americano': 30, 'Mocha': 25},
+    {'Date': '2023-01-02', 'Espresso': 45, 'Latte': 55, 'Cappuccino': 40, 'Americano': 35, 'Mocha': 20},
+    {'Date': '2023-01-03', 'Espresso': 55, 'Latte': 65, 'Cappuccino': 50, 'Americano': 25, 'Mocha': 30},
+    {'Date': '2023-01-04', 'Espresso': 60, 'Latte': 70, 'Cappuccino': 55, 'Americano': 20, 'Mocha': 35},
+    {'Date': '2023-01-05', 'Espresso': 65, 'Latte': 75, 'Cappuccino': 60, 'Americano': 15, 'Mocha': 40}
+];
+
+// Transform data for ECharts
+var dates = rawData.map(function (item) {
+    return item.Date;
+});
+var series = ['Espresso', 'Latte', 'Cappuccino', 'Americano', 'Mocha'].map(function (type) {
+    var data = rawData.map(function (item) {
+        return item[type];
+    });
+    return {
+        name: type,
+        type: 'line',
+        stack: 'Total',
+        areaStyle: {},
+        emphasis: {
+            focus: 'series'
+        },
+        data: data
+    };
+});
+
+option = {
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['Espresso', 'Latte', 'Cappuccino', 'Americano', 'Mocha']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: dates
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: series,
+    color: ['#c23531', '#2f4554', '#61a0a8', '#d48265', '#91c7ae'],
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    itemStyle: {
+        normal: {
+            lineStyle: {
+                width: 1 // can be used for different line widths
+            }
+        },
+        emphasis: {
+            borderColor: 'rgba(0,196,132,0.7)', // can be used for focus border color
+            borderWidth: 10
+        }
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

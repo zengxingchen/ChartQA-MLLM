@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+
+var option = {
+    title: {
+        text: 'Student Test Scores Over Time',
+        left: 'center',
+        top: 20
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['Score'],
+        right: '10%',
+        top: '10%'
+    },
+    xAxis: {
+        type: 'value',
+        name: 'Day',
+        nameLocation: 'middle',
+        nameGap: 30
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Score',
+        nameLocation: 'middle',
+        nameGap: 50
+    },
+    series: [{
+        name: 'Score',
+        type: 'scatter',
+        itemStyle: {
+            color: '#1f77b4'
+        },
+        data: [
+            [1, 90], [2, 85], [3, 82], [4, 78], [5, 74],
+            [6, 70], [7, 68], [8, 65], [9, 62], [10, 60],
+            [11, 58], [12, 55], [13, 53], [14, 51], [15, 48],
+            [16, 46], [17, 44], [18, 43], [19, 41], [20, 40],
+            [21, 38], [22, 37], [23, 35], [24, 34], [25, 32],
+            [26, 31], [27, 30], [28, 28], [29, 27], [30, 26]
+        ]
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

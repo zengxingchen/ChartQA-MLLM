@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 400});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Government Spending by Sector (Percentage)',
+        subtext: 'Politics & Governance - Yearly Comparison',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Education', 'Healthcare', 'Transportation', 'Energy', 'Research'],
+        orient: 'horizontal',
+        left: 'center',
+        top: 25
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        max: 100
+    },
+    yAxis: {
+        type: 'category',
+        data: ['2018', '2019', '2020', '2021', '2022']
+    },
+    series: [
+        {
+            name: 'Education',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            data: [40, 35, 30, 25, 20],
+            color: '#1f77b4'
+        },
+        {
+            name: 'Healthcare',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            data: [10, 15, 20, 25, 30],
+            color: '#ff7f0e'
+        },
+        {
+            name: 'Transportation',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            data: [20, 25, 25, 25, 25],
+            color: '#2ca02c'
+        },
+        {
+            name: 'Energy',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            data: [20, 15, 15, 15, 15],
+            color: '#d62728'
+        },
+        {
+            name: 'Research',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            data: [10, 10, 10, 10, 10],
+            color: '#9467bd'
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

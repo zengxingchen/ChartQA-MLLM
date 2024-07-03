@@ -1,0 +1,209 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Global Smartphone Market Share by Manufacturer",
+    "width": 500,
+    "height": 300,
+    "title": {
+        "text": "Smartphone Market Share 2010-2022",
+        "subtitle": "by Manufacturer",
+        "fontSize": 16,
+        "subtitleFontSize": 12,
+        "anchor": "start",
+        "offset": 10
+    },
+    "data": {
+        "values": [
+            {
+                "Year": 2010,
+                "Apple": 300,
+                "Samsung": 150,
+                "Huawei": 50,
+                "Xiaomi": 20,
+                "Other": 480
+            },
+            {
+                "Year": 2011,
+                "Apple": 320,
+                "Samsung": 180,
+                "Huawei": 70,
+                "Xiaomi": 30,
+                "Other": 400
+            },
+            {
+                "Year": 2012,
+                "Apple": 340,
+                "Samsung": 210,
+                "Huawei": 90,
+                "Xiaomi": 50,
+                "Other": 310
+            },
+            {
+                "Year": 2013,
+                "Apple": 360,
+                "Samsung": 230,
+                "Huawei": 110,
+                "Xiaomi": 70,
+                "Other": 230
+            },
+            {
+                "Year": 2014,
+                "Apple": 380,
+                "Samsung": 250,
+                "Huawei": 130,
+                "Xiaomi": 90,
+                "Other": 150
+            },
+            {
+                "Year": 2015,
+                "Apple": 400,
+                "Samsung": 300,
+                "Huawei": 160,
+                "Xiaomi": 100,
+                "Other": 40
+            },
+            {
+                "Year": 2016,
+                "Apple": 410,
+                "Samsung": 330,
+                "Huawei": 190,
+                "Xiaomi": 120,
+                "Other": 50
+            },
+            {
+                "Year": 2017,
+                "Apple": 430,
+                "Samsung": 350,
+                "Huawei": 210,
+                "Xiaomi": 140,
+                "Other": 70
+            },
+            {
+                "Year": 2018,
+                "Apple": 440,
+                "Samsung": 370,
+                "Huawei": 250,
+                "Xiaomi": 160,
+                "Other": 80
+            },
+            {
+                "Year": 2019,
+                "Apple": 450,
+                "Samsung": 400,
+                "Huawei": 300,
+                "Xiaomi": 180,
+                "Other": 70
+            },
+            {
+                "Year": 2020,
+                "Apple": 460,
+                "Samsung": 420,
+                "Huawei": 330,
+                "Xiaomi": 200,
+                "Other": 90
+            },
+            {
+                "Year": 2021,
+                "Apple": 470,
+                "Samsung": 440,
+                "Huawei": 350,
+                "Xiaomi": 220,
+                "Other": 100
+            },
+            {
+                "Year": 2022,
+                "Apple": 480,
+                "Samsung": 460,
+                "Huawei": 370,
+                "Xiaomi": 240,
+                "Other": 110
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Apple",
+                "Samsung",
+                "Huawei",
+                "Xiaomi",
+                "Other"
+            ],
+            "as": [
+                "Manufacturer",
+                "Market Share"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "area",
+        "opacity": 0.7
+    },
+    "encoding": {
+        "x": {
+            "field": "Year",
+            "type": "ordinal",
+            "axis": {
+                "title": "Year",
+                "labelAngle": 0
+            }
+        },
+        "y": {
+            "field": "Market Share",
+            "type": "quantitative",
+            "axis": {
+                "title": "Market Share (Millions)"
+            },
+            "stack": "zero"
+        },
+        "color": {
+            "field": "Manufacturer",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Apple",
+                    "Samsung",
+                    "Huawei",
+                    "Xiaomi",
+                    "Other"
+                ],
+                "range": [
+                    "#5DA5DA",
+                    "#FAA43A",
+                    "#60BD68",
+                    "#F17CB0",
+                    "#B2912F"
+                ]
+            },
+            "legend": {
+                "title": "Manufacturer",
+                "orient": "top-left",
+                "offset": 10
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Year",
+                "type": "ordinal",
+                "title": "Year"
+            },
+            {
+                "field": "Manufacturer",
+                "type": "nominal",
+                "title": "Manufacturer"
+            },
+            {
+                "field": "Market Share",
+                "type": "quantitative",
+                "title": "Market Share"
+            }
+        ]
+    },
+    "config": {
+        "view": {
+            "stroke": "transparent"
+        },
+        "axis": {
+            "grid": false
+        }
+    }
+}

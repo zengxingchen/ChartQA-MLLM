@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+// Process your data first into the format that ECharts expects
+var data = [
+    {'Date': '2023-03-01', 'Visitors': 230},
+    {'Date': '2023-03-02', 'Visitors': 185},
+    {'Date': '2023-03-03', 'Visitors': 205},
+    {'Date': '2023-03-04', 'Visitors': 310},
+    {'Date': '2023-03-05', 'Visitors': 280}
+];
+
+// Convert data format for the ECharts
+var dates = data.map(item => item.Date);
+var visitors = data.map(item => item.Visitors);
+
+option = {
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            label: {
+                backgroundColor: '#6a7985'
+            }
+        }
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: dates
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Visitors',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: visitors
+        }
+    ],
+    visualMap: { // Use visualMap to diversify visuals
+        top: 10,
+        right: 10,
+        pieces: [
+            {gte: 150, lte: 200, color: 'rgba(255, 0, 0, 0.5)'},
+            {gte: 201, lte: 250, color: 'rgba(255, 255, 0, 0.5)'},
+            {gte: 251, lte: 300, color: 'rgba(0, 255, 0, 0.5)'},
+            {gte: 301, color: 'rgba(0, 0, 255, 0.5)'}
+        ],
+        outOfRange: {
+            color: 'rgba(0, 0, 0, 0.5)'
+        }
+    },
+    
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

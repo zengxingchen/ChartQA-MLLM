@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, { width: 800, height: 600 });
+
+var option = {
+    title: {
+        text: 'Average Sleep Duration by Age Group',
+        left: 'center',
+        top: 20
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    xAxis: {
+        type: 'value',
+        axisLabel: {
+            formatter: '{value} hours'
+        }
+    },
+    yAxis: {
+        type: 'category',
+        data: ['0-2 years', '3-5 years', '6-12 years', '13-18 years', '19-25 years', '26-64 years', '65+ years'],
+        axisLabel: {
+            interval: 0
+        }
+    },
+    series: [
+        {
+            name: 'Average Sleep Duration',
+            type: 'bar',
+            data: [13, 11, 10, 9, 8, 7, 6.5],
+            itemStyle: {
+                color: '#1f77b4'
+            },
+            label: {
+                show: true,
+                position: 'insideRight',
+                formatter: '{c} hours'
+            },
+            barWidth: '50%'
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var chartData = [
+    {'Month': 'January', '2020': 40, '2021': 35, '2022': 50}, 
+    {'Month': 'February', '2020': 70, '2021': 65, '2022': 80},
+    {'Month': 'March', '2020': 50, '2021': 60, '2022': 45},
+    {'Month': 'April', '2020': 90, '2021': 78, '2022': 100},
+    {'Month': 'May', '2020': 80, '2021': 92, '2022': 85},
+    {'Month': 'June', '2020': 60, '2021': 55, '2022': 75},
+    {'Month': 'July', '2020': 58, '2021': 60, '2022': 62},
+    {'Month': 'August', '2020': 40, '2021': 45, '2022': 50},
+    {'Month': 'September', '2020': 30, '2021': 25, '2022': 35},
+    {'Month': 'October', '2020': 20, '2021': 22, '2022': 18},
+    {'Month': 'November', '2020': 25, '2021': 28, '2022': 30},
+    {'Month': 'December', '2020': 35, '2021': 40, '2022': 38}
+];
+
+// Prepare series data
+var seriesData = [
+  {
+    name: '2020',
+    type: 'line',
+    data: chartData.map(item => item['2020']),
+    lineStyle: { width: 2 },
+    symbol: 'circle'
+  },
+  {
+    name: '2021',
+    type: 'line',
+    data: chartData.map(item => item['2021']),
+    lineStyle: { width: 2, type: 'dashed'},
+    symbol: 'rect'
+  },
+  {
+    name: '2022',
+    type: 'line',
+    data: chartData.map(item => item['2022']),
+    lineStyle: { width: 3, type: 'dotted' },
+    symbol: 'triangle'
+  }
+];
+
+// Configure option
+var option = {
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['2020', '2021', '2022']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: chartData.map(item => item.Month)
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: seriesData,
+    dataZoom: [
+        {
+            type: 'inside',
+            start: 0,
+            end: 100
+        },
+        {
+            start: 0,
+            end: 10
+        }
+    ],
+    annotations: chartData.map((item, index) => {
+        return {
+            type: 'text',
+            position: ['50%', '50%'],
+            content: 'Annotation ' + index,
+            offsetX: 0,
+            offsetY: 0,
+            style: {
+                textAlign: 'center'
+            }
+        };
+    })
+};
+
+// Use the configuration to set up the chart.
+if (option && typeof option === 'object') {
+  myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,194 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Line chart showing monthly air pollution levels by month for different continents.",
+    "title": {
+        "text": "Monthly Air Pollution Levels by Continent",
+        "fontSize": 20,
+        "anchor": "start",
+        "color": "#333333"
+    },
+    "width": 1200,
+    "height": 800,
+    "data": {
+        "values": [
+            {
+                "Continent": "North America",
+                "January": 55,
+                "February": 53,
+                "March": 58,
+                "April": 60,
+                "May": 62,
+                "June": 64,
+                "July": 66,
+                "August": 68,
+                "September": 65,
+                "October": 63,
+                "November": 60,
+                "December": 58
+            },
+            {
+                "Continent": "Europe",
+                "January": 45,
+                "February": 43,
+                "March": 47,
+                "April": 50,
+                "May": 52,
+                "June": 54,
+                "July": 55,
+                "August": 56,
+                "September": 53,
+                "October": 51,
+                "November": 49,
+                "December": 47
+            },
+            {
+                "Continent": "Asia",
+                "January": 70,
+                "February": 68,
+                "March": 72,
+                "April": 75,
+                "May": 77,
+                "June": 80,
+                "July": 82,
+                "August": 84,
+                "September": 81,
+                "October": 78,
+                "November": 75,
+                "December": 72
+            },
+            {
+                "Continent": "South America",
+                "January": 40,
+                "February": 38,
+                "March": 42,
+                "April": 45,
+                "May": 47,
+                "June": 49,
+                "July": 50,
+                "August": 52,
+                "September": 50,
+                "October": 48,
+                "November": 46,
+                "December": 44
+            },
+            {
+                "Continent": "Africa",
+                "January": 30,
+                "February": 28,
+                "March": 32,
+                "April": 35,
+                "May": 37,
+                "June": 39,
+                "July": 40,
+                "August": 42,
+                "September": 40,
+                "October": 38,
+                "November": 36,
+                "December": 34
+            },
+            {
+                "Continent": "Oceania",
+                "January": 35,
+                "February": 33,
+                "March": 37,
+                "April": 40,
+                "May": 42,
+                "June": 44,
+                "July": 45,
+                "August": 47,
+                "September": 45,
+                "October": 43,
+                "November": 41,
+                "December": 39
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "January",
+                "February",
+                "March",
+                "April",
+                "May",
+                "June",
+                "July",
+                "August",
+                "September",
+                "October",
+                "November",
+                "December"
+            ],
+            "as": [
+                "Month",
+                "Air Pollution Level"
+            ]
+        }
+    ],
+    "mark": "line",
+    "encoding": {
+        "x": {
+            "field": "Month",
+            "type": "ordinal",
+            "title": "Month",
+            "axis": {
+                "titleFontSize": 14,
+                "labelAngle": -45
+            }
+        },
+        "y": {
+            "field": "Air Pollution Level",
+            "type": "quantitative",
+            "title": "Air Pollution Level (PM2.5)",
+            "axis": {
+                "titleFontSize": 14
+            }
+        },
+        "color": {
+            "field": "Continent",
+            "type": "nominal",
+            "scale": {
+                "range": [
+                    "#ff0000",
+                    "#00ff00",
+                    "#0000ff",
+                    "#ff00ff",
+                    "#00ffff",
+                    "#ffff00"
+                ]
+            },
+            "legend": {
+                "title": "Continent"
+            }
+        },
+        "strokeDash": {
+            "condition": {
+                "test": "datum['Continent'] == 'South America'",
+                "value": [
+                    5,
+                    5
+                ]
+            },
+            "value": []
+        },
+        "tooltip": [
+            {
+                "field": "Continent",
+                "type": "nominal"
+            },
+            {
+                "field": "Month",
+                "type": "ordinal"
+            },
+            {
+                "field": "Air Pollution Level",
+                "type": "quantitative"
+            }
+        ]
+    },
+    "config": {
+        "axisY": {
+            "minExtent": 30
+        }
+    }
+}

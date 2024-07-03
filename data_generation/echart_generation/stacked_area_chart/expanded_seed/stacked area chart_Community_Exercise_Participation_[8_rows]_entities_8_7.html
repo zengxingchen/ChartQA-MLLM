@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+// Data processing
+var chartData = [{'Week': 'Week 1', 'Yoga Class Attendance': 40, 'Jogging Group Participation': 70, 'Biking Club Attendance': 30, 'Swimming Pool Usage': 50}, {'Week': 'Week 2', 'Yoga Class Attendance': 45, 'Jogging Group Participation': 75, 'Biking Club Attendance': 35, 'Swimming Pool Usage': 55}, {'Week': 'Week 3', 'Yoga Class Attendance': 50, 'Jogging Group Participation': 80, 'Biking Club Attendance': 32, 'Swimming Pool Usage': 60}, {'Week': 'Week 4', 'Yoga Class Attendance': 55, 'Jogging Group Participation': 85, 'Biking Club Attendance': 34, 'Swimming Pool Usage': 65}, {'Week': 'Week 5', 'Yoga Class Attendance': 60, 'Jogging Group Participation': 90, 'Biking Club Attendance': 36, 'Swimming Pool Usage': 70}, {'Week': 'Week 6', 'Yoga Class Attendance': 65, 'Jogging Group Participation': 95, 'Biking Club Attendance': 38, 'Swimming Pool Usage': 72}, {'Week': 'Week 7', 'Yoga Class Attendance': 70, 'Jogging Group Participation': 100, 'Biking Club Attendance': 40, 'Swimming Pool Usage': 75}, {'Week': 'Week 8', 'Yoga Class Attendance': 75, 'Jogging Group Participation': 105, 'Biking Club Attendance': 42, 'Swimming Pool Usage': 80}];
+
+// Generate series data
+function generateSeries(chartData) {
+  var activities = ['Yoga Class Attendance', 'Jogging Group Participation', 'Biking Club Attendance', 'Swimming Pool Usage'];
+  return activities.map(function (activity) {
+    return {
+      name: activity,
+      type: 'line',
+      stack: 'Total',
+      areaStyle: {},
+      emphasis: {
+        focus: 'series'
+      },
+      data: chartData.map(function (item) {
+        return item[activity];
+      })
+    };
+  });
+}
+
+// Configure the chart
+option = {
+  tooltip: {
+    trigger: 'axis',
+    axisPointer: {
+      type: 'cross',
+      label: {
+        backgroundColor: '#6a7985'
+      }
+    }
+  },
+  legend: {
+    data: ['Yoga Class Attendance', 'Jogging Group Participation', 'Biking Club Attendance', 'Swimming Pool Usage']
+  },
+  toolbox: {
+    feature: {
+      saveAsImage: {}
+    }
+  },
+  grid: {
+    left: '3%',
+    right: '4%',
+    bottom: '3%',
+    containLabel: true
+  },
+  xAxis: [
+    {
+      type: 'category',
+      boundaryGap: false,
+      data: chartData.map(function (item) {
+        return item.Week;
+      })
+    }
+  ],
+  yAxis: [
+    {
+      type: 'value'
+    }
+  ],
+  series: generateSeries(chartData)
+};
+
+if (option && typeof option === 'object') {
+  myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

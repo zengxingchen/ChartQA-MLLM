@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 600, height: 400});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Investments in Future Technologies by Sector',
+        left: 'center',
+        textStyle: {
+            fontSize: 16,
+            fontWeight: 'normal'
+        }
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        },
+        formatter: function (params) {
+            let res = params[0].name + '<br/>';
+            params.forEach(function (item) {
+                res += item.marker + " " + item.seriesName + ": " + item.value + "%<br/>";
+            });
+            return res;
+        }
+    },
+    legend: {
+        data: ['Artificial Intelligence', 'Biotechnology', 'Nanotechnology', 'Renewable Energy'],
+        bottom: 0
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '10%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01],
+        max: 100
+    },
+    yAxis: {
+        type: 'category',
+        data: ['2019', '2020', '2021']
+    },
+    series: [
+        {
+            name: 'Artificial Intelligence',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [25.3, 30.6, 35.5],
+            color: '#1f77b4',
+            barWidth: 30
+        },
+        {
+            name: 'Biotechnology',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [15.2, 20.1, 18.6],
+            color: '#2ca02c',
+            barWidth: 30
+        },
+        {
+            name: 'Nanotechnology',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [10.7, 15.4, 12.3],
+            color: '#d62728',
+            barWidth: 30
+        },
+        {
+            name: 'Renewable Energy',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [48.8, 33.9, 33.6],
+            color: '#ff7f0e',
+            barWidth: 30
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

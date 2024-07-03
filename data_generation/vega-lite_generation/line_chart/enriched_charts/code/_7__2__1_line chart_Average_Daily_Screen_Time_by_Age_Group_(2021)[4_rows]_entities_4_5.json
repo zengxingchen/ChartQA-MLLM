@@ -1,0 +1,178 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Line chart showing average monthly music streaming by month for different regions.",
+    "title": {
+        "text": "Average Monthly Music Streaming by Region",
+        "fontSize": 18,
+        "anchor": "start",
+        "color": "#333333"
+    },
+    "width": 800,
+    "height": 500,
+    "data": {
+        "values": [
+            {
+                "Region": "North America",
+                "January": 150,
+                "February": 170,
+                "March": 200,
+                "April": 180,
+                "May": 160,
+                "June": 190,
+                "July": 210,
+                "August": 220,
+                "September": 200,
+                "October": 230,
+                "November": 210,
+                "December": 220
+            },
+            {
+                "Region": "Europe",
+                "January": 100,
+                "February": 110,
+                "March": 130,
+                "April": 120,
+                "May": 140,
+                "June": 150,
+                "July": 160,
+                "August": 170,
+                "September": 160,
+                "October": 180,
+                "November": 170,
+                "December": 160
+            },
+            {
+                "Region": "Asia",
+                "January": 180,
+                "February": 200,
+                "March": 220,
+                "April": 210,
+                "May": 230,
+                "June": 240,
+                "July": 250,
+                "August": 260,
+                "September": 250,
+                "October": 270,
+                "November": 260,
+                "December": 250
+            },
+            {
+                "Region": "Australia",
+                "January": 80,
+                "February": 90,
+                "March": 100,
+                "April": 95,
+                "May": 105,
+                "June": 110,
+                "July": 120,
+                "August": 130,
+                "September": 125,
+                "October": 140,
+                "November": 130,
+                "December": 120
+            },
+            {
+                "Region": "South America",
+                "January": 200,
+                "February": 220,
+                "March": 240,
+                "April": 230,
+                "May": 250,
+                "June": 260,
+                "July": 270,
+                "August": 280,
+                "September": 270,
+                "October": 290,
+                "November": 280,
+                "December": 270
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "January",
+                "February",
+                "March",
+                "April",
+                "May",
+                "June",
+                "July",
+                "August",
+                "September",
+                "October",
+                "November",
+                "December"
+            ],
+            "as": [
+                "Month",
+                "Streaming (millions)"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "line",
+        "point": true
+    },
+    "encoding": {
+        "x": {
+            "field": "Month",
+            "type": "ordinal",
+            "title": "Month",
+            "axis": {
+                "titleFontSize": 14,
+                "labelAngle": -45
+            }
+        },
+        "y": {
+            "field": "Streaming (millions)",
+            "type": "quantitative",
+            "title": "Streaming (millions)",
+            "axis": {
+                "titleFontSize": 14
+            }
+        },
+        "color": {
+            "field": "Region",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "North America",
+                    "Europe",
+                    "Asia",
+                    "Australia",
+                    "South America"
+                ],
+                "range": [
+                    "#1f78b4",
+                    "#33a02c",
+                    "#e31a1c",
+                    "#ff7f00",
+                    "#6a3d9a"
+                ]
+            },
+            "legend": {
+                "title": "Region"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Region",
+                "type": "nominal"
+            },
+            {
+                "field": "Month",
+                "type": "ordinal"
+            },
+            {
+                "field": "Streaming (millions)",
+                "type": "quantitative"
+            }
+        ]
+    },
+    "config": {
+        "axisY": {
+            "minExtent": 30
+        }
+    }
+}

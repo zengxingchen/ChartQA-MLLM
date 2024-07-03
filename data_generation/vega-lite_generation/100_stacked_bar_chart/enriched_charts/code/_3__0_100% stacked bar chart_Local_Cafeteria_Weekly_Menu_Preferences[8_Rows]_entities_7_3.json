@@ -1,0 +1,173 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "A 100% vertical stacked bar chart showing the distribution of transportation methods used over a week",
+    "width": 600,
+    "height": 400,
+    "data": {
+        "values": [
+            {
+                "Day": "Monday",
+                "Car": 35,
+                "Bicycle": 25,
+                "Bus": 20,
+                "Train": 15,
+                "Walking": 5
+            },
+            {
+                "Day": "Tuesday",
+                "Car": 30,
+                "Bicycle": 20,
+                "Bus": 25,
+                "Train": 15,
+                "Walking": 10
+            },
+            {
+                "Day": "Wednesday",
+                "Car": 25,
+                "Bicycle": 30,
+                "Bus": 20,
+                "Train": 15,
+                "Walking": 10
+            },
+            {
+                "Day": "Thursday",
+                "Car": 30,
+                "Bicycle": 25,
+                "Bus": 20,
+                "Train": 15,
+                "Walking": 10
+            },
+            {
+                "Day": "Friday",
+                "Car": 35,
+                "Bicycle": 20,
+                "Bus": 25,
+                "Train": 10,
+                "Walking": 10
+            },
+            {
+                "Day": "Saturday",
+                "Car": 20,
+                "Bicycle": 30,
+                "Bus": 25,
+                "Train": 15,
+                "Walking": 10
+            },
+            {
+                "Day": "Sunday",
+                "Car": 25,
+                "Bicycle": 25,
+                "Bus": 20,
+                "Train": 20,
+                "Walking": 10
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Car",
+                "Bicycle",
+                "Bus",
+                "Train",
+                "Walking"
+            ],
+            "as": [
+                "TransportType",
+                "Count"
+            ]
+        },
+        {
+            "joinaggregate": [
+                {
+                    "op": "sum",
+                    "field": "Count",
+                    "as": "TotalCount"
+                }
+            ],
+            "groupby": [
+                "Day"
+            ]
+        },
+        {
+            "calculate": "datum.Count / datum.TotalCount",
+            "as": "PercentOfTotal"
+        }
+    ],
+    "mark": {
+        "type": "bar",
+        "width": {
+            "band": 0.8
+        }
+    },
+    "encoding": {
+        "x": {
+            "field": "Day",
+            "type": "ordinal",
+            "title": "Day of the Week"
+        },
+        "y": {
+            "field": "PercentOfTotal",
+            "type": "quantitative",
+            "axis": {
+                "format": "%",
+                "title": "Percentage of Total Transportation Methods Used"
+            }
+        },
+        "color": {
+            "field": "TransportType",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Car",
+                    "Bicycle",
+                    "Bus",
+                    "Train",
+                    "Walking"
+                ],
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e",
+                    "#2ca02c",
+                    "#d62728",
+                    "#9467bd"
+                ]
+            },
+            "legend": {
+                "title": "Type of Transportation",
+                "orient": "right"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "TransportType",
+                "type": "nominal",
+                "title": "Type of Transportation"
+            },
+            {
+                "field": "PercentOfTotal",
+                "type": "quantitative",
+                "title": "Percentage",
+                "format": ".1%"
+            }
+        ],
+        "order": {
+            "field": "TransportType",
+            "type": "nominal"
+        }
+    },
+    "config": {
+        "axis": {
+            "labelFontSize": 12,
+            "titleFontSize": 14
+        },
+        "legend": {
+            "labelFontSize": 12,
+            "titleFontSize": 14
+        },
+        "title": {
+            "text": "Distribution of Transportation Methods Used Over a Week",
+            "fontSize": 16
+        }
+    }
+}

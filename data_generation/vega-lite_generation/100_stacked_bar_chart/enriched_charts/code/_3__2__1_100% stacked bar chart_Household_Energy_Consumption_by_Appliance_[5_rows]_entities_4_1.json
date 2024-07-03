@@ -1,0 +1,191 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "A 100% stacked vertical bar chart showing the distribution of favorite fruits over years",
+    "width": 800,
+    "height": 500,
+    "data": {
+        "values": [
+            {
+                "Year": "2015",
+                "Apple": 20,
+                "Banana": 25,
+                "Orange": 15,
+                "Grapes": 20,
+                "Mango": 20
+            },
+            {
+                "Year": "2016",
+                "Apple": 22,
+                "Banana": 23,
+                "Orange": 17,
+                "Grapes": 18,
+                "Mango": 20
+            },
+            {
+                "Year": "2017",
+                "Apple": 25,
+                "Banana": 20,
+                "Orange": 20,
+                "Grapes": 15,
+                "Mango": 20
+            },
+            {
+                "Year": "2018",
+                "Apple": 27,
+                "Banana": 22,
+                "Orange": 18,
+                "Grapes": 13,
+                "Mango": 20
+            },
+            {
+                "Year": "2019",
+                "Apple": 30,
+                "Banana": 20,
+                "Orange": 15,
+                "Grapes": 15,
+                "Mango": 20
+            },
+            {
+                "Year": "2020",
+                "Apple": 33,
+                "Banana": 20,
+                "Orange": 13,
+                "Grapes": 14,
+                "Mango": 20
+            },
+            {
+                "Year": "2021",
+                "Apple": 35,
+                "Banana": 18,
+                "Orange": 12,
+                "Grapes": 15,
+                "Mango": 20
+            },
+            {
+                "Year": "2022",
+                "Apple": 28,
+                "Banana": 22,
+                "Orange": 16,
+                "Grapes": 18,
+                "Mango": 16
+            },
+            {
+                "Year": "2023",
+                "Apple": 32,
+                "Banana": 21,
+                "Orange": 14,
+                "Grapes": 17,
+                "Mango": 16
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Apple",
+                "Banana",
+                "Orange",
+                "Grapes",
+                "Mango"
+            ],
+            "as": [
+                "Fruit",
+                "Popularity"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "bar",
+        "width": {
+            "band": 0.7
+        }
+    },
+    "encoding": {
+        "x": {
+            "field": "Year",
+            "type": "ordinal",
+            "axis": {
+                "title": "Year"
+            }
+        },
+        "y": {
+            "field": "Popularity",
+            "type": "quantitative",
+            "stack": "normalize",
+            "title": "Percentage of Total Popularity",
+            "axis": {
+                "format": ".0%"
+            }
+        },
+        "color": {
+            "field": "Fruit",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Apple",
+                    "Banana",
+                    "Orange",
+                    "Grapes",
+                    "Mango"
+                ],
+                "range": [
+                    "#FF5733",
+                    "#33FF57",
+                    "#3357FF",
+                    "#FF33A1",
+                    "#33FFF5"
+                ]
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Year",
+                "type": "ordinal",
+                "title": "Year"
+            },
+            {
+                "field": "Fruit",
+                "type": "nominal",
+                "title": "Fruit"
+            },
+            {
+                "field": "Popularity",
+                "type": "quantitative",
+                "title": "Popularity"
+            }
+        ]
+    },
+    "title": {
+        "text": "Distribution of Favorite Fruits Over Years",
+        "anchor": "start",
+        "offset": 5,
+        "dx": 100
+    },
+    "config": {
+        "axisY": {
+            "minExtent": 30
+        },
+        "scale": {
+            "bandPaddingInner": 0.2
+        }
+    },
+    "layer": [
+        {
+            "mark": "bar"
+        },
+        {
+            "mark": {
+                "type": "text",
+                "align": "left",
+                "baseline": "middle",
+                "dx": 3
+            },
+            "encoding": {
+                "text": {
+                    "field": "Popularity",
+                    "type": "quantitative"
+                }
+            }
+        }
+    ]
+}

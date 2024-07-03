@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 400});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Monthly Weather Temperature Trend',
+        left: 'center',
+        top: 20
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['Weather Temperature'],
+        top: 50
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: [
+            '2023-03-01','2023-03-02','2023-03-03','2023-03-04','2023-03-05','2023-03-06','2023-03-07',
+            '2023-03-08','2023-03-09','2023-03-10','2023-03-11','2023-03-12','2023-03-13','2023-03-14',
+            '2023-03-15','2023-03-16','2023-03-17','2023-03-18','2023-03-19','2023-03-20','2023-03-21',
+            '2023-03-22','2023-03-23','2023-03-24','2023-03-25','2023-03-26','2023-03-27','2023-03-28',
+            '2023-03-29','2023-03-30','2023-03-31'
+        ]
+    },
+    yAxis: {
+        type: 'value',
+        axisLabel: {
+            formatter: '{value} °C'
+        }
+    },
+    series: [
+        {
+            name: 'Weather Temperature',
+            type: 'line',
+            label: {
+                show: true,
+                position: 'top'
+            },
+            itemStyle: {
+                color: '#5470C6' // Specific blue color code
+            },
+            data: [
+                14, 15, 13, 17, 16, 16, 12, 18, 13, 19, 21, 20, 22, 24, 19,
+                25, 23, 26, 27, 30, 28, 29, 31, 33, 34, 32, 35, 36, 38, 37, 39
+            ]
+        }
+    ],
+    color: ['#c23531', '#2f4554', '#61a0a8', '#d48265', '#91c7ae', '#749f83', '#ca8622', '#bda29a', '#6e7074', '#546570', '#c4ccd3']
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

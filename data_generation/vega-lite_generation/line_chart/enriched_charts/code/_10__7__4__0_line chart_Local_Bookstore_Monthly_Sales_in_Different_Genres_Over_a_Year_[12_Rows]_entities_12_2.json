@@ -1,0 +1,183 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Monthly Visitor Metrics by Tourist Attraction",
+    "data": {
+        "values": [
+            {
+                "Month": "January",
+                "Museum": 5000,
+                "Park": 6000,
+                "Beach": 4500,
+                "Historic Site": 3000,
+                "Zoo": 3500
+            },
+            {
+                "Month": "February",
+                "Museum": 5500,
+                "Park": 6400,
+                "Beach": 4800,
+                "Historic Site": 3200,
+                "Zoo": 3800
+            },
+            {
+                "Month": "March",
+                "Museum": 6000,
+                "Park": 7000,
+                "Beach": 5200,
+                "Historic Site": 3500,
+                "Zoo": 4000
+            },
+            {
+                "Month": "April",
+                "Museum": 6500,
+                "Park": 7500,
+                "Beach": 5600,
+                "Historic Site": 3800,
+                "Zoo": 4200
+            },
+            {
+                "Month": "May",
+                "Museum": 7000,
+                "Park": 8000,
+                "Beach": 6000,
+                "Historic Site": 4000,
+                "Zoo": 4500
+            },
+            {
+                "Month": "June",
+                "Museum": 7500,
+                "Park": 8500,
+                "Beach": 6400,
+                "Historic Site": 4200,
+                "Zoo": 4800
+            },
+            {
+                "Month": "July",
+                "Museum": 8000,
+                "Park": 9000,
+                "Beach": 6800,
+                "Historic Site": 4500,
+                "Zoo": 5000
+            },
+            {
+                "Month": "August",
+                "Museum": 8500,
+                "Park": 9500,
+                "Beach": 7200,
+                "Historic Site": 4800,
+                "Zoo": 5200
+            },
+            {
+                "Month": "September",
+                "Museum": 9000,
+                "Park": 10000,
+                "Beach": 7600,
+                "Historic Site": 5000,
+                "Zoo": 5500
+            },
+            {
+                "Month": "October",
+                "Museum": 9500,
+                "Park": 10500,
+                "Beach": 8000,
+                "Historic Site": 5200,
+                "Zoo": 5800
+            },
+            {
+                "Month": "November",
+                "Museum": 10000,
+                "Park": 11000,
+                "Beach": 8400,
+                "Historic Site": 5500,
+                "Zoo": 6000
+            },
+            {
+                "Month": "December",
+                "Museum": 10500,
+                "Park": 11500,
+                "Beach": 8800,
+                "Historic Site": 5800,
+                "Zoo": 6300
+            },
+            {
+                "Month": "January",
+                "Museum": 11000,
+                "Park": 12000,
+                "Beach": 9200,
+                "Historic Site": 6000,
+                "Zoo": 6600
+            }
+        ]
+    },
+    "width": 900,
+    "height": 450,
+    "transform": [
+        {
+            "fold": [
+                "Museum",
+                "Park",
+                "Beach",
+                "Historic Site",
+                "Zoo"
+            ],
+            "as": [
+                "Attraction",
+                "Visitor Count"
+            ]
+        }
+    ],
+    "mark": "line",
+    "encoding": {
+        "x": {
+            "field": "Month",
+            "type": "ordinal",
+            "title": "Month",
+            "axis": {
+                "labelAngle": 0
+            }
+        },
+        "y": {
+            "field": "Visitor Count",
+            "type": "quantitative",
+            "title": "Visitor Count",
+            "scale": {
+                "reverse": true
+            }
+        },
+        "color": {
+            "field": "Attraction",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Museum",
+                    "Park",
+                    "Beach",
+                    "Historic Site",
+                    "Zoo"
+                ],
+                "range": [
+                    "#FF5733",
+                    "#33FF57",
+                    "#3357FF",
+                    "#FF33A1",
+                    "#33FFF5"
+                ]
+            },
+            "title": "Tourist Attraction"
+        },
+        "tooltip": [
+            {
+                "field": "Month",
+                "type": "nominal"
+            },
+            {
+                "field": "Attraction",
+                "type": "nominal"
+            },
+            {
+                "field": "Visitor Count",
+                "type": "quantitative"
+            }
+        ]
+    }
+}

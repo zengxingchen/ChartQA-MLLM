@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 500});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Online Learning Platform Trends',
+        left: 'center',
+        top: 20
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['Codecademy', 'Udacity', 'Coursera', 'Khan Academy'],
+        bottom: 10
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '10%',
+        containLabel: true
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ['2021-01', '2021-02', '2021-03', '2021-04', '2021-05', '2021-06', '2021-07', '2021-08', '2021-09', '2021-10', '2021-11', '2021-12', '2022-01', '2022-02', '2022-03', '2022-04', '2022-05', '2022-06', '2022-07', '2022-08', '2022-09', '2022-10', '2022-11', '2022-12']
+    },
+    yAxis: {
+        type: 'value',
+        axisLabel: {
+            formatter: '{value} Users'
+        }
+    },
+    series: [
+        {
+            name: 'Codecademy',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [12000, 12350, 12900, 13500, 13800, 14100, 14500, 14800, 15200, 15500, 15700, 16000, 16200, 16500, 17000, 17500, 18000, 18500, 19000, 19500, 20000, 20500, 21000, 21500],
+            color: '#FFA07A'
+        },
+        {
+            name: 'Udacity',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [9500, 9700, 9900, 10000, 10200, 10350, 10600, 10800, 11000, 11300, 11500, 11700, 11900, 12000, 12300, 12500, 12700, 13000, 13200, 13400, 13700, 13900, 14000, 14200],
+            color: '#20B2AA'
+        },
+        {
+            name: 'Coursera',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [22000, 22500, 23000, 24000, 24500, 25000, 25500, 26000, 26500, 27000, 28000, 29000, 30000, 31000, 32000, 33000, 34000, 35000, 36000, 37000, 38000, 39000, 40000, 41000],
+            color: '#3CB371'
+        },
+        {
+            name: 'Khan Academy',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [18000, 18400, 19000, 19500, 19800, 20500, 21000, 21200, 21500, 21800, 22000, 23000, 23500, 24000, 24500, 25000, 25500, 26000, 26500, 27000, 27500, 28000, 29000, 30000],
+            color: '#1E90FF'
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

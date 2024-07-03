@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 800, // chart width modified
+    height: 600 // chart height modified
+});
+var app = {};
+
+var option;
+option = {
+    title: {
+        text: 'Carbon Emissions by Sector',
+        left: 'center',
+        top: 20 // moved title away from legend
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow' // Default tooltip trigger
+        }
+    },
+    legend: {
+        top: '5%',
+        left: 'right' // moved legend away from title
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        data: ['2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Industrial',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35, // width of bars
+            data: [30, 32, 33, 34, 35, 36, 37, 38, 39, 39, 40],
+            color: '#FFD700' // changing color to a specific code
+        },
+        {
+            name: 'Transportation',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35, // width of bars
+            data: [25, 24, 23, 22, 21, 20, 20, 19, 18, 17, 16],
+            color: '#008000' // changing color to a specific code
+        },
+        {
+            name: 'Residential',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35, // width of bars
+            data: [15, 14, 15, 15, 16, 16, 15, 15, 16, 16, 17],
+            color: '#6A5ACD' // changing color to a specific code
+        },
+        {
+            name: 'Commercial',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35, // width of bars
+            data: [10, 11, 12, 13, 13, 13, 14, 15, 15, 16, 16],
+            color: '#20B2AA' // changing color to a specific code
+        },
+        {
+            name: 'Agriculture',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35, // width of bars
+            data: [20, 19, 17, 16, 15, 15, 14, 13, 12, 12, 11],
+            color: '#FF6347' // changing color to a specific code
+        }
+    ]
+};
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

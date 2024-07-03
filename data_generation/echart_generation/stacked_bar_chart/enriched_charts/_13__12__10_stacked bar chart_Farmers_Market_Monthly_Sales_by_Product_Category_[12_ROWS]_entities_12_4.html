@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+var option;
+
+option = {
+    title: {
+        text: 'Nutritional Content of Various Foods',
+        left: 'center',
+        top: '20'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Calories', 'Protein (g)', 'Fat (g)', 'Carbs (g)'],
+        top: '10%',
+        left: 'center'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        data: ['Apple', 'Banana', 'Orange', 'Broccoli', 'Chicken Breast', 'Salmon', 'Egg', 'Almonds', 'Milk', 'Cheese'],
+        axisLabel: {
+            rotate: 45
+        }
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Calories',
+            type: 'bar',
+            stack: 'Total',
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            itemStyle: {
+                color: '#FF5733'
+            },
+            data: [52, 96, 43, 55, 165, 208, 155, 579, 42, 402]
+        },
+        {
+            name: 'Protein (g)',
+            type: 'bar',
+            stack: 'Total',
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            itemStyle: {
+                color: '#33FF57'
+            },
+            data: [0.3, 1.3, 0.9, 3.7, 31, 20, 13, 21.2, 3.4, 25]
+        },
+        {
+            name: 'Fat (g)',
+            type: 'bar',
+            stack: 'Total',
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            itemStyle: {
+                color: '#3357FF'
+            },
+            data: [0.2, 0.3, 0.1, 0.6, 3.6, 13, 11, 49.9, 1, 33]
+        },
+        {
+            name: 'Carbs (g)',
+            type: 'bar',
+            stack: 'Total',
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            itemStyle: {
+                color: '#FF33A1'
+            },
+            data: [14, 27, 8.3, 11.2, 0, 0, 1.1, 21.6, 5, 1.3]
+        }
+    ],
+    textStyle: {
+        fontFamily: 'Arial',
+        fontSize: 12
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

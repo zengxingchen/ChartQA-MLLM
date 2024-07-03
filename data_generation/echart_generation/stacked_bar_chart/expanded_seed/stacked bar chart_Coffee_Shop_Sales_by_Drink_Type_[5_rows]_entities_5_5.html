@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+// Provided data
+var data = [
+    {'Date': '2023-01-01', 'Espresso': 150, 'Latte': 200, 'Cappuccino': 120, 'Americano': 180},
+    {'Date': '2023-02-01', 'Espresso': 165, 'Latte': 190, 'Cappuccino': 130, 'Americano': 175},
+    {'Date': '2023-03-01', 'Espresso': 170, 'Latte': 205, 'Cappuccino': 140, 'Americano': 160},
+    {'Date': '2023-04-01', 'Espresso': 180, 'Latte': 215, 'Cappuccino': 145, 'Americano': 170},
+    {'Date': '2023-05-01', 'Espresso': 190, 'Latte': 230, 'Cappuccino': 150, 'Americano': 165}
+];
+
+// Extracting Dates for the xAxis
+var dates = data.map(function (item) {
+    return item.Date;
+});
+
+// Extracting and Summing Up individual coffee types
+var coffeeTypes = ['Espresso', 'Latte', 'Cappuccino', 'Americano'];
+var seriesData = coffeeTypes.map(function (type) {
+    var values = data.map(function (item) {
+        return item[type];
+    });
+    return {
+        name: type,
+        type: 'bar',
+        stack: 'total',
+        emphasis: {
+            focus: 'series'
+        },
+        data: values
+    };
+});
+
+// Setting Up the option for stacked bar chart
+option = {
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: coffeeTypes
+    },
+    toolbox: {
+        show: true,
+        feature: {
+            saveAsImage: { show: true }
+        }
+    },
+    xAxis: {
+        type: 'category',
+        axisTick: { show: false },
+        data: dates
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: seriesData
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

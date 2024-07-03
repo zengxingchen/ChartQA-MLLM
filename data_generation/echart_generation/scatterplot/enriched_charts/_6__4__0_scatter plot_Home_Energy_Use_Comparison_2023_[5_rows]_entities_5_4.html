@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+var option = {
+    title: {
+        text: 'Art & Design Value Analysis',
+        left: 'center',
+        top: '10%'
+    },
+    tooltip: {},
+    legend: {
+        data: ['Art', 'Design'],
+        top: 'bottom',
+    },
+    xAxis: {
+        name: 'Value1',
+        type: 'value'
+    },
+    yAxis: {
+        name: 'Value2',
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Art',
+            type: 'scatter',
+            itemStyle: {
+                color: '#FF6347'
+            },
+            data: [
+                [35, 60],
+                [40, 80],
+                [50, 65],
+                [55, 90],
+                [65, 70],
+                [70, 85],
+                [80, 75],
+                [85, 95],
+                [95, 85],
+                [100, 90]
+            ]
+        },
+        {
+            name: 'Design',
+            type: 'scatter',
+            itemStyle: {
+                color: '#4682B4'
+            },
+            data: [
+                [25, 50],
+                [30, 75],
+                [45, 55],
+                [60, 70],
+                [75, 80],
+                [85, 65],
+                [95, 75],
+                [100, 85],
+                [110, 95],
+                [120, 90]
+            ]
+        }
+    ]
+};
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

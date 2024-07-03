@@ -1,0 +1,221 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "A 100% Stacked Horizontal Bar Chart showing the distribution of daily fitness activities.",
+    "data": {
+        "values": [
+            {
+                "Person": "Alice",
+                "Running": 30,
+                "Yoga": 20,
+                "Cycling": 40,
+                "Swimming": 25,
+                "Gym": 35
+            },
+            {
+                "Person": "Bob",
+                "Running": 40,
+                "Yoga": 25,
+                "Cycling": 30,
+                "Swimming": 20,
+                "Gym": 30
+            },
+            {
+                "Person": "Charlie",
+                "Running": 20,
+                "Yoga": 30,
+                "Cycling": 25,
+                "Swimming": 35,
+                "Gym": 25
+            },
+            {
+                "Person": "David",
+                "Running": 25,
+                "Yoga": 35,
+                "Cycling": 20,
+                "Swimming": 30,
+                "Gym": 20
+            },
+            {
+                "Person": "Eva",
+                "Running": 35,
+                "Yoga": 20,
+                "Cycling": 35,
+                "Swimming": 25,
+                "Gym": 25
+            },
+            {
+                "Person": "Frank",
+                "Running": 30,
+                "Yoga": 25,
+                "Cycling": 30,
+                "Swimming": 35,
+                "Gym": 30
+            },
+            {
+                "Person": "Grace",
+                "Running": 25,
+                "Yoga": 30,
+                "Cycling": 20,
+                "Swimming": 30,
+                "Gym": 35
+            },
+            {
+                "Person": "Hank",
+                "Running": 30,
+                "Yoga": 20,
+                "Cycling": 30,
+                "Swimming": 20,
+                "Gym": 25
+            },
+            {
+                "Person": "Ivy",
+                "Running": 35,
+                "Yoga": 25,
+                "Cycling": 25,
+                "Swimming": 25,
+                "Gym": 30
+            },
+            {
+                "Person": "Jack",
+                "Running": 20,
+                "Yoga": 30,
+                "Cycling": 35,
+                "Swimming": 30,
+                "Gym": 35
+            },
+            {
+                "Person": "Kate",
+                "Running": 25,
+                "Yoga": 35,
+                "Cycling": 25,
+                "Swimming": 25,
+                "Gym": 20
+            },
+            {
+                "Person": "Liam",
+                "Running": 40,
+                "Yoga": 15,
+                "Cycling": 25,
+                "Swimming": 30,
+                "Gym": 35
+            },
+            {
+                "Person": "Mia",
+                "Running": 30,
+                "Yoga": 30,
+                "Cycling": 20,
+                "Swimming": 25,
+                "Gym": 40
+            },
+            {
+                "Person": "Noah",
+                "Running": 20,
+                "Yoga": 25,
+                "Cycling": 35,
+                "Swimming": 20,
+                "Gym": 30
+            },
+            {
+                "Person": "Olivia",
+                "Running": 35,
+                "Yoga": 20,
+                "Cycling": 30,
+                "Swimming": 35,
+                "Gym": 25
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Running",
+                "Yoga",
+                "Cycling",
+                "Swimming",
+                "Gym"
+            ],
+            "as": [
+                "Activity",
+                "Hours"
+            ]
+        }
+    ],
+    "padding": {
+        "left": 60,
+        "top": 40,
+        "right": 20,
+        "bottom": 30
+    },
+    "width": 700,
+    "height": 400,
+    "mark": {
+        "type": "bar",
+        "width": {
+            "band": 0.6
+        }
+    },
+    "encoding": {
+        "y": {
+            "field": "Person",
+            "type": "nominal",
+            "axis": {
+                "title": "Person"
+            },
+            "sort": null
+        },
+        "x": {
+            "field": "Hours",
+            "type": "quantitative",
+            "stack": "normalize",
+            "axis": {
+                "title": "Percentage of Total Hours",
+                "format": ".0%"
+            },
+            "sort": null
+        },
+        "color": {
+            "field": "Activity",
+            "type": "nominal",
+            "scale": {
+                "range": [
+                    "#FF0000",
+                    "#00FF00",
+                    "#0000FF",
+                    "#FFFF00",
+                    "#FF00FF"
+                ]
+            },
+            "legend": {
+                "title": "Activity Type"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Person",
+                "type": "nominal"
+            },
+            {
+                "field": "Activity",
+                "type": "nominal",
+                "title": "Activity"
+            },
+            {
+                "field": "Hours",
+                "type": "quantitative",
+                "title": "Hours Spent"
+            }
+        ]
+    },
+    "title": {
+        "text": "Distribution of Daily Fitness Activities Among Individuals",
+        "fontSize": 18,
+        "anchor": "start",
+        "offset": 10
+    },
+    "config": {
+        "bar": {
+            "cornerRadiusTopLeft": 3,
+            "cornerRadiusTopRight": 3
+        }
+    }
+}

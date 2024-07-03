@@ -1,0 +1,169 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "A stacked bar chart showing the monthly expenses on various education categories.",
+    "data": {
+        "values": [
+            {
+                "Month": "January",
+                "Books": 300,
+                "Online Courses": 200,
+                "Tuition": 500,
+                "Stationery": 100
+            },
+            {
+                "Month": "February",
+                "Books": 280,
+                "Online Courses": 220,
+                "Tuition": 510,
+                "Stationery": 90
+            },
+            {
+                "Month": "March",
+                "Books": 260,
+                "Online Courses": 230,
+                "Tuition": 550,
+                "Stationery": 110
+            },
+            {
+                "Month": "April",
+                "Books": 310,
+                "Online Courses": 215,
+                "Tuition": 530,
+                "Stationery": 95
+            },
+            {
+                "Month": "May",
+                "Books": 330,
+                "Online Courses": 225,
+                "Tuition": 580,
+                "Stationery": 120
+            },
+            {
+                "Month": "June",
+                "Books": 340,
+                "Online Courses": 210,
+                "Tuition": 600,
+                "Stationery": 125
+            },
+            {
+                "Month": "July",
+                "Books": 320,
+                "Online Courses": 240,
+                "Tuition": 610,
+                "Stationery": 130
+            },
+            {
+                "Month": "August",
+                "Books": 350,
+                "Online Courses": 220,
+                "Tuition": 630,
+                "Stationery": 115
+            },
+            {
+                "Month": "September",
+                "Books": 360,
+                "Online Courses": 230,
+                "Tuition": 595,
+                "Stationery": 110
+            },
+            {
+                "Month": "October",
+                "Books": 370,
+                "Online Courses": 210,
+                "Tuition": 560,
+                "Stationery": 105
+            },
+            {
+                "Month": "November",
+                "Books": 380,
+                "Online Courses": 245,
+                "Tuition": 570,
+                "Stationery": 100
+            },
+            {
+                "Month": "December",
+                "Books": 400,
+                "Online Courses": 235,
+                "Tuition": 580,
+                "Stationery": 120
+            }
+        ]
+    },
+    "title": {
+        "text": "Monthly Education Expenses",
+        "subtitle": "Expenses data of Books, Online Courses, Tuition, and Stationery",
+        "subtitleFontStyle": "italic",
+        "subtitleFontSize": 10,
+        "anchor": "start",
+        "color": "#333",
+        "offset": 20
+    },
+    "width": 600,
+    "height": 300,
+    "transform": [
+        {
+            "fold": [
+                "Books",
+                "Online Courses",
+                "Tuition",
+                "Stationery"
+            ],
+            "as": [
+                "Category",
+                "Expenses"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "bar",
+        "width": 15
+    },
+    "encoding": {
+        "y": {
+            "field": "Month",
+            "type": "ordinal",
+            "axis": {
+                "title": "Month"
+            }
+        },
+        "x": {
+            "field": "Expenses",
+            "type": "quantitative",
+            "axis": {
+                "title": "Total Expenses"
+            }
+        },
+        "color": {
+            "field": "Category",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Books",
+                    "Online Courses",
+                    "Tuition",
+                    "Stationery"
+                ],
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e",
+                    "#2ca02c",
+                    "#d62728"
+                ]
+            },
+            "legend": {
+                "title": "Categories",
+                "orient": "top",
+                "offset": 10
+            }
+        }
+    },
+    "config": {
+        "background": "#fafbfb",
+        "view": {
+            "stroke": "transparent"
+        },
+        "axisY": {
+            "bandPosition": 0.5
+        }
+    }
+}

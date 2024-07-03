@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {renderer: 'canvas', width: 600, height: 400});
+
+var option;
+option = {
+    title: {
+        text: 'Investment Distribution Across Sectors (2016-2020)',
+        left: 'center',
+        top: 20
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Technology', 'Healthcare', 'Energy', 'Finance', 'Consumer Goods'],
+        bottom: 0
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '10%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01],
+    },
+    yAxis: {
+        type: 'category',
+        data: ['2016', '2017', '2018', '2019', '2020']
+    },
+    series: [
+        {
+            name: 'Technology',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            data: [20, 25, 25, 30, 35],
+            color: '#3366CC'
+        },
+        {
+            name: 'Healthcare',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            data: [10, 15, 10, 15, 20],
+            color: '#DC3912'
+        },
+        {
+            name: 'Energy',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            data: [30, 25, 20, 20, 15],
+            color: '#FF9900'
+        },
+        {
+            name: 'Finance',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            data: [25, 20, 30, 20, 20],
+            color: '#109618'
+        },
+        {
+            name: 'Consumer Goods',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            data: [15, 15, 15, 15, 10],
+            color: '#990099'
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

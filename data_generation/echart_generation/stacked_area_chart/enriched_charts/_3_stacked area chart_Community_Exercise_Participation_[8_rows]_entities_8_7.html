@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 400});
+var option;
+
+option = {
+  title: {
+    text: 'Health & Psychology Trends (2011-2020)',
+    left: 'center',
+    top: '20'
+  },
+  tooltip: {
+    trigger: 'axis',
+    axisPointer: {
+      type: 'cross',
+      label: {
+        backgroundColor: '#6a7985'
+      }
+    }
+  },
+  legend: {
+    data: ['Physical Health', 'Mental Health', 'Diet & Nutrition'],
+    top: '50'
+  },
+  toolbox: {
+    feature: {
+      saveAsImage: {}
+    }
+  },
+  grid: {
+    left: '3%',
+    right: '4%',
+    bottom: '3%',
+    containLabel: true
+  },
+  xAxis: [
+    {
+      type: 'category',
+      boundaryGap: false,
+      data: ['2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020']
+    }
+  ],
+  yAxis: [
+    {
+      type: 'value'
+    }
+  ],
+  series: [
+    {
+      name: 'Physical Health',
+      type: 'line',
+      stack: 'total',
+      areaStyle: {},
+      emphasis: {
+        focus: 'series'
+      },
+      data: [75, 78, 80, 82, 85, 87, 89, 90, 92, 94],
+      color: '#FF7F50'
+    },
+    {
+      name: 'Mental Health',
+      type: 'line',
+      stack: 'total',
+      areaStyle: {},
+      emphasis: {
+        focus: 'series'
+      },
+      data: [65, 67, 70, 72, 75, 77, 80, 82, 85, 87],
+      color: '#87CEFA'
+    },
+    {
+      name: 'Diet & Nutrition',
+      type: 'line',
+      stack: 'total',
+      areaStyle: {},
+      emphasis: {
+        focus: 'series'
+      },
+      data: [70, 72, 74, 76, 79, 81, 84, 85, 88, 90],
+      color: '#32CD32'
+    }
+  ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

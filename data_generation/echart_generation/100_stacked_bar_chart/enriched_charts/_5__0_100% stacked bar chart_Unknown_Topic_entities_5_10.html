@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+  width: 800, // change width of the chart reasonably
+  height: 600 // change height of the chart reasonably
+});
+var app = {};
+
+var option;
+
+option = {
+  title: {
+    text: 'Vehicle Sales Distribution by Type', // Topic chosen: 'Economics & Finance'
+    left: 'center'
+  },
+  tooltip: {
+    trigger: 'axis',
+    axisPointer: {
+      // Use axis to trigger tooltip
+      type: 'shadow' // 'shadow' as default; can also be 'line' or 'shadow'
+    }
+  },
+  legend: {
+    orient: 'vertical',
+    left: 'right'
+  },
+  grid: {
+    left: '3%',
+    right: '4%',
+    bottom: '3%',
+    containLabel: true
+  },
+  xAxis: {
+    type: 'value'
+  },
+  yAxis: {
+    type: 'category',
+    data: ['2019', '2020', '2021', '2022', '2023']
+  },
+  series: [
+    {
+      name: 'Electric Vehicle Sales',
+      type: 'bar',
+      stack: 'total',
+      label: {
+        show: true
+      },
+      emphasis: {
+        focus: 'series'
+      },
+      data: [10, 15, 20, 30, 40],
+      itemStyle: {
+        color: '#33A1C9' // A specific blue color
+      },
+      barWidth: 35, // changed bar width
+    },
+    {
+      name: 'Hybrid Vehicle Sales',
+      type: 'bar',
+      stack: 'total',
+      label: {
+        show: true
+      },
+      data: [15, 15, 20, 25, 20],
+      itemStyle: {
+        color: '#65A620' // A specific green color
+      },
+      barWidth: 35, // changed bar width
+    },
+    {
+      name: 'Gasoline Vehicle Sales',
+      type: 'bar',
+      stack: 'total',
+      label: {
+        show: true
+      },
+      data: [60, 55, 45, 30, 25],
+      itemStyle: {
+        color: '#D9822B' // A specific orange color
+      },
+      barWidth: 35, // changed bar width
+    },
+    {
+      name: 'Diesel Vehicle Sales',
+      type: 'bar',
+      stack: 'total',
+      label: {
+        show: true
+      },
+      data: [15, 15, 15, 15, 15],
+      itemStyle: {
+        color: '#A9A9A9' // A specific grey color
+      },
+      barWidth: 35, // changed bar width
+    }
+  ]
+};
+
+if (option && typeof option === 'object') {
+  myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

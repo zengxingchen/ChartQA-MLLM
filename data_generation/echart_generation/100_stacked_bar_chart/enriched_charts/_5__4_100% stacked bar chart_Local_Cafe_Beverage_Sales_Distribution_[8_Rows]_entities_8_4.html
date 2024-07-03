@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false
+});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Future Technologies & Society Impact by Year',
+        left: 'center',
+        top: 'top'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Future Technologies', 'Art & Design', 'Science & Nature', 'Health & Psychology'],
+        bottom: 0
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '10%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        max: 100,
+        axisLabel: {
+            show: true,
+            formatter: '{value} %'
+        }
+    },
+    yAxis: {
+        type: 'category',
+        data: ['2021', '2022', '2023', '2024', '2025']
+    },
+    series: [
+        {
+            name: 'Future Technologies',
+            type: 'bar',
+            stack: 'total',
+            barWidth: '45%',
+            data: [20, 25, 30, 35, 45],
+            color: '#4672A8'
+        },
+        {
+            name: 'Art & Design',
+            type: 'bar',
+            stack: 'total',
+            barWidth: '45%',
+            data: [30, 20, 35, 10, 5],
+            color: '#4C9F50'
+        },
+        {
+            name: 'Science & Nature',
+            type: 'bar',
+            stack: 'total',
+            barWidth: '45%',
+            data: [25, 30, 20, 40, 25],
+            color: '#EFA24B'
+        },
+        {
+            name: 'Health & Psychology',
+            type: 'bar',
+            stack: 'total',
+            barWidth: '45%',
+            data: [25, 25, 15, 15, 25],
+            color: '#AF4B64'
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,146 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Distribution of the number of books sold by genre",
+    "title": {
+        "text": "Books Sold by Genre",
+        "fontSize": 20,
+        "align": "center",
+        "dy": -20
+    },
+    "data": {
+        "values": [
+            {
+                "Genre": "Fiction",
+                "Units Sold": 320
+            },
+            {
+                "Genre": "Non-Fiction",
+                "Units Sold": 150
+            },
+            {
+                "Genre": "Science Fiction",
+                "Units Sold": 210
+            },
+            {
+                "Genre": "Fantasy",
+                "Units Sold": 190
+            },
+            {
+                "Genre": "Biography",
+                "Units Sold": 140
+            },
+            {
+                "Genre": "Self-Help",
+                "Units Sold": 90
+            },
+            {
+                "Genre": "Mystery",
+                "Units Sold": 85
+            },
+            {
+                "Genre": "Romance",
+                "Units Sold": 110
+            },
+            {
+                "Genre": "Historical Fiction",
+                "Units Sold": 95
+            },
+            {
+                "Genre": "Children's",
+                "Units Sold": 75
+            },
+            {
+                "Genre": "Horror",
+                "Units Sold": 50
+            },
+            {
+                "Genre": "Poetry",
+                "Units Sold": 45
+            }
+        ]
+    },
+    "width": 500,
+    "height": 500,
+    "mark": {
+        "type": "arc",
+        "tooltip": true
+    },
+    "encoding": {
+        "theta": {
+            "field": "Units Sold",
+            "type": "quantitative"
+        },
+        "color": {
+            "field": "Genre",
+            "type": "nominal",
+            "scale": {
+                "range": [
+                    "#ff0000",
+                    "#00ff00",
+                    "#0000ff",
+                    "#ffff00",
+                    "#ff00ff",
+                    "#00ffff",
+                    "#800000",
+                    "#808000",
+                    "#008080",
+                    "#800080",
+                    "#ff8080",
+                    "#80ff80"
+                ]
+            },
+            "legend": {
+                "orient": "right",
+                "title": "Genre"
+            }
+        }
+    },
+    "layer": [
+        {
+            "mark": {
+                "type": "arc",
+                "tooltip": true
+            }
+        },
+        {
+            "transform": [
+                {
+                    "window": [
+                        {
+                            "op": "rank",
+                            "as": "rank"
+                        }
+                    ]
+                }
+            ],
+            "mark": {
+                "type": "text",
+                "radiusOffset": 10
+            },
+            "encoding": {
+                "text": {
+                    "field": "Units Sold",
+                    "type": "quantitative"
+                },
+                "radius": {
+                    "field": "Units Sold",
+                    "scale": {
+                        "type": "sqrt",
+                        "zero": false,
+                        "rangeMin": 20,
+                        "rangeMax": 100
+                    }
+                },
+                "theta": {
+                    "field": "Units Sold"
+                },
+                "color": {
+                    "value": "black"
+                }
+            }
+        }
+    ],
+    "view": {
+        "stroke": null
+    }
+}

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Online Course Enrollment Trends',
+        left: 'center',
+        top: 20,
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['Web Development', 'Data Science', 'AI & Robotics', 'Graphic Design'],
+        top: 50,
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ['2016', '2017', '2018', '2019', '2020', '2021', '2022']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Web Development',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [1200, 1700, 2100, 2500, 3300, 3900, 4200]
+        },
+        {
+            name: 'Data Science',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [800, 1200, 1700, 2300, 3100, 3500, 3700]
+        },
+        {
+            name: 'AI & Robotics',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [300, 400, 600, 1100, 1900, 2400, 2900]
+        },
+        {
+            name: 'Graphic Design',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [600, 900, 1200, 1500, 2200, 2600, 2900]
+        }
+    ],
+    color: ['#004D40', '#D81B60', '#FFC107', '#1E88E5'],
+    markPoint: {
+        data: [
+            {type: 'max', name: 'Maximum', valueIndex: 5},
+            {type: 'min', name: 'Minimum', valueIndex: 5}
+        ],
+        symbolSize: 80
+    },
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

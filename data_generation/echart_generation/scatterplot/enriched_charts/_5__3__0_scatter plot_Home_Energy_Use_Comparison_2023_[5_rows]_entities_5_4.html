@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Correlation between Age and Blood Pressure',
+        left: 'center',
+        top: '10%'
+    },
+    tooltip: {
+        trigger: 'axis',
+        showDelay: 0,
+        axisPointer: {
+            type: 'cross',
+            lineStyle: {
+                type: 'dashed',
+                width: 1
+            }
+        },
+        zlevel: 1
+    },
+    legend: {
+        data: ['Age vs Blood Pressure'],
+        left: '10%',
+        top: 'top'
+    },
+    xAxis: {
+        name: 'Age',
+        type: 'value',
+        axisLabel: {
+            formatter: '{value} years'
+        }
+    },
+    yAxis: {
+        name: 'Blood Pressure',
+        type: 'value',
+        axisLabel: {
+            formatter: '{value} mmHg'
+        }
+    },
+    series: [
+        {
+            name: 'Age vs Blood Pressure',
+            type: 'scatter',
+            data: [
+                [1, 1.5],
+                [2, 2.2],
+                [3, 2.8],
+                [4, 3.5],
+                [5, 3.9],
+                [6, 4.4],
+                [7, 5.1],
+                [8, 5.6],
+                [9, 6.2],
+                [10, 6.7],
+                [11, 7.4],
+                [12, 7.8],
+                [13, 8.3],
+                [14, 8.9],
+                [15, 9.5],
+                [16, 10.1],
+                [17, 10.6],
+                [18, 11.2],
+                [19, 11.8],
+                [20, 12.3]
+            ],
+            itemStyle: {
+                color: '#FF5733'
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

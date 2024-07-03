@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+  renderer: 'canvas',
+  width: 800,
+  height: 500
+});
+var app = {};
+
+var option;
+
+option = {
+  title: {
+    text: 'Education Level Distribution by Region',
+    left: 'center',
+    top: 20
+  },
+  tooltip: {
+    trigger: 'axis',
+    axisPointer: {
+      type: 'shadow'
+    },
+    formatter: function (params) {
+      var tar = params[1];
+      return tar.name + '<br/>' + tar.seriesName + ' : ' + tar.value + '%';
+    }
+  },
+  legend: {
+    data: ['Primary', 'Secondary', 'Higher Education', 'Others'],
+    top: 50
+  },
+  grid: {
+    left: '3%',
+    right: '4%',
+    bottom: '3%',
+    containLabel: true
+  },
+  xAxis: {
+    type: 'value',
+    max: 100
+  },
+  yAxis: {
+    type: 'category',
+    splitLine: { show: false },
+    data: ['2019', '2020', '2021']
+  },
+  series: [
+    {
+      name: 'Placeholder',
+      type: 'bar',
+      stack: 'Total',
+      itemStyle: {
+        borderColor: 'transparent',
+        color: 'transparent'
+      },
+      emphasis: {
+        itemStyle: {
+          borderColor: 'transparent',
+          color: 'transparent'
+        }
+      },
+      data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    },
+    {
+      name: 'Primary',
+      type: 'bar',
+      stack: 'Total',
+      label: {
+        show: true,
+        position: 'insideRight',
+        formatter: '{c}%'
+      },
+      color: '#FFD700',
+      barWidth : 30,
+      data: [25, 20, 27, 22, 26, 19, 28, 23, 27, 21, 26, 24]
+    },
+    {
+      name: 'Secondary',
+      type: 'bar',
+      stack: 'Total',
+      label: {
+        show: true,
+        position: 'insideRight',
+        formatter: '{c}%'
+      },
+      color: '#C0C0C0',
+      data: [25, 30, 23, 28, 24, 31, 22, 27, 23, 29, 24, 26]
+    },
+    {
+      name: 'Higher Education',
+      type: 'bar',
+      stack: 'Total',
+      label: {
+        show: true,
+        position: 'insideRight',
+        formatter: '{c}%'
+      },
+      color: '#228B22',
+      data: [40, 40, 35, 35, 41, 42, 34, 36, 42, 43, 33, 37]
+    },
+    {
+      name: 'Others',
+      type: 'bar',
+      stack: 'Total',
+      label: {
+        show: true,
+        position: 'insideRight',
+        formatter: '{c}%'
+      },
+      color: '#ADFF2F',
+      data: [10, 10, 15, 15, 9, 8, 16, 14, 8, 7, 17, 13]
+    }
+  ]
+};
+
+if (option && typeof option === 'object') {
+  myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

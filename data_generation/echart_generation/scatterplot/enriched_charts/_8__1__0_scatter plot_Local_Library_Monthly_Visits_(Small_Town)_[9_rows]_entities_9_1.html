@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+var option;
+
+option = {
+    title: {
+        text: 'Decline in Population Over Time',
+        left: 'center',
+        top: '10%'
+    },
+    tooltip: {
+        trigger: 'item'
+    },
+    legend: {
+        data: ['Population'],
+        left: 'right',
+        top: '10%'
+    },
+    xAxis: {
+        type: 'category',
+        name: 'Time',
+        splitLine: {
+            show: false
+        }
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Population'
+    },
+    series: [{
+        name: 'Population',
+        type: 'scatter',
+        itemStyle: {
+            color: '#FF5733'
+        },
+        data: [
+            [1, 100], [2, 98], [3, 95], [4, 90], [5, 87], [6, 85], [7, 82], [8, 80], [9, 79], [10, 78],
+            [11, 77], [12, 75], [13, 73], [14, 70], [15, 68], [16, 66], [17, 64], [18, 63], [19, 61], [20, 60],
+            [21, 59], [22, 58], [23, 56], [24, 55], [25, 54], [26, 52], [27, 50], [28, 49], [29, 47], [30, 46],
+            [31, 45], [32, 44], [33, 43], [34, 42], [35, 41], [36, 40], [37, 38], [38, 37], [39, 35], [40, 34],
+            [41, 33], [42, 32], [43, 30], [44, 29], [45, 27], [46, 26], [47, 25], [48, 24], [49, 23], [50, 22]
+        ]
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

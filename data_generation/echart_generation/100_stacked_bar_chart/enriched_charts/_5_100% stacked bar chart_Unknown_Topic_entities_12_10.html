@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 800, // Reasonable chart width
+    height: 400 // Reasonable chart height
+});
+var app = {};
+
+var option;
+
+option = {
+    color: ['#34A853', '#FBBC05', '#EA4335', '#4285F4', '#6B757D'], // Specific color codes
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Energy', 'Industrial Processes', 'Agricultural By-Products', 'Waste', 'Other'],
+        top: '5%' // Position legend to avoid overlap with the title
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01]
+    },
+    yAxis: {
+        type: 'category',
+        data: ['2015', '2016', '2017', '2018', '2019', '2020']
+    },
+    series: [
+        {
+            name: 'Energy',
+            type: 'bar',
+            stack: 'total',
+            barWidth : 35, // Reasonable bar width
+            data: [60, 58, 57, 59, 61, 62]
+        },
+        {
+            name: 'Industrial Processes',
+            type: 'bar',
+            stack: 'total',
+            barWidth : 35, // Reasonable bar width
+            data: [10, 11, 12, 10, 9, 8]
+        },
+        {
+            name: 'Agricultural By-Products',
+            type: 'bar',
+            stack: 'total',
+            barWidth : 35, // Reasonable bar width
+            data: [15, 16, 15, 14, 13, 12]
+        },
+        {
+            name: 'Waste',
+            type: 'bar',
+            stack: 'total',
+            barWidth : 35, // Reasonable bar width
+            data: [10, 10, 11, 12, 12, 13]
+        },
+        {
+            name: 'Other',
+            type: 'bar',
+            stack: 'total',
+            barWidth : 35, // Reasonable bar width
+            data: [5, 5, 5, 5, 5, 5]
+        }
+    ],
+    title: {
+        text: 'Greenhouse Gas Emissions by Sector', // The headline of the chart
+        subtext: 'Environment & Climate Change', // The sub headline of the chart
+        left: 'center', // Position title in the center
+        top: 'top' // Position title at the top
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

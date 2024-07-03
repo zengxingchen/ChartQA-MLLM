@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 800,
+    height: 600
+});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Yearly International Tourist Arrivals by Region',
+        left: 'center',
+        top: 20
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            label: {
+                backgroundColor: '#6a7985'
+            }
+        }
+    },
+    legend: {
+        data: ['Asia & Pacific', 'Europe', 'Americas', 'Africa', 'Middle East'],
+        top: 50
+    },
+    toolbox: {
+        feature: {
+            dataZoom: {
+                yAxisIndex: 'none'
+            },
+            restore: {},
+            saveAsImage: {}
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: [
+        {
+            type: 'category',
+            boundaryGap: false,
+            data: ['2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023']
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value'
+        }
+    ],
+    series: [
+        {
+            name: 'Asia & Pacific',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {normal: {}},
+            emphasis: {focus: 'series'},
+            data: [165, 180, 200, 210, 225, 230, 240, 255, 260, 270, 200, 190, 210, 230],
+            color: '#ff7f00',
+        },
+        {
+            name: 'Europe',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {normal: {}},
+            emphasis: {focus: 'series'},
+            data: [200, 220, 240, 260, 280, 290, 295, 310, 320, 330, 250, 240, 260, 280],
+            color: '#9467bd',
+        },
+        {
+            name: 'Americas',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {normal: {}},
+            emphasis: {focus: 'series'},
+            data: [150, 155, 160, 150, 140, 135, 145, 150, 155, 160, 120, 110, 130, 140],
+            color: '#2ca02c',
+        },
+        {
+            name: 'Africa',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {normal: {}},
+            emphasis: {focus: 'series'},
+            data: [50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 80, 75, 85, 90],
+            color: '#d62728',
+        },
+        {
+            name: 'Middle East',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {normal: {}},
+            emphasis: {focus: 'series'},
+            data: [20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 30, 28, 32, 34],
+            color: '#1f77b4',
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

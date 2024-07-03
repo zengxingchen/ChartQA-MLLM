@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+var option;
+
+option = {
+    title: {
+        text: 'Distribution of Exercise Frequency per Week',
+        left: 'center',
+        top: '10%'
+    },
+    xAxis: {
+        type: 'category',
+        data: ['3-10', '11-18', '19-26', '27-34', '35-42', '43-50', '51-58', '59-66', '67-74', '75-82', '83-90', '91-98'],
+        axisLabel: {
+            formatter: '{value} times'
+        }
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Frequency',
+        nameLocation: 'middle',
+        nameGap: 30
+    },
+    series: [{
+        data: [3, 5, 7, 10, 9, 6, 4, 5, 8, 7, 6, 3],
+        type: 'bar',
+        itemStyle: {
+            color: '#5470C6'
+        },
+        barWidth: '50%',
+        label: {
+            show: true,
+            position: 'top',
+            formatter: '{c}'
+        }
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

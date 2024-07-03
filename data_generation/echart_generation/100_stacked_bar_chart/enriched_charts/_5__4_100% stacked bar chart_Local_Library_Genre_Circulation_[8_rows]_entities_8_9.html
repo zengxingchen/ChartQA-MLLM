@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+var app = {};
+
+var option;
+
+option = {
+    color: [
+        '#FF4136', // Transportation
+        '#0074D9', // Industry
+        '#2ECC40', // Residential & Commercial
+        '#FF851B', // Agriculture
+        '#7FDBFF'  // Energy Production
+    ],
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Transportation', 'Industry', 'Residential & Commercial', 'Agriculture', 'Energy Production'],
+        orient: 'horizontal',
+        top: 30
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01],
+    },
+    yAxis: {
+        type: 'category',
+        data: ['1990', '1995', '2000', '2005', '2010', '2015', '2020']
+    },
+    series: [
+        {
+            name: 'Transportation',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [14, 14, 15, 16, 18, 19, 20],
+            barWidth: 35
+        },
+        {
+            name: 'Industry',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [33, 34, 33, 32, 30, 29, 27],
+            barWidth: 35
+        },
+        {
+            name: 'Residential & Commercial',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [12, 13, 12, 13, 14, 15, 16],
+            barWidth: 35
+        },
+        {
+            name: 'Agriculture',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [22, 21, 23, 22, 20, 19, 18],
+            barWidth: 35
+        },
+        {
+            name: 'Energy Production',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [19, 18, 17, 17, 18, 18, 19],
+            barWidth: 35
+        }
+    ],
+    title: {
+        text: 'Global Sector-wise Carbon Emission Trends (1990-2020)',
+        left: 'center',
+        top: 'top'
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

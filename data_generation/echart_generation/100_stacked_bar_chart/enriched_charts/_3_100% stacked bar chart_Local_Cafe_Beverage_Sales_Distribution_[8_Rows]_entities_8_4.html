@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {renderer: 'canvas', width: 800, height: 600});
+var app = {};
+var option;
+
+option = {
+    color: ['#1F78B4', '#A6CEE3', '#B2DF8A', '#33A02C', '#FB9A99', '#E31A1C'],
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Future Technologies', 'Art & Design', 'Science & Nature', 'Health & Psychology', 'Culture & Society', 'Economics & Finance'],
+        top: '5%'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: false
+    },
+    yAxis: {
+        type: 'category',
+        data: ['2020', '2021', '2022', '2023', '2024'],
+        axisLabel: {
+            interval: 0
+        }
+    },
+    series: [
+        {
+            name: 'Future Technologies',
+            type: 'bar',
+            stack: 'total',
+            barWidth: '35%',
+            data: [15, 18, 20, 25, 30]
+        },
+        {
+            name: 'Art & Design',
+            type: 'bar',
+            stack: 'total',
+            barWidth: '35%',
+            data: [20, 15, 18, 13, 10]
+        },
+        {
+            name: 'Science & Nature',
+            type: 'bar',
+            stack: 'total',
+            barWidth: '35%',
+            data: [25, 22, 20, 18, 15]
+        },
+        {
+            name: 'Health & Psychology',
+            type: 'bar',
+            stack: 'total',
+            barWidth: '35%',
+            data: [15, 18, 15, 18, 20]
+        },
+        {
+            name: 'Culture & Society',
+            type: 'bar',
+            stack: 'total',
+            barWidth: '35%',
+            data: [10, 12, 12, 13, 12]
+        },
+        {
+            name: 'Economics & Finance',
+            type: 'bar',
+            stack: 'total',
+            barWidth: '35%',
+            data: [15, 15, 15, 13, 13]
+        }
+    ],
+    title: {
+        text: 'Interests in Different Fields Over Time (2020-2024)',
+        subtext: 'Percent Stacked Bar Chart',
+        left: 'center',
+        top: '1%',
+        textStyle: {
+            fontWeight: 'normal'
+        }
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

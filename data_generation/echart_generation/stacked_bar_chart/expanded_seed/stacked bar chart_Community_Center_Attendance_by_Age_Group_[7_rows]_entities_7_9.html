@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+app.title = 'Stacked Bar Chart';
+
+const weeks = ['2023-W14', '2023-W15', '2023-W16', '2023-W17', '2023-W18', '2023-W19', '2023-W20'];
+const childrenData = [320, 330, 340, 350, 360, 370, 380];
+const teensData = [210, 200, 215, 220, 210, 205, 220];
+const adultsData = [450, 460, 470, 480, 490, 500, 510];
+const seniorsData = [220, 230, 240, 250, 260, 255, 260];
+
+option = {
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Children (0-14)', 'Teens (15-18)', 'Adults (19-64)', 'Seniors (65+)']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value'
+    },
+    yAxis: {
+        type: 'category',
+        data: weeks
+    },
+    series: [
+        {
+            name: 'Children (0-14)',
+            type: 'bar',
+            stack: 'total',
+            emphasis: {
+                focus: 'series'
+            },
+            data: childrenData
+        },
+        {
+            name: 'Teens (15-18)',
+            type: 'bar',
+            stack: 'total',
+            emphasis: {
+                focus: 'series'
+            },
+            data: teensData
+        },
+        {
+            name: 'Adults (19-64)',
+            type: 'bar',
+            stack: 'total',
+            emphasis: {
+                focus: 'series'
+            },
+            data: adultsData
+        },
+        {
+            name: 'Seniors (65+)',
+            type: 'bar',
+            stack: 'total',
+            emphasis: {
+                focus: 'series'
+            },
+            data: seniorsData
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

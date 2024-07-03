@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var rawData = [
+  {'Month': 'January', 'Visitors': 1350},
+  {'Month': 'February', 'Visitors': 1180},
+  {'Month': 'March', 'Visitors': 1250},
+  {'Month': 'April', 'Visitors': 1450},
+  {'Month': 'May', 'Visitors': 1550},
+  {'Month': 'June', 'Visitors': 1600},
+  {'Month': 'July', 'Visitors': 1655},
+  {'Month': 'August', 'Visitors': 1705},
+  {'Month': 'September', 'Visitors': 1650},
+  {'Month': 'October', 'Visitors': 1420},
+  {'Month': 'November', 'Visitors': 1310},
+  {'Month': 'December', 'Visitors': 1395},
+  {'Month': 'January', 'Visitors': 1400},
+  {'Month': 'February', 'Visitors': 1200},
+  {'Month': 'March', 'Visitors': 1325}
+];
+
+// Define bins for the histogram
+var bins = {
+  '1100-1300': 0,
+  '1301-1500': 0,
+  '1501-1700': 0
+};
+
+// Categorize the data into bins
+rawData.forEach(function (data) {
+  if (data.Visitors >= 1100 && data.Visitors <= 1300) {
+    bins['1100-1300']++;
+  } else if (data.Visitors >= 1301 && data.Visitors <= 1500) {
+    bins['1301-1500']++;
+  } else if (data.Visitors >= 1501 && data.Visitors <= 1700) {
+    bins['1501-1700']++;
+  }
+});
+
+// Extract the binned data into arrays for ECharts
+var xData = Object.keys(bins);
+var yData = Object.values(bins);
+
+option = {
+  title: {
+    text: 'Visitor Histogram',
+    subtext: 'Binned by visitor count',
+    left: 'center'
+  },
+  tooltip: {
+    trigger: 'axis',
+    axisPointer: {
+      type: 'shadow'
+    }
+  },
+  xAxis: {
+    type: 'category',
+    data: xData
+  },
+  yAxis: {
+    type: 'value',
+    name: 'Frequency',
+    minInterval: 1
+  },
+  series: [
+    {
+      name: 'Visitors',
+      type: 'bar',
+      barWidth: '60%',
+      data: yData
+    }
+  ]
+};
+
+if (option && typeof option === 'object') {
+  myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

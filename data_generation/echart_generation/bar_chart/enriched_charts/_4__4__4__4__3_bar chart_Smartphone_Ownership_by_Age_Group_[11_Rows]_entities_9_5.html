@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+var option = {
+    title: {
+        text: 'Daily Physical Activity Levels',
+        left: 'center',
+        top: '20'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Minutes per Day'],
+        top: 'bottom'
+    },
+    xAxis: {
+        type: 'value',
+        name: 'Minutes',
+        nameLocation: 'middle',
+        nameTextStyle: {
+            padding: [10, 0, 0, 0]
+        }
+    },
+    yAxis: {
+        type: 'category',
+        data: ['Walking', 'Running', 'Cycling', 'Swimming', 'Yoga', 'Strength Training', 'Dancing', 'Hiking', 'Jumping Rope', 'Playing Sports', 'Meditation'],
+        name: 'Activity',
+        nameLocation: 'middle',
+        nameTextStyle: {
+            padding: [0, 0, 10, 0]
+        }
+    },
+    series: [
+        {
+            name: 'Minutes per Day',
+            type: 'bar',
+            data: [40, 30, 45, 25, 20, 35, 50, 60, 15, 55, 10],
+            itemStyle: {
+                color: function(params) {
+                    var colorList = ['#FF5733', '#33FF57', '#3357FF', '#FF33A8', '#FF8F33', '#33FFF1', '#C133FF', '#33FFBD', '#FF3333', '#A833FF', '#FFDD33'];
+                    return colorList[params.dataIndex];
+                }
+            },
+            barWidth: 30,
+            label: {
+                show: true,
+                position: 'right',
+                formatter: '{c} min'
+            }
+        }
+    ]
+};
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

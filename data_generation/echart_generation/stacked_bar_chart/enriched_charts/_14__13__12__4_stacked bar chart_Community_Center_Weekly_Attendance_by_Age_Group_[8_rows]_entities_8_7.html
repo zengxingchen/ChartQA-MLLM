@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var option;
+
+option = {
+    title: {
+        text: 'Nutrient Composition of Various Fruits',
+        left: 'center',
+        top: '20px'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        top: '50px',
+        data: ['Carbohydrates (g)', 'Proteins (g)', 'Fats (g)']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        data: ['Apple', 'Banana', 'Orange', 'Strawberry', 'Grapes', 'Pineapple', 'Mango', 'Blueberry', 'Watermelon', 'Papaya', 'Kiwi', 'Cherry', 'Peach', 'Pomegranate', 'Pear']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Carbohydrates (g)',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            itemStyle: {
+                color: '#FF6347'
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [14, 23, 12, 8, 17, 13, 15, 14, 7, 11, 15, 16, 10, 18, 15]
+        },
+        {
+            name: 'Proteins (g)',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            itemStyle: {
+                color: '#4682B4'
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [0.3, 1.3, 1.2, 0.8, 0.6, 0.5, 0.8, 0.7, 0.6, 0.5, 1.1, 1.1, 0.9, 1.7, 0.4]
+        },
+        {
+            name: 'Fats (g)',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            itemStyle: {
+                color: '#FFD700'
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [0.2, 0.3, 0.2, 0.4, 0.2, 0.1, 0.4, 0.3, 0.2, 0.1, 0.5, 0.2, 0.1, 0.3, 0.1]
+        }
+    ],
+    width: 800,
+    height: 600
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

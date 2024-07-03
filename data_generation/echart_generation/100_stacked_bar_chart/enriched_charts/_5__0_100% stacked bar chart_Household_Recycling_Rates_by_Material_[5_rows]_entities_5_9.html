@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 800, // Chart width
+    height: 400 // Chart height
+});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Preferred Learning Methods by Age Group',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        bottom: 0
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '10%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01]
+    },
+    yAxis: {
+        type: 'category',
+        data: ['Under 18', '18-30', '31-50', 'Over 50']
+    },
+    series: [
+        {
+            name: 'Online Courses',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                formatter: '{b}'
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [20, 30, 25, 15],
+            barWidth: 35, // Bar width
+            itemStyle: {
+                color: '#5A9BD5'
+            }
+        },
+        {
+            name: 'Books',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            data: [25, 20, 30, 35],
+            barWidth: 35,
+            itemStyle: {
+                color: '#ED7D31'
+            }
+        },
+        {
+            name: 'Lectures',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            data: [30, 25, 20, 20],
+            barWidth: 35,
+            itemStyle: {
+                color: '#A5A5A5'
+            }
+        },
+        {
+            name: 'Workshops',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            data: [15, 15, 15, 20],
+            barWidth: 35,
+            itemStyle: {
+                color: '#FFC000'
+            }
+        },
+        {
+            name: 'P2P Learning',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            data: [10, 10, 10, 10],
+            barWidth: 35,
+            itemStyle: {
+                color: '#70AD47'
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

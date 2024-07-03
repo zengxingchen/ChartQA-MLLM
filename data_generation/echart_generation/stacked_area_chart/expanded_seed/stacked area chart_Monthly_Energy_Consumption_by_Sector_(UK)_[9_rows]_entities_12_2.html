@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+// Parse data
+var data = [{'Month': 'January', 'Residential': 400, 'Commercial': 300, 'Industrial': 500, 'Transportation': 250},
+            {'Month': 'February', 'Residential': 380, 'Commercial': 280, 'Industrial': 480, 'Transportation': 230},
+            {'Month': 'March', 'Residential': 350, 'Commercial': 260, 'Industrial': 450, 'Transportation': 200},
+            {'Month': 'April', 'Residential': 300, 'Commercial': 220, 'Industrial': 420, 'Transportation': 180},
+            {'Month': 'May', 'Residential': 280, 'Commercial': 210, 'Industrial': 400, 'Transportation': 170},
+            {'Month': 'June', 'Residential': 270, 'Commercial': 200, 'Industrial': 390, 'Transportation': 160},
+            {'Month': 'July', 'Residential': 260, 'Commercial': 190, 'Industrial': 380, 'Transportation': 150},
+            {'Month': 'August', 'Residential': 270, 'Commercial': 200, 'Industrial': 390, 'Transportation': 160},
+            {'Month': 'September', 'Residential': 280, 'Commercial': 210, 'Industrial': 400, 'Transportation': 170},
+            {'Month': 'October', 'Residential': 300, 'Commercial': 230, 'Industrial': 420, 'Transportation': 180},
+            {'Month': 'November', 'Residential': 350, 'Commercial': 260, 'Industrial': 450, 'Transportation': 200},
+            {'Month': 'December', 'Residential': 380, 'Commercial': 300, 'Industrial': 480, 'Transportation': 230}];
+
+var months = data.map(function(item) {
+    return item.Month;
+});
+
+var seriesData = {
+    'Residential': [],
+    'Commercial': [],
+    'Industrial': [],
+    'Transportation': []
+};
+
+data.forEach(function(item) {
+    seriesData.Residential.push(item.Residential);
+    seriesData.Commercial.push(item.Commercial);
+    seriesData.Industrial.push(item.Industrial);
+    seriesData.Transportation.push(item.Transportation);
+});
+
+var colors = ['#5470C6', '#91CC75', '#EE6666', '#73C0DE'];
+
+option = {
+    color: colors,
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            label: {
+                backgroundColor: '#6a7985'
+            }
+        }
+    },
+    legend: {
+        data: ['Residential', 'Commercial', 'Industrial', 'Transportation']
+    },
+    toolbox: {
+        show: true,
+        feature: {
+            dataView: {show: true, readOnly: false},
+            magicType: {show: true, type: ['line', 'bar', 'stack', 'tiled']},
+            saveAsImage: {show: true}
+        }
+    },
+    xAxis: [
+        {
+            type: 'category',
+            boundaryGap: false,
+            data: months
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value'
+        }
+    ],
+    series: [
+        {
+            name: 'Residential',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: seriesData.Residential
+        },
+        {
+            name: 'Commercial',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: seriesData.Commercial
+        },
+        {
+            name: 'Industrial',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: seriesData.Industrial
+        },
+        {
+            name: 'Transportation',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: seriesData.Transportation
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

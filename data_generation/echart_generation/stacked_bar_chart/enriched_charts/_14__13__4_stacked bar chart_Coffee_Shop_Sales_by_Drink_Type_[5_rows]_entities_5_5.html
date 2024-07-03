@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 800,
+    height: 600
+});
+var app = {};
+var option;
+
+option = {
+    title: {
+        text: 'Trends in Art & Design',
+        left: 'center',
+        top: 10,
+        textStyle: {
+            color: '#333',
+            fontSize: 20
+        }
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Value1', 'Value2', 'Value3', 'Value4', 'Value5'],
+        top: 50
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        data: ['Design', 'Technology', 'Innovation', 'Creativity', 'Art'],
+        axisLabel: {
+            interval: 0
+        }
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Value1',
+            type: 'bar',
+            stack: 'total',
+            barWidth: '40%',
+            itemStyle: {
+                color: '#5470C6'
+            },
+            label: {
+                show: true,
+                position: 'insideTop'
+            },
+            data: [150, 200, 210, 180, 260]
+        },
+        {
+            name: 'Value2',
+            type: 'bar',
+            stack: 'total',
+            barWidth: '40%',
+            itemStyle: {
+                color: '#91CC75'
+            },
+            label: {
+                show: true,
+                position: 'insideTop'
+            },
+            data: [230, 182, 240, 212, 190]
+        },
+        {
+            name: 'Value3',
+            type: 'bar',
+            stack: 'total',
+            barWidth: '40%',
+            itemStyle: {
+                color: '#FAC858'
+            },
+            label: {
+                show: true,
+                position: 'insideTop'
+            },
+            data: [224, 191, 259, 240, 210]
+        },
+        {
+            name: 'Value4',
+            type: 'bar',
+            stack: 'total',
+            barWidth: '40%',
+            itemStyle: {
+                color: '#EE6666'
+            },
+            label: {
+                show: true,
+                position: 'insideTop'
+            },
+            data: [218, 234, 180, 230, 290]
+        },
+        {
+            name: 'Value5',
+            type: 'bar',
+            stack: 'total',
+            barWidth: '40%',
+            itemStyle: {
+                color: '#73C0DE'
+            },
+            label: {
+                show: true,
+                position: 'insideTop'
+            },
+            data: [135, 290, 220, 200, 300]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,206 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Horizontal stacked bar chart showing time spent on various hobbies across different months.",
+    "data": {
+        "values": [
+            {
+                "Month": "January",
+                "Reading": 10,
+                "Gaming": 8,
+                "Exercising": 6,
+                "Cooking": 5,
+                "Painting": 3,
+                "Traveling": 4
+            },
+            {
+                "Month": "February",
+                "Reading": 11,
+                "Gaming": 7,
+                "Exercising": 7,
+                "Cooking": 6,
+                "Painting": 4,
+                "Traveling": 3
+            },
+            {
+                "Month": "March",
+                "Reading": 12,
+                "Gaming": 6,
+                "Exercising": 8,
+                "Cooking": 5,
+                "Painting": 5,
+                "Traveling": 4
+            },
+            {
+                "Month": "April",
+                "Reading": 10,
+                "Gaming": 7,
+                "Exercising": 6,
+                "Cooking": 7,
+                "Painting": 6,
+                "Traveling": 5
+            },
+            {
+                "Month": "May",
+                "Reading": 11,
+                "Gaming": 9,
+                "Exercising": 7,
+                "Cooking": 8,
+                "Painting": 4,
+                "Traveling": 6
+            },
+            {
+                "Month": "June",
+                "Reading": 12,
+                "Gaming": 10,
+                "Exercising": 8,
+                "Cooking": 6,
+                "Painting": 3,
+                "Traveling": 5
+            },
+            {
+                "Month": "July",
+                "Reading": 14,
+                "Gaming": 8,
+                "Exercising": 9,
+                "Cooking": 7,
+                "Painting": 5,
+                "Traveling": 4
+            },
+            {
+                "Month": "August",
+                "Reading": 13,
+                "Gaming": 6,
+                "Exercising": 7,
+                "Cooking": 5,
+                "Painting": 4,
+                "Traveling": 3
+            },
+            {
+                "Month": "September",
+                "Reading": 15,
+                "Gaming": 7,
+                "Exercising": 8,
+                "Cooking": 6,
+                "Painting": 5,
+                "Traveling": 4
+            },
+            {
+                "Month": "October",
+                "Reading": 14,
+                "Gaming": 9,
+                "Exercising": 9,
+                "Cooking": 7,
+                "Painting": 3,
+                "Traveling": 5
+            },
+            {
+                "Month": "November",
+                "Reading": 13,
+                "Gaming": 8,
+                "Exercising": 7,
+                "Cooking": 8,
+                "Painting": 4,
+                "Traveling": 6
+            },
+            {
+                "Month": "December",
+                "Reading": 12,
+                "Gaming": 7,
+                "Exercising": 8,
+                "Cooking": 6,
+                "Painting": 5,
+                "Traveling": 5
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Reading",
+                "Gaming",
+                "Exercising",
+                "Cooking",
+                "Painting",
+                "Traveling"
+            ],
+            "as": [
+                "Hobby",
+                "Hours"
+            ]
+        }
+    ],
+    "width": 500,
+    "height": 600,
+    "mark": {
+        "type": "bar",
+        "width": {
+            "band": 0.7
+        }
+    },
+    "title": {
+        "text": "Time Spent on Hobbies per Month",
+        "subtitle": "Each bar represents a month with hobbies stacked vertically",
+        "subtitleFontStyle": "italic",
+        "subtitleFontSize": 12,
+        "anchor": "start",
+        "color": "black",
+        "frame": "group"
+    },
+    "encoding": {
+        "x": {
+            "field": "Month",
+            "type": "ordinal",
+            "title": "Month",
+            "axis": {
+                "labelAngle": -45
+            }
+        },
+        "y": {
+            "field": "Hours",
+            "type": "quantitative",
+            "title": "Hours Spent"
+        },
+        "color": {
+            "field": "Hobby",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Reading",
+                    "Gaming",
+                    "Exercising",
+                    "Cooking",
+                    "Painting",
+                    "Traveling"
+                ],
+                "range": [
+                    "#4C72B0",
+                    "#DD8452",
+                    "#55A868",
+                    "#C44E52",
+                    "#8172B2",
+                    "#937860"
+                ]
+            },
+            "legend": {
+                "orient": "bottom"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Month",
+                "type": "ordinal",
+                "title": "Month"
+            },
+            {
+                "field": "Hobby",
+                "type": "nominal",
+                "title": "Hobby"
+            },
+            {
+                "field": "Hours",
+                "type": "quantitative",
+                "title": "Hours"
+            }
+        ]
+    }
+}

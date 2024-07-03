@@ -1,0 +1,181 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Horizontal stacked bar chart showing participation in different arts activities over years.",
+    "title": {
+        "text": "Annual Participation in Arts Activities Over Years",
+        "fontSize": 18,
+        "anchor": "start",
+        "color": "black",
+        "offset": 10
+    },
+    "width": 400,
+    "height": 600,
+    "data": {
+        "values": [
+            {
+                "Year": 2010,
+                "Painting": 80,
+                "Sculpture": 50,
+                "Music": 150,
+                "Dance": 120
+            },
+            {
+                "Year": 2011,
+                "Painting": 85,
+                "Sculpture": 55,
+                "Music": 160,
+                "Dance": 125
+            },
+            {
+                "Year": 2012,
+                "Painting": 90,
+                "Sculpture": 60,
+                "Music": 170,
+                "Dance": 130
+            },
+            {
+                "Year": 2013,
+                "Painting": 95,
+                "Sculpture": 65,
+                "Music": 180,
+                "Dance": 135
+            },
+            {
+                "Year": 2014,
+                "Painting": 100,
+                "Sculpture": 70,
+                "Music": 190,
+                "Dance": 140
+            },
+            {
+                "Year": 2015,
+                "Painting": 105,
+                "Sculpture": 75,
+                "Music": 200,
+                "Dance": 145
+            },
+            {
+                "Year": 2016,
+                "Painting": 110,
+                "Sculpture": 80,
+                "Music": 210,
+                "Dance": 150
+            },
+            {
+                "Year": 2017,
+                "Painting": 115,
+                "Sculpture": 85,
+                "Music": 220,
+                "Dance": 155
+            },
+            {
+                "Year": 2018,
+                "Painting": 120,
+                "Sculpture": 90,
+                "Music": 230,
+                "Dance": 160
+            },
+            {
+                "Year": 2019,
+                "Painting": 125,
+                "Sculpture": 95,
+                "Music": 240,
+                "Dance": 165
+            },
+            {
+                "Year": 2020,
+                "Painting": 130,
+                "Sculpture": 100,
+                "Music": 250,
+                "Dance": 170
+            },
+            {
+                "Year": 2021,
+                "Painting": 135,
+                "Sculpture": 105,
+                "Music": 260,
+                "Dance": 175
+            },
+            {
+                "Year": 2022,
+                "Painting": 140,
+                "Sculpture": 110,
+                "Music": 270,
+                "Dance": 180
+            },
+            {
+                "Year": 2023,
+                "Painting": 145,
+                "Sculpture": 115,
+                "Music": 280,
+                "Dance": 185
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Painting",
+                "Sculpture",
+                "Music",
+                "Dance"
+            ],
+            "as": [
+                "Activity",
+                "Participation"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "bar",
+        "height": {
+            "band": 0.7
+        }
+    },
+    "encoding": {
+        "y": {
+            "field": "Year",
+            "type": "ordinal",
+            "axis": {
+                "labelAngle": 0,
+                "title": "Year"
+            }
+        },
+        "x": {
+            "field": "Participation",
+            "type": "quantitative",
+            "stack": "zero",
+            "axis": {
+                "title": "Participation (in thousands)"
+            }
+        },
+        "color": {
+            "field": "Activity",
+            "type": "nominal",
+            "scale": {
+                "range": [
+                    "#e6194b",
+                    "#3cb44b",
+                    "#ffe119",
+                    "#4363d8"
+                ]
+            },
+            "title": "Activity"
+        },
+        "tooltip": [
+            {
+                "field": "Year",
+                "type": "ordinal"
+            },
+            {
+                "field": "Activity",
+                "type": "nominal"
+            },
+            {
+                "field": "Participation",
+                "type": "quantitative",
+                "title": "Participation (in thousands)"
+            }
+        ]
+    }
+}

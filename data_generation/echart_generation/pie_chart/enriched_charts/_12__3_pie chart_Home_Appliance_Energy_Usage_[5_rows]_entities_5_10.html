@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {renderer: 'canvas', width: 800, height: 600});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Investment Distribution in Various Sectors',
+        left: 'center',
+        top: '5%'
+    },
+    tooltip: {
+        trigger: 'item'
+    },
+    legend: {
+        orient: 'vertical',
+        left: 'left',
+        top: '15%',
+        // Ensure there is space between the legend and the pie
+    },
+    color: [
+        '#c23531', '#2f4554', '#61a0a8', '#d48265', 
+        '#91c7ae', '#749f83', '#ca8622', '#bda29a',
+        '#6e7074', '#546570', '#c4ccd3'
+    ],
+    series: [
+        {
+            name: 'Investment',
+            type: 'pie',
+            radius: '55%',
+            center: ['50%', '60%'],
+            data: [
+                {value: 50000, name: 'Technology'},
+                {value: 35000, name: 'Healthcare'},
+                {value: 40000, name: 'Finance'},
+                {value: 25000, name: 'Retail'},
+                {value: 30000, name: 'Energy'},
+                {value: 20000, name: 'Real Estate'},
+                {value: 15000, name: 'Consumer Goods'},
+                {value: 10000, name: 'Industrials'},
+                {value: 5000, name: 'Materials'},
+                {value: 8000, name: 'Utilities'},
+                {value: 10000, name: 'Communication Services'}
+            ],
+            emphasis: {
+                itemStyle: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

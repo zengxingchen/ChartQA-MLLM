@@ -1,0 +1,142 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Yearly Revenue Breakdown by Department in a Tech Company",
+    "width": 600,
+    "height": 300,
+    "data": {
+        "values": [
+            {
+                "Year": "2016",
+                "Hardware": 2000,
+                "Software": 1500,
+                "Services": 800,
+                "Research": 300
+            },
+            {
+                "Year": "2017",
+                "Hardware": 2100,
+                "Software": 1600,
+                "Services": 850,
+                "Research": 320
+            },
+            {
+                "Year": "2018",
+                "Hardware": 2200,
+                "Software": 1700,
+                "Services": 900,
+                "Research": 350
+            },
+            {
+                "Year": "2019",
+                "Hardware": 2500,
+                "Software": 2000,
+                "Services": 950,
+                "Research": 400
+            },
+            {
+                "Year": "2020",
+                "Hardware": 2600,
+                "Software": 2100,
+                "Services": 1000,
+                "Research": 420
+            },
+            {
+                "Year": "2021",
+                "Hardware": 2700,
+                "Software": 2200,
+                "Services": 1100,
+                "Research": 440
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Hardware",
+                "Software",
+                "Services",
+                "Research"
+            ],
+            "as": [
+                "Category",
+                "Revenue"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "area",
+        "opacity": 0.7
+    },
+    "encoding": {
+        "x": {
+            "field": "Year",
+            "type": "ordinal",
+            "axis": {
+                "title": "Year"
+            }
+        },
+        "y": {
+            "field": "Revenue",
+            "type": "quantitative",
+            "stack": "zero",
+            "axis": {
+                "title": "Revenue (in millions)"
+            }
+        },
+        "color": {
+            "field": "Category",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Hardware",
+                    "Software",
+                    "Services",
+                    "Research"
+                ],
+                "range": [
+                    "#D32F2F",
+                    "#303F9F",
+                    "#00796B",
+                    "#FBC02D"
+                ]
+            },
+            "legend": {
+                "title": "Department",
+                "orient": "top-right"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Year",
+                "type": "ordinal"
+            },
+            {
+                "field": "Category",
+                "type": "nominal"
+            },
+            {
+                "field": "Revenue",
+                "type": "quantitative",
+                "title": "Revenue"
+            }
+        ]
+    },
+    "title": {
+        "text": "Yearly Revenue by Department",
+        "fontSize": 18,
+        "anchor": "start",
+        "offset": 10,
+        "frame": "group"
+    },
+    "config": {
+        "view": {
+            "stroke": "transparent"
+        },
+        "area": {
+            "line": true
+        },
+        "axisY": {
+            "grid": true
+        }
+    }
+}

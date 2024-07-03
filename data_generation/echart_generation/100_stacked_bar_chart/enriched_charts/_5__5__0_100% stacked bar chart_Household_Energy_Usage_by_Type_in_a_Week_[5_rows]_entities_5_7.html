@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 800, // modifying width of the chart
+    height: 600 // modifying height of the chart
+});
+var app = {};
+
+option = {
+    color: ['#00aaff', '#ffa500', '#dc143c', '#008000', '#ff8c00', '#ff00ff', '#1e90ff'], // new color scheme
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        top: 30, // adjusting position of legend
+        data: ['First Year', 'Second Year', 'Third Year', 'Fourth Year']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        min: 0,
+        max: 100,
+    },
+    yAxis: {
+        type: 'category',
+        data: ['Mathematics', 'Physics', 'Chemistry', 'Biology', 'Computer Science', 'Literature', 'History'],
+        axisLabel: {
+            margin: 20, // modifying to ensure the labels are not crowded
+        }
+    },
+    series: [
+        {
+            name: 'First Year',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35, // change width of bars
+            data: [25, 20, 30, 10, 35, 25, 15]
+        },
+        {
+            name: 'Second Year',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            data: [30, 25, 15, 20, 30, 25, 30]
+        },
+        {
+            name: 'Third Year',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            data: [20, 30, 25, 40, 20, 30, 35]
+        },
+        {
+            name: 'Fourth Year',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            data: [25, 25, 30, 30, 15, 20, 20]
+        }
+    ],
+    title: {
+        left: 'center',
+        text: 'Enrollment by Year Group in Various Courses', // headline
+        subtext: 'Education & Learning', // subtitle
+        top: 0 // positioning the headline appropriately
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Investment Portfolio Distribution',
+        left: 'center',
+        top: '20'
+    },
+    tooltip: {
+        trigger: 'item'
+    },
+    legend: {
+        orient: 'vertical',
+        left: 'left',
+        top: 'middle',
+        align: 'left',
+        textStyle: {
+            fontFamily: 'Arial',
+            fontSize: 12
+        }
+    },
+    series: [
+        {
+            name: 'Investment Type',
+            type: 'pie',
+            radius: '50%',
+            data: [
+                { value: 50000, name: 'Stocks' },
+                { value: 20000, name: 'Bonds' },
+                { value: 30000, name: 'Real Estate' },
+                { value: 15000, name: 'Mutual Funds' },
+                { value: 15000, name: 'ETFs' },
+                { value: 10000, name: 'Commodities' }
+            ],
+            emphasis: {
+                itemStyle: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            },
+            label: {
+                normal: {
+                    formatter: '{b}: {c} ({d}%)',
+                    position: 'outside'
+                }
+            },
+            color: ['#FF6347', '#FFD700', '#FF69B4', '#32CD32', '#6495ED', '#FFA500']
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

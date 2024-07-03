@@ -1,0 +1,166 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "A horizontal bar chart showing the number of published books by genre in 2023.",
+    "title": {
+        "text": "Number of Published Books by Genre in 2023",
+        "font": "Verdana",
+        "anchor": "middle",
+        "offset": 10
+    },
+    "data": {
+        "values": [
+            {
+                "Genre": "Science Fiction",
+                "Books Published": 320
+            },
+            {
+                "Genre": "Romance",
+                "Books Published": 450
+            },
+            {
+                "Genre": "Fantasy",
+                "Books Published": 380
+            },
+            {
+                "Genre": "Mystery",
+                "Books Published": 270
+            },
+            {
+                "Genre": "Thriller",
+                "Books Published": 310
+            },
+            {
+                "Genre": "Non-Fiction",
+                "Books Published": 520
+            },
+            {
+                "Genre": "Historical",
+                "Books Published": 230
+            },
+            {
+                "Genre": "Horror",
+                "Books Published": 190
+            },
+            {
+                "Genre": "Biography",
+                "Books Published": 210
+            },
+            {
+                "Genre": "Self-Help",
+                "Books Published": 350
+            },
+            {
+                "Genre": "Young Adult",
+                "Books Published": 290
+            },
+            {
+                "Genre": "Children's",
+                "Books Published": 400
+            }
+        ]
+    },
+    "width": 500,
+    "height": 700,
+    "mark": {
+        "type": "bar",
+        "width": {
+            "band": 0.6
+        }
+    },
+    "encoding": {
+        "x": {
+            "field": "Books Published",
+            "type": "quantitative",
+            "title": "Books Published"
+        },
+        "y": {
+            "field": "Genre",
+            "type": "ordinal",
+            "title": "Genre",
+            "axis": {
+                "labelAngle": 0
+            }
+        },
+        "color": {
+            "field": "Genre",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Science Fiction",
+                    "Romance",
+                    "Fantasy",
+                    "Mystery",
+                    "Thriller",
+                    "Non-Fiction",
+                    "Historical",
+                    "Horror",
+                    "Biography",
+                    "Self-Help",
+                    "Young Adult",
+                    "Children's"
+                ],
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e",
+                    "#2ca02c",
+                    "#d62728",
+                    "#9467bd",
+                    "#8c564b",
+                    "#e377c2",
+                    "#7f7f7f",
+                    "#bcbd22",
+                    "#17becf",
+                    "#aec7e8",
+                    "#ffbb78"
+                ]
+            },
+            "legend": null
+        },
+        "tooltip": [
+            {
+                "field": "Genre",
+                "type": "nominal"
+            },
+            {
+                "field": "Books Published",
+                "type": "quantitative"
+            }
+        ],
+        "text": {
+            "field": "Books Published",
+            "type": "quantitative"
+        }
+    },
+    "layer": [
+        {
+            "mark": "rule",
+            "encoding": {
+                "x": {
+                    "aggregate": "mean",
+                    "field": "Books Published",
+                    "type": "quantitative",
+                    "title": "Mean Books Published"
+                },
+                "color": {
+                    "value": "#D81B60"
+                },
+                "size": {
+                    "value": 2
+                },
+                "tooltip": [
+                    {
+                        "aggregate": "mean",
+                        "field": "Books Published",
+                        "type": "quantitative",
+                        "title": "Mean Books Published"
+                    }
+                ]
+            }
+        }
+    ],
+    "config": {
+        "bar": {
+            "stroke": "transparent"
+        }
+    }
+}

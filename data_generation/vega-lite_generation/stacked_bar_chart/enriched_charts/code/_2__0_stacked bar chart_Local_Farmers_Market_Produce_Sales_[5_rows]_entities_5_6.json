@@ -1,0 +1,168 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Monthly Mental Health Service Usage.",
+    "data": {
+        "values": [
+            {
+                "Month": "January",
+                "Therapy": 1500,
+                "Counseling": 1200,
+                "Support Group": 900,
+                "Crisis Helpline": 400
+            },
+            {
+                "Month": "February",
+                "Therapy": 1600,
+                "Counseling": 1300,
+                "Support Group": 950,
+                "Crisis Helpline": 420
+            },
+            {
+                "Month": "March",
+                "Therapy": 1550,
+                "Counseling": 1250,
+                "Support Group": 920,
+                "Crisis Helpline": 410
+            },
+            {
+                "Month": "April",
+                "Therapy": 1700,
+                "Counseling": 1350,
+                "Support Group": 980,
+                "Crisis Helpline": 430
+            },
+            {
+                "Month": "May",
+                "Therapy": 1650,
+                "Counseling": 1400,
+                "Support Group": 1000,
+                "Crisis Helpline": 450
+            },
+            {
+                "Month": "June",
+                "Therapy": 1800,
+                "Counseling": 1450,
+                "Support Group": 1050,
+                "Crisis Helpline": 460
+            },
+            {
+                "Month": "July",
+                "Therapy": 1750,
+                "Counseling": 1500,
+                "Support Group": 1100,
+                "Crisis Helpline": 480
+            },
+            {
+                "Month": "August",
+                "Therapy": 1900,
+                "Counseling": 1550,
+                "Support Group": 1150,
+                "Crisis Helpline": 500
+            },
+            {
+                "Month": "September",
+                "Therapy": 1850,
+                "Counseling": 1600,
+                "Support Group": 1200,
+                "Crisis Helpline": 520
+            },
+            {
+                "Month": "October",
+                "Therapy": 2000,
+                "Counseling": 1650,
+                "Support Group": 1250,
+                "Crisis Helpline": 540
+            },
+            {
+                "Month": "November",
+                "Therapy": 1950,
+                "Counseling": 1700,
+                "Support Group": 1300,
+                "Crisis Helpline": 560
+            },
+            {
+                "Month": "December",
+                "Therapy": 2100,
+                "Counseling": 1750,
+                "Support Group": 1350,
+                "Crisis Helpline": 580
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Therapy",
+                "Counseling",
+                "Support Group",
+                "Crisis Helpline"
+            ],
+            "as": [
+                "Service",
+                "Usage"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "bar",
+        "width": 20
+    },
+    "width": 400,
+    "height": 600,
+    "title": {
+        "text": "Monthly Mental Health Service Usage",
+        "anchor": "start",
+        "color": "black"
+    },
+    "encoding": {
+        "x": {
+            "field": "Month",
+            "type": "ordinal",
+            "axis": {
+                "title": "Month"
+            }
+        },
+        "y": {
+            "field": "Usage",
+            "type": "quantitative",
+            "stack": "zero",
+            "axis": {
+                "title": "Total Usage"
+            }
+        },
+        "color": {
+            "field": "Service",
+            "type": "nominal",
+            "legend": {
+                "orient": "bottom"
+            },
+            "scale": {
+                "domain": [
+                    "Therapy",
+                    "Counseling",
+                    "Support Group",
+                    "Crisis Helpline"
+                ],
+                "range": [
+                    "#4c78a8",
+                    "#f58518",
+                    "#54a24b",
+                    "#e45756"
+                ]
+            },
+            "title": "Service Type"
+        },
+        "tooltip": [
+            {
+                "field": "Service",
+                "type": "nominal",
+                "title": "Service"
+            },
+            {
+                "field": "Usage",
+                "type": "quantitative",
+                "title": "Usage"
+            }
+        ]
+    }
+}

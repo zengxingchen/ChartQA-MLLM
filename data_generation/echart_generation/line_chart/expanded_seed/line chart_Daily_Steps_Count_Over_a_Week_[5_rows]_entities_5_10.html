@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+
+var days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
+var steps = [7500, 8100, 6700, 9200, 6900];
+
+var option = {
+    title: {
+        text: 'Weekly Steps Data'
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['Steps']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: days
+    },
+    yAxis: {
+        type: 'value',
+        axisLabel: {
+            formatter: '{value} steps'
+        }
+    },
+    series: [
+        {
+            name: 'Steps',
+            type: 'line',
+            stack: 'total',
+            data: steps,
+            markPoint: {
+                data: [
+                    { type: 'max', name: 'Max' },
+                    { type: 'min', name: 'Min' }
+                ]
+            },
+            markLine: {
+                data: [
+                    { type: 'average', name: 'Avg' }
+                ]
+            }
+        }
+    ],
+    dataZoom: [
+        {
+            type: 'slider',
+            start: 0,
+            end: 100
+        },
+        {
+            type: 'inside',
+            start: 0,
+            end: 100
+        }
+    ],
+    annotations: [
+        {
+            seriesIndex: 0,
+            dataIndex: 3,
+            value: steps[3],
+            title: {
+                offset: [0, 20],
+                text: 'Highest'
+            },
+            body: {
+                style: {
+                    fill: 'red',
+                    r: 4
+                }
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

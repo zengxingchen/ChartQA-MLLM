@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+myChart.resize({width: 800, height: 500});
+
+option = {
+    title: {
+        text: 'Monthly Solar Panel Energy Production',
+        left: 'center',
+        textStyle: {
+            fontSize: 24,
+        }
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            label: {
+                backgroundColor: '#6a7985'
+            }
+        }
+    },
+    legend: {
+        data: ['Monocrystalline', 'Polycrystalline', 'Thin-Film'],
+        bottom: '3%'
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '10%',
+        containLabel: true
+    },
+    xAxis: [
+        {
+            type: 'category',
+            boundaryGap: false,
+            data: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value'
+        }
+    ],
+    series: [
+        {
+            name: 'Monocrystalline',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [120, 130, 180, 200, 220, 210, 230, 220, 200, 180, 160, 140],
+            color: '#FF7F0E'
+        },
+        {
+            name: 'Polycrystalline',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [100, 110, 150, 170, 185, 190, 200, 210, 190, 160, 140, 120],
+            color: '#2CA02C'
+        },
+        {
+            name: 'Thin-Film',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [80, 90, 130, 145, 155, 160, 165, 160, 150, 130, 110, 100],
+            color: '#1F77B4'
+        }
+    ],
+    markPoint: {
+        data: [
+            {type: 'max', name: 'Max'},
+            {type: 'min', name: 'Min'}
+        ]
+    },
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

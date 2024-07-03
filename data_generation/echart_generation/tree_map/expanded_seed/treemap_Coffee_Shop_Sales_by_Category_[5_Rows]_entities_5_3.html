@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var rawData = [
+    {'Category': 'Beverages', 'Brand': 'Latte', 'Revenue': '$1200'},
+    {'Category': 'Beverages', 'Brand': 'Cappuccino', 'Revenue': '$950'},
+    {'Category': 'Food', 'Brand': 'Croissant', 'Revenue': '$850'},
+    {'Category': 'Food', 'Brand': 'Muffin', 'Revenue': '$750'},
+    {'Category': 'Merchandise', 'Brand': 'Coffee Mugs', 'Revenue': '$430'}
+];
+
+// Function to strip dollar sign and parse to integer
+function stripDollar(value) {
+    return parseInt(value.replace('$', ''));
+}
+
+// Processing data to the format suitable for treemap
+var data = rawData.reduce(function(prev, cur) {
+    var category = cur['Category'];
+    var found = prev.find(function(value) {
+        return value.name === category;
+    });
+    if (!found) {
+        found = { name: category, children: [] };
+        prev.push(found);
+    }
+    found.children.push({
+        name: cur['Brand'],
+        value: stripDollar(cur['Revenue'])
+    });
+    return prev;
+}, []);
+
+var option = {
+    tooltip: {
+        trigger: 'item',
+        formatter: function (info) {
+            var value = info.value;
+            var treePathInfo = info.treePathInfo;
+            var treePath = [];
+
+            for (var i = 1; i < treePathInfo.length; i++) {
+                treePath.push(treePathInfo[i].name);
+            }
+
+            return [
+                '<div class="tooltip-title">' + echarts.format.encodeHTML(treePath.join('/')) + '</div>',
+                'Revenue: ' + echarts.format.addCommas(value) + ' $'
+            ].join('');
+        }
+    },
+    series: [
+        {
+            name: 'Sales Treemap',
+            type: 'treemap',
+            visibleMin: 300,
+            data: data,
+            leafDepth: 1, // 0 for not show leaf node
+            label: {
+                show: true,
+                formatter: '{b}'
+            },
+            upperLabel: {
+                normal: {
+                    show: true,
+                    height: 30
+                }
+            },
+            itemStyle: {
+                borderColor: '#fff'
+            },
+            levels: [
+                {
+                    itemStyle: {
+                        borderWidth: 0,
+                        gapWidth: 5
+                    }
+                },
+                {
+                    colorSaturation: [0.3, 0.6],
+                    itemStyle: {
+                        gapWidth: 1
+                    }
+                },
+                {
+                    colorSaturation: [0.3, 0.5],
+                    itemStyle: {
+                        gapWidth: 1,
+                        borderColorSaturation: 0.6
+                    }
+                }
+            ]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

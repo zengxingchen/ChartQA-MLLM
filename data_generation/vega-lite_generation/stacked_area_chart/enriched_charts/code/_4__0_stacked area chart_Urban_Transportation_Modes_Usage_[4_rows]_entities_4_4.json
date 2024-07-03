@@ -1,0 +1,181 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Stacked area chart showing the average monthly temperature over a year in four cities",
+    "width": 500,
+    "height": 300,
+    "title": {
+        "text": "Average Monthly Temperatures in Four Cities",
+        "fontSize": 20,
+        "anchor": "start",
+        "color": "black",
+        "offset": 30
+    },
+    "data": {
+        "values": [
+            {
+                "Month": "January",
+                "New York": -1,
+                "San Francisco": 10,
+                "Berlin": -2,
+                "Tokyo": 5
+            },
+            {
+                "Month": "February",
+                "New York": -0.5,
+                "San Francisco": 12,
+                "Berlin": 0,
+                "Tokyo": 6
+            },
+            {
+                "Month": "March",
+                "New York": 5,
+                "San Francisco": 15,
+                "Berlin": 4,
+                "Tokyo": 10
+            },
+            {
+                "Month": "April",
+                "New York": 11,
+                "San Francisco": 17,
+                "Berlin": 9,
+                "Tokyo": 15
+            },
+            {
+                "Month": "May",
+                "New York": 16,
+                "San Francisco": 18,
+                "Berlin": 14,
+                "Tokyo": 19
+            },
+            {
+                "Month": "June",
+                "New York": 21,
+                "San Francisco": 19,
+                "Berlin": 16,
+                "Tokyo": 22
+            },
+            {
+                "Month": "July",
+                "New York": 25,
+                "San Francisco": 21,
+                "Berlin": 19,
+                "Tokyo": 26
+            },
+            {
+                "Month": "August",
+                "New York": 24,
+                "San Francisco": 20,
+                "Berlin": 18,
+                "Tokyo": 27
+            },
+            {
+                "Month": "September",
+                "New York": 20,
+                "San Francisco": 19,
+                "Berlin": 14,
+                "Tokyo": 23
+            },
+            {
+                "Month": "October",
+                "New York": 14,
+                "San Francisco": 17,
+                "Berlin": 9,
+                "Tokyo": 18
+            },
+            {
+                "Month": "November",
+                "New York": 8,
+                "San Francisco": 13,
+                "Berlin": 4,
+                "Tokyo": 12
+            },
+            {
+                "Month": "December",
+                "New York": 2,
+                "San Francisco": 10,
+                "Berlin": -1,
+                "Tokyo": 7
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "New York",
+                "San Francisco",
+                "Berlin",
+                "Tokyo"
+            ],
+            "as": [
+                "City",
+                "Average Temperature"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "area",
+        "line": true,
+        "opacity": 0.65
+    },
+    "encoding": {
+        "x": {
+            "field": "Month",
+            "type": "ordinal",
+            "axis": {
+                "title": "Month"
+            }
+        },
+        "y": {
+            "field": "Average Temperature",
+            "type": "quantitative",
+            "stack": "zero",
+            "axis": {
+                "title": "Temperature (\u00b0C)"
+            }
+        },
+        "color": {
+            "field": "City",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "New York",
+                    "San Francisco",
+                    "Berlin",
+                    "Tokyo"
+                ],
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e",
+                    "#2ca02c",
+                    "#d62728"
+                ]
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Month",
+                "type": "ordinal",
+                "title": "Month"
+            },
+            {
+                "field": "City",
+                "type": "nominal",
+                "title": "City"
+            },
+            {
+                "field": "Average Temperature",
+                "type": "quantitative",
+                "title": "Average Temp.",
+                "format": ".1f"
+            }
+        ]
+    },
+    "config": {
+        "view": {
+            "stroke": "transparent"
+        },
+        "legend": {
+            "offset": 15
+        }
+    }
+}

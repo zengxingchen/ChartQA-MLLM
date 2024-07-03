@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var option;
+
+option = {
+    title: {
+        text: 'Technology Adoption by Age Group',
+        left: 'center',
+        top: '5%',
+        textStyle: {
+            color: '#333333',
+            fontSize: 18
+        }
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: '{b}: {c}'
+    },
+    xAxis: {
+        type: 'category',
+        data: ['10-19', '20-29', '30-39', '40-49', '50-59', '60-69', '70-79', '80-89', '90-99'],
+        axisLabel: {
+            color: '#333333',
+            fontSize: 14
+        }
+    },
+    yAxis: {
+        type: 'value',
+        axisLabel: {
+            color: '#333333',
+            fontSize: 14
+        }
+    },
+    series: [{
+        type: 'bar',
+        data: [45, 120, 90, 70, 55, 30, 20, 10, 5],
+        itemStyle: {
+            color: function(params) {
+                var colorList = ['#FF5733', '#33FF57', '#3357FF', '#FF33A8', '#33FFF3', '#FFDA33', '#A833FF', '#F333FF', '#33FF83'];
+                return colorList[params.dataIndex];
+            }
+        },
+        label: {
+            show: true,
+            position: 'top',
+            formatter: '{c}'
+        },
+        barWidth: '40%',
+        emphasis: {
+            focus: 'series'
+        }
+    }],
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

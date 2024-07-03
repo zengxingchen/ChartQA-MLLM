@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {renderer: 'canvas', useDirtyRect: false, width: 800, height: 600});
+var option;
+
+option = {
+    title: {
+        text: 'Science & Nature: Annual Data Analysis',
+        left: 'center',
+        top: '5%'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Value1', 'Value2', 'Value3', 'Value4'],
+        top: '15%'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        data: ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'B4', 'C1', 'C2', 'C3', 'C4', 'D1', 'D2', 'D3', 'D4'],
+        axisLabel: {
+            interval: 0
+        }
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Value1',
+            type: 'bar',
+            stack: 'Total',
+            barWidth: '30%',
+            data: [120, 140, 160, 180, 200, 220, 240, 260, 280, 300, 320, 340, 360, 380, 400, 420],
+            itemStyle: {
+                color: '#FF5733'
+            }
+        },
+        {
+            name: 'Value2',
+            type: 'bar',
+            stack: 'Total',
+            data: [200, 220, 210, 230, 240, 250, 260, 270, 280, 290, 300, 310, 320, 330, 340, 350],
+            itemStyle: {
+                color: '#33FF57'
+            }
+        },
+        {
+            name: 'Value3',
+            type: 'bar',
+            stack: 'Total',
+            data: [150, 130, 180, 170, 190, 200, 210, 220, 230, 240, 250, 260, 270, 280, 290, 300],
+            itemStyle: {
+                color: '#3357FF'
+            }
+        },
+        {
+            name: 'Value4',
+            type: 'bar',
+            stack: 'Total',
+            data: [80, 90, 100, 110, 120, 130, 140, 150, 160, 170, 180, 190, 200, 210, 220, 230],
+            itemStyle: {
+                color: '#FF33A1'
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

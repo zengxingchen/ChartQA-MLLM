@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Monthly Performance in Different Sectors',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        top: 'bottom',
+        data: ['Design', 'Technology', 'Environment', 'Health']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        axisLabel: {
+            formatter: '{value}'
+        }
+    },
+    yAxis: {
+        type: 'category',
+        data: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+    },
+    series: [
+        {
+            name: 'Design',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            data: [320, 302, 341, 374, 390, 450, 430, 410, 420, 400, 390, 380],
+            itemStyle: {
+                color: '#FF5733'
+            },
+            barWidth: '50%',
+            barCategoryGap: '25%'
+        },
+        {
+            name: 'Technology',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            data: [420, 432, 454, 490, 510, 520, 550, 560, 570, 580, 590, 600],
+            itemStyle: {
+                color: '#33FF57'
+            },
+            barWidth: '50%',
+            barCategoryGap: '25%'
+        },
+        {
+            name: 'Environment',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            data: [310, 301, 334, 354, 372, 400, 420, 415, 435, 450, 460, 470],
+            itemStyle: {
+                color: '#3357FF'
+            },
+            barWidth: '50%',
+            barCategoryGap: '25%'
+        },
+        {
+            name: 'Health',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            data: [510, 534, 573, 595, 610, 620, 630, 640, 650, 655, 660, 670],
+            itemStyle: {
+                color: '#F7FF33'
+            },
+            barWidth: '50%',
+            barCategoryGap: '25%'
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

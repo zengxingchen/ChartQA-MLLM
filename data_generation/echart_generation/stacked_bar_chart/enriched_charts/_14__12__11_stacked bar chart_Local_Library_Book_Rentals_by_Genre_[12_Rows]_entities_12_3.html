@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var app = {};
+
+var option;
+option = {
+    title: {
+        text: 'Renewable Energy Usage by Country (2020-2023)',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Solar', 'Wind', 'Hydro', 'Biomass'],
+        bottom: 0
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '10%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        data: ['USA 2020', 'USA 2021', 'USA 2022', 'USA 2023', 'China 2020', 'China 2021', 'China 2022', 'China 2023', 'Germany 2020', 'Germany 2021', 'Germany 2022', 'Germany 2023', 'India 2020', 'India 2021', 'India 2022', 'India 2023'],
+        axisLabel: {
+            rotate: 45,
+            interval: 0
+        }
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Energy (GW)'
+    },
+    series: [
+        {
+            name: 'Solar',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            itemStyle: {
+                color: '#ff7f50'
+            },
+            data: [50, 60, 70, 80, 60, 70, 80, 90, 40, 50, 60, 70, 30, 40, 50, 60]
+        },
+        {
+            name: 'Wind',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            itemStyle: {
+                color: '#87cefa'
+            },
+            data: [40, 45, 50, 55, 50, 55, 60, 65, 30, 35, 40, 45, 20, 25, 30, 35]
+        },
+        {
+            name: 'Hydro',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            itemStyle: {
+                color: '#da70d6'
+            },
+            data: [60, 65, 70, 75, 70, 75, 80, 85, 50, 55, 60, 65, 40, 45, 50, 55]
+        },
+        {
+            name: 'Biomass',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            itemStyle: {
+                color: '#32cd32'
+            },
+            data: [20, 25, 30, 35, 30, 35, 40, 45, 15, 20, 25, 30, 10, 15, 20, 25]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

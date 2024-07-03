@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {renderer: 'canvas', width: 800, height: 600});
+var app = {};
+
+var option;
+
+option = {
+    color: ['#3398DB', '#7BE141', '#6E7074', '#E690D1', '#8E71C7', '#C71E1D', '#009688', '#E6B600', '#546570', '#c23531'],
+    title: {
+        text: 'Annual GDP Growth Rates by Country',
+        left: 'center',
+        top: '20'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: [
+        {
+            type: 'category',
+            data: ['United States', 'China', 'Japan', 'Germany', 'India', 'United Kingdom', 'France', 'Brazil', 'Italy', 'Canada', 'Russia', 'South Korea', 'Spain', 'Australia', 'Mexico'],
+            axisTick: {
+                alignWithLabel: true
+            }
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value',
+            axisLabel: {
+                formatter: '{value} %'
+            }
+        }
+    ],
+    series: [
+        {
+            name: 'GDP Growth Rate',
+            type: 'bar',
+            barWidth: '40%',
+            data: [3.1, 6.0, 1.7, 0.6, 7.2, 1.4, 1.3, 1.1, 0.3, 1.7, -1.5, 2.0, 2.0, 2.8, -0.1],
+            markPoint: {
+                data: [
+                    {type: 'max', name: 'Max GDP Growth'},
+                    {type: 'min', name: 'Min GDP Growth'}
+                ]
+            },
+            markLine: {
+                lineStyle: {
+                    color: '#c23531'
+                },
+                data: [
+                    {type: 'average', name: 'Average Rate'}
+                ]
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

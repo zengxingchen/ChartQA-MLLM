@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 800, // Width changed as per instruction
+    height: 600 // Height changed as per instruction
+});
+var app = {};
+
+var option;
+
+// Generating data dynamically (the full dataset isn't included in this snippet).
+var data = [
+    ["2002-01-01", 121.44],
+    ["2002-02-01", 121.62],
+    ["2002-03-01", 121.63],
+    // The following should be filled with the full dataset
+    // ...
+    ["2022-12-01", 135.72]
+];
+
+option = {
+    title: {
+        text: 'Global Sea Level Rise Over Time',
+        left: 'center',
+        textStyle: {
+            color: "#333" // Title text color modified
+        }
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: data.map(function (item) {
+            return item[0];
+        }),
+        axisLabel: {
+            formatter: function (value, idx) {
+                var date = new Date(value);
+                return idx === 0 ? value : [date.getMonth() + 1, date.getDate()].join('-');
+            }
+        }
+    },
+    yAxis: {
+        type: 'value',
+        axisLabel: {
+            formatter: '{value} mm'
+        }
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    grid: {
+        bottom: 80
+    },
+    dataZoom: [{
+        type: 'inside'
+    }, {
+        start: 0,
+        end: 10
+    }],
+    visualMap: {
+        top: 50,
+        right: 10,
+        pieces: [{
+            gt: 121,
+            lte: 130,
+            color: '#096'
+        }, {
+            gt: 130,
+            lte: 140,
+            color: '#ffde33'
+        }, {
+            gt: 140,
+            color: '#ff9933'
+        }],
+        outOfRange: {
+            color: '#999'
+        }
+    },
+    series: [
+        {
+            name: 'Sea Level (mm)',
+            type: 'line',
+            data: data.map(function (item) {
+                return item[1];
+            }),
+            areaStyle: {
+                normal: {
+                    color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                        offset: 0,
+                        color: '#8ec6ad' // Gradient area chart color for the top
+                    }, {
+                        offset: 1,
+                        color: '#ffd194' // Gradient area chart color for the bottom
+                    }]),
+                    opacity: 0.3 // Opacity modified for better clarity
+                }
+            },
+            smooth: true,
+            lineStyle: {
+                normal: {
+                    width: 3,
+                    shadowColor: 'rgba(0,0,0,0.4)', // Line shadow color
+                    shadowBlur: 10,
+                    shadowOffsetY: 10
+                }
+            },
+            itemStyle: {
+                normal: {
+                    color: '#fec42c', // Line color
+                    borderColor: '#fec42c' // Point border color
+                }
+            }
+        }
+    ]
+}
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

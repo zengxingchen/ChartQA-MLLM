@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+option = {
+    title: {
+        text: 'Fitness Class Attendance'
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['Yoga', 'Pilates', 'Spin Class', 'HIIT', 'Zumba', 'Tai Chi']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: []
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Yoga',
+            type: 'line',
+            data: []
+        },
+        {
+            name: 'Pilates',
+            type: 'line',
+            data: []
+        },
+        {
+            name: 'Spin Class',
+            type: 'line',
+            data: []
+        },
+        {
+            name: 'HIIT',
+            type: 'line',
+            data: []
+        },
+        {
+            name: 'Zumba',
+            type: 'line',
+            data: []
+        },
+        {
+            name: 'Tai Chi',
+            type: 'line',
+            data: []
+        }
+    ]
+};
+
+const dataset = [{'Week': '2023-01-01 - 2023-01-07', 'Yoga': 120, 'Pilates': 80, 'Spin Class': 150, 'HIIT': 140, 'Zumba': 130, 'Tai Chi': 60}, /* ... your data continues here ... */];
+
+dataset.forEach(item => {
+    option.xAxis.data.push(item.Week);
+    option.series[0].data.push(item.Yoga);
+    option.series[1].data.push(item.Pilates);
+    option.series[2].data.push(item['Spin Class']);
+    option.series[3].data.push(item.HIIT);
+    option.series[4].data.push(item.Zumba);
+    option.series[5].data.push(item['Tai Chi']);
+});
+
+// Adding annotation for the first and last data point for each series
+option.series.forEach((series, index) => {
+    var seriesData = series.data;
+    if(seriesData.length > 0){
+        series.markPoint = {
+            data: [
+                {type: 'min', name: 'Start', value: seriesData[0], xAxis: 0, yAxis: seriesData[0]},
+                {type: 'max', name: 'End', value: seriesData[seriesData.length - 1], xAxis: seriesData.length - 1, yAxis: seriesData[seriesData.length - 1]}
+            ]
+        };
+    }
+});
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

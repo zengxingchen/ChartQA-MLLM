@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    width: 800,
+    height: 600
+});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Fitness Activity Trend in 2023',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['Steps Walked'],
+        top: '5%'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ["2023-01-01", "2023-01-02", "2023-01-03", /*... continued ...*/, "2023-12-29", "2023-12-30", "2023-12-31"]
+    },
+    yAxis: {
+        type: 'value',
+        axisLabel: {
+            formatter: '{value} steps'
+        }
+    },
+    series: [
+        {
+            name: 'Steps Walked',
+            type: 'line',
+            stack: 'Total amount',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [
+                120, 132, 101, 134, 90, 230, 210, 150, 165, 175, 152, 194, 215, 212, 233, 198, 165, 156,
+                /*... continued ...*/, 196, 217, 219, 195, 190, 173, 176, 182, 185, 188, 189, 198, 208, 223, 233, 243, 248, 260, 280
+            ],
+            markPoint: {
+                data: [
+                    {type: 'max', name: 'Max'},
+                    {type: 'min', name: 'Min'}
+                ]
+            },
+            markLine: {
+                data: [{type: 'average', name: 'Average'}]
+            }
+        }
+    ],
+    color: ['#3398DB', '#7EC0EE', '#B0E2FF', '#C6E2FF', '#7FFF00'], // Colors for the different series
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

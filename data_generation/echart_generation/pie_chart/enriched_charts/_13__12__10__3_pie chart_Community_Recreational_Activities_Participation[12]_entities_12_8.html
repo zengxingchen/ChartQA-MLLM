@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas'
+});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Innovations in EdTech',
+        left: 'center',
+        top: '5%'
+    },
+    tooltip: {
+        trigger: 'item'
+    },
+    legend: {
+        orient: 'vertical',
+        left: '5%',
+        top: '15%',
+        textStyle: {
+            color: '#000'
+        }
+    },
+    series: [
+        {
+            name: 'Access From',
+            type: 'pie',
+            radius: '55%',
+            center: ['50%', '60%'],
+            data: [
+                { value: 120, name: 'Educational Software' },
+                { value: 310, name: 'E-learning Platforms' },
+                { value: 150, name: 'VR in Education' },
+                { value: 260, name: 'Online Certifications' },
+                { value: 90, name: 'Interactive Textbooks' },
+                { value: 95, name: 'Immersive Learning Environments' },
+                { value: 210, name: 'AI Tutoring Systems' },
+                { value: 70, name: 'Remote Laboratories' },
+                { value: 45, name: 'Blockchain Academic Records' },
+                { value: 85, name: 'Gamified Learning' }
+            ],
+            emphasis: {
+                itemStyle: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            }
+        }
+    ],
+    color: [
+        '#ff7f0e', '#1f77b4', '#2ca02c', '#d62728', '#9467bd',
+        '#8c564b', '#e377c2', '#7f7f7f', '#bcbd22', '#17becf'
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

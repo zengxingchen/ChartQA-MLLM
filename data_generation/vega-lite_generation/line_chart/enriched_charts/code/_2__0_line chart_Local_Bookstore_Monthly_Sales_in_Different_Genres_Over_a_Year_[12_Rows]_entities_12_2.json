@@ -1,0 +1,172 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Monthly Weather Data by Category",
+    "data": {
+        "values": [
+            {
+                "Month": "January",
+                "Temperature": 5,
+                "Precipitation": 30,
+                "Humidity": 80,
+                "Wind": 20,
+                "Sunshine": 60
+            },
+            {
+                "Month": "February",
+                "Temperature": 6,
+                "Precipitation": 25,
+                "Humidity": 78,
+                "Wind": 18,
+                "Sunshine": 70
+            },
+            {
+                "Month": "March",
+                "Temperature": 10,
+                "Precipitation": 20,
+                "Humidity": 75,
+                "Wind": 15,
+                "Sunshine": 80
+            },
+            {
+                "Month": "April",
+                "Temperature": 15,
+                "Precipitation": 15,
+                "Humidity": 70,
+                "Wind": 12,
+                "Sunshine": 90
+            },
+            {
+                "Month": "May",
+                "Temperature": 20,
+                "Precipitation": 10,
+                "Humidity": 65,
+                "Wind": 10,
+                "Sunshine": 100
+            },
+            {
+                "Month": "June",
+                "Temperature": 25,
+                "Precipitation": 5,
+                "Humidity": 60,
+                "Wind": 8,
+                "Sunshine": 110
+            },
+            {
+                "Month": "July",
+                "Temperature": 30,
+                "Precipitation": 3,
+                "Humidity": 55,
+                "Wind": 5,
+                "Sunshine": 120
+            },
+            {
+                "Month": "August",
+                "Temperature": 28,
+                "Precipitation": 7,
+                "Humidity": 58,
+                "Wind": 7,
+                "Sunshine": 115
+            },
+            {
+                "Month": "September",
+                "Temperature": 22,
+                "Precipitation": 12,
+                "Humidity": 65,
+                "Wind": 10,
+                "Sunshine": 100
+            },
+            {
+                "Month": "October",
+                "Temperature": 16,
+                "Precipitation": 18,
+                "Humidity": 70,
+                "Wind": 12,
+                "Sunshine": 90
+            },
+            {
+                "Month": "November",
+                "Temperature": 10,
+                "Precipitation": 25,
+                "Humidity": 75,
+                "Wind": 15,
+                "Sunshine": 80
+            },
+            {
+                "Month": "December",
+                "Temperature": 5,
+                "Precipitation": 30,
+                "Humidity": 80,
+                "Wind": 18,
+                "Sunshine": 70
+            }
+        ]
+    },
+    "width": 800,
+    "height": 400,
+    "transform": [
+        {
+            "fold": [
+                "Temperature",
+                "Precipitation",
+                "Humidity",
+                "Wind",
+                "Sunshine"
+            ],
+            "as": [
+                "Category",
+                "Value"
+            ]
+        }
+    ],
+    "mark": "line",
+    "encoding": {
+        "x": {
+            "field": "Month",
+            "type": "ordinal",
+            "title": "Month",
+            "axis": {
+                "labelAngle": 0
+            }
+        },
+        "y": {
+            "field": "Value",
+            "type": "quantitative",
+            "title": "Value"
+        },
+        "color": {
+            "field": "Category",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Temperature",
+                    "Precipitation",
+                    "Humidity",
+                    "Wind",
+                    "Sunshine"
+                ],
+                "range": [
+                    "#e41a1c",
+                    "#377eb8",
+                    "#4daf4a",
+                    "#984ea3",
+                    "#ff7f00"
+                ]
+            },
+            "title": "Category"
+        },
+        "tooltip": [
+            {
+                "field": "Month",
+                "type": "nominal"
+            },
+            {
+                "field": "Category",
+                "type": "nominal"
+            },
+            {
+                "field": "Value",
+                "type": "quantitative"
+            }
+        ]
+    }
+}

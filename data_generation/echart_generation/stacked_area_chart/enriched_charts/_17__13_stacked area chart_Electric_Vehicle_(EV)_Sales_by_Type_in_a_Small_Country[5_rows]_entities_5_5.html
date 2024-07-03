@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+option = {
+  title: {
+    text: 'Monthly Energy Consumption in a Smart Home',
+    left: 'center',
+    top: 20
+  },
+  tooltip: {
+    trigger: 'axis',
+    axisPointer: {
+      type: 'cross',
+      label: {
+        backgroundColor: '#6a7985'
+      }
+    }
+  },
+  legend: {
+    data: ['Heating', 'Cooling', 'Lighting', 'Appliances', 'Entertainment'],
+    top: 50
+  },
+  toolbox: {
+    feature: {
+      saveAsImage: {}
+    }
+  },
+  grid: {
+    left: '3%',
+    right: '4%',
+    bottom: '3%',
+    containLabel: true
+  },
+  xAxis: [
+    {
+      type: 'category',
+      boundaryGap: false,
+      data: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+    }
+  ],
+  yAxis: [
+    {
+      type: 'value'
+    }
+  ],
+  series: [
+    {
+      name: 'Heating',
+      type: 'line',
+      stack: 'Total',
+      areaStyle: {},
+      emphasis: {
+        focus: 'series'
+      },
+      data: [400, 380, 350, 300, 250, 200, 150, 160, 200, 250, 300, 350],
+      color: '#FF4136'
+    },
+    {
+      name: 'Cooling',
+      type: 'line',
+      stack: 'Total',
+      areaStyle: {},
+      emphasis: {
+        focus: 'series'
+      },
+      data: [100, 110, 150, 200, 250, 300, 350, 340, 300, 200, 150, 100],
+      color: '#0074D9'
+    },
+    {
+      name: 'Lighting',
+      type: 'line',
+      stack: 'Total',
+      areaStyle: {},
+      emphasis: {
+        focus: 'series'
+      },
+      data: [150, 145, 160, 170, 175, 180, 160, 155, 150, 165, 160, 155],
+      color: '#FFDC00'
+    },
+    {
+      name: 'Appliances',
+      type: 'line',
+      stack: 'Total',
+      areaStyle: {},
+      emphasis: {
+        focus: 'series'
+      },
+      data: [200, 210, 220, 230, 240, 250, 260, 270, 260, 250, 240, 230],
+      color: '#01FF70'
+    },
+    {
+      name: 'Entertainment',
+      type: 'line',
+      stack: 'Total',
+      areaStyle: {},
+      emphasis: {
+        focus: 'series'
+      },
+      data: [50, 60, 65, 70, 75, 80, 85, 90, 95, 85, 70, 65],
+      color: '#85144b'
+    }
+  ],
+  responsive: true
+};
+
+myChart.setOption(option, true);
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

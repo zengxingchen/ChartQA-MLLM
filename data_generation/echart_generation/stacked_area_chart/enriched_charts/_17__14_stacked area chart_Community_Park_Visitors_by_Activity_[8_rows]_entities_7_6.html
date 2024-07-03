@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {renderer: 'canvas', width: '800', height: '600'});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Celestial Observations by Month',
+        left: 'center',
+        top: '1%'
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['Meteors', 'Satellites', 'Stars', 'Planets'],
+        top: '8%',
+        textStyle: {
+            color: '#666'
+        }
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Meteors',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: { focus: 'series' },
+            data: [120, 135, 150, 145, 160, 175, 165, 170, 180, 190, 200, 210],
+            color: '#FFA07A'
+        },
+        {
+            name: 'Satellites',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: { focus: 'series' },
+            data: [80, 75, 65, 85, 90, 95, 100, 110, 105, 115, 120, 95],
+            color: '#20B2AA'
+        },
+        {
+            name: 'Stars',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: { focus: 'series' },
+            data: [600, 620, 640, 630, 650, 660, 670, 680, 690, 700, 720, 710],
+            color: '#778899'
+        },
+        {
+            name: 'Planets',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: { focus: 'series' },
+            data: [300, 310, 320, 330, 340, 345, 350, 355, 360, 370, 380, 390],
+            color: '#9370DB'
+        }
+    ],
+    annotations: [{
+        type: 'text',
+        position: ['50%', '10%'],
+        value: 'Observation Trends',
+        style: {
+            fill: 'red',
+            fontSize: 14,
+            fontWeight: 'bold'
+        }
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

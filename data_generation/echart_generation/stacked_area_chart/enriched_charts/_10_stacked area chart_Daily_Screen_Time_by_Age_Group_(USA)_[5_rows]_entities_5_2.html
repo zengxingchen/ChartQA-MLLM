@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 700, height: 400});
+var app = {};
+
+var option;
+option = {
+    title: {
+        text: 'Renewable Energy Adoption Trends by Region',
+        left: 'center',
+        top: 20
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            label: {
+                backgroundColor: '#6a7985'
+            }
+        }
+    },
+    legend: {
+        data: ['North America', 'Europe', 'Asia-Pacific', 'Latin America', 'Middle East and Africa'],
+        top: 'bottom'
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: [
+        {
+            type: 'category',
+            boundaryGap: false,
+            data: ['2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020']
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value'
+        }
+    ],
+    series: [
+        {
+            name: 'North America',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [50, 55, 60, 65, 68, 70, 75, 80, 85, 90, 95, 100, 105, 110, 115, 120, 125, 130, 135, 142, 150],
+            color: '#1f77b4'
+        },
+        {
+            name: 'Europe',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [40, 45, 50, 58, 62, 65, 72, 78, 83, 88, 93, 98, 104, 110, 116, 120, 122, 125, 128, 130, 135],
+            color: '#ff7f0e'
+        },
+        {
+            name: 'Asia-Pacific',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [30, 35, 40, 45, 48, 50, 55, 60, 65, 68, 72, 77, 82, 88, 93, 98, 102, 105, 108, 110, 115],
+            color: '#2ca02c'
+        },
+        {
+            name: 'Latin America',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [20, 25, 30, 32, 35, 36, 39, 42, 45, 48, 52, 55, 58, 62, 66, 68, 71, 73, 75, 78, 80],
+            color: '#d62728'
+        },
+        {
+            name: 'Middle East and Africa',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [10, 15, 20, 22, 25, 28, 30, 35, 40, 44, 50, 55, 60, 65, 70, 75, 78, 80, 83, 85, 88],
+            color: '#9467bd'
+        }
+    ],
+    markPoint: {
+        data: [
+            { type: 'max', name: 'Max' },
+            { type: 'min', name: 'Min' }
+        ]
+    },
+    markLine: {
+        data: [
+            { type: 'average', name: 'Average' }
+        ]
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

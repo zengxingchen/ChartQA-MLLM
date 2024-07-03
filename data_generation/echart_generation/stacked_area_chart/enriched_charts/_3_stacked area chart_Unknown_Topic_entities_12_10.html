@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 500});
+var app = {};
+
+var option;
+
+option = {
+  title: {
+    text: 'Quarterly GDP Growth by Sector',
+    left: 'center',
+    top: 20
+  },
+  tooltip: {
+    trigger: 'axis',
+    axisPointer: {
+      type: 'cross',
+      label: {
+        backgroundColor: '#6a7985'
+      }
+    }
+  },
+  legend: {
+    data: ['Agriculture', 'Manufacturing', 'Services'],
+    top: 50
+  },
+  toolbox: {
+    feature: {
+      saveAsImage: {}
+    }
+  },
+  grid: {
+    left: '3%',
+    right: '4%',
+    bottom: '3%',
+    containLabel: true
+  },
+  xAxis: {
+    type: 'category',
+    boundaryGap: false,
+    data: [
+      'Q1-2019', 'Q2-2019', 'Q3-2019', 'Q4-2019',
+      'Q1-2020', 'Q2-2020', 'Q3-2020', 'Q4-2020',
+      'Q1-2021', 'Q2-2021', 'Q3-2021', 'Q4-2021'
+    ]
+  },
+  yAxis: {
+    type: 'value'
+  },
+  series: [
+    {
+      name: 'Agriculture',
+      type: 'line',
+      stack: 'total',
+      areaStyle: {},
+      emphasis: {
+        focus: 'series'
+      },
+      data: [2.3, 2.5, 2.4, 2.2, 2.1, 1.9, 2.0, 2.1, 2.3, 2.5, 2.4, 2.3],
+      color: '#FF8C00'
+    },
+    {
+      name: 'Manufacturing',
+      type: 'line',
+      stack: 'total',
+      areaStyle: {},
+      emphasis: {
+        focus: 'series'
+      },
+      data: [1.5, 1.7, 1.6, 1.8, 1.9, 1.0, 1.4, 1.6, 2.0, 2.2, 2.1, 2.0],
+      color: '#228B22'
+    },
+    {
+      name: 'Services',
+      type: 'line',
+      stack: 'total',
+      label: {
+        show: true,
+        position: 'top'
+      },
+      areaStyle: {},
+      emphasis: {
+        focus: 'series'
+      },
+      data: [2.1, 2.2, 2.3, 2.1, 2.0, 1.2, 1.5, 1.8, 2.5, 2.7, 2.6, 2.5],
+      color: '#1E90FF'
+    }
+  ]
+};
+
+if (option && typeof option === 'object') {
+  myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

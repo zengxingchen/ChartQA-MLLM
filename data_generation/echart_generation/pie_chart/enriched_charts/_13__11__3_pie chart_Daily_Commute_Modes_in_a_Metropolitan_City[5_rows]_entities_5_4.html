@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+option = {
+    title: {
+        text: 'Innovation Sectors in Technology',
+        left: 'center',
+        top: 20
+    },
+    tooltip: {
+        trigger: 'item'
+    },
+    legend: {
+        orient: 'vertical',
+        left: 'left',
+        top: 'middle',
+        align: 'auto',
+        itemWidth: 25,
+        itemHeight: 15,
+        textStyle: {
+            padding: [3, 0, 0, 0]
+        }
+    },
+    series: [
+        {
+            name: 'Innovation Sector',
+            type: 'pie',
+            radius: '50%',
+            data: [
+                {value: 300, name: 'AI Research'},
+                {value: 270, name: 'Machine Learning'},
+                {value: 240, name: 'Blockchain Technology'},
+                {value: 220, name: 'Internet of Things'},
+                {value: 200, name: 'Quantum Computing'},
+                {value: 180, name: 'Augmented Reality'},
+                {value: 160, name: '5G Technology'},
+                {value: 140, name: 'Biotechnology'},
+                {value: 120, name: 'Renewable Energy'},
+                {value: 100, name: 'Nanotechnology'},
+                {value: 80, name: 'Cybersecurity'},
+                {value: 60, name: 'Autonomous Vehicles'}
+            ],
+            emphasis: {
+                itemStyle: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            }
+        }
+    ],
+    color: [
+        '#c23531', '#2f4554', '#61a0a8', '#d48265', '#91c7ae',
+        '#749f83', '#ca8622', '#bda29a', '#6e7074', '#546570',
+        '#c4ccd3', '#f05b72'
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+var option;
+
+option = {
+    title: {
+        text: 'Trends in Course Enrollment (2018-2023)',
+        left: 'center',
+        top: '5%'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Online Courses', 'In-Person Courses', 'Hybrid Courses'],
+        top: '10%'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01],
+        axisLabel: {
+            formatter: '{value}'
+        }
+    },
+    yAxis: {
+        type: 'category',
+        data: ['2018', '2019', '2020', '2021', '2022', '2023']
+    },
+    series: [
+        {
+            name: 'Online Courses',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            data: [500, 600, 800, 900, 1000, 1100],
+            itemStyle: {
+                color: '#1f78b4'
+            }
+        },
+        {
+            name: 'In-Person Courses',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            data: [700, 750, 650, 800, 900, 850],
+            itemStyle: {
+                color: '#33a02c'
+            }
+        },
+        {
+            name: 'Hybrid Courses',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            data: [300, 350, 400, 500, 600, 700],
+            itemStyle: {
+                color: '#fb9a99'
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

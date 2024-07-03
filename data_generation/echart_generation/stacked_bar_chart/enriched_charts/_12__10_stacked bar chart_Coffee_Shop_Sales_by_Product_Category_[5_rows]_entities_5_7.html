@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Music Genre Popularity Over Years',
+        left: 'center',
+        top: '5%',
+        textStyle: {
+            color: '#333333',
+            fontSize: 20,
+        }
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Pop Music', 'Rock Music', 'Hip-hop', 'R&B'],
+        top: '10%',
+        textStyle: {
+            color: '#555555'
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        data: ['2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023'],
+        axisLabel: {
+            textStyle: {
+                color: '#888888'
+            }
+        }
+    },
+    yAxis: {
+        type: 'value',
+        axisLabel: {
+            textStyle: {
+                color: '#888888'
+            }
+        }
+    },
+    series: [
+        {
+            name: 'Pop Music',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            data: [120, 232, 191, 234, 290, 330, 370, 400],
+            itemStyle: {
+                color: '#FF5733'
+            },
+            barWidth: '30%'
+        },
+        {
+            name: 'Rock Music',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            data: [132, 182, 234, 290, 330, 370, 400, 420],
+            itemStyle: {
+                color: '#33FF57'
+            },
+            barWidth: '30%'
+        },
+        {
+            name: 'Hip-hop',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            data: [101, 191, 290, 330, 370, 400, 420, 450],
+            itemStyle: {
+                color: '#3357FF'
+            },
+            barWidth: '30%'
+        },
+        {
+            name: 'R&B',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            data: [134, 234, 310, 400, 450, 480, 510, 530],
+            itemStyle: {
+                color: '#FF33A6'
+            },
+            barWidth: '30%'
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

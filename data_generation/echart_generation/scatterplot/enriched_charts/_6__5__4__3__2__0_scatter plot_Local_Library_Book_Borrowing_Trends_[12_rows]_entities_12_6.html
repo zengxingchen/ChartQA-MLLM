@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var option;
+
+option = {
+    title: {
+        text: 'Height vs. Weight of Individuals',
+        left: 'center',
+        top: 20
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: function (params) {
+            return 'Height: ' + params.value[0] + '<br/>Weight: ' + params.value[1];
+        }
+    },
+    legend: {
+        data: ['Height vs. Weight'],
+        left: 'right',
+        top: 'middle'
+    },
+    xAxis: {
+        name: 'Height (cm)',
+        type: 'value',
+        min: 140,
+        max: 210
+    },
+    yAxis: {
+        name: 'Weight (kg)',
+        type: 'value',
+        min: 40,
+        max: 110
+    },
+    series: [
+        {
+            name: 'Height vs. Weight',
+            type: 'scatter',
+            itemStyle: {
+                color: '#FF6347'
+            },
+            data: [
+                [150, 50],
+                [152, 53],
+                [155, 55],
+                [157, 58],
+                [160, 60],
+                [162, 63],
+                [165, 65],
+                [167, 68],
+                [170, 70],
+                [172, 73],
+                [175, 75],
+                [177, 78],
+                [180, 80],
+                [182, 83],
+                [185, 85],
+                [187, 88],
+                [190, 90],
+                [192, 93],
+                [195, 95],
+                [197, 98],
+                [200, 100]
+            ]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

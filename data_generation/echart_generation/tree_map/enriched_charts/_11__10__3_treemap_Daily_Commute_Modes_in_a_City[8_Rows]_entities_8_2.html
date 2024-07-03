@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+option = {
+    title: {
+        text: 'Exploration of Science & Nature and Health & Psychology',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: '{b}: {c}'
+    },
+    series: [{
+        type: 'treemap',
+        width: '90%',
+        height: '80%',
+        label: {
+            show: true,
+            formatter: '{b}'
+        },
+        itemStyle: {
+            borderColor: '#fff'
+        },
+        levels: [
+            {
+                itemStyle: {
+                    borderColor: '#555555',
+                    borderWidth: 4,
+                    gapWidth: 4
+                }
+            },
+            {
+                colorSaturation: [0.3, 0.6],
+                itemStyle: {
+                    borderColorSaturation: 0.7,
+                    gapWidth: 2,
+                    borderWidth: 2
+                }
+            }
+        ],
+        data: [
+            {
+                name: 'Science & Nature',
+                value: 520,
+                itemStyle: {
+                    color: '#7CFC00'
+                },
+                children: [
+                    {name: 'Biology', value: 120, itemStyle: {color: '#32CD32'}},
+                    {name: 'Chemistry', value: 80, itemStyle: {color: '#228B22'}},
+                    {name: 'Physics', value: 100, itemStyle: {color: '#006400'}},
+                    {name: 'Astronomy', value: 150, itemStyle: {color: '#ADFF2F'}},
+                    {name: 'Earth Science', value: 70, itemStyle: {color: '#9ACD32'}}
+                ]
+            },
+            {
+                name: 'Health & Psychology',
+                value: 520,
+                itemStyle: {
+                    color: '#FF7F50'
+                },
+                children: [
+                    {name: 'Mental Health', value: 110, itemStyle: {color: '#FF6347'}},
+                    {name: 'Physical Health', value: 130, itemStyle: {color: '#FF4500'}},
+                    {name: 'Neuroscience', value: 90, itemStyle: {color: '#FF8C00'}},
+                    {name: 'Psychology', value: 85, itemStyle: {color: '#FFA07A'}},
+                    {name: 'Public Health', value: 105, itemStyle: {color: '#FFD700'}}
+                ]
+            },
+            {
+                name: 'Travel & Adventure',
+                value: 495,
+                itemStyle: {
+                    color: '#1E90FF'
+                },
+                children: [
+                    {name: 'Beaches', value: 95, itemStyle: {color: '#00BFFF'}},
+                    {name: 'Mountains', value: 115, itemStyle: {color: '#4169E1'}},
+                    {name: 'Cities', value: 125, itemStyle: {color: '#4682B4'}},
+                    {name: 'Deserts', value: 75, itemStyle: {color: '#87CEEB'}},
+                    {name: 'Jungles', value: 85, itemStyle: {color: '#6495ED'}}
+                ]
+            }
+        ]
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

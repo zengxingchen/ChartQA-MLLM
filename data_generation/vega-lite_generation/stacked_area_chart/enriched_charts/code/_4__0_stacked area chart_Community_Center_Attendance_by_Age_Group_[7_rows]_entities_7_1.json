@@ -1,0 +1,185 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Quarterly Participation in Physical Activities",
+    "width": 500,
+    "height": 300,
+    "title": {
+        "text": "Quarterly Participation in Physical Activities",
+        "frame": "group",
+        "offset": 5
+    },
+    "data": {
+        "values": [
+            {
+                "Quarter": "Q1-2018",
+                "Running": 1200,
+                "Swimming": 800,
+                "Cycling": 1500,
+                "Yoga": 700
+            },
+            {
+                "Quarter": "Q2-2018",
+                "Running": 1300,
+                "Swimming": 850,
+                "Cycling": 1550,
+                "Yoga": 750
+            },
+            {
+                "Quarter": "Q3-2018",
+                "Running": 1100,
+                "Swimming": 900,
+                "Cycling": 1400,
+                "Yoga": 725
+            },
+            {
+                "Quarter": "Q4-2018",
+                "Running": 1150,
+                "Swimming": 950,
+                "Cycling": 1450,
+                "Yoga": 730
+            },
+            {
+                "Quarter": "Q1-2019",
+                "Running": 1250,
+                "Swimming": 975,
+                "Cycling": 1600,
+                "Yoga": 780
+            },
+            {
+                "Quarter": "Q2-2019",
+                "Running": 1350,
+                "Swimming": 1000,
+                "Cycling": 1650,
+                "Yoga": 810
+            },
+            {
+                "Quarter": "Q3-2019",
+                "Running": 1400,
+                "Swimming": 1025,
+                "Cycling": 1700,
+                "Yoga": 840
+            },
+            {
+                "Quarter": "Q4-2019",
+                "Running": 1450,
+                "Swimming": 1050,
+                "Cycling": 1750,
+                "Yoga": 870
+            },
+            {
+                "Quarter": "Q1-2020",
+                "Running": 1500,
+                "Swimming": 1100,
+                "Cycling": 1800,
+                "Yoga": 900
+            },
+            {
+                "Quarter": "Q2-2020",
+                "Running": 1600,
+                "Swimming": 1150,
+                "Cycling": 1850,
+                "Yoga": 930
+            },
+            {
+                "Quarter": "Q3-2020",
+                "Running": 1650,
+                "Swimming": 1200,
+                "Cycling": 1900,
+                "Yoga": 960
+            },
+            {
+                "Quarter": "Q4-2020",
+                "Running": 1700,
+                "Swimming": 1250,
+                "Cycling": 1950,
+                "Yoga": 980
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Running",
+                "Swimming",
+                "Cycling",
+                "Yoga"
+            ],
+            "as": [
+                "Activity",
+                "Participants"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "area",
+        "opacity": 0.6
+    },
+    "encoding": {
+        "x": {
+            "field": "Quarter",
+            "type": "ordinal",
+            "axis": {
+                "labelAngle": 0,
+                "title": "Quarter"
+            }
+        },
+        "y": {
+            "field": "Participants",
+            "type": "quantitative",
+            "axis": {
+                "title": "Number of Participants"
+            }
+        },
+        "color": {
+            "field": "Activity",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Running",
+                    "Swimming",
+                    "Cycling",
+                    "Yoga"
+                ],
+                "range": [
+                    "#4C78A8",
+                    "#F58518",
+                    "#E45756",
+                    "#72B7B2"
+                ]
+            },
+            "legend": {
+                "orient": "right",
+                "title": "Physical Activity"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Quarter",
+                "type": "ordinal"
+            },
+            {
+                "field": "Activity",
+                "type": "nominal",
+                "title": "Physical Activity"
+            },
+            {
+                "field": "Participants",
+                "type": "quantitative",
+                "title": "Participants"
+            }
+        ]
+    },
+    "config": {
+        "style": {
+            "cell": {
+                "stroke": "transparent"
+            }
+        },
+        "axis": {
+            "grid": true
+        },
+        "view": {
+            "stroke": "transparent"
+        }
+    }
+}

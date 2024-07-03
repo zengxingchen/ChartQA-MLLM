@@ -1,0 +1,125 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Line chart of average annual adventure activities participation by region over recent years",
+    "data": {
+        "values": [
+            {
+                "Year": 2019,
+                "Americas": 45,
+                "Europe": 50,
+                "Asia": 35,
+                "Africa": 40,
+                "Oceania": 55
+            },
+            {
+                "Year": 2020,
+                "Americas": 47,
+                "Europe": 52,
+                "Asia": 37,
+                "Africa": 42,
+                "Oceania": 57
+            },
+            {
+                "Year": 2021,
+                "Americas": 49,
+                "Europe": 54,
+                "Asia": 39,
+                "Africa": 44,
+                "Oceania": 59
+            },
+            {
+                "Year": 2022,
+                "Americas": 51,
+                "Europe": 56,
+                "Asia": 41,
+                "Africa": 46,
+                "Oceania": 61
+            },
+            {
+                "Year": 2023,
+                "Americas": 53,
+                "Europe": 58,
+                "Asia": 43,
+                "Africa": 48,
+                "Oceania": 63
+            },
+            {
+                "Year": 2024,
+                "Americas": 55,
+                "Europe": 60,
+                "Asia": 45,
+                "Africa": 50,
+                "Oceania": 65
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Americas",
+                "Europe",
+                "Asia",
+                "Africa",
+                "Oceania"
+            ],
+            "as": [
+                "Region",
+                "Participation"
+            ]
+        }
+    ],
+    "width": 800,
+    "height": 600,
+    "mark": {
+        "type": "line",
+        "point": true
+    },
+    "encoding": {
+        "x": {
+            "field": "Year",
+            "type": "ordinal",
+            "title": "Year"
+        },
+        "y": {
+            "field": "Participation",
+            "type": "quantitative",
+            "title": "Average Annual Participation in Adventure Activities (%)",
+            "axis": {
+                "format": ".1f",
+                "scale": {
+                    "reverse": true
+                }
+            }
+        },
+        "color": {
+            "field": "Region",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Americas",
+                    "Europe",
+                    "Asia",
+                    "Africa",
+                    "Oceania"
+                ],
+                "range": [
+                    "#FF5733",
+                    "#33FF57",
+                    "#3357FF",
+                    "#FF33A1",
+                    "#FFC300"
+                ]
+            },
+            "title": "Region"
+        }
+    },
+    "config": {
+        "axisY": {
+            "minExtent": 30
+        },
+        "text": {
+            "labelFontSize": 12,
+            "labelFontWeight": "bold"
+        }
+    }
+}

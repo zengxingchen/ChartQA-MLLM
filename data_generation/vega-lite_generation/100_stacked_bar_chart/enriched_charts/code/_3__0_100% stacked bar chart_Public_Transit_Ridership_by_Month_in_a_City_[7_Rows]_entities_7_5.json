@@ -1,0 +1,145 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "A 100% stacked bar chart showing the calorie distribution by meal types across different days of the week.",
+    "width": 400,
+    "height": 300,
+    "padding": 5,
+    "data": {
+        "values": [
+            {
+                "Day": "Monday",
+                "Breakfast": 300,
+                "Lunch": 600,
+                "Dinner": 700,
+                "Snacks": 200
+            },
+            {
+                "Day": "Tuesday",
+                "Breakfast": 350,
+                "Lunch": 650,
+                "Dinner": 750,
+                "Snacks": 250
+            },
+            {
+                "Day": "Wednesday",
+                "Breakfast": 400,
+                "Lunch": 700,
+                "Dinner": 800,
+                "Snacks": 300
+            },
+            {
+                "Day": "Thursday",
+                "Breakfast": 320,
+                "Lunch": 620,
+                "Dinner": 720,
+                "Snacks": 220
+            },
+            {
+                "Day": "Friday",
+                "Breakfast": 360,
+                "Lunch": 660,
+                "Dinner": 760,
+                "Snacks": 260
+            },
+            {
+                "Day": "Saturday",
+                "Breakfast": 380,
+                "Lunch": 680,
+                "Dinner": 780,
+                "Snacks": 280
+            },
+            {
+                "Day": "Sunday",
+                "Breakfast": 340,
+                "Lunch": 640,
+                "Dinner": 740,
+                "Snacks": 240
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Breakfast",
+                "Lunch",
+                "Dinner",
+                "Snacks"
+            ],
+            "as": [
+                "MealType",
+                "Calories"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "bar",
+        "tooltip": true,
+        "cornerRadiusEnd": 4
+    },
+    "encoding": {
+        "x": {
+            "field": "Day",
+            "type": "ordinal",
+            "axis": {
+                "title": "Day of the Week",
+                "labelAngle": 0
+            }
+        },
+        "y": {
+            "field": "Calories",
+            "type": "quantitative",
+            "axis": {
+                "title": "Calories (%)",
+                "format": ".0f"
+            },
+            "stack": "normalize"
+        },
+        "color": {
+            "field": "MealType",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Breakfast",
+                    "Lunch",
+                    "Dinner",
+                    "Snacks"
+                ],
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e",
+                    "#2ca02c",
+                    "#d62728"
+                ]
+            },
+            "legend": {
+                "title": "Meal Type",
+                "orient": "top",
+                "symbolType": "square"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "MealType",
+                "type": "nominal"
+            },
+            {
+                "field": "Calories",
+                "type": "quantitative",
+                "title": "Calories"
+            }
+        ]
+    },
+    "config": {
+        "axis": {
+            "labelFontSize": 12,
+            "titleFontSize": 14
+        },
+        "legend": {
+            "labelFontSize": 12,
+            "titleFontSize": 14
+        },
+        "bar": {
+            "binSpacing": 2
+        }
+    }
+}

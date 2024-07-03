@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+var option;
+
+option = {
+    title: {
+        text: 'Temperature Variation Over Days',
+        left: 'center',
+        top: '10%'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross'
+        }
+    },
+    legend: {
+        data: ['Temperature'],
+        top: '15%',
+        left: '10%'
+    },
+    xAxis: {
+        name: 'Days',
+        type: 'value'
+    },
+    yAxis: {
+        name: 'Temperature (°C)',
+        type: 'value'
+    },
+    series: [{
+        name: 'Temperature',
+        type: 'scatter',
+        data: [
+            [2, 14.3], [2.5, 16.1], [3, 19.2], 
+            [4, 23.4], [5, 20.8], [5.5, 18.9],
+            [6, 17.3], [7, 15.6], [8, 22.1],
+            [9, 21.5], [9.5, 24.3], [10, 26.5],
+            [11, 23.8], [11.5, 19.9], [12, 27.2],
+            [13, 25.4], [14, 26.1], [15, 28.4],
+            [16, 30.0], [17, 31.6], [18, 33.8],
+            [19, 29.7], [20, 34.2], [21, 32.6],
+            [22, 36.9], [23, 38.9], [24, 39.5],
+            [25, 41.0], [26, 42.7], [27, 44.4],
+            [28, 46.5], [29, 45.2], [30, 47.8]
+        ],
+        markLine: {
+            data: [
+                { type: 'average', name: 'Avg' }
+            ]
+        },
+        itemStyle: {
+            color: '#FF5733'
+        }
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

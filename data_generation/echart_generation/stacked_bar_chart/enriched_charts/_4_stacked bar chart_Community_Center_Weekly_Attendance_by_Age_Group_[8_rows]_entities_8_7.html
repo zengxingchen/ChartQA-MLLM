@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+
+var option = {
+    title: {
+        text: 'Student Enrollment Over Years - Education & Learning',
+        left: 'center',
+        top: '20'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Science', 'Arts', 'Commerce', 'Technology'],
+        top: '50'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: false
+    },
+    yAxis: {
+        type: 'category',
+        data: ['2016', '2017', '2018', '2019', '2020', '2021', '2022']
+    },
+    series: [
+        {
+            name: 'Science',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            data: [1200, 1300, 1350, 1400, 1500, 1550, 1600],
+            color: '#1f77b4',
+            barWidth: '80%'
+        },
+        {
+            name: 'Arts',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            data: [900, 950, 1000, 1020, 1050, 1100, 1150],
+            color: '#aec7e8',
+            barWidth: '80%'
+        },
+        {
+            name: 'Commerce',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            data: [1000, 1100, 1150, 1200, 1250, 1300, 1350],
+            color: '#ff7f0e',
+            barWidth: '80%'
+        },
+        {
+            name: 'Technology',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            data: [800, 850, 900, 950, 1000, 1050, 1100],
+            color: '#2ca02c',
+            barWidth: '80%'
+        }
+    ]
+};
+
+myChart.setOption(option, true);
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

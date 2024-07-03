@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 700, // Adjust chart width
+    height: 500 // Adjust chart height
+});
+var app = {};
+
+var option;
+
+option = {
+    color: ["#FFD700", "#DC143C", "#228B22", "#1E90FF", "#FF8C00"], // Modified color scheme
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Future Technologies', 'Art & Design', 'Science & Nature', 'Health & Psychology', 'Culture & Society']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value'
+    },
+    yAxis: {
+        type: 'category',
+        data: ['2021', '2022', '2023', '2024']
+    },
+    series: [
+        {
+            name: 'Future Technologies',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                formatter: '{b}'
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [15, 10, 15, 10],
+            barWidth: 30 // Adjust bar width
+        },
+        {
+            name: 'Art & Design',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [20, 30, 25, 20],
+            barWidth: 30 // Adjust bar width
+        },
+        {
+            name: 'Science & Nature',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [25, 20, 15, 30],
+            barWidth: 30 // Adjust bar width
+        },
+        {
+            name: 'Health & Psychology',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [15, 20, 30, 20],
+            barWidth: 30 // Adjust bar width
+        },
+        {
+            name: 'Culture & Society',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [25, 20, 15, 20],
+            barWidth: 30 // Adjust bar width
+        }
+    ]
+};
+
+myChart.setOption(option, true);
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

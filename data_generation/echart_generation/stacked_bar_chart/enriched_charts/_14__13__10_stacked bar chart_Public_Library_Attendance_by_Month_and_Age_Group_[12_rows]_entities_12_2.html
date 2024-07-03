@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var option;
+
+option = {
+    title: {
+        text: 'Daily Caloric Intake by Food Type',
+        left: 'center',
+        top: '5%'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Fruits', 'Vegetables', 'Grains', 'Proteins', 'Dairy', 'Sweets'],
+        top: '10%'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        data: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Fruits',
+            type: 'bar',
+            stack: 'Total',
+            barWidth: '20%',
+            itemStyle: {
+                color: '#FF6347'
+            },
+            data: [90, 100, 95, 85, 105, 100, 110]
+        },
+        {
+            name: 'Vegetables',
+            type: 'bar',
+            stack: 'Total',
+            itemStyle: {
+                color: '#32CD32'
+            },
+            data: [120, 110, 130, 125, 115, 140, 135]
+        },
+        {
+            name: 'Grains',
+            type: 'bar',
+            stack: 'Total',
+            itemStyle: {
+                color: '#FFD700'
+            },
+            data: [200, 220, 210, 205, 215, 225, 230]
+        },
+        {
+            name: 'Proteins',
+            type: 'bar',
+            stack: 'Total',
+            itemStyle: {
+                color: '#4169E1'
+            },
+            data: [150, 140, 160, 145, 155, 150, 160]
+        },
+        {
+            name: 'Dairy',
+            type: 'bar',
+            stack: 'Total',
+            itemStyle: {
+                color: '#8A2BE2'
+            },
+            data: [100, 90, 95, 105, 110, 120, 125]
+        },
+        {
+            name: 'Sweets',
+            type: 'bar',
+            stack: 'Total',
+            itemStyle: {
+                color: '#FF1493'
+            },
+            data: [50, 60, 55, 65, 70, 75, 80]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

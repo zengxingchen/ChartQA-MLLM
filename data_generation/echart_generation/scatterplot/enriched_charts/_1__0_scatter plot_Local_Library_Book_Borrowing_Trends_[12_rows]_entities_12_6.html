@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, { width: 800, height: 600 });
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Science & Nature',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis',
+        showDelay: 0,
+        formatter: function (params) {
+            if (params.value.length > 1) {
+                return params.seriesName + ' :<br/>' + 
+                       params.value[0] + ' cm, ' + 
+                       params.value[1] + ' kg';
+            } else {
+                return params.seriesName + ' :<br/>' + 
+                       params.name + ' : ' + 
+                       params.value + ' kg';
+            }
+        },
+        axisPointer: {
+            show: true,
+            type: 'cross',
+            lineStyle: {
+                type: 'dashed',
+                width: 1
+            }
+        }
+    },
+    legend: {
+        left: 'left',
+        data: ['Height vs Weight']
+    },
+    xAxis: [{
+        type: 'value',
+        scale: true,
+        axisLabel: {
+            formatter: '{value} cm'
+        }
+    }],
+    yAxis: [{
+        type: 'value',
+        scale: true,
+        axisLabel: {
+            formatter: '{value} kg'
+        }
+    }],
+    series: [{
+        name: 'Height vs Weight',
+        type: 'scatter',
+        itemStyle: {
+            normal: {
+                color: '#FF5733'
+            }
+        },
+        data: [
+            [2.3, 4.5], [1.2, 3.9], [3.5, 5.2], [4.1, 6.3],
+            [2.8, 5.7], [3.0, 4.0], [4.2, 6.0], [5.1, 7.2],
+            [3.3, 5.9], [4.4, 6.8], [1.7, 4.3], [3.9, 5.5],
+            [2.6, 4.8], [3.7, 5.1], [4.0, 6.5], [5.2, 7.0],
+            [1.9, 4.1], [3.2, 5.4], [2.5, 4.6], [4.5, 6.9]
+        ]
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

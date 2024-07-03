@@ -1,0 +1,143 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": {
+        "text": "Sector Growth Over Years",
+        "subtitle": "Horizontal stacked bar chart representing the proportion of growth in different sectors",
+        "anchor": "start",
+        "color": "black"
+    },
+    "description": "A stacked bar chart showing the growth percentage of Tech, Healthcare, and Education sectors.",
+    "width": 400,
+    "height": 200,
+    "data": {
+        "values": [
+            {
+                "Year": 2017,
+                "Tech": 25,
+                "Healthcare": 30,
+                "Education": 45
+            },
+            {
+                "Year": 2018,
+                "Tech": 22,
+                "Healthcare": 33,
+                "Education": 45
+            },
+            {
+                "Year": 2019,
+                "Tech": 27,
+                "Healthcare": 35,
+                "Education": 38
+            },
+            {
+                "Year": 2020,
+                "Tech": 35,
+                "Healthcare": 30,
+                "Education": 35
+            },
+            {
+                "Year": 2021,
+                "Tech": 40,
+                "Healthcare": 28,
+                "Education": 32
+            },
+            {
+                "Year": 2022,
+                "Tech": 50,
+                "Healthcare": 25,
+                "Education": 25
+            },
+            {
+                "Year": 2023,
+                "Tech": 55,
+                "Healthcare": 23,
+                "Education": 22
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Tech",
+                "Healthcare",
+                "Education"
+            ],
+            "as": [
+                "Sector",
+                "Percentage"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "bar",
+        "width": {
+            "band": 0.15
+        }
+    },
+    "encoding": {
+        "y": {
+            "field": "Year",
+            "type": "ordinal",
+            "title": "Year"
+        },
+        "x": {
+            "field": "Percentage",
+            "type": "quantitative",
+            "title": "Growth Percentage",
+            "stack": "normalize",
+            "axis": {
+                "format": ".0%"
+            }
+        },
+        "color": {
+            "field": "Sector",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Tech",
+                    "Healthcare",
+                    "Education"
+                ],
+                "range": [
+                    "#D35400",
+                    "#2E86C1",
+                    "#A569BD"
+                ]
+            },
+            "title": "Sector"
+        },
+        "tooltip": [
+            {
+                "field": "Year",
+                "type": "ordinal",
+                "title": "Year"
+            },
+            {
+                "field": "Sector",
+                "type": "nominal",
+                "title": "Sector"
+            },
+            {
+                "field": "Percentage",
+                "type": "quantitative",
+                "title": "Percentage (%)",
+                "format": ".2f"
+            }
+        ]
+    },
+    "config": {
+        "axisY": {
+            "titleAngle": 0,
+            "titleAlign": "left",
+            "titleY": -10,
+            "titleX": -10,
+            "labelPadding": 5,
+            "titleFontSize": 12
+        },
+        "legend": {
+            "titleFontSize": 12,
+            "labelFontSize": 12,
+            "symbolType": "square"
+        }
+    }
+}

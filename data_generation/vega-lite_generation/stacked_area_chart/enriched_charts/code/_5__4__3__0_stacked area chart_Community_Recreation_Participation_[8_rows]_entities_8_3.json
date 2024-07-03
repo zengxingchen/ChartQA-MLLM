@@ -1,0 +1,153 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": 500,
+    "height": 300,
+    "data": {
+        "values": [
+            {
+                "Year": "2015",
+                "Coursera": 17.5,
+                "Udemy": 5,
+                "edX": 3,
+                "KhanAcademy": 10,
+                "Skillshare": 1
+            },
+            {
+                "Year": "2016",
+                "Coursera": 20,
+                "Udemy": 7,
+                "edX": 4,
+                "KhanAcademy": 11,
+                "Skillshare": 1.5
+            },
+            {
+                "Year": "2017",
+                "Coursera": 23,
+                "Udemy": 10,
+                "edX": 5,
+                "KhanAcademy": 12,
+                "Skillshare": 2
+            },
+            {
+                "Year": "2018",
+                "Coursera": 28,
+                "Udemy": 13,
+                "edX": 7,
+                "KhanAcademy": 14,
+                "Skillshare": 2.5
+            },
+            {
+                "Year": "2019",
+                "Coursera": 35,
+                "Udemy": 18,
+                "edX": 9,
+                "KhanAcademy": 16,
+                "Skillshare": 3
+            },
+            {
+                "Year": "2020",
+                "Coursera": 42,
+                "Udemy": 24,
+                "edX": 12,
+                "KhanAcademy": 18,
+                "Skillshare": 4
+            },
+            {
+                "Year": "2021",
+                "Coursera": 49,
+                "Udemy": 30,
+                "edX": 15,
+                "KhanAcademy": 22,
+                "Skillshare": 5
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Coursera",
+                "Udemy",
+                "edX",
+                "KhanAcademy",
+                "Skillshare"
+            ],
+            "as": [
+                "Platform",
+                "Users"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "area",
+        "opacity": 0.6
+    },
+    "encoding": {
+        "x": {
+            "field": "Year",
+            "type": "ordinal",
+            "title": "Year"
+        },
+        "y": {
+            "field": "Users",
+            "type": "quantitative",
+            "title": "Million Users",
+            "stack": "zero"
+        },
+        "color": {
+            "field": "Platform",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Coursera",
+                    "Udemy",
+                    "edX",
+                    "KhanAcademy",
+                    "Skillshare"
+                ],
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e",
+                    "#2ca02c",
+                    "#d62728",
+                    "#9467bd"
+                ]
+            },
+            "title": "Platform"
+        },
+        "tooltip": [
+            {
+                "field": "Platform",
+                "type": "nominal"
+            },
+            {
+                "field": "Users",
+                "type": "quantitative",
+                "format": ",.1f"
+            }
+        ]
+    },
+    "title": {
+        "text": "Growth of Online Learning Platforms (2015-2021)",
+        "fontSize": 16,
+        "anchor": "start",
+        "color": "black",
+        "offset": 10,
+        "subtitle": "User base development for major educational platforms",
+        "subtitleFontSize": 12
+    },
+    "config": {
+        "axis": {
+            "labelFontSize": 12,
+            "titleFontSize": 14
+        },
+        "legend": {
+            "labelFontSize": 12,
+            "titleFontSize": 14,
+            "offset": 10,
+            "orient": "top-right"
+        },
+        "view": {
+            "stroke": "transparent"
+        }
+    }
+}

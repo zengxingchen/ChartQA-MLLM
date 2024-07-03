@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+
+var colors = ['#5470C6', '#91CC75', '#EE6666', '#73C0DE'];
+
+var option = {
+  title: {
+    text: 'Monthly Sales Data',
+    left: 'center'
+  },
+  color: colors,
+  tooltip: {
+    trigger: 'axis'
+  },
+  legend: {
+    data: ['Clothing', 'Electronics', 'Home Decor', 'Books'],
+    bottom: '0%'
+  },
+  grid: {
+    left: '3%',
+    right: '4%',
+    bottom: '10%',
+    containLabel: true
+  },
+  xAxis: {
+    type: 'category',
+    boundaryGap: false,
+    data: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+  },
+  yAxis: {
+    type: 'value'
+  },
+  series: [
+    {
+      name: 'Clothing',
+      type: 'line',
+      stack: 'Total',
+      areaStyle: {},
+      emphasis: {
+        focus: 'series'
+      },
+      data: [15000, 16000, 20000, 24000, 26000, 27000, 28000, 29000, 27000, 32000, 33000, 34000]
+    },
+    {
+      name: 'Electronics',
+      type: 'line',
+      stack: 'Total',
+      areaStyle: {},
+      emphasis: {
+        focus: 'series'
+      },
+      data: [22000, 21000, 25000, 20500, 25500, 23000, 26000, 27000, 28000, 29000, 32000, 33000]
+    },
+    {
+      name: 'Home Decor',
+      type: 'line',
+      stack: 'Total',
+      areaStyle: {},
+      emphasis: {
+        focus: 'series'
+      },
+      data: [30000, 34000, 28000, 27500, 30000, 32000, 31000, 33000, 35000, 36500, 38000, 40000]
+    },
+    {
+      name: 'Books',
+      type: 'line',
+      stack: 'Total',
+      areaStyle: {},
+      emphasis: {
+        focus: 'series'
+      },
+      data: [18000, 16500, 20000, 23000, 22500, 25000, 24000, 26000, 27000, 28000, 29000, 30000]
+    }
+  ]
+};
+
+myChart.setOption(option);
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

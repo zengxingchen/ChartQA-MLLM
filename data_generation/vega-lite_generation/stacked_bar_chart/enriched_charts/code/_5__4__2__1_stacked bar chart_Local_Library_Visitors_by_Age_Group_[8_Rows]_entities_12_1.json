@@ -1,0 +1,181 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+        "values": [
+            {
+                "Year": "2021",
+                "Running": 2000,
+                "Swimming": 1500,
+                "Cycling": 1200,
+                "Yoga": 1800
+            },
+            {
+                "Year": "2022",
+                "Running": 2100,
+                "Swimming": 1600,
+                "Cycling": 1300,
+                "Yoga": 1900
+            },
+            {
+                "Year": "2023",
+                "Running": 2200,
+                "Swimming": 1700,
+                "Cycling": 1400,
+                "Yoga": 2000
+            },
+            {
+                "Year": "2024",
+                "Running": 2300,
+                "Swimming": 1800,
+                "Cycling": 1500,
+                "Yoga": 2100
+            },
+            {
+                "Year": "2025",
+                "Running": 2400,
+                "Swimming": 1900,
+                "Cycling": 1600,
+                "Yoga": 2200
+            },
+            {
+                "Year": "2026",
+                "Running": 2500,
+                "Swimming": 2000,
+                "Cycling": 1700,
+                "Yoga": 2300
+            },
+            {
+                "Year": "2027",
+                "Running": 2600,
+                "Swimming": 2100,
+                "Cycling": 1800,
+                "Yoga": 2400
+            },
+            {
+                "Year": "2028",
+                "Running": 2700,
+                "Swimming": 2200,
+                "Cycling": 1900,
+                "Yoga": 2500
+            },
+            {
+                "Year": "2029",
+                "Running": 2800,
+                "Swimming": 2300,
+                "Cycling": 2000,
+                "Yoga": 2600
+            },
+            {
+                "Year": "2030",
+                "Running": 2900,
+                "Swimming": 2400,
+                "Cycling": 2100,
+                "Yoga": 2700
+            },
+            {
+                "Year": "2031",
+                "Running": 3000,
+                "Swimming": 2500,
+                "Cycling": 2200,
+                "Yoga": 2800
+            },
+            {
+                "Year": "2032",
+                "Running": 3100,
+                "Swimming": 2600,
+                "Cycling": 2300,
+                "Yoga": 2900
+            },
+            {
+                "Year": "2033",
+                "Running": 3200,
+                "Swimming": 2700,
+                "Cycling": 2400,
+                "Yoga": 3000
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Running",
+                "Swimming",
+                "Cycling",
+                "Yoga"
+            ],
+            "as": [
+                "Activity",
+                "Participation"
+            ]
+        }
+    ],
+    "mark": "bar",
+    "width": 700,
+    "height": 500,
+    "title": {
+        "text": "Annual Fitness Activity Participation",
+        "subtitle": "Participation in various fitness activities (in thousands)",
+        "fontSize": 16,
+        "anchor": "start",
+        "offset": 20,
+        "subtitleColor": "gray"
+    },
+    "encoding": {
+        "x": {
+            "field": "Year",
+            "type": "ordinal",
+            "title": "Year",
+            "axis": {
+                "labelAngle": 0
+            }
+        },
+        "y": {
+            "field": "Participation",
+            "type": "quantitative",
+            "title": "Participation (in thousands)"
+        },
+        "color": {
+            "field": "Activity",
+            "type": "nominal",
+            "legend": {
+                "title": "Activity Categories",
+                "orient": "top-right",
+                "offset": 5
+            },
+            "scale": {
+                "domain": [
+                    "Running",
+                    "Swimming",
+                    "Cycling",
+                    "Yoga"
+                ],
+                "range": [
+                    "#4CAF50",
+                    "#2196F3",
+                    "#FFC107",
+                    "#9C27B0"
+                ]
+            }
+        },
+        "width": {
+            "field": "Participation",
+            "type": "quantitative",
+            "band": 0.6
+        },
+        "tooltip": [
+            {
+                "field": "Year",
+                "type": "ordinal"
+            },
+            {
+                "field": "Activity",
+                "type": "nominal"
+            },
+            {
+                "field": "Participation",
+                "type": "quantitative",
+                "title": "Participation"
+            }
+        ]
+    }
+}

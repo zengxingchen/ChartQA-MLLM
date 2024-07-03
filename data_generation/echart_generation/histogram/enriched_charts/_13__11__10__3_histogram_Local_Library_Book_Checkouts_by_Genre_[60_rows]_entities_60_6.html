@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+var option = {
+    title: {
+        text: 'Distribution of Fitness Activity Durations',
+        left: 'center',
+        top: '10%'
+    },
+    xAxis: {
+        type: 'category',
+        data: ['15-20', '21-25', '26-30', '31-35', '36-40', '41-45', '46-50', '51-55', '56-60', '61-65'],
+        name: 'Duration (minutes)',
+        nameLocation: 'middle',
+        nameGap: 30
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Frequency',
+        nameLocation: 'middle',
+        nameGap: 50
+    },
+    series: [{
+        type: 'bar',
+        data: [
+            {value: 3, label: {show: true, position: 'top'}},
+            {value: 5, label: {show: true, position: 'top'}},
+            {value: 6, label: {show: true, position: 'top'}},
+            {value: 4, label: {show: true, position: 'top'}},
+            {value: 5, label: {show: true, position: 'top'}},
+            {value: 3, label: {show: true, position: 'top'}},
+            {value: 4, label: {show: true, position: 'top'}},
+            {value: 5, label: {show: true, position: 'top'}},
+            {value: 4, label: {show: true, position: 'top'}},
+            {value: 1, label: {show: true, position: 'top'}}
+        ],
+        itemStyle: {
+            color: '#4CAF50',
+            barBorderRadius: [5, 5, 0, 0]
+        },
+        barWidth: 50
+    }]
+};
+if (option && typeof option === 'object') myChart.setOption(option);
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

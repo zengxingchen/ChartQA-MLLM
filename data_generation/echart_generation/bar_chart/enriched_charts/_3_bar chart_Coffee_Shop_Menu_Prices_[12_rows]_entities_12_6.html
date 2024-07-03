@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 400});
+var app = {};
+
+var option;
+
+option = {
+    color: ['#3398DB'],
+    title: {
+        text: 'Graduates in Various Fields of Study - 2023',
+        left: 'center',
+        top: 10
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: [
+        {
+            type: 'category',
+            data: ['Computer Science', 'Electrical Engineering', 'Mechanical Engineering', 'Civil Engineering', 'Chemistry', 'Biology', 'Literature', 'Philosophy', 'Art', 'Psychology', 'Economics'],
+            axisTick: {
+                alignWithLabel: true
+            },
+            axisLabel: {
+                rotate: 45,
+                interval: 0
+            }
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value',
+            minInterval: 1,
+            boundaryGap: [0, 0.01]
+        }
+    ],
+    series: [
+        {
+            name: 'Number of Graduates',
+            type: 'bar',
+            barWidth: '60%',
+            data: [754, 623, 487, 365, 301, 524, 461, 212, 354, 476, 651],
+            itemStyle: {
+                color: function(params) {
+                    const colorList = ['#c23531', '#2f4554', '#61a0a8', '#d48265', '#91c7ae','#749f83', '#ca8622', '#bda29a','#6e7074', '#546570', '#c4ccd3'];
+                    return colorList[params.dataIndex];
+                }
+            },
+            label: {
+                show: true,
+                position: 'top'
+            }
+        }
+    ],
+    legend: {
+        data: ['Number of Graduates'],
+        top: 35
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

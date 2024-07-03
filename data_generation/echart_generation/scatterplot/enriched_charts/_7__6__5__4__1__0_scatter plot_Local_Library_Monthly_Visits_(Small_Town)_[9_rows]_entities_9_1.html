@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Caloric Value vs. Sugar Content in Fruits',
+        left: 'center',
+        top: 20,
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: function (params) {
+            return params.value[2] + '<br/>' + 
+                   'Calories: ' + params.value[0] + '<br/>' + 
+                   'Sugar: ' + params.value[1] + 'g';
+        }
+    },
+    xAxis: {
+        name: 'Calories',
+        type: 'value',
+        nameLocation: 'middle',
+        nameGap: 30,
+        axisLine: {
+            lineStyle: {
+                color: '#000000'
+            }
+        },
+        axisLabel: {
+            formatter: '{value} kcal'
+        }
+    },
+    yAxis: {
+        name: 'Sugar Content (g)',
+        type: 'value',
+        nameLocation: 'middle',
+        nameGap: 50,
+        axisLine: {
+            lineStyle: {
+                color: '#000000'
+            }
+        },
+        axisLabel: {
+            formatter: '{value} g'
+        }
+    },
+    series: [{
+        name: 'Fruits',
+        type: 'scatter',
+        data: [
+            [52, 10, 'Apple'],
+            [96, 12, 'Banana'],
+            [69, 16, 'Grapes'],
+            [43, 9, 'Orange'],
+            [32, 5, 'Strawberry'],
+            [50, 10, 'Pineapple'],
+            [60, 14, 'Mango'],
+            [57, 10, 'Blueberry'],
+            [30, 6, 'Watermelon'],
+            [39, 8, 'Peach'],
+            [50, 12, 'Cherry'],
+            [57, 10, 'Pear'],
+            [46, 9, 'Plum'],
+            [61, 9, 'Kiwi'],
+            [74, 16, 'Fig'],
+            [83, 14, 'Pomegranate'],
+            [43, 8, 'Papaya'],
+            [48, 9, 'Apricot'],
+            [42, 7, 'Grapefruit'],
+            [29, 2, 'Lemon']
+        ],
+        itemStyle: {
+            color: '#ff7f50'
+        }
+    }],
+    legend: {
+        data: ['Fruits'],
+        left: 'left',
+        top: 'bottom'
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

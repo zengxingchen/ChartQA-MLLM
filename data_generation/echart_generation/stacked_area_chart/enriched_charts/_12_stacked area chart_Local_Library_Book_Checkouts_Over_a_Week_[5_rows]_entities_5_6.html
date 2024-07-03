@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Technology and Health: A Sector Comparison',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            label: {
+                backgroundColor: '#6a7985'
+            }
+        }
+    },
+    legend: {
+        data: ['High Technology', 'Consumer Electronics', 'Pharmaceuticals'],
+        right: 10,
+        top: 30
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: [
+        {
+            type: 'category',
+            boundaryGap: false,
+            data: [
+                '2010-01', '2010-02', '2010-03', '2010-04', '2010-05', '2010-06',
+                '2010-07', '2010-08', '2010-09', '2010-10', '2010-11', '2010-12',
+                '2011-01', '2011-02', '2011-03', '2011-04', '2011-05', '2011-06',
+                '2011-07', '2011-08', '2011-09', '2011-10', '2011-11', '2011-12',
+                '2012-01', '2012-02', '2012-03', '2012-04', '2012-05', '2012-06'
+            ]
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value'
+        }
+    ],
+    series: [
+        {
+            name: 'High Technology',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [
+                12000, 13000, 15000, 14000, 14500, 15500, 14800, 15500, 16000, 16500,
+                16800, 17000, 17200, 17600, 17800, 18000, 18200, 18500, 18800, 19100,
+                19400, 19600, 19800, 20000, 20300, 20500, 20700, 20900, 21000, 21200
+            ],
+            color: '#ff7f50'
+        },
+        {
+            name: 'Consumer Electronics',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [
+                8000, 8200, 8400, 8500, 8700, 9000, 9300, 9500, 9700, 9800,
+                9900, 10000, 10100, 10220, 10250, 10300, 10400, 10550, 10600, 10750,
+                10800, 10850, 10900, 11000, 11100, 11200, 11350, 11400, 11500, 11600
+            ],
+            color: '#87cefa'
+        },
+        {
+            name: 'Pharmaceuticals',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [
+                3000, 4200, 2700, 3400, 3600, 3900, 4200, 4400, 4800, 5100,
+                5400, 5700, 6000, 6300, 6600, 6700, 6800, 6900, 7000, 7200,
+                7300, 7400, 7500, 7600, 7700, 7800, 7900, 8000, 8100, 8200
+            ],
+            color: '#32cd32'
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

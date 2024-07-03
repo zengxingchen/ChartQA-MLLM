@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var rawData = [
+    {'Month': 'January', ' Paper (Kilograms)': 1200, ' Plastic (Kilograms)': 950, ' Glass (Kilograms)': 500, ' Metal (Kilograms)': 300},
+    {'Month': 'February', ' Paper (Kilograms)': 1150, ' Plastic (Kilograms)': 900, ' Glass (Kilograms)': 450, ' Metal (Kilograms)': 320},
+    {'Month': 'March', ' Paper (Kilograms)': 1250, ' Plastic (Kilograms)': 1000, ' Glass (Kilograms)': 550, ' Metal (Kilograms)': 330},
+    {'Month': 'April', ' Paper (Kilograms)': 1300, ' Plastic (Kilograms)': 1050, ' Glass (Kilograms)': 600, ' Metal (Kilograms)': 350},
+    {'Month': 'May', ' Paper (Kilograms)': 1280, ' Plastic (Kilograms)': 1100, ' Glass (Kilograms)': 570, ' Metal (Kilograms)': 340},
+    {'Month': 'June', ' Paper (Kilograms)': 1350, ' Plastic (Kilograms)': 1150, ' Glass (Kilograms)': 610, ' Metal (Kilograms)': 360},
+    {'Month': 'July', ' Paper (Kilograms)': 1400, ' Plastic (Kilograms)': 1200, ' Glass (Kilograms)': 650, ' Metal (Kilograms)': 370},
+    {'Month': 'August', ' Paper (Kilograms)': 1450, ' Plastic (Kilograms)': 1250, ' Glass (Kilograms)': 700, ' Metal (Kilograms)': 380},
+    {'Month': 'September', ' Paper (Kilograms)': 1500, ' Plastic (Kilograms)': 1300, ' Glass (Kilograms)': 750, ' Metal (Kilograms)': 390},
+    {'Month': 'October', ' Paper (Kilograms)': 1550, ' Plastic (Kilograms)': 1350, ' Glass (Kilograms)': 760, ' Metal (Kilograms)': 400},
+    {'Month': 'November', ' Paper (Kilograms)': 1450, ' Plastic (Kilograms)': 1250, ' Glass (Kilograms)': 720, ' Metal (Kilograms)': 380},
+    {'Month': 'December', ' Paper (Kilograms)': 1600, ' Plastic (Kilograms)': 1400, ' Glass (Kilograms)': 800, ' Metal (Kilograms)': 420}
+];
+
+var months = rawData.map(function (item) {
+    return item.Month;
+});
+var seriesData = {
+    paper: rawData.map(function (item) {
+        return item[' Paper (Kilograms)'];
+    }),
+    plastic: rawData.map(function (item) {
+        return item[' Plastic (Kilograms)'];
+    }),
+    glass: rawData.map(function (item) {
+        return item[' Glass (Kilograms)'];
+    }),
+    metal: rawData.map(function (item) {
+        return item[' Metal (Kilograms)'];
+    })
+};
+
+option = {
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['Paper', 'Plastic', 'Glass', 'Metal']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: months
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Paper',
+            type: 'line',
+            data: seriesData.paper,
+            markPoint: {
+                data: [
+                    {type: 'max', name: 'Max'},
+                    {type: 'min', name: 'Min'}
+                ]
+            }
+        },
+        {
+            name: 'Plastic',
+            type: 'line',
+            data: seriesData.plastic,
+            markPoint: {
+                data: [
+                    {type: 'max', name: 'Max'},
+                    {type: 'min', name: 'Min'}
+                ]
+            }
+        },
+        {
+            name: 'Glass',
+            type: 'line',
+            data: seriesData.glass,
+            markPoint: {
+                data: [
+                    {type: 'max', name: 'Max'},
+                    {type: 'min', name: 'Min'}
+                ]
+            }
+        },
+        {
+            name: 'Metal',
+            type: 'line',
+            data: seriesData.metal,
+            markPoint: {
+                data: [
+                    {type: 'max', name: 'Max'},
+                    {type: 'min', name: 'Min'}
+                ]
+            }
+        }
+    ],
+    dataZoom: [
+        {
+            type: 'inside',
+            start: 0,
+            end: 100
+        },
+        {
+            start: 0,
+            end: 10
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

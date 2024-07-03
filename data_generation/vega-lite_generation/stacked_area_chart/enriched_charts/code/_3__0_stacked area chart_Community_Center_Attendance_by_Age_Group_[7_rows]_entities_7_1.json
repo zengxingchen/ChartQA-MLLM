@@ -1,0 +1,183 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Monthly Website Traffic by Source",
+    "width": 800,
+    "height": 300,
+    "title": {
+        "text": "Monthly Website Traffic by Source",
+        "offset": 10,
+        "anchor": "start",
+        "frame": "group"
+    },
+    "data": {
+        "values": [
+            {
+                "Month": "Jan",
+                "Direct": 12000,
+                "Email": 4000,
+                "Social Media": 3000,
+                "Referral": 2000
+            },
+            {
+                "Month": "Feb",
+                "Direct": 13000,
+                "Email": 4200,
+                "Social Media": 3100,
+                "Referral": 2200
+            },
+            {
+                "Month": "Mar",
+                "Direct": 14000,
+                "Email": 4300,
+                "Social Media": 3300,
+                "Referral": 2100
+            },
+            {
+                "Month": "Apr",
+                "Direct": 15000,
+                "Email": 4400,
+                "Social Media": 3400,
+                "Referral": 2050
+            },
+            {
+                "Month": "May",
+                "Direct": 15500,
+                "Email": 4500,
+                "Social Media": 3200,
+                "Referral": 2000
+            },
+            {
+                "Month": "Jun",
+                "Direct": 16000,
+                "Email": 4550,
+                "Social Media": 3300,
+                "Referral": 2100
+            },
+            {
+                "Month": "Jul",
+                "Direct": 16200,
+                "Email": 4600,
+                "Social Media": 3400,
+                "Referral": 2150
+            },
+            {
+                "Month": "Aug",
+                "Direct": 16500,
+                "Email": 4650,
+                "Social Media": 3500,
+                "Referral": 2250
+            },
+            {
+                "Month": "Sep",
+                "Direct": 17000,
+                "Email": 4700,
+                "Social Media": 3550,
+                "Referral": 2200
+            },
+            {
+                "Month": "Oct",
+                "Direct": 17500,
+                "Email": 4800,
+                "Social Media": 3400,
+                "Referral": 2300
+            },
+            {
+                "Month": "Nov",
+                "Direct": 18000,
+                "Email": 4850,
+                "Social Media": 3450,
+                "Referral": 2350
+            },
+            {
+                "Month": "Dec",
+                "Direct": 18500,
+                "Email": 4900,
+                "Social Media": 3500,
+                "Referral": 2400
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Direct",
+                "Email",
+                "Social Media",
+                "Referral"
+            ],
+            "as": [
+                "Traffic Source",
+                "Visitors"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "area",
+        "opacity": 0.6
+    },
+    "encoding": {
+        "x": {
+            "field": "Month",
+            "type": "ordinal",
+            "axis": {
+                "labelAngle": 0,
+                "title": "Month"
+            }
+        },
+        "y": {
+            "field": "Visitors",
+            "type": "quantitative",
+            "stack": "normalize",
+            "axis": {
+                "title": "Percentage of Visitors (%)"
+            }
+        },
+        "color": {
+            "field": "Traffic Source",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Direct",
+                    "Email",
+                    "Social Media",
+                    "Referral"
+                ],
+                "range": [
+                    "#3366cc",
+                    "#dc3912",
+                    "#ff9900",
+                    "#109618"
+                ]
+            },
+            "legend": {
+                "orient": "right",
+                "title": "Traffic Source",
+                "titlePadding": 10
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Month",
+                "type": "ordinal"
+            },
+            {
+                "field": "Traffic Source",
+                "type": "nominal",
+                "title": "Traffic Source"
+            },
+            {
+                "field": "Visitors",
+                "type": "quantitative",
+                "title": "Number of Visitors"
+            }
+        ]
+    },
+    "config": {
+        "view": {
+            "stroke": "transparent"
+        },
+        "axis": {
+            "grid": false
+        }
+    }
+}

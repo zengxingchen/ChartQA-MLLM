@@ -1,0 +1,191 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+        "values": [
+            {
+                "Month": "January",
+                "CO2 Levels": 400,
+                "Temperature Anomaly": 0.6,
+                "Sea Level Rise": 3.2
+            },
+            {
+                "Month": "February",
+                "CO2 Levels": 402,
+                "Temperature Anomaly": 0.7,
+                "Sea Level Rise": 3.3
+            },
+            {
+                "Month": "March",
+                "CO2 Levels": 404,
+                "Temperature Anomaly": 0.8,
+                "Sea Level Rise": 3.4
+            },
+            {
+                "Month": "April",
+                "CO2 Levels": 405,
+                "Temperature Anomaly": 0.9,
+                "Sea Level Rise": 3.5
+            },
+            {
+                "Month": "May",
+                "CO2 Levels": 407,
+                "Temperature Anomaly": 1.0,
+                "Sea Level Rise": 3.6
+            },
+            {
+                "Month": "June",
+                "CO2 Levels": 409,
+                "Temperature Anomaly": 1.1,
+                "Sea Level Rise": 3.7
+            },
+            {
+                "Month": "July",
+                "CO2 Levels": 411,
+                "Temperature Anomaly": 1.2,
+                "Sea Level Rise": 3.8
+            },
+            {
+                "Month": "August",
+                "CO2 Levels": 413,
+                "Temperature Anomaly": 1.3,
+                "Sea Level Rise": 3.9
+            },
+            {
+                "Month": "September",
+                "CO2 Levels": 415,
+                "Temperature Anomaly": 1.4,
+                "Sea Level Rise": 4.0
+            },
+            {
+                "Month": "October",
+                "CO2 Levels": 417,
+                "Temperature Anomaly": 1.5,
+                "Sea Level Rise": 4.1
+            },
+            {
+                "Month": "November",
+                "CO2 Levels": 419,
+                "Temperature Anomaly": 1.6,
+                "Sea Level Rise": 4.2
+            },
+            {
+                "Month": "December",
+                "CO2 Levels": 421,
+                "Temperature Anomaly": 1.7,
+                "Sea Level Rise": 4.3
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "CO2 Levels",
+                "Temperature Anomaly",
+                "Sea Level Rise"
+            ],
+            "as": [
+                "Measure",
+                "Value"
+            ]
+        }
+    ],
+    "width": 800,
+    "height": 400,
+    "mark": {
+        "type": "line",
+        "point": {
+            "filled": true,
+            "fill": "white"
+        },
+        "tooltip": true
+    },
+    "encoding": {
+        "x": {
+            "field": "Month",
+            "type": "ordinal",
+            "title": "Month",
+            "axis": {
+                "labelAngle": 0
+            }
+        },
+        "y": {
+            "field": "Value",
+            "type": "quantitative",
+            "title": "Value",
+            "scale": {
+                "reverse": true
+            }
+        },
+        "color": {
+            "field": "Measure",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "CO2 Levels",
+                    "Temperature Anomaly",
+                    "Sea Level Rise"
+                ],
+                "range": [
+                    "#FF4500",
+                    "#1E90FF",
+                    "#32CD32"
+                ]
+            },
+            "legend": {
+                "title": "Measure"
+            }
+        }
+    },
+    "title": {
+        "text": "Environment & Climate Change: Monthly Environmental Indicators",
+        "subtitle": "Monthly data over a year",
+        "anchor": "start"
+    },
+    "layer": [
+        {
+            "mark": {
+                "type": "line"
+            },
+            "encoding": {
+                "x": {
+                    "field": "Month",
+                    "type": "ordinal"
+                },
+                "y": {
+                    "field": "Value",
+                    "type": "quantitative"
+                },
+                "color": {
+                    "field": "Measure",
+                    "type": "nominal"
+                }
+            }
+        },
+        {
+            "mark": {
+                "type": "text",
+                "align": "left",
+                "dx": 5,
+                "dy": -5
+            },
+            "encoding": {
+                "x": {
+                    "field": "Month",
+                    "type": "ordinal"
+                },
+                "y": {
+                    "field": "Value",
+                    "type": "quantitative"
+                },
+                "text": {
+                    "field": "Value",
+                    "type": "quantitative"
+                },
+                "color": {
+                    "field": "Measure",
+                    "type": "nominal"
+                }
+            }
+        }
+    ]
+}

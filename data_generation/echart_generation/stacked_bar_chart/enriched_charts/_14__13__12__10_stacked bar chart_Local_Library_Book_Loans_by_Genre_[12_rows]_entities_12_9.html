@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+var option = {
+    title: {
+        text: 'Monthly Household Expenses',
+        left: 'center',
+        top: '5%'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Food', 'Utilities', 'Entertainment', 'Transportation', 'Healthcare'],
+        top: '10%',
+        left: 'center'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        data: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+        axisLabel: {
+            rotate: 45
+        }
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Food',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            color: '#ff9999',
+            barWidth: 30,
+            data: [120, 132, 101, 134, 90, 230, 210, 180, 250, 220, 180, 210]
+        },
+        {
+            name: 'Utilities',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            color: '#66b3ff',
+            barWidth: 30,
+            data: [220, 182, 191, 234, 290, 330, 310, 320, 200, 180, 250, 300]
+        },
+        {
+            name: 'Entertainment',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            color: '#99ff99',
+            barWidth: 30,
+            data: [150, 232, 201, 154, 190, 330, 410, 300, 200, 160, 170, 210]
+        },
+        {
+            name: 'Transportation',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            color: '#ffcc99',
+            barWidth: 30,
+            data: [320, 332, 301, 334, 390, 330, 320, 310, 200, 300, 320, 350]
+        },
+        {
+            name: 'Healthcare',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            color: '#c2c2f0',
+            barWidth: 30,
+            data: [820, 932, 901, 934, 1290, 1330, 1320, 900, 1000, 920, 1010, 1200]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

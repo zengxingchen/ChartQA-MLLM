@@ -1,0 +1,110 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Stacked Area Chart of Drinking Trends",
+    "width": "container",
+    "data": {
+        "values": [
+            {
+                "Year": 2019,
+                "Drink At Home": 250,
+                "Drink At Work": 180,
+                "Drink at Cafe": 70
+            },
+            {
+                "Year": 2020,
+                "Drink At Home": 300,
+                "Drink At Work": 150,
+                "Drink at Cafe": 50
+            },
+            {
+                "Year": 2021,
+                "Drink At Home": 320,
+                "Drink At Work": 130,
+                "Drink at Cafe": 50
+            },
+            {
+                "Year": 2022,
+                "Drink At Home": 350,
+                "Drink At Work": 120,
+                "Drink at Cafe": 30
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Drink At Home",
+                "Drink At Work",
+                "Drink at Cafe"
+            ],
+            "as": [
+                "category",
+                "amount"
+            ]
+        },
+        {
+            "calculate": "datum.amount",
+            "as": "sum_people"
+        }
+    ],
+    "mark": "area",
+    "encoding": {
+        "x": {
+            "field": "Year",
+            "type": "ordinal",
+            "axis": {
+                "title": "Year"
+            }
+        },
+        "y": {
+            "field": "sum_people",
+            "type": "quantitative",
+            "stack": "zero",
+            "axis": {
+                "title": "Number of Drinks"
+            }
+        },
+        "color": {
+            "field": "category",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Drink At Home",
+                    "Drink At Work",
+                    "Drink at Cafe"
+                ],
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e",
+                    "#2ca02c"
+                ]
+            },
+            "legend": {
+                "title": "Category"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Year",
+                "type": "ordinal"
+            },
+            {
+                "field": "category",
+                "type": "nominal"
+            },
+            {
+                "field": "sum_people",
+                "type": "quantitative",
+                "title": "Total Drinks"
+            }
+        ]
+    },
+    "config": {
+        "view": {
+            "stroke": "transparent"
+        },
+        "area": {
+            "line": true
+        }
+    }
+}

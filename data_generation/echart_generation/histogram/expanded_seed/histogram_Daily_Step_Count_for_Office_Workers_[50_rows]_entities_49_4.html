@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var rawData = [
+    {'Day': 'Monday', 'Steps': 3409},
+    {'Day': 'Tuesday', 'Steps': 7012},
+    {'Day': 'Wednesday', 'Steps': 6890},
+    {'Day': 'Thursday', 'Steps': 8492},
+    {'Day': 'Friday', 'Steps': 4225},
+    {'Day': 'Saturday', 'Steps': 10934},
+    {'Day': 'Sunday', 'Steps': 11892},
+    {'Day': 'Monday', 'Steps': 3801},
+    {'Day': 'Tuesday', 'Steps': 7645},
+    {'Day': 'Wednesday', 'Steps': 6032},
+    {'Day': 'Thursday', 'Steps': 8079},
+    {'Day': 'Friday', 'Steps': 4873},
+    {'Day': 'Saturday', 'Steps': 12056},
+    {'Day': 'Sunday', 'Steps': 12567},
+    {'Day': 'Monday', 'Steps': 3598}
+];
+
+// Define the bin size
+var binSize = 2000;
+
+// Create bins array
+var bins = [];
+for (var i = 0; i < rawData.length; i++) {
+    var index = Math.floor(rawData[i].Steps / binSize);
+    if (!bins[index]) {
+        bins[index] = 0;
+    }
+    bins[index]++;
+}
+
+// Calculate bin edges
+var maxSteps = Math.max.apply(Math, rawData.map(function (o) { return o.Steps; }));
+var binCount = Math.ceil(maxSteps / binSize);
+var xAxisData = [];
+var seriesData = [];
+for (var i = 0; i < binCount; i++) {
+    xAxisData.push(`${i * binSize}-${(i + 1) * binSize}`);
+    seriesData.push(bins[i] || 0);
+}
+
+option = {
+    title: {
+        text: 'Steps Histogram',
+        subtext: 'Frequency of Step Counts by Bin',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    xAxis: {
+        type: 'category',
+        data: xAxisData,
+        name: 'Steps Range'
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Frequency'
+    },
+    series: [
+        {
+            name: 'Frequency',
+            type: 'bar',
+            data: seriesData,
+            markPoint: {
+                data: [
+                    {type: 'max', name: 'Max'},
+                    {type: 'min', name: 'Min'}
+                ]
+            },
+            markLine: {
+                data: [{type: 'average', name: 'Average'}]
+            },
+            itemStyle: {
+                color: '#748ffc'
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

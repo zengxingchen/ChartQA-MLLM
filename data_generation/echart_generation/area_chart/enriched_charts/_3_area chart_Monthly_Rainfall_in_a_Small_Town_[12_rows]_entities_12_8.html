@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var app = {};
+option = {
+    title: {
+        text: 'Carbon Emission Trends Over Time',
+        top: '2%',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['Carbon Emission'],
+        top: '8%'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: [
+            '2010-01', '2010-02', '2010-03', '2010-04',
+            '2010-05', '2010-06', '2010-07', '2010-08',
+            '2010-09', '2010-10', '2010-11', '2010-12',
+            '2011-01', '2011-02', '2011-03', '2011-04',
+            '2011-05', '2011-06', '2011-07', '2011-08',
+            '2011-09', '2011-10', '2011-11', '2011-12'
+        ]
+    },
+    yAxis: {
+        type: 'value',
+        axisLabel: {
+            formatter: '{value} MtCO2'
+        }
+    },
+    series: [
+        {
+            name: 'Carbon Emission',
+            type: 'line',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [
+                0.5, 0.6, 0.7, 0.8, 0.7, 0.8, 0.9, 1.0,
+                1.2, 1.4, 1.5, 1.7, 1.6, 1.8, 2.0, 1.9,
+                2.1, 2.3, 2.4, 2.6, 2.5, 2.7, 2.9, 3.0
+            ],
+            color: ['#00c1de'],
+            markPoint: {
+                data: [
+                    {type: 'max', name: 'Maximum'},
+                    {type: 'min', name: 'Minimum'}
+                ]
+            },
+            markLine: {
+                data: [
+                    {type: 'average', name: 'Average'}
+                ]
+            }
+        }
+    ],
+    color: ['#33A5FF', '#faa945', '#86e01e']
+};
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

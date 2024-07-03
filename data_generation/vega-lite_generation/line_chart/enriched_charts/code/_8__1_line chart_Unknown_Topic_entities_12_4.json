@@ -1,0 +1,225 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+        "values": [
+            {
+                "Year": "2000",
+                "Technology": 500,
+                "Healthcare": 700,
+                "Finance": 900,
+                "Real Estate": 400,
+                "Manufacturing": 800
+            },
+            {
+                "Year": "2001",
+                "Technology": 600,
+                "Healthcare": 800,
+                "Finance": 1000,
+                "Real Estate": 450,
+                "Manufacturing": 850
+            },
+            {
+                "Year": "2002",
+                "Technology": 700,
+                "Healthcare": 900,
+                "Finance": 1100,
+                "Real Estate": 500,
+                "Manufacturing": 900
+            },
+            {
+                "Year": "2003",
+                "Technology": 800,
+                "Healthcare": 1000,
+                "Finance": 1200,
+                "Real Estate": 550,
+                "Manufacturing": 950
+            },
+            {
+                "Year": "2004",
+                "Technology": 900,
+                "Healthcare": 1100,
+                "Finance": 1300,
+                "Real Estate": 600,
+                "Manufacturing": 1000
+            },
+            {
+                "Year": "2005",
+                "Technology": 1000,
+                "Healthcare": 1200,
+                "Finance": 1400,
+                "Real Estate": 650,
+                "Manufacturing": 1050
+            },
+            {
+                "Year": "2006",
+                "Technology": 1100,
+                "Healthcare": 1300,
+                "Finance": 1500,
+                "Real Estate": 700,
+                "Manufacturing": 1100
+            },
+            {
+                "Year": "2007",
+                "Technology": 1200,
+                "Healthcare": 1400,
+                "Finance": 1600,
+                "Real Estate": 750,
+                "Manufacturing": 1150
+            },
+            {
+                "Year": "2008",
+                "Technology": 1300,
+                "Healthcare": 1500,
+                "Finance": 1700,
+                "Real Estate": 800,
+                "Manufacturing": 1200
+            },
+            {
+                "Year": "2009",
+                "Technology": 1400,
+                "Healthcare": 1600,
+                "Finance": 1800,
+                "Real Estate": 850,
+                "Manufacturing": 1250
+            },
+            {
+                "Year": "2010",
+                "Technology": 1500,
+                "Healthcare": 1700,
+                "Finance": 1900,
+                "Real Estate": 900,
+                "Manufacturing": 1300
+            },
+            {
+                "Year": "2011",
+                "Technology": 1600,
+                "Healthcare": 1800,
+                "Finance": 2000,
+                "Real Estate": 950,
+                "Manufacturing": 1350
+            },
+            {
+                "Year": "2012",
+                "Technology": 1700,
+                "Healthcare": 1900,
+                "Finance": 2100,
+                "Real Estate": 1000,
+                "Manufacturing": 1400
+            },
+            {
+                "Year": "2013",
+                "Technology": 1800,
+                "Healthcare": 2000,
+                "Finance": 2200,
+                "Real Estate": 1050,
+                "Manufacturing": 1450
+            },
+            {
+                "Year": "2014",
+                "Technology": 1900,
+                "Healthcare": 2100,
+                "Finance": 2300,
+                "Real Estate": 1100,
+                "Manufacturing": 1500
+            },
+            {
+                "Year": "2015",
+                "Technology": 2000,
+                "Healthcare": 2200,
+                "Finance": 2400,
+                "Real Estate": 1150,
+                "Manufacturing": 1550
+            },
+            {
+                "Year": "2016",
+                "Technology": 2100,
+                "Healthcare": 2300,
+                "Finance": 2500,
+                "Real Estate": 1200,
+                "Manufacturing": 1600
+            },
+            {
+                "Year": "2017",
+                "Technology": 2200,
+                "Healthcare": 2400,
+                "Finance": 2600,
+                "Real Estate": 1250,
+                "Manufacturing": 1650
+            },
+            {
+                "Year": "2018",
+                "Technology": 2300,
+                "Healthcare": 2500,
+                "Finance": 2700,
+                "Real Estate": 1300,
+                "Manufacturing": 1700
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Technology",
+                "Healthcare",
+                "Finance",
+                "Real Estate",
+                "Manufacturing"
+            ],
+            "as": [
+                "Sector",
+                "GDP"
+            ]
+        }
+    ],
+    "width": 800,
+    "height": 500,
+    "mark": {
+        "type": "line",
+        "point": {
+            "filled": true,
+            "fill": "white"
+        },
+        "tooltip": true
+    },
+    "encoding": {
+        "x": {
+            "field": "Year",
+            "type": "ordinal",
+            "title": "Year",
+            "axis": {
+                "labelAngle": 0
+            }
+        },
+        "y": {
+            "field": "GDP",
+            "type": "quantitative",
+            "title": "GDP (in Billions of USD)",
+            "scale": {
+                "reverse": true
+            }
+        },
+        "color": {
+            "field": "Sector",
+            "type": "nominal",
+            "scale": {
+                "range": [
+                    "#FF6347",
+                    "#4682B4",
+                    "#32CD32",
+                    "#FFD700",
+                    "#8A2BE2"
+                ]
+            },
+            "legend": {
+                "title": "Sector"
+            }
+        }
+    },
+    "title": {
+        "text": "GDP Contribution by Sector Over Time",
+        "subtitle": [
+            "Analyzing the economic growth of various sectors from 2000 to 2018"
+        ],
+        "anchor": "start"
+    }
+}

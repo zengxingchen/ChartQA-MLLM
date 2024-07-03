@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var option;
+
+option = {
+    title: {
+        text: 'Distribution of Ages in a Community',
+        left: 'center',
+        top: '10%'
+    },
+    xAxis: {
+        type: 'category',
+        data: ['12-15', '16-19', '20-23', '24-27', '28-31', '32-35', '36-39', '40-43', '44-47', '48-51', '52-55', '56-59', '60+'],
+        axisLabel: {
+            rotate: 45
+        }
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Frequency'
+    },
+    series: [{
+        data: [1, 3, 3, 4, 4, 4, 3, 4, 2, 4, 3, 4, 1],
+        type: 'bar',
+        itemStyle: {
+            color: '#5B84B1'
+        },
+        barWidth: '50%',
+        label: {
+            show: true,
+            position: 'top'
+        }
+    }],
+    grid: {
+        left: '10%',
+        right: '10%',
+        bottom: '20%',
+        top: '20%'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

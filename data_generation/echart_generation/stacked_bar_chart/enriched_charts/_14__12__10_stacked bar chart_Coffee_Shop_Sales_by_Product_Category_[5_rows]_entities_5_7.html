@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Website Performance Comparison',
+        left: 'center',
+        top: 20,
+        textStyle: {
+            color: '#333',
+            fontSize: 24
+        }
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: { 
+            type: 'shadow' 
+        }
+    },
+    legend: {
+        data: ['Design', 'Usability', 'Performance', 'Accessibility'],
+        top: 60
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        data: ['Website A', 'Website B', 'Website C', 'Website D', 'Website E', 'Website F', 'Website G', 'Website H'],
+        axisLabel: {
+            rotate: 45,
+            interval: 0
+        }
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Design',
+            type: 'bar',
+            stack: 'Total',
+            barWidth: '50%',
+            data: [320, 280, 300, 350, 290, 310, 330, 340],
+            itemStyle: {
+                color: '#FF5733'
+            },
+            label: {
+                show: true,
+                position: 'insideBottom'
+            }
+        },
+        {
+            name: 'Usability',
+            type: 'bar',
+            stack: 'Total',
+            data: [150, 220, 180, 170, 160, 190, 200, 210],
+            itemStyle: {
+                color: '#33FF57'
+            },
+            label: {
+                show: true,
+                position: 'insideBottom'
+            }
+        },
+        {
+            name: 'Performance',
+            type: 'bar',
+            stack: 'Total',
+            data: [200, 240, 220, 260, 210, 230, 250, 260],
+            itemStyle: {
+                color: '#3357FF'
+            },
+            label: {
+                show: true,
+                position: 'insideBottom'
+            }
+        },
+        {
+            name: 'Accessibility',
+            type: 'bar',
+            stack: 'Total',
+            data: [180, 260, 210, 230, 200, 250, 240, 220],
+            itemStyle: {
+                color: '#FF33A1'
+            },
+            label: {
+                show: true,
+                position: 'insideBottom'
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

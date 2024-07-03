@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+// Transform provided data to the format suitable for ECharts
+const chartData = [
+  {'Month': 'June', 'Paper': 4000, 'Plastic': 3200, 'Glass': 2800, 'Metal': 1500, 'Electronics': 300},
+  {'Month': 'July', 'Paper': 3700, 'Plastic': 3000, 'Glass': 2900, 'Metal': 1600, 'Electronics': 340},
+  {'Month': 'August', 'Paper': 4200, 'Plastic': 3300, 'Glass': 3000, 'Metal': 1700, 'Electronics': 310},
+  {'Month': 'September', 'Paper': 3900, 'Plastic': 3100, 'Glass': 3100, 'Metal': 1500, 'Electronics': 300},
+  {'Month': 'October', 'Paper': 4300, 'Plastic': 3400, 'Glass': 3200, 'Metal': 1600, 'Electronics': 320},
+  {'Month': 'November', 'Paper': 4000, 'Plastic': 3000, 'Glass': 3000, 'Metal': 1400, 'Electronics': 310},
+  {'Month': 'December', 'Paper': 4500, 'Plastic': 3500, 'Glass': 3300, 'Metal': 1700, 'Electronics': 350},
+  {'Month': 'January', 'Paper': 4600, 'Plastic': 3600, 'Glass': 3400, 'Metal': 1800, 'Electronics': 370},
+  {'Month': 'February', 'Paper': 4100, 'Plastic': 3300, 'Glass': 3100, 'Metal': 1600, 'Electronics': 330}
+];
+
+const xAxisData = chartData.map(item => item.Month);
+
+const series = [
+  {
+    name: 'Paper',
+    type: 'bar',
+    stack: 'materials',
+    data: chartData.map(item => item.Paper),
+    emphasis: {
+      focus: 'series'
+    }
+  },
+  {
+    name: 'Plastic',
+    type: 'bar',
+    stack: 'materials',
+    data: chartData.map(item => item.Plastic),
+    emphasis: {
+      focus: 'series'
+    }
+  },
+  {
+    name: 'Glass',
+    type: 'bar',
+    stack: 'materials',
+    data: chartData.map(item => item.Glass),
+    emphasis: {
+      focus: 'series'
+    }
+  },
+  {
+    name: 'Metal',
+    type: 'bar',
+    stack: 'materials',
+    data: chartData.map(item => item.Metal),
+    emphasis: {
+      focus: 'series'
+    }
+  },
+  {
+    name: 'Electronics',
+    type: 'bar',
+    stack: 'materials',
+    data: chartData.map(item => item.Electronics),
+    emphasis: {
+      focus: 'series'
+    }
+  }
+];
+
+option = {
+  tooltip: {
+    trigger: 'axis',
+    axisPointer: {
+      type: 'shadow'
+    }
+  },
+  legend: {
+    data: ['Paper', 'Plastic', 'Glass', 'Metal', 'Electronics']
+  },
+  grid: {
+    left: '3%',
+    right: '4%',
+    bottom: '3%',
+    containLabel: true
+  },
+  xAxis: {
+    type: 'category',
+    data: xAxisData
+  },
+  yAxis: {
+    type: 'value'
+  },
+  series: series
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

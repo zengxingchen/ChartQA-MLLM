@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Time Spent on Exercise vs Calories Burned',
+        left: 'center',
+        top: '5%'
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: function (params) {
+            return `Time Spent: ${params.value[0]} hours<br>Calories Burned: ${params.value[1]}`;
+        }
+    },
+    legend: {
+        data: ['Exercise Data'],
+        top: '10%',
+        left: 'center'
+    },
+    xAxis: {
+        name: 'Time Spent (hours)',
+        type: 'value',
+        splitLine: {
+            lineStyle: {
+                color: '#ddd'
+            }
+        }
+    },
+    yAxis: {
+        name: 'Calories Burned',
+        type: 'value',
+        splitLine: {
+            lineStyle: {
+                color: '#ddd'
+            }
+        }
+    },
+    series: [
+        {
+            name: 'Exercise Data',
+            type: 'scatter',
+            symbolSize: 10,
+            itemStyle: {
+                color: '#ff6347'
+            },
+            data: [
+                [0.5, 120],
+                [1, 180],
+                [1.5, 250],
+                [2, 300],
+                [2.5, 330],
+                [3, 370],
+                [3.5, 390],
+                [4, 410],
+                [4.5, 420],
+                [5, 430],
+                [5.5, 435],
+                [6, 440],
+                [6.5, 445],
+                [7, 450],
+                [7.5, 455],
+                [8, 460],
+                [8.5, 462],
+                [9, 463],
+                [9.5, 465],
+                [10, 466],
+                [10.5, 467],
+                [11, 468],
+                [11.5, 470],
+                [12, 471],
+                [12.5, 472],
+                [13, 473],
+                [13.5, 475],
+                [14, 476],
+                [14.5, 477],
+                [15, 478]
+            ]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 800, // Reasonable width of the chart
+    height: 500 // Reasonable height of the chart
+});
+
+var option;
+
+option = {
+    title: {
+        text: 'Education Levels by Age Group', // Headline for the chart
+        subtext: 'Percentage Stacked Bar Chart', // Sub-headline for the chart
+        left: 'center', // Ensuring the headline does not overlap with the legend
+        top: 20 // Adding distance from the top for clear visibility
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            // Use shadow for better axis pointer visibility
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Primary School', 'High School', 'Undergraduate Degree', 'Graduate Degree'],
+        bottom: 0 // Position the legend at the bottom to prevent overlap
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '10%', // space for legend
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01]
+    },
+    yAxis: {
+        type: 'category', // Changing direction from vertical to horizontal
+        data: ['18-24', '25-34', '35-44', '45-54', '55-64', '65+']
+    },
+    series: [
+        {
+            name: 'Primary School',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35, // Width of the bars to make them reasonably thick
+            data: [5, 3, 2, 1, 1, 1],
+            itemStyle: {
+                color: '#FFD700' // Specific color code for Primary School
+            }
+        },
+        {
+            name: 'High School',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            data: [15, 12, 18, 16, 19, 20],
+            itemStyle: {
+                color: '#C0C0C0' // Specific color code for High School
+            }
+        },
+        {
+            name: 'Undergraduate Degree',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            data: [55, 60, 50, 43, 35, 30],
+            itemStyle: {
+                color: '#F08080' // Specific color code for Undergraduate Degree
+            }
+        },
+        {
+            name: 'Graduate Degree',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            data: [25, 25, 30, 40, 45, 49],
+            itemStyle: {
+                color: '#20B2AA' // Specific color code for Graduate Degree
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

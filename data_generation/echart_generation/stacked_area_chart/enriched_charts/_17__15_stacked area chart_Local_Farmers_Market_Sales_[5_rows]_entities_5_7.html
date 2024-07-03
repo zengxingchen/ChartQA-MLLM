@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var app = {};
+
+var option;
+option = {
+    title: {
+        text: 'Income Distribution Over a Month',
+        subtext: 'Annual Report',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            label: {
+                backgroundColor: '#6a7985'
+            }
+        }
+    },
+    legend: {
+        data: ['Low_Income', 'Middle_Income', 'High_Income'],
+        top: '3%'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ['2021-01-01', '2021-01-02', '2021-01-03', '2021-01-04', '2021-01-05', '2021-01-06', '2021-01-07', '2021-01-08', 
+               '2021-01-09', '2021-01-10', '2021-01-11', '2021-01-12', '2021-01-13', '2021-01-14', '2021-01-15', '2021-01-16', 
+               '2021-01-17', '2021-01-18', '2021-01-19', '2021-01-20', '2021-01-21', '2021-01-22', '2021-01-23', '2021-01-24', 
+               '2021-01-25', '2021-01-26', '2021-01-27', '2021-01-28', '2021-01-29', '2021-01-30', '2021-01-31']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Low_Income',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [10000, 12000, 14000, 17000, 18000, 20000, 18000, 16000, 14000, 15000, 16000, 17000, 18000, 19000, 20000, 
+                   19000, 18000, 17000, 16000, 17000, 18000, 20000, 22000, 23000, 24000, 26000, 25000, 24000, 26000, 27000, 28000],
+            color: '#ff4500'
+        },
+        {
+            name: 'Middle_Income',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [20000, 22000, 23000, 24000, 26000, 25000, 26000, 27000, 28000, 29000, 31000, 32000, 33000, 31000, 30000, 
+                   29000, 28000, 27000, 26000, 25000, 26000, 27000, 28000, 29000, 31000, 32000, 32000, 31000, 30000, 29000, 32000],
+            color: '#32cd32'
+        },
+        {
+            name: 'High_Income',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [30000, 34000, 36000, 35000, 34000, 33000, 32000, 31000, 32000, 33000, 35000, 33000, 32000, 31000, 30000, 
+                   32000, 34000, 35000, 37000, 36000, 35000, 34000, 33000, 32000, 31000, 30000, 29000, 28000, 27000, 26000, 25000],
+            color: '#1e90ff'
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

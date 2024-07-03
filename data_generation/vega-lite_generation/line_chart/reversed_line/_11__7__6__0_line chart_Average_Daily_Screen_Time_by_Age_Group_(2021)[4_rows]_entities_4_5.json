@@ -1,0 +1,175 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Line chart showing the trend of average daily temperature in different cities over a week.",
+    "title": {
+        "text": "Average Daily Temperature by City",
+        "fontSize": 16,
+        "anchor": "start",
+        "color": "black"
+    },
+    "width": 900,
+    "height": 600,
+    "data": {
+        "values": [
+            {
+                "City": "New York",
+                "Monday": 65,
+                "Tuesday": 67,
+                "Wednesday": 70,
+                "Thursday": 68,
+                "Friday": 72,
+                "Saturday": 75,
+                "Sunday": 78
+            },
+            {
+                "City": "Los Angeles",
+                "Monday": 70,
+                "Tuesday": 72,
+                "Wednesday": 75,
+                "Thursday": 73,
+                "Friday": 77,
+                "Saturday": 79,
+                "Sunday": 82
+            },
+            {
+                "City": "Chicago",
+                "Monday": 60,
+                "Tuesday": 62,
+                "Wednesday": 65,
+                "Thursday": 64,
+                "Friday": 68,
+                "Saturday": 70,
+                "Sunday": 72
+            },
+            {
+                "City": "Houston",
+                "Monday": 80,
+                "Tuesday": 82,
+                "Wednesday": 85,
+                "Thursday": 84,
+                "Friday": 88,
+                "Saturday": 90,
+                "Sunday": 92
+            },
+            {
+                "City": "Miami",
+                "Monday": 75,
+                "Tuesday": 77,
+                "Wednesday": 80,
+                "Thursday": 79,
+                "Friday": 83,
+                "Saturday": 85,
+                "Sunday": 88
+            },
+            {
+                "City": "San Francisco",
+                "Monday": 68,
+                "Tuesday": 70,
+                "Wednesday": 73,
+                "Thursday": 71,
+                "Friday": 75,
+                "Saturday": 77,
+                "Sunday": 80
+            },
+            {
+                "City": "Seattle",
+                "Monday": 65,
+                "Tuesday": 67,
+                "Wednesday": 70,
+                "Thursday": 69,
+                "Friday": 73,
+                "Saturday": 75,
+                "Sunday": 78
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday",
+                "Friday",
+                "Saturday",
+                "Sunday"
+            ],
+            "as": [
+                "Day",
+                "Temperature"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "line",
+        "point": true
+    },
+    "encoding": {
+        "x": {
+            "field": "Day",
+            "type": "ordinal",
+            "title": "Day of the Week",
+            "axis": {
+                "titleFontSize": 12,
+                "labelAngle": -45
+            }
+        },
+        "y": {
+            "field": "Temperature",
+            "type": "quantitative",
+            "title": "Temperature (\u00b0F)",
+            "axis": {
+                "titleFontSize": 12
+            },
+            "scale": {
+                "reverse": true
+            }
+        },
+        "color": {
+            "field": "City",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "New York",
+                    "Los Angeles",
+                    "Chicago",
+                    "Houston",
+                    "Miami",
+                    "San Francisco",
+                    "Seattle"
+                ],
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e",
+                    "#2ca02c",
+                    "#d62728",
+                    "#9467bd",
+                    "#8c564b",
+                    "#e377c2"
+                ]
+            },
+            "legend": {
+                "title": "City"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "City",
+                "type": "nominal"
+            },
+            {
+                "field": "Day",
+                "type": "ordinal"
+            },
+            {
+                "field": "Temperature",
+                "type": "quantitative"
+            }
+        ]
+    },
+    "config": {
+        "axisY": {
+            "minExtent": 30
+        }
+    }
+}

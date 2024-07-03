@@ -1,0 +1,187 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Quarterly Revenue of Tech Companies",
+    "width": 600,
+    "height": 350,
+    "title": {
+        "text": "Quarterly Revenue of Tech Companies",
+        "anchor": "start",
+        "frame": "group",
+        "offset": 5,
+        "fontSize": 18
+    },
+    "data": {
+        "values": [
+            {
+                "Quarter": "Q1-2018",
+                "Acme Corp": 500,
+                "Initech": 300,
+                "Hooli": 700,
+                "Pied Piper": 200
+            },
+            {
+                "Quarter": "Q2-2018",
+                "Acme Corp": 550,
+                "Initech": 320,
+                "Hooli": 750,
+                "Pied Piper": 220
+            },
+            {
+                "Quarter": "Q3-2018",
+                "Acme Corp": 600,
+                "Initech": 340,
+                "Hooli": 800,
+                "Pied Piper": 230
+            },
+            {
+                "Quarter": "Q4-2018",
+                "Acme Corp": 650,
+                "Initech": 360,
+                "Hooli": 850,
+                "Pied Piper": 240
+            },
+            {
+                "Quarter": "Q1-2019",
+                "Acme Corp": 700,
+                "Initech": 380,
+                "Hooli": 900,
+                "Pied Piper": 250
+            },
+            {
+                "Quarter": "Q2-2019",
+                "Acme Corp": 720,
+                "Initech": 390,
+                "Hooli": 950,
+                "Pied Piper": 260
+            },
+            {
+                "Quarter": "Q3-2019",
+                "Acme Corp": 740,
+                "Initech": 410,
+                "Hooli": 1000,
+                "Pied Piper": 270
+            },
+            {
+                "Quarter": "Q4-2019",
+                "Acme Corp": 760,
+                "Initech": 430,
+                "Hooli": 1050,
+                "Pied Piper": 280
+            },
+            {
+                "Quarter": "Q1-2020",
+                "Acme Corp": 800,
+                "Initech": 450,
+                "Hooli": 1100,
+                "Pied Piper": 290
+            },
+            {
+                "Quarter": "Q2-2020",
+                "Acme Corp": 850,
+                "Initech": 460,
+                "Hooli": 1150,
+                "Pied Piper": 300
+            },
+            {
+                "Quarter": "Q3-2020",
+                "Acme Corp": 900,
+                "Initech": 480,
+                "Hooli": 1200,
+                "Pied Piper": 310
+            },
+            {
+                "Quarter": "Q4-2020",
+                "Acme Corp": 950,
+                "Initech": 500,
+                "Hooli": 1250,
+                "Pied Piper": 320
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Acme Corp",
+                "Initech",
+                "Hooli",
+                "Pied Piper"
+            ],
+            "as": [
+                "Company",
+                "Revenue"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "area",
+        "opacity": 0.7
+    },
+    "encoding": {
+        "x": {
+            "field": "Quarter",
+            "type": "ordinal",
+            "axis": {
+                "labelAngle": 0,
+                "title": "Quarter"
+            }
+        },
+        "y": {
+            "field": "Revenue",
+            "type": "quantitative",
+            "axis": {
+                "title": "Revenue (Millions USD)"
+            }
+        },
+        "color": {
+            "field": "Company",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Acme Corp",
+                    "Initech",
+                    "Hooli",
+                    "Pied Piper"
+                ],
+                "range": [
+                    "#1F77B4",
+                    "#FF7F0E",
+                    "#2CA02C",
+                    "#D62728"
+                ]
+            },
+            "legend": {
+                "orient": "top-left",
+                "title": "Company"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Quarter",
+                "type": "ordinal"
+            },
+            {
+                "field": "Company",
+                "type": "nominal",
+                "title": "Company"
+            },
+            {
+                "field": "Revenue",
+                "type": "quantitative",
+                "title": "Revenue (Mil)"
+            }
+        ]
+    },
+    "config": {
+        "style": {
+            "cell": {
+                "stroke": "transparent"
+            }
+        },
+        "axis": {
+            "grid": true
+        },
+        "view": {
+            "stroke": "transparent"
+        }
+    }
+}

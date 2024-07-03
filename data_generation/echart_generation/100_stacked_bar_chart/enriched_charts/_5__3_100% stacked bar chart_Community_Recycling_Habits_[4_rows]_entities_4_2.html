@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 600, // Changed width
+    height: 400 // Changed height
+});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Education & Learning Investment Trends',
+        left: 'center',
+        top: '20'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: [
+            'Science & Nature', 
+            'Art & Design', 
+            'Culture & Society', 
+            'Economics & Finance', 
+            'Education & Learning'
+        ],
+        top: '50'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    yAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01]
+    },
+    xAxis: {
+        type: 'category',
+        data: ['2016', '2017', '2018', '2019', '2020', '2021', '2022']
+    },
+    series: [
+        {
+            name: 'Science & Nature',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35, // Changed bar width
+            data: [18, 19, 17, 21, 23, 24, 22],
+            itemStyle: {
+                color: '#1f77b4'
+            }
+        },
+        {
+            name: 'Art & Design',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35, // Changed bar width
+            data: [22, 23, 24, 20, 18, 19, 21],
+            itemStyle: {
+                color: '#aec7e8'
+            }
+        },
+        {
+            name: 'Culture & Society',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35, // Changed bar width
+            data: [25, 27, 29, 25, 28, 23, 26],
+            itemStyle: {
+                color: '#ff7f0e'
+            }
+        },
+        {
+            name: 'Economics & Finance',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35, // Changed bar width
+            data: [15, 10, 9, 13, 12, 14, 11],
+            itemStyle: {
+                color: '#2ca02c'
+            }
+        },
+        {
+            name: 'Education & Learning',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35, // Changed bar width
+            data: [20, 21, 21, 21, 19, 20, 20],
+            itemStyle: {
+                color: '#d62728'
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

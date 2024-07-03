@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 700, height: 400});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Emerging Technologies Impact Assessment',
+        left: 'center',
+        top: 20
+    },
+    tooltip: {
+        trigger: 'item'
+    },
+    legend: {
+        orient: 'vertical',
+        left: 'left',
+        top: '15%',
+        textStyle: {
+            color: '#666',
+            fontSize: 12
+        }
+    },
+    series: [
+        {
+            name: 'Technology Impact',
+            type: 'pie',
+            radius: '55%',
+            center: ['50%', '60%'],
+            data: [
+                { value: 18, name: 'Biometric Technologies' },
+                { value: 15, name: 'Human Augmentation' },
+                { value: 20, name: 'Quantum Computing' },
+                { value: 22, name: 'AI & Robotics' },
+                { value: 10, name: 'Distributed Ledger' },
+                { value: 15, name: 'Renewable Energy' }
+            ],
+            emphasis: {
+                itemStyle: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            },
+            itemStyle: {
+                normal: {
+                    color: function(params) {
+                        var colorList = [
+                            '#c23531', '#2f4554', '#61a0a8', '#d48265', '#91c7ae', '#749f83'
+                        ];
+                        return colorList[params.dataIndex]
+                    }
+                }
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

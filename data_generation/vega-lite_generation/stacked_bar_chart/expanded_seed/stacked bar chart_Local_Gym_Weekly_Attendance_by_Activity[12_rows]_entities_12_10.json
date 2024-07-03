@@ -1,0 +1,185 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Stacked bar chart showing workout activities over time.",
+    "data": {
+        "values": [
+            {
+                "Week": "2023-02-01",
+                "Yoga": 30,
+                "Pilates": 25,
+                "Weightlifting": 40,
+                "Cycling": 35,
+                "Zumba": 45,
+                "Swimming": 50
+            },
+            {
+                "Week": "2023-02-08",
+                "Yoga": 32,
+                "Pilates": 26,
+                "Weightlifting": 45,
+                "Cycling": 37,
+                "Zumba": 47,
+                "Swimming": 52
+            },
+            {
+                "Week": "2023-02-15",
+                "Yoga": 34,
+                "Pilates": 28,
+                "Weightlifting": 42,
+                "Cycling": 40,
+                "Zumba": 44,
+                "Swimming": 53
+            },
+            {
+                "Week": "2023-02-22",
+                "Yoga": 31,
+                "Pilates": 29,
+                "Weightlifting": 46,
+                "Cycling": 38,
+                "Zumba": 46,
+                "Swimming": 55
+            },
+            {
+                "Week": "2023-03-01",
+                "Yoga": 33,
+                "Pilates": 30,
+                "Weightlifting": 44,
+                "Cycling": 42,
+                "Zumba": 48,
+                "Swimming": 57
+            },
+            {
+                "Week": "2023-03-08",
+                "Yoga": 35,
+                "Pilates": 32,
+                "Weightlifting": 47,
+                "Cycling": 44,
+                "Zumba": 48,
+                "Swimming": 60
+            },
+            {
+                "Week": "2023-03-15",
+                "Yoga": 37,
+                "Pilates": 33,
+                "Weightlifting": 45,
+                "Cycling": 45,
+                "Zumba": 50,
+                "Swimming": 62
+            },
+            {
+                "Week": "2023-03-22",
+                "Yoga": 38,
+                "Pilates": 34,
+                "Weightlifting": 48,
+                "Cycling": 47,
+                "Zumba": 51,
+                "Swimming": 64
+            },
+            {
+                "Week": "2023-03-29",
+                "Yoga": 36,
+                "Pilates": 35,
+                "Weightlifting": 49,
+                "Cycling": 46,
+                "Zumba": 53,
+                "Swimming": 65
+            },
+            {
+                "Week": "2023-04-05",
+                "Yoga": 40,
+                "Pilates": 36,
+                "Weightlifting": 50,
+                "Cycling": 48,
+                "Zumba": 55,
+                "Swimming": 67
+            },
+            {
+                "Week": "2023-04-12",
+                "Yoga": 42,
+                "Pilates": 38,
+                "Weightlifting": 51,
+                "Cycling": 50,
+                "Zumba": 56,
+                "Swimming": 70
+            },
+            {
+                "Week": "2023-04-19",
+                "Yoga": 41,
+                "Pilates": 37,
+                "Weightlifting": 52,
+                "Cycling": 51,
+                "Zumba": 57,
+                "Swimming": 72
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Yoga",
+                "Pilates",
+                "Weightlifting",
+                "Cycling",
+                "Zumba",
+                "Swimming"
+            ],
+            "as": [
+                "Activity",
+                "Duration"
+            ]
+        }
+    ],
+    "width": 500,
+    "height": 300,
+    "mark": "bar",
+    "title": {
+        "text": "Weekly Workout Duration by Activity",
+        "subtitle": "Each activity's duration stacked for each week",
+        "subtitleFontStyle": "italic",
+        "subtitleFontSize": 10,
+        "anchor": "start",
+        "color": "black"
+    },
+    "encoding": {
+        "x": {
+            "field": "Week",
+            "type": "ordinal",
+            "title": "Week",
+            "axis": {
+                "labelAngle": -45
+            }
+        },
+        "y": {
+            "field": "Duration",
+            "type": "quantitative",
+            "title": "Total Duration (minutes)"
+        },
+        "color": {
+            "field": "Activity",
+            "type": "nominal",
+            "scale": {
+                "scheme": "category20"
+            },
+            "legend": {
+                "orient": "right"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Week",
+                "type": "ordinal",
+                "title": "Week"
+            },
+            {
+                "field": "Activity",
+                "type": "nominal",
+                "title": "Activity"
+            },
+            {
+                "field": "Duration",
+                "type": "quantitative",
+                "title": "Duration (minutes)"
+            }
+        ]
+    }
+}

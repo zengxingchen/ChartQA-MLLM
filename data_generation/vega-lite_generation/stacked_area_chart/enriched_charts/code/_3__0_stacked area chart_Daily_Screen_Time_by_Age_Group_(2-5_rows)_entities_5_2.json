@@ -1,0 +1,137 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Stacked area chart showing average annual CO2 emissions per age group of vehicles on weekdays and weekends.",
+    "data": {
+        "values": [
+            {
+                "Vehicle Age": "0-1",
+                "Weekdays (kg CO2)": 2000,
+                "Weekend (kg CO2)": 1800
+            },
+            {
+                "Vehicle Age": "2-3",
+                "Weekdays (kg CO2)": 2200,
+                "Weekend (kg CO2)": 2000
+            },
+            {
+                "Vehicle Age": "4-5",
+                "Weekdays (kg CO2)": 2400,
+                "Weekend (kg CO2)": 2200
+            },
+            {
+                "Vehicle Age": "6-7",
+                "Weekdays (kg CO2)": 2600,
+                "Weekend (kg CO2)": 2400
+            },
+            {
+                "Vehicle Age": "8-9",
+                "Weekdays (kg CO2)": 2800,
+                "Weekend (kg CO2)": 2600
+            },
+            {
+                "Vehicle Age": "10-11",
+                "Weekdays (kg CO2)": 3000,
+                "Weekend (kg CO2)": 2800
+            },
+            {
+                "Vehicle Age": "12-13",
+                "Weekdays (kg CO2)": 3200,
+                "Weekend (kg CO2)": 3000
+            },
+            {
+                "Vehicle Age": "14-15",
+                "Weekdays (kg CO2)": 3400,
+                "Weekend (kg CO2)": 3200
+            },
+            {
+                "Vehicle Age": "16+",
+                "Weekdays (kg CO2)": 3600,
+                "Weekend (kg CO2)": 3400
+            }
+        ]
+    },
+    "width": 600,
+    "height": 400,
+    "title": {
+        "text": "Average Annual CO2 Emissions by Vehicle Age",
+        "subtitle": "Comparing weekdays and weekends emissions",
+        "fontSize": 15,
+        "subtitleFontSize": 10,
+        "anchor": "start",
+        "color": "black",
+        "frame": "group"
+    },
+    "mark": {
+        "type": "area",
+        "opacity": 0.5
+    },
+    "encoding": {
+        "x": {
+            "field": "Vehicle Age",
+            "type": "ordinal",
+            "title": "Vehicle Age Group"
+        },
+        "y": {
+            "field": "Emissions",
+            "type": "quantitative",
+            "title": "Average CO2 Emissions (kg)",
+            "stack": "zero"
+        },
+        "color": {
+            "field": "daytype",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Weekdays (kg CO2)",
+                    "Weekend (kg CO2)"
+                ],
+                "range": [
+                    "#4682b4",
+                    "#d2691e"
+                ]
+            },
+            "legend": {
+                "title": "Day Type",
+                "orient": "bottom-right",
+                "direction": "horizontal"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Vehicle Age",
+                "type": "nominal"
+            },
+            {
+                "field": "Emissions",
+                "type": "quantitative",
+                "title": "Average CO2 Emissions"
+            },
+            {
+                "field": "daytype",
+                "type": "nominal",
+                "title": "Day Type"
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Weekdays (kg CO2)",
+                "Weekend (kg CO2)"
+            ],
+            "as": [
+                "daytype",
+                "Emissions"
+            ]
+        }
+    ],
+    "config": {
+        "view": {
+            "stroke": "transparent"
+        },
+        "axis": {
+            "labelFontSize": 10,
+            "titleFontSize": 12
+        }
+    }
+}

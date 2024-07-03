@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 800,
+    height: 600
+});
+var app = {};
+var option;
+
+option = {
+    title: {
+        text: 'Average Calorie Intake of Various Foods',
+        left: 'center',
+        top: '10'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    xAxis: {
+        type: 'category',
+        data: ['Apple', 'Banana', 'Orange', 'Strawberry', 'Grapes', 'Watermelon', 'Pineapple', 'Blueberry', 'Mango', 'Peach', 'Pear', 'Cherry', 'Pomegranate', 'Kiwi', 'Papaya', 'Guava', 'Lychee', 'Dragonfruit', 'Passionfruit', 'Avocado'],
+        axisLabel: {
+            rotate: 45,
+            interval: 0
+        }
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Calories'
+    },
+    series: [
+        {
+            name: 'Calories',
+            type: 'bar',
+            data: [52, 89, 47, 32, 69, 30, 50, 57, 60, 39, 58, 50, 83, 61, 43, 68, 66, 60, 97, 160],
+            itemStyle: {
+                color: function (params) {
+                    var colorList = [
+                        '#FF5733', '#C70039', '#900C3F', '#581845', '#1ABC9C',
+                        '#2ECC71', '#3498DB', '#9B59B6', '#34495E', '#16A085',
+                        '#27AE60', '#2980B9', '#8E44AD', '#2C3E50', '#F1C40F',
+                        '#E67E22', '#E74C3C', '#ECF0F1', '#95A5A6', '#7F8C8D'
+                    ];
+                    return colorList[params.dataIndex]
+                },
+                barBorderRadius: [5, 5, 0, 0]
+            },
+            barWidth: '50%',
+            label: {
+                show: true,
+                position: 'top'
+            }
+        }
+    ],
+    grid: {
+        bottom: 80
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

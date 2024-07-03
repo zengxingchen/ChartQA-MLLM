@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var option;
+
+option = {
+    title: {
+        text: 'Impact of Exercise on Heart Rate',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: 'Exercise Duration: {b0} min<br/>Heart Rate: {c0} bpm'
+    },
+    legend: {
+        data: ['Heart Rate'],
+        left: 'left'
+    },
+    xAxis: {
+        name: 'Exercise Duration (min)',
+        type: 'value',
+        min: 0,
+        max: 100
+    },
+    yAxis: {
+        name: 'Heart Rate (bpm)',
+        type: 'value',
+        min: 50,
+        max: 110
+    },
+    series: [
+        {
+            name: 'Heart Rate',
+            type: 'scatter',
+            itemStyle: {
+                color: '#FF5733'
+            },
+            data: [
+                [5, 105], [10, 100], [15, 98], [20, 95], [25, 92],
+                [30, 88], [35, 85], [40, 82], [45, 78], [50, 75],
+                [55, 73], [60, 70], [65, 68], [70, 66], [75, 65],
+                [80, 63], [85, 61], [90, 60], [95, 58], [100, 57]
+            ]
+        }
+    ],
+    grid: {
+        width: '80%',
+        height: '70%'
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

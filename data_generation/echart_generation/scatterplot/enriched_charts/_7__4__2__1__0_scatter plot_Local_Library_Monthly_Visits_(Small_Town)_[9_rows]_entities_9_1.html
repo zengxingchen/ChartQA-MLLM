@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+var option = {
+    title: {
+        text: 'Trends in Various Design Disciplines',
+        left: 'center',
+        top: 20
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['Value1', 'Value2'],
+        left: 'right',
+        top: 20
+    },
+    xAxis: {
+        type: 'category',
+        data: ['Graphic Design', 'Interior Design', 'Architecture', 'Fashion Design', 'Product Design', 'Illustration', 'Animation', 'Photography', 'Industrial Design', 'Textile Design', 'Game Design', 'Web Design', 'Graphic Design', 'Interior Design', 'Architecture', 'Fashion Design', 'Product Design', 'Illustration', 'Animation', 'Photography', 'Industrial Design', 'Textile Design', 'Game Design', 'Web Design']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Value1',
+            type: 'scatter',
+            data: [55, 68, 80, 45, 70, 75, 60, 40, 85, 65, 50, 78, 52, 63, 82, 46, 72, 73, 58, 42, 87, 67, 53, 76],
+            itemStyle: {
+                color: '#FF5733'
+            }
+        },
+        {
+            name: 'Value2',
+            type: 'scatter',
+            data: [48, 58, 70, 60, 50, 65, 55, 35, 78, 72, 45, 68, 47, 56, 69, 62, 48, 66, 54, 34, 76, 74, 43, 70],
+            itemStyle: {
+                color: '#33FF57'
+            }
+        }
+    ]
+};
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

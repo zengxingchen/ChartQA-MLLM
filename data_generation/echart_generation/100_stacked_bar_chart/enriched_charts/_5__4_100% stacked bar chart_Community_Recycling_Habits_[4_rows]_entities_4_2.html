@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 800, // change width of the chart
+    height: 600 // change height of the chart
+});
+var app = {};
+
+var option;
+
+const data = [
+    { year: '2016', Technology: 20, Art: 30, Science: 10, Health: 40 },
+    { year: '2017', Technology: 25, Art: 35, Science: 15, Health: 25 },
+    { year: '2018', Technology: 30, Art: 20, Science: 20, Health: 30 },
+    { year: '2019', Technology: 35, Art: 25, Science: 15, Health: 25 },
+    { year: '2020', Technology: 40, Art: 20, Science: 10, Health: 30 },
+];
+
+option = {
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            // Use axis to trigger tooltip
+            type: 'shadow' // 'shadow' as default; can also be 'line' or 'shadow'
+        }
+    },
+    legend: {
+        data: ['Technology', 'Art', 'Science', 'Health'],
+        top: '5%' // position legend to avoid overlap with the headline
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        // Changed to vertical chart (xAxis is categories)
+        type: 'value',
+        boundaryGap: [0, 0.01]
+    },
+    yAxis: {
+        type: 'category',
+        data: data.map(item => item.year)
+    },
+    series: [
+        {
+            name: 'Technology',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 30, // change width of bars
+            data: data.map(item => item.Technology),
+            color: '#1f77b4' // specific color code for Technology
+        },
+        {
+            name: 'Art',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 30, // change width of bars
+            data: data.map(item => item.Art),
+            color: '#aec7e8' // specific color code for Art
+        },
+        {
+            name: 'Science',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 30, // change width of bars
+            data: data.map(item => item.Science),
+            color: '#ff7f0e' // specific color code for Science
+        },
+        {
+            name: 'Health',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 30, // change width of bars
+            data: data.map(item => item.Health),
+            color: '#2ca02c' // specific color code for Health
+        }
+    ],
+    title: {
+        text: 'Advancements in Future Technologies & Society (2016-2020)',
+        left: 'center',
+        top: 'top' // Ensuring title is at the very top
+    },
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

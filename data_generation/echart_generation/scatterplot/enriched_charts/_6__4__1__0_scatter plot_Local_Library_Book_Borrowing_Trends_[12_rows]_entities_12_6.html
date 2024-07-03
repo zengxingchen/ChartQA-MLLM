@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Exploration of Stars Brightness vs. Distance',
+        left: 'center',
+        top: '5%'
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['Stars'],
+        top: '15%',
+        left: 'right'
+    },
+    xAxis: {
+        name: 'Distance (light years)',
+        type: 'value'
+    },
+    yAxis: {
+        name: 'Brightness (magnitude)',
+        type: 'value'
+    },
+    series: [{
+        name: 'Stars',
+        type: 'scatter',
+        data: [
+            [3.2, 4.8], [2.8, 3.6], [5.6, 7.4], [4.9, 5.1], [6.2, 8.3],
+            [5.1, 5.6], [7.8, 9.1], [8.5, 8.2], [6.7, 7.9], [3.5, 4.4],
+            [4.2, 5.7], [7.1, 8.5], [5.4, 6.9], [2.9, 3.8], [4.8, 5.9],
+            [3.7, 4.1], [6.5, 7.2], [5.9, 6.8], [8.1, 9.0], [7.2, 8.4],
+            [4.4, 5.0], [3.3, 4.2], [6.0, 7.1], [2.5, 3.4], [5.2, 6.5],
+            [7.4, 8.0], [4.1, 5.4], [5.8, 7.0], [3.6, 4.5], [4.5, 5.8],
+            [6.3, 7.6], [7.7, 8.7], [8.3, 9.2], [2.7, 3.5], [6.9, 7.8],
+            [5.0, 6.2], [7.0, 8.1], [4.3, 5.5], [8.2, 9.3], [3.8, 4.3],
+            [5.7, 6.6], [6.4, 7.3], [4.0, 5.3], [7.3, 8.6]
+        ],
+        itemStyle: {
+            color: '#FF6347'
+        }
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

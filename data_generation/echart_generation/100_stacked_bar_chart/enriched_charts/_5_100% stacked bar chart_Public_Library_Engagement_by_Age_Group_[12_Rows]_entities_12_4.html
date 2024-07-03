@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 800, // chart width
+    height: 600 // chart height
+});
+
+var option;
+
+option = {
+    title: {
+        text: 'Future Technologies & Society',
+        left: 'center',
+        top: '20'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01]
+    },
+    yAxis: [
+        {
+            type: 'category',
+            data: ['2021', '2022', '2023', '2024', '2025']
+        }
+    ],
+    series: [
+        {
+            name: 'Future Trends',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35, // bar width
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            itemStyle: { color: '#1f77b4' },
+            data: [45, 50, 55, 60, 65] // data points
+        },
+        {
+            name: 'Adoption',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            itemStyle: { color: '#ff7f0e' },
+            data: [40, 30, 25, 20, 15] // data points
+        },
+        {
+            name: 'Regulation',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            itemStyle: { color: '#2ca02c' },
+            data: [10, 15, 15, 15, 15] // data points
+        },
+        {
+            name: 'Business Impact',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            itemStyle: { color: '#d62728' },
+            data: [5, 5, 5, 5, 5] // data points
+        }
+    ],
+    legend: {
+        data: ['Future Trends', 'Adoption', 'Regulation', 'Business Impact'],
+        left: 'right',
+        top: '40'
+    },
+    color: ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728']
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

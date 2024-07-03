@@ -1,0 +1,190 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Horizontal stacked bar chart showing monthly book sales by genre.",
+    "data": {
+        "values": [
+            {
+                "Month": "January",
+                "Fiction": 150,
+                "Non-Fiction": 200,
+                "Sci-Fi": 120,
+                "Romance": 180,
+                "Mystery": 90
+            },
+            {
+                "Month": "February",
+                "Fiction": 160,
+                "Non-Fiction": 210,
+                "Sci-Fi": 130,
+                "Romance": 190,
+                "Mystery": 100
+            },
+            {
+                "Month": "March",
+                "Fiction": 170,
+                "Non-Fiction": 220,
+                "Sci-Fi": 140,
+                "Romance": 200,
+                "Mystery": 110
+            },
+            {
+                "Month": "April",
+                "Fiction": 180,
+                "Non-Fiction": 230,
+                "Sci-Fi": 150,
+                "Romance": 210,
+                "Mystery": 120
+            },
+            {
+                "Month": "May",
+                "Fiction": 190,
+                "Non-Fiction": 240,
+                "Sci-Fi": 160,
+                "Romance": 220,
+                "Mystery": 130
+            },
+            {
+                "Month": "June",
+                "Fiction": 200,
+                "Non-Fiction": 250,
+                "Sci-Fi": 170,
+                "Romance": 230,
+                "Mystery": 140
+            },
+            {
+                "Month": "July",
+                "Fiction": 210,
+                "Non-Fiction": 260,
+                "Sci-Fi": 180,
+                "Romance": 240,
+                "Mystery": 150
+            },
+            {
+                "Month": "August",
+                "Fiction": 220,
+                "Non-Fiction": 270,
+                "Sci-Fi": 190,
+                "Romance": 250,
+                "Mystery": 160
+            },
+            {
+                "Month": "September",
+                "Fiction": 230,
+                "Non-Fiction": 280,
+                "Sci-Fi": 200,
+                "Romance": 260,
+                "Mystery": 170
+            },
+            {
+                "Month": "October",
+                "Fiction": 240,
+                "Non-Fiction": 290,
+                "Sci-Fi": 210,
+                "Romance": 270,
+                "Mystery": 180
+            },
+            {
+                "Month": "November",
+                "Fiction": 250,
+                "Non-Fiction": 300,
+                "Sci-Fi": 220,
+                "Romance": 280,
+                "Mystery": 190
+            },
+            {
+                "Month": "December",
+                "Fiction": 260,
+                "Non-Fiction": 310,
+                "Sci-Fi": 230,
+                "Romance": 290,
+                "Mystery": 200
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Fiction",
+                "Non-Fiction",
+                "Sci-Fi",
+                "Romance",
+                "Mystery"
+            ],
+            "as": [
+                "Genre",
+                "Sales"
+            ]
+        }
+    ],
+    "width": 500,
+    "height": 700,
+    "mark": {
+        "type": "bar",
+        "width": {
+            "band": 0.8
+        }
+    },
+    "title": {
+        "text": "Monthly Book Sales by Genre",
+        "subtitle": "Sales data for different book genres over the months",
+        "subtitleFontStyle": "italic",
+        "subtitleFontSize": 10,
+        "anchor": "start",
+        "color": "black"
+    },
+    "encoding": {
+        "y": {
+            "field": "Month",
+            "type": "ordinal",
+            "title": "Month of the Year",
+            "axis": {
+                "labelAngle": 0
+            }
+        },
+        "x": {
+            "field": "Sales",
+            "type": "quantitative",
+            "title": "Book Sales (Thousands)"
+        },
+        "color": {
+            "field": "Genre",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Fiction",
+                    "Non-Fiction",
+                    "Sci-Fi",
+                    "Romance",
+                    "Mystery"
+                ],
+                "range": [
+                    "#ff9999",
+                    "#66b3ff",
+                    "#99ff99",
+                    "#ffcc99",
+                    "#c2c2f0"
+                ]
+            },
+            "legend": {
+                "orient": "right"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Month",
+                "type": "ordinal",
+                "title": "Month"
+            },
+            {
+                "field": "Genre",
+                "type": "nominal",
+                "title": "Genre"
+            },
+            {
+                "field": "Sales",
+                "type": "quantitative",
+                "title": "Sales (Thousands)"
+            }
+        ]
+    }
+}

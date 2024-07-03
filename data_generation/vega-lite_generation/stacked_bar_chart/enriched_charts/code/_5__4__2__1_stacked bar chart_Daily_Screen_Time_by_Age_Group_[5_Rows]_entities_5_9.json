@@ -1,0 +1,178 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+        "values": [
+            {
+                "Month": "January",
+                "Hiking": 15,
+                "Camping": 7,
+                "Skiing": 10,
+                "Beach": 5
+            },
+            {
+                "Month": "February",
+                "Hiking": 12,
+                "Camping": 6,
+                "Skiing": 15,
+                "Beach": 4
+            },
+            {
+                "Month": "March",
+                "Hiking": 18,
+                "Camping": 8,
+                "Skiing": 12,
+                "Beach": 6
+            },
+            {
+                "Month": "April",
+                "Hiking": 20,
+                "Camping": 10,
+                "Skiing": 5,
+                "Beach": 8
+            },
+            {
+                "Month": "May",
+                "Hiking": 22,
+                "Camping": 12,
+                "Skiing": 3,
+                "Beach": 10
+            },
+            {
+                "Month": "June",
+                "Hiking": 25,
+                "Camping": 15,
+                "Skiing": 1,
+                "Beach": 12
+            },
+            {
+                "Month": "July",
+                "Hiking": 30,
+                "Camping": 18,
+                "Skiing": 0,
+                "Beach": 15
+            },
+            {
+                "Month": "August",
+                "Hiking": 28,
+                "Camping": 20,
+                "Skiing": 0,
+                "Beach": 18
+            },
+            {
+                "Month": "September",
+                "Hiking": 25,
+                "Camping": 15,
+                "Skiing": 2,
+                "Beach": 20
+            },
+            {
+                "Month": "October",
+                "Hiking": 20,
+                "Camping": 10,
+                "Skiing": 5,
+                "Beach": 15
+            },
+            {
+                "Month": "November",
+                "Hiking": 18,
+                "Camping": 8,
+                "Skiing": 10,
+                "Beach": 10
+            },
+            {
+                "Month": "December",
+                "Hiking": 15,
+                "Camping": 6,
+                "Skiing": 15,
+                "Beach": 8
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Hiking",
+                "Camping",
+                "Skiing",
+                "Beach"
+            ],
+            "as": [
+                "Activity",
+                "Count"
+            ]
+        }
+    ],
+    "width": 700,
+    "height": 500,
+    "mark": {
+        "type": "bar",
+        "width": {
+            "band": 0.5
+        }
+    },
+    "title": {
+        "text": "Monthly Travel Activities",
+        "subtitle": "Source: Travel Data",
+        "subtitleFontStyle": "italic",
+        "subtitleFontSize": 10,
+        "align": "center",
+        "anchor": "middle",
+        "color": "black"
+    },
+    "encoding": {
+        "y": {
+            "field": "Count",
+            "type": "quantitative",
+            "axis": {
+                "title": "Count"
+            }
+        },
+        "x": {
+            "field": "Month",
+            "type": "ordinal",
+            "axis": {
+                "title": "Month"
+            }
+        },
+        "color": {
+            "field": "Activity",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Hiking",
+                    "Camping",
+                    "Skiing",
+                    "Beach"
+                ],
+                "range": [
+                    "#1a9850",
+                    "#91cf60",
+                    "#d73027",
+                    "#4575b4"
+                ]
+            },
+            "legend": {
+                "title": "Activity Type",
+                "orient": "top",
+                "titleAlign": "left"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Month",
+                "type": "ordinal",
+                "title": "Month"
+            },
+            {
+                "field": "Activity",
+                "type": "nominal",
+                "title": "Activity"
+            },
+            {
+                "field": "Count",
+                "type": "quantitative",
+                "title": "Count"
+            }
+        ]
+    }
+}

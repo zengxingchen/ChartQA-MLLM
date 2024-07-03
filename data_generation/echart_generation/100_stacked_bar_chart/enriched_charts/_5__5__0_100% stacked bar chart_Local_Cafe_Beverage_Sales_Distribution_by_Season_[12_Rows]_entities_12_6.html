@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 600, height: 400});
+var app = {};
+
+var option;
+
+option = {
+    color: ['#003366', '#006699', '#4cabce', '#e5323e', '#c4ccd3'],
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Art & Design', 'Science & Nature', 'Health & Psychology', 'Economics & Finance', 'Education & Learning']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: false
+    },
+    yAxis: {
+        type: 'category',
+        data: ['2015', '2016', '2017', '2018', '2019', '2020']
+    },
+    series: [
+        {
+            name: 'Art & Design',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            data: [30, 20, 25, 15, 10, 20]
+        },
+        {
+            name: 'Science & Nature',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            data: [25, 30, 20, 25, 30, 20]
+        },
+        {
+            name: 'Health & Psychology',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            data: [15, 30, 20, 25, 20, 30]
+        },
+        {
+            name: 'Economics & Finance',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            data: [20, 10, 25, 25, 30, 20]
+        },
+        {
+            name: 'Education & Learning',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            data: [10, 10, 10, 10, 10, 10]
+        }
+    ],
+    title: {
+        text: 'Interdisciplinary Fields Trend',
+        left: 'center',
+        top: 'top'
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

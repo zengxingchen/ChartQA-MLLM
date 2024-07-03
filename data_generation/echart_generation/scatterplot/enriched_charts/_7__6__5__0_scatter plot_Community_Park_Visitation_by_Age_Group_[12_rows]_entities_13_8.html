@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var option;
+option = {
+    title: {
+        text: 'Popularity of Various Art Forms',
+        left: 'center',
+        top: '5%'
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: function (params) {
+            return params.seriesName + '<br/>' + params.name + ' : ' + params.value;
+        }
+    },
+    legend: {
+        data: ['Popularity'],
+        left: 'left',
+        top: '15%'
+    },
+    xAxis: {
+        type: 'category',
+        data: ['Sculpture', 'Painting', 'Photography', 'Architecture', 'Calligraphy', 'Ceramics', 'Fashion', 'Film', 'GraphicDesign', 'Illustration', 'IndustrialDesign', 'InteriorDesign', 'Jewelry', 'Landscape', 'MediaArts', 'PerformingArts', 'Printmaking', 'Textile', 'Video', 'DigitalArt', 'StreetArt', 'Installations', 'SoundArt', 'GlassArt', 'Mosaic', 'Animation', '3DPrinting', 'VirtualReality', 'AugmentedReality', 'AlgorithmicArt', 'GenerativeArt']
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Popularity Score'
+    },
+    series: [{
+        name: 'Popularity',
+        type: 'scatter',
+        itemStyle: {
+            color: '#FF5733'
+        },
+        data: [120, 145, 110, 135, 115, 130, 125, 140, 150, 155, 160, 165, 170, 175, 180, 185, 190, 195, 200, 205, 210, 215, 220, 225, 230, 235, 240, 245, 250, 255, 260]
+    }],
+    grid: {
+        left: '5%',
+        right: '5%',
+        bottom: '10%',
+        containLabel: true
+    }
+};
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

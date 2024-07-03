@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+var option = {
+    title: {
+        text: 'Innovation Index Over Years',
+        left: 'center',
+        top: '5%'
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    xAxis: {
+        type: 'category',
+        data: ['2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022'],
+        axisLabel: {
+            rotate: 45
+        }
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Innovation Index',
+        min: 50,
+        max: 105
+    },
+    series: [
+        {
+            name: 'Innovation Index',
+            type: 'line',
+            data: [56, 58, 60, 63, 65, 67, 70, 72, 75, 78, 80, 83, 85, 87, 89, 90, 92, 94, 95, 96, 98, 99, 100],
+            lineStyle: {
+                color: '#FF5733'
+            },
+            itemStyle: {
+                color: '#C70039'
+            },
+            label: {
+                show: true,
+                position: 'top'
+            }
+        }
+    ],
+    annotation: {
+        data: [
+            {
+                type: 'line',
+                start: ['2022', 100],
+                end: ['2022', 50],
+                label: {
+                    position: 'end',
+                    formatter: 'Peak in 2022'
+                },
+                lineStyle: {
+                    color: '#900C3F',
+                    type: 'dashed'
+                }
+            }
+        ]
+    },
+    grid: {
+        bottom: '20%',
+        containLabel: true
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,184 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+        "values": [
+            {
+                "Month": "January",
+                "Books": 8,
+                "Magazines": 5,
+                "Newspapers": 3,
+                "Online Articles": 15
+            },
+            {
+                "Month": "February",
+                "Books": 10,
+                "Magazines": 4,
+                "Newspapers": 2,
+                "Online Articles": 20
+            },
+            {
+                "Month": "March",
+                "Books": 7,
+                "Magazines": 6,
+                "Newspapers": 3,
+                "Online Articles": 18
+            },
+            {
+                "Month": "April",
+                "Books": 9,
+                "Magazines": 5,
+                "Newspapers": 2,
+                "Online Articles": 22
+            },
+            {
+                "Month": "May",
+                "Books": 12,
+                "Magazines": 4,
+                "Newspapers": 3,
+                "Online Articles": 25
+            },
+            {
+                "Month": "June",
+                "Books": 15,
+                "Magazines": 5,
+                "Newspapers": 4,
+                "Online Articles": 30
+            },
+            {
+                "Month": "July",
+                "Books": 11,
+                "Magazines": 6,
+                "Newspapers": 2,
+                "Online Articles": 27
+            },
+            {
+                "Month": "August",
+                "Books": 13,
+                "Magazines": 4,
+                "Newspapers": 3,
+                "Online Articles": 28
+            },
+            {
+                "Month": "September",
+                "Books": 14,
+                "Magazines": 5,
+                "Newspapers": 4,
+                "Online Articles": 26
+            },
+            {
+                "Month": "October",
+                "Books": 9,
+                "Magazines": 7,
+                "Newspapers": 3,
+                "Online Articles": 24
+            },
+            {
+                "Month": "November",
+                "Books": 10,
+                "Magazines": 5,
+                "Newspapers": 2,
+                "Online Articles": 23
+            },
+            {
+                "Month": "December",
+                "Books": 12,
+                "Magazines": 6,
+                "Newspapers": 3,
+                "Online Articles": 25
+            }
+        ]
+    },
+    "width": 600,
+    "height": 300,
+    "title": {
+        "text": "Monthly Reading Habits",
+        "subtitle": "A vertical stacked bar chart showing the average number of different reading materials read per month.",
+        "subtitleFontStyle": "italic",
+        "subtitleFontSize": 10,
+        "anchor": "start",
+        "frame": "group"
+    },
+    "transform": [
+        {
+            "fold": [
+                "Books",
+                "Magazines",
+                "Newspapers",
+                "Online Articles"
+            ],
+            "as": [
+                "Reading Material",
+                "Count"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "bar",
+        "width": 20
+    },
+    "encoding": {
+        "x": {
+            "field": "Month",
+            "type": "ordinal",
+            "title": "Month",
+            "axis": {
+                "labelAngle": -45
+            }
+        },
+        "y": {
+            "field": "Count",
+            "type": "quantitative",
+            "title": "Average Count",
+            "stack": "zero"
+        },
+        "color": {
+            "field": "Reading Material",
+            "type": "nominal",
+            "title": "Reading Material",
+            "scale": {
+                "domain": [
+                    "Books",
+                    "Magazines",
+                    "Newspapers",
+                    "Online Articles"
+                ],
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e",
+                    "#2ca02c",
+                    "#d62728"
+                ]
+            },
+            "legend": {
+                "orient": "bottom",
+                "titleFontSize": 12,
+                "labelFontSize": 10
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Month",
+                "type": "nominal"
+            },
+            {
+                "field": "Reading Material",
+                "type": "nominal",
+                "title": "Reading Material"
+            },
+            {
+                "field": "Count",
+                "type": "quantitative",
+                "title": "Count"
+            }
+        ]
+    },
+    "config": {
+        "axis": {
+            "titleFontWeight": "normal",
+            "labelFont": "sans-serif"
+        },
+        "bar": {
+            "strokeWidth": 0
+        }
+    }
+}

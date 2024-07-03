@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var option;
+
+option = {
+    title: {
+        text: 'Art & Design Tools Usage',
+        left: 'center',
+        top: 20
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Art Supplies', 'Digital Tools', 'Inspiration Sources'],
+        top: 50
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        data: ['Drawing', 'Painting', 'Sculpture', 'Photography', 'Design', 'Calligraphy', 'Crafts', 'Printmaking', 'Textiles', 'Ceramics']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Art Supplies',
+            type: 'bar',
+            stack: 'Total',
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            itemStyle: {
+                color: '#FF6347'
+            },
+            data: [120, 150, 100, 200, 170, 130, 140, 110, 160, 130]
+        },
+        {
+            name: 'Digital Tools',
+            type: 'bar',
+            stack: 'Total',
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            itemStyle: {
+                color: '#4682B4'
+            },
+            data: [80, 90, 40, 110, 130, 70, 100, 60, 90, 50]
+        },
+        {
+            name: 'Inspiration Sources',
+            type: 'bar',
+            stack: 'Total',
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            itemStyle: {
+                color: '#32CD32'
+            },
+            data: [50, 70, 60, 90, 85, 55, 75, 45, 65, 70]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

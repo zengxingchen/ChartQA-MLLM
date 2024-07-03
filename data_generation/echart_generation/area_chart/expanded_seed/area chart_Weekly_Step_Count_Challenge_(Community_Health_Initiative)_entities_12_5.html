@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+
+var option;
+
+// Data
+var data = [
+    {'Week': 'Week 1', 'Steps': 70000},
+    {'Week': 'Week 2', 'Steps': 71000},
+    {'Week': 'Week 3', 'Steps': 68000},
+    {'Week': 'Week 4', 'Steps': 72500},
+    {'Week': 'Week 5', 'Steps': 74000},
+    {'Week': 'Week 6', 'Steps': 75500},
+    {'Week': 'Week 7', 'Steps': 77500},
+    {'Week': 'Week 8', 'Steps': 78000},
+    {'Week': 'Week 9', 'Steps': 79000},
+    {'Week': 'Week 10', 'Steps': 80000},
+    {'Week': 'Week 11', 'Steps': 81000},
+    {'Week': 'Week 12', 'Steps': 82000}
+];
+
+// Process data
+var weeks = [];
+var steps = [];
+data.forEach(function (item) {
+    weeks.push(item.Week);
+    steps.push(item.Steps);
+});
+
+// Visual encoding
+option = {
+    tooltip: {
+        trigger: 'axis',
+        backgroundColor: 'rgba(255, 255, 255, 0.7)',
+        borderColor: '#777',
+        borderWidth: 1,
+        textStyle: {
+            color: '#000'
+        },
+        extraCssText: 'box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: weeks,
+        axisTick: {
+            alignWithLabel: true
+        },
+        axisLine: {
+            onZero: false
+        }
+    },
+    yAxis: {
+        type: 'value',
+        axisLabel: {
+            formatter: function(value) {
+                if (value >= 1000) {
+                    return (value / 1000) + 'k';
+                }
+                return value;
+            }
+        }
+    },
+    series: [{
+        name: 'Steps',
+        type: 'line',
+        stack: 'total',
+        areaStyle: {
+            color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                offset: 0,
+                color: 'rgb(255, 158, 68)'
+            }, {
+                offset: 1,
+                color: 'rgb(255, 70, 131)'
+            }])
+        },
+        emphasis: {
+            focus: 'series'
+        },
+        data: steps,
+        smooth: true,
+        symbol: 'circle',
+        symbolSize: 8,
+        itemStyle: {
+            color: '#FFB74D',
+            borderColor: '#FF8A65',
+            borderWidth: 2
+        },
+        lineStyle: {
+            width: 3,
+            shadowColor: 'rgba(0,0,0,0.4)',
+            shadowBlur: 10,
+            shadowOffsetY: 10
+        }
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

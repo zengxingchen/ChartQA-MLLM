@@ -1,0 +1,170 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Percentage of Physical Activity by Different Age Groups",
+    "data": {
+        "values": [
+            {
+                "AgeGroup": "0-5",
+                "Walking": 20,
+                "Running": 15,
+                "Cycling": 10,
+                "Swimming": 5,
+                "Yoga": 50
+            },
+            {
+                "AgeGroup": "6-12",
+                "Walking": 25,
+                "Running": 20,
+                "Cycling": 15,
+                "Swimming": 10,
+                "Yoga": 30
+            },
+            {
+                "AgeGroup": "13-19",
+                "Walking": 20,
+                "Running": 25,
+                "Cycling": 30,
+                "Swimming": 15,
+                "Yoga": 10
+            },
+            {
+                "AgeGroup": "20-29",
+                "Walking": 15,
+                "Running": 30,
+                "Cycling": 25,
+                "Swimming": 20,
+                "Yoga": 10
+            },
+            {
+                "AgeGroup": "30-39",
+                "Walking": 20,
+                "Running": 25,
+                "Cycling": 20,
+                "Swimming": 15,
+                "Yoga": 20
+            },
+            {
+                "AgeGroup": "40-49",
+                "Walking": 25,
+                "Running": 20,
+                "Cycling": 15,
+                "Swimming": 10,
+                "Yoga": 30
+            },
+            {
+                "AgeGroup": "50-59",
+                "Walking": 30,
+                "Running": 15,
+                "Cycling": 10,
+                "Swimming": 5,
+                "Yoga": 40
+            },
+            {
+                "AgeGroup": "60-69",
+                "Walking": 35,
+                "Running": 10,
+                "Cycling": 5,
+                "Swimming": 10,
+                "Yoga": 40
+            },
+            {
+                "AgeGroup": "70+",
+                "Walking": 40,
+                "Running": 5,
+                "Cycling": 5,
+                "Swimming": 10,
+                "Yoga": 40
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Walking",
+                "Running",
+                "Cycling",
+                "Swimming",
+                "Yoga"
+            ],
+            "as": [
+                "Activity",
+                "Participation"
+            ]
+        }
+    ],
+    "padding": {
+        "left": 80,
+        "top": 60,
+        "right": 40,
+        "bottom": 60
+    },
+    "width": 500,
+    "height": 400,
+    "mark": {
+        "type": "bar",
+        "height": {
+            "band": 0.6
+        }
+    },
+    "encoding": {
+        "x": {
+            "field": "Participation",
+            "type": "quantitative",
+            "stack": "normalize",
+            "axis": {
+                "title": "Percentage of Total Participation",
+                "format": ".0%"
+            }
+        },
+        "y": {
+            "field": "AgeGroup",
+            "type": "nominal",
+            "axis": {
+                "title": "Age Group"
+            }
+        },
+        "color": {
+            "field": "Activity",
+            "type": "nominal",
+            "scale": {
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e",
+                    "#2ca02c",
+                    "#d62728",
+                    "#9467bd"
+                ]
+            },
+            "legend": {
+                "title": "Physical Activity"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "AgeGroup",
+                "type": "nominal",
+                "title": "Age Group"
+            },
+            {
+                "field": "Activity",
+                "type": "nominal",
+                "title": "Activity"
+            },
+            {
+                "field": "Participation",
+                "type": "quantitative",
+                "title": "Participation"
+            }
+        ]
+    },
+    "title": {
+        "text": "Percentage of Physical Activity by Different Age Groups",
+        "anchor": "start"
+    },
+    "config": {
+        "bar": {
+            "cornerRadiusTopLeft": 3,
+            "cornerRadiusTopRight": 3
+        }
+    }
+}

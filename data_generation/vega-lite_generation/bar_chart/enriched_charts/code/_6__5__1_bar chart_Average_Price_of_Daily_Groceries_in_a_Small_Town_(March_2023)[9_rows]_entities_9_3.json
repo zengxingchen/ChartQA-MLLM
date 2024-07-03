@@ -1,0 +1,159 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "A horizontal bar chart showing the average sales of various products.",
+    "title": {
+        "text": "Average Sales by Product",
+        "font": "Verdana",
+        "anchor": "start",
+        "offset": 5
+    },
+    "data": {
+        "values": [
+            {
+                "Product": "Laptop",
+                "Average Sales (in $)": 1500
+            },
+            {
+                "Product": "Smartphone",
+                "Average Sales (in $)": 1200
+            },
+            {
+                "Product": "Tablet",
+                "Average Sales (in $)": 800
+            },
+            {
+                "Product": "Headphones",
+                "Average Sales (in $)": 200
+            },
+            {
+                "Product": "Smartwatch",
+                "Average Sales (in $)": 400
+            },
+            {
+                "Product": "Camera",
+                "Average Sales (in $)": 1000
+            },
+            {
+                "Product": "Printer",
+                "Average Sales (in $)": 300
+            },
+            {
+                "Product": "Monitor",
+                "Average Sales (in $)": 600
+            },
+            {
+                "Product": "Keyboard",
+                "Average Sales (in $)": 100
+            },
+            {
+                "Product": "Mouse",
+                "Average Sales (in $)": 50
+            }
+        ]
+    },
+    "width": 600,
+    "height": 400,
+    "mark": {
+        "type": "bar",
+        "width": {
+            "band": 0.5
+        }
+    },
+    "encoding": {
+        "y": {
+            "field": "Product",
+            "type": "ordinal",
+            "title": "Product",
+            "axis": {
+                "labelAngle": 0
+            }
+        },
+        "x": {
+            "field": "Average Sales (in $)",
+            "type": "quantitative",
+            "title": "Average Sales (in $)"
+        },
+        "color": {
+            "field": "Product",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Laptop",
+                    "Smartphone",
+                    "Tablet",
+                    "Headphones",
+                    "Smartwatch",
+                    "Camera",
+                    "Printer",
+                    "Monitor",
+                    "Keyboard",
+                    "Mouse"
+                ],
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e",
+                    "#2ca02c",
+                    "#d62728",
+                    "#9467bd",
+                    "#8c564b",
+                    "#e377c2",
+                    "#7f7f7f",
+                    "#bcbd22",
+                    "#17becf"
+                ]
+            },
+            "legend": null
+        },
+        "tooltip": [
+            {
+                "field": "Product",
+                "type": "nominal"
+            },
+            {
+                "field": "Average Sales (in $)",
+                "type": "quantitative"
+            }
+        ],
+        "text": {
+            "field": "Average Sales (in $)",
+            "type": "quantitative"
+        }
+    },
+    "layer": [
+        {
+            "mark": "rule",
+            "encoding": {
+                "x": {
+                    "aggregate": "mean",
+                    "field": "Average Sales (in $)",
+                    "type": "quantitative",
+                    "title": "Mean Average Sales (in $)"
+                },
+                "color": {
+                    "value": "#D81B60"
+                },
+                "size": {
+                    "value": 2
+                },
+                "tooltip": [
+                    {
+                        "aggregate": "mean",
+                        "field": "Average Sales (in $)",
+                        "type": "quantitative",
+                        "title": "Mean Average Sales"
+                    }
+                ]
+            }
+        }
+    ],
+    "config": {
+        "bar": {
+            "stroke": "transparent"
+        },
+        "text": {
+            "align": "left",
+            "baseline": "middle",
+            "dx": 3
+        }
+    }
+}

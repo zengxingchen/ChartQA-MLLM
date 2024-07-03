@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 500});
+var app = {};
+
+var option;
+
+option = {
+  title: {
+    text: 'Renewable Energy Production Forecast',
+    left: 'center',
+    top: '20'
+  },
+  tooltip: {
+    trigger: 'axis'
+  },
+  legend: {
+    data: ['Solar Energy', 'Wind Energy', 'Hydropower', 'Nuclear Energy'],
+    top: '40'
+  },
+  toolbox: {
+    feature: {
+      saveAsImage: {}
+    }
+  },
+  grid: {
+    left: '3%',
+    right: '4%',
+    bottom: '3%',
+    containLabel: true
+  },
+  xAxis: {
+      type: 'category',
+      boundaryGap: false,
+      data: ['2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023']
+  },
+  yAxis: {
+      type: 'value'
+  },
+  series: [
+    {
+      name: 'Solar Energy',
+      type: 'line',
+      stack: 'total',
+      areaStyle: {},
+      emphasis: {
+        focus: 'series'
+      },
+      data: [50, 55, 65, 75, 90, 110, 130, 150, 170, 190, 215, 230, 250, 275]
+    },
+    {
+      name: 'Wind Energy',
+      type: 'line',
+      stack: 'total',
+      areaStyle: {},
+      emphasis: {
+        focus: 'series'
+      },
+      data: [80, 86, 94, 104, 114, 130, 150, 170, 190, 210, 230, 250, 270, 290]
+    },
+    {
+      name: 'Hydropower',
+      type: 'line',
+      stack: 'total',
+      label: {
+        show: true,
+        position: 'top'
+      },
+      areaStyle: {},
+      emphasis: {
+        focus: 'series'
+      },
+      data: [120, 130, 140, 150, 160, 165, 170, 180, 185, 190, 195, 200, 205, 210]
+    },
+    {
+      name: 'Nuclear Energy',
+      type: 'line',
+      stack: 'total',
+      areaStyle: {},
+      emphasis: {
+        focus: 'series'
+      },
+      data: [70, 75, 80, 90, 100, 110, 120, 130, 140, 150, 160, 170, 180, 190]
+    }
+  ],
+  color: ['#FFD54F', '#4DD0E1', '#9575CD', '#FF8A65']
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

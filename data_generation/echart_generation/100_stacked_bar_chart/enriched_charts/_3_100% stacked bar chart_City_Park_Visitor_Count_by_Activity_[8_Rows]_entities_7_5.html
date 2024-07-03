@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    width: 800,
+    height: 600
+});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Education Trends by Year',
+        left: 'center',
+        top: 10,
+        textStyle: {
+            fontSize: 20
+        }
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Undergraduate', 'Graduate', 'PhD', 'Certificates', 'Other'],
+        left: 'left',
+        orient: 'vertical',
+        top: 50
+    },
+    grid: {
+        left: 150, // increase grid size to fit labels
+        right: 40,
+        bottom: 100,
+        top: 100,
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01]
+    },
+    yAxis: {
+        type: 'category',
+        data: ['2018', '2019', '2020', '2021', '2022']
+    },
+    series: [
+        {
+            name: 'Undergraduate',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                formatter: '{b}%',
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [25, 30, 35, 40, 45],
+            color: '#1f77b4',
+            barWidth: 30, // Set the width of the bars
+        },
+        {
+            name: 'Graduate',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                formatter: '{b}%',
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [20, 25, 30, 20, 25],
+            color: '#2ca02c',
+            barWidth: 30, // Set the width of the bars
+        },
+        {
+            name: 'PhD',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                formatter: '{b}%',
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [10, 15, 20, 15, 10],
+            color: '#d62728',
+            barWidth: 30, // Set the width of the bars
+        },
+        {
+            name: 'Certificates',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                formatter: '{b}%',
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [30, 20, 10, 15, 15],
+            color: '#ff7f0e',
+            barWidth: 30, // Set the width of the bars
+        },
+        {
+            name: 'Other',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                formatter: '{b}%',
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [15, 10, 5, 10, 5],
+            color: '#9467bd',
+            barWidth: 30, // Set the width of the bars
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

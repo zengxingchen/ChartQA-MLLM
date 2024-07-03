@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 800,
+    height: 500
+});
+var app = {};
+
+var option;
+
+option = {
+    color: ['#003366', '#006699', '#4cabce', '#e5323e', '#9bbb59'],
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['AI', 'QC', 'Bio', 'Nano', 'Renew']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01]
+    },
+    yAxis: {
+        type: 'category',
+        data: ['2020', '2021', '2022', '2023']
+    },
+    series: [
+        {
+            name: 'AI',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            data: [25, 30, 35, 40]
+        },
+        {
+            name: 'QC',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            data: [20, 18, 16, 15]
+        },
+        {
+            name: 'Bio',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            data: [20, 20, 19, 18]
+        },
+        {
+            name: 'Nano',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            data: [15, 12, 10, 9]
+        },
+        {
+            name: 'Renew',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            data: [20, 20, 20, 18]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,184 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Monthly Gym Attendance by Activity",
+    "width": 600,
+    "height": 400,
+    "title": {
+        "text": "Monthly Gym Attendance by Activity",
+        "offset": 5,
+        "orient": "top",
+        "anchor": "start"
+    },
+    "data": {
+        "values": [
+            {
+                "Month": "Jan",
+                "Cardio": 1200,
+                "Weightlifting": 1000,
+                "Group Classes": 800,
+                "Yoga": 900
+            },
+            {
+                "Month": "Feb",
+                "Cardio": 1300,
+                "Weightlifting": 1050,
+                "Group Classes": 850,
+                "Yoga": 950
+            },
+            {
+                "Month": "Mar",
+                "Cardio": 1500,
+                "Weightlifting": 1250,
+                "Group Classes": 1000,
+                "Yoga": 1100
+            },
+            {
+                "Month": "Apr",
+                "Cardio": 1600,
+                "Weightlifting": 1300,
+                "Group Classes": 1100,
+                "Yoga": 1200
+            },
+            {
+                "Month": "May",
+                "Cardio": 1700,
+                "Weightlifting": 1350,
+                "Group Classes": 1200,
+                "Yoga": 1300
+            },
+            {
+                "Month": "Jun",
+                "Cardio": 1650,
+                "Weightlifting": 1250,
+                "Group Classes": 1150,
+                "Yoga": 1250
+            },
+            {
+                "Month": "Jul",
+                "Cardio": 1550,
+                "Weightlifting": 1200,
+                "Group Classes": 1050,
+                "Yoga": 1150
+            },
+            {
+                "Month": "Aug",
+                "Cardio": 1600,
+                "Weightlifting": 1300,
+                "Group Classes": 1100,
+                "Yoga": 1200
+            },
+            {
+                "Month": "Sep",
+                "Cardio": 1650,
+                "Weightlifting": 1350,
+                "Group Classes": 1150,
+                "Yoga": 1250
+            },
+            {
+                "Month": "Oct",
+                "Cardio": 1700,
+                "Weightlifting": 1400,
+                "Group Classes": 1200,
+                "Yoga": 1300
+            },
+            {
+                "Month": "Nov",
+                "Cardio": 1600,
+                "Weightlifting": 1300,
+                "Group Classes": 1100,
+                "Yoga": 1200
+            },
+            {
+                "Month": "Dec",
+                "Cardio": 1500,
+                "Weightlifting": 1250,
+                "Group Classes": 1000,
+                "Yoga": 1100
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Cardio",
+                "Weightlifting",
+                "Group Classes",
+                "Yoga"
+            ],
+            "as": [
+                "Activity",
+                "Attendees"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "area",
+        "opacity": 0.7
+    },
+    "encoding": {
+        "x": {
+            "field": "Month",
+            "type": "ordinal",
+            "axis": {
+                "labelAngle": 0,
+                "title": "Month of the Year"
+            }
+        },
+        "y": {
+            "field": "Attendees",
+            "type": "quantitative",
+            "axis": {
+                "title": "Average Monthly Attendance"
+            }
+        },
+        "color": {
+            "field": "Activity",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Cardio",
+                    "Weightlifting",
+                    "Group Classes",
+                    "Yoga"
+                ],
+                "range": [
+                    "#ef476f",
+                    "#ffd166",
+                    "#06d6a0",
+                    "#118ab2"
+                ]
+            },
+            "legend": {
+                "orient": "top",
+                "title": "Activity Type",
+                "titleAnchor": "middle"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Month",
+                "type": "ordinal"
+            },
+            {
+                "field": "Activity",
+                "type": "nominal",
+                "title": "Activity Type"
+            },
+            {
+                "field": "Attendees",
+                "type": "quantitative",
+                "title": "Attendance"
+            }
+        ]
+    },
+    "config": {
+        "style": {
+            "cell": {
+                "stroke": "transparent"
+            }
+        },
+        "axis": {
+            "grid": true
+        }
+    }
+}

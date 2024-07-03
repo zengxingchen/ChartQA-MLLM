@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, { width: 800, height: 600 });
+var app = {};
+var option;
+
+option = {
+    title: {
+        text: 'Health & Psychology: Daily Activity Levels',
+        left: 'center',
+        top: '20px',
+        textStyle: {
+            color: '#333',
+            fontSize: 18
+        }
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: [
+            '2023-01-01', '2023-01-02', '2023-01-03', '2023-01-04', 
+            '2023-01-05', '2023-01-06', '2023-01-07', '2023-01-08', 
+            '2023-01-09', '2023-01-10', '2023-01-11', '2023-01-12', 
+            '2023-01-13', '2023-01-14', '2023-01-15', '2023-01-16', 
+            '2023-01-17', '2023-01-18', '2023-01-19', '2023-01-20'
+        ]
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Activity Level'
+    },
+    series: [
+        {
+            name: 'Activity Level',
+            type: 'line',
+            data: [
+                120, 130, 125, 135, 140, 145, 150, 148, 
+                152, 155, 160, 162, 165, 170, 168, 172, 
+                175, 180, 185, 190
+            ],
+            markPoint: {
+                data: [
+                    { type: 'max', name: 'Max', label: { color: '#FF0000' } },
+                    { type: 'min', name: 'Min', label: { color: '#0000FF' } }
+                ]
+            },
+            itemStyle: {
+                color: '#2E8B57'
+            },
+            lineStyle: {
+                color: '#8B0000'
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

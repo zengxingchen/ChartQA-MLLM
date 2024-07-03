@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+
+var option = {
+    title: {
+        text: 'Monthly Sales of Art Supplies and Tools',
+        left: 'center',
+        top: 20
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        top: 50,
+        left: 'center'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        data: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+        axisLabel: {
+            rotate: 45,
+            margin: 10
+        }
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Sales (in units)'
+    },
+    series: [
+        {
+            name: 'Art Supplies',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            data: [500, 450, 600, 550, 620, 580, 610, 590, 650, 620, 630, 700],
+            itemStyle: {
+                color: '#FF5733'
+            }
+        },
+        {
+            name: 'Photography Equipment',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            data: [600, 650, 700, 720, 680, 690, 710, 730, 750, 760, 770, 800],
+            itemStyle: {
+                color: '#33FF57'
+            }
+        },
+        {
+            name: 'Stationery',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            data: [800, 750, 900, 850, 780, 810, 830, 870, 900, 880, 860, 910],
+            itemStyle: {
+                color: '#3357FF'
+            }
+        },
+        {
+            name: 'Digital Tools',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            data: [300, 350, 400, 380, 410, 390, 420, 410, 440, 430, 450, 470],
+            itemStyle: {
+                color: '#FF33A1'
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,119 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "A pie chart representing the daily time spent on various activities related to health and psychology.",
+    "height": 400,
+    "width": 400,
+    "padding": 0,
+    "config": {
+        "font": "Roboto",
+        "style": {
+            "guide-label": {
+                "fill": "#44475a"
+            },
+            "guide-title": {
+                "fill": "#44475a"
+            }
+        },
+        "axis": {
+            "domainColor": "#44475a",
+            "tickColor": "#44475a"
+        }
+    },
+    "data": {
+        "values": [
+            {
+                "Activity": "Exercise",
+                "Hours": 2
+            },
+            {
+                "Activity": "Meditation",
+                "Hours": 1
+            },
+            {
+                "Activity": "Reading",
+                "Hours": 3
+            },
+            {
+                "Activity": "Work",
+                "Hours": 8
+            },
+            {
+                "Activity": "Socializing",
+                "Hours": 2
+            },
+            {
+                "Activity": "Entertainment",
+                "Hours": 2
+            },
+            {
+                "Activity": "Sleep",
+                "Hours": 6
+            }
+        ]
+    },
+    "mark": {
+        "type": "arc",
+        "tooltip": true
+    },
+    "encoding": {
+        "theta": {
+            "field": "Hours",
+            "type": "quantitative",
+            "stack": true
+        },
+        "color": {
+            "field": "Activity",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Exercise",
+                    "Meditation",
+                    "Reading",
+                    "Work",
+                    "Socializing",
+                    "Entertainment",
+                    "Sleep"
+                ],
+                "range": [
+                    "#1f78b4",
+                    "#33a02c",
+                    "#e31a1c",
+                    "#ff7f00",
+                    "#6a3d9a",
+                    "#b15928",
+                    "#a6cee3"
+                ]
+            },
+            "legend": {
+                "direction": "horizontal",
+                "orient": "bottom"
+            }
+        },
+        "opacity": {
+            "condition": {
+                "selection": "element",
+                "value": 1
+            },
+            "value": 0.7
+        }
+    },
+    "selection": {
+        "element": {
+            "type": "multi",
+            "fields": [
+                "Activity"
+            ],
+            "bind": "legend"
+        }
+    },
+    "title": {
+        "text": "Daily Time Spent on Health & Psychology Activities",
+        "fontSize": 18,
+        "fontWeight": "bold",
+        "anchor": "start",
+        "offset": 10
+    },
+    "view": {
+        "stroke": null
+    }
+}

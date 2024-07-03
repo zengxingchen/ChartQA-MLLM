@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var option;
+
+option = {
+    title: {
+        text: 'Vitamin C Content in Various Fruits',
+        left: 'center',
+        top: '5%',
+        textStyle: {
+            color: '#333',
+            fontSize: 18
+        }
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: '{b}: {c} mg/100g'
+    },
+    legend: {
+        data: ['Vitamin C'],
+        left: 'left',
+        top: '10%',
+        textStyle: {
+            color: '#333',
+            fontSize: 12
+        }
+    },
+    xAxis: {
+        type: 'category',
+        name: 'Fruit',
+        nameLocation: 'center',
+        nameGap: 30,
+        axisLabel: {
+            interval: 0,
+            rotate: 30
+        },
+        data: ['Apple', 'Banana', 'Orange', 'Strawberry', 'Kiwi', 'Pineapple', 'Mango', 'Papaya', 'Guava', 'Blueberry', 'Grapefruit', 'Peach', 'Lemon', 'Lime', 'Lychee', 'Blackcurrant', 'Cantaloupe', 'Cherry', 'Grapes', 'Plum'],
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Vitamin C (mg/100g)',
+        nameLocation: 'center',
+        nameGap: 40,
+    },
+    series: [
+        {
+            name: 'Vitamin C',
+            type: 'scatter',
+            data: [
+                ['Apple', 4.6],
+                ['Banana', 8.7],
+                ['Orange', 53.2],
+                ['Strawberry', 58.8],
+                ['Kiwi', 92.7],
+                ['Pineapple', 47.8],
+                ['Mango', 36.4],
+                ['Papaya', 60.9],
+                ['Guava', 228.3],
+                ['Blueberry', 9.7],
+                ['Grapefruit', 31.2],
+                ['Peach', 6.6],
+                ['Lemon', 53],
+                ['Lime', 29.1],
+                ['Lychee', 71.5],
+                ['Blackcurrant', 181],
+                ['Cantaloupe', 36.7],
+                ['Cherry', 10.8],
+                ['Grapes', 10.8],
+                ['Plum', 9.5]
+            ],
+            itemStyle: {
+                color: '#FF6347'
+            },
+            markPoint: {
+                data: [
+                    { type: 'max', name: 'Max' },
+                    { type: 'min', name: 'Min' }
+                ]
+            }
+        }
+    ],
+    grid: {
+        left: '5%',
+        right: '5%',
+        top: '20%',
+        bottom: '15%',
+        containLabel: true
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

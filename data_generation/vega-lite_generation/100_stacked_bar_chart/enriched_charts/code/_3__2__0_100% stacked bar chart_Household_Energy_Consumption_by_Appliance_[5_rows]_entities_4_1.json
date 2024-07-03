@@ -1,0 +1,163 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "A 100% stacked horizontal bar chart showing the distribution of different fruit preferences over years",
+    "title": {
+        "text": "Distribution of Fruit Preferences Over Years",
+        "fontSize": 20,
+        "anchor": "middle"
+    },
+    "width": 600,
+    "height": 800,
+    "data": {
+        "values": [
+            {
+                "Year": 2016,
+                "Apple": 20,
+                "Banana": 25,
+                "Cherry": 15,
+                "Date": 10,
+                "Elderberry": 30
+            },
+            {
+                "Year": 2017,
+                "Apple": 18,
+                "Banana": 28,
+                "Cherry": 14,
+                "Date": 12,
+                "Elderberry": 28
+            },
+            {
+                "Year": 2018,
+                "Apple": 22,
+                "Banana": 24,
+                "Cherry": 16,
+                "Date": 11,
+                "Elderberry": 27
+            },
+            {
+                "Year": 2019,
+                "Apple": 19,
+                "Banana": 26,
+                "Cherry": 17,
+                "Date": 14,
+                "Elderberry": 24
+            },
+            {
+                "Year": 2020,
+                "Apple": 21,
+                "Banana": 23,
+                "Cherry": 19,
+                "Date": 15,
+                "Elderberry": 22
+            },
+            {
+                "Year": 2021,
+                "Apple": 23,
+                "Banana": 21,
+                "Cherry": 18,
+                "Date": 16,
+                "Elderberry": 22
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Apple",
+                "Banana",
+                "Cherry",
+                "Date",
+                "Elderberry"
+            ],
+            "as": [
+                "Fruit",
+                "Percentage"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "bar",
+        "width": {
+            "band": 0.6
+        }
+    },
+    "encoding": {
+        "y": {
+            "field": "Year",
+            "type": "ordinal",
+            "axis": {
+                "title": "Year"
+            }
+        },
+        "x": {
+            "stack": "normalize",
+            "field": "Percentage",
+            "type": "quantitative",
+            "axis": {
+                "format": ".0%",
+                "title": "Percentage (%)"
+            }
+        },
+        "color": {
+            "field": "Fruit",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Apple",
+                    "Banana",
+                    "Cherry",
+                    "Date",
+                    "Elderberry"
+                ],
+                "range": [
+                    "#FF6347",
+                    "#FFD700",
+                    "#8A2BE2",
+                    "#A52A2A",
+                    "#5F9EA0"
+                ]
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Year",
+                "type": "ordinal",
+                "title": "Year"
+            },
+            {
+                "field": "Fruit",
+                "type": "nominal",
+                "title": "Fruit"
+            },
+            {
+                "field": "Percentage",
+                "type": "quantitative",
+                "title": "Percentage"
+            }
+        ]
+    },
+    "layer": [
+        {
+            "mark": "bar"
+        },
+        {
+            "mark": {
+                "type": "text",
+                "align": "left",
+                "baseline": "middle",
+                "dx": 3
+            },
+            "encoding": {
+                "text": {
+                    "field": "Percentage",
+                    "type": "quantitative"
+                }
+            }
+        }
+    ],
+    "config": {
+        "axisY": {
+            "minExtent": 30
+        }
+    }
+}

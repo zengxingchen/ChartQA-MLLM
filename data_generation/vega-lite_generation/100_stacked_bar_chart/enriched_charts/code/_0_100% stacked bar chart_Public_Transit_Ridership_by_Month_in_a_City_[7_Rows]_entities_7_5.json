@@ -1,0 +1,166 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "A 100% stacked bar chart showing the sales distribution by product categories across quarters.",
+    "width": 500,
+    "height": 200,
+    "padding": 5,
+    "data": {
+        "values": [
+            {
+                "Quarter": "Q1",
+                "Electronics": 25,
+                "Clothing": 20,
+                "Furniture": 35,
+                "Books": 15,
+                "Groceries": 5
+            },
+            {
+                "Quarter": "Q2",
+                "Electronics": 30,
+                "Clothing": 25,
+                "Furniture": 25,
+                "Books": 15,
+                "Groceries": 5
+            },
+            {
+                "Quarter": "Q3",
+                "Electronics": 20,
+                "Clothing": 25,
+                "Furniture": 40,
+                "Books": 10,
+                "Groceries": 5
+            },
+            {
+                "Quarter": "Q4",
+                "Electronics": 35,
+                "Clothing": 20,
+                "Furniture": 25,
+                "Books": 15,
+                "Groceries": 5
+            },
+            {
+                "Quarter": "Q5",
+                "Electronics": 30,
+                "Clothing": 30,
+                "Furniture": 20,
+                "Books": 15,
+                "Groceries": 5
+            },
+            {
+                "Quarter": "Q6",
+                "Electronics": 25,
+                "Clothing": 25,
+                "Furniture": 30,
+                "Books": 15,
+                "Groceries": 5
+            },
+            {
+                "Quarter": "Q7",
+                "Electronics": 45,
+                "Clothing": 15,
+                "Furniture": 20,
+                "Books": 15,
+                "Groceries": 5
+            },
+            {
+                "Quarter": "Q8",
+                "Electronics": 20,
+                "Clothing": 20,
+                "Furniture": 40,
+                "Books": 15,
+                "Groceries": 5
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Electronics",
+                "Clothing",
+                "Furniture",
+                "Books",
+                "Groceries"
+            ],
+            "as": [
+                "Category",
+                "Percentage"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "bar",
+        "tooltip": true,
+        "cornerRadiusEnd": 4
+    },
+    "encoding": {
+        "y": {
+            "field": "Quarter",
+            "type": "ordinal",
+            "axis": {
+                "title": "Quarter",
+                "labelAngle": 0
+            }
+        },
+        "x": {
+            "field": "Percentage",
+            "type": "quantitative",
+            "axis": {
+                "title": "Percentage (%)",
+                "format": ".0f"
+            },
+            "stack": "normalize"
+        },
+        "color": {
+            "field": "Category",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Electronics",
+                    "Clothing",
+                    "Furniture",
+                    "Books",
+                    "Groceries"
+                ],
+                "range": [
+                    "#0072B2",
+                    "#D55E00",
+                    "#009E73",
+                    "#CC79A7",
+                    "#F0E442"
+                ]
+            },
+            "legend": {
+                "title": "Product Category",
+                "orient": "right",
+                "symbolType": "square"
+            }
+        },
+        "height": {
+            "step": 20
+        },
+        "tooltip": [
+            {
+                "field": "Category",
+                "type": "nominal"
+            },
+            {
+                "field": "Percentage",
+                "type": "quantitative",
+                "title": "Percentage"
+            }
+        ]
+    },
+    "config": {
+        "axis": {
+            "labelFontSize": 12,
+            "titleFontSize": 14
+        },
+        "legend": {
+            "labelFontSize": 12,
+            "titleFontSize": 14
+        },
+        "bar": {
+            "binSpacing": 2
+        }
+    }
+}

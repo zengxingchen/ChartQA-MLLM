@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, { width: 800, height: 600 });
+var option;
+
+option = {
+    title: {
+        text: 'Future Technologies & Society',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['2021', '2022', '2023', '2024'],
+        top: '10%'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01]
+    },
+    yAxis: {
+        type: 'category',
+        data: ['Artificial Intelligence', 'Virtual Reality', 'Quantum Computing', 'Biotechnology', 'Renewable Energy', 'Space Exploration', 'Blockchain', 'Augmented Reality', 'Cybersecurity', '5G Technology']
+    },
+    series: [
+        {
+            name: '2021',
+            type: 'bar',
+            data: [80, 60, 45, 70, 90, 50, 40, 55, 85, 75],
+            itemStyle: {
+                color: '#FF5733'
+            }
+        },
+        {
+            name: '2022',
+            type: 'bar',
+            data: [85, 65, 50, 75, 92, 55, 45, 60, 88, 78],
+            itemStyle: {
+                color: '#33FF57'
+            }
+        },
+        {
+            name: '2023',
+            type: 'bar',
+            data: [90, 70, 55, 80, 94, 60, 50, 65, 91, 81],
+            itemStyle: {
+                color: '#3357FF'
+            }
+        },
+        {
+            name: '2024',
+            type: 'bar',
+            data: [95, 75, 60, 85, 96, 65, 55, 70, 93, 84],
+            itemStyle: {
+                color: '#F3FF33'
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

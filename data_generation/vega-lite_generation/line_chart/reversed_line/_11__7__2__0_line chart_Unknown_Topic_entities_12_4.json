@@ -1,0 +1,133 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+        "values": [
+            {
+                "Month": "January",
+                "Running": 30,
+                "Cycling": 20
+            },
+            {
+                "Month": "February",
+                "Running": 35,
+                "Cycling": 25
+            },
+            {
+                "Month": "March",
+                "Running": 40,
+                "Cycling": 30
+            },
+            {
+                "Month": "April",
+                "Running": 45,
+                "Cycling": 35
+            },
+            {
+                "Month": "May",
+                "Running": 50,
+                "Cycling": 40
+            },
+            {
+                "Month": "June",
+                "Running": 55,
+                "Cycling": 45
+            },
+            {
+                "Month": "July",
+                "Running": 60,
+                "Cycling": 50
+            },
+            {
+                "Month": "August",
+                "Running": 65,
+                "Cycling": 55
+            },
+            {
+                "Month": "September",
+                "Running": 70,
+                "Cycling": 60
+            },
+            {
+                "Month": "October",
+                "Running": 75,
+                "Cycling": 65
+            },
+            {
+                "Month": "November",
+                "Running": 80,
+                "Cycling": 70
+            },
+            {
+                "Month": "December",
+                "Running": 85,
+                "Cycling": 75
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Running",
+                "Cycling"
+            ],
+            "as": [
+                "Type",
+                "Amount"
+            ]
+        }
+    ],
+    "width": 1000,
+    "height": 500,
+    "mark": {
+        "type": "line",
+        "point": {
+            "filled": true,
+            "fill": "white"
+        },
+        "tooltip": true
+    },
+    "encoding": {
+        "x": {
+            "field": "Month",
+            "type": "ordinal",
+            "title": "Month",
+            "axis": {
+                "labelAngle": 0
+            }
+        },
+        "y": {
+            "field": "Amount",
+            "type": "quantitative",
+            "title": "Duration (hours)",
+            "scale": {
+                "reverse": true
+            }
+        },
+        "color": {
+            "field": "Type",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Running",
+                    "Cycling"
+                ],
+                "range": [
+                    "#FF0000",
+                    "#0000FF"
+                ]
+            },
+            "legend": {
+                "title": "Activity Type"
+            }
+        },
+        "text": {
+            "field": "Amount",
+            "type": "quantitative"
+        }
+    },
+    "title": {
+        "text": "Monthly Exercise Duration: Running and Cycling",
+        "subtitle": "Tracking exercise duration trends over the year",
+        "anchor": "start"
+    }
+}

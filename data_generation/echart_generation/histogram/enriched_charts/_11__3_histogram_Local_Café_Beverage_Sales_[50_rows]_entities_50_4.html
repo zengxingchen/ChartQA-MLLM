@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {renderer: 'canvas', useDirtyRect: false, width: 800, height: 600});
+var app = {};
+
+var option = {
+    title: {
+        text: 'Distribution of Future Technology Adoptions in Society',
+        left: 'center',
+        top: 20
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: '{b}: {c}'
+    },
+    xAxis: {
+        type: 'category',
+        data: ['20-30', '31-40', '41-50', '51-60', '61-70', '71-80', '81-90', '91-100', '101-110', '111-120', '121-130', '131-140', '141-150', '151-160', '161-170', '171-180', '181-190', '191-200'],
+        axisLabel: {
+            rotate: 45
+        },
+        name: 'Adoption Frequency'
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Number of People'
+    },
+    series: [{
+        data: [
+            {value: 5, itemStyle: {color: '#ff6666'}},
+            {value: 7, itemStyle: {color: '#ff9933'}},
+            {value: 6, itemStyle: {color: '#ffff66'}},
+            {value: 8, itemStyle: {color: '#99ff66'}},
+            {value: 6, itemStyle: {color: '#66ff99'}},
+            {value: 8, itemStyle: {color: '#66ffff'}},
+            {value: 7, itemStyle: {color: '#6699ff'}},
+            {value: 5, itemStyle: {color: '#6666ff'}},
+            {value: 6, itemStyle: {color: '#9966ff'}},
+            {value: 7, itemStyle: {color: '#ff66ff'}},
+            {value: 8, itemStyle: {color: '#ff6699'}},
+            {value: 6, itemStyle: {color: '#ff9966'}},
+            {value: 5, itemStyle: {color: '#ffff99'}},
+            {value: 8, itemStyle: {color: '#99ff99'}},
+            {value: 7, itemStyle: {color: '#66ff66'}},
+            {value: 6, itemStyle: {color: '#66ff99'}},
+            {value: 8, itemStyle: {color: '#66ffff'}},
+            {value: 7, itemStyle: {color: '#6699ff'}}
+        ],
+        type: 'bar',
+        barWidth: '40%',
+        label: {
+            show: true,
+            position: 'top'
+        }
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

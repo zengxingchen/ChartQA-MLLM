@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Global Power: Energy Mix Contribution',
+        left: 'center',
+        top: 20,
+    },
+    tooltip: {
+        trigger: 'item'
+    },
+    legend: {
+        orient: 'vertical',
+        left: 'left',
+        top: '15%',
+    },
+    series: [
+        {
+            name: 'Energy Source',
+            type: 'pie',
+            radius: '50%',
+            data: [
+                { value: 45, name: 'Renewable Energy', itemStyle: { color: '#76B041' } },
+                { value: 30, name: 'Fossil Fuels', itemStyle: { color: '#D9534F' } },
+                { value: 15, name: 'Nuclear Energy', itemStyle: { color: '#F0AD4E' } },
+                { value: 7, name: 'Hydroelectric Power', itemStyle: { color: '#5BC0DE' } },
+                { value: 3, name: 'Other', itemStyle: { color: '#5E5A80' } }
+            ],
+            emphasis: {
+                itemStyle: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            },
+            label: {
+                formatter: '{b}: {d}%'
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

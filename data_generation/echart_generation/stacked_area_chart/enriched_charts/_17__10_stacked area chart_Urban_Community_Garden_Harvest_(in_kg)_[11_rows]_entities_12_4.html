@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 400});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Tech Gadgets Sales Trends',
+        subtext: 'Economics & Finance',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['Mobile Sales', 'Computer Sales', 'Accessories Sales'],
+        right: 10
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ['2021-01', '2021-02', '2021-03', '2021-04', '2021-05', '2021-06', '2021-07', '2021-08', '2021-09', '2021-10', '2021-11', '2021-12', '2022-01', '2022-02', '2022-03', '2022-04', '2022-05', '2022-06', '2022-07', '2022-08', '2022-09', '2022-10', '2022-11', '2022-12', '2023-01', '2023-02', '2023-03', '2023-04']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Mobile Sales',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [12000, 13400, 13800, 14600, 15500, 16400, 17200, 18000, 18500, 18900, 19400, 19800, 20000, 20400, 21000, 21800, 22500, 23000, 23500, 24000, 24200, 24600, 25100, 25500, 26000, 26500, 27000, 27600]
+        },
+        {
+            name: 'Computer Sales',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [5400, 5860, 6200, 6500, 6700, 7100, 7400, 7550, 7600, 7700, 7800, 7900, 8000, 8150, 8300, 8450, 8600, 8700, 8800, 8900, 9000, 9100, 9200, 9300, 9400, 9500, 9600, 9700]
+        },
+        {
+            name: 'Accessories Sales',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [2300, 2500, 2700, 2900, 3100, 3300, 3700, 3800, 3850, 3900, 4000, 4100, 4200, 4300, 4400, 4500, 4600, 4650, 4700, 4750, 4800, 4850, 4900, 4950, 5000, 5100, 5200, 5300]
+        }
+    ],
+    color: ['#00a8ff', '#9c88ff', '#fbc531']
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

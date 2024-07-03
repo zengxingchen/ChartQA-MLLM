@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+dom.style.width = '800px';
+dom.style.height = '500px';
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false
+});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Monthly Revenue by Product Category',
+        left: 'center',
+        top: '20'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            label: {
+                backgroundColor: '#6a7985'
+            }
+        }
+    },
+    legend: {
+        top: '40',
+        data: ['Electronics', 'Apparel', 'Home Goods', 'Books', 'Outdoor']
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: [
+        {
+            type: 'category',
+            boundaryGap: false,
+            data: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value'
+        }
+    ],
+    series: [
+        {
+            name: 'Electronics',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: { focus: 'series' },
+            data: [12000, 15000, 16000, 14000, 13000, 12000, 18000, 16000, 17000, 18000, 19000, 20000],
+            itemStyle: {
+                color: '#1f78b4'
+            }
+        },
+        {
+            name: 'Apparel',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: { focus: 'series' },
+            data: [5000, 5200, 5300, 5400, 5500, 5600, 5700, 5800, 5900, 6000, 6100, 6200],
+            itemStyle: {
+                color: '#33a02c'
+            }
+        },
+        {
+            name: 'Home Goods',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: { focus: 'series' },
+            data: [8000, 8500, 8600, 8700, 8800, 8900, 8500, 8400, 8300, 8200, 8100, 8000],
+            itemStyle: {
+                color: '#e31a1c'
+            }
+        },
+        {
+            name: 'Books',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: { focus: 'series' },
+            data: [7000, 6800, 6900, 7100, 7200, 7300, 7400, 7500, 7600, 7700, 7800, 7900],
+            itemStyle: {
+                color: '#ff7f00'
+            }
+        },
+        {
+            name: 'Outdoor',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: { focus: 'series' },
+            data: [3000, 3200, 3300, 3400, 3500, 3600, 3700, 3800, 3900, 4000, 4100, 4200],
+            itemStyle: {
+                color: '#6a3d9a'
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

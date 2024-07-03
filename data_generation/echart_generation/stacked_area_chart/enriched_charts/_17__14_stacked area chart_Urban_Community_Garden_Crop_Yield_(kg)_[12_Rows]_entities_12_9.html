@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 500});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Leisure Activities Trends in 2020',
+        left: 'center',
+        textStyle: {
+            fontSize: 24,
+            color: '#333'
+        }
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: { 
+            type: 'cross',
+            label: {
+                backgroundColor: '#6a7985'
+            }
+        }
+    },
+    legend: {
+        data: ['Outdoor Activities', 'Indoor Entertainment', 'Online Streaming', 'Reading & Learning'],
+        top: 50
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: [
+        {
+            type: 'category',
+            boundaryGap: false,
+            data: ['2020-01-01', '2020-01-02', '2020-01-03', '2020-01-04', '2020-01-05', '2020-01-06', '2020-01-07', 
+                   '2020-01-08', '2020-01-09', '2020-01-10', '2020-01-11', '2020-01-12', '2020-01-13', '2020-01-14', 
+                   '2020-01-15', '2020-01-16', '2020-01-17', '2020-01-18', '2020-01-19', '2020-01-20']
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value'
+        }
+    ],
+    series: [
+        {
+            name: 'Outdoor Activities',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {opacity: 0.8},
+            emphasis: {focus: 'series'},
+            data: [80, 78, 82, 77, 79, 83, 81, 80, 85, 87, 90, 88, 92, 91, 93, 97, 99, 95, 94, 96],
+            color: '#FFD700' // Gold color
+        },
+        {
+            name: 'Indoor Entertainment',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {opacity: 0.8},
+            emphasis: {focus: 'series'},
+            data: [50, 55, 53, 54, 56, 52, 57, 58, 53, 55, 50, 59, 52, 56, 60, 58, 57, 61, 63, 60],
+            color: '#DC143C' // Crimson color
+        },
+        {
+            name: 'Online Streaming',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {opacity: 0.8},
+            emphasis: {focus: 'series'},
+            data: [70, 75, 76, 79, 80, 85, 82, 83, 86, 84, 87, 81, 89, 92, 90, 95, 93, 94, 96, 97],
+            color: '#20B2AA' // LightSeaGreen color
+        },
+        {
+            name: 'Reading & Learning',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {opacity: 0.8},
+            emphasis: {focus: 'series'},
+            data: [60, 62, 59, 63, 65, 62, 61, 64, 60, 67, 69, 70, 75, 76, 74, 73, 78, 80, 82, 79],
+            color: '#8A2BE2' // BlueViolet color
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

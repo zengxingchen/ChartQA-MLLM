@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Daily Emotional States',
+        left: 'center',
+        top: '5%'
+    },
+    tooltip: {
+        trigger: 'item'
+    },
+    legend: {
+        orient: 'vertical',
+        left: 'left',
+        top: '15%',
+        textStyle: {
+            color: '#666'
+        }
+    },
+    series: [
+        {
+            name: 'Emotions',
+            type: 'pie',
+            radius: '50%',
+            data: [
+                { value: 25, name: 'Joyful', itemStyle: { color: '#e74c3c' } },
+                { value: 20, name: 'Optimistic', itemStyle: { color: '#f39c12' } },
+                { value: 15, name: 'Sad', itemStyle: { color: '#3498db' } },
+                { value: 10, name: 'Anxious', itemStyle: { color: '#9b59b6' } },
+                { value: 5, name: 'Angry', itemStyle: { color: '#34495e' } },
+                { value: 25, name: 'Content', itemStyle: { color: '#2ecc71' } }
+            ],
+            emphasis: {
+                itemStyle: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            },
+            label: {
+                formatter: '{b}: {d}%',
+            },
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

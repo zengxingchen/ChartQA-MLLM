@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+var option = {
+    title: {
+        text: 'Market Size of Future Technologies in 2025',
+        left: 'center',
+        top: '10'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01]
+    },
+    yAxis: {
+        type: 'category',
+        data: [
+            'Artificial Intelligence',
+            'Blockchain',
+            '5G Technology',
+            'Quantum Computing',
+            'Augmented Reality',
+            'Internet of Things',
+            'Biotechnology',
+            'Nanotechnology',
+            'Autonomous Vehicles',
+            'Smart Cities',
+            'Cybersecurity',
+            'Drones',
+            'Wearable Technology',
+            'Robotics'
+        ]
+    },
+    series: [
+        {
+            name: 'Market Size (Billion USD)',
+            type: 'bar',
+            data: [
+                126,
+                57,
+                668,
+                8,
+                97,
+                1256,
+                137,
+                89,
+                100,
+                80,
+                280,
+                43,
+                54,
+                74
+            ],
+            itemStyle: {
+                color: '#2ecc71'
+            },
+            barWidth: '60%'
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+var option;
+
+option = {
+    title: {
+        text: 'Nutritional Breakdown of Food Categories',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: '{b}: {c}'
+    },
+    series: [{
+        type: 'treemap',
+        data: [
+            {
+                name: 'Fruits',
+                value: 450,
+                children: [
+                    {name: 'Apples', value: 100, itemStyle: {color: '#FF6347'}},
+                    {name: 'Bananas', value: 150, itemStyle: {color: '#FFD700'}},
+                    {name: 'Cherries', value: 200, itemStyle: {color: '#DC143C'}}
+                ]
+            },
+            {
+                name: 'Vegetables',
+                value: 730,
+                children: [
+                    {name: 'Carrots', value: 300, itemStyle: {color: '#FFA07A'}},
+                    {name: 'Broccoli', value: 250, itemStyle: {color: '#228B22'}},
+                    {name: 'Spinach', value: 180, itemStyle: {color: '#32CD32'}}
+                ]
+            },
+            {
+                name: 'Proteins',
+                value: 560,
+                children: [
+                    {name: 'Chicken', value: 220, itemStyle: {color: '#F5DEB3'}},
+                    {name: 'Beef', value: 180, itemStyle: {color: '#A52A2A'}},
+                    {name: 'Tofu', value: 160, itemStyle: {color: '#FFF8DC'}}
+                ]
+            },
+            {
+                name: 'Dairy',
+                value: 390,
+                children: [
+                    {name: 'Milk', value: 140, itemStyle: {color: '#FFFACD'}},
+                    {name: 'Cheese', value: 130, itemStyle: {color: '#FFDAB9'}},
+                    {name: 'Yogurt', value: 120, itemStyle: {color: '#FFE4E1'}}
+                ]
+            },
+            {
+                name: 'Grains',
+                value: 480,
+                children: [
+                    {name: 'Rice', value: 170, itemStyle: {color: '#FFE4B5'}},
+                    {name: 'Wheat', value: 160, itemStyle: {color: '#F5DEB3'}},
+                    {name: 'Oats', value: 150, itemStyle: {color: '#D2B48C'}}
+                ]
+            },
+            {
+                name: 'Snacks',
+                value: 300,
+                children: [
+                    {name: 'Chips', value: 110, itemStyle: {color: '#D2691E'}},
+                    {name: 'Chocolate', value: 100, itemStyle: {color: '#8B4513'}},
+                    {name: 'Cookies', value: 90, itemStyle: {color: '#DEB887'}}
+                ]
+            },
+            {
+                name: 'Beverages',
+                value: 540,
+                children: [
+                    {name: 'Juice', value: 190, itemStyle: {color: '#FFA500'}},
+                    {name: 'Tea', value: 180, itemStyle: {color: '#CD853F'}},
+                    {name: 'Coffee', value: 170, itemStyle: {color: '#8B4513'}}
+                ]
+            }
+        ],
+        label: {
+            show: true,
+            formatter: '{b}\n{c}'
+        }
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

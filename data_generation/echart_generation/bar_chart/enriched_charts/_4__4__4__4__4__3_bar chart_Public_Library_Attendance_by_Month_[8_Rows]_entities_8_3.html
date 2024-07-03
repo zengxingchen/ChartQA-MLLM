@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+var option;
+
+option = {
+    title: {
+        text: 'GDP Growth Rates of Different Countries',
+        left: 'center',
+        top: '10'
+    },
+    xAxis: {
+        type: 'value',
+        name: 'GDP Growth Rate (%)',
+        nameLocation: 'middle',
+        nameGap: 25
+    },
+    yAxis: {
+        type: 'category',
+        data: ['USA', 'China', 'Japan', 'Germany', 'India', 'UK', 'France', 'Brazil', 'Italy', 'Canada', 'South Korea', 'Russia', 'Australia', 'Spain', 'Mexico'],
+        name: 'Country',
+        nameLocation: 'middle',
+        nameGap: 35
+    },
+    series: [
+        {
+            type: 'bar',
+            data: [
+                2.3, 6.1, 0.7, 1.5, 4.5, 1.3, 1.2, 1.1, 0.3, 1.8, 2.0, 1.6, 2.2, 2.0, 0.1
+            ],
+            label: {
+                show: true,
+                position: 'right',
+                formatter: '{c}%'
+            },
+            itemStyle: {
+                color: '#5470C6'
+            },
+            barWidth: '60%'
+        }
+    ],
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        },
+        formatter: function (params) {
+            return params[0].name + ': ' + params[0].value + '%';
+        }
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

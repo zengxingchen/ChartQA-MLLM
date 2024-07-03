@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Average Monthly Temperature vs. Rainfall in a City',
+        left: 'center',
+        top: '5%'
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: function (params) {
+            return params.name + '<br/>' + 'Temperature: ' + params.value[0] + '°C<br/>' + 'Rainfall: ' + params.value[1] + ' mm';
+        }
+    },
+    legend: {
+        data: ['Monthly Data'],
+        left: 'right',
+        top: '10%'
+    },
+    xAxis: {
+        name: 'Temperature (°C)',
+        type: 'value',
+        min: 0,
+        max: 30
+    },
+    yAxis: {
+        name: 'Rainfall (mm)',
+        type: 'value',
+        min: 0,
+        max: 160
+    },
+    series: [
+        {
+            name: 'Monthly Data',
+            type: 'scatter',
+            data: [
+                {name: 'January', value: [5.0, 60]},
+                {name: 'February', value: [6.1, 50]},
+                {name: 'March', value: [9.3, 80]},
+                {name: 'April', value: [13.2, 70]},
+                {name: 'May', value: [18.5, 100]},
+                {name: 'June', value: [23.1, 120]},
+                {name: 'July', value: [26.8, 150]},
+                {name: 'August', value: [26.1, 140]},
+                {name: 'September', value: [21.7, 130]},
+                {name: 'October', value: [15.0, 90]},
+                {name: 'November', value: [9.0, 70]},
+                {name: 'December', value: [5.5, 60]}
+            ],
+            itemStyle: {
+                color: '#FF5733'
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

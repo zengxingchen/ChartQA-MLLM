@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {renderer: 'canvas', width: 700, height: 500});
+var data = {
+    'Year': ['2020', '2021', '2022', '2023'],
+    'Future Technology Adoption in Society': [30, 33, 36, 40],
+    'Artificial Intelligence in Design': [25, 27, 29, 30],
+    'Bioengineering in Nature Conservation': [20, 23, 26, 25],
+    'Advancements in Health Tech': [15, 10, 5, 3],
+    'Cultural Impact of Social Media': [10, 7, 4, 2],
+};
+
+var option = {
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: Object.keys(data).slice(1)
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: true
+    },
+    yAxis: {
+        type: 'category',
+        data: data['Year']
+    },
+    series: Object.keys(data).slice(1).map(function (key) {
+        return {
+            name: key,
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            barWidth: 35, // The width of bars
+            data: data[key],
+            itemStyle: {
+                // Color scheme for each series
+                color: '#' + parseInt(Math.random().toString().slice(2, 8), 10).toString(16) // Generating color randomly for the sake of example
+            }
+        };
+    })
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

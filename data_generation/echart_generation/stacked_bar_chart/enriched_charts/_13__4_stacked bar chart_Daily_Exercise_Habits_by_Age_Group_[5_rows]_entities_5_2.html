@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+var option;
+
+option = {
+    title: {
+        text: 'Daily Caloric Intake by Food Group',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        bottom: 10,
+        data: ['Fruits', 'Vegetables', 'Grains', 'Proteins', 'Dairy', 'Fats', 'Sweets']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '20%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        data: ['Day 1', 'Day 2', 'Day 3', 'Day 4', 'Day 5', 'Day 6', 'Day 7'],
+        axisLabel: {
+            rotate: 30,
+            fontSize: 10
+        }
+    },
+    yAxis: {
+        type: 'value',
+        axisLabel: {
+            fontSize: 10
+        }
+    },
+    series: [
+        {
+            name: 'Fruits',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            itemStyle: {
+                color: '#FF7F50'
+            },
+            data: [90, 120, 100, 140, 130, 110, 120]
+        },
+        {
+            name: 'Vegetables',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            itemStyle: {
+                color: '#32CD32'
+            },
+            data: [80, 70, 90, 85, 95, 100, 75]
+        },
+        {
+            name: 'Grains',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            itemStyle: {
+                color: '#FFD700'
+            },
+            data: [220, 230, 240, 250, 230, 220, 210]
+        },
+        {
+            name: 'Proteins',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            itemStyle: {
+                color: '#FF6347'
+            },
+            data: [150, 140, 160, 170, 165, 155, 145]
+        },
+        {
+            name: 'Dairy',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            itemStyle: {
+                color: '#1E90FF'
+            },
+            data: [100, 90, 80, 110, 95, 105, 85]
+        },
+        {
+            name: 'Fats',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            itemStyle: {
+                color: '#8B4513'
+            },
+            data: [50, 45, 55, 60, 50, 55, 50]
+        },
+        {
+            name: 'Sweets',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            itemStyle: {
+                color: '#C71585'
+            },
+            data: [30, 35, 25, 20, 30, 25, 40]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+var data = [
+  {'Date': '2023-01-01', 'Children (0-12)': 120, 'Teens (13-17)': 80, 'Adults (18-35)': 200, 'Mature (36-60)': 150, 'Seniors (60+)': 70},
+  {'Date': '2023-01-02', 'Children (0-12)': 110, 'Teens (13-17)': 75, 'Adults (18-35)': 180, 'Mature (36-60)': 140, 'Seniors (60+)': 65},
+  {'Date': '2023-01-03', 'Children (0-12)': 125, 'Teens (13-17)': 85, 'Adults (18-35)': 205, 'Mature (36-60)': 160, 'Seniors (60+)': 80},
+  {'Date': '2023-01-04', 'Children (0-12)': 130, 'Teens (13-17)': 95, 'Adults (18-35)': 190, 'Mature (36-60)': 155, 'Seniors (60+)': 75},
+  {'Date': '2023-01-05', 'Children (0-12)': 140, 'Teens (13-17)': 100, 'Adults (18-35)': 215, 'Mature (36-60)': 165, 'Seniors (60+)': 85},
+  {'Date': '2023-01-06', 'Children (0-12)': 105, 'Teens (13-17)': 70, 'Adults (18-35)': 175, 'Mature (36-60)': 135, 'Seniors (60+)': 60},
+  {'Date': '2023-01-07', 'Children (0-12)': 115, 'Teens (13-17)': 90, 'Adults (18-35)': 190, 'Mature (36-60)': 145, 'Seniors (60+)': 66},
+  {'Date': '2023-01-08', 'Children (0-12)': 130, 'Teens (13-17)': 85, 'Adults (18-35)': 200, 'Mature (36-60)': 155, 'Seniors (60+)': 70}
+];
+
+option = {
+  tooltip: {
+    trigger: 'axis',
+    axisPointer: {
+      type: 'cross',
+      label: {
+        backgroundColor: '#6a7985'
+      }
+    },
+  },
+  legend: {
+    data: ['Children (0-12)', 'Teens (13-17)', 'Adults (18-35)', 'Mature (36-60)', 'Seniors (60+)']
+  },
+  toolbox: {
+    feature: {
+      saveAsImage: {}
+    }
+  },
+  grid: {
+    left: '3%',
+    right: '4%',
+    bottom: '3%',
+    containLabel: true
+  },
+  xAxis: [
+    {
+      type: 'category',
+      boundaryGap: false,
+      data: data.map(function (item) {
+        return item.Date;
+      })
+    }
+  ],
+  yAxis: [
+    {
+      type: 'value'
+    }
+  ],
+  series: [
+    {
+      name: 'Children (0-12)',
+      type: 'line',
+      stack: 'total',
+      areaStyle: { opacity: 0.8 },
+      emphasis: { focus: 'series' },
+      data: data.map(function (item) {
+        return item["Children (0-12)"];
+      })
+    },
+    {
+      name: 'Teens (13-17)',
+      type: 'line',
+      stack: 'total',
+      areaStyle: { opacity: 0.8 },
+      emphasis: { focus: 'series' },
+      data: data.map(function (item) {
+        return item["Teens (13-17)"];
+      })
+    },
+    {
+      name: 'Adults (18-35)',
+      type: 'line',
+      stack: 'total',
+      areaStyle: { opacity: 0.8 },
+      emphasis: { focus: 'series' },
+      data: data.map(function (item) {
+        return item["Adults (18-35)"];
+      })
+    },
+    {
+      name: 'Mature (36-60)',
+      type: 'line',
+      stack: 'total',
+      areaStyle: { opacity: 0.8 },
+      emphasis: { focus: 'series' },
+      data: data.map(function (item) {
+        return item["Mature (36-60)"];
+      })
+    },
+    {
+      name: 'Seniors (60+)',
+      type: 'line',
+      stack: 'total',
+      areaStyle: { opacity: 0.8 },
+      emphasis: { focus: 'series' },
+      data: data.map(function (item) {
+        return item["Seniors (60+)"];
+      })
+    }
+  ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

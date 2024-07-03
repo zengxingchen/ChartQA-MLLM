@@ -1,0 +1,195 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "A 100% stacked bar chart showing the popularity of various hobbies across different age groups.",
+    "width": 700,
+    "height": 500,
+    "padding": 5,
+    "data": {
+        "values": [
+            {
+                "Age Group": "10-20",
+                "Reading": 30,
+                "Traveling": 25,
+                "Cooking": 20,
+                "Gaming": 15,
+                "Sports": 10
+            },
+            {
+                "Age Group": "20-30",
+                "Reading": 25,
+                "Traveling": 30,
+                "Cooking": 20,
+                "Gaming": 15,
+                "Sports": 10
+            },
+            {
+                "Age Group": "30-40",
+                "Reading": 20,
+                "Traveling": 25,
+                "Cooking": 25,
+                "Gaming": 15,
+                "Sports": 15
+            },
+            {
+                "Age Group": "40-50",
+                "Reading": 10,
+                "Traveling": 15,
+                "Cooking": 30,
+                "Gaming": 20,
+                "Sports": 25
+            },
+            {
+                "Age Group": "50-60",
+                "Reading": 5,
+                "Traveling": 10,
+                "Cooking": 25,
+                "Gaming": 30,
+                "Sports": 30
+            },
+            {
+                "Age Group": "60+",
+                "Reading": 2,
+                "Traveling": 5,
+                "Cooking": 20,
+                "Gaming": 35,
+                "Sports": 38
+            },
+            {
+                "Age Group": "10-20",
+                "Reading": 35,
+                "Traveling": 20,
+                "Cooking": 15,
+                "Gaming": 20,
+                "Sports": 10
+            },
+            {
+                "Age Group": "20-30",
+                "Reading": 28,
+                "Traveling": 25,
+                "Cooking": 18,
+                "Gaming": 19,
+                "Sports": 10
+            },
+            {
+                "Age Group": "30-40",
+                "Reading": 22,
+                "Traveling": 20,
+                "Cooking": 25,
+                "Gaming": 18,
+                "Sports": 15
+            },
+            {
+                "Age Group": "40-50",
+                "Reading": 12,
+                "Traveling": 18,
+                "Cooking": 32,
+                "Gaming": 15,
+                "Sports": 23
+            },
+            {
+                "Age Group": "50-60",
+                "Reading": 8,
+                "Traveling": 10,
+                "Cooking": 28,
+                "Gaming": 20,
+                "Sports": 34
+            },
+            {
+                "Age Group": "60+",
+                "Reading": 3,
+                "Traveling": 7,
+                "Cooking": 18,
+                "Gaming": 27,
+                "Sports": 45
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Reading",
+                "Traveling",
+                "Cooking",
+                "Gaming",
+                "Sports"
+            ],
+            "as": [
+                "Hobby",
+                "Percentage"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "bar",
+        "tooltip": true,
+        "cornerRadiusEnd": 4
+    },
+    "encoding": {
+        "x": {
+            "field": "Age Group",
+            "type": "ordinal",
+            "axis": {
+                "title": "Age Group",
+                "labelAngle": 0
+            }
+        },
+        "y": {
+            "field": "Percentage",
+            "type": "quantitative",
+            "axis": {
+                "title": "Percentage (%)",
+                "format": ".0f"
+            },
+            "stack": "normalize"
+        },
+        "color": {
+            "field": "Hobby",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Reading",
+                    "Traveling",
+                    "Cooking",
+                    "Gaming",
+                    "Sports"
+                ],
+                "range": [
+                    "#FF5733",
+                    "#33FF57",
+                    "#3357FF",
+                    "#FF33A1",
+                    "#FFD633"
+                ]
+            },
+            "legend": {
+                "title": "Hobby",
+                "orient": "top",
+                "symbolType": "square"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Hobby",
+                "type": "nominal"
+            },
+            {
+                "field": "Percentage",
+                "type": "quantitative",
+                "title": "Percentage"
+            }
+        ]
+    },
+    "config": {
+        "axis": {
+            "labelFontSize": 12,
+            "titleFontSize": 14
+        },
+        "legend": {
+            "labelFontSize": 12,
+            "titleFontSize": 14
+        },
+        "bar": {
+            "binSpacing": 2
+        }
+    }
+}

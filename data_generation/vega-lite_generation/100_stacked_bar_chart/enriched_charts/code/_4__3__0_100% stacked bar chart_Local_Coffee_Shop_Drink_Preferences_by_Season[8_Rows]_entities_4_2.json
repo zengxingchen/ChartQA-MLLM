@@ -1,0 +1,145 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "A stacked bar chart showing the distribution of nutrition preferences by age group.",
+    "title": {
+        "text": "Nutrition Preferences by Age Group",
+        "fontSize": 18,
+        "anchor": "middle",
+        "offset": 20
+    },
+    "width": 500,
+    "height": 400,
+    "padding": {
+        "left": 20,
+        "top": 50,
+        "right": 20,
+        "bottom": 20
+    },
+    "data": {
+        "values": [
+            {
+                "AgeGroup": "Children",
+                "Fruits": 35,
+                "Vegetables": 30,
+                "Proteins": 35
+            },
+            {
+                "AgeGroup": "Teenagers",
+                "Fruits": 40,
+                "Vegetables": 25,
+                "Proteins": 35
+            },
+            {
+                "AgeGroup": "Young Adults",
+                "Fruits": 30,
+                "Vegetables": 35,
+                "Proteins": 35
+            },
+            {
+                "AgeGroup": "Adults",
+                "Fruits": 25,
+                "Vegetables": 40,
+                "Proteins": 35
+            },
+            {
+                "AgeGroup": "Seniors",
+                "Fruits": 20,
+                "Vegetables": 45,
+                "Proteins": 35
+            },
+            {
+                "AgeGroup": "Infants",
+                "Fruits": 50,
+                "Vegetables": 20,
+                "Proteins": 30
+            },
+            {
+                "AgeGroup": "Elderly",
+                "Fruits": 15,
+                "Vegetables": 50,
+                "Proteins": 35
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Fruits",
+                "Vegetables",
+                "Proteins"
+            ],
+            "as": [
+                "Nutrition",
+                "Preference"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "bar",
+        "tooltip": true
+    },
+    "encoding": {
+        "x": {
+            "field": "Preference",
+            "type": "quantitative",
+            "axis": {
+                "title": "Preference",
+                "format": ".0%"
+            },
+            "stack": "normalize"
+        },
+        "y": {
+            "field": "AgeGroup",
+            "type": "nominal",
+            "axis": {
+                "title": "Age Group"
+            }
+        },
+        "color": {
+            "field": "Nutrition",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Fruits",
+                    "Vegetables",
+                    "Proteins"
+                ],
+                "range": [
+                    "#4caf50",
+                    "#ff9800",
+                    "#2196f3"
+                ]
+            },
+            "legend": {
+                "title": "Nutrition Type",
+                "orient": "top",
+                "titleFontSize": 14
+            }
+        },
+        "height": {
+            "field": "AgeGroup",
+            "band": 0.8
+        },
+        "tooltip": [
+            {
+                "field": "Nutrition",
+                "type": "nominal",
+                "title": "Nutrition Type"
+            },
+            {
+                "field": "Preference",
+                "type": "quantitative",
+                "title": "Preference"
+            }
+        ]
+    },
+    "config": {
+        "axisY": {
+            "labelColor": "#000"
+        },
+        "bar": {
+            "cornerRadiusTopLeft": 3,
+            "cornerRadiusTopRight": 3
+        }
+    }
+}

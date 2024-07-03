@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+var option;
+
+option = {
+    title: {
+        text: 'Business & Entrepreneurship: Annual Revenue Growth',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    xAxis: {
+        type: 'category',
+        data: ['2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023'],
+        axisLabel: {
+            rotate: 45
+        }
+    },
+    yAxis: {
+        type: 'value',
+        axisLabel: {
+            formatter: '${value}K'
+        }
+    },
+    series: [
+        {
+            name: 'Revenue',
+            type: 'line',
+            data: [45, 60, 72, 68, 75, 80, 65, 90, 100, 95, 105, 110, 115, 120],
+            markPoint: {
+                data: [
+                    { type: 'max', name: 'Max' },
+                    { type: 'min', name: 'Min' },
+                    { coord: ['2018', 100], name: '2018 Milestone', value: 100 }
+                ]
+            },
+            lineStyle: {
+                color: '#FF5733'
+            },
+            itemStyle: {
+                color: '#33FF57'
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+myChart.resize();
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

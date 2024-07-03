@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {renderer: 'canvas', width: '900', height: '600'});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Daily Device Usage in January 2023',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['Mobile', 'Desktop', 'Laptop', 'Tablet'],
+        top: '10%'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ['2023-01-01', '2023-01-02', '2023-01-03', '2023-01-04', '2023-01-05', '2023-01-06', '2023-01-07', '2023-01-08', '2023-01-09', '2023-01-10', '2023-01-11', '2023-01-12', '2023-01-13', '2023-01-14', '2023-01-15', '2023-01-16', '2023-01-17', '2023-01-18', '2023-01-19', '2023-01-20', '2023-01-21', '2023-01-22', '2023-01-23', '2023-01-24', '2023-01-25', '2023-01-26', '2023-01-27', '2023-01-28', '2023-01-29', '2023-01-30', '2023-01-31']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Mobile',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: { focus: 'series'},
+            data: [120, 115, 118, 123, 125, 128, 130, 133, 135, 140, 138, 141, 145, 147, 150, 148, 151, 153, 157, 160, 162, 165, 160, 158, 155, 152, 150, 152, 145, 140, 138],
+            color: '#FF6666'
+        },
+        {
+            name: 'Desktop',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: { focus: 'series'},
+            data: [100, 105, 107, 110, 113, 115, 117, 120, 121, 123, 125, 130, 132, 134, 135, 133, 137, 139, 141, 143, 145, 147, 149, 150, 148, 145, 147, 149, 150, 152, 153],
+            color: '#3366CC'
+        },
+        {
+            name: 'Laptop',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: { focus: 'series'},
+            data: [90, 92, 91, 94, 97, 98, 95, 100, 102, 105, 107, 110, 112, 114, 116, 117, 120, 121, 122, 125, 127, 130, 129, 131, 132, 130, 128, 125, 122, 120, 118],
+            color: '#FF9900'
+        },
+        {
+            name: 'Tablet',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: { focus: 'series'},
+            data: [80, 82, 86, 85, 89, 92, 90, 93, 94, 97, 99, 101, 103, 104, 106, 107, 109, 110, 113, 115, 117, 120, 122, 123, 121, 120, 117, 118, 115, 112, 110],
+            color: '#00CC99'
+        }
+    ]
+};
+
+myChart.setOption(option);
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

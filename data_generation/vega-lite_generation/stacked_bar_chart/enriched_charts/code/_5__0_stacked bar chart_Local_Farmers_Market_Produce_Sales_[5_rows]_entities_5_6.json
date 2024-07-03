@@ -1,0 +1,168 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Monthly Average Temperature by City.",
+    "data": {
+        "values": [
+            {
+                "Month": "January",
+                "New York": 30,
+                "Los Angeles": 58,
+                "Chicago": 25,
+                "Houston": 50
+            },
+            {
+                "Month": "February",
+                "New York": 32,
+                "Los Angeles": 60,
+                "Chicago": 28,
+                "Houston": 55
+            },
+            {
+                "Month": "March",
+                "New York": 45,
+                "Los Angeles": 65,
+                "Chicago": 35,
+                "Houston": 60
+            },
+            {
+                "Month": "April",
+                "New York": 55,
+                "Los Angeles": 70,
+                "Chicago": 45,
+                "Houston": 70
+            },
+            {
+                "Month": "May",
+                "New York": 65,
+                "Los Angeles": 75,
+                "Chicago": 55,
+                "Houston": 80
+            },
+            {
+                "Month": "June",
+                "New York": 75,
+                "Los Angeles": 80,
+                "Chicago": 65,
+                "Houston": 85
+            },
+            {
+                "Month": "July",
+                "New York": 80,
+                "Los Angeles": 85,
+                "Chicago": 70,
+                "Houston": 90
+            },
+            {
+                "Month": "August",
+                "New York": 78,
+                "Los Angeles": 84,
+                "Chicago": 68,
+                "Houston": 88
+            },
+            {
+                "Month": "September",
+                "New York": 70,
+                "Los Angeles": 78,
+                "Chicago": 60,
+                "Houston": 82
+            },
+            {
+                "Month": "October",
+                "New York": 60,
+                "Los Angeles": 72,
+                "Chicago": 50,
+                "Houston": 75
+            },
+            {
+                "Month": "November",
+                "New York": 50,
+                "Los Angeles": 65,
+                "Chicago": 40,
+                "Houston": 65
+            },
+            {
+                "Month": "December",
+                "New York": 35,
+                "Los Angeles": 58,
+                "Chicago": 30,
+                "Houston": 55
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "New York",
+                "Los Angeles",
+                "Chicago",
+                "Houston"
+            ],
+            "as": [
+                "City",
+                "Temperature"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "bar",
+        "width": 30
+    },
+    "width": 400,
+    "height": 500,
+    "title": {
+        "text": "Monthly Average Temperature by City",
+        "anchor": "start",
+        "color": "black"
+    },
+    "encoding": {
+        "x": {
+            "field": "Month",
+            "type": "ordinal",
+            "axis": {
+                "title": "Month"
+            }
+        },
+        "y": {
+            "field": "Temperature",
+            "type": "quantitative",
+            "stack": "zero",
+            "axis": {
+                "title": "Average Temperature (\u00b0F)"
+            }
+        },
+        "color": {
+            "field": "City",
+            "type": "nominal",
+            "legend": {
+                "orient": "top"
+            },
+            "scale": {
+                "domain": [
+                    "New York",
+                    "Los Angeles",
+                    "Chicago",
+                    "Houston"
+                ],
+                "range": [
+                    "#ff0000",
+                    "#00ff00",
+                    "#0000ff",
+                    "#ffff00"
+                ]
+            },
+            "title": "City"
+        },
+        "tooltip": [
+            {
+                "field": "City",
+                "type": "nominal",
+                "title": "City"
+            },
+            {
+                "field": "Temperature",
+                "type": "quantitative",
+                "title": "Temperature (\u00b0F)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,169 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+        "values": [
+            {
+                "Month": "January",
+                "Mental Well-being Index": 50,
+                "Physical Activity Hours": 15
+            },
+            {
+                "Month": "February",
+                "Mental Well-being Index": 52,
+                "Physical Activity Hours": 16
+            },
+            {
+                "Month": "March",
+                "Mental Well-being Index": 55,
+                "Physical Activity Hours": 18
+            },
+            {
+                "Month": "April",
+                "Mental Well-being Index": 60,
+                "Physical Activity Hours": 20
+            },
+            {
+                "Month": "May",
+                "Mental Well-being Index": 62,
+                "Physical Activity Hours": 22
+            },
+            {
+                "Month": "June",
+                "Mental Well-being Index": 65,
+                "Physical Activity Hours": 25
+            },
+            {
+                "Month": "July",
+                "Mental Well-being Index": 68,
+                "Physical Activity Hours": 28
+            },
+            {
+                "Month": "August",
+                "Mental Well-being Index": 70,
+                "Physical Activity Hours": 26
+            },
+            {
+                "Month": "September",
+                "Mental Well-being Index": 65,
+                "Physical Activity Hours": 23
+            },
+            {
+                "Month": "October",
+                "Mental Well-being Index": 60,
+                "Physical Activity Hours": 20
+            },
+            {
+                "Month": "November",
+                "Mental Well-being Index": 55,
+                "Physical Activity Hours": 18
+            },
+            {
+                "Month": "December",
+                "Mental Well-being Index": 52,
+                "Physical Activity Hours": 16
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Mental Well-being Index",
+                "Physical Activity Hours"
+            ],
+            "as": [
+                "Measure",
+                "Value"
+            ]
+        }
+    ],
+    "width": 900,
+    "height": 450,
+    "mark": {
+        "type": "line",
+        "point": {
+            "filled": true,
+            "fill": "white"
+        },
+        "tooltip": true
+    },
+    "encoding": {
+        "x": {
+            "field": "Month",
+            "type": "ordinal",
+            "title": "Month",
+            "axis": {
+                "labelAngle": 0
+            }
+        },
+        "y": {
+            "field": "Value",
+            "type": "quantitative",
+            "title": "Value",
+            "scale": {
+                "reverse": true
+            }
+        },
+        "color": {
+            "field": "Measure",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Mental Well-being Index",
+                    "Physical Activity Hours"
+                ],
+                "range": [
+                    "#FF4500",
+                    "#1E90FF"
+                ]
+            },
+            "legend": {
+                "title": "Measure"
+            }
+        }
+    },
+    "layer": [
+        {
+            "mark": {
+                "type": "line"
+            },
+            "encoding": {
+                "x": {
+                    "field": "Month"
+                },
+                "y": {
+                    "field": "Value"
+                },
+                "color": {
+                    "field": "Measure"
+                }
+            }
+        },
+        {
+            "mark": {
+                "type": "text",
+                "align": "left",
+                "dx": 5,
+                "dy": -5
+            },
+            "encoding": {
+                "x": {
+                    "field": "Month"
+                },
+                "y": {
+                    "field": "Value"
+                },
+                "text": {
+                    "field": "Value"
+                },
+                "color": {
+                    "field": "Measure"
+                }
+            }
+        }
+    ],
+    "title": {
+        "text": "Health & Psychology: Monthly Mental Well-being and Physical Activity",
+        "subtitle": "Monthly data on mental well-being index and physical activity hours",
+        "anchor": "start"
+    }
+}

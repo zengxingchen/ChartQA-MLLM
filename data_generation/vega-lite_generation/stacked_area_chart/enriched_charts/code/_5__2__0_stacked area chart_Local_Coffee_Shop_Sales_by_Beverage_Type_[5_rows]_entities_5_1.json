@@ -1,0 +1,201 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Monthly Food Consumption by Type",
+    "width": 800,
+    "height": 400,
+    "title": {
+        "text": "Monthly Food Consumption",
+        "subtitle": "Consumption from January to December",
+        "fontSize": 20,
+        "subtitleFontSize": 12,
+        "anchor": "start",
+        "offset": 20,
+        "frame": "group"
+    },
+    "data": {
+        "values": [
+            {
+                "Month": "January",
+                "Vegetables": 3000,
+                "Fruits": 2500,
+                "Grains": 2000,
+                "Dairy": 1500,
+                "Meats": 1000
+            },
+            {
+                "Month": "February",
+                "Vegetables": 2800,
+                "Fruits": 2600,
+                "Grains": 1900,
+                "Dairy": 1600,
+                "Meats": 1100
+            },
+            {
+                "Month": "March",
+                "Vegetables": 3100,
+                "Fruits": 2700,
+                "Grains": 2100,
+                "Dairy": 1500,
+                "Meats": 1000
+            },
+            {
+                "Month": "April",
+                "Vegetables": 3000,
+                "Fruits": 2800,
+                "Grains": 2200,
+                "Dairy": 1400,
+                "Meats": 1200
+            },
+            {
+                "Month": "May",
+                "Vegetables": 3200,
+                "Fruits": 2900,
+                "Grains": 2300,
+                "Dairy": 1300,
+                "Meats": 1300
+            },
+            {
+                "Month": "June",
+                "Vegetables": 3400,
+                "Fruits": 2700,
+                "Grains": 2400,
+                "Dairy": 1600,
+                "Meats": 1400
+            },
+            {
+                "Month": "July",
+                "Vegetables": 3600,
+                "Fruits": 2600,
+                "Grains": 2500,
+                "Dairy": 1700,
+                "Meats": 1500
+            },
+            {
+                "Month": "August",
+                "Vegetables": 3300,
+                "Fruits": 2800,
+                "Grains": 2600,
+                "Dairy": 1800,
+                "Meats": 1600
+            },
+            {
+                "Month": "September",
+                "Vegetables": 3100,
+                "Fruits": 2900,
+                "Grains": 2700,
+                "Dairy": 1900,
+                "Meats": 1500
+            },
+            {
+                "Month": "October",
+                "Vegetables": 3000,
+                "Fruits": 3000,
+                "Grains": 2800,
+                "Dairy": 2000,
+                "Meats": 1400
+            },
+            {
+                "Month": "November",
+                "Vegetables": 2900,
+                "Fruits": 3100,
+                "Grains": 2900,
+                "Dairy": 2100,
+                "Meats": 1300
+            },
+            {
+                "Month": "December",
+                "Vegetables": 3200,
+                "Fruits": 3200,
+                "Grains": 3000,
+                "Dairy": 2200,
+                "Meats": 1200
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Vegetables",
+                "Fruits",
+                "Grains",
+                "Dairy",
+                "Meats"
+            ],
+            "as": [
+                "FoodType",
+                "Consumption"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "area",
+        "opacity": 0.7
+    },
+    "encoding": {
+        "x": {
+            "field": "Month",
+            "type": "ordinal",
+            "axis": {
+                "title": "Month"
+            }
+        },
+        "y": {
+            "field": "Consumption",
+            "type": "quantitative",
+            "axis": {
+                "title": "Consumption (in tons)"
+            },
+            "stack": "zero"
+        },
+        "color": {
+            "field": "FoodType",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Vegetables",
+                    "Fruits",
+                    "Grains",
+                    "Dairy",
+                    "Meats"
+                ],
+                "range": [
+                    "#4daf4a",
+                    "#377eb8",
+                    "#ff7f00",
+                    "#984ea3",
+                    "#e41a1c"
+                ]
+            },
+            "legend": {
+                "title": "Food Type",
+                "orient": "top-left",
+                "offset": 60
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Month",
+                "type": "ordinal",
+                "title": "Month"
+            },
+            {
+                "field": "FoodType",
+                "type": "nominal",
+                "title": "Food Type"
+            },
+            {
+                "field": "Consumption",
+                "type": "quantitative",
+                "title": "Consumption"
+            }
+        ]
+    },
+    "config": {
+        "view": {
+            "stroke": "transparent"
+        },
+        "axis": {
+            "grid": false
+        }
+    }
+}

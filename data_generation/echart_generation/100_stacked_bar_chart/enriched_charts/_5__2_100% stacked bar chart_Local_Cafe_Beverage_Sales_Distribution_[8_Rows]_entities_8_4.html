@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: '600',
+    height: '400'
+});
+var app = {};
+
+var option;
+
+option = {
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Renewable Energy', 'Fossil Fuels', 'Nuclear Energy'],
+        textStyle: {
+            color: '#000'
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: false
+    },
+    yAxis: {
+        type: 'category',
+        data: ['2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020']
+    },
+    series: [
+        {
+            name: 'Renewable Energy',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [20, 22, 24, 26, 30, 35, 40, 45, 50, 52, 55],
+            itemStyle: {
+                color: '#76B041'
+            },
+            barWidth: '40%'
+        },
+        {
+            name: 'Fossil Fuels',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [70, 67, 64, 61, 58, 53, 48, 43, 38, 35, 30],
+            itemStyle: {
+                color: '#D9534F'
+            },
+            barWidth: '40%'
+        },
+        {
+            name: 'Nuclear Energy',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [10, 11, 12, 13, 12, 12, 12, 12, 12, 13, 15],
+            itemStyle: {
+                color: '#F0AD4E'
+            },
+            barWidth: '40%'
+        }
+    ],
+    title: {
+        text: 'Energy Consumption Sources Over Years',
+        subtext: 'Economics & Finance',
+        left: 'center',
+        top: 'top'
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

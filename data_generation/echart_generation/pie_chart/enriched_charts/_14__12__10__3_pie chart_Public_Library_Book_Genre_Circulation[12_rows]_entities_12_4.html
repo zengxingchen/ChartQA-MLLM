@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+myChart.showLoading();
+option = {
+    title: {
+        text: 'Global Energy Consumption Sources in 2023',
+        subtext: 'By percentage',
+        left: 'center',
+        top: 20,
+        textStyle: {
+            color: '#333',
+            fontSize: 20
+        }
+    },
+    tooltip: {
+        trigger: 'item'
+    },
+    legend: {
+        orient: 'vertical',
+        left: 20,
+        top: 'middle',
+        textStyle: {
+            fontSize: 14
+        }
+    },
+    series: [
+        {
+            name: 'Energy Source',
+            type: 'pie',
+            radius: '50%',
+            data: [
+                { value: 45, name: 'Renewable Energy' },
+                { value: 30, name: 'Fossil Fuels' },
+                { value: 15, name: 'Nuclear Power' },
+                { value: 7, name: 'Hydropower' },
+                { value: 3, name: 'Others' }
+            ],
+            emphasis: {
+                itemStyle: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            },
+            itemStyle: {
+                normal: {
+                    color: function(params) {
+                        // Define your color palette explicitly.
+                        var colorList = [
+                            '#4C9F70', '#C23531', '#2F4554', '#61A0A8', '#D48265'
+                        ];
+                        return colorList[params.dataIndex];
+                    } 
+                }
+            },
+            label: {
+                position: 'outside',
+                formatter: '{b}: {c}%',
+                fontSize: 14
+            },
+            labelLine: {
+                show: true
+            }
+        }
+    ]
+};
+myChart.hideLoading();
+myChart.setOption(option);
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

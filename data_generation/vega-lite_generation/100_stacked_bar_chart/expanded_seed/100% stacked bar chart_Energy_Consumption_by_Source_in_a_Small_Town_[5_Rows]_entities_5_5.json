@@ -1,0 +1,126 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": {
+        "text": "Energy Source Percentage over Years",
+        "subtitle": "Stacked bar chart representing the proportion of renewable energy sources",
+        "anchor": "start",
+        "color": "black"
+    },
+    "description": "A stacked bar chart showing the percentage of energy production from Solar, Wind, and Hydro.",
+    "width": 500,
+    "height": 300,
+    "data": {
+        "values": [
+            {
+                "Year": 2017,
+                " Solar (%)": 5,
+                " Wind (%)": 15,
+                " Hydro (%)": 10
+            },
+            {
+                "Year": 2018,
+                " Solar (%)": 6,
+                " Wind (%)": 18,
+                " Hydro (%)": 9
+            },
+            {
+                "Year": 2019,
+                " Solar (%)": 7,
+                " Wind (%)": 20,
+                " Hydro (%)": 12
+            },
+            {
+                "Year": 2020,
+                " Solar (%)": 10,
+                " Wind (%)": 22,
+                " Hydro (%)": 15
+            },
+            {
+                "Year": 2021,
+                " Solar (%)": 12,
+                " Wind (%)": 25,
+                " Hydro (%)": 15
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                " Solar (%)",
+                " Wind (%)",
+                " Hydro (%)"
+            ],
+            "as": [
+                "Energy Source",
+                "Percentage"
+            ]
+        }
+    ],
+    "mark": "bar",
+    "encoding": {
+        "x": {
+            "field": "Year",
+            "type": "ordinal",
+            "title": "Year"
+        },
+        "y": {
+            "field": "Percentage",
+            "type": "quantitative",
+            "title": "Percentage of Energy Sources",
+            "stack": "normalize",
+            "axis": {
+                "format": ".0%"
+            }
+        },
+        "color": {
+            "field": "Energy Source",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    " Solar (%)",
+                    " Wind (%)",
+                    " Hydro (%)"
+                ],
+                "range": [
+                    "#f1c40f",
+                    "#2ecc71",
+                    "#3498db"
+                ]
+            },
+            "title": "Energy Source"
+        },
+        "tooltip": [
+            {
+                "field": "Year",
+                "type": "ordinal",
+                "title": "Year"
+            },
+            {
+                "field": "Energy Source",
+                "type": "nominal",
+                "title": "Energy Source"
+            },
+            {
+                "field": "Percentage",
+                "type": "quantitative",
+                "title": "Percentage (%)",
+                "format": ".2f"
+            }
+        ]
+    },
+    "config": {
+        "axisY": {
+            "titleAngle": 0,
+            "titleAlign": "left",
+            "titleY": -10,
+            "titleX": -10,
+            "labelPadding": 5,
+            "titleFontSize": 12
+        },
+        "legend": {
+            "titleFontSize": 12,
+            "labelFontSize": 12,
+            "symbolType": "square"
+        }
+    }
+}

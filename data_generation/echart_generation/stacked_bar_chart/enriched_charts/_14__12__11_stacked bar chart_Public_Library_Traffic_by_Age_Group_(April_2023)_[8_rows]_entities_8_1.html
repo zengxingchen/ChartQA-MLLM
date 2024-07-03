@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var app = {};
+
+var option = {
+    title: {
+        text: 'Monthly Nutrient Intake',
+        left: 'center',
+        top: '5%'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Protein', 'Carbohydrates', 'Fats'],
+        top: '10%'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        data: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Protein',
+            type: 'bar',
+            stack: 'Total',
+            barWidth: 20,
+            color: '#FF6347',
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            data: [50, 45, 60, 55, 70, 65, 60, 75, 70, 65, 60, 55]
+        },
+        {
+            name: 'Carbohydrates',
+            type: 'bar',
+            stack: 'Total',
+            barWidth: 20,
+            color: '#4682B4',
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            data: [30, 35, 25, 30, 20, 25, 30, 15, 20, 25, 30, 35]
+        },
+        {
+            name: 'Fats',
+            type: 'bar',
+            stack: 'Total',
+            barWidth: 20,
+            color: '#32CD32',
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            data: [20, 25, 15, 15, 10, 10, 10, 10, 10, 10, 10, 10]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Monthly Waste Types Breakdown',
+        left: 'center',
+        top: 10
+    },
+    color: ['#55A8DE', '#EF7132', '#8BC53F', '#FEBC3B', '#D92E2E'],
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Organic', 'Glass', 'Metal', 'Plastic', 'Paper'],
+        top: 50
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01]
+    },
+    yAxis: {
+        type: 'category',
+        data: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+    },
+    series: [
+        {
+            name: 'Organic',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [1230, 1110, 1340, 980, 830, 960, 1130, 1260, 1030, 1120, 1210, 1310]
+        },
+        {
+            name: 'Glass',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            data: [150, 120, 160, 110, 90, 115, 150, 170, 140, 130, 180, 160]
+        },
+        {
+            name: 'Metal',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            data: [230, 210, 290, 250, 220, 230, 300, 310, 270, 305, 285, 320]
+        },
+        {
+            name: 'Plastic',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            data: [520, 580, 620, 570, 610, 650, 655, 642, 590, 650, 640, 630]
+        },
+        {
+            name: 'Paper',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            data: [610, 605, 640, 528, 510, 575, 620, 630, 540, 680, 610, 600]
+        }
+    ],
+    barWidth: 20 // Modify the width of bars
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

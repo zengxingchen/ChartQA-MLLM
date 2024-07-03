@@ -1,0 +1,188 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Monthly Energy Consumption by Source in a City",
+    "width": 600,
+    "height": 400,
+    "data": {
+        "values": [
+            {
+                "Month": "January",
+                "Solar": 500,
+                "Wind": 850,
+                "Hydro": 650,
+                "Geothermal": 300,
+                "Biomass": 280
+            },
+            {
+                "Month": "February",
+                "Solar": 480,
+                "Wind": 800,
+                "Hydro": 600,
+                "Geothermal": 290,
+                "Biomass": 270
+            },
+            {
+                "Month": "March",
+                "Solar": 550,
+                "Wind": 900,
+                "Hydro": 700,
+                "Geothermal": 320,
+                "Biomass": 300
+            },
+            {
+                "Month": "April",
+                "Solar": 600,
+                "Wind": 950,
+                "Hydro": 780,
+                "Geothermal": 350,
+                "Biomass": 330
+            },
+            {
+                "Month": "May",
+                "Solar": 620,
+                "Wind": 1000,
+                "Hydro": 820,
+                "Geothermal": 370,
+                "Biomass": 350
+            },
+            {
+                "Month": "June",
+                "Solar": 640,
+                "Wind": 1020,
+                "Hydro": 850,
+                "Geothermal": 390,
+                "Biomass": 370
+            },
+            {
+                "Month": "July",
+                "Solar": 660,
+                "Wind": 1040,
+                "Hydro": 870,
+                "Geothermal": 410,
+                "Biomass": 390
+            },
+            {
+                "Month": "August",
+                "Solar": 680,
+                "Wind": 1060,
+                "Hydro": 900,
+                "Geothermal": 430,
+                "Biomass": 410
+            },
+            {
+                "Month": "September",
+                "Solar": 650,
+                "Wind": 1020,
+                "Hydro": 880,
+                "Geothermal": 400,
+                "Biomass": 400
+            },
+            {
+                "Month": "October",
+                "Solar": 630,
+                "Wind": 1000,
+                "Hydro": 850,
+                "Geothermal": 380,
+                "Biomass": 380
+            },
+            {
+                "Month": "November",
+                "Solar": 590,
+                "Wind": 950,
+                "Hydro": 800,
+                "Geothermal": 360,
+                "Biomass": 340
+            },
+            {
+                "Month": "December",
+                "Solar": 610,
+                "Wind": 980,
+                "Hydro": 830,
+                "Geothermal": 390,
+                "Biomass": 360
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Solar",
+                "Wind",
+                "Hydro",
+                "Geothermal",
+                "Biomass"
+            ],
+            "as": [
+                "Energy Source",
+                "Consumption"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "area",
+        "opacity": 0.7
+    },
+    "encoding": {
+        "x": {
+            "field": "Month",
+            "type": "ordinal",
+            "axis": {
+                "title": "Month",
+                "labelAngle": 0
+            }
+        },
+        "y": {
+            "field": "Consumption",
+            "type": "quantitative",
+            "stack": "zero",
+            "axis": {
+                "title": "Energy Consumption (MWh)"
+            }
+        },
+        "color": {
+            "field": "Energy Source",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Solar",
+                    "Wind",
+                    "Hydro",
+                    "Geothermal",
+                    "Biomass"
+                ],
+                "range": [
+                    "#ffeda0",
+                    "#feb24c",
+                    "#f03b20",
+                    "#3182bd",
+                    "#31a354"
+                ]
+            },
+            "legend": {
+                "title": "Energy Source"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Month",
+                "type": "ordinal"
+            },
+            {
+                "field": "Energy Source",
+                "type": "nominal"
+            },
+            {
+                "field": "Consumption",
+                "type": "quantitative"
+            }
+        ]
+    },
+    "config": {
+        "view": {
+            "stroke": "transparent"
+        },
+        "axis": {
+            "domainWidth": 1
+        }
+    }
+}

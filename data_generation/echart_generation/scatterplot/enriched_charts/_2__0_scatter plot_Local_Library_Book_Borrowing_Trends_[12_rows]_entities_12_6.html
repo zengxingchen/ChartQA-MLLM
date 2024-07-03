@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Travel & Adventure: Elevation vs. Distance',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: function (params) {
+            return 'Distance: ' + params.value[0] + '<br>Elevation: ' + params.value[1];
+        }
+    },
+    xAxis: {
+        type: 'value',
+        name: 'Distance (km)',
+        nameLocation: 'middle',
+        nameGap: 30
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Elevation (m)',
+        nameLocation: 'middle',
+        nameGap: 50
+    },
+    series: [{
+        name: 'Elevation Data',
+        type: 'scatter',
+        itemStyle: {
+            color: '#FF5733'
+        },
+        data: [
+            [2.3, 4.5],
+            [3.1, 5.7],
+            [4.2, 6.3],
+            [5.4, 7.8],
+            [6.1, 8.2],
+            [7.3, 9.1],
+            [8.0, 10.5],
+            [9.2, 11.7],
+            [10.4, 12.9],
+            [11.3, 13.6],
+            [12.1, 14.2],
+            [13.5, 15.4],
+            [14.2, 16.1],
+            [15.8, 17.5],
+            [16.4, 18.2],
+            [17.6, 19.3],
+            [18.9, 20.7],
+            [20.1, 21.5],
+            [21.4, 22.8],
+            [22.7, 23.9]
+        ]
+    }],
+    legend: {
+        data: ['Elevation Data'],
+        right: '10%',
+        top: '10%'
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

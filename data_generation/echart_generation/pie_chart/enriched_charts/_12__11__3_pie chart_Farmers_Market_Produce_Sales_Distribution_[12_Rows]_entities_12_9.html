@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    width: '600',
+    height: '400'
+});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Popularity of Travel Activities',
+        left: 'center',
+        top: 20,
+        textStyle: {
+            color: '#333'
+        }
+    },
+    tooltip: {
+        trigger: 'item'
+    },
+    legend: {
+        orient: 'vertical',
+        left: 'left',
+        top: 'middle',
+        textStyle: {
+            color: '#111',
+            fontSize: 14
+        },
+        formatter: function (name) {
+            return name.length > 10 ? name.slice(0, 10) + '...' : name;
+        }
+    },
+    series: [
+        {
+            name: 'Activity',
+            type: 'pie',
+            radius: '55%',
+            center: ['50%', '60%'],
+            data: [
+                {value: 15, name: 'Scuba Diving'},
+                {value: 20, name: 'Hiking'},
+                {value: 12, name: 'Safari'},
+                {value: 8, name: 'Skiing'},
+                {value: 25, name: 'City Tour'},
+                {value: 18, name: 'Beach Vacation'},
+                {value: 2, name: 'Cruise'}
+            ],
+            emphasis: {
+                itemStyle: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            },
+            itemStyle: {
+                normal: {
+                    color: function(params) {
+                        // predefined set of colors
+                        var colorList = [
+                            '#ff7f0e', '#1f77b4', '#2ca02c', '#d62728', '#9467bd', '#8c564b', '#e377c2'
+                        ];
+                        return colorList[params.dataIndex]
+                    }
+                }
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

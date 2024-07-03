@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, { width: 800, height: 600 });
+var app = {};
+var option;
+
+option = {
+    title: {
+        text: 'Quarterly GDP Growth',
+        left: 'center',
+        textStyle: {
+            color: '#333333',
+            fontSize: 18
+        }
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ['Q1 2020', 'Q2 2020', 'Q3 2020', 'Q4 2020', 'Q1 2021', 'Q2 2021', 'Q3 2021', 'Q4 2021', 'Q1 2022', 'Q2 2022', 'Q3 2022', 'Q4 2022', 'Q1 2023', 'Q2 2023', 'Q3 2023', 'Q4 2023'],
+        axisLabel: {
+            rotate: 45,
+            textStyle: {
+                color: '#333333'
+            }
+        }
+    },
+    yAxis: {
+        type: 'value',
+        axisLabel: {
+            formatter: '{value} %',
+            textStyle: {
+                color: '#333333'
+            }
+        }
+    },
+    series: [
+        {
+            name: 'GDP Growth (%)',
+            type: 'line',
+            data: [2.5, -1.3, 3.8, 1.5, 2.2, 3.5, 1.8, 2.0, 2.7, 1.9, 3.1, 2.4, 3.2, 2.3, 3.0, 2.1],
+            markPoint: {
+                data: [
+                    { type: 'max', name: 'Max' },
+                    { type: 'min', name: 'Min' }
+                ]
+            },
+            markLine: {
+                data: [
+                    { type: 'average', name: 'Avg' }
+                ]
+            },
+            itemStyle: {
+                color: '#5470C6'
+            },
+            lineStyle: {
+                color: '#EE6666'
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

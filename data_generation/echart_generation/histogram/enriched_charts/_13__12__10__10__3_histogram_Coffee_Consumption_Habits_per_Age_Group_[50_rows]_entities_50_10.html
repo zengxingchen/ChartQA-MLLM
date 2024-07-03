@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+var option;
+
+option = {
+    title: {
+        text: 'Distribution of Exam Scores',
+        left: 'center'
+    },
+    xAxis: {
+        type: 'category',
+        data: ['50-55', '56-60', '61-65', '66-70', '71-75', '76-80', '81-85', '86-90', '91-95'],
+        name: 'Score Range'
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Frequency'
+    },
+    series: [{
+        data: [2, 3, 3, 4, 5, 6, 5, 5, 2],
+        type: 'bar',
+        itemStyle: {
+            color: '#1f78b4'
+        },
+        barWidth: '50%'
+    }],
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    grid: {
+        left: '10%',
+        right: '10%',
+        bottom: '15%',
+        top: '15%'
+    },
+    label: {
+        show: true,
+        position: 'top',
+        formatter: '{c}'
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

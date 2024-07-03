@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 800,
+    height: 600
+});
+var option = {
+    title: {
+        text: 'Distribution of Values in Dataset',
+        left: 'center',
+        top: '10'
+    },
+    xAxis: {
+        type: 'category',
+        data: [
+            '10-20', '20-30', '30-40', '40-50', '50-60', '60-70', '70-80'
+        ]
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Frequency'
+    },
+    series: [{
+        name: 'Values',
+        type: 'bar',
+        data: [
+            {value: 5, itemStyle: {color: '#FF6F61'}},
+            {value: 8, itemStyle: {color: '#6B5B95'}},
+            {value: 10, itemStyle: {color: '#88B04B'}},
+            {value: 8, itemStyle: {color: '#F7CAC9'}},
+            {value: 6, itemStyle: {color: '#92A8D1'}},
+            {value: 4, itemStyle: {color: '#955251'}},
+            {value: 3, itemStyle: {color: '#B565A7'}}
+        ],
+        barWidth: '40%'
+    }],
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    }
+};
+if (option && typeof option === 'object') myChart.setOption(option);
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,151 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+        "values": [
+            {
+                "Day": "Monday",
+                "Sightseeing": 90,
+                "Hiking": 40,
+                "Swimming": 50,
+                "Cycling": 30
+            },
+            {
+                "Day": "Tuesday",
+                "Sightseeing": 80,
+                "Hiking": 50,
+                "Swimming": 60,
+                "Cycling": 20
+            },
+            {
+                "Day": "Wednesday",
+                "Sightseeing": 70,
+                "Hiking": 60,
+                "Swimming": 55,
+                "Cycling": 25
+            },
+            {
+                "Day": "Thursday",
+                "Sightseeing": 60,
+                "Hiking": 45,
+                "Swimming": 65,
+                "Cycling": 35
+            },
+            {
+                "Day": "Friday",
+                "Sightseeing": 50,
+                "Hiking": 55,
+                "Swimming": 70,
+                "Cycling": 40
+            },
+            {
+                "Day": "Saturday",
+                "Sightseeing": 100,
+                "Hiking": 65,
+                "Swimming": 75,
+                "Cycling": 50
+            },
+            {
+                "Day": "Sunday",
+                "Sightseeing": 85,
+                "Hiking": 70,
+                "Swimming": 80,
+                "Cycling": 45
+            }
+        ]
+    },
+    "width": 500,
+    "height": 400,
+    "title": {
+        "text": "Weekly Travel Activities",
+        "subtitle": "A horizontal stacked bar chart showing the daily travel activities across different types.",
+        "subtitleFontStyle": "italic",
+        "subtitleFontSize": 12,
+        "anchor": "start",
+        "frame": "group"
+    },
+    "transform": [
+        {
+            "fold": [
+                "Sightseeing",
+                "Hiking",
+                "Swimming",
+                "Cycling"
+            ],
+            "as": [
+                "Activity",
+                "Minutes"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "bar",
+        "height": {
+            "band": 0.7
+        }
+    },
+    "encoding": {
+        "y": {
+            "field": "Day",
+            "type": "ordinal",
+            "title": "Day of the Week",
+            "axis": {
+                "labelAngle": 0
+            }
+        },
+        "x": {
+            "field": "Minutes",
+            "type": "quantitative",
+            "title": "Activity Minutes",
+            "stack": "zero"
+        },
+        "color": {
+            "field": "Activity",
+            "type": "nominal",
+            "title": "Activity",
+            "scale": {
+                "domain": [
+                    "Sightseeing",
+                    "Hiking",
+                    "Swimming",
+                    "Cycling"
+                ],
+                "range": [
+                    "#ff9999",
+                    "#66b3ff",
+                    "#99ff99",
+                    "#ffcc99"
+                ]
+            },
+            "legend": {
+                "orient": "top",
+                "titleFontSize": 12,
+                "labelFontSize": 10
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Day",
+                "type": "nominal"
+            },
+            {
+                "field": "Activity",
+                "type": "nominal",
+                "title": "Activity"
+            },
+            {
+                "field": "Minutes",
+                "type": "quantitative",
+                "title": "Minutes"
+            }
+        ]
+    },
+    "config": {
+        "axis": {
+            "titleFontWeight": "normal",
+            "labelFont": "sans-serif"
+        },
+        "bar": {
+            "strokeWidth": 0
+        }
+    }
+}

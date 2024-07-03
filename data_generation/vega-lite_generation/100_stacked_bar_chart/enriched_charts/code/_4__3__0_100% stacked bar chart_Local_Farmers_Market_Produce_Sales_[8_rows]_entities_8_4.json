@@ -1,0 +1,148 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "A 100% stacked horizontal bar chart showing the distribution of nutrients in various foods across different meals.",
+    "data": {
+        "values": [
+            {
+                "Meal": "Breakfast",
+                "Carbs": 30,
+                "Protein": 20,
+                "Fat": 10,
+                "Fiber": 5
+            },
+            {
+                "Meal": "Lunch",
+                "Carbs": 50,
+                "Protein": 25,
+                "Fat": 15,
+                "Fiber": 10
+            },
+            {
+                "Meal": "Dinner",
+                "Carbs": 40,
+                "Protein": 30,
+                "Fat": 20,
+                "Fiber": 8
+            },
+            {
+                "Meal": "Snack",
+                "Carbs": 20,
+                "Protein": 15,
+                "Fat": 10,
+                "Fiber": 3
+            },
+            {
+                "Meal": "Brunch",
+                "Carbs": 45,
+                "Protein": 22,
+                "Fat": 12,
+                "Fiber": 7
+            },
+            {
+                "Meal": "Tea Time",
+                "Carbs": 25,
+                "Protein": 18,
+                "Fat": 8,
+                "Fiber": 4
+            },
+            {
+                "Meal": "Midnight Snack",
+                "Carbs": 35,
+                "Protein": 17,
+                "Fat": 9,
+                "Fiber": 5
+            },
+            {
+                "Meal": "Pre-Workout",
+                "Carbs": 50,
+                "Protein": 20,
+                "Fat": 10,
+                "Fiber": 6
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Carbs",
+                "Protein",
+                "Fat",
+                "Fiber"
+            ],
+            "as": [
+                "Nutrient",
+                "Amount"
+            ]
+        },
+        {
+            "calculate": "datum.Amount / (datum.Carbs + datum.Protein + datum.Fat + datum.Fiber) * 100",
+            "as": "Percentage"
+        }
+    ],
+    "title": {
+        "text": "Nutrient Distribution by Meal",
+        "color": "black",
+        "anchor": "start",
+        "fontSize": 16
+    },
+    "width": 700,
+    "height": 400,
+    "mark": {
+        "type": "bar",
+        "tooltip": true
+    },
+    "encoding": {
+        "y": {
+            "field": "Meal",
+            "type": "nominal",
+            "axis": {
+                "title": "Meal"
+            }
+        },
+        "x": {
+            "field": "Percentage",
+            "type": "quantitative",
+            "axis": {
+                "title": "Percentage"
+            },
+            "stack": "normalize",
+            "title": "Nutrient Percentage (%)"
+        },
+        "color": {
+            "field": "Nutrient",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Carbs",
+                    "Protein",
+                    "Fat",
+                    "Fiber"
+                ],
+                "range": [
+                    "#e41a1c",
+                    "#377eb8",
+                    "#4daf4a",
+                    "#984ea3"
+                ]
+            },
+            "legend": {
+                "title": "Nutrient"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Meal",
+                "type": "nominal"
+            },
+            {
+                "field": "Nutrient",
+                "type": "nominal"
+            },
+            {
+                "field": "Percentage",
+                "type": "quantitative",
+                "title": "Percentage"
+            }
+        ]
+    }
+}

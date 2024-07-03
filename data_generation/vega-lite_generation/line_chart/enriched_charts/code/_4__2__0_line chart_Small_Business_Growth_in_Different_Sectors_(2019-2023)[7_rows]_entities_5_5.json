@@ -1,0 +1,100 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Line chart of average annual exercise time by age group over recent years",
+    "data": {
+        "values": [
+            {
+                "Year": 2019,
+                "Teens": 45,
+                "Adults": 30,
+                "Seniors": 20
+            },
+            {
+                "Year": 2020,
+                "Teens": 48,
+                "Adults": 35,
+                "Seniors": 22
+            },
+            {
+                "Year": 2021,
+                "Teens": 50,
+                "Adults": 37,
+                "Seniors": 25
+            },
+            {
+                "Year": 2022,
+                "Teens": 52,
+                "Adults": 40,
+                "Seniors": 27
+            },
+            {
+                "Year": 2023,
+                "Teens": 55,
+                "Adults": 42,
+                "Seniors": 30
+            },
+            {
+                "Year": 2024,
+                "Teens": 57,
+                "Adults": 45,
+                "Seniors": 32
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Teens",
+                "Adults",
+                "Seniors"
+            ],
+            "as": [
+                "Age Group",
+                "Exercise Time"
+            ]
+        }
+    ],
+    "width": 700,
+    "height": 450,
+    "mark": {
+        "type": "line",
+        "point": true
+    },
+    "encoding": {
+        "x": {
+            "field": "Year",
+            "type": "ordinal",
+            "title": "Year"
+        },
+        "y": {
+            "field": "Exercise Time",
+            "type": "quantitative",
+            "title": "Average Annual Exercise Time (hours)",
+            "axis": {
+                "format": ".1f"
+            }
+        },
+        "color": {
+            "field": "Age Group",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Teens",
+                    "Adults",
+                    "Seniors"
+                ],
+                "range": [
+                    "#FF4500",
+                    "#32CD32",
+                    "#1E90FF"
+                ]
+            },
+            "title": "Age Group"
+        }
+    },
+    "config": {
+        "axisY": {
+            "minExtent": 30
+        }
+    }
+}

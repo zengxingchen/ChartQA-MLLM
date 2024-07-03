@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Quarterly Revenue Growth by Sector',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            label: {
+                backgroundColor: '#6a7985'
+            }
+        }
+    },
+    legend: {
+        data: ['Technology', 'Healthcare', 'Energy', 'Consumer Goods'],
+        top: '7%'
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: [
+        {
+            type: 'category',
+            boundaryGap: false,
+            data: ['Q1-2019', 'Q1-2019', 'Q1-2019', 'Q1-2019', 'Q2-2019', 'Q2-2019', 'Q2-2019', 'Q2-2019', 'Q3-2019', 'Q3-2019', 'Q3-2019', 'Q3-2019', 'Q4-2019', 'Q4-2019', 'Q4-2019', 'Q4-2019']
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value'
+        }
+    ],
+    series: [
+        {
+            name: 'Technology',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [12000, 12200, 12400, 12600, 12900, 13300, 13600, 14000, 14400, 14700, 15000, 15200, 15500, 15800, 16000, 16300],
+            color: '#34a853'
+        },
+        {
+            name: 'Healthcare',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [15000, 15500, 15700, 16000, 16200, 16500, 16700, 16900, 17200, 17400, 17700, 18000, 18200, 18500, 18800, 19000],
+            color: '#ea4335'
+        },
+        {
+            name: 'Energy',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [13000, 13500, 13800, 14300, 14700, 15000, 15300, 15700, 16000, 16500, 16800, 17200, 17500, 17800, 18200, 18500],
+            color: '#4285f4'
+        },
+        {
+            name: 'Consumer Goods',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [11000, 11200, 11400, 11500, 11800, 12000, 12300, 12600, 12900, 13200, 13400, 13700, 14000, 14300, 14600, 14900],
+            color: '#fbbc05'
+        }
+    ],
+    annotations: [
+        {
+            seriesName: 'Technology',
+            xAxis: 'Q3-2019',
+            yAxis: 14700,
+            label: {
+                show: true,
+                formatter: 'Tech Revenue Peak'
+            },
+            itemStyle: {
+                color: '#34a853'
+            }
+        }
+    ]
+};
+
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

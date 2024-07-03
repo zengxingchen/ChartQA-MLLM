@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800, // Chart width changed
+    height: 400 // Chart height changed
+});
+var app = {};
+
+var option;
+
+myChart.showLoading();
+
+// The data can be processed from the above CSV format into the required JavaScript array format
+var data = [
+    {category: '2018', food: 20, clothing: 10, entertainment: 15, healthcare: 10, education: 5, housing: 30, transportation: 10},
+    {category: '2019', food: 18, clothing: 11, entertainment: 15, healthcare: 11, education: 6, housing: 29, transportation: 10},
+    {category: '2020', food: 17, clothing: 12, entertainment: 16, healthcare: 12, education: 7, housing: 26, transportation: 10},
+    {category: '2021', food: 17, clothing: 13, entertainment: 15, healthcare: 11, education: 8, housing: 26, transportation: 10},
+    {category: '2022', food: 16, clothing: 14, entertainment: 14, healthcare: 13, education: 9, housing: 24, transportation: 10}
+];
+
+// Transform data for stacked bar chart format
+var legendData = ['food', 'clothing', 'entertainment', 'healthcare', 'education', 'housing', 'transportation'];
+var seriesData = legendData.map(function (name) {
+    var series = {
+        name: name,
+        type: 'bar',
+        stack: 'total',
+        emphasis: {
+            focus: 'series'
+        },
+        data: data.map(function (item) {
+            return item[name];
+        }),
+        barWidth: 15 // Bar width changed reasonably
+    };
+    return series;
+});
+
+option = {
+    title: {
+        text: 'Consumer Spending Analysis', // Headline changed
+        subtext: 'Annual Spending by Category in Percentage', // Subheadline changed
+        left: 'center' // Title position adjusted to avoid overlap with the legend
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: legendData,
+        top: '10%' // Legend position adjusted to avoid overlap with the title
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value' // Flipped axis for horizontal orientation
+    },
+    yAxis: {
+        type: 'category',
+        data: data.map(function (item) {
+            return item.category;
+        })
+    },
+    series: seriesData,
+    color: ['#FF6347', '#4682B4', '#FFD700', '#32CD32', '#800080', '#40E0D0', '#808080'] // Color scheme changed
+};
+
+myChart.hideLoading();
+myChart.setOption(option);
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+
+var data = [
+    {value: 20, name: 'Samsung'},
+    {value: 19, name: 'Apple'},
+    {value: 16, name: 'Huawei'},
+    {value: 11, name: 'Xiaomi'},
+    {value: 8, name: 'Oppo'},
+    {value: 7, name: 'Vivo'},
+    {value: 4, name: 'Realme'},
+    {value: 3, name: 'OnePlus'},
+    {value: 2, name: 'LG'},
+    {value: 2, name: 'Sony'},
+    {value: 2, name: 'Google'},
+    {value: 6, name: 'Other'}
+];
+
+option = {
+    title: {
+        text: 'Smartphone Market Share',
+        subtext: '2023',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: '{a} <br/>{b} : {c} ({d}%)'
+    },
+    legend: {
+        orient: 'vertical',
+        left: 'left',
+        data: data.map(function(item) {
+            return item.name;
+        })
+    },
+    series: [
+        {
+            name: 'Market Share',
+            type: 'pie',
+            radius: '55%',
+            center: ['50%', '60%'],
+            data: data,
+            emphasis: {
+                itemStyle: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            },
+            label: {
+                normal: {
+                    formatter: '{b} : {c} ({d}%)',
+                    show: true,
+                    position: 'outer'
+                }
+            },
+            itemStyle: {
+                borderRadius: 3,
+                borderColor: '#fff',
+                borderWidth: 2
+            }
+        }
+    ],
+    color: ['#003366', '#006699', '#4cabce', '#e5323e', '#f7a35c', '#8085e9', '#f15c80', '#e4d354', '#2b908f', '#f45b5b', '#91e8e1', '#7cb5ec']
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

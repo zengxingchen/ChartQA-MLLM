@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var option;
+
+option = {
+    title: {
+        text: 'Diverse Aspects of Society',
+        left: 'center',
+        top: '5%'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    xAxis: {
+        type: 'category',
+        data: ['Technology', 'Art', 'Science', 'Health', 'Culture', 'Economics', 'Education', 'Entertainment', 'Environment', 'Food', 'Travel', 'Fashion', 'Politics', 'Sports', 'History', 'Philosophy', 'Music', 'Literature', 'Business', 'Astronomy'],
+        axisLabel: {
+            interval: 0,
+            rotate: 45
+        }
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Value',
+            type: 'bar',
+            data: [120, 150, 170, 110, 140, 130, 160, 100, 180, 155, 125, 135, 145, 175, 165, 115, 185, 105, 195, 190],
+            itemStyle: {
+                color: function(params) {
+                    var colorList = [
+                        '#FF6633', '#FFB399', '#FF33FF', '#FFFF99', '#00B3E6', 
+                        '#E6B333', '#3366E6', '#999966', '#99FF99', '#B34D4D',
+                        '#80B300', '#809900', '#E6B3B3', '#6680B3', '#66991A', 
+                        '#FF99E6', '#CCFF1A', '#FF1A66', '#E6331A', '#33FFCC'
+                    ];
+                    return colorList[params.dataIndex];
+                }
+            },
+            barWidth: '60%',
+            label: {
+                show: true,
+                position: 'top'
+            }
+        }
+    ],
+    grid: {
+        left: '5%',
+        right: '5%',
+        bottom: '15%',
+        containLabel: true
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 400});
+var app = {};
+
+var option;
+
+const seriesLabel = {
+    normal: {
+        show: true,
+        textBorderColor: '#333',
+        textBorderWidth: 2
+    }
+};
+
+option = {
+    title: {
+        text: 'Economics & Finance: Market Trends',
+        left: '2%',
+        top: '3%'
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ['2000', '2001', '2002', '2003', '2004', '2005', '2006',
+               '2007', '2008', '2009', '2010', '2011', '2012', '2013',
+               '2014', '2015', '2016', '2017', '2018', '2019', '2020']
+    },
+    yAxis: {
+        type: 'value',
+        axisLabel: {
+            formatter: '{value}'
+        },
+        axisPointer: {
+            snap: true
+        }
+    },
+    visualMap: {
+        top: 10,
+        right: 10,
+        pieces: [{
+            gt: 0,
+            lte: 50,
+            color: '#096'
+        }, {
+            gt: 50,
+            lte: 200,
+            color: '#ffde33'
+        }, {
+            gt: 200,
+            lte: 300,
+            color: '#ff9933'
+        }],
+        outOfRange: {
+            color: '#999'
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    series: [
+        {
+            name: 'Value',
+            type: 'line',
+            smooth: true,
+            symbol: 'none',
+            sampling: 'average',
+            itemStyle: {
+                color: '#8ec6ad'
+            },
+            areaStyle: {
+                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                    offset: 0,
+                    color: '#b6edab'
+                }, {
+                    offset: 1,
+                    color: '#71d0c4'
+                }])
+            },
+            data: [300, 285, 270, 250, 240, 220, 200, 180, 160, 150, 130, 120,
+                   110, 95, 80, 65, 55, 45, 40, 35, 30],
+            label: seriesLabel,
+            markPoint: {
+                data: [
+                    {type: 'max', name: 'Max'},
+                    {type: 'min', name: 'Min'}
+                ]
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

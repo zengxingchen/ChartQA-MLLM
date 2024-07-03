@@ -1,0 +1,155 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Yearly Subscription Growth by Online Learning Platforms",
+    "width": 500,
+    "height": 400,
+    "title": {
+        "text": "Subscription Trends in Online Learning Platforms",
+        "anchor": "start",
+        "offset": 10,
+        "frame": "bounds",
+        "fontSize": 16,
+        "color": "#333",
+        "dx": -10
+    },
+    "data": {
+        "values": [
+            {
+                "Year": 2015,
+                "Coursera": 150,
+                "edX": 100,
+                "Udacity": 120,
+                "Khan Academy": 80,
+                "Skillshare": 90
+            },
+            {
+                "Year": 2016,
+                "Coursera": 160,
+                "edX": 110,
+                "Udacity": 130,
+                "Khan Academy": 85,
+                "Skillshare": 95
+            },
+            {
+                "Year": 2017,
+                "Coursera": 180,
+                "edX": 115,
+                "Udacity": 125,
+                "Khan Academy": 90,
+                "Skillshare": 110
+            },
+            {
+                "Year": 2018,
+                "Coursera": 200,
+                "edX": 120,
+                "Udacity": 140,
+                "Khan Academy": 95,
+                "Skillshare": 115
+            },
+            {
+                "Year": 2019,
+                "Coursera": 220,
+                "edX": 130,
+                "Udacity": 150,
+                "Khan Academy": 100,
+                "Skillshare": 120
+            },
+            {
+                "Year": 2020,
+                "Coursera": 250,
+                "edX": 135,
+                "Udacity": 160,
+                "Khan Academy": 105,
+                "Skillshare": 125
+            },
+            {
+                "Year": 2021,
+                "Coursera": 270,
+                "edX": 140,
+                "Udacity": 165,
+                "Khan Academy": 110,
+                "Skillshare": 130
+            },
+            {
+                "Year": 2022,
+                "Coursera": 290,
+                "edX": 145,
+                "Udacity": 170,
+                "Khan Academy": 115,
+                "Skillshare": 135
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Coursera",
+                "edX",
+                "Udacity",
+                "Khan Academy",
+                "Skillshare"
+            ],
+            "as": [
+                "Platform",
+                "Subscriptions"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "area",
+        "opacity": 0.8
+    },
+    "encoding": {
+        "x": {
+            "field": "Year",
+            "type": "ordinal",
+            "axis": {
+                "title": "Year"
+            }
+        },
+        "y": {
+            "field": "Subscriptions",
+            "type": "quantitative",
+            "title": "Subscribers (in thousands)",
+            "stack": "zero"
+        },
+        "color": {
+            "field": "Platform",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Coursera",
+                    "edX",
+                    "Udacity",
+                    "Khan Academy",
+                    "Skillshare"
+                ],
+                "range": [
+                    "#2ca02c",
+                    "#ff7f0e",
+                    "#1f77b4",
+                    "#d62728",
+                    "#9467bd"
+                ]
+            },
+            "title": "Platform"
+        },
+        "tooltip": [
+            {
+                "field": "Year",
+                "type": "ordinal",
+                "title": "Year"
+            },
+            {
+                "field": "Platform",
+                "type": "nominal",
+                "title": "Platform"
+            },
+            {
+                "field": "Subscriptions",
+                "type": "quantitative",
+                "title": "Subscribers (in thousands)"
+            }
+        ]
+    }
+}

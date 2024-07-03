@@ -1,0 +1,163 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "A 100% stacked vertical bar chart showing the distribution of nutrition intake in different age groups over the years",
+    "width": 400,
+    "height": 600,
+    "data": {
+        "values": [
+            {
+                "AgeGroup": "0-10",
+                "Carbohydrates": 40,
+                "Proteins": 30,
+                "Fats": 20,
+                "Vitamins": 10
+            },
+            {
+                "AgeGroup": "11-20",
+                "Carbohydrates": 35,
+                "Proteins": 25,
+                "Fats": 25,
+                "Vitamins": 15
+            },
+            {
+                "AgeGroup": "21-30",
+                "Carbohydrates": 30,
+                "Proteins": 20,
+                "Fats": 30,
+                "Vitamins": 20
+            },
+            {
+                "AgeGroup": "31-40",
+                "Carbohydrates": 25,
+                "Proteins": 20,
+                "Fats": 35,
+                "Vitamins": 20
+            },
+            {
+                "AgeGroup": "41-50",
+                "Carbohydrates": 20,
+                "Proteins": 25,
+                "Fats": 35,
+                "Vitamins": 20
+            },
+            {
+                "AgeGroup": "51-60",
+                "Carbohydrates": 20,
+                "Proteins": 30,
+                "Fats": 30,
+                "Vitamins": 20
+            },
+            {
+                "AgeGroup": "61-70",
+                "Carbohydrates": 15,
+                "Proteins": 30,
+                "Fats": 35,
+                "Vitamins": 20
+            },
+            {
+                "AgeGroup": "71+",
+                "Carbohydrates": 15,
+                "Proteins": 25,
+                "Fats": 40,
+                "Vitamins": 20
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Carbohydrates",
+                "Proteins",
+                "Fats",
+                "Vitamins"
+            ],
+            "as": [
+                "Nutrient",
+                "Percentage"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "bar",
+        "height": {
+            "band": 0.6
+        }
+    },
+    "encoding": {
+        "x": {
+            "field": "AgeGroup",
+            "type": "ordinal",
+            "axis": {
+                "title": "Age Group"
+            }
+        },
+        "y": {
+            "stack": "normalize",
+            "field": "Percentage",
+            "type": "quantitative",
+            "axis": {
+                "format": ".0%",
+                "title": "Percentage of Nutrient Intake"
+            }
+        },
+        "color": {
+            "field": "Nutrient",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Carbohydrates",
+                    "Proteins",
+                    "Fats",
+                    "Vitamins"
+                ],
+                "range": [
+                    "#4CAF50",
+                    "#FF5722",
+                    "#FFC107",
+                    "#03A9F4"
+                ]
+            }
+        },
+        "tooltip": [
+            {
+                "field": "AgeGroup",
+                "type": "ordinal",
+                "title": "Age Group"
+            },
+            {
+                "field": "Nutrient",
+                "type": "nominal",
+                "title": "Nutrient"
+            },
+            {
+                "field": "Percentage",
+                "type": "quantitative",
+                "title": "Percentage"
+            }
+        ]
+    },
+    "layer": [
+        {
+            "mark": "bar"
+        },
+        {
+            "mark": {
+                "type": "text",
+                "align": "left",
+                "baseline": "middle",
+                "dx": 3
+            },
+            "encoding": {
+                "text": {
+                    "field": "Percentage",
+                    "type": "quantitative"
+                }
+            }
+        }
+    ],
+    "config": {
+        "axisX": {
+            "minExtent": 30
+        }
+    }
+}

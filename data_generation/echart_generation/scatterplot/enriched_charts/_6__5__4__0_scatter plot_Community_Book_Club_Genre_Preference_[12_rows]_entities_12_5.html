@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Relation between Study Time and Exam Scores',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: function (params) {
+            return `Study Time: ${params.value[0]} hours<br>Score: ${params.value[1]}`;
+        }
+    },
+    legend: {
+        data: ['Scores'],
+        left: 'left'
+    },
+    xAxis: {
+        type: 'value',
+        name: 'Study Time (hours)',
+        min: 0,
+        max: 100
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Exam Score',
+        min: 0,
+        max: 110
+    },
+    series: [
+        {
+            name: 'Scores',
+            type: 'scatter',
+            data: [
+                [12, 25],
+                [15, 30],
+                [20, 45],
+                [22, 43],
+                [25, 50],
+                [28, 55],
+                [30, 60],
+                [35, 62],
+                [40, 70],
+                [42, 73],
+                [45, 78],
+                [48, 80],
+                [50, 82],
+                [55, 85],
+                [58, 87],
+                [60, 90],
+                [65, 92],
+                [70, 95],
+                [72, 97],
+                [75, 98],
+                [78, 99],
+                [80, 100],
+                [85, 102],
+                [88, 103],
+                [90, 105]
+            ],
+            itemStyle: {
+                color: '#ff6347'
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

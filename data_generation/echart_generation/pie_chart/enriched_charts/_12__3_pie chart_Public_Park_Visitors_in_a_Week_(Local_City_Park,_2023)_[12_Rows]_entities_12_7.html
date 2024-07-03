@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Market Share of Digital Devices',
+        left: 'center',
+        top: 20,
+        textStyle: {
+            color: '#333',
+            fontStyle: 'normal',
+            fontWeight: 'bold',
+            fontSize: 18
+        }
+    },
+    tooltip: {
+        trigger: 'item'
+    },
+    legend: {
+        orient: 'vertical',
+        left: 'left',
+        top: 50,
+        textStyle: {
+            color: '#666'
+        }
+    },
+    series: [
+        {
+            name: 'Device Type',
+            type: 'pie',
+            radius: '50%',
+            data: [
+                { value: 400, name: 'Desktop Device' },
+                { value: 350, name: 'Laptop & Notebook' },
+                { value: 120, name: 'Tablet Device' },
+                { value: 450, name: 'Smartphone' },
+                { value: 60, name: 'Smart TV' },
+                { value: 50, name: 'Wearable Technology' },
+                { value: 70, name: 'Gaming Console' },
+                { value: 40, name: 'Smart Home Devices' },
+                { value: 20, name: 'Virtual Reality Gear' },
+                { value: 15, name: 'Drones' }
+            ],
+            emphasis: {
+                itemStyle: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            }
+        }
+    ],
+    color: [
+        '#c23531', '#2f4554', '#61a0a8', '#d48265', 
+        '#91c7ae', '#749f83', '#ca8622', '#bda29a',
+        '#6e7074', '#546570'
+    ],
+    grid: {
+        bottom: 150,
+        left: 100,
+        right: 100,
+        containLabel: true
+    },
+    responsive: true
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

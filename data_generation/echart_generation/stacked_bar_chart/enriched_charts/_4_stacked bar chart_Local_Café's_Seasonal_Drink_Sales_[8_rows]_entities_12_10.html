@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {renderer: 'canvas', width: 800, height: 600});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Renewable Energy Sources by Country',
+        subtext: 'Percentage of Electricity Generation',
+        left: 'center',
+        textStyle: {
+            color: '#333',
+            fontSize: 22
+        }
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Hydro', 'Solar', 'Wind', 'Biomass', 'Geothermal'],
+        bottom: 0
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '10%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01],
+        name: 'Percentage',
+        axisLabel: {
+            formatter: '{value} %'
+        }
+    },
+    yAxis: {
+        type: 'category',
+        data: ['USA', 'China', 'Germany', 'India', 'Brazil', 'Japan', 'Australia', 'France', 'Canada', 'Norway']
+    },
+    series: [
+        {
+            name: 'Hydro',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'insideRight',
+                formatter: '{c} %'
+            },
+            data: [30, 25, 15, 20, 35, 22, 18, 30, 35, 40],
+            itemStyle: {
+                color: '#1f77b4'
+            },
+            barWidth: 35
+        },
+        {
+            name: 'Solar',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'insideRight',
+                formatter: '{c} %'
+            },
+            data: [20, 15, 22, 25, 10, 30, 25, 20, 10, 5],
+            itemStyle: {
+                color: '#ff7f0e'
+            },
+            barWidth: 35
+        },
+        {
+            name: 'Wind',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'insideRight',
+                formatter: '{c} %'
+            },
+            data: [25, 20, 30, 15, 15, 20, 40, 25, 20, 10],
+            itemStyle: {
+                color: '#2ca02c'
+            },
+            barWidth: 35
+        },
+        {
+            name: 'Biomass',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'insideRight',
+                formatter: '{c} %'
+            },
+            data: [15, 30, 25, 30, 25, 18, 10, 15, 25, 35],
+            itemStyle: {
+                color: '#d62728'
+            },
+            barWidth: 35
+        },
+        {
+            name: 'Geothermal',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'insideRight',
+                formatter: '{c} %'
+            },
+            data: [10, 10, 8, 10, 15, 10, 7, 10, 10, 10],
+            itemStyle: {
+                color: '#9467bd'
+            },
+            barWidth: 35
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

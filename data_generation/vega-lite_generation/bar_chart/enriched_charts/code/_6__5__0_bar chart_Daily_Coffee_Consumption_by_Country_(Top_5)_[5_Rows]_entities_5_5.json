@@ -1,0 +1,233 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Top 20 Countries by Average Daily Protein Intake",
+    "width": 600,
+    "height": 450,
+    "title": {
+        "text": "Top 20 Countries by Average Daily Protein Intake",
+        "subtitle": [
+            "Protein grams per day per capita",
+            "Source: Global Nutrition Statistico"
+        ],
+        "subtitleFontSize": 10,
+        "subtitleFontStyle": "italic",
+        "anchor": "start"
+    },
+    "data": {
+        "values": [
+            {
+                "Country": "USA",
+                "Protein per day": 120
+            },
+            {
+                "Country": "Australia",
+                "Protein per day": 110
+            },
+            {
+                "Country": "Brazil",
+                "Protein per day": 100
+            },
+            {
+                "Country": "Canada",
+                "Protein per day": 115
+            },
+            {
+                "Country": "China",
+                "Protein per day": 90
+            },
+            {
+                "Country": "France",
+                "Protein per day": 105
+            },
+            {
+                "Country": "Germany",
+                "Protein per day": 110
+            },
+            {
+                "Country": "India",
+                "Protein per day": 60
+            },
+            {
+                "Country": "Japan",
+                "Protein per day": 80
+            },
+            {
+                "Country": "Mexico",
+                "Protein per day": 85
+            },
+            {
+                "Country": "Russia",
+                "Protein per day": 110
+            },
+            {
+                "Country": "South Africa",
+                "Protein per day": 75
+            },
+            {
+                "Country": "United Kingdom",
+                "Protein per day": 110
+            },
+            {
+                "Country": "Italy",
+                "Protein per day": 100
+            },
+            {
+                "Country": "Spain",
+                "Protein per day": 95
+            },
+            {
+                "Country": "Netherlands",
+                "Protein per day": 105
+            },
+            {
+                "Country": "South Korea",
+                "Protein per day": 80
+            },
+            {
+                "Country": "Argentina",
+                "Protein per day": 90
+            },
+            {
+                "Country": "Turkey",
+                "Protein per day": 70
+            },
+            {
+                "Country": "Egypt",
+                "Protein per day": 85
+            },
+            {
+                "Country": "Sweden",
+                "Protein per day": 105
+            },
+            {
+                "Country": "Norway",
+                "Protein per day": 110
+            },
+            {
+                "Country": "Finland",
+                "Protein per day": 100
+            },
+            {
+                "Country": "Denmark",
+                "Protein per day": 105
+            },
+            {
+                "Country": "Belgium",
+                "Protein per day": 100
+            },
+            {
+                "Country": "Switzerland",
+                "Protein per day": 110
+            },
+            {
+                "Country": "Austria",
+                "Protein per day": 105
+            },
+            {
+                "Country": "Ireland",
+                "Protein per day": 110
+            },
+            {
+                "Country": "New Zealand",
+                "Protein per day": 100
+            }
+        ]
+    },
+    "params": [
+        {
+            "name": "highlight",
+            "select": {
+                "type": "point",
+                "on": "mouseover"
+            }
+        },
+        {
+            "name": "select",
+            "select": "point"
+        }
+    ],
+    "mark": {
+        "type": "bar",
+        "color": "#1f77b4",
+        "strokeWidth": 1.5,
+        "cursor": "pointer",
+        "width": {
+            "band": 0.7
+        },
+        "opacity": {
+            "condition": {
+                "param": "highlight",
+                "value": 1
+            },
+            "value": 0.8
+        }
+    },
+    "encoding": {
+        "x": {
+            "field": "Protein per day",
+            "type": "quantitative",
+            "axis": {
+                "grid": false,
+                "title": "Average Protein per Day (grams)",
+                "labelFontSize": 10
+            }
+        },
+        "y": {
+            "field": "Country",
+            "type": "ordinal",
+            "axis": {
+                "labelFontSize": 10,
+                "title": "Country"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Country",
+                "type": "nominal",
+                "title": "Country"
+            },
+            {
+                "field": "Protein per day",
+                "type": "quantitative",
+                "title": "Protein per Day (grams)"
+            }
+        ],
+        "text": {
+            "field": "Protein per day",
+            "type": "quantitative"
+        }
+    },
+    "layer": [
+        {
+            "mark": {
+                "type": "bar",
+                "color": "#1f77b4",
+                "width": {
+                    "band": 0.7
+                },
+                "opacity": {
+                    "condition": {
+                        "param": "highlight",
+                        "value": 1
+                    },
+                    "value": 0.8
+                }
+            }
+        },
+        {
+            "mark": {
+                "type": "text",
+                "align": "left",
+                "dx": 3,
+                "dy": -2,
+                "color": "#000000"
+            },
+            "encoding": {
+                "text": {
+                    "field": "Protein per day",
+                    "type": "quantitative"
+                }
+            }
+        }
+    ]
+}

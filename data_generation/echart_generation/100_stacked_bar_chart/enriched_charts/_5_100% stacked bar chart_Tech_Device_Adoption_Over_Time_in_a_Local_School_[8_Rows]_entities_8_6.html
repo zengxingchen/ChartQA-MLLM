@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Carbon Emissions by Sector',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        },
+        formatter: function (params) {
+            let res = params[0].name + '<br/>';
+            let total = 0;
+            for (let i = 0; i < params.length; i++) {
+                total += params[i].value;
+            }
+            for (let i = 0; i < params.length; i++) {
+                res += params[i].marker + params[i].seriesName + ': ' + (params[i].value / total * 100).toFixed(2) + '%<br/>';
+            }
+            return res;
+        }
+    },
+    legend: {
+        data: ['Renewable Energy', 'Fossil Fuels', 'Industrial Processes', 'Agriculture', 'Waste & Others'],
+        bottom: 0
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '10%',
+        top: '15%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value'
+    },
+    yAxis: {
+        type: 'category',
+        data: ['2020', '2021', '2022', '2023', '2024', '2025']
+    },
+    series: [
+        {
+            name: 'Renewable Energy',
+            type: 'bar',
+            stack: 'total',
+            barWidth: '60%',
+            data: [10, 12, 15, 17, 20, 23],
+            color: '#5EBA7D'
+        },
+        {
+            name: 'Fossil Fuels',
+            type: 'bar',
+            stack: 'total',
+            barWidth: '60%',
+            data: [70, 67, 65, 60, 58, 55],
+            color: '#FFC870'
+        },
+        {
+            name: 'Industrial Processes',
+            type: 'bar',
+            stack: 'total',
+            barWidth: '60%',
+            data: [10, 11, 10, 12, 12, 12],
+            color: '#BDA29A'
+        },
+        {
+            name: 'Agriculture',
+            type: 'bar',
+            stack: 'total',
+            barWidth: '60%',
+            data: [7, 7, 7, 8, 7, 7],
+            color: '#6E7074'
+        },
+        {
+            name: 'Waste & Others',
+            type: 'bar',
+            stack: 'total',
+            barWidth: '60%',
+            data: [3, 3, 3, 3, 3, 3],
+            color: '#546570'
+        }
+    ]
+};
+
+myChart.setOption(option);
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var option;
+
+option = {
+    title: {
+        text: 'Distribution of Interests Across Categories',
+        left: 'center',
+        top: 20
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Graphic Design', 'Photography', 'Painting', 'Astronomy', 'Biology', 'Geology', 'Mental Health', 'Physical Health', 'Nutrition', 'History', 'Sociology', 'Anthropology'],
+        top: 50
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        data: ['Art & Design', 'Science & Nature', 'Health & Psychology', 'Culture & Society'],
+        axisLabel: {
+            interval: 0,
+            rotate: 30
+        }
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Graphic Design',
+            type: 'bar',
+            stack: 'Art & Design',
+            barWidth: '30%',
+            itemStyle: {
+                color: '#FF5733'
+            },
+            data: [120, 0, 0, 0]
+        },
+        {
+            name: 'Photography',
+            type: 'bar',
+            stack: 'Art & Design',
+            itemStyle: {
+                color: '#33FF57'
+            },
+            data: [200, 0, 0, 0]
+        },
+        {
+            name: 'Painting',
+            type: 'bar',
+            stack: 'Art & Design',
+            itemStyle: {
+                color: '#3357FF'
+            },
+            data: [150, 0, 0, 0]
+        },
+        {
+            name: 'Astronomy',
+            type: 'bar',
+            stack: 'Science & Nature',
+            itemStyle: {
+                color: '#FF33A1'
+            },
+            data: [0, 180, 0, 0]
+        },
+        {
+            name: 'Biology',
+            type: 'bar',
+            stack: 'Science & Nature',
+            itemStyle: {
+                color: '#33FFA1'
+            },
+            data: [0, 220, 0, 0]
+        },
+        {
+            name: 'Geology',
+            type: 'bar',
+            stack: 'Science & Nature',
+            itemStyle: {
+                color: '#A133FF'
+            },
+            data: [0, 160, 0, 0]
+        },
+        {
+            name: 'Mental Health',
+            type: 'bar',
+            stack: 'Health & Psychology',
+            itemStyle: {
+                color: '#FFA133'
+            },
+            data: [0, 0, 210, 0]
+        },
+        {
+            name: 'Physical Health',
+            type: 'bar',
+            stack: 'Health & Psychology',
+            itemStyle: {
+                color: '#33A1FF'
+            },
+            data: [0, 0, 190, 0]
+        },
+        {
+            name: 'Nutrition',
+            type: 'bar',
+            stack: 'Health & Psychology',
+            itemStyle: {
+                color: '#A1FF33'
+            },
+            data: [0, 0, 170, 0]
+        },
+        {
+            name: 'History',
+            type: 'bar',
+            stack: 'Culture & Society',
+            itemStyle: {
+                color: '#FF5733'
+            },
+            data: [0, 0, 0, 200]
+        },
+        {
+            name: 'Sociology',
+            type: 'bar',
+            stack: 'Culture & Society',
+            itemStyle: {
+                color: '#33FF57'
+            },
+            data: [0, 0, 0, 180]
+        },
+        {
+            name: 'Anthropology',
+            type: 'bar',
+            stack: 'Culture & Society',
+            itemStyle: {
+                color: '#3357FF'
+            },
+            data: [0, 0, 0, 150]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

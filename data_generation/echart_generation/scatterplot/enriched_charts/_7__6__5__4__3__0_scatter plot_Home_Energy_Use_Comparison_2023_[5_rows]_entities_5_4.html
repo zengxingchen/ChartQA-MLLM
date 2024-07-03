@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, { width: 800, height: 600 });
+var app = {};
+var option;
+option = {
+    title: {
+        text: 'Impact of Daily Activities on Well-being',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['Value1', 'Value2'],
+        top: '10%'
+    },
+    xAxis: {
+        type: 'category',
+        data: ['Exercise', 'Diet', 'Sleep', 'Stress', 'Hydration', 'MentalHealth', 'SocialInteraction', 'Work', 'Leisure', 'Hobbies']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Value1',
+            type: 'scatter',
+            itemStyle: {
+                color: '#FF5733'
+            },
+            data: [35, 40, 50, 45, 30, 55, 60, 70, 65, 75, 80, 85, 90, 95, 100, 105, 110, 115, 120, 125]
+        },
+        {
+            name: 'Value2',
+            type: 'scatter',
+            itemStyle: {
+                color: '#33FF57'
+            },
+            data: [60, 55, 70, 50, 65, 75, 80, 85, 90, 95, 100, 105, 110, 115, 120, 125, 130, 135, 140, 145]
+        }
+    ]
+};
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

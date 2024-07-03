@@ -1,0 +1,217 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Line chart showing monthly air pollution index (AQI) by month for different regions.",
+    "title": {
+        "text": "Monthly Air Pollution Index by Region",
+        "fontSize": 20,
+        "anchor": "start",
+        "color": "#444444"
+    },
+    "width": 800,
+    "height": 500,
+    "data": {
+        "values": [
+            {
+                "Region": "North America",
+                "January": 80,
+                "February": 85,
+                "March": 90,
+                "April": 95,
+                "May": 100,
+                "June": 105,
+                "July": 110,
+                "August": 115,
+                "September": 120,
+                "October": 125,
+                "November": 130,
+                "December": 135
+            },
+            {
+                "Region": "South America",
+                "January": 70,
+                "February": 75,
+                "March": 80,
+                "April": 85,
+                "May": 90,
+                "June": 95,
+                "July": 100,
+                "August": 105,
+                "September": 110,
+                "October": 115,
+                "November": 120,
+                "December": 125
+            },
+            {
+                "Region": "Europe",
+                "January": 60,
+                "February": 65,
+                "March": 70,
+                "April": 75,
+                "May": 80,
+                "June": 85,
+                "July": 90,
+                "August": 95,
+                "September": 100,
+                "October": 105,
+                "November": 110,
+                "December": 115
+            },
+            {
+                "Region": "Asia",
+                "January": 100,
+                "February": 105,
+                "March": 110,
+                "April": 115,
+                "May": 120,
+                "June": 125,
+                "July": 130,
+                "August": 135,
+                "September": 140,
+                "October": 145,
+                "November": 150,
+                "December": 155
+            },
+            {
+                "Region": "Australia",
+                "January": 50,
+                "February": 55,
+                "March": 60,
+                "April": 65,
+                "May": 70,
+                "June": 75,
+                "July": 80,
+                "August": 85,
+                "September": 90,
+                "October": 95,
+                "November": 100,
+                "December": 105
+            },
+            {
+                "Region": "Africa",
+                "January": 40,
+                "February": 45,
+                "March": 50,
+                "April": 55,
+                "May": 60,
+                "June": 65,
+                "July": 70,
+                "August": 75,
+                "September": 80,
+                "October": 85,
+                "November": 90,
+                "December": 95
+            },
+            {
+                "Region": "Middle East",
+                "January": 90,
+                "February": 95,
+                "March": 100,
+                "April": 105,
+                "May": 110,
+                "June": 115,
+                "July": 120,
+                "August": 125,
+                "September": 130,
+                "October": 135,
+                "November": 140,
+                "December": 145
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "January",
+                "February",
+                "March",
+                "April",
+                "May",
+                "June",
+                "July",
+                "August",
+                "September",
+                "October",
+                "November",
+                "December"
+            ],
+            "as": [
+                "Month",
+                "AQI"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "line",
+        "point": true
+    },
+    "encoding": {
+        "x": {
+            "field": "Month",
+            "type": "ordinal",
+            "title": "Month",
+            "axis": {
+                "titleFontSize": 14,
+                "labelAngle": -45
+            }
+        },
+        "y": {
+            "field": "AQI",
+            "type": "quantitative",
+            "title": "Air Pollution Index (AQI)",
+            "axis": {
+                "titleFontSize": 14,
+                "labelColor": "#555555",
+                "gridColor": "#cccccc"
+            },
+            "scale": {
+                "reverse": true
+            }
+        },
+        "color": {
+            "field": "Region",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "North America",
+                    "South America",
+                    "Europe",
+                    "Asia",
+                    "Australia",
+                    "Africa",
+                    "Middle East"
+                ],
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e",
+                    "#2ca02c",
+                    "#d62728",
+                    "#9467bd",
+                    "#8c564b",
+                    "#e377c2"
+                ]
+            },
+            "legend": {
+                "title": "Region"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Region",
+                "type": "nominal"
+            },
+            {
+                "field": "Month",
+                "type": "ordinal"
+            },
+            {
+                "field": "AQI",
+                "type": "quantitative"
+            }
+        ]
+    },
+    "config": {
+        "axisY": {
+            "minExtent": 30
+        }
+    }
+}

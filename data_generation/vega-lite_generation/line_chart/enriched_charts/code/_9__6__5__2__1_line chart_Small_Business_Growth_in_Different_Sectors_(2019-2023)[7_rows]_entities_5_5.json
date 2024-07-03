@@ -1,0 +1,178 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Trends in Economic Indicators Over the Years",
+    "data": {
+        "values": [
+            {
+                "Year": 2010,
+                "GDP Growth": 2.5,
+                "Inflation Rate": 1.2,
+                "Unemployment Rate": 5.8,
+                "Stock Market Index": 1500,
+                "Funding (Billion $)": 10.0
+            },
+            {
+                "Year": 2011,
+                "GDP Growth": 3.0,
+                "Inflation Rate": 1.5,
+                "Unemployment Rate": 5.6,
+                "Stock Market Index": 1550,
+                "Funding (Billion $)": 12.0
+            },
+            {
+                "Year": 2012,
+                "GDP Growth": 3.5,
+                "Inflation Rate": 1.7,
+                "Unemployment Rate": 5.4,
+                "Stock Market Index": 1600,
+                "Funding (Billion $)": 14.0
+            },
+            {
+                "Year": 2013,
+                "GDP Growth": 4.0,
+                "Inflation Rate": 1.8,
+                "Unemployment Rate": 5.2,
+                "Stock Market Index": 1650,
+                "Funding (Billion $)": 16.0
+            },
+            {
+                "Year": 2014,
+                "GDP Growth": 4.5,
+                "Inflation Rate": 2.0,
+                "Unemployment Rate": 5.0,
+                "Stock Market Index": 1700,
+                "Funding (Billion $)": 18.0
+            },
+            {
+                "Year": 2015,
+                "GDP Growth": 5.0,
+                "Inflation Rate": 2.2,
+                "Unemployment Rate": 4.8,
+                "Stock Market Index": 1750,
+                "Funding (Billion $)": 20.0
+            },
+            {
+                "Year": 2016,
+                "GDP Growth": 5.5,
+                "Inflation Rate": 2.4,
+                "Unemployment Rate": 4.6,
+                "Stock Market Index": 1800,
+                "Funding (Billion $)": 22.0
+            },
+            {
+                "Year": 2017,
+                "GDP Growth": 6.0,
+                "Inflation Rate": 2.5,
+                "Unemployment Rate": 4.4,
+                "Stock Market Index": 1850,
+                "Funding (Billion $)": 24.0
+            },
+            {
+                "Year": 2018,
+                "GDP Growth": 6.5,
+                "Inflation Rate": 2.7,
+                "Unemployment Rate": 4.2,
+                "Stock Market Index": 1900,
+                "Funding (Billion $)": 26.0
+            },
+            {
+                "Year": 2019,
+                "GDP Growth": 7.0,
+                "Inflation Rate": 2.9,
+                "Unemployment Rate": 4.0,
+                "Stock Market Index": 1950,
+                "Funding (Billion $)": 28.0
+            },
+            {
+                "Year": 2020,
+                "GDP Growth": 7.5,
+                "Inflation Rate": 3.0,
+                "Unemployment Rate": 3.8,
+                "Stock Market Index": 2000,
+                "Funding (Billion $)": 30.0
+            },
+            {
+                "Year": 2021,
+                "GDP Growth": 8.0,
+                "Inflation Rate": 3.2,
+                "Unemployment Rate": 3.6,
+                "Stock Market Index": 2050,
+                "Funding (Billion $)": 32.0
+            },
+            {
+                "Year": 2022,
+                "GDP Growth": 8.5,
+                "Inflation Rate": 3.4,
+                "Unemployment Rate": 3.4,
+                "Stock Market Index": 2100,
+                "Funding (Billion $)": 34.0
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "GDP Growth",
+                "Inflation Rate",
+                "Unemployment Rate",
+                "Stock Market Index",
+                "Funding (Billion $)"
+            ],
+            "as": [
+                "Indicator",
+                "Value"
+            ]
+        }
+    ],
+    "width": 800,
+    "height": 500,
+    "mark": {
+        "type": "line",
+        "point": true
+    },
+    "encoding": {
+        "x": {
+            "field": "Year",
+            "type": "ordinal",
+            "title": "Year"
+        },
+        "y": {
+            "field": "Value",
+            "type": "quantitative",
+            "title": "Indicator Values",
+            "axis": {
+                "format": ".1f"
+            }
+        },
+        "color": {
+            "field": "Indicator",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "GDP Growth",
+                    "Inflation Rate",
+                    "Unemployment Rate",
+                    "Stock Market Index",
+                    "Funding (Billion $)"
+                ],
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e",
+                    "#2ca02c",
+                    "#d62728",
+                    "#9467bd"
+                ]
+            },
+            "title": "Economic Indicators"
+        },
+        "text": {
+            "field": "Value",
+            "type": "quantitative"
+        }
+    },
+    "config": {
+        "axisY": {
+            "minExtent": 30
+        }
+    }
+}

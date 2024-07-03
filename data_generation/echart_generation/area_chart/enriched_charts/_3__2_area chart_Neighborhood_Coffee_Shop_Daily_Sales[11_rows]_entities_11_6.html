@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 800,
+    height: 600
+});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Stock Market Analysis',
+        left: 'center',
+        top: 'bottom'
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    legend: {
+        data: ['Stock Value'],
+        top: 'top'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: [
+            '2023-01-01', '2023-01-02', '2023-01-03', '2023-01-04', '2023-01-05',
+            '2023-01-06', '2023-01-07', '2023-01-08', '2023-01-09', '2023-01-10',
+            '2023-01-11', '2023-01-12', '2023-01-13', '2023-01-14', '2023-01-15',
+            '2023-01-16', '2023-01-17', '2023-01-18', '2023-01-19', '2023-01-20',
+            '2023-01-21', '2023-01-22', '2023-01-23', '2023-01-24', '2023-01-25',
+            '2023-01-26', '2023-01-27', '2023-01-28', '2023-01-29', '2023-01-30'
+        ]
+    },
+    yAxis: {
+        type: 'value',
+        axisLabel: {
+            formatter: '{value}'
+        }
+    },
+    series: [
+        {
+            name: 'Stock Value',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            itemStyle: {
+                color: '#FF0000'
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [
+                150, 147, 143, 139, 135, 130, 125, 121, 116, 112,
+                108, 104, 100, 97, 93, 89, 86, 82, 79, 76, 73, 70,
+                67, 64, 61, 59, 56, 54, 51, 49
+            ],
+            markPoint: {
+                data: [
+                    {type: 'max', name: 'Max'},
+                    {type: 'min', name: 'Min'}
+                ]
+            },
+            markLine: {
+                data: [
+                    {type: 'average', name: 'Average'}
+                ]
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,184 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Line chart showing the trend of step counts in different sports over a week.",
+    "title": {
+        "text": "Step Counts of Different Sports by Day",
+        "fontSize": 16,
+        "anchor": "start",
+        "color": "black"
+    },
+    "width": 1000,
+    "height": 700,
+    "data": {
+        "values": [
+            {
+                "Sport": "Running",
+                "Monday": 1000,
+                "Tuesday": 1200,
+                "Wednesday": 1400,
+                "Thursday": 1500,
+                "Friday": 1800,
+                "Saturday": 2000,
+                "Sunday": 2200
+            },
+            {
+                "Sport": "Walking",
+                "Monday": 800,
+                "Tuesday": 900,
+                "Wednesday": 1000,
+                "Thursday": 1100,
+                "Friday": 1200,
+                "Saturday": 1300,
+                "Sunday": 1400
+            },
+            {
+                "Sport": "Cycling",
+                "Monday": 700,
+                "Tuesday": 800,
+                "Wednesday": 900,
+                "Thursday": 1000,
+                "Friday": 1100,
+                "Saturday": 1200,
+                "Sunday": 1300
+            },
+            {
+                "Sport": "Swimming",
+                "Monday": 600,
+                "Tuesday": 700,
+                "Wednesday": 800,
+                "Thursday": 900,
+                "Friday": 1000,
+                "Saturday": 1100,
+                "Sunday": 1200
+            },
+            {
+                "Sport": "Yoga",
+                "Monday": 500,
+                "Tuesday": 600,
+                "Wednesday": 700,
+                "Thursday": 800,
+                "Friday": 900,
+                "Saturday": 1000,
+                "Sunday": 1100
+            },
+            {
+                "Sport": "Hiking",
+                "Monday": 900,
+                "Tuesday": 1000,
+                "Wednesday": 1100,
+                "Thursday": 1200,
+                "Friday": 1300,
+                "Saturday": 1400,
+                "Sunday": 1500
+            },
+            {
+                "Sport": "Basketball",
+                "Monday": 1100,
+                "Tuesday": 1300,
+                "Wednesday": 1500,
+                "Thursday": 1700,
+                "Friday": 1900,
+                "Saturday": 2100,
+                "Sunday": 2300
+            },
+            {
+                "Sport": "Tennis",
+                "Monday": 950,
+                "Tuesday": 1050,
+                "Wednesday": 1150,
+                "Thursday": 1250,
+                "Friday": 1350,
+                "Saturday": 1450,
+                "Sunday": 1550
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday",
+                "Friday",
+                "Saturday",
+                "Sunday"
+            ],
+            "as": [
+                "Day",
+                "Step Count"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "line",
+        "point": true
+    },
+    "encoding": {
+        "x": {
+            "field": "Day",
+            "type": "ordinal",
+            "title": "Day of the Week",
+            "axis": {
+                "titleFontSize": 12,
+                "labelAngle": -45
+            }
+        },
+        "y": {
+            "field": "Step Count",
+            "type": "quantitative",
+            "title": "Step Count",
+            "axis": {
+                "titleFontSize": 12
+            }
+        },
+        "color": {
+            "field": "Sport",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Running",
+                    "Walking",
+                    "Cycling",
+                    "Swimming",
+                    "Yoga",
+                    "Hiking",
+                    "Basketball",
+                    "Tennis"
+                ],
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e",
+                    "#2ca02c",
+                    "#d62728",
+                    "#9467bd",
+                    "#8c564b",
+                    "#e377c2",
+                    "#7f7f7f"
+                ]
+            },
+            "legend": {
+                "title": "Sport"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Sport",
+                "type": "nominal"
+            },
+            {
+                "field": "Day",
+                "type": "ordinal"
+            },
+            {
+                "field": "Step Count",
+                "type": "quantitative"
+            }
+        ]
+    },
+    "config": {
+        "axisY": {
+            "minExtent": 30
+        }
+    }
+}

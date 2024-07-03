@@ -1,0 +1,185 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Line chart of the number of tourists visiting major continents from 2010 to 2023",
+    "data": {
+        "values": [
+            {
+                "Year": 2010,
+                "Americas": 50000,
+                "Europe": 45000,
+                "Asia": 40000,
+                "Africa": 15000,
+                "Oceania": 12000
+            },
+            {
+                "Year": 2011,
+                "Americas": 52000,
+                "Europe": 47000,
+                "Asia": 42000,
+                "Africa": 16000,
+                "Oceania": 12500
+            },
+            {
+                "Year": 2012,
+                "Americas": 54000,
+                "Europe": 49000,
+                "Asia": 44000,
+                "Africa": 17000,
+                "Oceania": 13000
+            },
+            {
+                "Year": 2013,
+                "Americas": 56000,
+                "Europe": 51000,
+                "Asia": 46000,
+                "Africa": 18000,
+                "Oceania": 13500
+            },
+            {
+                "Year": 2014,
+                "Americas": 58000,
+                "Europe": 53000,
+                "Asia": 48000,
+                "Africa": 19000,
+                "Oceania": 14000
+            },
+            {
+                "Year": 2015,
+                "Americas": 60000,
+                "Europe": 55000,
+                "Asia": 50000,
+                "Africa": 20000,
+                "Oceania": 14500
+            },
+            {
+                "Year": 2016,
+                "Americas": 62000,
+                "Europe": 57000,
+                "Asia": 52000,
+                "Africa": 21000,
+                "Oceania": 15000
+            },
+            {
+                "Year": 2017,
+                "Americas": 64000,
+                "Europe": 59000,
+                "Asia": 54000,
+                "Africa": 22000,
+                "Oceania": 15500
+            },
+            {
+                "Year": 2018,
+                "Americas": 66000,
+                "Europe": 61000,
+                "Asia": 56000,
+                "Africa": 23000,
+                "Oceania": 16000
+            },
+            {
+                "Year": 2019,
+                "Americas": 68000,
+                "Europe": 63000,
+                "Asia": 58000,
+                "Africa": 24000,
+                "Oceania": 16500
+            },
+            {
+                "Year": 2020,
+                "Americas": 70000,
+                "Europe": 65000,
+                "Asia": 60000,
+                "Africa": 25000,
+                "Oceania": 17000
+            },
+            {
+                "Year": 2021,
+                "Americas": 72000,
+                "Europe": 67000,
+                "Asia": 62000,
+                "Africa": 26000,
+                "Oceania": 17500
+            },
+            {
+                "Year": 2022,
+                "Americas": 74000,
+                "Europe": 69000,
+                "Asia": 64000,
+                "Africa": 27000,
+                "Oceania": 18000
+            },
+            {
+                "Year": 2023,
+                "Americas": 76000,
+                "Europe": 71000,
+                "Asia": 66000,
+                "Africa": 28000,
+                "Oceania": 18500
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Americas",
+                "Europe",
+                "Asia",
+                "Africa",
+                "Oceania"
+            ],
+            "as": [
+                "Continent",
+                "Tourists"
+            ]
+        }
+    ],
+    "width": 700,
+    "height": 400,
+    "mark": {
+        "type": "line",
+        "point": true
+    },
+    "encoding": {
+        "x": {
+            "field": "Year",
+            "type": "ordinal",
+            "title": "Year"
+        },
+        "y": {
+            "field": "Tourists",
+            "type": "quantitative",
+            "title": "Number of Tourists (in thousands)",
+            "axis": {
+                "format": ".0f"
+            },
+            "scale": {
+                "reverse": true
+            }
+        },
+        "color": {
+            "field": "Continent",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Americas",
+                    "Europe",
+                    "Asia",
+                    "Africa",
+                    "Oceania"
+                ],
+                "range": [
+                    "#1f78b4",
+                    "#33a02c",
+                    "#e31a1c",
+                    "#ff7f00",
+                    "#6a3d9a"
+                ]
+            },
+            "title": "Continent"
+        }
+    },
+    "config": {
+        "axisY": {
+            "minExtent": 30
+        }
+    }
+}

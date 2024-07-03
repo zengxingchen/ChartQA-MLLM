@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+var option;
+
+option = {
+    title: {
+        text: 'Decline in Productivity Over Time',
+        left: 'center',
+        top: '20'
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: '{a} <br/>{b} : {c}'
+    },
+    legend: {
+        data: ['Productivity'],
+        left: 'left',
+        top: 'bottom'
+    },
+    xAxis: {
+        type: 'value',
+        name: 'Time (Days)',
+        nameLocation: 'middle',
+        nameGap: 25
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Productivity (%)',
+        nameLocation: 'middle',
+        nameGap: 35
+    },
+    series: [
+        {
+            name: 'Productivity',
+            type: 'scatter',
+            itemStyle: {
+                color: '#FF5733'
+            },
+            data: [
+                [1, 98], [2, 95], [3, 90], [4, 88], [5, 85], [6, 82], [7, 79], [8, 78], [9, 75], [10, 74], 
+                [11, 72], [12, 70], [13, 68], [14, 67], [15, 65], [16, 63], [17, 61], [18, 60], [19, 58], [20, 56], 
+                [21, 55], [22, 53], [23, 52], [24, 50], [25, 49], [26, 47], [27, 45], [28, 44], [29, 42], [30, 40]
+            ]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

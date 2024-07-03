@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Daily Step Count Trends',
+        left: 'center',
+        top: '5%',
+        textStyle: {
+            color: '#333333',
+            fontSize: 18
+        }
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: Array.from({length: 30}, (_, i) => i + 1),
+        name: 'Day'
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Steps'
+    },
+    series: [
+        {
+            name: 'Steps',
+            type: 'line',
+            data: [5000, 7000, 6500, 7200, 6800, 7400, 7800, 8000, 8500, 9000, 8700, 9100, 8800, 9200, 9400, 9600, 9800, 10000, 10200, 10500, 10800, 11000, 11200, 11400, 11500, 11700, 11900, 12000, 12200, 12300],
+            lineStyle: {
+                color: '#1f78b4'
+            },
+            itemStyle: {
+                color: '#1f78b4'
+            },
+            label: {
+                show: true,
+                position: 'top'
+            }
+        }
+    ],
+    color: ['#1f78b4']
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

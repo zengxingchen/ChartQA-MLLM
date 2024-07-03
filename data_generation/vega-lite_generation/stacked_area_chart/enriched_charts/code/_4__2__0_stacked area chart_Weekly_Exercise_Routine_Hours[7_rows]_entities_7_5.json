@@ -1,0 +1,184 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Stacked area chart of monthly online course enrollments in various fields of study",
+    "width": 600,
+    "height": 400,
+    "title": {
+        "text": "Monthly Online Course Enrollments by Field of Study",
+        "anchor": "start",
+        "fontSize": 18,
+        "offset": 20
+    },
+    "data": {
+        "values": [
+            {
+                "Month": "January",
+                "Technology": 8000,
+                "Science": 6000,
+                "Humanities": 12000,
+                "Art": 3000,
+                "Business": 5000
+            },
+            {
+                "Month": "February",
+                "Technology": 8500,
+                "Science": 6300,
+                "Humanities": 13000,
+                "Art": 3500,
+                "Business": 5200
+            },
+            {
+                "Month": "March",
+                "Technology": 9000,
+                "Science": 6700,
+                "Humanities": 14000,
+                "Art": 3800,
+                "Business": 5400
+            },
+            {
+                "Month": "April",
+                "Technology": 9500,
+                "Science": 7000,
+                "Humanities": 14500,
+                "Art": 3900,
+                "Business": 5600
+            },
+            {
+                "Month": "May",
+                "Technology": 10000,
+                "Science": 7400,
+                "Humanities": 15000,
+                "Art": 4000,
+                "Business": 5800
+            },
+            {
+                "Month": "June",
+                "Technology": 11000,
+                "Science": 7800,
+                "Humanities": 16000,
+                "Art": 4200,
+                "Business": 6000
+            },
+            {
+                "Month": "July",
+                "Technology": 11500,
+                "Science": 8000,
+                "Humanities": 17000,
+                "Art": 4400,
+                "Business": 6300
+            },
+            {
+                "Month": "August",
+                "Technology": 12000,
+                "Science": 8300,
+                "Humanities": 18000,
+                "Art": 4500,
+                "Business": 6500
+            },
+            {
+                "Month": "September",
+                "Technology": 11000,
+                "Science": 7900,
+                "Humanities": 17500,
+                "Art": 4300,
+                "Business": 6200
+            },
+            {
+                "Month": "October",
+                "Technology": 10500,
+                "Science": 7600,
+                "Humanities": 16500,
+                "Art": 4100,
+                "Business": 6100
+            },
+            {
+                "Month": "November",
+                "Technology": 10000,
+                "Science": 7300,
+                "Humanities": 16000,
+                "Art": 4000,
+                "Business": 5900
+            },
+            {
+                "Month": "December",
+                "Technology": 9500,
+                "Science": 6900,
+                "Humanities": 15000,
+                "Art": 3800,
+                "Business": 5700
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Technology",
+                "Science",
+                "Humanities",
+                "Art",
+                "Business"
+            ],
+            "as": [
+                "Field of Study",
+                "Enrollments"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "area",
+        "opacity": 0.7
+    },
+    "encoding": {
+        "x": {
+            "field": "Month",
+            "type": "ordinal",
+            "axis": {
+                "title": "Month"
+            }
+        },
+        "y": {
+            "field": "Enrollments",
+            "type": "quantitative",
+            "title": "Number of Enrollments",
+            "stack": "zero"
+        },
+        "color": {
+            "field": "Field of Study",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Technology",
+                    "Science",
+                    "Humanities",
+                    "Art",
+                    "Business"
+                ],
+                "range": [
+                    "#1f77b4",
+                    "#aec7e8",
+                    "#ff7f0e",
+                    "#ffbb78",
+                    "#2ca02c"
+                ]
+            },
+            "title": "Field of Study"
+        },
+        "tooltip": [
+            {
+                "field": "Month",
+                "type": "ordinal",
+                "title": "Month"
+            },
+            {
+                "field": "Field of Study",
+                "type": "nominal",
+                "title": "Field of Study"
+            },
+            {
+                "field": "Enrollments",
+                "type": "quantitative",
+                "title": "Number of Enrollments"
+            }
+        ]
+    }
+}

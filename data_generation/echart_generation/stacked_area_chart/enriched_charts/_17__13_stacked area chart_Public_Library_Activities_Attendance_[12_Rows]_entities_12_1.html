@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 400});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Monthly Sales Analysis',
+        left: 'left'
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['E-commerce Sales', 'Retail Sales', 'Direct Sales'],
+        top: '4%'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: [
+            '2021-01', '2021-02', '2021-03', '2021-04', '2021-05', '2021-06', 
+            '2021-07', '2021-08', '2021-09', '2021-10', '2021-11', '2021-12', 
+            '2022-01', '2022-02', '2022-03', '2022-04', '2022-05', '2022-06', 
+            '2022-07', '2022-08', '2022-09', '2022-10', '2022-11', '2022-12'
+        ]
+    },
+    yAxis: {
+        type: 'value',
+        axisLabel: {
+            formatter: '{value} $'
+        }
+    },
+    series: [
+        {
+            name: 'E-commerce Sales',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [
+                10000, 11000, 12000, 11500, 12500, 13000,
+                14000, 14500, 15000, 15500, 16000, 16500,
+                17000, 17500, 18000, 18500, 19000, 19500,
+                20000, 20500, 21000, 21500, 22000, 22500
+            ],
+            color: '#33CCCC'
+        },
+        {
+            name: 'Retail Sales',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [
+                8000, 8400, 8600, 8800, 8500, 8700,
+                9000, 9300, 9500, 9700, 9800, 9900,
+                10000, 10200, 10300, 10400, 10500, 10600,
+                10700, 10800, 10900, 11000, 11100, 11200
+            ],
+            color: '#9966FF'
+        },
+        {
+            name: 'Direct Sales',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [
+                6000, 6100, 6200, 6300, 6400, 6500,
+                6600, 6700, 6800, 6900, 7000, 7100,
+                7200, 7300, 7400, 7500, 7600, 7700,
+                7800, 7900, 8000, 8100, 8200, 8300
+            ],
+            color: '#FFCC00'
+        }
+    ],
+    markPoint: {
+        data: [
+            {type: 'max', name: 'Max'},
+            {type: 'min', name: 'Min'}
+        ]
+    },
+    markLine: {
+        data: [
+            {type: 'average', name: 'Avg'}
+        ]
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

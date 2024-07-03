@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, { width: 700, height: 500 });
+var option;
+
+option = {
+    title: {
+        text: 'Future Technologies & Society',
+        left: 'center',
+        top: '20px'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Future', 'Emerging', 'Promising', 'Experimental', 'Traditional'],
+        top: '50px'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        data: ['AI', 'Robotics', 'Biotech', 'Quantum Computing', 'Space Tech'],
+        axisLabel: {
+            interval: 0,
+            rotate: 30,
+            fontSize: 12
+        }
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Development Level',
+        nameLocation: 'middle',
+        nameGap: 40
+    },
+    series: [
+        {
+            name: 'Future',
+            type: 'bar',
+            data: [40, 30, 25, 20, 15],
+            itemStyle: {
+                color: '#FF6F61'
+            },
+            barWidth: 20
+        },
+        {
+            name: 'Emerging',
+            type: 'bar',
+            data: [32, 35, 30, 22, 18],
+            itemStyle: {
+                color: '#6B5B95'
+            },
+            barWidth: 20
+        },
+        {
+            name: 'Promising',
+            type: 'bar',
+            data: [25, 22, 28, 18, 20],
+            itemStyle: {
+                color: '#88B04B'
+            },
+            barWidth: 20
+        },
+        {
+            name: 'Experimental',
+            type: 'bar',
+            data: [20, 18, 15, 25, 22],
+            itemStyle: {
+                color: '#F7CAC9'
+            },
+            barWidth: 20
+        },
+        {
+            name: 'Traditional',
+            type: 'bar',
+            data: [15, 10, 12, 8, 5],
+            itemStyle: {
+                color: '#92A8D1'
+            },
+            barWidth: 20
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

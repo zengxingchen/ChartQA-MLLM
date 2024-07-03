@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+
+var option;
+
+// Original data
+var rawData = [
+    {'Season': 'Winter', 'Espresso (cups)': 750, 'Latte (cups)': 500, 'Cappuccino (cups)': 300, 'Iced Coffee (cups)': 200, 'Pastries (units)': 450},
+    {'Season': 'Winter', 'Espresso (cups)': 790, 'Latte (cups)': 520, 'Cappuccino (cups)': 350, 'Iced Coffee (cups)': 180, 'Pastries (units)': 470},
+    {'Season': 'Spring', 'Espresso (cups)': 650, 'Latte (cups)': 630, 'Cappuccino (cups)': 400, 'Iced Coffee (cups)': 350, 'Pastries (units)': 440},
+    {'Season': 'Spring', 'Espresso (cups)': 700, 'Latte (cups)': 610, 'Cappuccino (cups)': 420, 'Iced Coffee (cups)': 370, 'Pastries (units)': 480},
+    {'Season': 'Summer', 'Espresso (cups)': 550, 'Latte (cups)': 720, 'Cappuccino (cups)': 380, 'Iced Coffee (cups)': 800, 'Pastries (units)': 500},
+    {'Season': 'Summer', 'Espresso (cups)': 560, 'Latte (cups)': 710, 'Cappuccino (cups)': 390, 'Iced Coffee (cups)': 820, 'Pastries (units)': 510},
+    {'Season': 'Fall', 'Espresso (cups)': 640, 'Latte (cups)': 600, 'Cappuccino (cups)': 410, 'Iced Coffee (cups)': 290, 'Pastries (units)': 460},
+    {'Season': 'Fall', 'Espresso (cups)': 680, 'Latte (cups)': 590, 'Cappuccino (cups)': 430, 'Iced Coffee (cups)': 280, 'Pastries (units)': 470}
+];
+
+// Aggregate data by season
+var seasons = ['Winter', 'Spring', 'Summer', 'Fall'];
+var categories = ['Espresso (cups)', 'Latte (cups)', 'Cappuccino (cups)', 'Iced Coffee (cups)', 'Pastries (units)'];
+var aggregatedData = {};
+
+seasons.forEach(function(season) {
+    aggregatedData[season] = {};
+    categories.forEach(function(category) {
+        aggregatedData[season][category] = 0;
+    });
+});
+
+rawData.forEach(function(data) {
+    categories.forEach(function(category) {
+        aggregatedData[data.Season][category] += data[category];
+    });
+});
+
+// Prepare series data for ECharts
+var series = categories.map(function(category) {
+    var seriesData = seasons.map(function(season) {
+        return aggregatedData[season][category];
+    });
+    return {
+        name: category,
+        type: 'line',
+        stack: 'total',
+        areaStyle: {},
+        emphasis: {
+            focus: 'series'
+        },
+        data: seriesData
+    };
+});
+
+option = {
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            label: {
+                backgroundColor: '#6a7985'
+            }
+        }
+    },
+    legend: {
+        data: categories
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: [
+        {
+            type: 'category',
+            boundaryGap: false,
+            data: seasons
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value'
+        }
+    ],
+    series: series
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

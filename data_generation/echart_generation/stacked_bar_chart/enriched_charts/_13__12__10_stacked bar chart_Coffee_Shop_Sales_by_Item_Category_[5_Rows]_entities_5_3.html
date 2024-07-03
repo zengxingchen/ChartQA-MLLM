@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 1000, height: 600});
+var app = {};
+var option;
+
+option = {
+    title: {
+        text: 'Quarterly Revenue Comparison of Tech Companies',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        top: '10%',
+        data: ['Company A', 'Company B', 'Company C', 'Company D']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        name: 'Revenue (in million USD)',
+        nameLocation: 'middle',
+        nameGap: 35
+    },
+    yAxis: {
+        type: 'category',
+        data: ['Q1 2023', 'Q2 2023', 'Q3 2023', 'Q4 2023', 'Q1 2024', 'Q2 2024', 'Q3 2024', 'Q4 2024']
+    },
+    series: [
+        {
+            name: 'Company A',
+            type: 'bar',
+            stack: 'Total',
+            label: {
+                show: true
+            },
+            itemStyle: {
+                color: '#1f78b4'
+            },
+            data: [120, 150, 180, 200, 220, 240, 260, 280]
+        },
+        {
+            name: 'Company B',
+            type: 'bar',
+            stack: 'Total',
+            label: {
+                show: true
+            },
+            itemStyle: {
+                color: '#33a02c'
+            },
+            data: [140, 130, 170, 190, 200, 210, 230, 250]
+        },
+        {
+            name: 'Company C',
+            type: 'bar',
+            stack: 'Total',
+            label: {
+                show: true
+            },
+            itemStyle: {
+                color: '#fb9a99'
+            },
+            data: [100, 120, 140, 160, 180, 200, 220, 240]
+        },
+        {
+            name: 'Company D',
+            type: 'bar',
+            stack: 'Total',
+            label: {
+                show: true
+            },
+            itemStyle: {
+                color: '#e31a1c'
+            },
+            data: [130, 160, 190, 210, 230, 250, 270, 290]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

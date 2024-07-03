@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: '600',
+    height: '400'
+});
+var option;
+
+const data = [
+    {name: 'Renewable Energy', value: 120},
+    {name: 'Solar Power', value: 40},
+    {name: 'Wind Power', value: 30},
+    {name: 'Hydroelectric', value: 50},
+    {name: 'Geothermal', value: 10},
+    {name: 'Energy Storage', value: 60},
+    {name: 'Batteries', value: 30},
+    {name: 'Flywheels', value: 10},
+    {name: 'Pumped Storage', value: 20},
+    {name: 'Electric Vehicles', value: 80},
+    {name: 'Personal Cars', value: 40},
+    {name: 'Buses', value: 10},
+    {name: 'Scooters', value: 10},
+    {name: 'Bicycles', value: 10},
+    {name: 'Commercial Aircraft', value: 40},
+    {name: 'Hydrogen', value: 10},
+    {name: 'Biofuels', value: 20},
+    {name: 'Climate Modeling', value: 70},
+    {name: 'Atmospheric Studies', value: 20},
+    {name: 'Oceanography', value: 25},
+    {name: 'Ecosystem Analysis', value: 25},
+    {name: 'Sustainable Agriculture', value: 45},
+    {name: 'Crop Development', value: 20},
+    {name: 'Livestock Management', value: 10},
+    {name: 'Aquaculture', value: 15}
+];
+
+option = {
+    title: {
+        text: 'Energy & Environment Innovations',
+        left: 'center',
+        top: '5%'
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: "{b}: {c}"
+    },
+    color: [
+      "#00876c", "#6aaa96", "#aecdc2", "#f1f1f1", 
+      "#f0b8b8", "#e67f83", "#d43d51"
+    ],
+    series: [
+        {
+            name: 'Innovations',
+            type: 'treemap',
+            visibleMin: 300,
+            label: {
+                show: true,
+                formatter: "{b}"
+            },
+            upperLabel: {
+                normal: {
+                    show: true,
+                    height: 30
+                }
+            },
+            itemStyle: {
+                normal: {
+                    borderColor: '#fff'
+                }
+            },
+            levels: [
+                {
+                    itemStyle: {
+                        normal: {
+                            borderColor: '#777',
+                            borderWidth: 0,
+                            gapWidth: 1
+                        }
+                    },
+                    upperLabel: {
+                        normal: {
+                            show: false
+                        }
+                    }
+                }
+            ],
+            data: data
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

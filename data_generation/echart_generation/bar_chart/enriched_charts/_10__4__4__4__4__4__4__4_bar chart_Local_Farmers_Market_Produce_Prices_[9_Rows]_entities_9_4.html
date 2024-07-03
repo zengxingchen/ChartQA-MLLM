@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, { width: 800, height: 600 });
+var app = {};
+
+var option = {
+    title: {
+        text: 'Key Factors in Health & Psychology',
+        left: 'center',
+        top: '20'
+    },
+    color: ['#FF6347', '#4682B4', '#3CB371', '#FFA07A', '#20B2AA', '#9370DB', '#FF69B4', '#8B0000', '#8FBC8F', '#FF8C00', '#7B68EE', '#C71585', '#DB7093', '#778899'],
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    grid: {
+        left: '10%',
+        right: '10%',
+        bottom: '10%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        data: ['Mental Health Awareness', 'Physical Exercise', 'Healthy Eating', 'Sleep Quality', 'Stress Management', 'Meditation', 'Social Connections', 'Work-Life Balance', 'Hobbies and Interests', 'Time Management', 'Self-Help Books', 'Therapy and Counseling', 'Positive Thinking', 'Mindfulness'],
+        axisLabel: {
+            rotate: 30,
+            interval: 0
+        }
+    },
+    yAxis: {
+        type: 'value',
+        min: 0,
+        max: 100
+    },
+    series: [
+        {
+            name: 'Value',
+            type: 'bar',
+            barWidth: '30%',
+            data: [
+                {value: 80, itemStyle: {color: '#FF6347'}, label: {show: true, position: 'top'}},
+                {value: 65, itemStyle: {color: '#4682B4'}, label: {show: true, position: 'top'}},
+                {value: 90, itemStyle: {color: '#3CB371'}, label: {show: true, position: 'top'}},
+                {value: 70, itemStyle: {color: '#FFA07A'}, label: {show: true, position: 'top'}},
+                {value: 75, itemStyle: {color: '#20B2AA'}, label: {show: true, position: 'top'}},
+                {value: 60, itemStyle: {color: '#9370DB'}, label: {show: true, position: 'top'}},
+                {value: 85, itemStyle: {color: '#FF69B4'}, label: {show: true, position: 'top'}},
+                {value: 55, itemStyle: {color: '#8B0000'}, label: {show: true, position: 'top'}},
+                {value: 95, itemStyle: {color: '#8FBC8F'}, label: {show: true, position: 'top'}},
+                {value: 50, itemStyle: {color: '#FF8C00'}, label: {show: true, position: 'top'}},
+                {value: 45, itemStyle: {color: '#7B68EE'}, label: {show: true, position: 'top'}},
+                {value: 78, itemStyle: {color: '#C71585'}, label: {show: true, position: 'top'}},
+                {value: 88, itemStyle: {color: '#DB7093'}, label: {show: true, position: 'top'}},
+                {value: 82, itemStyle: {color: '#778899'}, label: {show: true, position: 'top'}}
+            ]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

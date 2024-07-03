@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var option;
+option = {
+    title: {
+        text: 'Correlation between Nutrition and Exercise Duration',
+        left: 'center',
+        top: '5%'
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: function (params) {
+            return `(${params.value[0]}, ${params.value[1]})`;
+        }
+    },
+    legend: {
+        data: ['Exercise Duration vs. Nutrition'],
+        left: 'right',
+        top: '10%'
+    },
+    xAxis: {
+        name: 'Exercise Duration (min)',
+        splitLine: {
+            lineStyle: {
+                type: 'dashed'
+            }
+        }
+    },
+    yAxis: {
+        name: 'Nutrition Score',
+        splitLine: {
+            lineStyle: {
+                type: 'dashed'
+            }
+        }
+    },
+    series: [{
+        name: 'Exercise Duration vs. Nutrition',
+        type: 'scatter',
+        itemStyle: {
+            color: '#3498db'
+        },
+        data: [
+            [25, 40], [13, 56], [77, 85], [90, 60], [5, 93],
+            [39, 20], [52, 75], [68, 47], [43, 53], [70, 10],
+            [15, 10], [55, 95], [61, 66], [79, 29], [84, 44],
+            [92, 38], [22, 18], [19, 77], [46, 82], [65, 49],
+            [78, 68], [87, 33], [10, 85], [34, 23], [7, 14],
+            [30, 35], [57, 19], [80, 25], [67, 89], [53, 70],
+            [48, 63], [99, 57], [35, 92], [28, 64], [44, 72],
+            [60, 83], [72, 22], [88, 54], [50, 78], [12, 52],
+            [11, 40], [6, 31], [36, 69], [89, 16], [33, 26],
+            [27, 71], [75, 11], [94, 50], [81, 62], [24, 34]
+        ],
+        symbolSize: 10
+    }],
+    grid: {
+        left: '10%',
+        right: '10%',
+        bottom: '15%',
+        top: '20%'
+    }
+};
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

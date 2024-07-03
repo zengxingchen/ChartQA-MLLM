@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false
+});
+var app = {};
+
+var option;
+
+myChart.showLoading();
+option = {
+    title: {
+        text: 'Education & Learning vs Entertainment & Leisure over Time',
+        subtext: 'Proportion of Interests by Year',
+        left: 'center',
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Education & Learning', 'Entertainment & Leisure', 'Environment & Climate Change', 'Health & Psychology'],
+        bottom: '0%'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '10%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: false,
+    },
+    yAxis: {
+        type: 'category',
+        data: ['2015', '2016', '2017', '2018', '2019', '2020']
+    },
+    series: [
+        {
+            name: 'Education & Learning',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 50,
+            emphasis: {
+                focus: 'series'
+            },
+            data: [40, 35, 30, 25, 20, 15],
+            color: '#5470C6'
+        },
+        {
+            name: 'Entertainment & Leisure',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 50,
+            emphasis: {
+                focus: 'series'
+            },
+            data: [20, 25, 30, 35, 40, 45],
+            color: '#91CC75'
+        },
+        {
+            name: 'Environment & Climate Change',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 50,
+            emphasis: {
+                focus: 'series'
+            },
+            data: [10, 15, 20, 25, 30, 35],
+            color: '#FAC858'
+        },
+        {
+            name: 'Health & Psychology',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 50,
+            emphasis: {
+                focus: 'series'
+            },
+            data: [30, 25, 20, 15, 10, 5],
+            color: '#EE6666'
+        }
+    ]
+};
+
+myChart.hideLoading();
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

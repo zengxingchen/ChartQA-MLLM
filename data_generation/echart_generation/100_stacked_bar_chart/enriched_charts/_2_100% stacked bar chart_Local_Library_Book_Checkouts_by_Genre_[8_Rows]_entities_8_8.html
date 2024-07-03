@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+  width: 600, // Reasonable width for the chart
+  height: 400 // Reasonable height for the chart
+});
+
+var option = {
+  title: {
+    text: 'Trends in Learning Resources Usage', // Headline
+    subtext: 'Education & Learning', // Topic
+    left: 'center'
+  },
+  tooltip: {
+    trigger: 'axis',
+    axisPointer: {
+      type: 'shadow'
+    }
+  },
+  legend: {
+    data: ['eBooks', 'Online Courses', 'YouTube Lectures', 'Library Books', 'Articles']
+  },
+  grid: {
+    left: '3%',
+    right: '4%',
+    bottom: '3%',
+    containLabel: true
+  },
+  xAxis: {
+    type: 'value'
+  },
+  yAxis: {
+    type: 'category',
+    data: ['2016', '2017', '2018', '2019', '2020']
+  },
+  series: [
+    {
+      name: 'eBooks',
+      type: 'bar',
+      stack: 'total',
+      label: {
+        show: true
+      },
+      emphasis: {
+        focus: 'series'
+      },
+      data: [15, 17, 20, 22, 25],
+      itemStyle: {
+        color: '#FFD700' // Gold color
+      },
+      barWidth: 15 // Bar width changed
+    },
+    {
+      name: 'Online Courses',
+      type: 'bar',
+      stack: 'total',
+      label: {
+        show: true
+      },
+      emphasis: {
+        focus: 'series'
+      },
+      data: [25, 28, 30, 35, 40],
+      itemStyle: {
+        color: '#228B22' // ForestGreen color
+      },
+      barWidth: 15 // Bar width changed
+    },
+    {
+      name: 'YouTube Lectures',
+      type: 'bar',
+      stack: 'total',
+      label: {
+        show: true
+      },
+      emphasis: {
+        focus: 'series'
+      },
+      data: [35, 32, 30, 28, 20],
+      itemStyle: {
+        color: '#20B2AA' // LightSeaGreen color
+      },
+      barWidth: 15 // Bar width changed
+    },
+    {
+      name: 'Library Books',
+      type: 'bar',
+      stack: 'total',
+      label: {
+        show: true
+      },
+      emphasis: {
+        focus: 'series'
+      },
+      data: [15, 13, 12, 10, 10],
+      itemStyle: {
+        color: '#A0522D' // Sienna color
+      },
+      barWidth: 15 // Bar width changed
+    },
+    {
+      name: 'Articles',
+      type: 'bar',
+      stack: 'total',
+      label: {
+        show: true
+      },
+      emphasis: {
+        focus: 'series'
+      },
+      data: [10, 10, 8, 5, 5],
+      itemStyle: {
+        color: '#FF6347' // Tomato color
+      },
+      barWidth: 15 // Bar width changed
+    }
+  ]
+};
+
+if (option && typeof option === 'object') {
+  myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

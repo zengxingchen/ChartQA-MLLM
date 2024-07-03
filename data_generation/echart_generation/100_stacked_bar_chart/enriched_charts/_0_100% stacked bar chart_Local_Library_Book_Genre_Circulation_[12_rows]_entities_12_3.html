@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+option = {
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Sleep', 'Work', 'Leisure', 'Exercise', 'Eating', 'Coding']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01],
+        position: 'top'
+    },
+    yAxis: {
+        type: 'category',
+        data: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+    },
+    series: [
+        {
+            name: 'Sleep',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            color: '#5470C6',
+            data: [30, 25, 40, 35, 20, 15, 20]
+        },
+        {
+            name: 'Work',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            color: '#91CC75',
+            data: [25, 30, 20, 20, 25, 10, 10]
+        },
+        {
+            name: 'Leisure',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            color: '#EE6666',
+            data: [15, 20, 10, 15, 30, 45, 40]
+        },
+        {
+            name: 'Exercise',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            color: '#FAC858',
+            data: [10, 10, 15, 15, 10, 10, 10]
+        },
+        {
+            name: 'Eating',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            color: '#73C0DE',
+            data: [10, 5, 5, 5, 5, 10, 10]
+        },
+        {
+            name: 'Coding',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            color: '#3BA272',
+            data: [10, 10, 10, 10, 10, 10, 10]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

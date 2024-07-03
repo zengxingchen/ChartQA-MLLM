@@ -1,0 +1,169 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+        "values": [
+            {
+                "Year": 2019,
+                "Technology": 7000,
+                "Healthcare": 12000,
+                "Finance": 8000,
+                "RealEstate": 6000,
+                "Energy": 4000
+            },
+            {
+                "Year": 2020,
+                "Technology": 7500,
+                "Healthcare": 12500,
+                "Finance": 8500,
+                "RealEstate": 6500,
+                "Energy": 4500
+            },
+            {
+                "Year": 2021,
+                "Technology": 8000,
+                "Healthcare": 13000,
+                "Finance": 9000,
+                "RealEstate": 7000,
+                "Energy": 5000
+            },
+            {
+                "Year": 2022,
+                "Technology": 8500,
+                "Healthcare": 13500,
+                "Finance": 9500,
+                "RealEstate": 7500,
+                "Energy": 5500
+            },
+            {
+                "Year": 2023,
+                "Technology": 9000,
+                "Healthcare": 14000,
+                "Finance": 10000,
+                "RealEstate": 8000,
+                "Energy": 6000
+            },
+            {
+                "Year": 2024,
+                "Technology": 9500,
+                "Healthcare": 14500,
+                "Finance": 10500,
+                "RealEstate": 8500,
+                "Energy": 6500
+            },
+            {
+                "Year": 2025,
+                "Technology": 10000,
+                "Healthcare": 15000,
+                "Finance": 11000,
+                "RealEstate": 9000,
+                "Energy": 7000
+            },
+            {
+                "Year": 2026,
+                "Technology": 10500,
+                "Healthcare": 15500,
+                "Finance": 11500,
+                "RealEstate": 9500,
+                "Energy": 7500
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Technology",
+                "Healthcare",
+                "Finance",
+                "RealEstate",
+                "Energy"
+            ],
+            "as": [
+                "Sector",
+                "Investment"
+            ]
+        }
+    ],
+    "width": 400,
+    "height": 300,
+    "mark": {
+        "type": "bar",
+        "width": {
+            "band": 0.6
+        }
+    },
+    "title": {
+        "text": "Investment in Sectors Over the Years",
+        "subtitle": "Millions of Dollars",
+        "subtitleFontStyle": "italic",
+        "subtitleFontSize": 10,
+        "anchor": "start",
+        "color": "black",
+        "offset": 20
+    },
+    "encoding": {
+        "x": {
+            "field": "Year",
+            "type": "ordinal",
+            "axis": {
+                "title": "Year"
+            }
+        },
+        "y": {
+            "field": "Investment",
+            "type": "quantitative",
+            "axis": {
+                "title": "Investment (Millions)"
+            }
+        },
+        "color": {
+            "field": "Sector",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Technology",
+                    "Healthcare",
+                    "Finance",
+                    "RealEstate",
+                    "Energy"
+                ],
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e",
+                    "#2ca02c",
+                    "#d62728",
+                    "#9467bd"
+                ]
+            },
+            "legend": {
+                "orient": "top-right"
+            },
+            "title": "Investment Sector"
+        },
+        "tooltip": [
+            {
+                "field": "Year",
+                "type": "ordinal",
+                "title": "Year"
+            },
+            {
+                "field": "Investment",
+                "type": "quantitative",
+                "title": "Investment"
+            },
+            {
+                "field": "Sector",
+                "type": "nominal",
+                "title": "Sector"
+            }
+        ]
+    },
+    "config": {
+        "axis": {
+            "labelAngle": 0
+        },
+        "axisY": {
+            "labelAngle": 0,
+            "labelPadding": 5
+        }
+    }
+}

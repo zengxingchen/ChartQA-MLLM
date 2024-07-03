@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+option = {
+    title: {
+        text: 'Innovations in Technology & Their Applications',
+        left: 'center',
+        top: 20
+    },
+    tooltip: {
+        trigger: 'item'
+    },
+    legend: {
+        orient: 'vertical',
+        left: 10,
+        top: 'middle',
+        formatter: function(name) {
+            return echarts.format.truncateText(name, 100, '14px Microsoft Yahei', '…');
+        },
+        tooltip: {
+            show: true
+        }
+    },
+    series: [
+        {
+            name: 'Applications',
+            type: 'pie',
+            radius: '50%',
+            data: [
+                {value: 83, name: 'Smart Homes Devices'},
+                {value: 78, name: 'Wearable Technology'},
+                {value: 55, name: 'Autonomous Vehicles'},
+                {value: 92, name: 'AI in Healthcare'},
+                {value: 67, name: 'Blockchain in Banking'},
+                {value: 72, name: '3D Printing Applications'},
+                {value: 45, name: 'Quantum Computing'},
+                {value: 81, name: 'Robotics in Manufacturing'},
+                {value: 60, name: 'AR and VR in Education'},
+                {value: 49, name: 'Drones in Agriculture'}
+            ],
+            emphasis: {
+                itemStyle: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            }
+        }
+    ],
+    color: [
+        '#FF5733', '#FFC300', '#DAF7A6', '#581845', '#C70039',
+        '#900C3F', '#FFC0CB', '#4A235A', '#1ABC9C', '#7D3C98'
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,182 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Line chart of annual GDP growth by region over recent years",
+    "data": {
+        "values": [
+            {
+                "Year": 2010,
+                "Americas": 2.5,
+                "Europe": 1.8,
+                "Asia": 3.4,
+                "Africa": 2.0,
+                "Oceania": 2.3
+            },
+            {
+                "Year": 2011,
+                "Americas": 2.8,
+                "Europe": 1.9,
+                "Asia": 3.6,
+                "Africa": 2.2,
+                "Oceania": 2.5
+            },
+            {
+                "Year": 2012,
+                "Americas": 2.6,
+                "Europe": 1.7,
+                "Asia": 3.5,
+                "Africa": 2.1,
+                "Oceania": 2.4
+            },
+            {
+                "Year": 2013,
+                "Americas": 2.7,
+                "Europe": 1.8,
+                "Asia": 3.6,
+                "Africa": 2.2,
+                "Oceania": 2.6
+            },
+            {
+                "Year": 2014,
+                "Americas": 2.9,
+                "Europe": 2.0,
+                "Asia": 3.7,
+                "Africa": 2.3,
+                "Oceania": 2.7
+            },
+            {
+                "Year": 2015,
+                "Americas": 3.0,
+                "Europe": 2.1,
+                "Asia": 3.8,
+                "Africa": 2.4,
+                "Oceania": 2.8
+            },
+            {
+                "Year": 2016,
+                "Americas": 2.8,
+                "Europe": 2.0,
+                "Asia": 3.7,
+                "Africa": 2.3,
+                "Oceania": 2.6
+            },
+            {
+                "Year": 2017,
+                "Americas": 3.1,
+                "Europe": 2.2,
+                "Asia": 3.9,
+                "Africa": 2.5,
+                "Oceania": 2.9
+            },
+            {
+                "Year": 2018,
+                "Americas": 3.2,
+                "Europe": 2.3,
+                "Asia": 4.0,
+                "Africa": 2.6,
+                "Oceania": 3.0
+            },
+            {
+                "Year": 2019,
+                "Americas": 3.3,
+                "Europe": 2.4,
+                "Asia": 4.1,
+                "Africa": 2.7,
+                "Oceania": 3.1
+            },
+            {
+                "Year": 2020,
+                "Americas": 3.0,
+                "Europe": 2.1,
+                "Asia": 3.8,
+                "Africa": 2.4,
+                "Oceania": 2.8
+            },
+            {
+                "Year": 2021,
+                "Americas": 3.5,
+                "Europe": 2.6,
+                "Asia": 4.3,
+                "Africa": 2.9,
+                "Oceania": 3.3
+            },
+            {
+                "Year": 2022,
+                "Americas": 3.6,
+                "Europe": 2.7,
+                "Asia": 4.4,
+                "Africa": 3.0,
+                "Oceania": 3.4
+            },
+            {
+                "Year": 2023,
+                "Americas": 3.7,
+                "Europe": 2.8,
+                "Asia": 4.5,
+                "Africa": 3.1,
+                "Oceania": 3.5
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Americas",
+                "Europe",
+                "Asia",
+                "Africa",
+                "Oceania"
+            ],
+            "as": [
+                "Region",
+                "GDP Growth"
+            ]
+        }
+    ],
+    "width": 700,
+    "height": 450,
+    "mark": {
+        "type": "line",
+        "point": true
+    },
+    "encoding": {
+        "x": {
+            "field": "Year",
+            "type": "ordinal",
+            "title": "Year"
+        },
+        "y": {
+            "field": "GDP Growth",
+            "type": "quantitative",
+            "title": "Annual GDP Growth (%)",
+            "axis": {
+                "format": ".1f"
+            }
+        },
+        "color": {
+            "field": "Region",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Americas",
+                    "Europe",
+                    "Asia",
+                    "Africa",
+                    "Oceania"
+                ],
+                "range": [
+                    "#4daf4a",
+                    "#377eb8",
+                    "#e41a1c",
+                    "#ff7f00",
+                    "#984ea3"
+                ]
+            },
+            "title": "Region"
+        }
+    },
+    "config": {
+        "axisY": {
+            "minExtent": 30
+        }
+    }
+}

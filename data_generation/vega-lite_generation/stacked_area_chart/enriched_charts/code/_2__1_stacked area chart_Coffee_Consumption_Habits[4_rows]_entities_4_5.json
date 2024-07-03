@@ -1,0 +1,183 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Stacked Area Chart of Monthly Sales by Category",
+    "width": 700,
+    "height": 400,
+    "data": {
+        "values": [
+            {
+                "Month": "Jan",
+                "Electronics": 400,
+                "Clothing": 150,
+                "Groceries": 300,
+                "Furniture": 100
+            },
+            {
+                "Month": "Feb",
+                "Electronics": 420,
+                "Clothing": 160,
+                "Groceries": 320,
+                "Furniture": 110
+            },
+            {
+                "Month": "Mar",
+                "Electronics": 450,
+                "Clothing": 170,
+                "Groceries": 340,
+                "Furniture": 120
+            },
+            {
+                "Month": "Apr",
+                "Electronics": 480,
+                "Clothing": 180,
+                "Groceries": 360,
+                "Furniture": 130
+            },
+            {
+                "Month": "May",
+                "Electronics": 500,
+                "Clothing": 190,
+                "Groceries": 380,
+                "Furniture": 140
+            },
+            {
+                "Month": "Jun",
+                "Electronics": 520,
+                "Clothing": 200,
+                "Groceries": 400,
+                "Furniture": 150
+            },
+            {
+                "Month": "Jul",
+                "Electronics": 550,
+                "Clothing": 210,
+                "Groceries": 420,
+                "Furniture": 160
+            },
+            {
+                "Month": "Aug",
+                "Electronics": 570,
+                "Clothing": 220,
+                "Groceries": 440,
+                "Furniture": 170
+            },
+            {
+                "Month": "Sep",
+                "Electronics": 590,
+                "Clothing": 230,
+                "Groceries": 460,
+                "Furniture": 180
+            },
+            {
+                "Month": "Oct",
+                "Electronics": 610,
+                "Clothing": 240,
+                "Groceries": 480,
+                "Furniture": 190
+            },
+            {
+                "Month": "Nov",
+                "Electronics": 630,
+                "Clothing": 250,
+                "Groceries": 500,
+                "Furniture": 200
+            },
+            {
+                "Month": "Dec",
+                "Electronics": 650,
+                "Clothing": 260,
+                "Groceries": 520,
+                "Furniture": 210
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Electronics",
+                "Clothing",
+                "Groceries",
+                "Furniture"
+            ],
+            "as": [
+                "Category",
+                "Sales"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "area",
+        "opacity": 0.7
+    },
+    "encoding": {
+        "x": {
+            "field": "Month",
+            "type": "ordinal",
+            "axis": {
+                "title": "Month"
+            }
+        },
+        "y": {
+            "field": "Sales",
+            "type": "quantitative",
+            "stack": "zero",
+            "axis": {
+                "title": "Sales (in Thousands)"
+            }
+        },
+        "color": {
+            "field": "Category",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Electronics",
+                    "Clothing",
+                    "Groceries",
+                    "Furniture"
+                ],
+                "range": [
+                    "#FF5733",
+                    "#33FF57",
+                    "#3357FF",
+                    "#FF33A8"
+                ]
+            },
+            "legend": {
+                "title": "Category",
+                "orient": "top-right"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Month",
+                "type": "ordinal"
+            },
+            {
+                "field": "Category",
+                "type": "nominal"
+            },
+            {
+                "field": "Sales",
+                "type": "quantitative",
+                "title": "Sales"
+            }
+        ]
+    },
+    "title": {
+        "text": "Monthly Sales by Category (in Thousands)",
+        "fontSize": 18,
+        "anchor": "start",
+        "offset": 20
+    },
+    "config": {
+        "view": {
+            "stroke": "transparent"
+        },
+        "area": {
+            "line": true
+        },
+        "axisY": {
+            "grid": true
+        }
+    }
+}

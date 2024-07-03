@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+var option = {
+    title: {
+        text: 'Art Supplies and Related Costs',
+        left: 'center',
+        top: '5%'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Art Supplies', 'Exhibition Tickets', 'Books', 'Online Courses', 'Workshops'],
+        top: '10%'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value'
+    },
+    yAxis: {
+        type: 'category',
+        data: ['Painting', 'Sculpture', 'Photography', 'Crafting', 'Drawing', 'Digital Art']
+    },
+    series: [
+        {
+            name: 'Art Supplies',
+            type: 'bar',
+            stack: 'Total',
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            itemStyle: {
+                color: '#FF6347'
+            },
+            data: [120, 90, 60, 100, 150, 170]
+        },
+        {
+            name: 'Exhibition Tickets',
+            type: 'bar',
+            stack: 'Total',
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            itemStyle: {
+                color: '#4682B4'
+            },
+            data: [200, 150, 100, 130, 180, 160]
+        },
+        {
+            name: 'Books',
+            type: 'bar',
+            stack: 'Total',
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            itemStyle: {
+                color: '#32CD32'
+            },
+            data: [150, 80, 70, 110, 130, 100]
+        },
+        {
+            name: 'Online Courses',
+            type: 'bar',
+            stack: 'Total',
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            itemStyle: {
+                color: '#FFD700'
+            },
+            data: [80, 60, 50, 90, 70, 60]
+        },
+        {
+            name: 'Workshops',
+            type: 'bar',
+            stack: 'Total',
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            itemStyle: {
+                color: '#8A2BE2'
+            },
+            data: [110, 70, 90, 100, 120, 130]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

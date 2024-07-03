@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Daily Time Distribution among Teenagers',
+        left: 'center',
+        top: 20
+    },
+    tooltip: {
+        trigger: 'item'
+    },
+    legend: {
+        orient: 'vertical',
+        left: 'left',
+        top: 50,
+        textStyle: {
+            padding: [3, 4, 5, 6]
+        }
+    },
+    series: [
+        {
+            name: 'Percentage',
+            type: 'pie',
+            radius: '50%',
+            data: [
+                {value: 33, name: 'Sleep'},
+                {value: 28, name: 'School'},
+                {value: 15, name: 'Leisure Screen Time'},
+                {value: 12, name: 'Physical Activity'},
+                {value: 5, name: 'Chores'},
+                {value: 4, name: 'Socializing'},
+                {value: 3, name: 'Meals'}
+            ],
+            emphasis: {
+                itemStyle: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            },
+            itemStyle: {
+                normal: {
+                    color: function(params) {
+                        // Define pie chart colors
+                        var colorList = [
+                            '#4E7AC7','#F596AA','#5AD8A6','#FFDDC1','#FF9900','#E8EDF3','#D4A4EB'
+                        ];
+                        return colorList[params.dataIndex];
+                    }
+                }
+            }
+        }
+    ],
+    label: {
+        normal: {
+            formatter: '{b}: {d}%'
+        }
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

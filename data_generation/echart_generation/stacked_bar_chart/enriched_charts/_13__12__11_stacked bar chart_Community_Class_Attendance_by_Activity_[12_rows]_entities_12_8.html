@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+
+var data = [
+  { category: "Primary School", male: 320, female: 300 },
+  { category: "Secondary School", male: 280, female: 260 },
+  { category: "High School", male: 180, female: 200 },
+  { category: "College", male: 240, female: 280 },
+  { category: "University", male: 300, female: 320 }
+];
+
+var categories = data.map(function (item) {
+  return item.category;
+});
+
+var option = {
+  title: {
+    text: 'Education & Learning - Enrollment Data',
+    left: 'center',
+    top: 'top'
+  },
+  tooltip: {
+    trigger: 'axis',
+    axisPointer: {
+      type: 'shadow'
+    }
+  },
+  legend: {
+    data: ['Male', 'Female'],
+    bottom: 10
+  },
+  grid: {
+    left: '3%',
+    right: '4%',
+    bottom: '15%',
+    containLabel: true
+  },
+  xAxis: {
+    type: 'value'
+  },
+  yAxis: {
+    type: 'category',
+    data: categories
+  },
+  series: [
+    {
+      name: 'Male',
+      type: 'bar',
+      stack: 'total',
+      label: {
+        show: true,
+        position: 'insideRight'
+      },
+      emphasis: {
+        focus: 'series'
+      },
+      data: data.map(function (item) {
+        return item.male;
+      }),
+      barWidth: 20
+    },
+    {
+      name: 'Female',
+      type: 'bar',
+      stack: 'total',
+      label: {
+        show: true,
+        position: 'insideLeft'
+      },
+      emphasis: {
+        focus: 'series'
+      },
+      data: data.map(function (item) {
+        return item.female;
+      }),
+      barWidth: 20
+    }
+  ],
+  backgroundColor: '#f0f6ff'
+};
+
+if (option && typeof option === 'object') {
+  myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,101 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Pie chart showing the distribution of different activities in a music concert.",
+    "title": {
+        "text": "Concert Activities Composition",
+        "fontSize": 20,
+        "font": "Roboto",
+        "anchor": "start",
+        "color": "#333333"
+    },
+    "width": 500,
+    "height": 500,
+    "data": {
+        "values": [
+            {
+                "Activity": "Performance",
+                "Percentage": 50
+            },
+            {
+                "Activity": "Intermission",
+                "Percentage": 10
+            },
+            {
+                "Activity": "Announcements",
+                "Percentage": 5
+            },
+            {
+                "Activity": "Encore",
+                "Percentage": 5
+            },
+            {
+                "Activity": "Audience Interaction",
+                "Percentage": 15
+            },
+            {
+                "Activity": "Sound Check",
+                "Percentage": 15
+            }
+        ]
+    },
+    "mark": {
+        "type": "arc",
+        "tooltip": true
+    },
+    "encoding": {
+        "theta": {
+            "field": "Percentage",
+            "type": "quantitative",
+            "stack": true
+        },
+        "color": {
+            "field": "Activity",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Performance",
+                    "Intermission",
+                    "Announcements",
+                    "Encore",
+                    "Audience Interaction",
+                    "Sound Check"
+                ],
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e",
+                    "#2ca02c",
+                    "#d62728",
+                    "#9467bd",
+                    "#8c564b"
+                ]
+            },
+            "legend": {
+                "title": "Activity",
+                "orient": "right",
+                "labelFont": "Roboto",
+                "labelColor": "#44475a"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Activity",
+                "type": "nominal",
+                "title": "Activity"
+            },
+            {
+                "field": "Percentage",
+                "type": "quantitative",
+                "title": "Percentage (%)"
+            }
+        ]
+    },
+    "view": {
+        "stroke": null
+    },
+    "config": {
+        "background": "#f5f5f5",
+        "arc": {
+            "outerRadius": 200
+        }
+    }
+}

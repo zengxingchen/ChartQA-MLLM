@@ -1,0 +1,136 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "A bubble chart showing the relationship between daily steps and calories burned, across various activities, with the impact of heart rate.",
+    "title": {
+        "text": "Daily Steps vs Calories Burned by Activity",
+        "subtitle": "Correlating physical activity intensity with heart rate and calories burned.",
+        "subtitleFontSize": 10,
+        "anchor": "start",
+        "color": "black"
+    },
+    "width": 500,
+    "height": 400,
+    "data": {
+        "values": [
+            {
+                "Day": "Mon",
+                "Heart Rate (bpm)": 60,
+                "Walking": 3000,
+                "Jogging": 2000,
+                "Cycling": 1000
+            },
+            {
+                "Day": "Tue",
+                "Heart Rate (bpm)": 65,
+                "Walking": 3200,
+                "Jogging": 2500,
+                "Cycling": 1200
+            },
+            {
+                "Day": "Wed",
+                "Heart Rate (bpm)": 75,
+                "Walking": 3500,
+                "Jogging": 3000,
+                "Cycling": 1500
+            },
+            {
+                "Day": "Thu",
+                "Heart Rate (bpm)": 80,
+                "Walking": 3700,
+                "Jogging": 3500,
+                "Cycling": 1600
+            },
+            {
+                "Day": "Fri",
+                "Heart Rate (bpm)": 85,
+                "Walking": 4000,
+                "Jogging": 4000,
+                "Cycling": 1800
+            },
+            {
+                "Day": "Sat",
+                "Heart Rate (bpm)": 90,
+                "Walking": 4200,
+                "Jogging": 4500,
+                "Cycling": 2000
+            },
+            {
+                "Day": "Sun",
+                "Heart Rate (bpm)": 95,
+                "Walking": 5000,
+                "Jogging": 5000,
+                "Cycling": 2500
+            }
+        ]
+    },
+    "repeat": {
+        "layer": [
+            "Walking",
+            "Jogging",
+            "Cycling"
+        ]
+    },
+    "spec": {
+        "mark": "circle",
+        "encoding": {
+            "x": {
+                "field": "Heart Rate (bpm)",
+                "type": "quantitative",
+                "title": "Heart Rate (bpm)"
+            },
+            "y": {
+                "field": {
+                    "repeat": "layer"
+                },
+                "type": "quantitative",
+                "title": "Calories Burned"
+            },
+            "color": {
+                "field": {
+                    "repeat": "layer"
+                },
+                "type": "nominal",
+                "legend": {
+                    "title": "Activity Type",
+                    "orient": "top-right",
+                    "offset": 10
+                },
+                "scale": {
+                    "domain": [
+                        "Walking",
+                        "Jogging",
+                        "Cycling"
+                    ],
+                    "range": [
+                        "#ef8a62",
+                        "#67a9cf",
+                        "#efc1b5"
+                    ]
+                }
+            },
+            "size": {
+                "value": 100
+            },
+            "opacity": {
+                "value": 0.8
+            },
+            "tooltip": [
+                {
+                    "field": "Day",
+                    "type": "ordinal",
+                    "title": "Day"
+                },
+                {
+                    "field": "Heart Rate (bpm)",
+                    "type": "quantitative",
+                    "title": "Heart Rate (bpm)"
+                }
+            ]
+        }
+    },
+    "resolve": {
+        "scale": {
+            "y": "independent"
+        }
+    }
+}

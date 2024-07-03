@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 800,
+    height: 600
+});
+
+var option = {
+    title: {
+        text: 'Stock Prices and Trading Volume',
+        left: 'center',
+        top: 20
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: function (params) {
+            return 'Price: $' + params.value[0] + '<br>Volume: ' + params.value[1];
+        }
+    },
+    legend: {
+        data: ['Stock Data'],
+        left: 'left',
+        top: 50
+    },
+    xAxis: {
+        name: 'Price ($)',
+        type: 'value',
+        splitLine: {
+            lineStyle: {
+                type: 'dashed'
+            }
+        }
+    },
+    yAxis: {
+        name: 'Volume',
+        type: 'value',
+        splitLine: {
+            lineStyle: {
+                type: 'dashed'
+            }
+        }
+    },
+    series: [{
+        name: 'Stock Data',
+        type: 'scatter',
+        itemStyle: {
+            color: '#1f77b4'
+        },
+        data: [
+            [100, 1500], [105, 1400], [110, 1600], [95, 1300], [120, 1550], 
+            [125, 1600], [130, 1500], [90, 1200], [115, 1650], [85, 1100], 
+            [140, 1700], [145, 1750], [80, 1000], [135, 1600], [150, 1800], 
+            [75, 900], [155, 1850], [70, 800], [160, 1900], [65, 700], 
+            [165, 1950], [60, 600], [170, 2000], [55, 500]
+        ]
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

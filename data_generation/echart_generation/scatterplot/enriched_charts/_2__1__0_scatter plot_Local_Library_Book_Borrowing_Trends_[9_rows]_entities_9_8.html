@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option = {
+    title: {
+        text: 'Scientific Research Data Distribution',
+        left: 'center',
+        top: '10%'
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: '{a} <br/>{b} : {c}'
+    },
+    legend: {
+        left: 'left',
+        top: '20%',
+        data: ['Biology', 'Physics', 'Chemistry']
+    },
+    xAxis: {
+        name: 'Experiment Number',
+        splitLine: {
+            lineStyle: {
+                type: 'dashed'
+            }
+        }
+    },
+    yAxis: {
+        name: 'Measurement Value',
+        splitLine: {
+            lineStyle: {
+                type: 'dashed'
+            }
+        },
+        scale: true
+    },
+    series: [
+        {
+            name: 'Biology',
+            type: 'scatter',
+            itemStyle: {
+                color: '#FF5733'
+            },
+            data: [
+                [1.2, 5.4], [2.3, 6.1], [3.5, 7.0], [4.6, 8.2], [5.8, 9.3], [7.0, 9.9], [8.1, 10.5], [9.4, 11.0], [10.5, 11.7], [11.7, 12.2]
+            ]
+        },
+        {
+            name: 'Physics',
+            type: 'scatter',
+            itemStyle: {
+                color: '#33FF57'
+            },
+            data: [
+                [1.1, 2.3], [2.2, 3.4], [3.3, 4.5], [4.4, 5.6], [5.5, 6.7], [6.6, 7.8], [7.7, 8.9], [8.8, 9.0], [9.9, 10.2], [11.0, 11.3]
+            ]
+        },
+        {
+            name: 'Chemistry',
+            type: 'scatter',
+            itemStyle: {
+                color: '#3357FF'
+            },
+            data: [
+                [1.0, 3.1], [2.1, 4.2], [3.2, 5.3], [4.3, 6.4], [5.4, 7.5], [6.5, 8.6], [7.6, 9.7], [8.7, 10.8], [9.8, 11.9], [10.9, 12.0]
+            ]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

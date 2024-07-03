@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas', 
+    width: 800, 
+    height: 400
+});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Sector Contribution Over Time',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Education & Learning', 'Health & Psychology', 'Culture & Society', 'Economics & Finance', 'Environment & Climate Change'],
+        top: '5%'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01]
+    },
+    yAxis: {
+        type: 'category',
+        data: ['2016', '2017', '2018', '2019', '2020', '2021']
+    },
+    series: [
+        {
+            name: 'Education & Learning',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            data: [40, 35, 20, 30, 25, 15],
+            barWidth: 30,
+            color: '#33A1C9'
+        },
+        {
+            name: 'Health & Psychology',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            data: [15, 20, 25, 18, 30, 35],
+            barWidth: 30,
+            color: '#B5CA92'
+        },
+        {
+            name: 'Culture & Society',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            data: [20, 15, 30, 22, 10, 17],
+            barWidth: 30,
+            color: '#F08080'
+        },
+        {
+            name: 'Economics & Finance',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            data: [10, 20, 5, 15, 25, 23],
+            barWidth: 30,
+            color: '#7570B3'
+        },
+        {
+            name: 'Environment & Climate Change',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            data: [15, 10, 20, 15, 10, 10],
+            barWidth: 30,
+            color: '#FF8C00'
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

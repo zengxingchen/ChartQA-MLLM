@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false
+});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Environmental Impact Over Time',
+        left: 'center',
+        top: 5
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Deforestation', 'Industrial Pollution', 'Ocean Dumping', 'Carbon Emissions', 'Green Energy Usage'],
+        bottom: 0
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '10%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01]
+    },
+    yAxis: {
+        type: 'category',
+        data: ['2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020']
+    },
+    series: [
+        {
+            name: 'Deforestation',
+            type: 'bar',
+            stack: 'Total',
+            barWidth: '60%',
+            color: '#8c564b',
+            data: [25, 23, 22, 21, 20, 19, 18, 17, 16, 15, 14]
+        },
+        {
+            name: 'Industrial Pollution',
+            type: 'bar',
+            stack: 'Total',
+            barWidth: '60%',
+            color: '#e377c2',
+            data: [30, 28, 27, 26, 25, 23, 22, 21, 20, 19, 18]
+        },
+        {
+            name: 'Ocean Dumping',
+            type: 'bar',
+            stack: 'Total',
+            barWidth: '60%',
+            color: '#7f7f7f',
+            data: [15, 17, 16, 16, 15, 14, 13, 12, 12, 11, 10]
+        },
+        {
+            name: 'Carbon Emissions',
+            type: 'bar',
+            stack: 'Total',
+            barWidth: '60%',
+            color: '#2ca02c',
+            data: [25, 27, 29, 30, 32, 33, 34, 35, 36, 37, 38]
+        },
+        {
+            name: 'Green Energy Usage',
+            type: 'bar',
+            stack: 'Total',
+            barWidth: '60%',
+            color: '#bcbd22',
+            data: [5, 5, 6, 6, 8, 11, 13, 15, 16, 18, 20]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 800,
+    height: 600
+});
+var app = {};
+
+var option;
+option = {
+    title: {
+        text: 'Monthly Financial Trends',
+        left: 'center',
+        top: '5%'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            label: {
+                backgroundColor: '#6a7985'
+            }
+        }
+    },
+    legend: {
+        top: '7%',
+        data: ['Investments', 'Savings', 'Expenses']
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        },
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: [{
+        type: 'category',
+        boundaryGap: false,
+        data: [
+            '2020-01', '2020-02', '2020-03', '2020-04',
+            '2020-05', '2020-06', '2020-07', '2020-08',
+            '2020-09', '2020-10', '2020-11', '2020-12',
+            '2021-01', '2021-02', '2021-03', '2021-04',
+            '2021-05', '2021-06', '2021-07', '2021-08'
+        ]
+    }],
+    yAxis: [{
+        type: 'value'
+    }],
+    series: [
+        {
+            name: 'Investments',
+            type: 'line',
+            stack: 'Total amount',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [20000, 22000, 21000, 23000, 20000, 24000, 25000, 26000, 27000, 28000, 29000, 30000, 31000, 32000, 33000, 34000, 35000, 36000, 37000, 38000],
+            color: '#ff7f50'
+        },
+        {
+            name: 'Savings',
+            type: 'line',
+            stack: 'Total amount',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [5000, 5500, 5400, 5800, 5500, 5600, 5700, 5800, 5900, 6000, 6100, 6200, 6300, 6400, 6500, 6600, 6700, 6800, 6900, 7000],
+            color: '#6a5acd'
+        },
+        {
+            name: 'Expenses',
+            type: 'line',
+            stack: 'Total amount',
+            label: {
+                show: true,
+                position: 'top'
+            },
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [3000, 3200, 3100, 3300, 3400, 3500, 3600, 3700, 3800, 3900, 4000, 4100, 4200, 4300, 4400, 4500, 4600, 4700, 4800, 4900],
+            color: '#32cd32'
+        }
+    ],
+    color: ['#ff7f50', '#6a5acd', '#32cd32']
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

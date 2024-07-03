@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var option;
+
+var data = [
+    {'Country': 'USA', ' Import in tons': 1320000, ' Domestic Consumption in kg per capita': 4.2, ' Year': 2022},
+    {'Country': 'Germany', ' Import in tons': 1000000, ' Domestic Consumption in kg per capita': 6.5, ' Year': 2022},
+    {'Country': 'Brazil', ' Import in tons': 209000, ' Domestic Consumption in kg per capita': 4.8, ' Year': 2022},
+    {'Country': 'Japan', ' Import in tons': 440000, ' Domestic Consumption in kg per capita': 3.3, ' Year': 2022},
+    {'Country': 'Canada', ' Import in tons': 360000, ' Domestic Consumption in kg per capita': 6.2, ' Year': 2022}
+];
+
+// Convert given data to hierarchical data for the treemap
+var seriesData = data.map(function (item) {
+    return {
+        name: item['Country'],
+        value: item[' Import in tons'],
+        path: item['Country'], // To show hierarchy in breadcrumb of treemap
+        visualMin: Math.min.apply(null, data.map(function (d) { return d[' Domestic Consumption in kg per capita']; })),
+        visualMax: Math.max.apply(null, data.map(function (d) { return d[' Domestic Consumption in kg per capita']; })),
+        itemStyle: {
+            borderColor: 'black',
+            borderWidth: 3,
+            gapWidth: 2
+        },
+        label: {
+            show: true,
+            formatter: function (params) {
+                return params.data.name + '\nImport: ' + params.data.value.toLocaleString() + ' tons\nConsumption: ' + params.data[' Domestic Consumption in kg per capita'] + ' kg/capita';
+            }
+        }
+    };
+});
+
+option = {
+    tooltip: {
+        formatter: function (info) {
+            var value = info.value;
+            var treePathInfo = info.treePathInfo;
+            var treePath = [];
+
+            for (var i = 1; i < treePathInfo.length; i++) {
+                treePath.push(treePathInfo[i].name);
+            }
+
+            return [
+                '<div class="tooltip-title">' + echarts.format.encodeHTML(treePath.join('/')) + '</div>',
+                'Import in tons: ' + echarts.format.addCommas(value) + '<br>',
+                'Domestic Consumption in kg per capita: ' + info.data[' Domestic Consumption in kg per capita'] + ' kg'
+            ].join('');
+        }
+    },
+    series: [
+        {
+            name: 'Treemap of Imports and Consumption',
+            type: 'treemap',
+            visibleMin: 300,
+            data: seriesData,
+            leafDepth: 2, // when a rectangle is leaf, show its children
+            levels: [
+                {
+                    itemStyle: {
+                        borderColor: '#555',
+                        borderWidth: 4,
+                        gapWidth: 4
+                    }
+                },
+                {
+                    colorSaturation: [0.3, 0.6],
+                    itemStyle: {
+                        borderColorSaturation: 0.7,
+                        gapWidth: 2,
+                        borderWidth: 2
+                    }
+                }
+            ]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

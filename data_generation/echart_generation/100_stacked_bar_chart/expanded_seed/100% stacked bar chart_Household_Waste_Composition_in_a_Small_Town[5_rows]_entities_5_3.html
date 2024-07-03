@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+            var dom = document.getElementById('container');
+            var myChart = echarts.init(dom, null, {
+            renderer: 'canvas',
+            useDirtyRect: false
+            });
+            var app = {};
+            
+            var option;
+
+            
+option = {
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        },
+        formatter: function (params) {
+            var tooltipData = ["<div><p><strong>" + params[0].name + " Year</strong></p>"];
+            params.forEach(function (item) {
+                tooltipData.push(item.marker + " " + item.seriesName + ": " + item.value + "%");
+            });
+            return tooltipData.join("");
+        }
+    },
+    legend: {
+        data: ['Organic Waste (%)', 'Paper Waste (%)', 'Plastic Waste (%)', 'Glass Waste (%)', 'Metal Waste (%)', 'Other Waste (%)']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01],
+        max: 100,
+        axisLabel: {
+           formatter: '{value} %'
+        }
+    },
+    yAxis: {
+        type: 'category',
+        data: []
+    },
+    series: [
+        {
+            name: 'Organic Waste (%)',
+            type: 'bar',
+            stack: 'total',
+            data: []
+        },
+        {
+            name: 'Paper Waste (%)',
+            type: 'bar',
+            stack: 'total',
+            data: []
+        },
+        {
+            name: 'Plastic Waste (%)',
+            type: 'bar',
+            stack: 'total',
+            data: []
+        },
+        {
+            name: 'Glass Waste (%)',
+            type: 'bar',
+            stack: 'total',
+            data: []
+        },
+        {
+            name: 'Metal Waste (%)',
+            type: 'bar',
+            stack: 'total',
+            data: []
+        },
+        {
+            name: 'Other Waste (%)',
+            type: 'bar',
+            stack: 'total',
+            data: []
+        }
+    ]
+};
+
+// Populating the yAxis and series data from the given table
+const tableData = [
+    {'Year': 2017, 'Organic Waste (%)': 45, 'Paper Waste (%)': 25, 'Plastic Waste (%)': 12, 'Glass Waste (%)': 10, 'Metal Waste (%)': 5, 'Other Waste (%)': 3},
+    {'Year': 2018, 'Organic Waste (%)': 44, 'Paper Waste (%)': 24, 'Plastic Waste (%)': 13, 'Glass Waste (%)': 11, 'Metal Waste (%)': 5, 'Other Waste (%)': 3},
+    {'Year': 2019, 'Organic Waste (%)': 43, 'Paper Waste (%)': 24, 'Plastic Waste (%)': 15, 'Glass Waste (%)': 9, 'Metal Waste (%)': 6, 'Other Waste (%)': 3},
+    {'Year': 2020, 'Organic Waste (%)': 42, 'Paper Waste (%)': 23, 'Plastic Waste (%)': 17, 'Glass Waste (%)': 8, 'Metal Waste (%)': 6, 'Other Waste (%)': 4},
+    {'Year': 2021, 'Organic Waste (%)': 40, 'Paper Waste (%)': 22, 'Plastic Waste (%)': 19, 'Glass Waste (%)': 9, 'Metal Waste (%)': 6, 'Other Waste (%)': 4}
+];
+
+// Populate yAxis data
+option.yAxis.data = tableData.map(function (item) {
+    return item.Year;
+});
+
+// Populate series data
+option.series[0].data = tableData.map(function (item) {
+    return item['Organic Waste (%)'];
+});
+option.series[1].data = tableData.map(function (item) {
+    return item['Paper Waste (%)'];
+});
+option.series[2].data = tableData.map(function (item) {
+    return item['Plastic Waste (%)'];
+});
+option.series[3].data = tableData.map(function (item) {
+    return item['Glass Waste (%)'];
+});
+option.series[4].data = tableData.map(function (item) {
+    return item['Metal Waste (%)'];
+});
+option.series[5].data = tableData.map(function (item) {
+    return item['Other Waste (%)'];
+});
+
+            if (option && typeof option === 'object') {
+            myChart.setOption(option);
+            }
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

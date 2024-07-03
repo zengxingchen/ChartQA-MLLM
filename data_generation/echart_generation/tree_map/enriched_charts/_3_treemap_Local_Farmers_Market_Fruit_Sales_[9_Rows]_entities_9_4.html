@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var app = {};
+
+var data = [
+    {name: 'Air Pollution', value: 300},
+    {name: 'Water Pollution', value: 200},
+    {name: 'Deforestation', value: 180},
+    {name: 'Climate Change', value: 280},
+    {name: 'Recycling', value: 150},
+    {name: 'Renewable Energy', value: 220},
+    {name: 'Conservation', value: 140},
+    {name: 'Wildlife Protection', value: 160},
+    {name: 'Ocean Cleanups', value: 110},
+    {name: 'Sustainable Farming', value: 130},
+    {name: 'Green Technology', value: 190},
+    {name: 'Eco-Friendly Products', value: 170},
+    {name: 'Carbon Footprint', value: 210},
+    {name: 'Plastic Reduction', value: 120}
+];
+
+option = {
+    title: {
+        text: 'Impact of Various Factors on Environment and Climate Change',
+        left: 'center',
+        textStyle: {
+            color: '#000',
+            fontWeight: 'bold',
+            fontSize: 18
+        }
+    },
+    tooltip: {
+        formatter: function (info) {
+            var value = info.value;
+            var treePathInfo = info.treePathInfo;
+            var treePath = [];
+            for (var i = 1; i < treePathInfo.length; i++) {
+                treePath.push(treePathInfo[i].name);
+            }
+            return [
+                '<div class="tooltip-title">' + echarts.format.encodeHTML(treePath.join('/')) + '</div>',
+                'Impact Value: ' + echarts.format.addCommas(value) + ' units'
+            ].join('');
+        }
+    },
+    series: [{
+        name: 'Environment & Climate Change',
+        type: 'treemap',
+        visibleMin: 100,
+        label: {
+            show: true,
+            formatter: '{b}'
+        },
+        upperLabel: {
+            normal: {
+                show: true,
+                height: 30
+            }
+        },
+        itemStyle: {
+            normal: {
+                borderColor: '#fff'
+            }
+        },
+        levels: [
+            {
+                itemStyle: {
+                    normal: {
+                        borderColor: '#777',
+                        borderWidth: 0,
+                        gapWidth: 1
+                    }
+                },
+                upperLabel: {
+                    normal: {
+                        show: false
+                    }
+                }
+            },
+            {
+                itemStyle: {
+                    normal: {
+                        borderColor: '#555',
+                        borderWidth: 5,
+                        gapWidth: 1
+                    }
+                },
+                emphasis: {
+                    itemStyle: {
+                        borderColor: '#ddd'
+                    }
+                }
+            }
+        ],
+        data: data,
+        color: [
+            '#61A0A8', '#2F4554', '#C23531', '#D48265',
+            '#749F83', '#CA8622', '#BDA29A', '#6E7074',
+            '#546570', '#C4CCD3', '#F05B72', '#F47C7C',
+            '#F3622D', '#F3B229', '#EFE42A', '#DDDF00',
+            '#D3EEF9', '#B74E76', '#B8D2C7', '#6D8346'
+        ]
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

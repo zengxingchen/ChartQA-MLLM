@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+var option = {
+    title: {
+        text: 'Bird Migration Patterns',
+        left: 'center',
+        top: '5%'
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: function (params) {
+            return 'Latitude: ' + params.value[0] + '<br>Number of Birds: ' + params.value[1];
+        }
+    },
+    legend: {
+        data: ['Number of Birds'],
+        left: 'right',
+        top: '15%'
+    },
+    xAxis: {
+        type: 'value',
+        name: 'Latitude',
+        nameLocation: 'middle',
+        nameGap: 25
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Number of Birds',
+        nameLocation: 'middle',
+        nameGap: 50
+    },
+    series: [{
+        name: 'Number of Birds',
+        type: 'scatter',
+        symbolSize: 10,
+        itemStyle: {
+            color: '#ff7f50'
+        },
+        data: [
+            [10, 150], [15, 145], [20, 140], [25, 138], [30, 130], [35, 125], 
+            [40, 120], [45, 118], [50, 115], [55, 110], [60, 105], [65, 100], 
+            [70, 98], [75, 95], [80, 90], [85, 85], [90, 80]
+        ]
+    }]
+};
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

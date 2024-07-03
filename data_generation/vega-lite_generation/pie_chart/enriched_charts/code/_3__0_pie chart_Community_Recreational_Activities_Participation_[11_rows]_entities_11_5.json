@@ -1,0 +1,103 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Popular Fruits Market Share in 2023",
+    "width": 500,
+    "height": 400,
+    "title": {
+        "text": "Market Share of Popular Fruits in 2023",
+        "anchor": "start",
+        "fontSize": 20,
+        "dy": -20
+    },
+    "data": {
+        "values": [
+            {
+                "Fruit": "Apples",
+                "Market Share": 30
+            },
+            {
+                "Fruit": "Bananas",
+                "Market Share": 25
+            },
+            {
+                "Fruit": "Cherries",
+                "Market Share": 15
+            },
+            {
+                "Fruit": "Dates",
+                "Market Share": 10
+            },
+            {
+                "Fruit": "Elderberries",
+                "Market Share": 5
+            },
+            {
+                "Fruit": "Figs",
+                "Market Share": 8
+            },
+            {
+                "Fruit": "Grapes",
+                "Market Share": 7
+            }
+        ]
+    },
+    "transform": [
+        {
+            "calculate": "datum['Market Share']",
+            "as": "MarketValue"
+        }
+    ],
+    "mark": {
+        "type": "arc",
+        "innerRadius": 60,
+        "outerRadius": 170,
+        "tooltip": true
+    },
+    "encoding": {
+        "theta": {
+            "field": "MarketValue",
+            "type": "quantitative",
+            "stack": true
+        },
+        "color": {
+            "field": "Fruit",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Apples",
+                    "Bananas",
+                    "Cherries",
+                    "Dates",
+                    "Elderberries",
+                    "Figs",
+                    "Grapes"
+                ],
+                "range": [
+                    "#FF6347",
+                    "#FFD700",
+                    "#DC143C",
+                    "#8B4513",
+                    "#4B0082",
+                    "#8A2BE2",
+                    "#7FFF00"
+                ]
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Fruit",
+                "type": "nominal",
+                "title": "Fruit"
+            },
+            {
+                "field": "MarketValue",
+                "type": "quantitative",
+                "title": "Market Share",
+                "format": ".1f"
+            }
+        ]
+    },
+    "view": {
+        "stroke": null
+    }
+}

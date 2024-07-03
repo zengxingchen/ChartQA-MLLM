@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: '800', height: '600'});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Tech Companies Quarterly Revenue',
+        left: 'center',
+        textStyle: {
+            fontSize: 20
+        },
+        padding: [20, 0, 0, 0]
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            label: {
+                backgroundColor: '#6a7985'
+            }
+        }
+    },
+    legend: {
+        data: ['Apple', 'Google', 'Microsoft'],
+        right: 10,
+        top: 5
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: [
+        {
+            type: 'category',
+            boundaryGap: false,
+            data: ['Q1-2021', 'Q2-2021', 'Q3-2021', 'Q4-2021', 'Q1-2022', 'Q2-2022', 'Q3-2022', 'Q4-2022']
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value'
+        }
+    ],
+    series: [
+        {
+            name: 'Apple',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {normal: {}},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [100.25, 105.35, 110.15, 120.50, 125.30, 130.20, 135.10, 140.00],
+            color: '#FF851B'
+        },
+        {
+            name: 'Google',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {normal: {}},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [80.50, 82.60, 85.70, 88.80, 90.20, 92.50, 95.35, 99.00],
+            color: '#0074D9'
+        },
+        {
+            name: 'Microsoft',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {normal: {}},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [60.75, 62.85, 65.55, 68.90, 72.10, 75.80, 79.20, 83.60],
+            color: '#2ECC40'
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

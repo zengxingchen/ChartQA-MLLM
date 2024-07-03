@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+option = {
+    tooltip: {
+        trigger: 'axis',
+        formatter: function (params) {
+            params = params[0];
+            return params.name + ': ' + params.value + ' cups sold';
+        },
+        axisPointer: {
+            type: 'cross',
+            label: {
+                backgroundColor: '#6a7985'
+            }
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ['April 1', 'April 4', 'April 8', 'April 12', 'April 16', 'April 20', 'April 24', 'April 28', 'April 30']
+    },
+    yAxis: {
+        type: 'value',
+        axisLabel: {
+            formatter: '{value} cups'
+        }
+    },
+    series: [{
+        name: 'Cups Sold',
+        type: 'line',
+        stack: 'total',
+        areaStyle: {
+            normal: {
+                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                    offset: 0,
+                    color: 'rgba(58,77,233,0.8)'
+                }, {
+                    offset: 1,
+                    color: 'rgba(58,77,233,0)'
+                }])
+            }
+        },
+        emphasis: {
+            focus: 'series'
+        },
+        data: [120, 135, 150, 160, 145, 130, 190, 175, 180]
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

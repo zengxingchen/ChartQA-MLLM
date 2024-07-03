@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 400});
+var app = {};
+
+var option;
+app.title = 'Economics & Finance';
+
+option = {
+    title: {
+        text: 'Stock Market Trends in January 2023',
+        left: 'center',
+        top: 20
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['Stock Value'],
+        top: 40 // ensure enough space for the headline
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: [
+            '2023-01-01', '2023-01-02', '2023-01-03', '2023-01-04', '2023-01-05',
+            '2023-01-06', '2023-01-07', '2023-01-08', '2023-01-09', '2023-01-10',
+            '2023-01-11', '2023-01-12', '2023-01-13', '2023-01-14', '2023-01-15',
+            '2023-01-16', '2023-01-17', '2023-01-18', '2023-01-19', '2023-01-20',
+            '2023-01-21', '2023-01-22', '2023-01-23', '2023-01-24', '2023-01-25',
+            '2023-01-26', '2023-01-27', '2023-01-28', '2023-01-29', '2023-01-30',
+            '2023-01-31'
+        ]
+    },
+    yAxis: {
+        type: 'value',
+        axisLabel: {
+            formatter: '${value}'
+        }
+    },
+    series: [
+        {
+            name: 'Stock Value',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [
+                1200, 1300, 1280, 1350, 1280,
+                1400, 1450, 1500, 1550, 1520,
+                1580, 1620, 1600, 1650, 1690,
+                1740, 1720, 1760, 1800, 1850,
+                1890, 1930, 1980, 1950, 2000,
+                2050, 2070, 2100, 2150, 2200,
+                2250
+            ],
+            markLine: {
+                data: [{ type: 'average', name: 'Avg' }]
+            },
+            markPoint: {
+                data: [
+                    {type: 'max', name: 'Max Value'},
+                    {type: 'min', name: 'Min Value'}
+                ]
+            }
+        }
+    ],
+    color: ['#3398DB'],
+    backgroundColor: '#FFF'
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

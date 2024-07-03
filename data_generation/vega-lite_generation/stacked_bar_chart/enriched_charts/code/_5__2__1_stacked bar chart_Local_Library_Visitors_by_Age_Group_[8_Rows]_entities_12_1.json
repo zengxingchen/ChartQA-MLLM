@@ -1,0 +1,162 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+        "values": [
+            {
+                "Year": "2021",
+                "Technology": 3000,
+                "Healthcare": 2500,
+                "Finance": 2000,
+                "Retail": 1500
+            },
+            {
+                "Year": "2022",
+                "Technology": 3200,
+                "Healthcare": 2700,
+                "Finance": 2100,
+                "Retail": 1600
+            },
+            {
+                "Year": "2023",
+                "Technology": 3400,
+                "Healthcare": 2900,
+                "Finance": 2200,
+                "Retail": 1700
+            },
+            {
+                "Year": "2024",
+                "Technology": 3600,
+                "Healthcare": 3100,
+                "Finance": 2300,
+                "Retail": 1800
+            },
+            {
+                "Year": "2025",
+                "Technology": 3800,
+                "Healthcare": 3300,
+                "Finance": 2400,
+                "Retail": 1900
+            },
+            {
+                "Year": "2026",
+                "Technology": 4000,
+                "Healthcare": 3500,
+                "Finance": 2500,
+                "Retail": 2000
+            },
+            {
+                "Year": "2027",
+                "Technology": 4200,
+                "Healthcare": 3700,
+                "Finance": 2600,
+                "Retail": 2100
+            },
+            {
+                "Year": "2028",
+                "Technology": 4400,
+                "Healthcare": 3900,
+                "Finance": 2700,
+                "Retail": 2200
+            },
+            {
+                "Year": "2029",
+                "Technology": 4600,
+                "Healthcare": 4100,
+                "Finance": 2800,
+                "Retail": 2300
+            },
+            {
+                "Year": "2030",
+                "Technology": 4800,
+                "Healthcare": 4300,
+                "Finance": 2900,
+                "Retail": 2400
+            },
+            {
+                "Year": "2031",
+                "Technology": 5000,
+                "Healthcare": 4500,
+                "Finance": 3000,
+                "Retail": 2500
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Technology",
+                "Healthcare",
+                "Finance",
+                "Retail"
+            ],
+            "as": [
+                "Sector",
+                "Revenue"
+            ]
+        }
+    ],
+    "mark": "bar",
+    "width": 600,
+    "height": 400,
+    "title": {
+        "text": "Annual Revenue by Sector",
+        "subtitle": "Revenue in various business sectors (in millions)",
+        "fontSize": 16,
+        "anchor": "start",
+        "offset": 20,
+        "subtitleColor": "gray"
+    },
+    "encoding": {
+        "y": {
+            "field": "Year",
+            "type": "ordinal",
+            "title": "Year",
+            "axis": {
+                "labelAngle": 0
+            }
+        },
+        "x": {
+            "field": "Revenue",
+            "type": "quantitative",
+            "title": "Revenue (in millions)"
+        },
+        "color": {
+            "field": "Sector",
+            "type": "nominal",
+            "legend": {
+                "title": "Business Sectors",
+                "orient": "top-left",
+                "offset": 5
+            },
+            "scale": {
+                "domain": [
+                    "Technology",
+                    "Healthcare",
+                    "Finance",
+                    "Retail"
+                ],
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e",
+                    "#2ca02c",
+                    "#d62728"
+                ]
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Year",
+                "type": "ordinal"
+            },
+            {
+                "field": "Sector",
+                "type": "nominal"
+            },
+            {
+                "field": "Revenue",
+                "type": "quantitative",
+                "title": "Revenue"
+            }
+        ]
+    }
+}

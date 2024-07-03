@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+var option = {
+    title: {
+        text: 'Nutrient Content in Fruits',
+        left: 'center',
+        top: '10%'
+    },
+    tooltip: {
+        trigger: 'item'
+    },
+    legend: {
+        data: ['Nutrient A', 'Nutrient B'],
+        top: 'bottom'
+    },
+    xAxis: {
+        type: 'category',
+        name: 'Fruit',
+        data: ['Apple', 'Banana', 'Cherry', 'Date', 'Elderberry', 'Fig', 'Grape', 'Honeydew', 'Indian Fig', 'Jackfruit', 'Kiwi', 'Lemon', 'Mango', 'Nectarine', 'Orange', 'Papaya', 'Quince', 'Raspberry', 'Strawberry', 'Tangerine', 'Ugli Fruit', 'Watermelon', 'Xigua', 'Yam', 'Zucchini']
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Nutrient Value'
+    },
+    series: [
+        {
+            name: 'Nutrient A',
+            type: 'scatter',
+            itemStyle: {
+                color: '#FF5733'
+            },
+            data: [4.5, 3.2, 5.1, 7.8, 9.2, 6.3, 4.9, 3.7, 8.3, 6.9, 5.4, 4.0, 7.5, 6.1, 5.8, 6.7, 7.1, 5.3, 5.0, 5.6, 4.3, 3.5, 6.4, 7.3, 4.1]
+        },
+        {
+            name: 'Nutrient B',
+            type: 'scatter',
+            itemStyle: {
+                color: '#33C4FF'
+            },
+            data: [2.8, 1.5, 3.7, 6.4, 7.1, 5.0, 3.0, 2.1, 6.7, 4.5, 3.8, 2.3, 5.9, 4.8, 3.9, 5.3, 6.0, 3.6, 3.3, 4.1, 2.6, 2.0, 5.2, 6.1, 2.9]
+        }
+    ]
+};
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

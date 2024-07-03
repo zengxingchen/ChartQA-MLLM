@@ -1,0 +1,155 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Percentage Stacked Bar Chart of Daily Internet Usage by Age Group",
+    "title": {
+        "text": "Daily Internet Usage by Age Group",
+        "anchor": "start",
+        "offset": 5,
+        "frame": "group"
+    },
+    "data": {
+        "values": [
+            {
+                "Age Group": "Under 18",
+                "Social Media": 35,
+                "Email": 5,
+                "Gaming": 25,
+                "Education": 20,
+                "News": 5,
+                "Other": 10
+            },
+            {
+                "Age Group": "18 to 30",
+                "Social Media": 30,
+                "Email": 10,
+                "Gaming": 20,
+                "Education": 15,
+                "News": 10,
+                "Other": 15
+            },
+            {
+                "Age Group": "31 to 45",
+                "Social Media": 25,
+                "Email": 15,
+                "Gaming": 10,
+                "Education": 20,
+                "News": 15,
+                "Other": 15
+            },
+            {
+                "Age Group": "46 to 60",
+                "Social Media": 20,
+                "Email": 20,
+                "Gaming": 5,
+                "Education": 20,
+                "News": 20,
+                "Other": 15
+            },
+            {
+                "Age Group": "Above 60",
+                "Social Media": 15,
+                "Email": 25,
+                "Gaming": 5,
+                "Education": 20,
+                "News": 25,
+                "Other": 10
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Social Media",
+                "Email",
+                "Gaming",
+                "Education",
+                "News",
+                "Other"
+            ],
+            "as": [
+                "category",
+                "percentage"
+            ]
+        }
+    ],
+    "width": 600,
+    "height": 400,
+    "mark": {
+        "type": "bar",
+        "tooltip": true,
+        "height": {
+            "band": 0.7
+        }
+    },
+    "encoding": {
+        "y": {
+            "field": "Age Group",
+            "type": "ordinal",
+            "axis": {
+                "title": "Age Group"
+            }
+        },
+        "x": {
+            "field": "percentage",
+            "type": "quantitative",
+            "axis": {
+                "title": "Percentage",
+                "format": "%"
+            },
+            "stack": "normalize"
+        },
+        "color": {
+            "field": "category",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Social Media",
+                    "Email",
+                    "Gaming",
+                    "Education",
+                    "News",
+                    "Other"
+                ],
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e",
+                    "#2ca02c",
+                    "#d62728",
+                    "#9467bd",
+                    "#8c564b"
+                ]
+            },
+            "legend": {
+                "title": "Internet Usage Category"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Age Group",
+                "type": "ordinal"
+            },
+            {
+                "field": "category",
+                "type": "nominal"
+            },
+            {
+                "field": "percentage",
+                "type": "quantitative",
+                "title": "Percentage",
+                "format": ".2%"
+            }
+        ]
+    },
+    "config": {
+        "axis": {
+            "labelFontSize": 12,
+            "titleFontSize": 14
+        },
+        "legend": {
+            "labelFontSize": 12,
+            "titleFontSize": 14,
+            "orient": "right",
+            "titleAnchor": "middle"
+        }
+    }
+}

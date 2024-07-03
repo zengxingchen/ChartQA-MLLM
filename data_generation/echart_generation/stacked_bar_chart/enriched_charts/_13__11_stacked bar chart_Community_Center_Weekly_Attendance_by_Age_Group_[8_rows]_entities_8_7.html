@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {renderer: 'canvas', useDirtyRect: false, width: 800, height: 600});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Academic Fields Stacked Bar Chart',
+        left: 'center',
+        top: '5%'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        bottom: '5%'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '10%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        data: ['Art', 'Science', 'Nature', 'Design', 'Technology', 'Mathematics', 'Engineering', 'History', 'Literature', 'Philosophy', 'Ethics', 'Psychology', 'Sociology', 'Economics', 'Finance'],
+        axisLabel: {
+            rotate: 45,
+            interval: 0
+        }
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Value 1',
+            type: 'bar',
+            stack: 'total',
+            barWidth: '60%',
+            color: '#FF6347',
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            data: [120, 150, 180, 200, 220, 250, 270, 300, 320, 340, 360, 380, 400, 420, 440]
+        },
+        {
+            name: 'Value 2',
+            type: 'bar',
+            stack: 'total',
+            barWidth: '60%',
+            color: '#4682B4',
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            data: [200, 230, 210, 250, 280, 300, 330, 360, 380, 400, 420, 440, 460, 480, 500]
+        },
+        {
+            name: 'Value 3',
+            type: 'bar',
+            stack: 'total',
+            barWidth: '60%',
+            color: '#32CD32',
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            data: [150, 180, 200, 230, 250, 270, 290, 310, 330, 350, 370, 390, 410, 430, 450]
+        },
+        {
+            name: 'Value 4',
+            type: 'bar',
+            stack: 'total',
+            barWidth: '60%',
+            color: '#FFD700',
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            data: [80, 90, 100, 130, 150, 160, 180, 200, 210, 220, 230, 240, 250, 260, 270]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

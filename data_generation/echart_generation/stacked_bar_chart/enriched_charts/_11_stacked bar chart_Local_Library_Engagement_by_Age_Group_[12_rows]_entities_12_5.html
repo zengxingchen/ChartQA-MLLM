@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+var app = {};
+var option;
+
+option = {
+    title: {
+        text: 'Company Department Expenditure Over Years',
+        left: 'center',
+        top: '10'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Research and Development', 'Manufacturing', 'Marketing and Sales', 'Human Resources', 'Finance', 'IT and Support'],
+        top: '40'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        data: ['2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023'],
+        axisLabel: {
+            interval: 0
+        }
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Research and Development',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            color: '#ff9999',
+            data: [120, 140, 160, 180, 200, 220, 240, 260, 280],
+            barWidth: '40%',
+        },
+        {
+            name: 'Manufacturing',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            color: '#66b3ff',
+            data: [200, 220, 240, 260, 280, 300, 320, 340, 360],
+            barWidth: '40%',
+        },
+        {
+            name: 'Marketing and Sales',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            color: '#99ff99',
+            data: [150, 160, 170, 180, 190, 200, 210, 220, 230],
+            barWidth: '40%',
+        },
+        {
+            name: 'Human Resources',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            color: '#ffcc99',
+            data: [100, 110, 120, 130, 140, 150, 160, 170, 180],
+            barWidth: '40%',
+        },
+        {
+            name: 'Finance',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            color: '#c2c2f0',
+            data: [180, 190, 200, 210, 220, 230, 240, 250, 260],
+            barWidth: '40%',
+        },
+        {
+            name: 'IT and Support',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            color: '#ffb3e6',
+            data: [130, 140, 150, 160, 170, 180, 190, 200, 210],
+            barWidth: '40%',
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,148 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Line chart showing the trend of stock prices over a week.",
+    "title": {
+        "text": "Stock Prices Trend by Company",
+        "fontSize": 16,
+        "anchor": "start",
+        "color": "black"
+    },
+    "width": 800,
+    "height": 600,
+    "data": {
+        "values": [
+            {
+                "Company": "Company A",
+                "Monday": 152.3,
+                "Tuesday": 159.5,
+                "Wednesday": 157.3,
+                "Thursday": 162.4,
+                "Friday": 165.6,
+                "Saturday": 167.0,
+                "Sunday": 168.5
+            },
+            {
+                "Company": "Company B",
+                "Monday": 105.1,
+                "Tuesday": 107.8,
+                "Wednesday": 106.7,
+                "Thursday": 109.4,
+                "Friday": 109.9,
+                "Saturday": 111.3,
+                "Sunday": 112.6
+            },
+            {
+                "Company": "Company C",
+                "Monday": 92.9,
+                "Tuesday": 93.5,
+                "Wednesday": 93.2,
+                "Thursday": 94.1,
+                "Friday": 94.7,
+                "Saturday": 96.0,
+                "Sunday": 97.2
+            },
+            {
+                "Company": "Company D",
+                "Monday": 108.4,
+                "Tuesday": 110.7,
+                "Wednesday": 112.5,
+                "Thursday": 115.1,
+                "Friday": 117.8,
+                "Saturday": 120.9,
+                "Sunday": 122.3
+            },
+            {
+                "Company": "Company E",
+                "Monday": 110.3,
+                "Tuesday": 112.2,
+                "Wednesday": 114.9,
+                "Thursday": 117.0,
+                "Friday": 119.5,
+                "Saturday": 121.1,
+                "Sunday": 122.8
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday",
+                "Friday",
+                "Saturday",
+                "Sunday"
+            ],
+            "as": [
+                "Day",
+                "Stock Price"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "line",
+        "point": true
+    },
+    "encoding": {
+        "x": {
+            "field": "Day",
+            "type": "ordinal",
+            "title": "Day of the Week",
+            "axis": {
+                "titleFontSize": 12,
+                "labelAngle": -45
+            }
+        },
+        "y": {
+            "field": "Stock Price",
+            "type": "quantitative",
+            "title": "Stock Price ($)",
+            "axis": {
+                "titleFontSize": 12
+            }
+        },
+        "color": {
+            "field": "Company",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Company A",
+                    "Company B",
+                    "Company C",
+                    "Company D",
+                    "Company E"
+                ],
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e",
+                    "#2ca02c",
+                    "#d62728",
+                    "#9467bd"
+                ]
+            },
+            "legend": {
+                "title": "Company"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Company",
+                "type": "nominal"
+            },
+            {
+                "field": "Day",
+                "type": "ordinal"
+            },
+            {
+                "field": "Stock Price",
+                "type": "quantitative"
+            }
+        ]
+    },
+    "config": {
+        "axisY": {
+            "minExtent": 30
+        }
+    }
+}

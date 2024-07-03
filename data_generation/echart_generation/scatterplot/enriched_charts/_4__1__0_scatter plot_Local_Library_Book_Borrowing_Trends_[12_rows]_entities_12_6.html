@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Correlation between Temperature and Ice Cream Sales',
+        left: 'center',
+        top: '5%'
+    },
+    legend: {
+        data: ['Sales Data'],
+        right: '10%',
+        top: '10%'
+    },
+    xAxis: {
+        name: 'Temperature (°C)',
+        min: 'dataMin',
+        max: 'dataMax'
+    },
+    yAxis: {
+        name: 'Ice Cream Sales ($)',
+        min: 'dataMin',
+        max: 'dataMax'
+    },
+    series: [{
+        name: 'Sales Data',
+        type: 'scatter',
+        itemStyle: {
+            color: '#FF6347'
+        },
+        symbolSize: 12,
+        data: [
+            [20, 120],
+            [21, 140],
+            [22, 160],
+            [23, 180],
+            [24, 200],
+            [24.5, 220],
+            [25, 240],
+            [25.5, 260],
+            [26, 280],
+            [27, 300],
+            [27.5, 320],
+            [28, 340],
+            [29, 360],
+            [30, 420],
+            [31, 460],
+            [32, 500],
+            [33, 550],
+            [34, 580],
+            [35, 600],
+            [36, 630],
+            [37, 670],
+            [38, 690],
+            [39, 710],
+            [40, 720],
+            [41, 740],
+            [42, 760],
+            [43, 770]
+        ]
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

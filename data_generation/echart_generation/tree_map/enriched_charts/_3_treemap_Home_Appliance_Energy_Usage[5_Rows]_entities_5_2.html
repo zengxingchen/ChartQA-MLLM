@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 500});
+var app = {};
+
+var data = [
+    {name: 'Energy', value: 35},
+    {name: 'Industrial Processes', value: 25},
+    {name: 'Agriculture', value: 24},
+    {name: 'Waste', value: 10},
+    {name: 'Land-Use Change and Forestry', value: 5},
+    {name: 'Transportation', value: 20},
+    {name: 'Residential & Commercial', value: 10},
+    {name: 'Electricity & Heat Production', value: 30},
+    {name: 'Fugitive Emissions', value: 5},
+    {name: 'Other Fuel Combustion', value: 8},
+    {name: 'Aviation & Shipping', value: 7}
+];
+
+option = {
+    title: {
+        text: 'Greenhouse Gas Emissions by Sector',
+        subtext: 'Environment & Climate Change',
+        left: 'center',
+        top: 'top'
+    },
+    color: [
+        '#63be7b', '#f6c021', '#fa5a5b', '#98ccd3', 
+        '#5a9bd4', '#faa41a', '#ee6868', '#9e67ab', 
+        '#67b7dc', '#ff7f0e', '#ebc85e'
+    ],
+    tooltip: {
+        trigger: 'item',
+        formatter: '{b}: {c}'
+    },
+    series: [{
+        name: 'Emissions',
+        type: 'treemap',
+        visibleMin: 300,
+        label: {
+            show: true,
+            formatter: '{b}'
+        },
+        itemStyle: {
+            normal: {
+                borderColor: '#fff'
+            }
+        },
+        data: data
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

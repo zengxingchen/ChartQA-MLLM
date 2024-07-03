@@ -1,0 +1,199 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Monthly Average Participation Rates in Different Sports",
+    "data": {
+        "values": [
+            {
+                "Month": "January",
+                "Running": 30,
+                "Swimming": 20,
+                "Cycling": 25,
+                "Gym": 35,
+                "Yoga": 15
+            },
+            {
+                "Month": "February",
+                "Running": 35,
+                "Swimming": 25,
+                "Cycling": 30,
+                "Gym": 40,
+                "Yoga": 20
+            },
+            {
+                "Month": "March",
+                "Running": 40,
+                "Swimming": 30,
+                "Cycling": 35,
+                "Gym": 45,
+                "Yoga": 25
+            },
+            {
+                "Month": "April",
+                "Running": 45,
+                "Swimming": 35,
+                "Cycling": 40,
+                "Gym": 50,
+                "Yoga": 30
+            },
+            {
+                "Month": "May",
+                "Running": 50,
+                "Swimming": 40,
+                "Cycling": 45,
+                "Gym": 55,
+                "Yoga": 35
+            },
+            {
+                "Month": "June",
+                "Running": 55,
+                "Swimming": 45,
+                "Cycling": 50,
+                "Gym": 60,
+                "Yoga": 40
+            },
+            {
+                "Month": "July",
+                "Running": 60,
+                "Swimming": 50,
+                "Cycling": 55,
+                "Gym": 65,
+                "Yoga": 45
+            },
+            {
+                "Month": "August",
+                "Running": 65,
+                "Swimming": 55,
+                "Cycling": 60,
+                "Gym": 70,
+                "Yoga": 50
+            },
+            {
+                "Month": "September",
+                "Running": 70,
+                "Swimming": 60,
+                "Cycling": 65,
+                "Gym": 75,
+                "Yoga": 55
+            },
+            {
+                "Month": "October",
+                "Running": 75,
+                "Swimming": 65,
+                "Cycling": 70,
+                "Gym": 80,
+                "Yoga": 60
+            },
+            {
+                "Month": "November",
+                "Running": 80,
+                "Swimming": 70,
+                "Cycling": 75,
+                "Gym": 85,
+                "Yoga": 65
+            },
+            {
+                "Month": "December",
+                "Running": 85,
+                "Swimming": 75,
+                "Cycling": 80,
+                "Gym": 90,
+                "Yoga": 70
+            }
+        ]
+    },
+    "width": 600,
+    "height": 400,
+    "transform": [
+        {
+            "fold": [
+                "Running",
+                "Swimming",
+                "Cycling",
+                "Gym",
+                "Yoga"
+            ],
+            "as": [
+                "Sport",
+                "Participation Rate"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "line",
+        "point": true
+    },
+    "encoding": {
+        "x": {
+            "field": "Month",
+            "type": "ordinal",
+            "title": "Month",
+            "axis": {
+                "labelAngle": 0
+            }
+        },
+        "y": {
+            "field": "Participation Rate",
+            "type": "quantitative",
+            "title": "Participation Rate (%)",
+            "scale": {
+                "reverse": true
+            }
+        },
+        "color": {
+            "field": "Sport",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Running",
+                    "Swimming",
+                    "Cycling",
+                    "Gym",
+                    "Yoga"
+                ],
+                "range": [
+                    "#FF5733",
+                    "#33FF57",
+                    "#3357FF",
+                    "#FF33A6",
+                    "#A633FF"
+                ]
+            },
+            "title": "Sport"
+        },
+        "tooltip": [
+            {
+                "field": "Month",
+                "type": "nominal"
+            },
+            {
+                "field": "Sport",
+                "type": "nominal"
+            },
+            {
+                "field": "Participation Rate",
+                "type": "quantitative"
+            }
+        ],
+        "text": {
+            "field": "Participation Rate",
+            "type": "quantitative"
+        }
+    },
+    "layer": [
+        {
+            "mark": "line"
+        },
+        {
+            "mark": "text",
+            "encoding": {
+                "text": {
+                    "field": "Participation Rate",
+                    "type": "quantitative"
+                },
+                "color": {
+                    "value": "#000000"
+                }
+            }
+        }
+    ]
+}

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var option;
+
+option = {
+    title: {
+        text: 'Height vs. Weight in a Population',
+        left: 'center',
+        top: '10'
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: function (params) {
+            return `(${params.value[0]}, ${params.value[1]})`;
+        }
+    },
+    legend: {
+        data: ['Height vs. Weight'],
+        left: 'left',
+        top: '50'
+    },
+    xAxis: {
+        name: 'Height (inches)',
+        type: 'value',
+        min: 0,
+        max: 20
+    },
+    yAxis: {
+        name: 'Weight (pounds)',
+        type: 'value',
+        min: 0,
+        max: 16
+    },
+    series: [{
+        name: 'Height vs. Weight',
+        type: 'scatter',
+        itemStyle: {
+            color: '#FF5733'
+        },
+        data: [
+            [1, 3.5],
+            [2, 4.2],
+            [3, 5.8],
+            [4, 6.1],
+            [5, 7.4],
+            [6, 8.0],
+            [7, 7.9],
+            [8, 8.6],
+            [9, 9.1],
+            [10, 10.0],
+            [11, 10.5],
+            [12, 11.3],
+            [13, 12.0],
+            [14, 11.8],
+            [15, 12.7],
+            [16, 13.2],
+            [17, 14.1],
+            [18, 13.9],
+            [19, 14.8],
+            [20, 15.5]
+        ]
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

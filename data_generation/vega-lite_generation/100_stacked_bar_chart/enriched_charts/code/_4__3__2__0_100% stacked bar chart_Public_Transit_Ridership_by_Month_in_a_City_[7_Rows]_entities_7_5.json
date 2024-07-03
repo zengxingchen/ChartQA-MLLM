@@ -1,0 +1,171 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "A 100% stacked bar chart showing the distribution of spending across different categories by various income groups.",
+    "width": 800,
+    "height": 600,
+    "padding": 10,
+    "data": {
+        "values": [
+            {
+                "Income Group": "Low",
+                "Food": 40,
+                "Housing": 30,
+                "Transportation": 15,
+                "Healthcare": 10,
+                "Entertainment": 5
+            },
+            {
+                "Income Group": "Middle",
+                "Food": 30,
+                "Housing": 35,
+                "Transportation": 20,
+                "Healthcare": 10,
+                "Entertainment": 5
+            },
+            {
+                "Income Group": "High",
+                "Food": 20,
+                "Housing": 40,
+                "Transportation": 25,
+                "Healthcare": 10,
+                "Entertainment": 5
+            },
+            {
+                "Income Group": "Low",
+                "Food": 42,
+                "Housing": 28,
+                "Transportation": 15,
+                "Healthcare": 10,
+                "Entertainment": 5
+            },
+            {
+                "Income Group": "Middle",
+                "Food": 32,
+                "Housing": 34,
+                "Transportation": 19,
+                "Healthcare": 10,
+                "Entertainment": 5
+            },
+            {
+                "Income Group": "High",
+                "Food": 22,
+                "Housing": 38,
+                "Transportation": 25,
+                "Healthcare": 10,
+                "Entertainment": 5
+            },
+            {
+                "Income Group": "Low",
+                "Food": 41,
+                "Housing": 29,
+                "Transportation": 14,
+                "Healthcare": 11,
+                "Entertainment": 5
+            },
+            {
+                "Income Group": "Middle",
+                "Food": 33,
+                "Housing": 33,
+                "Transportation": 18,
+                "Healthcare": 11,
+                "Entertainment": 5
+            },
+            {
+                "Income Group": "High",
+                "Food": 23,
+                "Housing": 37,
+                "Transportation": 24,
+                "Healthcare": 11,
+                "Entertainment": 5
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Food",
+                "Housing",
+                "Transportation",
+                "Healthcare",
+                "Entertainment"
+            ],
+            "as": [
+                "Category",
+                "Percentage"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "bar",
+        "tooltip": true,
+        "cornerRadiusEnd": 4
+    },
+    "encoding": {
+        "y": {
+            "field": "Income Group",
+            "type": "ordinal",
+            "axis": {
+                "title": "Income Group",
+                "labelAngle": 0
+            }
+        },
+        "x": {
+            "field": "Percentage",
+            "type": "quantitative",
+            "axis": {
+                "title": "Percentage (%)",
+                "format": ".0f"
+            },
+            "stack": "normalize"
+        },
+        "color": {
+            "field": "Category",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Food",
+                    "Housing",
+                    "Transportation",
+                    "Healthcare",
+                    "Entertainment"
+                ],
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e",
+                    "#2ca02c",
+                    "#d62728",
+                    "#9467bd"
+                ]
+            },
+            "legend": {
+                "title": "Spending Category",
+                "orient": "top",
+                "symbolType": "square"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Category",
+                "type": "nominal"
+            },
+            {
+                "field": "Percentage",
+                "type": "quantitative",
+                "title": "Percentage"
+            }
+        ]
+    },
+    "config": {
+        "axis": {
+            "labelFontSize": 12,
+            "titleFontSize": 14
+        },
+        "legend": {
+            "labelFontSize": 12,
+            "titleFontSize": 14
+        },
+        "bar": {
+            "binSpacing": 2
+        }
+    }
+}

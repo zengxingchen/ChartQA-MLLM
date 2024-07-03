@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+option = {
+    title: {
+        text: 'Atmospheric CO2 Concentration Over Time',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['CO2 Concentration'],
+        top: '10%'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ['1958-03', '1959-03', '1960-03', '1961-03', '1962-03', '1963-03', '1964-03', '1965-03', /* ... */ '2019-03', '2020-03']
+    },
+    yAxis: {
+        type: 'value',
+        axisLabel: {
+            formatter: '{value} ppm'
+        }
+    },
+    series: [
+        {
+            name: 'CO2 Concentration',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [315.71, 316.18, 316.93, 317.45, 318.99, 319.62, 320.04, 320.03, /* ... */ 411.97, 414.24],
+            markPoint: {
+                data: [
+                    {
+                        type: 'max',
+                        name: 'Max value'
+                    },
+                    {
+                        type: 'min',
+                        name: 'Min value'
+                    }
+                ]
+            },
+            color: ['#00BAFF']
+        }
+    ],
+    color: ['#00BAFF', '#403A3E', '#C7F464', '#BA3FF5'],
+    textStyle: {
+        color: '#333'
+    }
+};
+myChart.setOption(option, true);
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

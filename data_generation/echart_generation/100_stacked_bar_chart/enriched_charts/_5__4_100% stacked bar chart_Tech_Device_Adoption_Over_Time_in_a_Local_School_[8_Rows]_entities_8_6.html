@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+// Initialize dom element where chart will be rendered
+var dom = document.getElementById('container');
+// Set up the rendering context by creating a chart instance
+var myChart = echarts.init(dom, null, {
+    width: '600', // Width of the chart
+    height: '400' // Height of the chart
+});
+// Specify the chart configurations
+var option;
+
+// Option containing the series data and configuration
+option = {
+    title: {
+        text: 'Education & Learning: Mode of Learning across Age Groups',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Online Courses', 'In-Person Classes', 'Informal Learning'],
+        bottom: 0
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '10%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01]
+    },
+    yAxis: {
+        type: 'category',
+        data: ['<18', '18-30', '31-45', '46-60', '>60']
+    },
+    series: [
+        {
+            name: 'Online Courses',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [25, 40, 30, 20, 15],
+            color: '#34a4eb',
+            barWidth: 40 // Width of individual bars
+        },
+        {
+            name: 'In-Person Classes',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [55, 35, 40, 50, 60],
+            color: '#ed6c02',
+            barWidth: 40 // Width of individual bars 
+        },
+        {
+            name: 'Informal Learning',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [20, 25, 30, 30, 25],
+            color: '#3cad80',
+            barWidth: 40 // Width of individual bars
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

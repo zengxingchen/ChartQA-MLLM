@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+
+// Prepare data
+var data = [{
+    name: '18-29',
+    children: [
+        { name: 'Male', value: 150 },
+        { name: 'Female', value: 130 }
+    ]
+}, {
+    name: '30-39',
+    children: [
+        { name: 'Male', value: 220 },
+        { name: 'Female', value: 200 }
+    ]
+}, {
+    name: '40-49',
+    children: [
+        { name: 'Male', value: 180 },
+        { name: 'Female', value: 160 }
+    ]
+}, {
+    name: '50-59',
+    children: [
+        { name: 'Male', value: 100 },
+        { name: 'Female', value: 90 }
+    ]
+}, {
+    name: '60-69',
+    children: [
+        { name: 'Male', value: 60 },
+        { name: 'Female', value: 40 }
+    ]
+}, {
+    name: '70+',
+    children: [
+        { name: 'Male', value: 20 },
+        { name: 'Female', value: 10 }
+    ]
+}];
+
+// Define the echarts option
+var option = {
+    tooltip: {
+        formatter: function(info) {
+            var value = info.value;
+            var name = info.name;
+            return `${name}: ${value}`;
+        }
+    },
+    series: [{
+        type: 'treemap',
+        data: data,
+        breadcrumb: {
+            show: false
+        },
+        label: {
+            show: true,
+            formatter: '{b}'
+        },
+        itemStyle: {
+            borderColor: '#fff'
+        },
+        upperLabel: {
+            show: true,
+            height: 30
+        },
+        levels: [
+            {
+                itemStyle: {
+                    borderWidth: 1,
+                    borderColor: '#555'
+                },
+                upperLabel: {
+                    show: false
+                }
+            },
+            {
+                itemStyle: {
+                    borderWidth: 3,
+                    borderColor: '#333'
+                },
+                emphasize: {
+                    itemStyle: {
+                        borderColor: '#2a99c9',
+                        borderWidth: 5
+                    }
+                }
+            }
+        ]
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

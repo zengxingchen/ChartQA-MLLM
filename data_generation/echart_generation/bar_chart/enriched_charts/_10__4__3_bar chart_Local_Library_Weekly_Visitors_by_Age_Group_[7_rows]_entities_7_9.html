@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+var option;
+
+option = {
+    title: {
+        text: 'Trends in Future Technologies (2022-2024)',
+        left: 'center',
+        top: '10'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['2022', '2023', '2024'],
+        bottom: 10
+    },
+    xAxis: {
+        type: 'category',
+        data: ['Artificial Intelligence', 'Quantum Computing', 'Biotechnology', 'Nanotechnology', 'Space Exploration', 'Green Energy', 'Cybersecurity', 'Augmented Reality', 'Autonomous Vehicles', 'Blockchain'],
+        axisLabel: {
+            interval: 0,
+            rotate: 30
+        }
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: '2022',
+            type: 'bar',
+            data: [30, 20, 25, 15, 18, 22, 12, 10, 17, 14],
+            itemStyle: {
+                color: '#FF5733'
+            },
+            barWidth: '40%'
+        },
+        {
+            name: '2023',
+            type: 'bar',
+            data: [35, 25, 30, 18, 22, 28, 14, 12, 19, 16],
+            itemStyle: {
+                color: '#33FF57'
+            },
+            barWidth: '40%'
+        },
+        {
+            name: '2024',
+            type: 'bar',
+            data: [40, 28, 32, 20, 24, 30, 16, 15, 21, 18],
+            itemStyle: {
+                color: '#3357FF'
+            },
+            barWidth: '40%'
+        }
+    ],
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '15%',
+        containLabel: true
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

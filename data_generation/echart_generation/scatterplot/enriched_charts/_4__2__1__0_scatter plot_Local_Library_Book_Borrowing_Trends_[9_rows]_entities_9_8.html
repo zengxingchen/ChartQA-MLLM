@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var option;
+
+option = {
+    title: {
+        text: 'Growth of Plant Height Over Time',
+        left: 'center',
+        top: '5%'
+    },
+    tooltip: {
+        trigger: 'axis',
+        showDelay: 0,
+        formatter: function (params) {
+            if (params.value.length > 1) {
+                return params.seriesName + ' :<br/>' +
+                    params.value[0] + ' days : ' +
+                    params.value[1] + ' cm';
+            } else {
+                return params.seriesName + ' :<br/>' +
+                    params.name + ' : ' +
+                    params.value + ' cm';
+            }
+        },
+        axisPointer: {
+            show: true,
+            type: 'cross',
+            lineStyle: {
+                type: 'dashed',
+                width: 1
+            }
+        }
+    },
+    legend: {
+        left: '10%',
+        top: '10%',
+        data: ['Height']
+    },
+    xAxis: [
+        {
+            type: 'value',
+            scale: true,
+            axisLabel: {
+                formatter: '{value} days'
+            },
+            name: 'Days'
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value',
+            scale: true,
+            axisLabel: {
+                formatter: '{value} cm'
+            },
+            name: 'Height (cm)'
+        }
+    ],
+    series: [
+        {
+            name: 'Height',
+            type: 'scatter',
+            data: [
+                [1.1, 2.2], [1.4, 3.2], [2.3, 4.1], [2.5, 5.0], [3.6, 2.9], 
+                [3.9, 6.7], [4.6, 3.3], [5.1, 7.5], [5.2, 8.8], [6.3, 4.2], 
+                [6.5, 9.1], [7.4, 5.6], [7.7, 10.4], [8.1, 6.1], [8.3, 11.2], 
+                [9.0, 7.3], [9.5, 12.0], [10.0, 8.0], [10.3, 12.8], [11.1, 8.9]
+            ],
+            itemStyle: {
+                color: '#FF6347'
+            }
+        }
+    ],
+    grid: {
+        width: '70%',
+        height: '70%',
+        containLabel: true
+    }
+};
+
+if (option && typeof option === 'object') myChart.setOption(option);
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,171 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Climate Indicators Over the Years",
+    "data": {
+        "values": [
+            {
+                "Year": 2010,
+                "Average Temperature": 14.5,
+                "Sea Level Rise": 3.2,
+                "CO2 Emissions": 32.1,
+                "Forest Area": 4060,
+                "Renewable Energy": 9.6
+            },
+            {
+                "Year": 2011,
+                "Average Temperature": 14.6,
+                "Sea Level Rise": 3.3,
+                "CO2 Emissions": 33.0,
+                "Forest Area": 4055,
+                "Renewable Energy": 10.1
+            },
+            {
+                "Year": 2012,
+                "Average Temperature": 14.5,
+                "Sea Level Rise": 3.4,
+                "CO2 Emissions": 33.2,
+                "Forest Area": 4050,
+                "Renewable Energy": 10.5
+            },
+            {
+                "Year": 2013,
+                "Average Temperature": 14.7,
+                "Sea Level Rise": 3.5,
+                "CO2 Emissions": 34.0,
+                "Forest Area": 4045,
+                "Renewable Energy": 11.2
+            },
+            {
+                "Year": 2014,
+                "Average Temperature": 14.8,
+                "Sea Level Rise": 3.6,
+                "CO2 Emissions": 35.0,
+                "Forest Area": 4040,
+                "Renewable Energy": 12.0
+            },
+            {
+                "Year": 2015,
+                "Average Temperature": 15.0,
+                "Sea Level Rise": 3.7,
+                "CO2 Emissions": 36.0,
+                "Forest Area": 4035,
+                "Renewable Energy": 12.7
+            },
+            {
+                "Year": 2016,
+                "Average Temperature": 15.1,
+                "Sea Level Rise": 3.8,
+                "CO2 Emissions": 37.0,
+                "Forest Area": 4030,
+                "Renewable Energy": 13.3
+            },
+            {
+                "Year": 2017,
+                "Average Temperature": 15.2,
+                "Sea Level Rise": 3.9,
+                "CO2 Emissions": 38.0,
+                "Forest Area": 4025,
+                "Renewable Energy": 14.0
+            },
+            {
+                "Year": 2018,
+                "Average Temperature": 15.3,
+                "Sea Level Rise": 4.0,
+                "CO2 Emissions": 39.0,
+                "Forest Area": 4020,
+                "Renewable Energy": 14.5
+            },
+            {
+                "Year": 2019,
+                "Average Temperature": 15.4,
+                "Sea Level Rise": 4.1,
+                "CO2 Emissions": 40.0,
+                "Forest Area": 4015,
+                "Renewable Energy": 15.0
+            },
+            {
+                "Year": 2020,
+                "Average Temperature": 15.5,
+                "Sea Level Rise": 4.2,
+                "CO2 Emissions": 41.0,
+                "Forest Area": 4010,
+                "Renewable Energy": 15.5
+            },
+            {
+                "Year": 2021,
+                "Average Temperature": 15.6,
+                "Sea Level Rise": 4.3,
+                "CO2 Emissions": 42.0,
+                "Forest Area": 4005,
+                "Renewable Energy": 16.0
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Average Temperature",
+                "Sea Level Rise",
+                "CO2 Emissions",
+                "Forest Area",
+                "Renewable Energy"
+            ],
+            "as": [
+                "Indicator",
+                "Value"
+            ]
+        }
+    ],
+    "width": 900,
+    "height": 600,
+    "mark": {
+        "type": "line",
+        "point": true,
+        "tooltip": true
+    },
+    "encoding": {
+        "x": {
+            "field": "Year",
+            "type": "ordinal",
+            "title": "Year"
+        },
+        "y": {
+            "field": "Value",
+            "type": "quantitative",
+            "title": "Indicator Values",
+            "axis": {
+                "format": ".1f"
+            }
+        },
+        "color": {
+            "field": "Indicator",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Average Temperature",
+                    "Sea Level Rise",
+                    "CO2 Emissions",
+                    "Forest Area",
+                    "Renewable Energy"
+                ],
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e",
+                    "#2ca02c",
+                    "#d62728",
+                    "#9467bd"
+                ]
+            },
+            "title": "Climate Indicator"
+        },
+        "text": {
+            "field": "Value",
+            "type": "quantitative"
+        }
+    },
+    "config": {
+        "axisY": {
+            "minExtent": 30
+        }
+    }
+}

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var option;
+
+option = {
+    title: {
+        text: 'Stock Market Analysis',
+        left: 'center',
+        top: 20
+    },
+    legend: {
+        data: ['Stocks'],
+        left: 'left',
+        top: 'center'
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: function (params) {
+            return params.data[2] + ': ' + 'Price: ' + params.data[0] + ', Earnings: ' + params.data[1];
+        }
+    },
+    xAxis: {
+        name: 'Price',
+        min: 80,
+        max: 160,
+        type: 'value'
+    },
+    yAxis: {
+        name: 'Earnings',
+        min: 8,
+        max: 35,
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Stocks',
+            type: 'scatter',
+            itemStyle: {
+                color: '#1f78b4'
+            },
+            data: [
+                { value: [120, 20, 'Company A'] },
+                { value: [100, 15, 'Company B'] },
+                { value: [130, 25, 'Company C'] },
+                { value: [90, 10, 'Company D'] },
+                { value: [150, 30, 'Company E'] },
+                { value: [110, 18, 'Company F'] },
+                { value: [140, 28, 'Company G'] },
+                { value: [95, 12, 'Company H'] },
+                { value: [125, 22, 'Company I'] },
+                { value: [105, 16, 'Company J'] },
+                { value: [135, 26, 'Company K'] },
+                { value: [85, 8, 'Company L'] },
+                { value: [145, 29, 'Company M'] },
+                { value: [115, 17, 'Company N'] },
+                { value: [155, 32, 'Company O'] },
+                { value: [98, 14, 'Company P'] },
+                { value: [128, 23, 'Company Q'] },
+                { value: [108, 19, 'Company R'] },
+                { value: [138, 27, 'Company S'] },
+                { value: [87, 9, 'Company T'] }
+            ]
+        }
+    ],
+    grid: {
+        width: '70%',
+        height: '70%',
+        top: '10%',
+        left: '15%'
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

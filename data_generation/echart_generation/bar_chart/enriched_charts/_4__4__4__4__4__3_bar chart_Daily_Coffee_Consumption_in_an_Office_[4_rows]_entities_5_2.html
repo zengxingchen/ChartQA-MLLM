@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Future Technologies & Society',
+        left: 'center',
+        top: 20,
+        textStyle: {
+            color: '#333',
+            fontSize: 24,
+            fontWeight: 'bold'
+        }
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01]
+    },
+    yAxis: {
+        type: 'category',
+        data: ['AI & Machine Learning', 'Quantum Computing', 'Blockchain Technology', '5G Networks', 'Augmented Reality', 'Internet of Things', 'Biotechnology', 'Renewable Energy', 'Cybersecurity', 'Space Exploration', 'Nanotechnology', 'Autonomous Vehicles', 'Robotics', 'Big Data', 'Digital Health', 'Smart Cities', 'Virtual Reality', 'Wearable Technology', '3D Printing', 'Drones', 'Artificial General Intelligence', 'Human Augmentation', 'Bioinformatics', 'Neuromorphic Computing']
+    },
+    series: [
+        {
+            name: 'Value',
+            type: 'bar',
+            data: [120, 98, 85, 150, 70, 110, 95, 130, 115, 105, 75, 90, 80, 100, 125, 140, 60, 65, 55, 45, 35, 50, 40, 30],
+            itemStyle: {
+                color: function(params) {
+                    var colorList = [
+                        '#FF5733', '#33FF57', '#3357FF', '#FF33A1', '#FFBD33',
+                        '#33FFBD', '#FF33D4', '#D433FF', '#33D4FF', '#A1FF33',
+                        '#5733FF', '#FF5733', '#33FF57', '#3357FF', '#FF33A1',
+                        '#FFBD33', '#33FFBD', '#FF33D4', '#D433FF', '#33D4FF',
+                        '#A1FF33', '#5733FF', '#FF5733', '#33FF57'
+                    ];
+                    return colorList[params.dataIndex % colorList.length];
+                }
+            },
+            label: {
+                show: true,
+                position: 'right',
+                formatter: '{c}'
+            },
+            barWidth: '60%',
+        }
+    ],
+    width: 1000,
+    height: 600
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

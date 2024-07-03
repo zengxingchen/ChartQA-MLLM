@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+            var dom = document.getElementById('container');
+            var myChart = echarts.init(dom, null, {
+            renderer: 'canvas',
+            useDirtyRect: false
+            });
+            var app = {};
+            
+            var option;
+
+            
+option = {
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        },
+        formatter: function (params) {
+            let tooltipData = '<div><p><strong>' + params[0].name + '</strong></p></div>';
+            let total = 0;
+            params.forEach(function (item) {
+                total += item.value;
+            });
+            params.forEach(function (item) {
+                let percent = (item.value / total * 100).toFixed(2) + '%';
+                tooltipData += '<div><p>' + item.marker + item.seriesName + ': ' + item.value + ' (' + percent + ')</p></div>';
+            });
+            return tooltipData;
+        }
+    },
+    legend: {
+        data: ['Residential', 'Commercial', 'Industrial', 'Transportation']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01],
+        max: 100,
+        axisLabel: {
+            formatter: '{value}%'
+        }
+    },
+    yAxis: {
+        type: 'category',
+        data: ['January', 'February', 'March', 'April']
+    },
+    series: [
+        {
+            name: 'Residential',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                formatter: '{c}%'
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [20, 19, 17, 16].map(function (item) { return item.toFixed(2); }),
+            color: '#5470C6'
+        },
+        {
+            name: 'Commercial',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                formatter: '{c}%'
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [25, 24, 26, 22].map(function (item) { return item.toFixed(2); }),
+            color: '#91CC75'
+        },
+        {
+            name: 'Industrial',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                formatter: '{c}%'
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [30, 29, 33, 35].map(function (item) { return item.toFixed(2); }),
+            color: '#FAC858'
+        },
+        {
+            name: 'Transportation',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                formatter: '{c}%'
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [25, 28, 24, 27].map(function (item) { return item.toFixed(2); }),
+            color: '#EE6666'
+        }
+    ]
+};
+
+            if (option && typeof option === 'object') {
+            myChart.setOption(option);
+            }
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

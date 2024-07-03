@@ -1,0 +1,172 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Monthly Carbon Emission Volume by Sector",
+    "width": 800,
+    "height": 450,
+    "data": {
+        "values": [
+            {
+                "Sector": "Energy",
+                "January": 300,
+                "February": 280,
+                "March": 310,
+                "April": 320,
+                "May": 330,
+                "June": 340,
+                "July": 320,
+                "August": 310,
+                "September": 290,
+                "October": 280,
+                "November": 270,
+                "December": 300
+            },
+            {
+                "Sector": "Transportation",
+                "January": 250,
+                "February": 240,
+                "March": 245,
+                "April": 255,
+                "May": 260,
+                "June": 270,
+                "July": 280,
+                "August": 275,
+                "September": 260,
+                "October": 250,
+                "November": 240,
+                "December": 250
+            },
+            {
+                "Sector": "Industry",
+                "January": 220,
+                "February": 210,
+                "March": 215,
+                "April": 225,
+                "May": 230,
+                "June": 220,
+                "July": 210,
+                "August": 215,
+                "September": 205,
+                "October": 200,
+                "November": 210,
+                "December": 220
+            },
+            {
+                "Sector": "Residential",
+                "January": 150,
+                "February": 155,
+                "March": 160,
+                "April": 150,
+                "May": 145,
+                "June": 140,
+                "July": 135,
+                "August": 140,
+                "September": 145,
+                "October": 150,
+                "November": 155,
+                "December": 150
+            },
+            {
+                "Sector": "Agriculture",
+                "January": 180,
+                "February": 170,
+                "March": 175,
+                "April": 180,
+                "May": 185,
+                "June": 190,
+                "July": 180,
+                "August": 175,
+                "September": 170,
+                "October": 165,
+                "November": 160,
+                "December": 180
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "January",
+                "February",
+                "March",
+                "April",
+                "May",
+                "June",
+                "July",
+                "August",
+                "September",
+                "October",
+                "November",
+                "December"
+            ],
+            "as": [
+                "Month",
+                "Emissions"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "area",
+        "opacity": 0.7
+    },
+    "encoding": {
+        "x": {
+            "field": "Month",
+            "type": "ordinal",
+            "title": "Month",
+            "axis": {
+                "labelAngle": 0
+            }
+        },
+        "y": {
+            "field": "Emissions",
+            "type": "quantitative",
+            "stack": "normalize",
+            "title": "Percentage of Emissions"
+        },
+        "color": {
+            "field": "Sector",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Energy",
+                    "Transportation",
+                    "Industry",
+                    "Residential",
+                    "Agriculture"
+                ],
+                "range": [
+                    "#33a02c",
+                    "#b2df8a",
+                    "#1f78b4",
+                    "#a6cee3",
+                    "#fb9a99"
+                ]
+            },
+            "legend": {
+                "orient": "bottom-left",
+                "title": "Sector"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Sector",
+                "type": "nominal"
+            },
+            {
+                "field": "Month",
+                "type": "ordinal"
+            },
+            {
+                "field": "Emissions",
+                "type": "quantitative",
+                "title": "Emission Volume"
+            }
+        ]
+    },
+    "title": {
+        "text": "Carbon Emission Volume by Sector and Month",
+        "subtitle": "Normalized monthly emissions for different economic sectors",
+        "anchor": "start",
+        "offset": 20
+    }
+}

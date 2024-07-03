@@ -1,0 +1,179 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Monthly Average Exercise Hours by Age Group",
+    "width": 600,
+    "height": 400,
+    "data": {
+        "values": [
+            {
+                "Month": "January",
+                "0-18 years": 15,
+                "19-25 years": 13,
+                "26-40 years": 11,
+                "41-59 years": 7,
+                "60+ years": 6
+            },
+            {
+                "Month": "February",
+                "0-18 years": 14,
+                "19-25 years": 12,
+                "26-40 years": 10,
+                "41-59 years": 8,
+                "60+ years": 6
+            },
+            {
+                "Month": "March",
+                "0-18 years": 16,
+                "19-25 years": 14,
+                "26-40 years": 12,
+                "41-59 years": 8,
+                "60+ years": 6
+            },
+            {
+                "Month": "April",
+                "0-18 years": 17,
+                "19-25 years": 15,
+                "26-40 years": 12,
+                "41-59 years": 8,
+                "60+ years": 7
+            },
+            {
+                "Month": "May",
+                "0-18 years": 18,
+                "19-25 years": 14,
+                "26-40 years": 11,
+                "41-59 years": 8,
+                "60+ years": 6
+            },
+            {
+                "Month": "June",
+                "0-18 years": 20,
+                "19-25 years": 16,
+                "26-40 years": 12,
+                "41-59 years": 9,
+                "60+ years": 6
+            },
+            {
+                "Month": "July",
+                "0-18 years": 22,
+                "19-25 years": 18,
+                "26-40 years": 13,
+                "41-59 years": 9,
+                "60+ years": 6
+            },
+            {
+                "Month": "August",
+                "0-18 years": 23,
+                "19-25 years": 17,
+                "26-40 years": 14,
+                "41-59 years": 8,
+                "60+ years": 6
+            },
+            {
+                "Month": "September",
+                "0-18 years": 21,
+                "19-25 years": 16,
+                "26-40 years": 13,
+                "41-59 years": 8,
+                "60+ years": 5
+            },
+            {
+                "Month": "October",
+                "0-18 years": 19,
+                "19-25 years": 14,
+                "26-40 years": 11,
+                "41-59 years": 7,
+                "60+ years": 5
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "0-18 years",
+                "19-25 years",
+                "26-40 years",
+                "41-59 years",
+                "60+ years"
+            ],
+            "as": [
+                "Age Group",
+                "Average Exercise Hours"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "area",
+        "opacity": 0.7
+    },
+    "encoding": {
+        "x": {
+            "field": "Month",
+            "type": "ordinal",
+            "axis": {
+                "title": "Month",
+                "labelAngle": 0
+            }
+        },
+        "y": {
+            "field": "Average Exercise Hours",
+            "type": "quantitative",
+            "stack": "zero",
+            "axis": {
+                "title": "Average Exercise Hours"
+            }
+        },
+        "color": {
+            "field": "Age Group",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "0-18 years",
+                    "19-25 years",
+                    "26-40 years",
+                    "41-59 years",
+                    "60+ years"
+                ],
+                "range": [
+                    "#689F38",
+                    "#2196F3",
+                    "#FBC02D",
+                    "#7B1FA2",
+                    "#E64A19"
+                ]
+            },
+            "legend": {
+                "title": "Age Group",
+                "orient": "right",
+                "offset": 10
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Month",
+                "type": "ordinal"
+            },
+            {
+                "field": "Age Group",
+                "type": "nominal"
+            },
+            {
+                "field": "Average Exercise Hours",
+                "type": "quantitative"
+            }
+        ]
+    },
+    "title": {
+        "text": "Monthly Exercise Hours by Age Group",
+        "anchor": "start",
+        "offset": 20
+    },
+    "config": {
+        "view": {
+            "stroke": "transparent"
+        },
+        "axis": {
+            "domainWidth": 1
+        }
+    }
+}

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {renderer: 'canvas', width: 800, height: 400});
+var option;
+
+option = {
+    title: {
+        text: 'Student Learning Styles by Program',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Visual', 'Auditory', 'Kinesthetic'],
+        bottom: 0
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '15%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01]
+    },
+    yAxis: {
+        type: 'category',
+        data: ['Arts', 'Engineering', 'Medicine', 'Business', 'Science', 'Humanities']
+    },
+    series: [
+        {
+            name: 'Visual',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                formatter: '{b}: {c}%'
+            },
+            data: [30, 25, 35, 40, 30, 45],
+            itemStyle: {
+                color: '#ff7f50'
+            },
+            barWidth: '60%'
+        },
+        {
+            name: 'Auditory',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                formatter: '{b}: {c}%'
+            },
+            data: [40, 35, 45, 30, 50, 25],
+            itemStyle: {
+                color: '#87cefa'
+            },
+            barWidth: '60%'
+        },
+        {
+            name: 'Kinesthetic',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                formatter: '{b}: {c}%'
+            },
+            data: [30, 40, 20, 30, 20, 30],
+            itemStyle: {
+                color: '#32cd32'
+            },
+            barWidth: '60%'
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

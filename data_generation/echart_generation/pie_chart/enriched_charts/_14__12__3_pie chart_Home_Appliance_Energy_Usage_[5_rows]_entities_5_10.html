@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+// Define the color scheme
+var colorPalette = ['#00A1E4', '#C62F2F', '#DAA520', '#0F4C81', '#6F2DA8', '#A52A2A', '#FF8C00'];
+
+option = {
+    title: {
+        text: 'Electric Vehicle Market Share',
+        left: 'center',
+        top: '20'
+    },
+    tooltip: {
+        trigger: 'item'
+    },
+    legend: {
+        orient: 'vertical',
+        left: 'left',
+        top: 'middle',
+        align: 'left',
+        textStyle: {
+            color: '#333',
+            fontSize: 12,
+            rich: {
+                padding: [5, 10]
+            }
+        }
+    },
+    series: [
+        {
+            name: 'Market Share',
+            type: 'pie',
+            radius: '50%',
+            data: [
+                {value: 0.65, name: 'Tesla'},
+                {value: 0.10, name: 'NIO'},
+                {value: 0.10, name: 'BYD'},
+                {value: 0.05, name: 'BMW'},
+                {value: 0.05, name: 'Volkswagen'},
+                {value: 0.03, name: 'Mercedes-Benz'},
+                {value: 0.02, name: 'Porsche'}
+            ],
+            emphasis: {
+                itemStyle: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            },
+            color: colorPalette
+        }
+    ],
+    label: {
+        normal: {
+            formatter: '{b}: {d}%',
+            position: 'outside'
+        }
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

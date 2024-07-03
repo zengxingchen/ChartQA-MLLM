@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 800, // Reasonable chart width
+    height: 400 // Reasonable chart height
+});
+
+var option;
+
+option = {
+    title: {
+        text: 'Monthly Energy Consumption Trend',
+        left: 'center',
+        top: 'top', // Make sure the title does not overlap with the legend
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['Energy Consumption'],
+        top: 'bottom' // Place legend at the bottom to avoid overlap with the title
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: [
+            '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', 
+            '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', 
+            '21', '22', '23', '24', '25', '26', '27', '28', '29', '30'
+        ]
+    },
+    yAxis: {
+        type: 'value',
+        axisLabel: {
+            formatter: '{value} Wh'
+        }
+    },
+    series: [
+        {
+            name: 'Energy Consumption',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [
+                5000, 4980, 4950, 4890, 4850, 4800, 4700, 4600, 4500, 4400,
+                4300, 4200, 4150, 4100, 4000, 3900, 3800, 3700, 3600, 3500,
+                3400, 3300, 3200, 3100, 3000, 2900, 2850, 2800, 2750, 2700
+            ],
+            smooth: true,
+            symbol: 'none',
+            color: '#33A5FF', // Specific color code for better clarity
+            markPoint: {
+                data: [
+                    {type: 'max', name: 'Max'},
+                    {type: 'min', name: 'Min'}
+                ],
+                label: {
+                    show: true
+                }
+            }
+        }
+    ],
+    color: ['#FFA07A'] // Override color for all series (area color)
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

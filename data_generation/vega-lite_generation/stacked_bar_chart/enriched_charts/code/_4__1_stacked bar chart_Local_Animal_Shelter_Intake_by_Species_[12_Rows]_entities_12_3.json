@@ -1,0 +1,148 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Vertical stacked bar chart displaying the quarterly sales of food products across different categories.",
+    "data": {
+        "values": [
+            {
+                "Quarter": "Q1",
+                "Fruits": 120,
+                "Vegetables": 150,
+                "Dairy": 180,
+                "Grains": 200,
+                "Meat": 90
+            },
+            {
+                "Quarter": "Q2",
+                "Fruits": 130,
+                "Vegetables": 160,
+                "Dairy": 190,
+                "Grains": 210,
+                "Meat": 100
+            },
+            {
+                "Quarter": "Q3",
+                "Fruits": 140,
+                "Vegetables": 170,
+                "Dairy": 200,
+                "Grains": 220,
+                "Meat": 110
+            },
+            {
+                "Quarter": "Q4",
+                "Fruits": 150,
+                "Vegetables": 180,
+                "Dairy": 210,
+                "Grains": 230,
+                "Meat": 120
+            },
+            {
+                "Quarter": "Q1",
+                "Fruits": 160,
+                "Vegetables": 190,
+                "Dairy": 220,
+                "Grains": 240,
+                "Meat": 130
+            },
+            {
+                "Quarter": "Q2",
+                "Fruits": 170,
+                "Vegetables": 200,
+                "Dairy": 230,
+                "Grains": 250,
+                "Meat": 140
+            },
+            {
+                "Quarter": "Q3",
+                "Fruits": 180,
+                "Vegetables": 210,
+                "Dairy": 240,
+                "Grains": 260,
+                "Meat": 150
+            },
+            {
+                "Quarter": "Q4",
+                "Fruits": 190,
+                "Vegetables": 220,
+                "Dairy": 250,
+                "Grains": 270,
+                "Meat": 160
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Fruits",
+                "Vegetables",
+                "Dairy",
+                "Grains",
+                "Meat"
+            ],
+            "as": [
+                "Food Category",
+                "Sales"
+            ]
+        }
+    ],
+    "width": 700,
+    "height": 400,
+    "mark": {
+        "type": "bar",
+        "height": {
+            "band": 0.7
+        }
+    },
+    "encoding": {
+        "x": {
+            "field": "Quarter",
+            "type": "ordinal",
+            "axis": {
+                "title": "Fiscal Quarter"
+            }
+        },
+        "y": {
+            "field": "Sales",
+            "type": "quantitative",
+            "axis": {
+                "title": "Sales (in thousands)",
+                "stack": "zero"
+            }
+        },
+        "color": {
+            "field": "Food Category",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Fruits",
+                    "Vegetables",
+                    "Dairy",
+                    "Grains",
+                    "Meat"
+                ],
+                "range": [
+                    "#FF6347",
+                    "#4682B4",
+                    "#FFD700",
+                    "#8A2BE2",
+                    "#20B2AA"
+                ]
+            },
+            "legend": {
+                "title": "Food Category",
+                "orient": "top-right",
+                "offset": 10
+            }
+        }
+    },
+    "title": {
+        "text": "Quarterly Sales of Food Products",
+        "anchor": "start",
+        "offset": 20
+    },
+    "config": {
+        "background": "#f4f4f4",
+        "view": {
+            "stroke": "transparent"
+        }
+    }
+}

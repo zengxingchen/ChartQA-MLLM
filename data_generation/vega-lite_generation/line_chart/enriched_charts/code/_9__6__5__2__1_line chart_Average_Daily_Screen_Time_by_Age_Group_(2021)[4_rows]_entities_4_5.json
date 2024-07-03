@@ -1,0 +1,226 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Line chart showing projected monthly stock prices by month for different companies.",
+    "title": {
+        "text": "Projected Monthly Stock Prices by Company",
+        "fontSize": 20,
+        "anchor": "start",
+        "color": "#444444"
+    },
+    "width": 800,
+    "height": 500,
+    "data": {
+        "values": [
+            {
+                "Company": "Company A",
+                "January": 150,
+                "February": 160,
+                "March": 170,
+                "April": 180,
+                "May": 190,
+                "June": 200,
+                "July": 210,
+                "August": 220,
+                "September": 230,
+                "October": 240,
+                "November": 250,
+                "December": 260
+            },
+            {
+                "Company": "Company B",
+                "January": 120,
+                "February": 130,
+                "March": 140,
+                "April": 150,
+                "May": 160,
+                "June": 170,
+                "July": 180,
+                "August": 190,
+                "September": 200,
+                "October": 210,
+                "November": 220,
+                "December": 230
+            },
+            {
+                "Company": "Company C",
+                "January": 200,
+                "February": 210,
+                "March": 220,
+                "April": 230,
+                "May": 240,
+                "June": 250,
+                "July": 260,
+                "August": 270,
+                "September": 280,
+                "October": 290,
+                "November": 300,
+                "December": 310
+            },
+            {
+                "Company": "Company D",
+                "January": 250,
+                "February": 260,
+                "March": 270,
+                "April": 280,
+                "May": 290,
+                "June": 300,
+                "July": 310,
+                "August": 320,
+                "September": 330,
+                "October": 340,
+                "November": 350,
+                "December": 360
+            },
+            {
+                "Company": "Company E",
+                "January": 80,
+                "February": 90,
+                "March": 100,
+                "April": 110,
+                "May": 120,
+                "June": 130,
+                "July": 140,
+                "August": 150,
+                "September": 160,
+                "October": 170,
+                "November": 180,
+                "December": 190
+            },
+            {
+                "Company": "Company F",
+                "January": 30,
+                "February": 40,
+                "March": 50,
+                "April": 60,
+                "May": 70,
+                "June": 80,
+                "July": 90,
+                "August": 100,
+                "September": 110,
+                "October": 120,
+                "November": 130,
+                "December": 140
+            },
+            {
+                "Company": "Company G",
+                "January": 50,
+                "February": 60,
+                "March": 70,
+                "April": 80,
+                "May": 90,
+                "June": 100,
+                "July": 110,
+                "August": 120,
+                "September": 130,
+                "October": 140,
+                "November": 150,
+                "December": 160
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "January",
+                "February",
+                "March",
+                "April",
+                "May",
+                "June",
+                "July",
+                "August",
+                "September",
+                "October",
+                "November",
+                "December"
+            ],
+            "as": [
+                "Month",
+                "Projected Price"
+            ]
+        }
+    ],
+    "mark": "line",
+    "encoding": {
+        "x": {
+            "field": "Month",
+            "type": "ordinal",
+            "title": "Month",
+            "axis": {
+                "titleFontSize": 14,
+                "labelAngle": -45
+            }
+        },
+        "y": {
+            "field": "Projected Price",
+            "type": "quantitative",
+            "title": "Projected Price (USD)",
+            "axis": {
+                "titleFontSize": 14
+            }
+        },
+        "color": {
+            "field": "Company",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Company A",
+                    "Company B",
+                    "Company C",
+                    "Company D",
+                    "Company E",
+                    "Company F",
+                    "Company G"
+                ],
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e",
+                    "#2ca02c",
+                    "#d62728",
+                    "#9467bd",
+                    "#8c564b",
+                    "#e377c2"
+                ]
+            },
+            "legend": {
+                "title": "Company"
+            }
+        },
+        "strokeDash": {
+            "condition": {
+                "test": "datum['Company'] == 'Company C'",
+                "value": [
+                    5,
+                    5
+                ]
+            },
+            "value": []
+        },
+        "tooltip": [
+            {
+                "field": "Company",
+                "type": "nominal"
+            },
+            {
+                "field": "Month",
+                "type": "ordinal"
+            },
+            {
+                "field": "Projected Price",
+                "type": "quantitative"
+            }
+        ]
+    },
+    "config": {
+        "axisY": {
+            "minExtent": 30
+        },
+        "line": {
+            "point": {
+                "size": 100,
+                "shape": "circle",
+                "color": "red"
+            }
+        }
+    }
+}

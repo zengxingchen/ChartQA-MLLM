@@ -1,0 +1,170 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Quarterly Social Media Usage Trends",
+    "width": 400,
+    "height": 300,
+    "data": {
+        "values": [
+            {
+                "Quarter": "Q1 2019",
+                "Facebook": 50,
+                "Twitter": 30,
+                "Instagram": 45
+            },
+            {
+                "Quarter": "Q2 2019",
+                "Facebook": 55,
+                "Twitter": 25,
+                "Instagram": 50
+            },
+            {
+                "Quarter": "Q3 2019",
+                "Facebook": 60,
+                "Twitter": 35,
+                "Instagram": 40
+            },
+            {
+                "Quarter": "Q4 2019",
+                "Facebook": 65,
+                "Twitter": 32,
+                "Instagram": 55
+            },
+            {
+                "Quarter": "Q1 2020",
+                "Facebook": 70,
+                "Twitter": 40,
+                "Instagram": 65
+            },
+            {
+                "Quarter": "Q2 2020",
+                "Facebook": 75,
+                "Twitter": 45,
+                "Instagram": 60
+            },
+            {
+                "Quarter": "Q3 2020",
+                "Facebook": 80,
+                "Twitter": 50,
+                "Instagram": 70
+            },
+            {
+                "Quarter": "Q4 2020",
+                "Facebook": 85,
+                "Twitter": 55,
+                "Instagram": 75
+            },
+            {
+                "Quarter": "Q1 2021",
+                "Facebook": 90,
+                "Twitter": 60,
+                "Instagram": 80
+            },
+            {
+                "Quarter": "Q2 2021",
+                "Facebook": 95,
+                "Twitter": 65,
+                "Instagram": 85
+            },
+            {
+                "Quarter": "Q3 2021",
+                "Facebook": 100,
+                "Twitter": 70,
+                "Instagram": 90
+            },
+            {
+                "Quarter": "Q4 2021",
+                "Facebook": 105,
+                "Twitter": 75,
+                "Instagram": 95
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Facebook",
+                "Twitter",
+                "Instagram"
+            ],
+            "as": [
+                "Platform",
+                "UsageTime"
+            ]
+        },
+        {
+            "calculate": "datum.UsageTime",
+            "as": "average_daily_usage_time"
+        }
+    ],
+    "mark": {
+        "type": "area",
+        "opacity": 0.7
+    },
+    "encoding": {
+        "x": {
+            "field": "Quarter",
+            "type": "ordinal",
+            "axis": {
+                "title": "Quarter"
+            }
+        },
+        "y": {
+            "field": "average_daily_usage_time",
+            "type": "quantitative",
+            "stack": "zero",
+            "axis": {
+                "title": "Average Daily Usage Time (minutes)"
+            }
+        },
+        "color": {
+            "field": "Platform",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Facebook",
+                    "Twitter",
+                    "Instagram"
+                ],
+                "range": [
+                    "#3b5998",
+                    "#1da1f2",
+                    "#c32aa3"
+                ]
+            },
+            "legend": {
+                "title": "Social Media Platform",
+                "orient": "bottom-right",
+                "offset": 10
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Quarter",
+                "type": "ordinal"
+            },
+            {
+                "field": "Platform",
+                "type": "nominal"
+            },
+            {
+                "field": "average_daily_usage_time",
+                "type": "quantitative",
+                "title": "Avg. Daily Usage"
+            }
+        ]
+    },
+    "title": {
+        "text": "Social Media Usage Trends",
+        "anchor": "start",
+        "offset": 5,
+        "frame": "group"
+    },
+    "config": {
+        "view": {
+            "stroke": "transparent"
+        },
+        "area": {
+            "line": true
+        }
+    }
+}

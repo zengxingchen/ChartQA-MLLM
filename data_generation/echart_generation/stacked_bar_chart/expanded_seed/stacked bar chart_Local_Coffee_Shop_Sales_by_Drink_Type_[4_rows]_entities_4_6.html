@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+// Data
+var data = [
+    {'Month': 'January', 'Espresso': 150, 'Cappuccino': 200, 'Latte': 300, 'Americano': 180},
+    {'Month': 'February', 'Espresso': 120, 'Cappuccino': 180, 'Latte': 290, 'Americano': 150},
+    {'Month': 'March', 'Espresso': 130, 'Cappuccino': 210, 'Latte': 310, 'Americano': 160},
+    {'Month': 'April', 'Espresso': 140, 'Cappuccino': 190, 'Latte': 320, 'Americano': 170}
+];
+
+// Data parsing
+var categories = data.map(function (item) {
+    return item.Month;
+});
+var espressoData = data.map(function (item) {
+    return item.Espresso;
+});
+var cappuccinoData = data.map(function (item) {
+    return item.Cappuccino;
+});
+var latteData = data.map(function (item) {
+    return item.Latte;
+});
+var americanoData = data.map(function (item) {
+    return item.Americano;
+});
+
+option = {
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Espresso', 'Cappuccino', 'Latte', 'Americano']
+    },
+    toolbox: {
+        show: true,
+        feature: {
+            saveAsImage: { show: true }
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        data: categories
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Espresso',
+            type: 'bar',
+            stack: 'total',
+            emphasis: { focus: 'series' },
+            data: espressoData
+        },
+        {
+            name: 'Cappuccino',
+            type: 'bar',
+            stack: 'total',
+            emphasis: { focus: 'series' },
+            data: cappuccinoData
+        },
+        {
+            name: 'Latte',
+            type: 'bar',
+            stack: 'total',
+            emphasis: { focus: 'series' },
+            data: latteData
+        },
+        {
+            name: 'Americano',
+            type: 'bar',
+            stack: 'total',
+            emphasis: { focus: 'series' },
+            data: americanoData
+        }
+    ],
+    color: ['#003366', '#006699', '#4cabce', '#e5323e']
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

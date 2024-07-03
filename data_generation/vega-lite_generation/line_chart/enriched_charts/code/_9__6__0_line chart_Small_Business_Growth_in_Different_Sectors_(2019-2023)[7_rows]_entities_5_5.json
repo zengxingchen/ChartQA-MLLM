@@ -1,0 +1,142 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Line chart of annual budget for space missions by region over recent years",
+    "data": {
+        "values": [
+            {
+                "Year": 2019,
+                "NASA": 150,
+                "ESA": 120,
+                "JAXA": 95,
+                "CNSA": 70,
+                "ISRO": 85
+            },
+            {
+                "Year": 2020,
+                "NASA": 160,
+                "ESA": 130,
+                "JAXA": 100,
+                "CNSA": 75,
+                "ISRO": 90
+            },
+            {
+                "Year": 2021,
+                "NASA": 170,
+                "ESA": 140,
+                "JAXA": 110,
+                "CNSA": 80,
+                "ISRO": 95
+            },
+            {
+                "Year": 2022,
+                "NASA": 180,
+                "ESA": 150,
+                "JAXA": 120,
+                "CNSA": 90,
+                "ISRO": 100
+            },
+            {
+                "Year": 2023,
+                "NASA": 190,
+                "ESA": 160,
+                "JAXA": 130,
+                "CNSA": 95,
+                "ISRO": 105
+            },
+            {
+                "Year": 2024,
+                "NASA": 200,
+                "ESA": 170,
+                "JAXA": 140,
+                "CNSA": 100,
+                "ISRO": 110
+            },
+            {
+                "Year": 2025,
+                "NASA": 210,
+                "ESA": 180,
+                "JAXA": 150,
+                "CNSA": 105,
+                "ISRO": 115
+            },
+            {
+                "Year": 2026,
+                "NASA": 220,
+                "ESA": 190,
+                "JAXA": 160,
+                "CNSA": 110,
+                "ISRO": 120
+            },
+            {
+                "Year": 2027,
+                "NASA": 230,
+                "ESA": 200,
+                "JAXA": 170,
+                "CNSA": 115,
+                "ISRO": 125
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "NASA",
+                "ESA",
+                "JAXA",
+                "CNSA",
+                "ISRO"
+            ],
+            "as": [
+                "Region",
+                "Budget"
+            ]
+        }
+    ],
+    "width": 800,
+    "height": 500,
+    "mark": {
+        "type": "line",
+        "point": true
+    },
+    "encoding": {
+        "x": {
+            "field": "Year",
+            "type": "ordinal",
+            "title": "Year"
+        },
+        "y": {
+            "field": "Budget",
+            "type": "quantitative",
+            "title": "Annual Budget (in Billions USD)",
+            "axis": {
+                "format": ".1f"
+            }
+        },
+        "color": {
+            "field": "Region",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "NASA",
+                    "ESA",
+                    "JAXA",
+                    "CNSA",
+                    "ISRO"
+                ],
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e",
+                    "#2ca02c",
+                    "#d62728",
+                    "#9467bd"
+                ]
+            },
+            "title": "Space Agency"
+        }
+    },
+    "config": {
+        "axisY": {
+            "minExtent": 30
+        }
+    }
+}

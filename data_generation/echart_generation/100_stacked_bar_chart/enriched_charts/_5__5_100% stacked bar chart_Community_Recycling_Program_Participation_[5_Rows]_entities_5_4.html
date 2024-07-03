@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+option = {
+    color: ['#1F78B4', '#33A02C', '#FB9A99', '#E31A1C', '#FF7F00'],
+    title: {
+        text: 'Educational Content Consumption (2016 - 2020)',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Online Courses', 'eBooks', 'Articles', 'Podcasts', 'Videos'],
+        top: '5%'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01]
+    },
+    yAxis: {
+        type: 'category',
+        data: ['2016', '2017', '2018', '2019', '2020']
+    },
+    series: [
+        {
+            name: 'Online Courses',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            data: [25, 30, 32, 28, 35]
+        },
+        {
+            name: 'eBooks',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            data: [20, 18, 22, 19, 18]
+        },
+        {
+            name: 'Articles',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            data: [17, 16, 18, 19, 15]
+        },
+        {
+            name: 'Podcasts',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            data: [15, 12, 10, 17, 15]
+        },
+        {
+            name: 'Videos',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            data: [23, 24, 18, 17, 17]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

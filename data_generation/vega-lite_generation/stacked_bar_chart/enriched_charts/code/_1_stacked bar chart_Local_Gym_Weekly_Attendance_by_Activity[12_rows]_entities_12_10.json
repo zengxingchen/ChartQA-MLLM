@@ -1,0 +1,170 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Horizontal stacked bar chart showing study hours across different subjects per week.",
+    "data": {
+        "values": [
+            {
+                "Week": "Week 1",
+                "Math": 5,
+                "Physics": 3,
+                "Chemistry": 2,
+                "Biology": 4,
+                "History": 3,
+                "Literature": 2
+            },
+            {
+                "Week": "Week 2",
+                "Math": 6,
+                "Physics": 3,
+                "Chemistry": 2.5,
+                "Biology": 4,
+                "History": 3.5,
+                "Literature": 3
+            },
+            {
+                "Week": "Week 3",
+                "Math": 5.5,
+                "Physics": 4,
+                "Chemistry": 2,
+                "Biology": 3.5,
+                "History": 3,
+                "Literature": 2.5
+            },
+            {
+                "Week": "Week 4",
+                "Math": 6.5,
+                "Physics": 3,
+                "Chemistry": 3,
+                "Biology": 4.5,
+                "History": 4,
+                "Literature": 2.5
+            },
+            {
+                "Week": "Week 5",
+                "Math": 7,
+                "Physics": 3.5,
+                "Chemistry": 3,
+                "Biology": 5,
+                "History": 3.5,
+                "Literature": 3
+            },
+            {
+                "Week": "Week 6",
+                "Math": 7.5,
+                "Physics": 4,
+                "Chemistry": 2.5,
+                "Biology": 5.5,
+                "History": 4,
+                "Literature": 3.5
+            },
+            {
+                "Week": "Week 7",
+                "Math": 8,
+                "Physics": 4.5,
+                "Chemistry": 3,
+                "Biology": 4.5,
+                "History": 4.5,
+                "Literature": 4
+            },
+            {
+                "Week": "Week 8",
+                "Math": 8.5,
+                "Physics": 5,
+                "Chemistry": 3.5,
+                "Biology": 5.5,
+                "History": 5,
+                "Literature": 4.5
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Math",
+                "Physics",
+                "Chemistry",
+                "Biology",
+                "History",
+                "Literature"
+            ],
+            "as": [
+                "Subject",
+                "Hours"
+            ]
+        }
+    ],
+    "width": 600,
+    "height": 400,
+    "mark": {
+        "type": "bar",
+        "height": {
+            "band": 0.5
+        }
+    },
+    "title": {
+        "text": "Study Hours by Subject per Week",
+        "subtitle": "Each bar represents a week with subjects stacked horizontally",
+        "subtitleFontStyle": "italic",
+        "subtitleFontSize": 12,
+        "anchor": "start",
+        "color": "black",
+        "frame": "group"
+    },
+    "encoding": {
+        "y": {
+            "field": "Week",
+            "type": "ordinal",
+            "title": "Week",
+            "axis": {
+                "labelAngle": 0
+            }
+        },
+        "x": {
+            "field": "Hours",
+            "type": "quantitative",
+            "title": "Study Hours"
+        },
+        "color": {
+            "field": "Subject",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Math",
+                    "Physics",
+                    "Chemistry",
+                    "Biology",
+                    "History",
+                    "Literature"
+                ],
+                "range": [
+                    "#1f77b4",
+                    "#aec7e8",
+                    "#ff7f0e",
+                    "#ffbb78",
+                    "#2ca02c",
+                    "#98df8a"
+                ]
+            },
+            "legend": {
+                "orient": "right"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Week",
+                "type": "ordinal",
+                "title": "Week"
+            },
+            {
+                "field": "Subject",
+                "type": "nominal",
+                "title": "Subject"
+            },
+            {
+                "field": "Hours",
+                "type": "quantitative",
+                "title": "Hours"
+            }
+        ]
+    }
+}

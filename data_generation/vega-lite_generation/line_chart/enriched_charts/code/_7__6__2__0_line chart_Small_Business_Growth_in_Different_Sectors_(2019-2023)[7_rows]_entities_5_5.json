@@ -1,0 +1,150 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Line chart of average annual stress levels by region over recent years",
+    "data": {
+        "values": [
+            {
+                "Year": 2015,
+                "Americas": 60,
+                "Europe": 50,
+                "Asia": 65,
+                "Africa": 55,
+                "Oceania": 58
+            },
+            {
+                "Year": 2016,
+                "Americas": 62,
+                "Europe": 52,
+                "Asia": 67,
+                "Africa": 56,
+                "Oceania": 59
+            },
+            {
+                "Year": 2017,
+                "Americas": 64,
+                "Europe": 54,
+                "Asia": 69,
+                "Africa": 57,
+                "Oceania": 60
+            },
+            {
+                "Year": 2018,
+                "Americas": 66,
+                "Europe": 56,
+                "Asia": 71,
+                "Africa": 58,
+                "Oceania": 61
+            },
+            {
+                "Year": 2019,
+                "Americas": 68,
+                "Europe": 58,
+                "Asia": 73,
+                "Africa": 59,
+                "Oceania": 62
+            },
+            {
+                "Year": 2020,
+                "Americas": 70,
+                "Europe": 60,
+                "Asia": 75,
+                "Africa": 60,
+                "Oceania": 63
+            },
+            {
+                "Year": 2021,
+                "Americas": 72,
+                "Europe": 62,
+                "Asia": 77,
+                "Africa": 61,
+                "Oceania": 64
+            },
+            {
+                "Year": 2022,
+                "Americas": 74,
+                "Europe": 64,
+                "Asia": 79,
+                "Africa": 62,
+                "Oceania": 65
+            },
+            {
+                "Year": 2023,
+                "Americas": 76,
+                "Europe": 66,
+                "Asia": 81,
+                "Africa": 63,
+                "Oceania": 66
+            },
+            {
+                "Year": 2024,
+                "Americas": 78,
+                "Europe": 68,
+                "Asia": 83,
+                "Africa": 64,
+                "Oceania": 67
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Americas",
+                "Europe",
+                "Asia",
+                "Africa",
+                "Oceania"
+            ],
+            "as": [
+                "Region",
+                "Stress Level"
+            ]
+        }
+    ],
+    "width": 900,
+    "height": 550,
+    "mark": {
+        "type": "line",
+        "point": true
+    },
+    "encoding": {
+        "x": {
+            "field": "Year",
+            "type": "ordinal",
+            "title": "Year"
+        },
+        "y": {
+            "field": "Stress Level",
+            "type": "quantitative",
+            "title": "Average Annual Stress Level (%)",
+            "axis": {
+                "format": ".1f"
+            }
+        },
+        "color": {
+            "field": "Region",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Americas",
+                    "Europe",
+                    "Asia",
+                    "Africa",
+                    "Oceania"
+                ],
+                "range": [
+                    "#FF6347",
+                    "#4682B4",
+                    "#32CD32",
+                    "#FFD700",
+                    "#FF69B4"
+                ]
+            },
+            "title": "Region"
+        }
+    },
+    "config": {
+        "axisY": {
+            "minExtent": 30
+        }
+    }
+}

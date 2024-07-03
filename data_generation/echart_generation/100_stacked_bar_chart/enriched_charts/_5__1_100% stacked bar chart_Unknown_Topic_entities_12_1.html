@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 800, // change width of the chart
+    height: 600 // change height of the chart
+});
+var app = {};
+
+var option;
+option = {
+    color: ['#004D40', '#00796B', '#009688', '#4DB6AC'], // A new color scheme.
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Online Courses', 'Textbooks', 'Interactive Workshops', 'Video Lectures'],
+        orient: 'horizontal',
+        left: 'center',
+        top: 'top'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01]
+    },
+    yAxis: {
+        type: 'category',
+        data: ['<18', '18-24', '25-34', '35-44', '45-54', '55-64', '65+']
+    },
+    series: [
+        {
+            name: 'Online Courses',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35, // change width of bars
+            data: [30, 40, 35, 25, 20, 15, 10]
+        },
+        {
+            name: 'Textbooks',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35, // change width of bars
+            data: [40, 30, 25, 35, 40, 45, 50]
+        },
+        {
+            name: 'Interactive Workshops',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35, // change width of bars
+            data: [15, 20, 30, 25, 20, 25, 20]
+        },
+        {
+            name: 'Video Lectures',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35, // change width of bars
+            data: [15, 10, 10, 15, 20, 15, 20]
+        }
+    ],
+    title: {
+        text: 'Preferred Learning Methods by Age Group', // The topic and headline
+        left: 'center',
+        top: '5%'
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

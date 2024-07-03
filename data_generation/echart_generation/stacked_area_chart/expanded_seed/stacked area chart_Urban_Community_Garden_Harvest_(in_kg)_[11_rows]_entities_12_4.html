@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+
+var option;
+
+// Data
+var chartData = [
+    {'Month': 'March', 'Tomatoes': 5.2, 'Lettuces': 3.1, 'Cucumbers': 0.0, 'Carrots': 1.5, 'Strawberries': 0.0, 'Herbs': 0.5},
+    {'Month': 'April', 'Tomatoes': 7.8, 'Lettuces': 4.2, 'Cucumbers': 0.4, 'Carrots': 3.2, 'Strawberries': 0.0, 'Herbs': 1.1},
+    {'Month': 'May', 'Tomatoes': 12.5, 'Lettuces': 5.9, 'Cucumbers': 1.2, 'Carrots': 4.0, 'Strawberries': 0.3, 'Herbs': 1.7},
+    {'Month': 'June', 'Tomatoes': 15.3, 'Lettuces': 6.4, 'Cucumbers': 2.5, 'Carrots': 4.8, 'Strawberries': 1.2, 'Herbs': 2.3},
+    {'Month': 'July', 'Tomatoes': 17.6, 'Lettuces': 7.8, 'Cucumbers': 4.6, 'Carrots': 5.3, 'Strawberries': 2.7, 'Herbs': 2.9},
+    {'Month': 'August', 'Tomatoes': 16.5, 'Lettuces': 7.2, 'Cucumbers': 5.3, 'Carrots': 5.0, 'Strawberries': 3.5, 'Herbs': 2.7},
+    {'Month': 'September', 'Tomatoes': 14.0, 'Lettuces': 6.0, 'Cucumbers': 4.0, 'Carrots': 2.8, 'Strawberries': 1.8, 'Herbs': 2.0},
+    {'Month': 'October', 'Tomatoes': 8.2, 'Lettuces': 4.5, 'Cucumbers': 1.8, 'Carrots': 1.9, 'Strawberries': 0.8, 'Herbs': 1.5},
+    {'Month': 'November', 'Tomatoes': 3.1, 'Lettuces': 2.7, 'Cucumbers': 0.0, 'Carrots': 1.2, 'Strawberries': 0.0, 'Herbs': 1.0},
+    {'Month': 'December', 'Tomatoes': 1.8, 'Lettuces': 2.0, 'Cucumbers': 0.0, 'Carrots': 0.9, 'Strawberries': 0.0, 'Herbs': 0.7},
+    {'Month': 'January', 'Tomatoes': 2.4, 'Lettuces': 2.2, 'Cucumbers': 0.0, 'Carrots': 1.0, 'Strawberries': 0.0, 'Herbs': 0.8},
+    {'Month': 'February', 'Tomatoes': 4.5, 'Lettuces': 3.0, 'Cucumbers': 0.0, 'Carrots': 1.7, 'Strawberries': 0.0, 'Herbs': 0.9}
+];
+
+// Parse data into series format
+var seriesConfig = ['Tomatoes', 'Lettuces', 'Cucumbers', 'Carrots', 'Strawberries', 'Herbs'].map(function(key) {
+    return {
+        name: key,
+        type: 'line',
+        stack: 'total',
+        areaStyle: {},
+        emphasis: {
+            focus: 'series'
+        },
+        data: []
+    };
+});
+
+chartData.forEach(function(item) {
+    seriesConfig.forEach(function(series) {
+        series.data.push(item[series.name]);
+    });
+});
+
+option = {
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            label: {
+                backgroundColor: '#6a7985'
+            }
+        }
+    },
+    legend: {
+        data: ['Tomatoes', 'Lettuces', 'Cucumbers', 'Carrots', 'Strawberries', 'Herbs']
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: [{
+        type: 'category',
+        boundaryGap: false,
+        data: chartData.map(function(item) { return item.Month; })
+    }],
+    yAxis: [{
+        type: 'value'
+    }],
+    series: seriesConfig
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

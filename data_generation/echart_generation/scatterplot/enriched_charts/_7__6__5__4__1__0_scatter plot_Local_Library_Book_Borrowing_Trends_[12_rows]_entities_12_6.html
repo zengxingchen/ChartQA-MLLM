@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option = {
+    title: {
+        text: 'Vitamin Intake: Vitamin A vs Vitamin C',
+        left: 'center',
+        top: 20,
+        textStyle: {
+            color: '#333',
+            fontSize: 18
+        }
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: function (params) {
+            return 'Vitamin A: ' + params.data[0] + '<br>Vitamin C: ' + params.data[1];
+        }
+    },
+    legend: {
+        data: ['Vitamin Intake'],
+        left: 'right',
+        top: 20
+    },
+    xAxis: {
+        name: 'Vitamin A (mg)',
+        type: 'value',
+        min: 450,
+        max: 560,
+        splitLine: {
+            lineStyle: {
+                type: 'dashed'
+            }
+        }
+    },
+    yAxis: {
+        name: 'Vitamin C (mg)',
+        type: 'value',
+        min: 25,
+        max: 55,
+        splitLine: {
+            lineStyle: {
+                type: 'dashed'
+            }
+        }
+    },
+    series: [{
+        name: 'Vitamin Intake',
+        type: 'scatter',
+        data: [
+            [500, 30], [450, 40], [520, 35], [470, 45], [480, 37],
+            [490, 33], [530, 50], [460, 48], [540, 29], [510, 44],
+            [520, 38], [495, 42], [505, 31], [525, 47], [515, 41],
+            [475, 39], [465, 36], [485, 32], [555, 49], [465, 34]
+        ],
+        itemStyle: {
+            color: '#FF6347'
+        }
+    }],
+    grid: {
+        left: '10%',
+        right: '10%',
+        bottom: '10%',
+        containLabel: true
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+option = {
+    title: {
+        text: 'Nutrition Intake Comparison',
+        left: 'center',
+        top: 10,
+        textStyle: {
+            fontSize: 24
+        }
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Protein', 'Carbohydrates', 'Fats', 'Vitamins'],
+        top: 50
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        data: ['Dairy', 'Fruits', 'Vegetables', 'Meat', 'Grains', 'Nuts', 'Seafood', 'Sweets', 'Beverages', 'Legumes']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Protein',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 25,
+            label: {
+                show: true
+            },
+            itemStyle: {
+                color: '#1f77b4'
+            },
+            data: [8, 1, 2, 20, 3, 7, 15, 2, 0, 10]
+        },
+        {
+            name: 'Carbohydrates',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 25,
+            label: {
+                show: true
+            },
+            itemStyle: {
+                color: '#ff7f0e'
+            },
+            data: [12, 25, 10, 0, 30, 9, 0, 35, 10, 20]
+        },
+        {
+            name: 'Fats',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 25,
+            label: {
+                show: true
+            },
+            itemStyle: {
+                color: '#2ca02c'
+            },
+            data: [5, 0, 0, 15, 1, 18, 10, 12, 0, 1]
+        },
+        {
+            name: 'Vitamins',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 25,
+            label: {
+                show: true
+            },
+            itemStyle: {
+                color: '#d62728'
+            },
+            data: [2, 3, 4, 1, 2, 1, 2, 0, 3, 2]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

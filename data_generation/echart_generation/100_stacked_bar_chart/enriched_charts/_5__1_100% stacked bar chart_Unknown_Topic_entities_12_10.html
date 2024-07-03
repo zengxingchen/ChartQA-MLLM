@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 700,
+    height: 500
+});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Future Technologies & Society',
+        left: 'center',
+        top: 20
+    },
+    color: ['#3366CC', '#DC3912', '#FF9900', '#109618', '#990099'],
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Future Tech', 'Entertainment', 'Education', 'Health', 'Economics'],
+        top: 50
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        max: 100
+    },
+    yAxis: {
+        type: 'category',
+        data: ['2021', '2022', '2023', '2024', '2025']
+    },
+    series: [
+        {
+            name: 'Future Tech',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 30,
+            data: [25, 28, 30, 35, 40]
+        },
+        {
+            name: 'Entertainment',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 30,
+            data: [30, 25, 20, 18, 15]
+        },
+        {
+            name: 'Education',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 30,
+            data: [15, 18, 22, 19, 20]
+        },
+        {
+            name: 'Health',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 30,
+            data: [20, 15, 15, 15, 10]
+        },
+        {
+            name: 'Economics',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 30,
+            data: [10, 14, 13, 13, 15]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

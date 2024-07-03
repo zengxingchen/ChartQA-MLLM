@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+var option = {
+    title: {
+        text: 'Quarterly Departmental Performance',
+        left: 'center',
+        top: '10'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Design', 'Marketing', 'Development', 'Sales'],
+        top: '50'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        data: ['Q1', 'Q2', 'Q3', 'Q4', 'Q5', 'Q6', 'Q7', 'Q8', 'Q9', 'Q10'],
+        axisLabel: {
+            interval: 0,
+            rotate: 30
+        }
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Design',
+            type: 'bar',
+            stack: 'total',
+            barWidth: '20%',
+            itemStyle: {
+                color: '#FF5733'
+            },
+            data: [120, 220, 150, 320, 420, 540, 660, 780, 890, 1000],
+            label: {
+                show: true,
+                position: 'insideTop',
+                formatter: '{c}'
+            }
+        },
+        {
+            name: 'Marketing',
+            type: 'bar',
+            stack: 'total',
+            barWidth: '20%',
+            itemStyle: {
+                color: '#33FF57'
+            },
+            data: [132, 182, 232, 332, 392, 432, 472, 512, 552, 592],
+            label: {
+                show: true,
+                position: 'insideTop',
+                formatter: '{c}'
+            }
+        },
+        {
+            name: 'Development',
+            type: 'bar',
+            stack: 'total',
+            barWidth: '20%',
+            itemStyle: {
+                color: '#3357FF'
+            },
+            data: [101, 191, 201, 301, 351, 371, 391, 411, 431, 451],
+            label: {
+                show: true,
+                position: 'insideTop',
+                formatter: '{c}'
+            }
+        },
+        {
+            name: 'Sales',
+            type: 'bar',
+            stack: 'total',
+            barWidth: '20%',
+            itemStyle: {
+                color: '#FF33A8'
+            },
+            data: [134, 234, 154, 334, 454, 564, 674, 784, 894, 1004],
+            label: {
+                show: true,
+                position: 'insideTop',
+                formatter: '{c}'
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 600, // Changed width
+    height: 400 // Changed height
+});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Greenhouse Gas Emissions by Sector (1990-2020)',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Energy', 'Industrial Processes', 'Agriculture', 'Waste', 'Other'],
+        bottom: 0
+    },
+    grid: { // Adjusting the grid to prevent overlap
+        left: '3%',
+        right: '4%',
+        bottom: '8%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01]
+    },
+    yAxis: {
+        type: 'category',
+        data: ['1990', '1995', '2000', '2005', '2010', '2015', '2020']
+    },
+    series: [
+        {
+            name: 'Energy',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35, // Changed bar width
+            data: [50, 55, 60, 65, 68, 70, 73],
+            itemStyle: {
+                color: '#1f77b4' // Modified color
+            }
+        },
+        {
+            name: 'Industrial Processes',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35, // Changed bar width
+            data: [20, 18, 16, 15, 14, 13, 12],
+            itemStyle: {
+                color: '#ff7f0e' // Modified color
+            }
+        },
+        {
+            name: 'Agriculture',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35, // Changed bar width
+            data: [15, 15, 15, 12, 10, 10, 9],
+            itemStyle: {
+                color: '#2ca02c' // Modified color
+            }
+        },
+        {
+            name: 'Waste',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35, // Changed bar width
+            data: [10, 7, 6, 5, 5, 4, 4],
+            itemStyle: {
+                color: '#d62728' // Modified color
+            }
+        },
+        {
+            name: 'Other',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35, // Changed bar width
+            data: [5, 5, 3, 3, 3, 3, 2],
+            itemStyle: {
+                color: '#9467bd' // Modified color
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

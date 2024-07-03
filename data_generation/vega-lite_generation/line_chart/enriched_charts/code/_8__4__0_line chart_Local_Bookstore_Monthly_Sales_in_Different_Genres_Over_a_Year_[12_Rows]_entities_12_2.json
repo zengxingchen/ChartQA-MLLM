@@ -1,0 +1,179 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Monthly Revenue by Space Exploration Category",
+    "data": {
+        "values": [
+            {
+                "Month": "January",
+                "Satellites": 50,
+                "Rockets": 60,
+                "Space Tourism": 40,
+                "Space Mining": 55,
+                "Space Research": 65
+            },
+            {
+                "Month": "February",
+                "Satellites": 55,
+                "Rockets": 65,
+                "Space Tourism": 45,
+                "Space Mining": 60,
+                "Space Research": 70
+            },
+            {
+                "Month": "March",
+                "Satellites": 60,
+                "Rockets": 70,
+                "Space Tourism": 50,
+                "Space Mining": 65,
+                "Space Research": 75
+            },
+            {
+                "Month": "April",
+                "Satellites": 65,
+                "Rockets": 75,
+                "Space Tourism": 55,
+                "Space Mining": 70,
+                "Space Research": 80
+            },
+            {
+                "Month": "May",
+                "Satellites": 70,
+                "Rockets": 80,
+                "Space Tourism": 60,
+                "Space Mining": 75,
+                "Space Research": 85
+            },
+            {
+                "Month": "June",
+                "Satellites": 75,
+                "Rockets": 85,
+                "Space Tourism": 65,
+                "Space Mining": 80,
+                "Space Research": 90
+            },
+            {
+                "Month": "July",
+                "Satellites": 80,
+                "Rockets": 90,
+                "Space Tourism": 70,
+                "Space Mining": 85,
+                "Space Research": 95
+            },
+            {
+                "Month": "August",
+                "Satellites": 85,
+                "Rockets": 95,
+                "Space Tourism": 75,
+                "Space Mining": 90,
+                "Space Research": 100
+            },
+            {
+                "Month": "September",
+                "Satellites": 90,
+                "Rockets": 100,
+                "Space Tourism": 80,
+                "Space Mining": 95,
+                "Space Research": 105
+            },
+            {
+                "Month": "October",
+                "Satellites": 95,
+                "Rockets": 105,
+                "Space Tourism": 85,
+                "Space Mining": 100,
+                "Space Research": 110
+            },
+            {
+                "Month": "November",
+                "Satellites": 100,
+                "Rockets": 110,
+                "Space Tourism": 90,
+                "Space Mining": 105,
+                "Space Research": 115
+            },
+            {
+                "Month": "December",
+                "Satellites": 105,
+                "Rockets": 115,
+                "Space Tourism": 95,
+                "Space Mining": 110,
+                "Space Research": 120
+            }
+        ]
+    },
+    "width": 800,
+    "height": 400,
+    "transform": [
+        {
+            "fold": [
+                "Satellites",
+                "Rockets",
+                "Space Tourism",
+                "Space Mining",
+                "Space Research"
+            ],
+            "as": [
+                "Category",
+                "Revenue"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "line",
+        "point": true
+    },
+    "encoding": {
+        "x": {
+            "field": "Month",
+            "type": "ordinal",
+            "title": "Month",
+            "axis": {
+                "labelAngle": 0
+            }
+        },
+        "y": {
+            "field": "Revenue",
+            "type": "quantitative",
+            "title": "Revenue (in Millions)"
+        },
+        "color": {
+            "field": "Category",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Satellites",
+                    "Rockets",
+                    "Space Tourism",
+                    "Space Mining",
+                    "Space Research"
+                ],
+                "range": [
+                    "#FF0000",
+                    "#00FF00",
+                    "#0000FF",
+                    "#FFFF00",
+                    "#FF00FF"
+                ]
+            },
+            "title": "Category"
+        },
+        "tooltip": [
+            {
+                "field": "Month",
+                "type": "nominal"
+            },
+            {
+                "field": "Category",
+                "type": "nominal"
+            },
+            {
+                "field": "Revenue",
+                "type": "quantitative"
+            }
+        ],
+        "text": {
+            "field": "Revenue",
+            "type": "quantitative"
+        }
+    }
+}

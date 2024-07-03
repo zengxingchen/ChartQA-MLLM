@@ -1,0 +1,186 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Monthly Air Quality Index and Weather Data",
+    "data": {
+        "values": [
+            {
+                "Month": "January",
+                "AQI": 150,
+                "Temperature": 30,
+                "Humidity": 70,
+                "Rainfall": 50,
+                "WindSpeed": 10
+            },
+            {
+                "Month": "February",
+                "AQI": 140,
+                "Temperature": 32,
+                "Humidity": 65,
+                "Rainfall": 45,
+                "WindSpeed": 12
+            },
+            {
+                "Month": "March",
+                "AQI": 130,
+                "Temperature": 35,
+                "Humidity": 60,
+                "Rainfall": 40,
+                "WindSpeed": 15
+            },
+            {
+                "Month": "April",
+                "AQI": 120,
+                "Temperature": 40,
+                "Humidity": 55,
+                "Rainfall": 35,
+                "WindSpeed": 18
+            },
+            {
+                "Month": "May",
+                "AQI": 110,
+                "Temperature": 45,
+                "Humidity": 50,
+                "Rainfall": 30,
+                "WindSpeed": 20
+            },
+            {
+                "Month": "June",
+                "AQI": 100,
+                "Temperature": 50,
+                "Humidity": 45,
+                "Rainfall": 25,
+                "WindSpeed": 25
+            },
+            {
+                "Month": "July",
+                "AQI": 90,
+                "Temperature": 55,
+                "Humidity": 40,
+                "Rainfall": 20,
+                "WindSpeed": 30
+            },
+            {
+                "Month": "August",
+                "AQI": 85,
+                "Temperature": 58,
+                "Humidity": 38,
+                "Rainfall": 18,
+                "WindSpeed": 28
+            },
+            {
+                "Month": "September",
+                "AQI": 80,
+                "Temperature": 55,
+                "Humidity": 45,
+                "Rainfall": 22,
+                "WindSpeed": 26
+            },
+            {
+                "Month": "October",
+                "AQI": 90,
+                "Temperature": 50,
+                "Humidity": 50,
+                "Rainfall": 30,
+                "WindSpeed": 20
+            },
+            {
+                "Month": "November",
+                "AQI": 100,
+                "Temperature": 40,
+                "Humidity": 60,
+                "Rainfall": 40,
+                "WindSpeed": 15
+            },
+            {
+                "Month": "December",
+                "AQI": 120,
+                "Temperature": 35,
+                "Humidity": 65,
+                "Rainfall": 45,
+                "WindSpeed": 12
+            }
+        ]
+    },
+    "width": 1000,
+    "height": 600,
+    "transform": [
+        {
+            "fold": [
+                "AQI",
+                "Temperature",
+                "Humidity",
+                "Rainfall",
+                "WindSpeed"
+            ],
+            "as": [
+                "Category",
+                "Value"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "line",
+        "point": {
+            "filled": true,
+            "fill": "white"
+        },
+        "tooltip": {
+            "content": "data"
+        }
+    },
+    "encoding": {
+        "x": {
+            "field": "Month",
+            "type": "ordinal",
+            "title": "Month",
+            "axis": {
+                "labelAngle": 0
+            }
+        },
+        "y": {
+            "field": "Value",
+            "type": "quantitative",
+            "title": "Value"
+        },
+        "color": {
+            "field": "Category",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "AQI",
+                    "Temperature",
+                    "Humidity",
+                    "Rainfall",
+                    "WindSpeed"
+                ],
+                "range": [
+                    "#FF4500",
+                    "#1E90FF",
+                    "#32CD32",
+                    "#FFD700",
+                    "#4B0082"
+                ]
+            },
+            "title": "Category"
+        },
+        "tooltip": [
+            {
+                "field": "Month",
+                "type": "nominal"
+            },
+            {
+                "field": "Category",
+                "type": "nominal"
+            },
+            {
+                "field": "Value",
+                "type": "quantitative"
+            }
+        ],
+        "text": {
+            "field": "Value",
+            "type": "quantitative",
+            "format": ".2f"
+        }
+    }
+}

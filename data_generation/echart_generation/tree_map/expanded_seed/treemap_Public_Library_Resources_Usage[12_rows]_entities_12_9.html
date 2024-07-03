@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+
+var data = [
+    {'Resource Type': 'Books', 'Subcategory': 'Fiction', 'Checkouts': 5200},
+    {'Resource Type': 'Books', 'Subcategory': 'Non-fiction', 'Checkouts': 3400},
+    {'Resource Type': 'Books', 'Subcategory': "Children's Literature", 'Checkouts': 4300},
+    {'Resource Type': 'eBooks', 'Subcategory': 'Fiction', 'Checkouts': 2700},
+    {'Resource Type': 'eBooks', 'Subcategory': 'Non-fiction', 'Checkouts': 2500},
+    {'Resource Type': 'Magazines', 'Subcategory': 'Lifestyle', 'Checkouts': 1600},
+    {'Resource Type': 'Magazines', 'Subcategory': 'Science', 'Checkouts': 800},
+    {'Resource Type': 'AudioBooks', 'Subcategory': 'Mystery', 'Checkouts': 1100},
+    {'Resource Type': 'AudioBooks', 'Subcategory': 'Biography', 'Checkouts': 900},
+    {'Resource Type': 'DVDs', 'Subcategory': 'Movies', 'Checkouts': 2200},
+    {'Resource Type': 'DVDs', 'Subcategory': 'Documentaries', 'Checkouts': 780},
+    {'Resource Type': 'Online Databases', 'Subcategory': 'Research', 'Checkouts': 4600}
+];
+
+function convertData(data) {
+    var result = [];
+    var resourceMap = {};
+
+    // First pass to add resource type categories
+    for (var i = 0; i < data.length; i++) {
+        var resourceType = data[i]['Resource Type'];
+        if (!resourceMap[resourceType]) {
+            resourceMap[resourceType] = {
+                name: resourceType,
+                children: []
+            };
+            result.push(resourceMap[resourceType]);
+        }
+    }
+
+    // Second pass to add subcategories
+    for (var j = 0; j < data.length; j++) {
+        var item = data[j];
+        resourceMap[item['Resource Type']].children.push({
+            name: item['Subcategory'],
+            value: item['Checkouts']
+        });
+    }
+
+    return result;
+}
+
+var processedData = convertData(data);
+
+var option = {
+    tooltip: {
+        formatter: function (info) {
+            var value = info.value;
+            var treePathInfo = info.treePathInfo;
+            var treePath = [];
+
+            for (var i = 1; i < treePathInfo.length; i++) {
+                treePath.push(treePathInfo[i].name);
+            }
+
+            return [
+                '<div class="tooltip-title">' + echarts.format.encodeHTML(treePath.join('/')) + '</div>',
+                'Checkouts: ' + echarts.format.addCommas(value),
+            ].join('');
+        }
+    },
+    series: [
+        {
+            name: 'Resource Checkouts',
+            type: 'treemap',
+            visibleMin: 300,
+            label: {
+                show: true,
+                formatter: '{b}'
+            },
+            itemStyle: {
+                normal: {
+                    borderColor: '#fff'
+                }
+            },
+            levels: [
+                {
+                    itemStyle: {
+                        normal: {
+                            borderColor: '#555',
+                            borderWidth: 4,
+                            gapWidth: 4
+                        }
+                    }
+                },
+                {
+                    colorSaturation: [0.3, 0.6],
+                    itemStyle: {
+                        normal: {
+                            borderWidth: 2,
+                            gapWidth: 2
+                        }
+                    }
+                },
+                {
+                    colorSaturation: [0.3, 0.5],
+                    itemStyle: {
+                        normal: {
+                            borderWidth: 1,
+                            gapWidth: 1
+                        }
+                    }
+                }
+            ],
+            data: processedData
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

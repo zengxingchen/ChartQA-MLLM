@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,  // Reasonably wider chart
+    height: 600  // Reasonably taller chart
+});
+var app = {};
+
+var xAxisData = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
+var data1 = [15, 10, 20, 15, 10];
+var data2 = [25, 30, 30, 35, 40];
+var data3 = [30, 35, 25, 25, 25];
+var data4 = [20, 15, 15, 15, 15];
+var data5 = [10, 10, 10, 10, 10];
+
+var option = {
+    color: ['#1F78B4', '#A6CEE3', '#B2DF8A', '#33A02C', '#FB9A99'],
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            // Use the cross axis pointer
+            type: 'cross'
+        }
+    },
+    legend: {
+        data: ['Textbooks', 'Online Resources', 'Interactive Activities', 'Peer Learning', 'Assessment Activities']
+    },
+    toolbox: {
+        show: true,
+        feature: {
+            dataView: {show: true, readOnly: false},
+            restore: {show: true},
+            saveAsImage: {show: true}
+        }
+    },
+    xAxis: {
+        type: 'value',
+    },
+    yAxis: {
+        type: 'category',
+        data: xAxisData,
+        axisLabel: {
+            interval: 0
+        }
+    },
+    series: [
+        {
+            name: 'Textbooks',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 20, // Reasonable width of bars
+            data: data1
+        },
+        {
+            name: 'Online Resources',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 20, // Reasonable width of bars
+            data: data2
+        },
+        {
+            name: 'Interactive Activities',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 20, // Reasonable width of bars
+            data: data3
+        },
+        {
+            name: 'Peer Learning',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 20, // Reasonable width of bars
+            data: data4
+        },
+        {
+            name: 'Assessment Activities',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 20, // Reasonable width of bars
+            data: data5
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

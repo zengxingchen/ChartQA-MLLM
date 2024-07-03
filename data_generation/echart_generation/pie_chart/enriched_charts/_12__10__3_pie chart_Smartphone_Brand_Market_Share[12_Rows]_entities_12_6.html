@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+dom.style.width = '800px';
+dom.style.height = '600px';
+var myChart = echarts.init(dom);
+
+var option = {
+    title: {
+        text: 'Smartphone Operating System Market Share - 2023',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: '{a} <br/>{b} : {c} ({d}%)'
+    },
+    legend: {
+        orient: 'vertical',
+        left: 'left',
+        top: '15%',
+        data: ['Android', 'iOS', 'KaiOS', 'Windows', 'Others']
+    },
+    color: ['#00876c', '#89c079', '#fdd475', '#fd8e72', '#c85250'],
+    series: [
+        {
+            name: 'Market Share',
+            type: 'pie',
+            radius: '55%',
+            center: ['50%', '60%'],
+            data: [
+                {value: 72.2, name: 'Android'},
+                {value: 26.7, name: 'iOS'},
+                {value: 0.3, name: 'KaiOS'},
+                {value: 0.1, name: 'Windows'},
+                {value: 0.7, name: 'Others'}
+            ],
+            emphasis: {
+                itemStyle: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

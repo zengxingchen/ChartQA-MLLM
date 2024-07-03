@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+// Chart data
+var chartData = [
+  {'Age Group': '0-12 years', 'Monday': 120, 'Tuesday': 110, 'Wednesday': 130, 'Thursday': 105, 'Friday': 95, 'Saturday': 180, 'Sunday': 150},
+  {'Age Group': '13-18 years', 'Monday': 80, 'Tuesday': 95, 'Wednesday': 100, 'Thursday': 70, 'Friday': 65, 'Saturday': 120, 'Sunday': 100},
+  {'Age Group': '19-30 years', 'Monday': 200, 'Tuesday': 180, 'Wednesday': 190, 'Thursday': 210, 'Friday': 205, 'Saturday': 150, 'Sunday': 140},
+  {'Age Group': '31-45 years', 'Monday': 140, 'Tuesday': 135, 'Wednesday': 125, 'Thursday': 130, 'Friday': 125, 'Saturday': 110, 'Sunday': 105},
+  {'Age Group': '46-60 years', 'Monday': 100, 'Tuesday': 110, 'Wednesday': 115, 'Thursday': 120, 'Friday': 115, 'Saturday': 90, 'Sunday': 85},
+  {'Age Group': '61-75 years', 'Monday': 85, 'Tuesday': 80, 'Wednesday': 75, 'Thursday': 70, 'Friday': 80, 'Saturday': 65, 'Sunday': 70},
+  {'Age Group': '76+ years', 'Monday': 40, 'Tuesday': 35, 'Wednesday': 30, 'Thursday': 45, 'Friday': 50, 'Saturday': 55, 'Sunday': 60}
+];
+
+// Process data for ECharts
+var ageGroups = chartData.map(function (item) {
+  return item['Age Group'];
+});
+var daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+var seriesData = daysOfWeek.map(function (day) {
+  return {
+    name: day,
+    type: 'bar',
+    data: chartData.map(function (item) {
+      return item[day];
+    }),
+    // Add some nice visual encoding for each day
+    itemStyle: {
+      borderRadius: 5
+    }
+  };
+});
+
+option = {
+  tooltip: {
+    trigger: 'axis',
+    axisPointer: {
+      type: 'shadow'
+    }
+  },
+  legend: {
+    data: daysOfWeek
+  },
+  grid: {
+    left: '3%',
+    right: '4%',
+    bottom: '3%',
+    containLabel: true
+  },
+  xAxis: {
+    type: 'value',
+    boundaryGap: [0, 0.01]
+  },
+  yAxis: {
+    type: 'category',
+    data: ageGroups
+  },
+  series: seriesData
+};
+
+if (option && typeof option === 'object') {
+  myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

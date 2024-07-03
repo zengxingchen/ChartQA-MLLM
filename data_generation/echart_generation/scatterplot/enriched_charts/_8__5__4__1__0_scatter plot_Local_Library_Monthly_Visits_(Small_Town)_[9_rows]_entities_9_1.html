@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, { width: 800, height: 600 });
+var app = {};
+var option;
+
+option = {
+    title: {
+        text: 'Decline in Daily Exercise Over Time',
+        left: 'center',
+        top: '10%'
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: '{a} <br/>{b}: {c}'
+    },
+    legend: {
+        left: 'left',
+        top: 'top'
+    },
+    xAxis: {
+        type: 'value',
+        name: 'Day',
+        nameLocation: 'middle',
+        nameGap: 30
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Exercise Duration (hours)',
+        nameLocation: 'middle',
+        nameGap: 50
+    },
+    series: [
+        {
+            name: 'Daily Exercise',
+            type: 'scatter',
+            itemStyle: {
+                color: '#3498db'
+            },
+            data: [
+                [1, 9],
+                [2, 8],
+                [3, 7.5],
+                [4, 6],
+                [5, 5.5],
+                [6, 4.8],
+                [7, 4],
+                [8, 3.8],
+                [9, 3.5],
+                [10, 2.5],
+                [11, 2],
+                [12, 1.5],
+                [13, 1.2],
+                [14, 1],
+                [15, 0.8]
+            ]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

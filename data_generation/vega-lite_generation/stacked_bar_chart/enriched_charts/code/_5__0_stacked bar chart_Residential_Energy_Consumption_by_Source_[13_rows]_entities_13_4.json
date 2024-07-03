@@ -1,0 +1,185 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Stacked vertical bar chart showing the annual greenhouse gas emissions by source over years.",
+    "title": {
+        "text": "Annual Greenhouse Gas Emissions by Source Over Years",
+        "fontSize": 15,
+        "anchor": "start",
+        "color": "black"
+    },
+    "width": 600,
+    "height": 400,
+    "data": {
+        "values": [
+            {
+                "Year": 2010,
+                "Transportation": 500,
+                "Energy": 1000,
+                "Industry": 600,
+                "Agriculture": 300
+            },
+            {
+                "Year": 2011,
+                "Transportation": 520,
+                "Energy": 1050,
+                "Industry": 620,
+                "Agriculture": 310
+            },
+            {
+                "Year": 2012,
+                "Transportation": 540,
+                "Energy": 1100,
+                "Industry": 640,
+                "Agriculture": 320
+            },
+            {
+                "Year": 2013,
+                "Transportation": 560,
+                "Energy": 1150,
+                "Industry": 660,
+                "Agriculture": 330
+            },
+            {
+                "Year": 2014,
+                "Transportation": 580,
+                "Energy": 1200,
+                "Industry": 680,
+                "Agriculture": 340
+            },
+            {
+                "Year": 2015,
+                "Transportation": 600,
+                "Energy": 1250,
+                "Industry": 700,
+                "Agriculture": 350
+            },
+            {
+                "Year": 2016,
+                "Transportation": 620,
+                "Energy": 1300,
+                "Industry": 720,
+                "Agriculture": 360
+            },
+            {
+                "Year": 2017,
+                "Transportation": 640,
+                "Energy": 1350,
+                "Industry": 740,
+                "Agriculture": 370
+            },
+            {
+                "Year": 2018,
+                "Transportation": 660,
+                "Energy": 1400,
+                "Industry": 760,
+                "Agriculture": 380
+            },
+            {
+                "Year": 2019,
+                "Transportation": 680,
+                "Energy": 1450,
+                "Industry": 780,
+                "Agriculture": 390
+            },
+            {
+                "Year": 2020,
+                "Transportation": 700,
+                "Energy": 1500,
+                "Industry": 800,
+                "Agriculture": 400
+            },
+            {
+                "Year": 2021,
+                "Transportation": 720,
+                "Energy": 1550,
+                "Industry": 820,
+                "Agriculture": 410
+            },
+            {
+                "Year": 2022,
+                "Transportation": 740,
+                "Energy": 1600,
+                "Industry": 840,
+                "Agriculture": 420
+            },
+            {
+                "Year": 2023,
+                "Transportation": 760,
+                "Energy": 1650,
+                "Industry": 860,
+                "Agriculture": 430
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Transportation",
+                "Energy",
+                "Industry",
+                "Agriculture"
+            ],
+            "as": [
+                "Emission Source",
+                "Quantity"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "bar",
+        "height": {
+            "band": 0.6
+        }
+    },
+    "encoding": {
+        "x": {
+            "field": "Year",
+            "type": "ordinal",
+            "axis": {
+                "title": "Year"
+            }
+        },
+        "y": {
+            "field": "Quantity",
+            "type": "quantitative",
+            "stack": "zero",
+            "axis": {
+                "title": "Emissions (in million tons)"
+            }
+        },
+        "color": {
+            "field": "Emission Source",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Transportation",
+                    "Energy",
+                    "Industry",
+                    "Agriculture"
+                ],
+                "range": [
+                    "#ff6347",
+                    "#4682b4",
+                    "#32cd32",
+                    "#ffd700"
+                ]
+            },
+            "title": "Emission Source"
+        },
+        "tooltip": [
+            {
+                "field": "Year",
+                "type": "ordinal"
+            },
+            {
+                "field": "Emission Source",
+                "type": "nominal"
+            },
+            {
+                "field": "Quantity",
+                "type": "quantitative",
+                "title": "Emissions"
+            }
+        ]
+    }
+}

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Economic Growth by Category Over Years',
+        left: 'center',
+        top: '5%'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Item A', 'Item B', 'Item C', 'Item D'],
+        bottom: '5%'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '15%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        data: ['2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Item A',
+            type: 'bar',
+            stack: 'total',
+            barWidth: '40%',
+            emphasis: {
+                focus: 'series'
+            },
+            itemStyle: {
+                color: '#5470C6'
+            },
+            data: [320, 320, 420, 520, 620, 720, 820, 920, 1020, 1120, 1220, 1320, 1420, 1520]
+        },
+        {
+            name: 'Item B',
+            type: 'bar',
+            stack: 'total',
+            barWidth: '40%',
+            emphasis: {
+                focus: 'series'
+            },
+            itemStyle: {
+                color: '#91CC75'
+            },
+            data: [302, 332, 332, 432, 532, 632, 732, 832, 932, 1032, 1132, 1232, 1332, 1432]
+        },
+        {
+            name: 'Item C',
+            type: 'bar',
+            stack: 'total',
+            barWidth: '40%',
+            emphasis: {
+                focus: 'series'
+            },
+            itemStyle: {
+                color: '#FAC858'
+            },
+            data: [301, 301, 401, 501, 601, 701, 801, 901, 1001, 1101, 1201, 1301, 1401, 1501]
+        },
+        {
+            name: 'Item D',
+            type: 'bar',
+            stack: 'total',
+            barWidth: '40%',
+            emphasis: {
+                focus: 'series'
+            },
+            itemStyle: {
+                color: '#EE6666'
+            },
+            data: [334, 334, 334, 334, 334, 334, 334, 334, 334, 334, 334, 334, 334, 334]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

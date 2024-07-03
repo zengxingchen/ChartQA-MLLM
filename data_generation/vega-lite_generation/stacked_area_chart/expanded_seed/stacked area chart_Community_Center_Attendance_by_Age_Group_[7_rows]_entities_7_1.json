@@ -1,0 +1,128 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Monthly Age Group Distribution",
+    "width": "container",
+    "title": {
+        "text": "Monthly Age Group Distribution",
+        "offset": 20
+    },
+    "data": {
+        "values": [
+            {
+                "Month": "January",
+                "Children (0-13)": 320,
+                "Teens (14-17)": 180,
+                "Adults (18-64)": 450,
+                "Seniors (65+)": 220
+            },
+            {
+                "Month": "February",
+                "Children (0-13)": 280,
+                "Teens (14-17)": 150,
+                "Adults (18-64)": 430,
+                "Seniors (65+)": 200
+            },
+            {
+                "Month": "March",
+                "Children (0-13)": 350,
+                "Teens (14-17)": 200,
+                "Adults (18-64)": 500,
+                "Seniors (65+)": 240
+            },
+            {
+                "Month": "April",
+                "Children (0-13)": 370,
+                "Teens (14-17)": 220,
+                "Adults (18-64)": 520,
+                "Seniors (65+)": 260
+            },
+            {
+                "Month": "May",
+                "Children (0-13)": 400,
+                "Teens (14-17)": 210,
+                "Adults (18-64)": 540,
+                "Seniors (65+)": 250
+            },
+            {
+                "Month": "June",
+                "Children (0-13)": 420,
+                "Teens (14-17)": 230,
+                "Adults (18-64)": 570,
+                "Seniors (65+)": 270
+            },
+            {
+                "Month": "July",
+                "Children (0-13)": 450,
+                "Teens (14-17)": 240,
+                "Adults (18-64)": 600,
+                "Seniors (65+)": 280
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Children (0-13)",
+                "Teens (14-17)",
+                "Adults (18-64)",
+                "Seniors (65+)"
+            ],
+            "as": [
+                "Age Group",
+                "Population"
+            ]
+        }
+    ],
+    "mark": "area",
+    "encoding": {
+        "x": {
+            "field": "Month",
+            "type": "ordinal",
+            "axis": {
+                "labelAngle": 0,
+                "title": "Month"
+            }
+        },
+        "y": {
+            "field": "Population",
+            "type": "quantitative",
+            "axis": {
+                "title": "Population Count"
+            }
+        },
+        "color": {
+            "field": "Age Group",
+            "type": "nominal",
+            "scale": {
+                "scheme": "category20"
+            },
+            "legend": {
+                "orient": "bottom",
+                "title": "Age Group"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Month",
+                "type": "ordinal"
+            },
+            {
+                "field": "Age Group",
+                "type": "nominal",
+                "title": "Age Group"
+            },
+            {
+                "field": "Population",
+                "type": "quantitative",
+                "title": "Population Count"
+            }
+        ]
+    },
+    "config": {
+        "style": {
+            "cell": {
+                "stroke": "transparent"
+            }
+        }
+    }
+}

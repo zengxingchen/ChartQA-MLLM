@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 800, // change the width reasonably
+    height: 600 // change the height reasonably
+});
+var app = {};
+
+var option;
+
+option = {
+    title: { // change topic, headline of the chart, and put in appropriate place
+        text: 'Future Technologies & Society Impact By Year',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {            
+            type: 'shadow'        
+        },
+        formatter: function (params) {
+            var tar = params[1];
+            return tar.name + '<br/>' + tar.seriesName + ' : ' + tar.value;
+        }
+    },
+    legend: {
+        // change legend position to avoid overlap with the title
+        data: ['Future Technologies', 'Art & Design', 'Science & Nature', 'Health & Psychology'],
+        top: 40
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value'
+    },
+    yAxis: {
+        type: 'category',
+        splitLine: {show: false},
+        data: ['2020', '2021', '2022', '2023', '2024'] // providing all the data points for the yAxis
+    },
+    series: [
+        {
+            name: 'Total',
+            type: 'bar',
+            stack: 'total',
+            itemStyle: {
+                borderColor: 'transparent',
+                color: 'transparent'
+            },
+            emphasis: {
+                itemStyle: {
+                    borderColor: 'transparent',
+                    color: 'transparent'
+                }
+            },
+            data: [100, 100, 100, 100, 100]
+        },
+        {
+            name: 'Future Technologies', // change data type (which fit the topic)
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'inside'
+            },
+            data: [10, 15, 20, 25, 30], // different data points with specific values
+            itemStyle: {
+                color: '#4357AD' // modify the color using specific color code
+            },
+            barWidth: 35 // change bar height reasonably
+        },
+        {
+            name: 'Art & Design',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'inside'
+            },
+            data: [20, 25, 30, 20, 15], // different data points with specific values
+            itemStyle: {
+                color: '#48A9A6' // modify the color using specific color code
+            },
+            barWidth: 35 // change bar height reasonably
+        },
+        {
+            name: 'Science & Nature',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'inside'
+            },
+            data: [30, 35, 25, 25, 20], // different data points with specific values
+            itemStyle: {
+                color: '#E4DFDA' // modify the color using specific color code
+            },
+            barWidth: 35 // change bar height reasonably
+        },
+        {
+            name: 'Health & Psychology',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'inside'
+            },
+            data: [40, 25, 25, 30, 35], // different data points with specific values
+            itemStyle: {
+                color: '#C1666B' // modify the color using specific color code
+            },
+            barWidth: 35 // change bar height reasonably
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

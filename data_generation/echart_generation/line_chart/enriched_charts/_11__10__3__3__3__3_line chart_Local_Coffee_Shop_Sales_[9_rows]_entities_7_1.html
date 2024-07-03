@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {renderer: 'canvas', width: 800, height: 600});
+var app = {};
+var option;
+
+option = {
+    title: {
+        text: 'Monthly Stock Prices of a Tech Company',
+        left: 'center',
+        top: 20
+    },
+    tooltip: {
+        trigger: 'axis',
+        formatter: '{b}: ${c}'
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+        axisLabel: {
+            color: '#000000'
+        }
+    },
+    yAxis: {
+        type: 'value',
+        axisLabel: {
+            formatter: '${value}',
+            color: '#000000'
+        },
+        splitLine: {
+            show: true,
+            lineStyle: {
+                color: '#e0e0e0'
+            }
+        }
+    },
+    series: [
+        {
+            name: 'Stock Price',
+            type: 'line',
+            data: [150.0, 148.5, 147.0, 145.8, 144.3, 143.0, 141.5, 140.0, 138.5, 137.2, 136.0, 134.5],
+            lineStyle: {
+                color: '#FF4500',
+                width: 2
+            },
+            itemStyle: {
+                color: '#FF4500'
+            },
+            label: {
+                show: true,
+                position: 'top',
+                color: '#FF4500',
+                formatter: '${@[1]}'
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

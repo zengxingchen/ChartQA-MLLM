@@ -1,0 +1,172 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Monthly Average Sales by Product Category",
+    "data": {
+        "values": [
+            {
+                "Month": "January",
+                "Electronics": 120,
+                "Furniture": 80,
+                "Clothing": 65,
+                "Toys": 95,
+                "Groceries": 110
+            },
+            {
+                "Month": "February",
+                "Electronics": 130,
+                "Furniture": 85,
+                "Clothing": 70,
+                "Toys": 100,
+                "Groceries": 115
+            },
+            {
+                "Month": "March",
+                "Electronics": 140,
+                "Furniture": 90,
+                "Clothing": 75,
+                "Toys": 105,
+                "Groceries": 120
+            },
+            {
+                "Month": "April",
+                "Electronics": 150,
+                "Furniture": 95,
+                "Clothing": 80,
+                "Toys": 110,
+                "Groceries": 125
+            },
+            {
+                "Month": "May",
+                "Electronics": 160,
+                "Furniture": 100,
+                "Clothing": 85,
+                "Toys": 115,
+                "Groceries": 130
+            },
+            {
+                "Month": "June",
+                "Electronics": 170,
+                "Furniture": 105,
+                "Clothing": 90,
+                "Toys": 120,
+                "Groceries": 135
+            },
+            {
+                "Month": "July",
+                "Electronics": 180,
+                "Furniture": 110,
+                "Clothing": 95,
+                "Toys": 125,
+                "Groceries": 140
+            },
+            {
+                "Month": "August",
+                "Electronics": 190,
+                "Furniture": 115,
+                "Clothing": 100,
+                "Toys": 130,
+                "Groceries": 145
+            },
+            {
+                "Month": "September",
+                "Electronics": 200,
+                "Furniture": 120,
+                "Clothing": 105,
+                "Toys": 135,
+                "Groceries": 150
+            },
+            {
+                "Month": "October",
+                "Electronics": 210,
+                "Furniture": 125,
+                "Clothing": 110,
+                "Toys": 140,
+                "Groceries": 155
+            },
+            {
+                "Month": "November",
+                "Electronics": 220,
+                "Furniture": 130,
+                "Clothing": 115,
+                "Toys": 145,
+                "Groceries": 160
+            },
+            {
+                "Month": "December",
+                "Electronics": 230,
+                "Furniture": 135,
+                "Clothing": 120,
+                "Toys": 150,
+                "Groceries": 165
+            }
+        ]
+    },
+    "width": 1000,
+    "height": 600,
+    "transform": [
+        {
+            "fold": [
+                "Electronics",
+                "Furniture",
+                "Clothing",
+                "Toys",
+                "Groceries"
+            ],
+            "as": [
+                "Product Category",
+                "Sales"
+            ]
+        }
+    ],
+    "mark": "line",
+    "encoding": {
+        "x": {
+            "field": "Month",
+            "type": "ordinal",
+            "title": "Month",
+            "axis": {
+                "labelAngle": 0
+            }
+        },
+        "y": {
+            "field": "Sales",
+            "type": "quantitative",
+            "title": "Average Sales (in Thousands)"
+        },
+        "color": {
+            "field": "Product Category",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Electronics",
+                    "Furniture",
+                    "Clothing",
+                    "Toys",
+                    "Groceries"
+                ],
+                "range": [
+                    "#FF6347",
+                    "#4682B4",
+                    "#32CD32",
+                    "#FFD700",
+                    "#EE82EE"
+                ]
+            },
+            "title": "Product Category"
+        },
+        "tooltip": [
+            {
+                "field": "Month",
+                "type": "nominal"
+            },
+            {
+                "field": "Product Category",
+                "type": "nominal"
+            },
+            {
+                "field": "Sales",
+                "type": "quantitative"
+            }
+        ]
+    }
+}

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+option = {
+    title: {
+        text: 'Correlation between Art and Design Elements',
+        left: 'center',
+        top: '5%'
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['Art', 'Design'],
+        left: '10%',
+        top: '10%'
+    },
+    xAxis: {
+        type: 'value',
+        name: 'Value 1',
+        min: 0,
+        max: 100
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Value 2',
+        min: 0,
+        max: 100
+    },
+    series: [
+        {
+            name: 'Art',
+            type: 'scatter',
+            itemStyle: {
+                color: '#FF5733'
+            },
+            data: [
+                [45, 23],
+                [56, 32],
+                [67, 45],
+                [34, 67],
+                [78, 56],
+                [89, 34]
+            ]
+        },
+        {
+            name: 'Design',
+            type: 'scatter',
+            itemStyle: {
+                color: '#33FF57'
+            },
+            data: [
+                [34, 56],
+                [45, 67],
+                [23, 89],
+                [78, 45],
+                [90, 34],
+                [67, 23],
+                [56, 78],
+                [34, 90],
+                [23, 45]
+            ]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

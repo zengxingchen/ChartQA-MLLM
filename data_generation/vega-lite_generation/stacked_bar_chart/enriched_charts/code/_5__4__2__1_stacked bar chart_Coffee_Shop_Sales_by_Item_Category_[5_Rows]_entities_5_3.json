@@ -1,0 +1,156 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+        "values": [
+            {
+                "Year": "2018",
+                "Math": 300,
+                "Science": 280,
+                "Literature": 250,
+                "History": 200,
+                "Art": 220
+            },
+            {
+                "Year": "2019",
+                "Math": 310,
+                "Science": 290,
+                "Literature": 260,
+                "History": 210,
+                "Art": 230
+            },
+            {
+                "Year": "2020",
+                "Math": 320,
+                "Science": 300,
+                "Literature": 270,
+                "History": 220,
+                "Art": 240
+            },
+            {
+                "Year": "2021",
+                "Math": 330,
+                "Science": 310,
+                "Literature": 280,
+                "History": 230,
+                "Art": 250
+            },
+            {
+                "Year": "2022",
+                "Math": 340,
+                "Science": 320,
+                "Literature": 290,
+                "History": 240,
+                "Art": 260
+            },
+            {
+                "Year": "2023",
+                "Math": 350,
+                "Science": 330,
+                "Literature": 300,
+                "History": 250,
+                "Art": 270
+            },
+            {
+                "Year": "2024",
+                "Math": 360,
+                "Science": 340,
+                "Literature": 310,
+                "History": 260,
+                "Art": 280
+            },
+            {
+                "Year": "2025",
+                "Math": 370,
+                "Science": 350,
+                "Literature": 320,
+                "History": 270,
+                "Art": 290
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Math",
+                "Science",
+                "Literature",
+                "History",
+                "Art"
+            ],
+            "as": [
+                "Subject",
+                "Scores"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "bar",
+        "width": {
+            "band": 0.5
+        }
+    },
+    "width": 800,
+    "height": 600,
+    "title": {
+        "text": "Yearly Average Scores by Subject",
+        "fontSize": 22,
+        "anchor": "start",
+        "color": "black",
+        "frame": "group"
+    },
+    "encoding": {
+        "y": {
+            "field": "Scores",
+            "type": "quantitative",
+            "title": "Average Scores"
+        },
+        "x": {
+            "field": "Year",
+            "type": "ordinal",
+            "title": "Year"
+        },
+        "color": {
+            "field": "Subject",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Math",
+                    "Science",
+                    "Literature",
+                    "History",
+                    "Art"
+                ],
+                "range": [
+                    "#FF5733",
+                    "#33FF57",
+                    "#3357FF",
+                    "#F333FF",
+                    "#FFD733"
+                ]
+            },
+            "title": "Subject",
+            "legend": {
+                "orient": "bottom",
+                "titleFontSize": 16,
+                "labelFontSize": 14
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Year",
+                "type": "nominal",
+                "title": "Year"
+            },
+            {
+                "field": "Subject",
+                "type": "nominal",
+                "title": "Subject"
+            },
+            {
+                "field": "Scores",
+                "type": "quantitative",
+                "title": "Average Scores"
+            }
+        ]
+    }
+}

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 800, // Width of the chart
+    height: 400 // Height of the chart
+});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Monthly Sales Data (2019-2020)',
+        left: 'center',
+        textStyle: {
+            fontSize: 16,
+            fontWeight: 'bold'
+        }
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['Sales2019', 'Sales2020'],
+        bottom: 0
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '10%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: [
+          'January', 'February', 'March', 'April', 'May', 'June', 
+          'July', 'August', 'September', 'October', 'November', 'December'
+        ]
+    },
+    yAxis: {
+        type: 'value',
+        axisLabel: {
+            formatter: '{value} USD'
+        }
+    },
+    series: [
+        {
+            name: 'Sales2019',
+            type: 'line',
+            smooth: true,
+            data: [
+                12000, 15000, 14000, 13000, 14500, 15500, 
+                16000, 16500, 17000, 17500, 18000, 19000
+            ],
+            itemStyle: {
+                color: '#FF5733' // Changed the series color
+            }
+        },
+        {
+            name: 'Sales2020',
+            type: 'line',
+            smooth: true,
+            data: [
+                15000, 18000, 16500, 16000, 17500, 18500, 
+                19500, 20000, 20500, 22000, 23000, 24000
+            ],
+            itemStyle: {
+                color: '#33FF57' // Changed the series color
+            }
+        }
+    ],
+    markLine: {
+        data: [
+            {
+                type: 'average', name: 'Average 2019', 
+                label: { formatter: 'Average' },
+                lineStyle: { color: '#FFC300' }
+            },
+            {
+                type: 'average', name: 'Average 2020', 
+                xAxis: 'Average 2020',
+                label: { formatter: 'Average' },
+                lineStyle: { color: '#348F50' }
+            }
+        ]
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

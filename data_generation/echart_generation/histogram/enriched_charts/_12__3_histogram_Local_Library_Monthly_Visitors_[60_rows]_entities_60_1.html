@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Distribution of Technology Enthusiasts Ages',
+        left: 'center',
+        top: '10%'
+    },
+    color: ['#3398DB'],
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    xAxis: {
+        type: 'category',
+        data: ['1-5', '6-10', '11-15', '16-20', '21-25', '26-30'],
+        axisLabel: {
+            rotate: 30
+        },
+        name: 'Age Range'
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Frequency'
+    },
+    series: [
+        {
+            name: 'Age Range',
+            type: 'bar',
+            barWidth: '60%',
+            data: [
+                { value: 1, itemStyle: { color: '#FF5733' }, label: { show: true, position: 'top' } },
+                { value: 2, itemStyle: { color: '#33FF57' }, label: { show: true, position: 'top' } },
+                { value: 4, itemStyle: { color: '#3357FF' }, label: { show: true, position: 'top' } },
+                { value: 6, itemStyle: { color: '#FF33A6' }, label: { show: true, position: 'top' } },
+                { value: 9, itemStyle: { color: '#A633FF' }, label: { show: true, position: 'top' } },
+                { value: 14, itemStyle: { color: '#33FFA5' }, label: { show: true, position: 'top' } }
+            ]
+        }
+    ],
+    grid: {
+        width: '80%',
+        height: '70%',
+        left: '10%',
+        top: '20%'
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

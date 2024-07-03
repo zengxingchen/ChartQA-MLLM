@@ -1,0 +1,131 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Stacked area chart showing average daily water intake on weekdays and weekends across different age groups",
+    "data": {
+        "values": [
+            {
+                "Age Group": "0-5",
+                "Weekdays (L)": 1.0,
+                "Weekend (L)": 1.2
+            },
+            {
+                "Age Group": "6-10",
+                "Weekdays (L)": 1.5,
+                "Weekend (L)": 1.7
+            },
+            {
+                "Age Group": "11-16",
+                "Weekdays (L)": 2.0,
+                "Weekend (L)": 2.2
+            },
+            {
+                "Age Group": "17-25",
+                "Weekdays (L)": 2.5,
+                "Weekend (L)": 2.8
+            },
+            {
+                "Age Group": "26-40",
+                "Weekdays (L)": 2.3,
+                "Weekend (L)": 2.6
+            },
+            {
+                "Age Group": "41-55",
+                "Weekdays (L)": 2.0,
+                "Weekend (L)": 2.1
+            },
+            {
+                "Age Group": "56-65",
+                "Weekdays (L)": 1.8,
+                "Weekend (L)": 1.9
+            },
+            {
+                "Age Group": "66+",
+                "Weekdays (L)": 1.6,
+                "Weekend (L)": 1.7
+            }
+        ]
+    },
+    "width": 600,
+    "height": 400,
+    "title": {
+        "text": "Average Daily Water Intake by Age Group",
+        "subtitle": "Comparing weekdays and weekends",
+        "fontSize": 18,
+        "subtitleFontSize": 12,
+        "anchor": "start",
+        "color": "black"
+    },
+    "mark": {
+        "type": "area",
+        "opacity": 0.6
+    },
+    "encoding": {
+        "x": {
+            "field": "Age Group",
+            "type": "ordinal",
+            "title": "Age Group"
+        },
+        "y": {
+            "field": "Liters",
+            "type": "quantitative",
+            "title": "Average Daily Water Intake (L)",
+            "stack": "zero"
+        },
+        "color": {
+            "field": "daytype",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Weekdays (L)",
+                    "Weekend (L)"
+                ],
+                "range": [
+                    "#1f78b4",
+                    "#33a02c"
+                ]
+            },
+            "legend": {
+                "title": "Day Type",
+                "orient": "bottom",
+                "direction": "horizontal"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Age Group",
+                "type": "nominal"
+            },
+            {
+                "field": "Liters",
+                "type": "quantitative",
+                "title": "Average Daily Water Intake (L)"
+            },
+            {
+                "field": "daytype",
+                "type": "nominal",
+                "title": "Day Type"
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Weekdays (L)",
+                "Weekend (L)"
+            ],
+            "as": [
+                "daytype",
+                "Liters"
+            ]
+        }
+    ],
+    "config": {
+        "view": {
+            "stroke": "transparent"
+        },
+        "axis": {
+            "labelFontSize": 12,
+            "titleFontSize": 14
+        }
+    }
+}

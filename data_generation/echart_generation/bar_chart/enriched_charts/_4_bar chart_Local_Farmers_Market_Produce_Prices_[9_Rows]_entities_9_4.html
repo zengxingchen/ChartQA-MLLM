@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 600, height: 400});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Educational Field Graduation Statistics',
+        left: 'center',
+        textStyle: {
+            color: '#333',
+        },
+    },
+    color: ['#3398DB'],
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: [{
+        type: 'category',
+        data: ['Computer Science', 'Electrical Engineering', 'Mechanical Engineering', 'Civil Engineering', 'Mathematics', 'Physics', 'Chemistry', 'Biology', 'Medicine', 'Law', 'Psychology', 'History', 'Philosophy', 'Art', 'Music'],
+        axisTick: {
+            alignWithLabel: true
+        },
+        axisLabel: {
+            interval: 0,
+            rotate: 45,
+            textStyle: {
+                color: "#000"
+            }
+        }
+    }],
+    yAxis: [{
+        type: 'value'
+    }],
+    series: [{
+        name: 'Graduates',
+        type: 'bar',
+        barWidth: '50%',
+        label: {
+            show: true,
+            position: 'top',
+            color: '#000'
+        },
+        data: [
+            {value: 2000, itemStyle: {color: '#FF0000'}},
+            {value: 1800, itemStyle: {color: '#00FF00'}},
+            {value: 1650, itemStyle: {color: '#0000FF'}},
+            {value: 1500, itemStyle: {color: '#FFFF00'}},
+            {value: 1400, itemStyle: {color: '#00FFFF'}},
+            {value: 1300, itemStyle: {color: '#FF00FF'}},
+            {value: 1200, itemStyle: {color: '#C0C0C0'}},
+            {value: 1100, itemStyle: {color: '#808080'}},
+            {value: 1000, itemStyle: {color: '#800000'}},
+            {value: 900, itemStyle: {color: '#808000'}},
+            {value: 800, itemStyle: {color: '#008000'}},
+            {value: 700, itemStyle: {color: '#800080'}},
+            {value: 600, itemStyle: {color: '#008080'}},
+            {value: 500, itemStyle: {color: '#000080'}},
+            {value: 400, itemStyle: {color: '#FF4500'}}
+        ]
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

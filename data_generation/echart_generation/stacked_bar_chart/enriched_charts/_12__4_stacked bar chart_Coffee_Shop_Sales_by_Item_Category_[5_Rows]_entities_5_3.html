@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+var option = {
+    title: {
+        text: 'Daily Fruit Consumption',
+        left: 'center',
+        top: '5%',
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Apple', 'Banana', 'Orange', 'Grapes'],
+        top: '10%',
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01]
+    },
+    yAxis: {
+        type: 'category',
+        data: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+    },
+    series: [
+        {
+            name: 'Apple',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            color: '#FF6347',
+            data: [30, 28, 35, 25, 32, 27, 30]
+        },
+        {
+            name: 'Banana',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            color: '#FFD700',
+            data: [25, 30, 20, 28, 22, 27, 20]
+        },
+        {
+            name: 'Orange',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            color: '#FFA500',
+            data: [15, 10, 25, 20, 18, 22, 25]
+        },
+        {
+            name: 'Grapes',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            color: '#8A2BE2',
+            data: [20, 22, 18, 30, 25, 19, 28]
+        }
+    ]
+};
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

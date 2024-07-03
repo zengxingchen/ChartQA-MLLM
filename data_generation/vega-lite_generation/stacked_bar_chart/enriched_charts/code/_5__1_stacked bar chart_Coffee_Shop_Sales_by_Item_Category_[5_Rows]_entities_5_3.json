@@ -1,0 +1,188 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+        "values": [
+            {
+                "Month": "Jan",
+                "Solar": 120,
+                "Wind": 150,
+                "Hydro": 180,
+                "Geothermal": 90,
+                "Nuclear": 130
+            },
+            {
+                "Month": "Feb",
+                "Solar": 140,
+                "Wind": 130,
+                "Hydro": 170,
+                "Geothermal": 110,
+                "Nuclear": 140
+            },
+            {
+                "Month": "Mar",
+                "Solar": 130,
+                "Wind": 160,
+                "Hydro": 190,
+                "Geothermal": 120,
+                "Nuclear": 150
+            },
+            {
+                "Month": "Apr",
+                "Solar": 150,
+                "Wind": 170,
+                "Hydro": 200,
+                "Geothermal": 130,
+                "Nuclear": 160
+            },
+            {
+                "Month": "May",
+                "Solar": 160,
+                "Wind": 180,
+                "Hydro": 210,
+                "Geothermal": 140,
+                "Nuclear": 170
+            },
+            {
+                "Month": "Jun",
+                "Solar": 170,
+                "Wind": 190,
+                "Hydro": 220,
+                "Geothermal": 150,
+                "Nuclear": 180
+            },
+            {
+                "Month": "Jul",
+                "Solar": 180,
+                "Wind": 200,
+                "Hydro": 230,
+                "Geothermal": 160,
+                "Nuclear": 190
+            },
+            {
+                "Month": "Aug",
+                "Solar": 190,
+                "Wind": 210,
+                "Hydro": 240,
+                "Geothermal": 170,
+                "Nuclear": 200
+            },
+            {
+                "Month": "Sep",
+                "Solar": 200,
+                "Wind": 220,
+                "Hydro": 250,
+                "Geothermal": 180,
+                "Nuclear": 210
+            },
+            {
+                "Month": "Oct",
+                "Solar": 210,
+                "Wind": 230,
+                "Hydro": 260,
+                "Geothermal": 190,
+                "Nuclear": 220
+            },
+            {
+                "Month": "Nov",
+                "Solar": 220,
+                "Wind": 240,
+                "Hydro": 270,
+                "Geothermal": 200,
+                "Nuclear": 230
+            },
+            {
+                "Month": "Dec",
+                "Solar": 230,
+                "Wind": 250,
+                "Hydro": 280,
+                "Geothermal": 210,
+                "Nuclear": 240
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Solar",
+                "Wind",
+                "Hydro",
+                "Geothermal",
+                "Nuclear"
+            ],
+            "as": [
+                "Energy Source",
+                "Production"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "bar",
+        "width": {
+            "band": 0.7
+        }
+    },
+    "width": 600,
+    "height": 450,
+    "title": {
+        "text": "Monthly Renewable Energy Production Breakdown",
+        "fontSize": 18,
+        "anchor": "start",
+        "color": "#333333",
+        "frame": "group"
+    },
+    "encoding": {
+        "x": {
+            "field": "Month",
+            "type": "ordinal",
+            "title": "Month"
+        },
+        "y": {
+            "field": "Production",
+            "type": "quantitative",
+            "title": "Energy Production (in GWh)"
+        },
+        "color": {
+            "field": "Energy Source",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Solar",
+                    "Wind",
+                    "Hydro",
+                    "Geothermal",
+                    "Nuclear"
+                ],
+                "range": [
+                    "#FFD700",
+                    "#87CEEB",
+                    "#4682B4",
+                    "#6B8E23",
+                    "#FF6347"
+                ]
+            },
+            "title": "Energy Source",
+            "legend": {
+                "orient": "right",
+                "titleFontSize": 12,
+                "labelFontSize": 12
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Month",
+                "type": "nominal",
+                "title": "Month"
+            },
+            {
+                "field": "Energy Source",
+                "type": "nominal",
+                "title": "Energy Source"
+            },
+            {
+                "field": "Production",
+                "type": "quantitative",
+                "title": "Production (in GWh)"
+            }
+        ]
+    }
+}

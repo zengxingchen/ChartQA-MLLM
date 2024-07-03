@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 700, height: 500});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Greenhouse Gas Emissions by Sector',
+        left: 'center',
+        top: 20
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Energy', 'Industrial Processes', 'Agriculture', 'Waste', 'Other'],
+        bottom: 0
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '15%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01],
+        max: 100
+    },
+    yAxis: {
+        type: 'category',
+        data: ['2016', '2017', '2018', '2019', '2020', '2021']
+    },
+    series: [
+        {
+            name: 'Energy',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            data: [50, 55, 60, 62, 65, 68],
+            itemStyle: {
+                color: '#1f77b4'
+            },
+            barWidth: 30
+        },
+        {
+            name: 'Industrial Processes',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            data: [20, 18, 16, 16, 15, 14],
+            itemStyle: {
+                color: '#ff7f0e'
+            },
+            barWidth: 30
+        },
+        {
+            name: 'Agriculture',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            data: [15, 12, 10, 9, 8, 7],
+            itemStyle: {
+                color: '#2ca02c'
+            },
+            barWidth: 30
+        },
+        {
+            name: 'Waste',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            data: [10, 10, 10, 9, 8, 7],
+            itemStyle: {
+                color: '#d62728'
+            },
+            barWidth: 30
+        },
+        {
+            name: 'Other',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            data: [5, 5, 4, 4, 4, 4],
+            itemStyle: {
+                color: '#9467bd'
+            },
+            barWidth: 30
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

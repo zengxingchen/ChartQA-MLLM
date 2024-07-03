@@ -1,0 +1,106 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Stacked area chart showing average hours spent on weekdays and weekends across different age groups",
+    "data": {
+        "values": [
+            {
+                "Age Group": "0-5",
+                "Weekdays (hours)": 2.0,
+                "Weekend (hours)": 3.0
+            },
+            {
+                "Age Group": "6-10",
+                "Weekdays (hours)": 1.5,
+                "Weekend (hours)": 2.5
+            },
+            {
+                "Age Group": "11-16",
+                "Weekdays (hours)": 3.5,
+                "Weekend (hours)": 4.5
+            },
+            {
+                "Age Group": "17-25",
+                "Weekdays (hours)": 4.5,
+                "Weekend (hours)": 5.5
+            },
+            {
+                "Age Group": "26-40",
+                "Weekdays (hours)": 4.0,
+                "Weekend (hours)": 4.5
+            }
+        ]
+    },
+    "width": 400,
+    "height": 300,
+    "title": {
+        "text": "Average Hours Spent by Age Group",
+        "subtitle": "Comparing weekdays and weekends",
+        "fontSize": 15,
+        "subtitleFontSize": 10,
+        "anchor": "start",
+        "color": "black"
+    },
+    "mark": "area",
+    "encoding": {
+        "x": {
+            "field": "Age Group",
+            "type": "ordinal",
+            "title": "Age Group"
+        },
+        "y": {
+            "field": "hours",
+            "type": "quantitative",
+            "title": "Average Hours",
+            "stack": "zero"
+        },
+        "color": {
+            "field": "daytype",
+            "type": "nominal",
+            "scale": {
+                "scheme": "set2"
+            },
+            "legend": {
+                "title": "Day Type",
+                "orient": "bottom",
+                "direction": "horizontal"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Age Group",
+                "type": "nominal"
+            },
+            {
+                "field": "hours",
+                "type": "quantitative",
+                "title": "Average Hours"
+            },
+            {
+                "field": "daytype",
+                "type": "nominal",
+                "title": "Day Type"
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Weekdays (hours)",
+                "Weekend (hours)"
+            ],
+            "as": [
+                "daytype",
+                "hours"
+            ]
+        }
+    ],
+    "config": {
+        "view": {
+            "stroke": "transparent"
+        },
+        "axis": {
+            "labelFontSize": 10,
+            "titleFontSize": 12
+        }
+    }
+}

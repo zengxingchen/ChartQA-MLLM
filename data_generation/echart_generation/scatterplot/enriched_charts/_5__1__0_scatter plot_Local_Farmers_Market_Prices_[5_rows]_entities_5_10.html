@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {renderer: 'canvas', useDirtyRect: false, width: 800, height: 600});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Correlation between Age and Blood Pressure',
+        left: 'center',
+        top: '20'
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: function (params) {
+            return 'Age: ' + params.value[0] + '<br/>Blood Pressure: ' + params.value[1];
+        }
+    },
+    xAxis: {
+        name: 'Age (years)',
+        min: 0,
+        max: 60,
+        axisLabel: {
+            formatter: '{value} years'
+        }
+    },
+    yAxis: {
+        name: 'Blood Pressure (mmHg)',
+        min: 0,
+        max: 100,
+        axisLabel: {
+            formatter: '{value} mmHg'
+        }
+    },
+    series: [{
+        name: 'Age vs Blood Pressure',
+        type: 'scatter',
+        symbolSize: 10,
+        itemStyle: {
+            color: '#FF6347'
+        },
+        data: [
+            [12.3,34.8], [14.1,36.5], [15.2,38.3], [13.6,33.2], [11.7,30.4], [16.8,40.1], [17.3,41.7],
+            [10.2,28.9], [18.5,43.0], [14.8,37.6], [19.1,44.2], [20.0,46.5], [9.5,27.1], [21.3,48.6],
+            [22.5,49.8], [23.0,51.3], [7.8,23.6], [8.9,25.7], [24.2,52.4], [25.6,54.1], [6.3,21.0],
+            [26.7,55.8], [27.8,57.3], [28.9,59.1], [5.2,18.9], [29.5,60.5], [30.0,62.0], [4.7,17.3],
+            [31.2,63.4], [32.3,65.1], [33.6,66.7], [34.5,68.0], [3.8,15.4], [35.7,69.5], [36.8,71.2],
+            [2.9,13.8], [37.5,73.0], [38.6,74.1], [39.7,75.5], [1.8,12.2], [40.8,77.3], [41.9,79.0],
+            [42.5,80.2], [43.6,81.4], [0.5,9.7], [44.7,83.0], [45.8,84.5], [46.9,86.1], [47.5,87.6],
+            [48.6,88.9], [49.7,90.2], [50.8,92.0]
+        ]
+    }],
+    legend: {
+        data: ['Age vs Blood Pressure'],
+        left: 'left',
+        top: '10%'
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

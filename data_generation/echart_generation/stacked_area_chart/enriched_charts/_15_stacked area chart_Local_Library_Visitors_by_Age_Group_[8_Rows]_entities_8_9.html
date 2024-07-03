@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 400});
+var app = {};
+
+var option;
+
+app.title = 'Sports & Fitness Activity Trend';
+
+option = {
+    title: {
+        text: 'Monthly Exercise Activity',
+        left: 'center',
+        top: '5%'
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['Running', 'Cycling', 'Swimming'],
+        top: '15%'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ['2023-01-01', '2023-01-02', '2023-01-03', '2023-01-04', '2023-01-05', '2023-01-06', 
+               '2023-01-07', '2023-01-08', '2023-01-09', '2023-01-10', '2023-01-11', '2023-01-12', 
+               '2023-01-13', '2023-01-14', '2023-01-15', '2023-01-16', '2023-01-17', '2023-01-18', 
+               '2023-01-19', '2023-01-20']
+    },
+    yAxis: {
+        type: 'value',
+        axisLabel: {
+            formatter: '{value} hrs'
+        }
+    },
+    series: [
+        {
+            name: 'Running',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [5, 5.5, 6, 6.5, 5, 5.5, 6, 6.5, 5.5, 6, 6.3, 6.2, 6.5, 6.7, 6.4, 6, 5.7, 5.5, 5.6, 5.8]
+        },
+        {
+            name: 'Cycling',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [1, 1.3, 1.5, 1.8, 2, 1.7, 1.9, 2.2, 1.9, 2.1, 2.4, 2.5, 2.2, 2.3, 2.1, 1.8, 2, 1.7, 1.8, 1.9]
+        },
+        {
+            name: 'Swimming',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [0.5, 0.6, 0.7, 0.8, 1, 0.9, 1.1, 1.2, 1, 0.9, 1.2, 1.3, 1.4, 1.3, 1.2, 1.1, 0.8, 0.7, 0.9, 1.2]
+        }
+    ],
+    color: ['#DB5A6B', '#49A9EE', '#57C4AD']
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

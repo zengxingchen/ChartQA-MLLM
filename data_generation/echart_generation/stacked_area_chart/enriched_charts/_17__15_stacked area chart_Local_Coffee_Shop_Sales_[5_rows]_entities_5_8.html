@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, 'default', {
+    width: 800, // Changed chart width
+    height: 400, // Changed chart height
+});
+
+var option;
+
+option = {
+    title: {
+        text: 'Quarterly Tech Company Revenues',
+        left: 'center', // Positioning title to center
+        top: 'top', // Ensuring it does not overlap legend
+    },
+    tooltip: {
+        trigger: 'axis',
+    },
+    legend: {
+        data: ['TechCorp Alpha', 'TechCorp Beta', 'TechCorp Gamma'],
+        top: 30, // Positioning legend below the title
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true,
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ['Q1-2021', 'Q2-2021', 'Q3-2021', 'Q4-2021', 'Q1-2022', 'Q2-2022', 'Q3-2022', 'Q4-2022', 'Q1-2023', 'Q2-2023', 'Q3-2023', 'Q4-2023'],
+    },
+    yAxis: {
+        type: 'value',
+    },
+    series: [
+        {
+            name: 'TechCorp Alpha',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series',
+            },
+            data: [150, 160, 170, 180, 190, 200, 210, 220, 230, 240, 250, 260], // Upward trend
+            color: '#37A2DA', // Custom color code
+        },
+        {
+            name: 'TechCorp Beta',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series',
+            },
+            data: [120, 130, 140, 150, 160, 140, 130, 135, 140, 145, 150, 155], // Fluctuating trend
+            color: '#67E0E3', // Custom color code
+        },
+        {
+            name: 'TechCorp Gamma',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series',
+            },
+            data: [100, 105, 110, 115, 120, 125, 130, 135, 140, 145, 150, 155], // Steady upward trend
+            color: '#FFDB5C', // Custom color code
+        },
+    ],
+    // Adding numerical text label/annotation to the chart
+    markPoint: {
+        data: [
+            {type: 'max', name: 'Max', seriesName: 'TechCorp Alpha'},
+            {type: 'min', name: 'Min', seriesName: 'TechCorp Beta'},
+        ],
+    },
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

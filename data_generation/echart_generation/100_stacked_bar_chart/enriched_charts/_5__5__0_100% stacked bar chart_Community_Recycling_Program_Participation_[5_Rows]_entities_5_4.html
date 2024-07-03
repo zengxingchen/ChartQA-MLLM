@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Distribution of Learning Resources by Education Level',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        },
+        formatter: '{b}<br>{a0}: {c0}%<br>{a1}: {c1}%<br>{a2}: {c2}%<br>{a3}: {c3}%<br>{a4}: {c4}%'
+    },
+    legend: {
+        data: ['Books', 'Videos', 'Online Courses', 'Articles', 'Podcasts'],
+        bottom: 0
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '15%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01]
+    },
+    yAxis: {
+        type: 'category',
+        data: ['Elementary', 'Middle School', 'High School', 'Undergraduate', 'Postgraduate']
+    },
+    series: [
+        {
+            name: 'Books',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                formatter: '{c}%'
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [40, 30, 20, 10, 5],
+            itemStyle: {
+                color: '#FFD700'
+            },
+            barWidth: 35
+        },
+        {
+            name: 'Videos',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                formatter: '{c}%'
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [30, 35, 40, 45, 40],
+            itemStyle: {
+                color: '#C0C0C0'
+            },
+            barWidth: 35
+        },
+        {
+            name: 'Online Courses',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                formatter: '{c}%'
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [10, 15, 20, 30, 40],
+            itemStyle: {
+                color: '#CD7F32'
+            },
+            barWidth: 35
+        },
+        {
+            name: 'Articles',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                formatter: '{c}%'
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [15, 15, 15, 10, 10],
+            itemStyle: {
+                color: '#4682B4'
+            },
+            barWidth: 35
+        },
+        {
+            name: 'Podcasts',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                formatter: '{c}%'
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [5, 5, 5, 5, 5],
+            itemStyle: {
+                color: '#8A2BE2'
+            },
+            barWidth: 35
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

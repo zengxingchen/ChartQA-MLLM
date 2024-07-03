@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, { width: 800, height: 600 });
+
+var option = {
+    title: {
+        text: 'Monthly Waste Management Data',
+        left: 'center',
+        top: '5%'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: { type: 'shadow' }
+    },
+    legend: {
+        data: ['Food', 'Waste', 'Recycling', 'Composting'],
+        top: '10%'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        data: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+        axisLabel: { rotate: 45 }
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Food',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 20,
+            color: '#FF5733',
+            data: [120, 150, 180, 200, 220, 240, 260, 280, 300, 320, 340, 360]
+        },
+        {
+            name: 'Waste',
+            type: 'bar',
+            stack: 'total',
+            color: '#33FF57',
+            data: [30, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95]
+        },
+        {
+            name: 'Recycling',
+            type: 'bar',
+            stack: 'total',
+            color: '#3357FF',
+            data: [50, 60, 70, 75, 80, 85, 90, 95, 100, 105, 110, 115]
+        },
+        {
+            name: 'Composting',
+            type: 'bar',
+            stack: 'total',
+            color: '#FF33A1',
+            data: [20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75]
+        }
+    ],
+    label: {
+        show: true,
+        position: 'insideTop',
+        formatter: '{c}'
+    }
+};
+
+if (option && typeof option === 'object') myChart.setOption(option);
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

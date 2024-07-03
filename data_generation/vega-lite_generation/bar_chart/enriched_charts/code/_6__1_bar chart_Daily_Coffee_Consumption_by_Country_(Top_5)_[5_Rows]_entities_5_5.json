@@ -1,0 +1,162 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Favorite Sports by Popularity",
+    "width": 800,
+    "height": 400,
+    "title": {
+        "text": "Favorite Sports",
+        "subtitle": [
+            "Percentage of population's favorite sport",
+            "Source: Global Sports Survey"
+        ],
+        "subtitleFontSize": 12,
+        "subtitleFontStyle": "italic",
+        "anchor": "middle",
+        "frame": "group"
+    },
+    "data": {
+        "values": [
+            {
+                "Sport": "Soccer",
+                "Popularity": 40.6
+            },
+            {
+                "Sport": "Basketball",
+                "Popularity": 30.1
+            },
+            {
+                "Sport": "Cricket",
+                "Popularity": 25.7
+            },
+            {
+                "Sport": "Tennis",
+                "Popularity": 15.4
+            },
+            {
+                "Sport": "Baseball",
+                "Popularity": 12.8
+            },
+            {
+                "Sport": "Rugby",
+                "Popularity": 8.6
+            },
+            {
+                "Sport": "Golf",
+                "Popularity": 9.4
+            },
+            {
+                "Sport": "Formula 1",
+                "Popularity": 7.2
+            },
+            {
+                "Sport": "Cycling",
+                "Popularity": 5.9
+            },
+            {
+                "Sport": "Athletics",
+                "Popularity": 4.7
+            },
+            {
+                "Sport": "Swimming",
+                "Popularity": 6.3
+            },
+            {
+                "Sport": "Boxing",
+                "Popularity": 3.5
+            },
+            {
+                "Sport": "Ice Hockey",
+                "Popularity": 2.9
+            },
+            {
+                "Sport": "MMA",
+                "Popularity": 3.1
+            },
+            {
+                "Sport": "Table Tennis",
+                "Popularity": 2.4
+            },
+            {
+                "Sport": "Volleyball",
+                "Popularity": 2.6
+            },
+            {
+                "Sport": "Badminton",
+                "Popularity": 2.1
+            }
+        ]
+    },
+    "params": [
+        {
+            "name": "highlight",
+            "select": {
+                "type": "point",
+                "on": "mouseover"
+            }
+        }
+    ],
+    "mark": {
+        "type": "bar",
+        "width": {
+            "band": 0.5
+        },
+        "color": "#3b6ba5",
+        "strokeWidth": 1,
+        "opacity": {
+            "condition": {
+                "param": "highlight",
+                "empty": false,
+                "value": 1
+            },
+            "value": 0.8
+        },
+        "cursor": "pointer"
+    },
+    "encoding": {
+        "x": {
+            "field": "Sport",
+            "type": "ordinal",
+            "axis": {
+                "labelAngle": -45,
+                "labelFontSize": 12,
+                "title": "Sport"
+            }
+        },
+        "y": {
+            "field": "Popularity",
+            "type": "quantitative",
+            "axis": {
+                "grid": true,
+                "title": "Popularity (%)",
+                "labelFontSize": 12
+            },
+            "title": "Popularity (%)"
+        },
+        "tooltip": [
+            {
+                "field": "Sport",
+                "type": "nominal",
+                "title": "Sport"
+            },
+            {
+                "field": "Popularity",
+                "type": "quantitative",
+                "title": "Popularity (%)"
+            }
+        ],
+        "text": {
+            "field": "Popularity",
+            "type": "quantitative"
+        }
+    },
+    "config": {
+        "bar": {
+            "binSpacing": 2,
+            "continuousBandSize": 20
+        },
+        "text": {
+            "baseline": "middle",
+            "align": "center"
+        }
+    }
+}

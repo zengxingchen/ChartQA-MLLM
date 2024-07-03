@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Healthcare Industry Revenue (in millions)',
+        left: 'center',
+        top: 20
+    },
+    tooltip: {
+        trigger: 'item'
+    },
+    legend: {
+        orient: 'vertical',
+        left: 'left',
+        top: 'middle',
+        textStyle: {
+            color: '#666'
+        }
+    },
+    series: [
+        {
+            name: 'Revenue',
+            type: 'pie',
+            radius: '50%',
+            data: [
+                { value: 3850, name: 'Pharmaceuticals' },
+                { value: 3940, name: 'Medical Devices' },
+                { value: 3530, name: 'Biotechnology' },
+                { value: 5670, name: 'Healthcare Services' },
+                { value: 2120, name: 'Healthcare IT' }
+            ],
+            emphasis: {
+                itemStyle: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            },
+            color: ['#F44336', '#2196F3', '#4CAF50', '#FFC107', '#9C27B0'],
+            label: {
+                formatter: '{b}: {c} ({d}%)'
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

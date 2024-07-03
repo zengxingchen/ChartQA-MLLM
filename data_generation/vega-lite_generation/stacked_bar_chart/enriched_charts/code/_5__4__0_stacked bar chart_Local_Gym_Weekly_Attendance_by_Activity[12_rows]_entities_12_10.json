@@ -1,0 +1,190 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Horizontal stacked bar chart showing monthly average exercise hours in different cities.",
+    "data": {
+        "values": [
+            {
+                "Month": "January",
+                "New York": 10,
+                "Los Angeles": 12,
+                "Chicago": 8,
+                "Houston": 15,
+                "Phoenix": 14
+            },
+            {
+                "Month": "February",
+                "New York": 12,
+                "Los Angeles": 14,
+                "Chicago": 9,
+                "Houston": 16,
+                "Phoenix": 15
+            },
+            {
+                "Month": "March",
+                "New York": 14,
+                "Los Angeles": 16,
+                "Chicago": 11,
+                "Houston": 18,
+                "Phoenix": 17
+            },
+            {
+                "Month": "April",
+                "New York": 16,
+                "Los Angeles": 18,
+                "Chicago": 13,
+                "Houston": 20,
+                "Phoenix": 19
+            },
+            {
+                "Month": "May",
+                "New York": 18,
+                "Los Angeles": 20,
+                "Chicago": 15,
+                "Houston": 22,
+                "Phoenix": 21
+            },
+            {
+                "Month": "June",
+                "New York": 20,
+                "Los Angeles": 22,
+                "Chicago": 17,
+                "Houston": 24,
+                "Phoenix": 23
+            },
+            {
+                "Month": "July",
+                "New York": 22,
+                "Los Angeles": 24,
+                "Chicago": 19,
+                "Houston": 26,
+                "Phoenix": 25
+            },
+            {
+                "Month": "August",
+                "New York": 24,
+                "Los Angeles": 26,
+                "Chicago": 21,
+                "Houston": 28,
+                "Phoenix": 27
+            },
+            {
+                "Month": "September",
+                "New York": 22,
+                "Los Angeles": 24,
+                "Chicago": 20,
+                "Houston": 25,
+                "Phoenix": 26
+            },
+            {
+                "Month": "October",
+                "New York": 20,
+                "Los Angeles": 22,
+                "Chicago": 18,
+                "Houston": 23,
+                "Phoenix": 24
+            },
+            {
+                "Month": "November",
+                "New York": 18,
+                "Los Angeles": 20,
+                "Chicago": 16,
+                "Houston": 21,
+                "Phoenix": 22
+            },
+            {
+                "Month": "December",
+                "New York": 16,
+                "Los Angeles": 18,
+                "Chicago": 14,
+                "Houston": 19,
+                "Phoenix": 20
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "New York",
+                "Los Angeles",
+                "Chicago",
+                "Houston",
+                "Phoenix"
+            ],
+            "as": [
+                "City",
+                "Exercise Hours"
+            ]
+        }
+    ],
+    "width": 600,
+    "height": 400,
+    "mark": {
+        "type": "bar",
+        "height": {
+            "band": 0.7
+        }
+    },
+    "title": {
+        "text": "Monthly Average Exercise Hours by City",
+        "subtitle": "Exercise data for various cities throughout the year",
+        "subtitleFontStyle": "italic",
+        "subtitleFontSize": 10,
+        "anchor": "start",
+        "color": "black"
+    },
+    "encoding": {
+        "x": {
+            "field": "Exercise Hours",
+            "type": "quantitative",
+            "title": "Exercise Hours"
+        },
+        "y": {
+            "field": "Month",
+            "type": "ordinal",
+            "title": "Month of the Year",
+            "axis": {
+                "labelAngle": 0
+            }
+        },
+        "color": {
+            "field": "City",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "New York",
+                    "Los Angeles",
+                    "Chicago",
+                    "Houston",
+                    "Phoenix"
+                ],
+                "range": [
+                    "#4c78a8",
+                    "#f58518",
+                    "#54a24b",
+                    "#e45756",
+                    "#b279a2"
+                ]
+            },
+            "legend": {
+                "orient": "top"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Month",
+                "type": "ordinal",
+                "title": "Month"
+            },
+            {
+                "field": "City",
+                "type": "nominal",
+                "title": "City"
+            },
+            {
+                "field": "Exercise Hours",
+                "type": "quantitative",
+                "title": "Exercise Hours"
+            }
+        ]
+    }
+}

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 800,
+    height: 600
+});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Economic Growth vs. Technology Investment',
+        left: 'center',
+        top: '10'
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['Data Points'],
+        left: 'right',
+        top: '10'
+    },
+    xAxis: {
+        type: 'value',
+        name: 'Investment in Technology (in millions)'
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Economic Growth (%)'
+    },
+    series: [{
+        name: 'Data Points',
+        type: 'scatter',
+        data: [
+            [1, 2.3], [2, 2.8], [3, 3.6], [4, 3.1], [5, 4.0], [6, 3.8], 
+            [7, 4.5], [8, 4.3], [9, 5.1], [10, 5.0], [11, 5.5], [12, 5.3], 
+            [13, 5.9], [14, 5.7], [15, 6.3], [16, 6.1], [17, 6.8], [18, 6.6], 
+            [19, 7.0], [20, 6.9], [21, 7.5], [22, 7.3], [23, 7.8], [24, 7.6], 
+            [25, 8.1], [26, 8.0], [27, 8.5], [28, 8.3], [29, 8.9], [30, 8.7], 
+            [31, 9.2], [32, 9.0], [33, 9.5], [34, 9.3], [35, 9.8], [36, 9.6], 
+            [37, 10.1], [38, 10.0], [39, 10.4], [40, 10.3]
+        ],
+        itemStyle: {
+            color: '#3498db'
+        }
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

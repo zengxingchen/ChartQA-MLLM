@@ -1,0 +1,149 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Vertical stacked bar chart showing daily intake of different nutrients.",
+    "data": {
+        "values": [
+            {
+                "Day": "Monday",
+                "Protein": 50,
+                "Carbs": 200,
+                "Fat": 70,
+                "Fiber": 30,
+                "Vitamins": 15,
+                "Minerals": 10
+            },
+            {
+                "Day": "Tuesday",
+                "Protein": 55,
+                "Carbs": 210,
+                "Fat": 75,
+                "Fiber": 32,
+                "Vitamins": 18,
+                "Minerals": 12
+            },
+            {
+                "Day": "Wednesday",
+                "Protein": 52,
+                "Carbs": 220,
+                "Fat": 68,
+                "Fiber": 28,
+                "Vitamins": 16,
+                "Minerals": 11
+            },
+            {
+                "Day": "Thursday",
+                "Protein": 53,
+                "Carbs": 215,
+                "Fat": 72,
+                "Fiber": 30,
+                "Vitamins": 17,
+                "Minerals": 13
+            },
+            {
+                "Day": "Friday",
+                "Protein": 60,
+                "Carbs": 225,
+                "Fat": 80,
+                "Fiber": 35,
+                "Vitamins": 20,
+                "Minerals": 14
+            },
+            {
+                "Day": "Saturday",
+                "Protein": 65,
+                "Carbs": 230,
+                "Fat": 85,
+                "Fiber": 40,
+                "Vitamins": 22,
+                "Minerals": 15
+            },
+            {
+                "Day": "Sunday",
+                "Protein": 70,
+                "Carbs": 240,
+                "Fat": 90,
+                "Fiber": 45,
+                "Vitamins": 25,
+                "Minerals": 20
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Protein",
+                "Carbs",
+                "Fat",
+                "Fiber",
+                "Vitamins",
+                "Minerals"
+            ],
+            "as": [
+                "Nutrient",
+                "Amount"
+            ]
+        }
+    ],
+    "width": 500,
+    "height": 300,
+    "mark": {
+        "type": "bar",
+        "height": 20
+    },
+    "encoding": {
+        "x": {
+            "field": "Day",
+            "type": "ordinal",
+            "axis": {
+                "title": "Day"
+            },
+            "band": 0.5
+        },
+        "y": {
+            "field": "Amount",
+            "type": "quantitative",
+            "axis": {
+                "title": "Amount (g)"
+            },
+            "stack": "zero"
+        },
+        "color": {
+            "field": "Nutrient",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Protein",
+                    "Carbs",
+                    "Fat",
+                    "Fiber",
+                    "Vitamins",
+                    "Minerals"
+                ],
+                "range": [
+                    "#FF5733",
+                    "#33FF57",
+                    "#3357FF",
+                    "#FF33A1",
+                    "#A133FF",
+                    "#33FFA1"
+                ]
+            },
+            "legend": {
+                "title": "Nutrients"
+            }
+        }
+    },
+    "config": {
+        "background": "#f0f0f0",
+        "view": {
+            "stroke": "transparent"
+        }
+    },
+    "title": {
+        "text": "Daily Intake of Different Nutrients",
+        "anchor": "start",
+        "fontSize": 16,
+        "fontWeight": "bold",
+        "offset": 10
+    }
+}

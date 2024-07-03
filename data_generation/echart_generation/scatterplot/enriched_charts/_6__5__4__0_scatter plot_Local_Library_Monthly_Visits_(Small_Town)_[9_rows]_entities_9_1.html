@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+var option = {
+    title: {
+        text: 'Nutrition & Food Consumption Patterns',
+        left: 'center',
+        top: '10'
+    },
+    tooltip: {
+        trigger: 'item'
+    },
+    legend: {
+        data: ['Nutrition Data'],
+        left: 'right',
+        top: '20'
+    },
+    xAxis: {
+        type: 'value',
+        name: 'Food Items',
+        nameLocation: 'middle',
+        nameGap: 30
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Consumption (kg)',
+        nameLocation: 'middle',
+        nameGap: 50
+    },
+    series: [
+        {
+            name: 'Nutrition Data',
+            type: 'scatter',
+            itemStyle: {
+                color: '#FF5733'
+            },
+            data: [
+                [1.2, 3.4],
+                [2.1, 4.3],
+                [3.4, 2.5],
+                [4.5, 6.7],
+                [5.2, 3.9],
+                [6.8, 4.4],
+                [7.9, 5.1],
+                [8.3, 7.2],
+                [9.1, 6.5],
+                [10.5, 8.1],
+                [11.2, 5.7],
+                [12.4, 9.3],
+                [13.5, 7.8],
+                [14.6, 6.4],
+                [15.7, 8.9],
+                [16.8, 7.3],
+                [17.9, 9.4],
+                [18.2, 6.8],
+                [19.3, 8.2],
+                [20.4, 7.9],
+                [21.5, 10.1],
+                [22.6, 9.0],
+                [23.7, 11.2],
+                [24.8, 8.5],
+                [25.9, 12.3]
+            ]
+        }
+    ]
+};
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

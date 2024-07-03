@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Monthly Average Temperatures',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            label: {
+                backgroundColor: '#6a7985'
+            }
+        }
+    },
+    legend: {
+        data: ['New York', 'Los Angeles', 'Miami'],
+        top: '8%'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'New York',
+            type: 'line',
+            stack: 'Temperature',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [-1, 0, 5, 11, 16, 21, 25, 24, 20, 14, 8, 2],
+            color: '#FF5555'
+        },
+        {
+            name: 'Los Angeles',
+            type: 'line',
+            stack: 'Temperature',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [14, 15, 16, 17, 18, 20, 22, 21, 21, 19, 17, 15],
+            color: '#5599FF'
+        },
+        {
+            name: 'Miami',
+            type: 'line',
+            stack: 'Temperature',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [20, 21, 23, 25, 27, 30, 32, 33, 31, 28, 24, 21],
+            color: '#22AA99'
+        }
+    ],
+    color: ['#FF5555', '#5599FF', '#22AA99'],
+    textStyle: {
+        fontFamily: 'Arial, Verdana, sans-serif'
+    }
+};
+
+myChart.setOption(option);
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

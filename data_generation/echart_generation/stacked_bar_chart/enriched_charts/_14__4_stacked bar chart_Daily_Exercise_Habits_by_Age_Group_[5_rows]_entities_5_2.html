@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+var app = {};
+
+var option;
+option = {
+    title: {
+        text: 'Art & Design Trends Over Quarters',
+        left: 'center',
+        top: 20
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {            
+            type: 'shadow'
+        }
+    },
+    legend: {
+        top: 'bottom',
+        data: ['Photography', 'Painting', 'Sculpture', 'Digital Art', 'Calligraphy', 'Crafts', 'Architecture', 'Design']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        data: ['2021 Q1', '2021 Q2', '2021 Q3', '2021 Q4', '2022 Q1', '2022 Q2', '2022 Q3', '2022 Q4'],
+        axisLabel: {
+            rotate: 45,
+            interval: 0
+        }
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Photography',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            itemStyle: {
+                color: '#1f77b4'
+            },
+            data: [5, 7, 6, 8, 9, 10, 11, 13]
+        },
+        {
+            name: 'Painting',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            itemStyle: {
+                color: '#ff7f0e'
+            },
+            data: [8, 9, 10, 12, 13, 14, 15, 17]
+        },
+        {
+            name: 'Sculpture',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            itemStyle: {
+                color: '#2ca02c'
+            },
+            data: [6, 8, 7, 9, 11, 12, 13, 15]
+        },
+        {
+            name: 'Digital Art',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            itemStyle: {
+                color: '#d62728'
+            },
+            data: [4, 6, 5, 7, 8, 9, 10, 12]
+        },
+        {
+            name: 'Calligraphy',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            itemStyle: {
+                color: '#9467bd'
+            },
+            data: [3, 4, 4, 5, 6, 7, 7, 8]
+        },
+        {
+            name: 'Crafts',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            itemStyle: {
+                color: '#8c564b'
+            },
+            data: [7, 8, 9, 10, 11, 12, 13, 14]
+        },
+        {
+            name: 'Architecture',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            itemStyle: {
+                color: '#e377c2'
+            },
+            data: [9, 10, 11, 13, 14, 15, 16, 18]
+        },
+        {
+            name: 'Design',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            itemStyle: {
+                color: '#7f7f7f'
+            },
+            data: [6, 7, 8, 9, 10, 11, 12, 13]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

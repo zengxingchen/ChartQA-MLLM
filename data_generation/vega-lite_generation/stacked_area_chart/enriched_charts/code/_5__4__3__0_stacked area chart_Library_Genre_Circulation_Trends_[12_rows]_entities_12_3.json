@@ -1,0 +1,182 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Weekly Student Enrollments in Online Courses by Subject",
+    "width": 500,
+    "height": 200,
+    "data": {
+        "values": [
+            {
+                "Week": "Week 1",
+                "Technology": 2200,
+                "Humanities": 800,
+                "Science": 1500,
+                "Business": 1300
+            },
+            {
+                "Week": "Week 2",
+                "Technology": 2100,
+                "Humanities": 850,
+                "Science": 1600,
+                "Business": 1400
+            },
+            {
+                "Week": "Week 3",
+                "Technology": 2300,
+                "Humanities": 870,
+                "Science": 1580,
+                "Business": 1500
+            },
+            {
+                "Week": "Week 4",
+                "Technology": 2400,
+                "Humanities": 900,
+                "Science": 1650,
+                "Business": 1600
+            },
+            {
+                "Week": "Week 5",
+                "Technology": 2500,
+                "Humanities": 950,
+                "Science": 1700,
+                "Business": 1650
+            },
+            {
+                "Week": "Week 6",
+                "Technology": 2600,
+                "Humanities": 980,
+                "Science": 1750,
+                "Business": 1700
+            },
+            {
+                "Week": "Week 7",
+                "Technology": 2700,
+                "Humanities": 1000,
+                "Science": 1800,
+                "Business": 1800
+            },
+            {
+                "Week": "Week 8",
+                "Technology": 2800,
+                "Humanities": 1030,
+                "Science": 1850,
+                "Business": 1900
+            },
+            {
+                "Week": "Week 9",
+                "Technology": 2900,
+                "Humanities": 1070,
+                "Science": 1900,
+                "Business": 2000
+            },
+            {
+                "Week": "Week 10",
+                "Technology": 3000,
+                "Humanities": 1100,
+                "Science": 1950,
+                "Business": 2100
+            },
+            {
+                "Week": "Week 11",
+                "Technology": 3100,
+                "Humanities": 1150,
+                "Science": 2000,
+                "Business": 2200
+            },
+            {
+                "Week": "Week 12",
+                "Technology": 3200,
+                "Humanities": 1170,
+                "Science": 2050,
+                "Business": 2300
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Technology",
+                "Humanities",
+                "Science",
+                "Business"
+            ],
+            "as": [
+                "Subject",
+                "Students"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "area",
+        "opacity": 0.5
+    },
+    "encoding": {
+        "x": {
+            "field": "Week",
+            "type": "ordinal",
+            "title": "Week",
+            "axis": {
+                "labelAngle": 0
+            }
+        },
+        "y": {
+            "field": "Students",
+            "type": "quantitative",
+            "stack": "zero",
+            "title": "Number of Students"
+        },
+        "color": {
+            "field": "Subject",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Technology",
+                    "Humanities",
+                    "Science",
+                    "Business"
+                ],
+                "range": [
+                    "#7D3C98",
+                    "#229954",
+                    "#F39C12",
+                    "#2980B9"
+                ]
+            },
+            "title": "Course Subject"
+        },
+        "tooltip": [
+            {
+                "field": "Subject",
+                "type": "nominal",
+                "title": "Course Subject"
+            },
+            {
+                "field": "Students",
+                "type": "quantitative",
+                "title": "Students Enrolled",
+                "format": ",.0f"
+            }
+        ]
+    },
+    "config": {
+        "view": {
+            "stroke": "transparent"
+        },
+        "axis": {
+            "grid": false
+        },
+        "legend": {
+            "title": "Course Subject",
+            "orient": "top-right",
+            "offset": 10
+        },
+        "title": {
+            "text": "Weekly Enrollments by Online Course Subject",
+            "font": "sans-serif",
+            "fontSize": 16,
+            "fontWeight": "normal",
+            "anchor": "start",
+            "offset": 10,
+            "dx": 10
+        }
+    }
+}

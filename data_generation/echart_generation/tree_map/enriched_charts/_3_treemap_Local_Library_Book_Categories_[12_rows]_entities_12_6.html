@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 800,
+    height: 600
+});
+var app = {};
+
+var option;
+
+app.title = 'Environment & Climate Change - CO2 Emissions by Sector';
+
+option = {
+    title: {
+        text: 'CO2 Emissions by Sector',
+        left: 'center'
+    },
+    tooltip: {
+        formatter: function (info) {
+            var value = info.value;
+            var treePathInfo = info.treePathInfo;
+            var treePath = [];
+
+            for (var i = 1; i < treePathInfo.length; i++) {
+                treePath.push(treePathInfo[i].name);
+            }
+
+            return [
+                '<div class="tooltip-title">' + echarts.format.encodeHTML(treePath.join('/')) + '</div>',
+                'CO2 Emissions: ' + echarts.format.addCommas(value) + ' MtCO₂e',
+            ].join('');
+        }
+    },
+    series: [
+        {
+            name: 'CO2 Emissions',
+            type: 'treemap',
+            visibleMin: 300,
+            label: {
+                show: true,
+                formatter: '{b}'
+            },
+            itemStyle: {
+                borderColor: '#fff'
+            },
+            levels: [
+                {
+                    itemStyle: {
+                        borderWidth: 0,
+                        gapWidth: 5
+                    }
+                },
+                {
+                    colorSaturation: [0.3, 0.6],
+                    itemStyle: {
+                        gapWidth: 1,
+                        borderColorSaturation: 0.6
+                    }
+                }
+            ],
+            data: [
+                {name: 'Transportation', value: 120},
+                {name: 'Industry', value: 150},
+                {name: 'Residential', value: 70},
+                {name: 'Commercial', value: 40},
+                {name: 'Agriculture', value: 90},
+                {name: 'Electricity and heat production', value: 210},
+                {name: 'Land use and Forestry', value: 60},
+                {name: 'Waste', value: 30},
+                {name: 'Cars', value: 50, parent: 'Transportation'},
+                {name: 'Trucks', value: 30, parent: 'Transportation'},
+                {name: 'Ships', value: 20, parent: 'Transportation'},
+                {name: 'Planes', value: 20, parent: 'Transportation'},
+                {name: 'Steel', value: 40, parent: 'Industry'},
+                {name: 'Cement', value: 35, parent: 'Industry'},
+                {name: 'Chemicals', value: 25, parent: 'Industry'},
+                {name: 'Other Industry', value: 50, parent: 'Industry'},
+                {name: 'Homes', value: 35, parent: 'Residential'},
+                {name: 'Offices', value: 20, parent: 'Commercial'},
+                {name: 'Schools', value: 15, parent: 'Commercial'},
+                {name: 'Farming', value: 40, parent: 'Agriculture'},
+                {name: 'Livestock', value: 50, parent: 'Agriculture'},
+                {name: 'Coal', value: 100, parent: 'Electricity and heat production'},
+                {name: 'Oil', value: 60, parent: 'Electricity and heat production'},
+                {name: 'Gas', value: 50, parent: 'Electricity and heat production'},
+                {name: 'Deforestation', value: 40, parent: 'Land use and Forestry'},
+                {name: 'Reforestation', value: 20, parent: 'Land use and Forestry'},
+                {name: 'Landfills', value: 20, parent: 'Waste'},
+                {name: 'Recycling', value: 10, parent: 'Waste'}
+            ],
+            color: [
+                '#4e79a7', '#f28e2b', '#e15759', '#76b7b2', '#59a14f',
+                '#edc948', '#b07aa1', '#ff9da7', '#9c755f', '#bab0ac'
+            ]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

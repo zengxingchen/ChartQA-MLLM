@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 800,
+    height: 600
+});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Height vs Weight Scatterplot',
+        left: 'center',
+        top: '10'
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: function (params) {
+            return 'Height: ' + params.value[0] + '<br>Weight: ' + params.value[1];
+        }
+    },
+    legend: {
+        data: ['Data Points'],
+        left: 'right',
+        top: '10'
+    },
+    xAxis: {
+        name: 'Height (cm)',
+        nameLocation: 'middle',
+        nameGap: 30
+    },
+    yAxis: {
+        name: 'Weight (kg)',
+        nameLocation: 'middle',
+        nameGap: 50
+    },
+    series: [{
+        name: 'Data Points',
+        type: 'scatter',
+        itemStyle: {
+            color: '#1f78b4'
+        },
+        data: [
+            [10, 23], [15, 45], [23, 34], [34, 56], [45, 67], [56, 78],
+            [67, 89], [78, 90], [89, 101], [100, 112], [110, 123], 
+            [123, 134], [134, 145], [145, 156], [156, 167], [167, 178],
+            [178, 189], [189, 200], [200, 211], [211, 223]
+        ]
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,157 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "A 100% stacked bar chart showing the average hours spent on different activities across different days of the week.",
+    "width": 600,
+    "height": 400,
+    "padding": 5,
+    "data": {
+        "values": [
+            {
+                "Day": "Monday",
+                "Work": 8,
+                "Exercise": 1,
+                "Leisure": 3,
+                "Sleep": 8,
+                "Meals": 2,
+                "Commute": 2
+            },
+            {
+                "Day": "Tuesday",
+                "Work": 8,
+                "Exercise": 1.5,
+                "Leisure": 2.5,
+                "Sleep": 8,
+                "Meals": 2,
+                "Commute": 2
+            },
+            {
+                "Day": "Wednesday",
+                "Work": 9,
+                "Exercise": 1,
+                "Leisure": 2,
+                "Sleep": 7,
+                "Meals": 2,
+                "Commute": 2
+            },
+            {
+                "Day": "Thursday",
+                "Work": 8,
+                "Exercise": 2,
+                "Leisure": 2,
+                "Sleep": 7,
+                "Meals": 2,
+                "Commute": 3
+            },
+            {
+                "Day": "Friday",
+                "Work": 7,
+                "Exercise": 1,
+                "Leisure": 4,
+                "Sleep": 8,
+                "Meals": 2,
+                "Commute": 2
+            },
+            {
+                "Day": "Saturday",
+                "Work": 3,
+                "Exercise": 2,
+                "Leisure": 6,
+                "Sleep": 9,
+                "Meals": 2,
+                "Commute": 2
+            },
+            {
+                "Day": "Sunday",
+                "Work": 0,
+                "Exercise": 2,
+                "Leisure": 8,
+                "Sleep": 9,
+                "Meals": 2,
+                "Commute": 1
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Work",
+                "Exercise",
+                "Leisure",
+                "Sleep",
+                "Meals",
+                "Commute"
+            ],
+            "as": [
+                "ActivityType",
+                "Hours"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "bar",
+        "tooltip": true,
+        "cornerRadiusEnd": 4
+    },
+    "encoding": {
+        "y": {
+            "field": "Day",
+            "type": "ordinal",
+            "axis": {
+                "title": "Day of the Week",
+                "labelAngle": 0
+            }
+        },
+        "x": {
+            "field": "Hours",
+            "type": "quantitative",
+            "axis": {
+                "title": "Hours (%)",
+                "format": ".0f"
+            },
+            "stack": "normalize"
+        },
+        "color": {
+            "field": "ActivityType",
+            "type": "nominal",
+            "scale": {
+                "range": [
+                    "#4e79a7",
+                    "#f28e2b",
+                    "#e15759",
+                    "#76b7b2",
+                    "#59a14f",
+                    "#edc949"
+                ]
+            },
+            "legend": {
+                "title": "Activity Type",
+                "orient": "top",
+                "symbolType": "square"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "ActivityType",
+                "type": "nominal"
+            },
+            {
+                "field": "Hours",
+                "type": "quantitative",
+                "title": "Hours"
+            }
+        ]
+    },
+    "config": {
+        "axis": {
+            "labelFontSize": 12,
+            "titleFontSize": 14
+        },
+        "legend": {
+            "labelFontSize": 12,
+            "titleFontSize": 14
+        },
+        "bar": {
+            "binSpacing": 2
+        }
+    }
+}

@@ -1,0 +1,177 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+        "values": [
+            {
+                "Month": "Jan",
+                "CO2": 400,
+                "Methane": 50,
+                "NitrousOxide": 30,
+                "HFCs": 20,
+                "PFCs": 10
+            },
+            {
+                "Month": "Feb",
+                "CO2": 420,
+                "Methane": 55,
+                "NitrousOxide": 32,
+                "HFCs": 22,
+                "PFCs": 12
+            },
+            {
+                "Month": "Mar",
+                "CO2": 440,
+                "Methane": 60,
+                "NitrousOxide": 34,
+                "HFCs": 24,
+                "PFCs": 14
+            },
+            {
+                "Month": "Apr",
+                "CO2": 460,
+                "Methane": 65,
+                "NitrousOxide": 36,
+                "HFCs": 26,
+                "PFCs": 16
+            },
+            {
+                "Month": "May",
+                "CO2": 480,
+                "Methane": 70,
+                "NitrousOxide": 38,
+                "HFCs": 28,
+                "PFCs": 18
+            },
+            {
+                "Month": "Jun",
+                "CO2": 500,
+                "Methane": 75,
+                "NitrousOxide": 40,
+                "HFCs": 30,
+                "PFCs": 20
+            },
+            {
+                "Month": "Jul",
+                "CO2": 520,
+                "Methane": 80,
+                "NitrousOxide": 42,
+                "HFCs": 32,
+                "PFCs": 22
+            },
+            {
+                "Month": "Aug",
+                "CO2": 540,
+                "Methane": 85,
+                "NitrousOxide": 44,
+                "HFCs": 34,
+                "PFCs": 24
+            },
+            {
+                "Month": "Sep",
+                "CO2": 560,
+                "Methane": 90,
+                "NitrousOxide": 46,
+                "HFCs": 36,
+                "PFCs": 26
+            },
+            {
+                "Month": "Oct",
+                "CO2": 580,
+                "Methane": 95,
+                "NitrousOxide": 48,
+                "HFCs": 38,
+                "PFCs": 28
+            },
+            {
+                "Month": "Nov",
+                "CO2": 600,
+                "Methane": 100,
+                "NitrousOxide": 50,
+                "HFCs": 40,
+                "PFCs": 30
+            },
+            {
+                "Month": "Dec",
+                "CO2": 620,
+                "Methane": 105,
+                "NitrousOxide": 52,
+                "HFCs": 42,
+                "PFCs": 32
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "CO2",
+                "Methane",
+                "NitrousOxide",
+                "HFCs",
+                "PFCs"
+            ],
+            "as": [
+                "Gas",
+                "Emissions"
+            ]
+        }
+    ],
+    "mark": "bar",
+    "width": 600,
+    "height": 300,
+    "title": {
+        "text": "Monthly Greenhouse Gas Emissions",
+        "subtitle": "Emissions by gas type per month, source: Climate Data",
+        "subtitleFontStyle": "italic",
+        "subtitleFontSize": 10,
+        "anchor": "start",
+        "color": "black"
+    },
+    "encoding": {
+        "x": {
+            "field": "Emissions",
+            "type": "quantitative",
+            "title": "Emissions (in metric tons)"
+        },
+        "y": {
+            "field": "Month",
+            "type": "nominal",
+            "title": "Month"
+        },
+        "color": {
+            "field": "Gas",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "CO2",
+                    "Methane",
+                    "NitrousOxide",
+                    "HFCs",
+                    "PFCs"
+                ],
+                "range": [
+                    "#FF0000",
+                    "#FFA500",
+                    "#FFFF00",
+                    "#008000",
+                    "#0000FF"
+                ]
+            },
+            "title": "Greenhouse Gas"
+        },
+        "height": {
+            "field": "Gas",
+            "type": "nominal",
+            "band": 0.7
+        }
+    },
+    "config": {
+        "axisX": {
+            "labelPadding": 5,
+            "tickSize": 10
+        },
+        "axisY": {
+            "labelPadding": 5,
+            "tickSize": 5
+        }
+    }
+}

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+
+var option;
+
+// Data
+const data = [{'Week': 'Week 1', 'Beginner Yoga': 10, 'Pilates': 12, 'Intermediate Yoga': 14, 'Zumba': 20, 'Dance Fitness': 18}, {'Week': 'Week 2', 'Beginner Yoga': 12, 'Pilates': 15, 'Intermediate Yoga': 18, 'Zumba': 19, 'Dance Fitness': 22}, {'Week': 'Week 3', 'Beginner Yoga': 8, 'Pilates': 11, 'Intermediate Yoga': 15, 'Zumba': 18, 'Dance Fitness': 20}, {'Week': 'Week 4', 'Beginner Yoga': 9, 'Pilates': 10, 'Intermediate Yoga': 13, 'Zumba': 22, 'Dance Fitness': 21}, {'Week': 'Week 5', 'Beginner Yoga': 11, 'Pilates': 14, 'Intermediate Yoga': 16, 'Zumba': 19, 'Dance Fitness': 23}, {'Week': 'Week 6', 'Beginner Yoga': 12, 'Pilates': 13, 'Intermediate Yoga': 17, 'Zumba': 20, 'Dance Fitness': 19}, {'Week': 'Week 7', 'Beginner Yoga': 13, 'Pilates': 16, 'Intermediate Yoga': 19, 'Zumba': 24, 'Dance Fitness': 25}, {'Week': 'Week 8', 'Beginner Yoga': 15, 'Pilates': 18, 'Intermediate Yoga': 22, 'Zumba': 26, 'Dance Fitness': 27}];
+
+// Parse data
+const weeks = data.map(item => item.Week);
+const seriesData = {};
+['Beginner Yoga', 'Pilates', 'Intermediate Yoga', 'Zumba', 'Dance Fitness'].forEach(seriesName => {
+    seriesData[seriesName] = data.map(item => item[seriesName]);
+});
+
+// Series
+const series = Object.keys(seriesData).map(key => ({
+    name: key,
+    type: 'line',
+    stack: 'total',
+    smooth: true,
+    symbol: 'circle',
+    symbolSize: 8,
+    emphasis: {
+        focus: 'series'
+    },
+    areaStyle: {},
+    data: seriesData[key],
+}));
+
+// Configuring the chart option
+option = {
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            label: {
+                backgroundColor: '#6a7985'
+            }
+        }
+    },
+    legend: {
+        data: ['Beginner Yoga', 'Pilates', 'Intermediate Yoga', 'Zumba', 'Dance Fitness']
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: [{
+        type: 'category',
+        boundaryGap: false,
+        data: weeks
+    }],
+    yAxis: [{
+        type: 'value'
+    }],
+    series: series,
+    color: ['#83bff6', '#88d3ce', '#dcbdfb', '#ffb367', '#d87a80'], // Custom colors for the series
+};
+
+// Note: Make sure that your HTML container has an ID of 'container' for this code to work.
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

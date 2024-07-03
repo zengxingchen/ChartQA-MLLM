@@ -1,0 +1,189 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": 700,
+    "height": 450,
+    "data": {
+        "values": [
+            {
+                "Month": "January",
+                "Europe": 25000,
+                "Asia": 15000,
+                "North America": 30000,
+                "South America": 10000,
+                "Africa": 5000
+            },
+            {
+                "Month": "February",
+                "Europe": 27000,
+                "Asia": 16000,
+                "North America": 31000,
+                "South America": 10500,
+                "Africa": 5500
+            },
+            {
+                "Month": "March",
+                "Europe": 28000,
+                "Asia": 17000,
+                "North America": 32000,
+                "South America": 11000,
+                "Africa": 6000
+            },
+            {
+                "Month": "April",
+                "Europe": 29000,
+                "Asia": 18000,
+                "North America": 33000,
+                "South America": 11500,
+                "Africa": 6500
+            },
+            {
+                "Month": "May",
+                "Europe": 30000,
+                "Asia": 19000,
+                "North America": 34000,
+                "South America": 12000,
+                "Africa": 7000
+            },
+            {
+                "Month": "June",
+                "Europe": 31000,
+                "Asia": 20000,
+                "North America": 35000,
+                "South America": 12500,
+                "Africa": 7500
+            },
+            {
+                "Month": "July",
+                "Europe": 32000,
+                "Asia": 21000,
+                "North America": 36000,
+                "South America": 13000,
+                "Africa": 8000
+            },
+            {
+                "Month": "August",
+                "Europe": 33000,
+                "Asia": 22000,
+                "North America": 37000,
+                "South America": 13500,
+                "Africa": 8500
+            },
+            {
+                "Month": "September",
+                "Europe": 34000,
+                "Asia": 23000,
+                "North America": 38000,
+                "South America": 14000,
+                "Africa": 9000
+            },
+            {
+                "Month": "October",
+                "Europe": 35000,
+                "Asia": 24000,
+                "North America": 39000,
+                "South America": 14500,
+                "Africa": 9500
+            },
+            {
+                "Month": "November",
+                "Europe": 36000,
+                "Asia": 25000,
+                "North America": 40000,
+                "South America": 15000,
+                "Africa": 10000
+            },
+            {
+                "Month": "December",
+                "Europe": 37000,
+                "Asia": 26000,
+                "North America": 41000,
+                "South America": 15500,
+                "Africa": 10500
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Europe",
+                "Asia",
+                "North America",
+                "South America",
+                "Africa"
+            ],
+            "as": [
+                "Continent",
+                "Tourists"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "area",
+        "opacity": 0.6
+    },
+    "encoding": {
+        "x": {
+            "field": "Month",
+            "type": "ordinal",
+            "title": "Month"
+        },
+        "y": {
+            "field": "Tourists",
+            "type": "quantitative",
+            "title": "Monthly Tourists"
+        },
+        "color": {
+            "field": "Continent",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Europe",
+                    "Asia",
+                    "North America",
+                    "South America",
+                    "Africa"
+                ],
+                "range": [
+                    "#1f78b4",
+                    "#33a02c",
+                    "#e31a1c",
+                    "#ff7f00",
+                    "#6a3d9a"
+                ]
+            },
+            "title": "Continent"
+        },
+        "tooltip": [
+            {
+                "field": "Continent",
+                "type": "nominal"
+            },
+            {
+                "field": "Tourists",
+                "type": "quantitative",
+                "format": ",.0f"
+            }
+        ]
+    },
+    "title": {
+        "text": "Monthly Tourist Arrivals by Continent",
+        "fontSize": 18,
+        "anchor": "start",
+        "color": "black"
+    },
+    "config": {
+        "axis": {
+            "labelFontSize": 12,
+            "titleFontSize": 14
+        },
+        "legend": {
+            "labelFontSize": 12,
+            "titleFontSize": 14
+        },
+        "style": {
+            "cell": {
+                "stroke": "transparent"
+            }
+        }
+    }
+}

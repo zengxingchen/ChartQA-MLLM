@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, { width: 800, height: 600 });
+
+var data = [
+    2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 
+    26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 
+    48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 
+    70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 
+    92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 
+    111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 
+    128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143, 144, 
+    145, 146, 147, 148, 149, 150
+];
+
+var bins = 10;
+var min = Math.min.apply(null, data);
+var max = Math.max.apply(null, data);
+var binWidth = (max - min) / bins;
+var histogram = new Array(bins).fill(0);
+
+data.forEach(function (d) {
+    var bin = Math.floor((d - min) / binWidth);
+    if (bin >= bins) {
+        bin = bins - 1;
+    }
+    histogram[bin]++;
+});
+
+option = {
+    title: {
+        text: 'Distribution of Numbers in Dataset',
+        left: 'center',
+        top: '10'
+    },
+    xAxis: {
+        type: 'category',
+        data: Array.from({ length: bins }, (_, i) => (min + i * binWidth).toFixed(1))
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [{
+        type: 'bar',
+        data: histogram,
+        itemStyle: {
+            color: '#2E86C1'
+        },
+        barWidth: '60%',
+        label: {
+            show: true,
+            position: 'top',
+            formatter: '{c}'
+        }
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

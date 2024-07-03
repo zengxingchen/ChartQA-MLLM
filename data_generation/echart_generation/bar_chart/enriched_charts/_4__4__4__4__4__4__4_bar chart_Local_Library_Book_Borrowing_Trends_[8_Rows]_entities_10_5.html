@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+var option = {
+    title: {
+        text: 'Impact of Future Technologies on Society',
+        left: 'center',
+        top: 20
+    },
+    xAxis: {
+        type: 'value',
+        name: 'Impact Score',
+        nameLocation: 'middle',
+        nameGap: 30
+    },
+    yAxis: {
+        type: 'category',
+        data: ['Quantum Computing', 'Artificial Intelligence', 'Blockchain', 'Virtual Reality', 'Augmented Reality', 'Nanotechnology', 'Biotechnology', '5G Technology', 'Renewable Energy', 'Cybersecurity'],
+        name: 'Technologies',
+        nameLocation: 'middle',
+        nameGap: 50
+    },
+    series: [{
+        type: 'bar',
+        data: [45, 78, 60, 32, 48, 67, 55, 71, 85, 63],
+        label: {
+            show: true,
+            position: 'right'
+        },
+        itemStyle: {
+            color: function(params) {
+                var colorList = ['#FF5733', '#33FF57', '#3357FF', '#FF33A1', '#FF8F33', '#FF3333', '#33FFF1', '#57FF33', '#FF3333', '#3375FF'];
+                return colorList[params.dataIndex];
+            }
+        },
+        barWidth: 20
+    }]
+};
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

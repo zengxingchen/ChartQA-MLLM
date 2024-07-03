@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 800, // changed width of chart
+    height: 600 // changed height of chart
+});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Educational Resource Distribution by Region', // headline
+        left: 'center',
+        top: 5 // to ensure the title does not overlap with the legend
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Books', 'Online Courses', 'Lectures', 'Experiments'],
+        top: 30 // distance from the top of the chart for avoiding overlap with the title
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: false,
+        position: 'top' // making the chart horizontal
+    },
+    yAxis: {
+        type: 'category',
+        data: ['North America', 'Europe', 'Asia', 'South America', 'Africa', 'Oceania'],
+        axisLabel: {
+            interval: 0 // show all labels
+        }
+    },
+    series: [
+        {
+            name: 'Books',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 20, // changed bar width
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [40, 25, 30, 50, 45, 35],
+            itemStyle: {
+                color: '#FFD700' // specific color code for better clarity
+            }
+        },
+        {
+            name: 'Online Courses',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 20,
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [30, 35, 20, 20, 25, 40],
+            itemStyle: {
+                color: '#1E90FF'
+            }
+        },
+        {
+            name: 'Lectures',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 20,
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [20, 30, 40, 20, 20, 15],
+            itemStyle: {
+                color: '#32CD32'
+            }
+        },
+        {
+            name: 'Experiments',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 20,
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [10, 10, 10, 10, 10, 10],
+            itemStyle: {
+                color: '#A52A2A'
+            }
+        }
+    ]
+};
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

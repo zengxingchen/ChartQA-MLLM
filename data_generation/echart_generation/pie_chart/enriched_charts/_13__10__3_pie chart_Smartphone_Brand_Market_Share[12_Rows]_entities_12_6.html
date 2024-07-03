@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+option = null;
+
+option = {
+    title: {
+        text: 'Tourist Visits by Destination',
+        left: 'center',
+        top: 20
+    },
+    tooltip: {
+        trigger: 'item'
+    },
+    legend: {
+        orient: 'vertical',
+        left: 20,
+        top: 70
+    },
+    series: [
+        {
+            name: 'Visits',
+            type: 'pie',
+            radius: '55%',
+            center: ['50%', '60%'],
+            data: [
+                { value: 15000000, name: 'Paris' },
+                { value: 20000000, name: 'Bangkok' },
+                { value: 19800000, name: 'London' },
+                { value: 16000000, name: 'Dubai' },
+                { value: 14500000, name: 'Singapore' },
+                { value: 13000000, name: 'New York' },
+                { value: 13200000, name: 'Istanbul' },
+                { value: 9000000, name: 'Tokyo' },
+                { value: 12500000, name: 'Antalya' },
+                { value: 8200000, name: 'Kuala Lumpur' }
+            ],
+            itemStyle: {
+                normal: {
+                    color: function(params) {
+                        var colorList = [
+                            '#FF6B6B', '#488EFF', '#FFE66D', '#1CC88A', '#36A2EB',
+                            '#FFCD56', '#4BC0C0', '#C9CBCF', '#FF9F40', '#AAAAAA'
+                        ];
+                        return colorList[params.dataIndex]
+                    }
+                }
+            },
+            label: {
+                normal: {
+                    formatter: '{b} ({d}%)'
+                }
+            },
+            labelLine: {
+                show: true
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

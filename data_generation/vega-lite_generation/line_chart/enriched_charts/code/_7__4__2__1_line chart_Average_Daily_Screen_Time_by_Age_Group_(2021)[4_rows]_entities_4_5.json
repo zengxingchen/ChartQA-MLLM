@@ -1,0 +1,210 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Line chart showing average monthly mental health consultation rates by region.",
+    "title": {
+        "text": "Average Monthly Mental Health Consultations by Region",
+        "fontSize": 20,
+        "anchor": "start",
+        "color": "#333333"
+    },
+    "width": 1000,
+    "height": 600,
+    "data": {
+        "values": [
+            {
+                "Region": "North America",
+                "January": 520,
+                "February": 480,
+                "March": 540,
+                "April": 500,
+                "May": 490,
+                "June": 510,
+                "July": 530,
+                "August": 550,
+                "September": 560,
+                "October": 570,
+                "November": 540,
+                "December": 520
+            },
+            {
+                "Region": "Europe",
+                "January": 420,
+                "February": 415,
+                "March": 430,
+                "April": 450,
+                "May": 460,
+                "June": 470,
+                "July": 480,
+                "August": 470,
+                "September": 460,
+                "October": 450,
+                "November": 440,
+                "December": 430
+            },
+            {
+                "Region": "Asia",
+                "January": 680,
+                "February": 660,
+                "March": 690,
+                "April": 710,
+                "May": 730,
+                "June": 740,
+                "July": 760,
+                "August": 770,
+                "September": 750,
+                "October": 740,
+                "November": 720,
+                "December": 700
+            },
+            {
+                "Region": "South America",
+                "January": 220,
+                "February": 210,
+                "March": 230,
+                "April": 240,
+                "May": 250,
+                "June": 260,
+                "July": 270,
+                "August": 260,
+                "September": 250,
+                "October": 240,
+                "November": 230,
+                "December": 220
+            },
+            {
+                "Region": "Africa",
+                "January": 120,
+                "February": 110,
+                "March": 130,
+                "April": 140,
+                "May": 150,
+                "June": 160,
+                "July": 170,
+                "August": 160,
+                "September": 150,
+                "October": 140,
+                "November": 130,
+                "December": 120
+            },
+            {
+                "Region": "Oceania",
+                "January": 300,
+                "February": 290,
+                "March": 310,
+                "April": 320,
+                "May": 330,
+                "June": 340,
+                "July": 350,
+                "August": 340,
+                "September": 330,
+                "October": 320,
+                "November": 310,
+                "December": 300
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "January",
+                "February",
+                "March",
+                "April",
+                "May",
+                "June",
+                "July",
+                "August",
+                "September",
+                "October",
+                "November",
+                "December"
+            ],
+            "as": [
+                "Month",
+                "Consultations"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "line",
+        "point": true
+    },
+    "encoding": {
+        "x": {
+            "field": "Month",
+            "type": "ordinal",
+            "title": "Month",
+            "axis": {
+                "titleFontSize": 14,
+                "labelAngle": -45
+            }
+        },
+        "y": {
+            "field": "Consultations",
+            "type": "quantitative",
+            "title": "Consultations",
+            "axis": {
+                "titleFontSize": 14
+            }
+        },
+        "color": {
+            "field": "Region",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "North America",
+                    "Europe",
+                    "Asia",
+                    "South America",
+                    "Africa",
+                    "Oceania"
+                ],
+                "range": [
+                    "#FF5733",
+                    "#33FF57",
+                    "#3357FF",
+                    "#FF33A1",
+                    "#33FFF5",
+                    "#F5FF33"
+                ]
+            },
+            "legend": {
+                "title": "Region"
+            }
+        },
+        "strokeDash": {
+            "condition": {
+                "test": "datum['Region'] == 'South America'",
+                "value": [
+                    5,
+                    5
+                ]
+            },
+            "value": []
+        },
+        "tooltip": [
+            {
+                "field": "Region",
+                "type": "nominal"
+            },
+            {
+                "field": "Month",
+                "type": "ordinal"
+            },
+            {
+                "field": "Consultations",
+                "type": "quantitative"
+            }
+        ],
+        "text": {
+            "field": "Consultations",
+            "type": "quantitative",
+            "format": "d"
+        }
+    },
+    "config": {
+        "axisY": {
+            "minExtent": 30
+        }
+    }
+}

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 800,
+    height: 600
+});
+var option = {
+    title: {
+        text: 'Correlation Between Sleep Hours and Productivity',
+        left: 'center',
+        top: '10'
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: 'Sleep Hours: {b0}<br/>Productivity Score: {c0}'
+    },
+    legend: {
+        data: ['Data Points'],
+        top: '20',
+        left: 'right'
+    },
+    xAxis: {
+        name: 'Sleep Hours',
+        type: 'value',
+        min: 4,
+        max: 9
+    },
+    yAxis: {
+        name: 'Productivity Score',
+        type: 'value',
+        min: 60,
+        max: 95
+    },
+    series: [
+        {
+            name: 'Data Points',
+            type: 'scatter',
+            itemStyle: {
+                color: '#FF5733'
+            },
+            data: [
+                [5.2, 72],
+                [6.3, 78],
+                [4.8, 65],
+                [7.1, 84],
+                [5.5, 75],
+                [8.2, 90],
+                [4.2, 60],
+                [7.8, 88],
+                [5.9, 77],
+                [6.5, 80],
+                [7.4, 85],
+                [8.0, 89],
+                [6.1, 79],
+                [4.9, 66],
+                [7.2, 83],
+                [5.7, 76],
+                [8.3, 91],
+                [4.5, 62],
+                [7.9, 87],
+                [6.8, 82]
+            ]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

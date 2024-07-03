@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var app = {};
+var option;
+
+option = {
+    title: {
+        text: 'Art & Design Trends',
+        left: 'center',
+        top: '20px'
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: function (params) {
+            return params.seriesName + '<br/>' + 'X: ' + params.value[0] + ', Y: ' + params.value[1];
+        }
+    },
+    xAxis: {
+        name: 'Years',
+        type: 'value'
+    },
+    yAxis: {
+        name: 'Trend Index',
+        type: 'value'
+    },
+    legend: {
+        data: ['Art & Design'],
+        left: 'right',
+        top: '30px'
+    },
+    series: [
+        {
+            name: 'Art & Design',
+            type: 'scatter',
+            itemStyle: {
+                color: '#ff7f50'
+            },
+            data: [
+                [10, 70], [15, 68], [20, 65], [25, 63], [30, 60], 
+                [35, 58], [40, 55], [45, 53], [50, 50], [55, 48], 
+                [60, 45], [65, 43], [70, 40], [75, 38], [80, 35], 
+                [85, 33], [90, 30], [95, 28], [100, 25], [105, 23], 
+                [110, 20], [115, 18], [120, 15], [125, 13], [130, 10], 
+                [135, 8], [140, 5], [145, 3], [150, 0]
+            ]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,176 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": {
+        "text": "Monthly Reading Hours by Genre",
+        "subtitle": "Stacked bar representation of reading hours over a year",
+        "subtitleFontStyle": "italic",
+        "subtitleFontSize": 10,
+        "anchor": "start"
+    },
+    "data": {
+        "values": [
+            {
+                "Month": "January",
+                "Fiction": 5,
+                "Non-Fiction": 7,
+                "Comics": 2,
+                "Science": 3
+            },
+            {
+                "Month": "February",
+                "Fiction": 6,
+                "Non-Fiction": 8,
+                "Comics": 3,
+                "Science": 4
+            },
+            {
+                "Month": "March",
+                "Fiction": 7,
+                "Non-Fiction": 9,
+                "Comics": 4,
+                "Science": 5
+            },
+            {
+                "Month": "April",
+                "Fiction": 8,
+                "Non-Fiction": 10,
+                "Comics": 5,
+                "Science": 6
+            },
+            {
+                "Month": "May",
+                "Fiction": 9,
+                "Non-Fiction": 11,
+                "Comics": 6,
+                "Science": 7
+            },
+            {
+                "Month": "June",
+                "Fiction": 10,
+                "Non-Fiction": 12,
+                "Comics": 7,
+                "Science": 8
+            },
+            {
+                "Month": "July",
+                "Fiction": 11,
+                "Non-Fiction": 13,
+                "Comics": 8,
+                "Science": 9
+            },
+            {
+                "Month": "August",
+                "Fiction": 12,
+                "Non-Fiction": 14,
+                "Comics": 9,
+                "Science": 10
+            },
+            {
+                "Month": "September",
+                "Fiction": 13,
+                "Non-Fiction": 15,
+                "Comics": 10,
+                "Science": 11
+            },
+            {
+                "Month": "October",
+                "Fiction": 14,
+                "Non-Fiction": 16,
+                "Comics": 11,
+                "Science": 12
+            },
+            {
+                "Month": "November",
+                "Fiction": 15,
+                "Non-Fiction": 17,
+                "Comics": 12,
+                "Science": 13
+            },
+            {
+                "Month": "December",
+                "Fiction": 16,
+                "Non-Fiction": 18,
+                "Comics": 13,
+                "Science": 14
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Fiction",
+                "Non-Fiction",
+                "Comics",
+                "Science"
+            ],
+            "as": [
+                "Genre",
+                "Hours"
+            ]
+        }
+    ],
+    "width": 500,
+    "height": 600,
+    "mark": {
+        "type": "bar",
+        "width": {
+            "band": 0.6
+        }
+    },
+    "encoding": {
+        "x": {
+            "field": "Month",
+            "type": "nominal",
+            "axis": {
+                "title": "Month",
+                "labelAngle": -45
+            }
+        },
+        "y": {
+            "field": "Hours",
+            "type": "quantitative",
+            "axis": {
+                "title": "Total Hours"
+            },
+            "stack": "normalize"
+        },
+        "color": {
+            "field": "Genre",
+            "type": "nominal",
+            "scale": {
+                "range": [
+                    "#FF5733",
+                    "#33FF57",
+                    "#3357FF",
+                    "#FF33A1"
+                ]
+            },
+            "legend": {
+                "title": "Genre",
+                "orient": "top"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Genre",
+                "type": "nominal",
+                "title": "Genre"
+            },
+            {
+                "field": "Month",
+                "type": "nominal",
+                "title": "Month"
+            },
+            {
+                "field": "Hours",
+                "type": "quantitative",
+                "title": "Hours"
+            }
+        ]
+    },
+    "config": {
+        "axisX": {
+            "minExtent": 30
+        }
+    }
+}

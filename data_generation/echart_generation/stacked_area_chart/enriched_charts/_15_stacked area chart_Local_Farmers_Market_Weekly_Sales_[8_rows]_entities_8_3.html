@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 800,
+    height: 600
+});
+var app = {};
+
+var option;
+
+const data = [
+    // The data values are simplified and provided below
+    // Assuming these are monthly observations for three different vehicle types over three years
+    ['2020-01-01', 120, 150, 300],
+    ['2020-02-01', 125, 155, 290],
+    // ... (data points continued)
+    ['2022-12-01', 440, 360, 70]
+];
+
+option = {
+    title: {
+        text: 'Vehicle Sales Trends by Type',
+        subtext: 'The evolution of vehicle sales over the past three years',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            label: {
+                backgroundColor: '#6a7985'
+            }
+        }
+    },
+    legend: {
+        data: ['Electric Cars', 'Hybrid Vehicles', 'Diesel Vehicles'],
+        top: '50'
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: [
+        {
+            type: 'category',
+            boundaryGap: false,
+            data: data.map(function (item) {
+                return item[0];
+            })
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value'
+        }
+    ],
+    series: [
+        {
+            name: 'Electric Cars',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: data.map(function (item) {
+                return item[1];
+            }),
+            color: '#37a2da'
+        },
+        {
+            name: 'Hybrid Vehicles',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: data.map(function (item) {
+                return item[2];
+            }),
+            color: '#32c5e9'
+        },
+        {
+            name: 'Diesel Vehicles',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: data.map(function (item) {
+                return item[3];
+            }),
+            color: '#67e0e3'
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

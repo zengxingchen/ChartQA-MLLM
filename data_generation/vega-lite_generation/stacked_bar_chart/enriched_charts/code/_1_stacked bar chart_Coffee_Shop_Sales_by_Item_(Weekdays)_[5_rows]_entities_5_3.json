@@ -1,0 +1,166 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+        "values": [
+            {
+                "Sport": "Swimming",
+                "Kids": 15,
+                "Teens": 25,
+                "Adults": 30,
+                "Seniors": 10
+            },
+            {
+                "Sport": "Running",
+                "Kids": 20,
+                "Teens": 30,
+                "Adults": 35,
+                "Seniors": 15
+            },
+            {
+                "Sport": "Cycling",
+                "Kids": 18,
+                "Teens": 28,
+                "Adults": 32,
+                "Seniors": 12
+            },
+            {
+                "Sport": "Soccer",
+                "Kids": 30,
+                "Teens": 45,
+                "Adults": 40,
+                "Seniors": 5
+            },
+            {
+                "Sport": "Basketball",
+                "Kids": 25,
+                "Teens": 35,
+                "Adults": 30,
+                "Seniors": 10
+            },
+            {
+                "Sport": "Tennis",
+                "Kids": 10,
+                "Teens": 20,
+                "Adults": 25,
+                "Seniors": 15
+            },
+            {
+                "Sport": "Golf",
+                "Kids": 5,
+                "Teens": 10,
+                "Adults": 22,
+                "Seniors": 28
+            },
+            {
+                "Sport": "Baseball",
+                "Kids": 20,
+                "Teens": 25,
+                "Adults": 27,
+                "Seniors": 8
+            },
+            {
+                "Sport": "Yoga",
+                "Kids": 8,
+                "Teens": 12,
+                "Adults": 20,
+                "Seniors": 25
+            },
+            {
+                "Sport": "Volleyball",
+                "Kids": 15,
+                "Teens": 18,
+                "Adults": 16,
+                "Seniors": 10
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Kids",
+                "Teens",
+                "Adults",
+                "Seniors"
+            ],
+            "as": [
+                "AgeGroup",
+                "Participants"
+            ]
+        }
+    ],
+    "mark": "bar",
+    "width": 500,
+    "height": 350,
+    "title": {
+        "text": "Participation in Sports by Age Group",
+        "anchor": "start",
+        "fontSize": 16,
+        "fontWeight": "bold",
+        "dx": -10,
+        "dy": 10
+    },
+    "encoding": {
+        "y": {
+            "field": "Sport",
+            "type": "nominal",
+            "axis": {
+                "title": "Sport"
+            }
+        },
+        "x": {
+            "field": "Participants",
+            "type": "quantitative",
+            "stack": "zero",
+            "axis": {
+                "title": "Number of Participants"
+            }
+        },
+        "color": {
+            "field": "AgeGroup",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Kids",
+                    "Teens",
+                    "Adults",
+                    "Seniors"
+                ],
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e",
+                    "#2ca02c",
+                    "#d62728"
+                ]
+            },
+            "legend": {
+                "orient": "bottom"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Sport",
+                "type": "nominal",
+                "title": "Sport"
+            },
+            {
+                "field": "AgeGroup",
+                "type": "nominal",
+                "title": "Age Group"
+            },
+            {
+                "field": "Participants",
+                "type": "quantitative",
+                "title": "Participants"
+            }
+        ]
+    },
+    "config": {
+        "bar": {
+            "binSpacing": 0,
+            "width": 25,
+            "height": {
+                "band": 0.8
+            }
+        }
+    }
+}

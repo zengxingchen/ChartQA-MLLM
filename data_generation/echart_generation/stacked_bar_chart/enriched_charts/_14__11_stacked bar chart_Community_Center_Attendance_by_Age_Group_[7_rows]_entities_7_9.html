@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var option;
+
+option = {
+    title: {
+        text: 'Monthly Average Temperature and Precipitation',
+        left: 'center',
+        top: '2%'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: { type: 'shadow' }
+    },
+    legend: {
+        top: '10%',
+        left: 'center',
+        data: ['Temperature (°C)', 'Precipitation (mm)']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        data: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+        axisLabel: {
+            rotate: 45
+        }
+    },
+    yAxis: [
+        {
+            type: 'value',
+            name: 'Temperature (°C)',
+            position: 'left',
+            min: 0,
+            max: 35
+        },
+        {
+            type: 'value',
+            name: 'Precipitation (mm)',
+            position: 'right',
+            min: 0,
+            max: 100
+        }
+    ],
+    series: [
+        {
+            name: 'Temperature (°C)',
+            type: 'bar',
+            barWidth: 15,
+            itemStyle: {
+                color: '#ff7f50'
+            },
+            data: [5, 7, 10, 15, 20, 25, 30, 28, 22, 16, 10, 6]
+        },
+        {
+            name: 'Precipitation (mm)',
+            type: 'bar',
+            barWidth: 15,
+            yAxisIndex: 1,
+            itemStyle: {
+                color: '#87ceeb'
+            },
+            data: [78, 65, 60, 55, 50, 40, 30, 35, 45, 55, 70, 80]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

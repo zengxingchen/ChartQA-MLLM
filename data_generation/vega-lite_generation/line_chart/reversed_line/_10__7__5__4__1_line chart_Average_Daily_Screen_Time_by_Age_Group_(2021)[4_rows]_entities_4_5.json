@@ -1,0 +1,164 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Line chart showing monthly average temperature by city.",
+    "title": {
+        "text": "Monthly Average Temperature by City",
+        "fontSize": 20,
+        "anchor": "start",
+        "color": "#333333"
+    },
+    "width": 1000,
+    "height": 700,
+    "data": {
+        "values": [
+            {
+                "City": "New York",
+                "January": 0.2,
+                "February": 1.1,
+                "March": 5.4,
+                "April": 11.2,
+                "May": 16.7,
+                "June": 22.0,
+                "July": 24.5,
+                "August": 23.9,
+                "September": 20.1,
+                "October": 13.9,
+                "November": 8.3,
+                "December": 2.8
+            },
+            {
+                "City": "Los Angeles",
+                "January": 13.9,
+                "February": 14.2,
+                "March": 15.3,
+                "April": 16.5,
+                "May": 17.8,
+                "June": 19.7,
+                "July": 22.2,
+                "August": 22.9,
+                "September": 22.0,
+                "October": 19.7,
+                "November": 16.1,
+                "December": 13.8
+            },
+            {
+                "City": "Chicago",
+                "January": -3.5,
+                "February": -2.8,
+                "March": 3.3,
+                "April": 9.4,
+                "May": 15.6,
+                "June": 21.1,
+                "July": 23.9,
+                "August": 23.3,
+                "September": 19.0,
+                "October": 12.2,
+                "November": 5.0,
+                "December": -1.6
+            },
+            {
+                "City": "Miami",
+                "January": 20.0,
+                "February": 20.5,
+                "March": 21.7,
+                "April": 23.5,
+                "May": 25.6,
+                "June": 27.8,
+                "July": 28.3,
+                "August": 28.3,
+                "September": 27.2,
+                "October": 25.0,
+                "November": 22.2,
+                "December": 20.6
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "January",
+                "February",
+                "March",
+                "April",
+                "May",
+                "June",
+                "July",
+                "August",
+                "September",
+                "October",
+                "November",
+                "December"
+            ],
+            "as": [
+                "Month",
+                "Temperature"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "line",
+        "point": true
+    },
+    "encoding": {
+        "x": {
+            "field": "Month",
+            "type": "ordinal",
+            "title": "Month",
+            "axis": {
+                "titleFontSize": 16,
+                "labelAngle": -45
+            }
+        },
+        "y": {
+            "field": "Temperature",
+            "type": "quantitative",
+            "title": "Temperature (\u00b0C)",
+            "axis": {
+                "titleFontSize": 16
+            },
+            "scale": {
+                "reverse": true
+            }
+        },
+        "color": {
+            "field": "City",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "New York",
+                    "Los Angeles",
+                    "Chicago",
+                    "Miami"
+                ],
+                "range": [
+                    "#FF4500",
+                    "#1E90FF",
+                    "#32CD32",
+                    "#8A2BE2"
+                ]
+            },
+            "legend": {
+                "title": "City"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "City",
+                "type": "nominal"
+            },
+            {
+                "field": "Month",
+                "type": "ordinal"
+            },
+            {
+                "field": "Temperature",
+                "type": "quantitative"
+            }
+        ]
+    },
+    "config": {
+        "axisY": {
+            "minExtent": 30
+        }
+    }
+}

@@ -1,0 +1,161 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+        "values": [
+            {
+                "Quarter": "Q1-2021",
+                "Tech": 2000,
+                "Healthcare": 750,
+                "Retail": 1250,
+                "Manufacturing": 900,
+                "Services": 600
+            },
+            {
+                "Quarter": "Q2-2021",
+                "Tech": 1800,
+                "Healthcare": 700,
+                "Retail": 950,
+                "Manufacturing": 850,
+                "Services": 500
+            },
+            {
+                "Quarter": "Q3-2021",
+                "Tech": 2100,
+                "Healthcare": 800,
+                "Retail": 1100,
+                "Manufacturing": 950,
+                "Services": 650
+            },
+            {
+                "Quarter": "Q4-2021",
+                "Tech": 2300,
+                "Healthcare": 850,
+                "Retail": 1200,
+                "Manufacturing": 1000,
+                "Services": 700
+            },
+            {
+                "Quarter": "Q1-2022",
+                "Tech": 2500,
+                "Healthcare": 900,
+                "Retail": 1300,
+                "Manufacturing": 1050,
+                "Services": 750
+            },
+            {
+                "Quarter": "Q2-2022",
+                "Tech": 2600,
+                "Healthcare": 850,
+                "Retail": 1100,
+                "Manufacturing": 1000,
+                "Services": 650
+            },
+            {
+                "Quarter": "Q3-2022",
+                "Tech": 2700,
+                "Healthcare": 950,
+                "Retail": 1150,
+                "Manufacturing": 1100,
+                "Services": 800
+            },
+            {
+                "Quarter": "Q4-2022",
+                "Tech": 2800,
+                "Healthcare": 1000,
+                "Retail": 1250,
+                "Manufacturing": 1200,
+                "Services": 850
+            },
+            {
+                "Quarter": "Q1-2023",
+                "Tech": 2900,
+                "Healthcare": 1100,
+                "Retail": 1350,
+                "Manufacturing": 1300,
+                "Services": 900
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Tech",
+                "Healthcare",
+                "Retail",
+                "Manufacturing",
+                "Services"
+            ],
+            "as": [
+                "Division",
+                "Revenue"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "bar",
+        "width": {
+            "band": 0.8
+        }
+    },
+    "width": 400,
+    "height": 250,
+    "title": {
+        "text": "Quarterly Revenue by Division",
+        "fontSize": 14,
+        "anchor": "start",
+        "color": "black"
+    },
+    "encoding": {
+        "y": {
+            "field": "Quarter",
+            "type": "ordinal",
+            "title": "Quarter"
+        },
+        "x": {
+            "field": "Revenue",
+            "type": "quantitative",
+            "title": "Revenue"
+        },
+        "color": {
+            "field": "Division",
+            "type": "nominal",
+            "legend": {
+                "orient": "bottom-right"
+            },
+            "scale": {
+                "domain": [
+                    "Tech",
+                    "Healthcare",
+                    "Retail",
+                    "Manufacturing",
+                    "Services"
+                ],
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e",
+                    "#2ca02c",
+                    "#d62728",
+                    "#9467bd"
+                ]
+            },
+            "title": "Division"
+        },
+        "tooltip": [
+            {
+                "field": "Quarter",
+                "type": "nominal",
+                "title": "Quarter"
+            },
+            {
+                "field": "Division",
+                "type": "nominal",
+                "title": "Division"
+            },
+            {
+                "field": "Revenue",
+                "type": "quantitative",
+                "title": "Revenue"
+            }
+        ]
+    }
+}

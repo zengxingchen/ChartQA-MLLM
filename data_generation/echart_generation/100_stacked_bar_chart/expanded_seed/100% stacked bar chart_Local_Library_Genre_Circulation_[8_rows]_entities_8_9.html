@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+            var dom = document.getElementById('container');
+            var myChart = echarts.init(dom, null, {
+            renderer: 'canvas',
+            useDirtyRect: false
+            });
+            var app = {};
+            
+            var option;
+
+            
+option = {
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {            
+            type: 'shadow'
+        },
+        formatter: function(params) {
+            var tooltipData = params[0].name + "<br/>";
+            params.forEach(function (item) {
+                tooltipData += item.marker + " " + item.seriesName + ": " + item.value + "<br/>";
+            });
+            return tooltipData;
+        }
+    },
+    legend: {
+        data: ['Fiction', 'Non-Fiction', 'Young Adult', "Children's Books", 'Reference', 'Periodicals', 'Other']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01],
+        max: 100,
+        axisLabel: {
+            formatter: '{value} %'
+        }
+    },
+    yAxis: {
+        type: 'category',
+        data: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August']
+    },
+    series: [
+        {
+            name: 'Fiction',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                formatter: '{c} %'
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [35, 30, 32, 33, 31, 29, 28, 27]
+        },
+        {
+            name: 'Non-Fiction',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'inside',
+                formatter: '{c} %'
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [25, 28, 26, 27, 29, 30, 31, 32]
+        },
+        {
+            name: 'Young Adult',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                formatter: '{c} %'
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [15, 16, 17, 16, 15, 16, 18, 17]
+        },
+        {
+            name: "Children's Books",
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                formatter: '{c} %'
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [10, 10, 11, 11, 10, 10, 9, 11]
+        },
+        {
+            name: 'Reference',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                formatter: '{c} %'
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [5, 6, 4, 3, 5, 5, 4, 3]
+        },
+        {
+            name: 'Periodicals',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                formatter: '{c} %'
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [5, 5, 5, 5, 5, 5, 5, 5]
+        },
+        {
+            name: 'Other',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                formatter: '{c} %'
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [5, 5, 5, 5, 5, 5, 5, 5]
+        }
+    ]
+};
+
+            if (option && typeof option === 'object') {
+            myChart.setOption(option);
+            }
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

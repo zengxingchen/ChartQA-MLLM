@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+myChart.showLoading();
+
+// Data
+var dataAxis = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
+var dataArtClass = [45, 50, 40, 60, 65, 70, 55, 60, 62, 68, 70, 75];
+var dataYogaClass = [120, 135, 128, 140, 150, 160, 145, 155, 165, 170, 180, 185];
+var dataDanceClass = [65, 75, 68, 80, 85, 90, 70, 85, 88, 95, 100, 102];
+var dataLanguageClass = [80, 85, 82, 90, 95, 100, 85, 88, 93, 98, 105, 110];
+var dataCookingClass = [50, 60, 55, 70, 75, 80, 65, 68, 72, 77, 82, 85];
+
+// Convert data for use in eCharts
+function convertDataToSeries(data, name) {
+    return {
+        name: name,
+        type: 'line',
+        data: data,
+        symbolSize: 10,
+        label: {
+            show: true,
+            position: 'top',
+        },
+        lineStyle: {
+            width: 3
+        }
+    };
+}
+
+myChart.hideLoading();
+
+option = {
+    title: {
+        text: 'Class Attendance Over The Year'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            label: {
+                backgroundColor: '#6a7985'
+            }
+        }
+    },
+    legend: {
+        data: ['Art Class', 'Yoga Class', 'Dance Class', 'Language Class', 'Cooking Class']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: dataAxis,
+        axisLabel: {
+            show: true,
+            textStyle: {
+                color: '#333'
+            }
+        }
+    },
+    yAxis: {
+        type: 'value',
+        axisLabel: {
+            formatter: '{value}'
+        }
+    },
+    series: [
+        convertDataToSeries(dataArtClass, 'Art Class'),
+        convertDataToSeries(dataYogaClass, 'Yoga Class'),
+        convertDataToSeries(dataDanceClass, 'Dance Class'),
+        convertDataToSeries(dataLanguageClass, 'Language Class'),
+        convertDataToSeries(dataCookingClass, 'Cooking Class')
+    ],
+    markLine: {
+        silent: true,
+        data: [{
+            type: 'average',
+            name: 'Average'
+        }]
+    },
+    color: ['#5470C6', '#91CC75', '#EE6666', '#73C0DE', '#3BA272', '#FC8452', '#9A60B4', '#ea7ccc']
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

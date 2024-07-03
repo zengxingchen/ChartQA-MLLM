@@ -1,0 +1,129 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "A vertical bar chart showing average monthly book purchases by genre.",
+    "width": 600,
+    "height": 500,
+    "title": {
+        "text": "Average Monthly Book Purchases by Genre",
+        "anchor": "start",
+        "offset": 10
+    },
+    "data": {
+        "values": [
+            {
+                "Genre": "Fiction",
+                "Average Purchases": 15
+            },
+            {
+                "Genre": "Non-Fiction",
+                "Average Purchases": 12
+            },
+            {
+                "Genre": "Mystery",
+                "Average Purchases": 10
+            },
+            {
+                "Genre": "Fantasy",
+                "Average Purchases": 14
+            },
+            {
+                "Genre": "Science Fiction",
+                "Average Purchases": 9
+            },
+            {
+                "Genre": "Biography",
+                "Average Purchases": 8
+            },
+            {
+                "Genre": "Self-Help",
+                "Average Purchases": 7
+            },
+            {
+                "Genre": "Romance",
+                "Average Purchases": 13
+            },
+            {
+                "Genre": "History",
+                "Average Purchases": 6
+            },
+            {
+                "Genre": "Poetry",
+                "Average Purchases": 4
+            }
+        ]
+    },
+    "mark": {
+        "type": "bar",
+        "tooltip": true,
+        "cornerRadiusEnd": 2,
+        "width": {
+            "band": 0.6
+        }
+    },
+    "encoding": {
+        "x": {
+            "field": "Genre",
+            "type": "ordinal",
+            "axis": {
+                "title": "Genre"
+            }
+        },
+        "y": {
+            "field": "Average Purchases",
+            "type": "quantitative",
+            "axis": {
+                "title": "Average Monthly Purchases"
+            }
+        },
+        "color": {
+            "field": "Genre",
+            "scale": {
+                "domain": [
+                    "Fiction",
+                    "Non-Fiction",
+                    "Mystery",
+                    "Fantasy",
+                    "Science Fiction",
+                    "Biography",
+                    "Self-Help",
+                    "Romance",
+                    "History",
+                    "Poetry"
+                ],
+                "range": [
+                    "#FF5733",
+                    "#33FF57",
+                    "#3357FF",
+                    "#FF33A6",
+                    "#FF8C33",
+                    "#33FFF0",
+                    "#F033FF",
+                    "#FF3333",
+                    "#33FF9A",
+                    "#9A33FF"
+                ]
+            }
+        },
+        "text": {
+            "field": "Average Purchases",
+            "type": "quantitative"
+        },
+        "opacity": {
+            "condition": {
+                "param": "hover",
+                "value": 0.8
+            },
+            "value": 1
+        }
+    },
+    "params": [
+        {
+            "name": "hover",
+            "select": {
+                "type": "point",
+                "on": "mouseover",
+                "clear": "mouseout"
+            }
+        }
+    ]
+}

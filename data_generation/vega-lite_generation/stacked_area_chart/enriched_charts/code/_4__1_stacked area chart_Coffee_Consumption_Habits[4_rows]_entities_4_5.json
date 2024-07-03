@@ -1,0 +1,211 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Stacked Area Chart of Global Renewable Energy Generation",
+    "width": 600,
+    "height": 400,
+    "data": {
+        "values": [
+            {
+                "Year": 2000,
+                "Solar": 50,
+                "Wind": 100,
+                "Hydro": 2500,
+                "Biomass": 300
+            },
+            {
+                "Year": 2001,
+                "Solar": 60,
+                "Wind": 120,
+                "Hydro": 2550,
+                "Biomass": 320
+            },
+            {
+                "Year": 2002,
+                "Solar": 70,
+                "Wind": 140,
+                "Hydro": 2600,
+                "Biomass": 340
+            },
+            {
+                "Year": 2003,
+                "Solar": 85,
+                "Wind": 165,
+                "Hydro": 2700,
+                "Biomass": 360
+            },
+            {
+                "Year": 2004,
+                "Solar": 100,
+                "Wind": 190,
+                "Hydro": 2800,
+                "Biomass": 380
+            },
+            {
+                "Year": 2005,
+                "Solar": 150,
+                "Wind": 220,
+                "Hydro": 2900,
+                "Biomass": 400
+            },
+            {
+                "Year": 2006,
+                "Solar": 200,
+                "Wind": 250,
+                "Hydro": 3000,
+                "Biomass": 420
+            },
+            {
+                "Year": 2007,
+                "Solar": 250,
+                "Wind": 300,
+                "Hydro": 3100,
+                "Biomass": 440
+            },
+            {
+                "Year": 2008,
+                "Solar": 300,
+                "Wind": 350,
+                "Hydro": 3200,
+                "Biomass": 460
+            },
+            {
+                "Year": 2009,
+                "Solar": 350,
+                "Wind": 400,
+                "Hydro": 3300,
+                "Biomass": 480
+            },
+            {
+                "Year": 2010,
+                "Solar": 400,
+                "Wind": 450,
+                "Hydro": 3400,
+                "Biomass": 500
+            },
+            {
+                "Year": 2011,
+                "Solar": 450,
+                "Wind": 500,
+                "Hydro": 3500,
+                "Biomass": 520
+            },
+            {
+                "Year": 2012,
+                "Solar": 500,
+                "Wind": 550,
+                "Hydro": 3600,
+                "Biomass": 540
+            },
+            {
+                "Year": 2013,
+                "Solar": 550,
+                "Wind": 600,
+                "Hydro": 3700,
+                "Biomass": 560
+            },
+            {
+                "Year": 2014,
+                "Solar": 600,
+                "Wind": 650,
+                "Hydro": 3800,
+                "Biomass": 580
+            },
+            {
+                "Year": 2015,
+                "Solar": 700,
+                "Wind": 700,
+                "Hydro": 3900,
+                "Biomass": 600
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Solar",
+                "Wind",
+                "Hydro",
+                "Biomass"
+            ],
+            "as": [
+                "Source",
+                "Generation"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "area",
+        "opacity": 0.7
+    },
+    "encoding": {
+        "x": {
+            "field": "Year",
+            "type": "ordinal",
+            "axis": {
+                "title": "Year"
+            }
+        },
+        "y": {
+            "field": "Generation",
+            "type": "quantitative",
+            "stack": "zero",
+            "axis": {
+                "title": "Energy Generation (GWh)"
+            }
+        },
+        "color": {
+            "field": "Source",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Solar",
+                    "Wind",
+                    "Hydro",
+                    "Biomass"
+                ],
+                "range": [
+                    "#fdae61",
+                    "#abd9e9",
+                    "#2c7bb6",
+                    "#a6d96a"
+                ]
+            },
+            "legend": {
+                "title": "Source",
+                "orient": "bottom-left"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Year",
+                "type": "ordinal"
+            },
+            {
+                "field": "Source",
+                "type": "nominal"
+            },
+            {
+                "field": "Generation",
+                "type": "quantitative",
+                "title": "Energy Generation"
+            }
+        ]
+    },
+    "title": {
+        "text": "Global Renewable Energy Generation by Source (2000-2015)",
+        "fontSize": 18,
+        "anchor": "middle",
+        "offset": 30
+    },
+    "config": {
+        "view": {
+            "stroke": "transparent"
+        },
+        "area": {
+            "line": true
+        },
+        "axisY": {
+            "grid": true
+        }
+    }
+}

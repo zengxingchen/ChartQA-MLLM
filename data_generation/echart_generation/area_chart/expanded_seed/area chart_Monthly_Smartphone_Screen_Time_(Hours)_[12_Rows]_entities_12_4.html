@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+// Parse the data to get arrays of months and screen time hours
+var data = [
+  {'Month': 'January', 'Screen Time (Hours)': 150},
+  {'Month': 'February', 'Screen Time (Hours)': 145},
+  {'Month': 'March', 'Screen Time (Hours)': 160},
+  {'Month': 'April', 'Screen Time (Hours)': 170},
+  {'Month': 'May', 'Screen Time (Hours)': 175},
+  {'Month': 'June', 'Screen Time (Hours)': 180},
+  {'Month': 'July', 'Screen Time (Hours)': 190},
+  {'Month': 'August', 'Screen Time (Hours)': 185},
+  {'Month': 'September', 'Screen Time (Hours)': 175},
+  {'Month': 'October', 'Screen Time (Hours)': 165},
+  {'Month': 'November', 'Screen Time (Hours)': 155},
+  {'Month': 'December', 'Screen Time (Hours)': 160}
+];
+var months = data.map(function (item) {
+  return item.Month;
+});
+var screenTimeHours = data.map(function (item) {
+  return item['Screen Time (Hours)'];
+});
+
+option = {
+  tooltip: {
+    trigger: 'axis',
+    axisPointer: {
+      type: 'cross',
+      label: {
+        backgroundColor: '#6a7985'
+      }
+    }
+  },
+  legend: {
+    data: ['Screen Time (Hours)']
+  },
+  toolbox: {
+    feature: {
+      saveAsImage: {}
+    }
+  },
+  grid: {
+    left: '3%',
+    right: '4%',
+    bottom: '3%',
+    containLabel: true
+  },
+  xAxis: [
+    {
+      type: 'category',
+      boundaryGap: false,
+      data: months
+    }
+  ],
+  yAxis: [
+    {
+      type: 'value'
+    }
+  ],
+  series: [
+    {
+      name: 'Screen Time (Hours)',
+      type: 'line',
+      stack: 'Total',
+      areaStyle: {},
+      emphasis: {
+        focus: 'series'
+      },
+      data: screenTimeHours
+    }
+  ],
+  color: ['#5470C6'], // Customize the color of the area chart
+};
+
+if (option && typeof option === 'object') {
+  myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

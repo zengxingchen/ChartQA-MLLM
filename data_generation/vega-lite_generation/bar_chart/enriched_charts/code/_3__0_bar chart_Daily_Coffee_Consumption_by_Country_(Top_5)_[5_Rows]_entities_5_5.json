@@ -1,0 +1,160 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Average Daily Sunlight Exposure by Country",
+    "width": 400,
+    "height": 300,
+    "title": {
+        "text": "Average Daily Sunlight Exposure",
+        "subtitle": [
+            "Hours per day by country",
+            "Source: Global Sunlight Data"
+        ],
+        "subtitleFontSize": 10,
+        "subtitleFontStyle": "italic",
+        "anchor": "start"
+    },
+    "data": {
+        "values": [
+            {
+                "Country": "USA",
+                "Hours per day": 6.5
+            },
+            {
+                "Country": "Australia",
+                "Hours per day": 8.0
+            },
+            {
+                "Country": "Brazil",
+                "Hours per day": 7.5
+            },
+            {
+                "Country": "Canada",
+                "Hours per day": 5.0
+            },
+            {
+                "Country": "China",
+                "Hours per day": 4.5
+            },
+            {
+                "Country": "France",
+                "Hours per day": 6.0
+            },
+            {
+                "Country": "Germany",
+                "Hours per day": 5.5
+            },
+            {
+                "Country": "India",
+                "Hours per day": 7.0
+            },
+            {
+                "Country": "Japan",
+                "Hours per day": 5.8
+            },
+            {
+                "Country": "Mexico",
+                "Hours per day": 7.2
+            },
+            {
+                "Country": "Russia",
+                "Hours per day": 4.0
+            },
+            {
+                "Country": "South Africa",
+                "Hours per day": 8.2
+            },
+            {
+                "Country": "United Kingdom",
+                "Hours per day": 4.5
+            },
+            {
+                "Country": "Italy",
+                "Hours per day": 6.3
+            },
+            {
+                "Country": "Spain",
+                "Hours per day": 7.5
+            },
+            {
+                "Country": "Norway",
+                "Hours per day": 3.5
+            },
+            {
+                "Country": "Sweden",
+                "Hours per day": 4.0
+            },
+            {
+                "Country": "Argentina",
+                "Hours per day": 7.0
+            },
+            {
+                "Country": "Chile",
+                "Hours per day": 7.8
+            },
+            {
+                "Country": "Egypt",
+                "Hours per day": 8.5
+            }
+        ]
+    },
+    "params": [
+        {
+            "name": "highlight",
+            "select": {
+                "type": "point",
+                "on": "mouseover"
+            }
+        },
+        {
+            "name": "select",
+            "select": "point"
+        }
+    ],
+    "mark": {
+        "type": "bar",
+        "color": "#FF7F50",
+        "strokeWidth": 1.5,
+        "cursor": "pointer",
+        "width": {
+            "band": 0.5
+        },
+        "opacity": {
+            "condition": {
+                "param": "highlight",
+                "value": 1
+            },
+            "value": 0.7
+        }
+    },
+    "encoding": {
+        "y": {
+            "field": "Country",
+            "type": "nominal",
+            "axis": {
+                "labelFontSize": 10,
+                "title": "Country"
+            }
+        },
+        "x": {
+            "field": "Hours per day",
+            "type": "quantitative",
+            "axis": {
+                "grid": false,
+                "title": "Average Hours per Day",
+                "labelFontSize": 10
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Country",
+                "type": "nominal",
+                "title": "Country"
+            },
+            {
+                "field": "Hours per day",
+                "type": "quantitative",
+                "title": "Hours per Day"
+            }
+        ]
+    }
+}

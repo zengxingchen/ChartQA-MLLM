@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Trends in Art & Design Education (2018-2027)',
+        left: 'center',
+        top: '10'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Art Supplies', 'Online Courses', 'Workshops', 'Exhibitions', 'Publications'],
+        top: '40'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        data: ['2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025', '2026', '2027'],
+        axisLabel: {
+            rotate: 30,
+            margin: 20
+        }
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Art Supplies',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            barWidth: '30%',
+            itemStyle: {
+                color: '#FF5733'
+            },
+            data: [150, 180, 200, 220, 250, 270, 290, 310, 330, 350]
+        },
+        {
+            name: 'Online Courses',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            barWidth: '30%',
+            itemStyle: {
+                color: '#33FF57'
+            },
+            data: [300, 320, 350, 400, 450, 480, 500, 520, 540, 560]
+        },
+        {
+            name: 'Workshops',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            barWidth: '30%',
+            itemStyle: {
+                color: '#3357FF'
+            },
+            data: [200, 210, 250, 280, 300, 320, 340, 360, 380, 400]
+        },
+        {
+            name: 'Exhibitions',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            barWidth: '30%',
+            itemStyle: {
+                color: '#FF33A1'
+            },
+            data: [100, 120, 150, 180, 200, 230, 250, 270, 290, 310]
+        },
+        {
+            name: 'Publications',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            barWidth: '30%',
+            itemStyle: {
+                color: '#FFD700'
+            },
+            data: [50, 60, 70, 90, 110, 130, 140, 150, 160, 170]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

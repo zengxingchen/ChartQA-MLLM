@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+var option;
+
+option = {
+    title: {
+        text: 'Book Sales by Genre (2018-2022)',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        bottom: 10,
+        data: ['Fiction', 'Non-Fiction', 'Science Fiction', 'Biography', 'Fantasy']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '15%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        data: ['2018', '2019', '2020', '2021', '2022'],
+        axisLabel: {
+            interval: 0
+        }
+    },
+    yAxis: {
+        type: 'value',
+        axisLabel: {
+            formatter: '{value} K'
+        }
+    },
+    series: [
+        {
+            name: 'Fiction',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'inside'
+            },
+            itemStyle: {
+                color: '#1f78b4'
+            },
+            data: [320, 340, 360, 380, 400]
+        },
+        {
+            name: 'Non-Fiction',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'inside'
+            },
+            itemStyle: {
+                color: '#33a02c'
+            },
+            data: [200, 220, 240, 260, 280]
+        },
+        {
+            name: 'Science Fiction',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'inside'
+            },
+            itemStyle: {
+                color: '#e31a1c'
+            },
+            data: [150, 160, 170, 180, 190]
+        },
+        {
+            name: 'Biography',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'inside'
+            },
+            itemStyle: {
+                color: '#ff7f00'
+            },
+            data: [180, 190, 200, 210, 220]
+        },
+        {
+            name: 'Fantasy',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'inside'
+            },
+            itemStyle: {
+                color: '#6a3d9a'
+            },
+            data: [120, 130, 140, 150, 160]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

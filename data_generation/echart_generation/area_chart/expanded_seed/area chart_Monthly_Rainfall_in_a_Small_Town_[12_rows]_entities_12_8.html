@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+
+var rawData = [
+    {'Month': 'January', 'Rainfall (mm)': 50},
+    {'Month': 'February', 'Rainfall (mm)': 40},
+    {'Month': 'March', 'Rainfall (mm)': 45},
+    {'Month': 'April', 'Rainfall (mm)': 70},
+    {'Month': 'May', 'Rainfall (mm)': 100},
+    {'Month': 'June', 'Rainfall (mm)': 120},
+    {'Month': 'July', 'Rainfall (mm)': 150},
+    {'Month': 'August', 'Rainfall (mm)': 130},
+    {'Month': 'September', 'Rainfall (mm)': 110},
+    {'Month': 'October', 'Rainfall (mm)': 80},
+    {'Month': 'November', 'Rainfall (mm)': 60},
+    {'Month': 'December', 'Rainfall (mm)': 55}
+];
+
+var dataAxis = rawData.map(function (item) {
+    return item.Month;
+});
+var data = rawData.map(function (item) {
+    return item['Rainfall (mm)'];
+});
+
+option = {
+    tooltip : {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            label: {
+                backgroundColor: '#6a7985'
+            }
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: [
+        {
+            type: 'category',
+            boundaryGap: false,
+            data: dataAxis,
+            axisLabel: {
+                textStyle: {
+                    color: '#7d8597'
+                }
+            }
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value',
+            axisLabel: {
+                formatter: '{value} mm',
+                textStyle: {
+                    color: '#7d8597'
+                }
+            },
+            splitLine: {
+                show: true,
+                lineStyle: {
+                    color: ['#efefef'],
+                    type: 'dashed'
+                }
+            }
+        }
+    ],
+    series: [
+        {
+            name:'Rainfall',
+            type:'line',
+            stack: 'Total',
+            areaStyle: {
+                normal: {
+                    color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                        offset: 0,
+                        color: 'rgba(135, 140, 147, 0.8)'
+                    }, {
+                        offset: 1,
+                        color: 'rgba(255, 255, 255, 0)'
+                    }])
+                }
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: data
+        }
+    ],
+    color: ['#3398DB'],
+    textStyle: {
+        fontFamily: 'Arial, Verdana, sans-serif'
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

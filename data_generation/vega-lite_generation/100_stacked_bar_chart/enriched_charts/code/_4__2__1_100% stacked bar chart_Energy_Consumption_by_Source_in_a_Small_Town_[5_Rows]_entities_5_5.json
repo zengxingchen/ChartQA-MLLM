@@ -1,0 +1,165 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": {
+        "text": "Distribution of Dietary Preferences Over Years",
+        "subtitle": "Horizontal stacked bar chart representing the proportion of dietary preferences",
+        "anchor": "start",
+        "color": "#000000"
+    },
+    "description": "A stacked bar chart showing the percentage distribution of dietary preferences over several years.",
+    "width": 500,
+    "height": 700,
+    "data": {
+        "values": [
+            {
+                "Year": 2015,
+                "Vegetarian": 20,
+                "Vegan": 10,
+                "Omnivore": 70
+            },
+            {
+                "Year": 2016,
+                "Vegetarian": 25,
+                "Vegan": 15,
+                "Omnivore": 60
+            },
+            {
+                "Year": 2017,
+                "Vegetarian": 30,
+                "Vegan": 15,
+                "Omnivore": 55
+            },
+            {
+                "Year": 2018,
+                "Vegetarian": 35,
+                "Vegan": 20,
+                "Omnivore": 45
+            },
+            {
+                "Year": 2019,
+                "Vegetarian": 40,
+                "Vegan": 25,
+                "Omnivore": 35
+            },
+            {
+                "Year": 2020,
+                "Vegetarian": 45,
+                "Vegan": 30,
+                "Omnivore": 25
+            },
+            {
+                "Year": 2021,
+                "Vegetarian": 50,
+                "Vegan": 35,
+                "Omnivore": 15
+            },
+            {
+                "Year": 2022,
+                "Vegetarian": 55,
+                "Vegan": 30,
+                "Omnivore": 15
+            },
+            {
+                "Year": 2023,
+                "Vegetarian": 60,
+                "Vegan": 30,
+                "Omnivore": 10
+            },
+            {
+                "Year": 2024,
+                "Vegetarian": 65,
+                "Vegan": 25,
+                "Omnivore": 10
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Vegetarian",
+                "Vegan",
+                "Omnivore"
+            ],
+            "as": [
+                "Dietary Preference",
+                "Percentage"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "bar",
+        "width": {
+            "band": 0.5
+        }
+    },
+    "encoding": {
+        "y": {
+            "field": "Year",
+            "type": "ordinal",
+            "title": "Year"
+        },
+        "x": {
+            "field": "Percentage",
+            "type": "quantitative",
+            "title": "Percentage of Dietary Preferences",
+            "stack": "normalize",
+            "axis": {
+                "format": ".0%"
+            }
+        },
+        "color": {
+            "field": "Dietary Preference",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Vegetarian",
+                    "Vegan",
+                    "Omnivore"
+                ],
+                "range": [
+                    "#8a2be2",
+                    "#ff7f50",
+                    "#3cb371"
+                ]
+            },
+            "title": "Dietary Preference"
+        },
+        "tooltip": [
+            {
+                "field": "Year",
+                "type": "ordinal",
+                "title": "Year"
+            },
+            {
+                "field": "Dietary Preference",
+                "type": "nominal",
+                "title": "Dietary Preference"
+            },
+            {
+                "field": "Percentage",
+                "type": "quantitative",
+                "title": "Percentage (%)",
+                "format": ".0f"
+            }
+        ]
+    },
+    "config": {
+        "axisX": {
+            "titlePadding": 10,
+            "titleFontSize": 12
+        },
+        "axisY": {
+            "titleAngle": 0,
+            "titleAlign": "left",
+            "titleY": -10,
+            "titleX": -10,
+            "labelPadding": 5,
+            "titleFontSize": 12
+        },
+        "legend": {
+            "titleFontSize": 12,
+            "labelFontSize": 12,
+            "symbolType": "square"
+        }
+    }
+}

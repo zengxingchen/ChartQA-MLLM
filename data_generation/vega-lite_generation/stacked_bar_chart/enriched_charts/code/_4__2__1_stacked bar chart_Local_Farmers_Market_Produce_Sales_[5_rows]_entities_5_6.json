@@ -1,0 +1,187 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Monthly air quality index (AQI) for different regions in a city.",
+    "data": {
+        "values": [
+            {
+                "Month": "2023-01",
+                "Downtown": 70,
+                "Suburbs": 50,
+                "Industrial": 110,
+                "Parks": 40,
+                "Residential": 60
+            },
+            {
+                "Month": "2023-02",
+                "Downtown": 65,
+                "Suburbs": 55,
+                "Industrial": 100,
+                "Parks": 45,
+                "Residential": 62
+            },
+            {
+                "Month": "2023-03",
+                "Downtown": 68,
+                "Suburbs": 52,
+                "Industrial": 105,
+                "Parks": 42,
+                "Residential": 58
+            },
+            {
+                "Month": "2023-04",
+                "Downtown": 72,
+                "Suburbs": 54,
+                "Industrial": 112,
+                "Parks": 46,
+                "Residential": 61
+            },
+            {
+                "Month": "2023-05",
+                "Downtown": 74,
+                "Suburbs": 56,
+                "Industrial": 115,
+                "Parks": 48,
+                "Residential": 64
+            },
+            {
+                "Month": "2023-06",
+                "Downtown": 76,
+                "Suburbs": 58,
+                "Industrial": 118,
+                "Parks": 50,
+                "Residential": 66
+            },
+            {
+                "Month": "2023-07",
+                "Downtown": 78,
+                "Suburbs": 60,
+                "Industrial": 120,
+                "Parks": 52,
+                "Residential": 68
+            },
+            {
+                "Month": "2023-08",
+                "Downtown": 80,
+                "Suburbs": 62,
+                "Industrial": 122,
+                "Parks": 54,
+                "Residential": 70
+            },
+            {
+                "Month": "2023-09",
+                "Downtown": 82,
+                "Suburbs": 64,
+                "Industrial": 125,
+                "Parks": 56,
+                "Residential": 72
+            },
+            {
+                "Month": "2023-10",
+                "Downtown": 84,
+                "Suburbs": 66,
+                "Industrial": 128,
+                "Parks": 58,
+                "Residential": 74
+            },
+            {
+                "Month": "2023-11",
+                "Downtown": 86,
+                "Suburbs": 68,
+                "Industrial": 130,
+                "Parks": 60,
+                "Residential": 76
+            },
+            {
+                "Month": "2023-12",
+                "Downtown": 88,
+                "Suburbs": 70,
+                "Industrial": 132,
+                "Parks": 62,
+                "Residential": 78
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Downtown",
+                "Suburbs",
+                "Industrial",
+                "Parks",
+                "Residential"
+            ],
+            "as": [
+                "Region",
+                "AQI"
+            ]
+        }
+    ],
+    "mark": "bar",
+    "width": 600,
+    "height": 500,
+    "title": {
+        "text": "Monthly Air Quality Index by Region",
+        "anchor": "start",
+        "subtitle": "AQI for Various Regions, 2023",
+        "subtitleFontStyle": "italic",
+        "subtitleFontSize": 12,
+        "color": "black",
+        "offset": 10
+    },
+    "encoding": {
+        "x": {
+            "field": "AQI",
+            "type": "quantitative",
+            "axis": {
+                "title": "Air Quality Index (AQI)"
+            }
+        },
+        "y": {
+            "field": "Month",
+            "type": "ordinal",
+            "axis": {
+                "title": "Month"
+            }
+        },
+        "color": {
+            "field": "Region",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Downtown",
+                    "Suburbs",
+                    "Industrial",
+                    "Parks",
+                    "Residential"
+                ],
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e",
+                    "#2ca02c",
+                    "#d62728",
+                    "#9467bd"
+                ]
+            },
+            "title": "Region"
+        },
+        "tooltip": [
+            {
+                "field": "Region",
+                "type": "nominal",
+                "title": "Region"
+            },
+            {
+                "field": "AQI",
+                "type": "quantitative",
+                "title": "AQI"
+            }
+        ]
+    },
+    "config": {
+        "bar": {
+            "height": {
+                "band": 0.6
+            }
+        }
+    }
+}

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Consumer Electronics Market Share',
+        left: 'center',
+        top: 20
+    },
+    tooltip: {
+        trigger: 'item'
+    },
+    legend: {
+        orient: 'vertical',
+        left: 'left',
+        top: 50
+    },
+    color: [
+        '#1F77B4', '#AEC7E8', '#FF7F0E', '#FFBB78',
+        '#2CA02C', '#98DF8A', '#D62728', '#FF9896',
+        '#9467BD', '#C5B0D5'
+    ],
+    series: [
+        {
+            name: 'Device',
+            type: 'pie',
+            radius: '50%',
+            data: [
+                { value: 330, name: 'Smartphone' },
+                { value: 210, name: 'Laptop' },
+                { value: 90, name: 'Smartwatch' },
+                { value: 150, name: 'Tablet' },
+                { value: 180, name: 'Desktop PC' },
+                { value: 70, name: 'E-Reader' },
+                { value: 160, name: 'Gaming Console' },
+                { value: 50, name: 'VR Headset' },
+                { value: 110, name: 'Smart Home Devices' }
+            ],
+            emphasis: {
+                itemStyle: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            },
+            label: {
+                formatter: '{b}: {c} ({d}%)'
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

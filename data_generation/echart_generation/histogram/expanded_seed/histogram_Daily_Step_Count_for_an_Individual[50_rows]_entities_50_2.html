@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var rawData = [{'Date': '2023-03-01', 'Steps': 10254}, {'Date': '2023-03-02', 'Steps': 9583}, {'Date': '2023-03-03', 'Steps': 12045}, {'Date': '2023-03-04', 'Steps': 11432}, {'Date': '2023-03-05', 'Steps': 10029}, {'Date': '2023-03-06', 'Steps': 10564}, {'Date': '2023-03-07', 'Steps': 11320}, {'Date': '2023-03-08', 'Steps': 9876}, {'Date': '2023-03-09', 'Steps': 8954}, {'Date': '2023-03-10', 'Steps': 13458}, {'Date': '2023-03-11', 'Steps': 14562}, {'Date': '2023-03-12', 'Steps': 7564}, {'Date': '2023-03-13', 'Steps': 8269}, {'Date': '2023-03-14', 'Steps': 9258}, {'Date': '2023-03-15', 'Steps': 10867}];
+
+// Assume histogramData has been created from rawData and contains data points structured like {bin: [lowerBound, upperBound], frequency: count}
+// For example, a simplified histogramData might look like: [{'bin': [7000, 8000], 'frequency': 1}, {'bin': [8000, 9000], 'frequency': 2}, ...]
+// You would need a function here to process rawData and create histogramData
+
+var histogramData = [
+  // This data would be dynamically generated from rawData to create the histogram
+  // Example static data for demonstration purposes:
+  { bin: [7500, 8500], frequency: 1 },
+  { bin: [8500, 9500], frequency: 1 },
+  { bin: [9500, 10500], frequency: 2 },
+  { bin: [10500, 11500], frequency: 5 },
+  { bin: [11500, 12500], frequency: 2 },
+  { bin: [12500, 13500], frequency: 2 },
+  { bin: [13500, 14500], frequency: 1 },
+  { bin: [14500, 15500], frequency: 1 }
+];
+
+var option = {
+    title: {
+        text: 'Steps Histogram',
+        subtext: 'Frequency of Steps per Day',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'item',
+        axisPointer: {
+            type: 'shadow'
+        },
+        formatter: function(params) {
+            var range = params.data.bin;
+            return 'Steps: ' + range[0] + ' - ' + range[1] + '<br/>Frequency: ' + params.data.frequency;
+        }
+    },
+    xAxis: {
+        type: 'category',
+        data: histogramData.map(function (item) {
+            return item.bin.join(' - ');
+        }),
+        name: 'Step Range',
+        axisLabel: {
+            rotate: 45,
+            interval: 0
+        }
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Frequency'
+    },
+    series: [
+        {
+            name: 'Frequency',
+            type: 'bar',
+            barWidth: '60%',
+            data: histogramData.map(function (item) {
+                return item.frequency;
+            }),
+            itemStyle: {
+                color: function(params) {
+                    return params.value > 3 ? '#c23531' : '#2f4554';
+                }
+            }
+        }
+    ],
+    grid: {
+        containLabel: true
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

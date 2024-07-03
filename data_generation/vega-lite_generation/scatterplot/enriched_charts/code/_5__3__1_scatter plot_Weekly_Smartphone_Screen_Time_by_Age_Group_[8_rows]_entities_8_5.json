@@ -1,0 +1,172 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "A bubble chart showcasing the frequency of different genres of books read by various age groups",
+    "title": {
+        "text": "Book Genre Popularity by Age Group",
+        "fontSize": 18,
+        "anchor": "start",
+        "offset": 20,
+        "subtitle": [
+            "Frequency of Genres Read Across Age Groups"
+        ],
+        "subtitleFontStyle": "italic",
+        "subtitleFontSize": 12
+    },
+    "data": {
+        "values": [
+            {
+                "Age Group Index": 1,
+                "Age Group": "Children",
+                "Genre": "Fantasy",
+                "Books Read": 120
+            },
+            {
+                "Age Group Index": 1,
+                "Age Group": "Children",
+                "Genre": "Adventure",
+                "Books Read": 95
+            },
+            {
+                "Age Group Index": 1,
+                "Age Group": "Children",
+                "Genre": "Educational",
+                "Books Read": 130
+            },
+            {
+                "Age Group Index": 2,
+                "Age Group": "Teens",
+                "Genre": "Fantasy",
+                "Books Read": 110
+            },
+            {
+                "Age Group Index": 2,
+                "Age Group": "Teens",
+                "Genre": "Adventure",
+                "Books Read": 105
+            },
+            {
+                "Age Group Index": 2,
+                "Age Group": "Teens",
+                "Genre": "Educational",
+                "Books Read": 50
+            },
+            {
+                "Age Group Index": 3,
+                "Age Group": "Young Adults",
+                "Genre": "Fantasy",
+                "Books Read": 80
+            },
+            {
+                "Age Group Index": 3,
+                "Age Group": "Young Adults",
+                "Genre": "Adventure",
+                "Books Read": 90
+            },
+            {
+                "Age Group Index": 3,
+                "Age Group": "Young Adults",
+                "Genre": "Educational",
+                "Books Read": 70
+            },
+            {
+                "Age Group Index": 4,
+                "Age Group": "Adults",
+                "Genre": "Fantasy",
+                "Books Read": 50
+            },
+            {
+                "Age Group Index": 4,
+                "Age Group": "Adults",
+                "Genre": "Adventure",
+                "Books Read": 65
+            },
+            {
+                "Age Group Index": 4,
+                "Age Group": "Adults",
+                "Genre": "Educational",
+                "Books Read": 95
+            },
+            {
+                "Age Group Index": 5,
+                "Age Group": "Seniors",
+                "Genre": "Fantasy",
+                "Books Read": 40
+            },
+            {
+                "Age Group Index": 5,
+                "Age Group": "Seniors",
+                "Genre": "Adventure",
+                "Books Read": 30
+            },
+            {
+                "Age Group Index": 5,
+                "Age Group": "Seniors",
+                "Genre": "Educational",
+                "Books Read": 100
+            }
+        ]
+    },
+    "height": 400,
+    "width": 600,
+    "mark": {
+        "type": "circle",
+        "filled": true,
+        "color": "#4682B4",
+        "size": 200
+    },
+    "encoding": {
+        "x": {
+            "field": "Age Group Index",
+            "type": "ordinal",
+            "title": "Age Group",
+            "axis": {
+                "labels": true,
+                "labelExpr": "['Children', 'Teens', 'Young Adults', 'Adults', 'Seniors'][datum.value-1]"
+            }
+        },
+        "y": {
+            "field": "Books Read",
+            "type": "quantitative",
+            "title": "Number of Books Read"
+        },
+        "color": {
+            "field": "Genre",
+            "scale": {
+                "domain": [
+                    "Fantasy",
+                    "Adventure",
+                    "Educational"
+                ],
+                "range": [
+                    "#E69F00",
+                    "#56B4E9",
+                    "#009E73"
+                ]
+            },
+            "type": "nominal",
+            "title": "Book Genre",
+            "legend": {
+                "titleFontSize": 12,
+                "labelFontSize": 10,
+                "offset": 60
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Age Group",
+                "type": "nominal",
+                "title": "Age Group"
+            },
+            {
+                "field": "Genre",
+                "type": "nominal",
+                "title": "Book Genre"
+            },
+            {
+                "field": "Books Read",
+                "type": "quantitative",
+                "title": "Books Read"
+            }
+        ]
+    }
+}

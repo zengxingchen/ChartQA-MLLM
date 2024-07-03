@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 600, height: 400});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Graduates in Different Fields (2013-2022)',
+        left: 'center'
+    },
+    color: ['#3366CC', '#DC3912', '#FF9900', '#109618'],
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01]
+    },
+    yAxis: {
+        type: 'category',
+        data: ['2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022']
+    },
+    series: [
+        {
+            name: 'Engineering',
+            type: 'bar',
+            data: [120, 130, 140, 150, 155, 160, 165, 170, 180, 190],
+            barWidth: '8%'
+        },
+        {
+            name: 'Medical',
+            type: 'bar',
+            data: [150, 160, 165, 168, 170, 175, 180, 185, 190, 195],
+            barWidth: '8%'
+        },
+        {
+            name: 'Arts',
+            type: 'bar',
+            data: [90, 95, 100, 110, 115, 120, 130, 135, 140, 145],
+            barWidth: '8%'
+        },
+        {
+            name: 'Business',
+            type: 'bar',
+            data: [200, 210, 220, 230, 240, 250, 260, 270, 280, 290],
+            barWidth: '8%'
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+var option;
+
+option = {
+    title: {
+        text: 'Urbanization vs. Education Levels',
+        left: 'center',
+        top: '10%'
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: function (params) {
+            return params.seriesName + '<br/>Urbanization: ' + params.value[0] + '%<br/>Education Level: ' + params.value[1] + '%';
+        }
+    },
+    legend: {
+        data: ['Urbanization'],
+        top: '10%',
+        left: 'right'
+    },
+    xAxis: {
+        name: 'Urbanization (%)',
+        type: 'value'
+    },
+    yAxis: {
+        name: 'Education Level (%)',
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Urbanization',
+            type: 'scatter',
+            itemStyle: {
+                color: '#FF6347'
+            },
+            data: [
+                [23.4, 75],
+                [26.7, 78],
+                [25.4, 74],
+                [30.1, 80],
+                [28.7, 82],
+                [27.2, 79],
+                [29.4, 83],
+                [32.4, 85],
+                [31.6, 84],
+                [33.1, 88],
+                [35.2, 90],
+                [36.7, 92],
+                [34.4, 86],
+                [38.1, 95],
+                [37.6, 93],
+                [40.4, 97],
+                [41.2, 98],
+                [39.7, 96],
+                [42.6, 100],
+                [43.9, 102],
+                [44.8, 104],
+                [46.3, 105],
+                [47.2, 106],
+                [48.1, 107],
+                [49.3, 108],
+                [50.4, 110],
+                [51.2, 111],
+                [52.6, 113],
+                [53.4, 115],
+                [54.2, 116],
+                [55.1, 118],
+                [56.2, 119],
+                [57.4, 121],
+                [58.7, 123],
+                [59.8, 125],
+                [60.6, 126],
+                [61.7, 128],
+                [62.9, 130],
+                [63.8, 132],
+                [64.5, 133],
+                [65.4, 134],
+                [66.2, 136],
+                [67.3, 137],
+                [68.4, 139],
+                [69.6, 141],
+                [70.7, 143],
+                [71.9, 144],
+                [73.1, 146],
+                [74.3, 148],
+                [75.4, 149]
+            ]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

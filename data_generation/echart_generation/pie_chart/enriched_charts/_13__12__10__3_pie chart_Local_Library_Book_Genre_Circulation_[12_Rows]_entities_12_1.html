@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'EV Market Share by Manufacturer in 2022',
+        left: 'center',
+        top: 20
+    },
+    tooltip: {
+        trigger: 'item'
+    },
+    legend: {
+        orient: 'vertical',
+        left: 'left',
+        top: 45
+    },
+    series: [
+        {
+            name: 'Market Share',
+            type: 'pie',
+            radius: '50%',
+            data: [
+                {value: 19.5, name: 'Tesla'},
+                {value: 12.3, name: 'Volkswagen'},
+                {value: 7.8, name: 'BMW'},
+                {value: 11.6, name: 'BYD'},
+                {value: 8.9, name: 'Hyundai-Kia'},
+                {value: 3.2, name: 'Volvo-Polestar'},
+                {value: 3.7, name: 'Peugeot-Citroen'},
+                {value: 9.1, name: 'Renault-Nissan'},
+                {value: 2.6, name: 'Ford'},
+                {value: 4.1, name: 'Audi'},
+                {value: 5.2, name: 'Mercedes-Benz'},
+                {value: 2.1, name: 'Porsche'},
+                {value: 10.0, name: 'Other'}
+            ],
+            emphasis: {
+                itemStyle: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            }
+        }
+    ],
+    color: [
+        '#FF6F61', '#6B5B95', '#88B04B', '#F7CAC9', '#92A8D1',
+        '#955251', '#B565A7', '#009B77', '#DD4124', '#D65076',
+        '#45B8AC', '#EFC050', '#5B5EA6', '#9B2335'
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

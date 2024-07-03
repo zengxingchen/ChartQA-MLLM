@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Common Stress Factors',
+        left: 'center',
+        top: 20
+    },
+    tooltip: {
+        trigger: 'item'
+    },
+    legend: {
+        orient: 'vertical',
+        left: 'left',
+        top: 'middle',
+        textStyle: {
+            color: '#666',
+            fontSize: 16
+        }
+    },
+    series: [
+        {
+            name: 'Percentage',
+            type: 'pie',
+            radius: '50%',
+            data: [
+                { value: 30, name: 'Work' },
+                { value: 25, name: 'Money' },
+                { value: 20, name: 'Health' },
+                { value: 15, name: 'Relationships' },
+                { value: 5, name: 'Politics' },
+                { value: 5, name: 'Technology' }
+            ],
+            emphasis: {
+                itemStyle: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            },
+            itemStyle: {
+                normal: {
+                    color: function (params) {
+                        var colorList = [
+                          '#3366CC','#DC3912','#FF9900','#109618','#990099','#3B3EAC'
+                        ];
+                        return colorList[params.dataIndex]
+                    }
+                }
+            },
+            label: {
+                position: 'outside',
+                formatter: '{b}: {c}%',
+                color: '#333'
+            },
+            labelLine: {
+                length: 20,
+                length2: 30,
+                smooth: 0.5
+            },
+            avoidLabelOverlap: true
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

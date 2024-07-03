@@ -1,0 +1,250 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Quarterly Revenue Growth of Three Tech Giants Over Several Years",
+    "title": {
+        "text": "Tech Giants' Quarterly Revenue Growth",
+        "fontSize": 18,
+        "anchor": "start",
+        "dy": -10,
+        "dx": 20
+    },
+    "width": 500,
+    "height": 300,
+    "data": {
+        "values": [
+            {
+                "Quarter": "Q1 2015",
+                "Apple": 58,
+                "Google": 17.3,
+                "Microsoft": 21.7
+            },
+            {
+                "Quarter": "Q2 2015",
+                "Apple": 49.6,
+                "Google": 17.7,
+                "Microsoft": 22.2
+            },
+            {
+                "Quarter": "Q3 2015",
+                "Apple": 51.1,
+                "Google": 18.7,
+                "Microsoft": 21.3
+            },
+            {
+                "Quarter": "Q4 2015",
+                "Apple": 75.9,
+                "Google": 21.3,
+                "Microsoft": 23.8
+            },
+            {
+                "Quarter": "Q1 2016",
+                "Apple": 50.6,
+                "Google": 20.3,
+                "Microsoft": 22.1
+            },
+            {
+                "Quarter": "Q2 2016",
+                "Apple": 42.4,
+                "Google": 21.5,
+                "Microsoft": 20.6
+            },
+            {
+                "Quarter": "Q3 2016",
+                "Apple": 46.9,
+                "Google": 22.4,
+                "Microsoft": 21.9
+            },
+            {
+                "Quarter": "Q4 2016",
+                "Apple": 78.4,
+                "Google": 26.1,
+                "Microsoft": 25.8
+            },
+            {
+                "Quarter": "Q1 2017",
+                "Apple": 52.9,
+                "Google": 24.7,
+                "Microsoft": 23.2
+            },
+            {
+                "Quarter": "Q2 2017",
+                "Apple": 45.4,
+                "Google": 26.0,
+                "Microsoft": 24.7
+            },
+            {
+                "Quarter": "Q3 2017",
+                "Apple": 52.6,
+                "Google": 27.8,
+                "Microsoft": 24.5
+            },
+            {
+                "Quarter": "Q4 2017",
+                "Apple": 88.3,
+                "Google": 32.3,
+                "Microsoft": 28.9
+            },
+            {
+                "Quarter": "Q1 2018",
+                "Apple": 61.1,
+                "Google": 31.1,
+                "Microsoft": 26.8
+            },
+            {
+                "Quarter": "Q2 2018",
+                "Apple": 53.3,
+                "Google": 32.7,
+                "Microsoft": 28.1
+            },
+            {
+                "Quarter": "Q3 2018",
+                "Apple": 62.9,
+                "Google": 33.7,
+                "Microsoft": 29.1
+            },
+            {
+                "Quarter": "Q4 2018",
+                "Apple": 84.3,
+                "Google": 39.1,
+                "Microsoft": 32.5
+            },
+            {
+                "Quarter": "Q1 2019",
+                "Apple": 58.0,
+                "Google": 36.3,
+                "Microsoft": 30.6
+            },
+            {
+                "Quarter": "Q2 2019",
+                "Apple": 53.8,
+                "Google": 38.9,
+                "Microsoft": 33.7
+            },
+            {
+                "Quarter": "Q3 2019",
+                "Apple": 64.0,
+                "Google": 40.5,
+                "Microsoft": 33.1
+            },
+            {
+                "Quarter": "Q4 2019",
+                "Apple": 91.8,
+                "Google": 46.1,
+                "Microsoft": 36.9
+            },
+            {
+                "Quarter": "Q1 2020",
+                "Apple": 58.3,
+                "Google": 41.2,
+                "Microsoft": 35.0
+            },
+            {
+                "Quarter": "Q2 2020",
+                "Apple": 59.7,
+                "Google": 38.3,
+                "Microsoft": 38.0
+            },
+            {
+                "Quarter": "Q3 2020",
+                "Apple": 64.7,
+                "Google": 46.2,
+                "Microsoft": 37.2
+            },
+            {
+                "Quarter": "Q4 2020",
+                "Apple": 111.4,
+                "Google": 56.9,
+                "Microsoft": 43.1
+            },
+            {
+                "Quarter": "Q1 2021",
+                "Apple": 89.6,
+                "Google": 55.3,
+                "Microsoft": 41.7
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Apple",
+                "Google",
+                "Microsoft"
+            ],
+            "as": [
+                "Company",
+                "Revenue"
+            ]
+        },
+        {
+            "calculate": "datum.Revenue",
+            "as": "quarterly_revenue"
+        }
+    ],
+    "mark": {
+        "type": "area",
+        "opacity": 0.5,
+        "line": true
+    },
+    "encoding": {
+        "x": {
+            "field": "Quarter",
+            "type": "ordinal",
+            "axis": {
+                "title": "Fiscal Quarter"
+            }
+        },
+        "y": {
+            "field": "quarterly_revenue",
+            "type": "quantitative",
+            "stack": "zero",
+            "axis": {
+                "title": "Revenue (in billions USD)"
+            }
+        },
+        "color": {
+            "field": "Company",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Apple",
+                    "Google",
+                    "Microsoft"
+                ],
+                "range": [
+                    "#5DA5DA",
+                    "#FAA43A",
+                    "#60BD68"
+                ]
+            },
+            "legend": {
+                "title": "Company",
+                "orient": "bottom-right",
+                "offset": 10
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Quarter",
+                "type": "ordinal"
+            },
+            {
+                "field": "Company",
+                "type": "nominal"
+            },
+            {
+                "field": "quarterly_revenue",
+                "type": "quantitative",
+                "title": "Revenue (in billions)"
+            }
+        ]
+    },
+    "config": {
+        "view": {
+            "stroke": "transparent"
+        },
+        "area": {
+            "line": true
+        }
+    }
+}

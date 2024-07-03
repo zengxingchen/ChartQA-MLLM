@@ -1,0 +1,149 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Top Books by Number of Pages",
+    "width": 600,
+    "height": 400,
+    "title": {
+        "text": "Top Books by Number of Pages",
+        "subtitle": [
+            "Number of pages in popular books",
+            "Source: Book Data Library"
+        ],
+        "subtitleFontSize": 10,
+        "subtitleFontStyle": "italic",
+        "anchor": "start"
+    },
+    "data": {
+        "values": [
+            {
+                "Book": "War and Peace",
+                "Pages": 1225
+            },
+            {
+                "Book": "Moby Dick",
+                "Pages": 635
+            },
+            {
+                "Book": "Great Expectations",
+                "Pages": 505
+            },
+            {
+                "Book": "Ulysses",
+                "Pages": 730
+            },
+            {
+                "Book": "The Odyssey",
+                "Pages": 541
+            },
+            {
+                "Book": "Pride and Prejudice",
+                "Pages": 432
+            },
+            {
+                "Book": "The Catcher in the Rye",
+                "Pages": 277
+            },
+            {
+                "Book": "To Kill a Mockingbird",
+                "Pages": 281
+            },
+            {
+                "Book": "1984",
+                "Pages": 328
+            },
+            {
+                "Book": "The Great Gatsby",
+                "Pages": 180
+            },
+            {
+                "Book": "Don Quixote",
+                "Pages": 863
+            },
+            {
+                "Book": "The Hobbit",
+                "Pages": 310
+            },
+            {
+                "Book": "Anna Karenina",
+                "Pages": 864
+            },
+            {
+                "Book": "Crime and Punishment",
+                "Pages": 671
+            },
+            {
+                "Book": "Les Mis\u00e9rables",
+                "Pages": 1463
+            }
+        ]
+    },
+    "params": [
+        {
+            "name": "highlight",
+            "select": {
+                "type": "point",
+                "on": "mouseover"
+            }
+        },
+        {
+            "name": "select",
+            "select": "point"
+        }
+    ],
+    "mark": {
+        "type": "bar",
+        "color": "#1E90FF",
+        "strokeWidth": 1.5,
+        "cursor": "pointer",
+        "height": {
+            "band": 0.6
+        },
+        "opacity": {
+            "condition": {
+                "param": "highlight",
+                "value": 1
+            },
+            "value": 0.7
+        }
+    },
+    "encoding": {
+        "x": {
+            "field": "Pages",
+            "type": "quantitative",
+            "axis": {
+                "grid": false,
+                "title": "Number of Pages",
+                "labelFontSize": 10
+            }
+        },
+        "y": {
+            "field": "Book",
+            "type": "ordinal",
+            "axis": {
+                "labelFontSize": 10,
+                "title": "Book"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Book",
+                "type": "nominal",
+                "title": "Book"
+            },
+            {
+                "field": "Pages",
+                "type": "quantitative",
+                "title": "Pages"
+            }
+        ],
+        "text": {
+            "field": "Pages",
+            "type": "quantitative"
+        },
+        "label": {
+            "align": "left",
+            "baseline": "middle",
+            "dx": 3
+        }
+    }
+}

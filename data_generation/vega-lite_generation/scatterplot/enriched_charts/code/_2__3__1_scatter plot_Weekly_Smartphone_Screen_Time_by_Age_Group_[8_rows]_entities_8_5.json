@@ -1,0 +1,136 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Scatter plot of average daily exercise duration by age group",
+    "title": {
+        "text": "Average Daily Exercise Duration by Age Group",
+        "fontSize": 16,
+        "anchor": "start",
+        "offset": 20,
+        "subtitle": [
+            "A study on exercise habits across different age groups"
+        ],
+        "subtitleFontStyle": "italic",
+        "subtitleFontSize": 12
+    },
+    "data": {
+        "values": [
+            {
+                "Age Group Index": 1,
+                "Age Group": "Newborn",
+                "Average Exercise Duration": 0.2,
+                "Participants": 50
+            },
+            {
+                "Age Group Index": 2,
+                "Age Group": "Infants",
+                "Average Exercise Duration": 0.5,
+                "Participants": 60
+            },
+            {
+                "Age Group Index": 3,
+                "Age Group": "Toddlers",
+                "Average Exercise Duration": 1.5,
+                "Participants": 70
+            },
+            {
+                "Age Group Index": 4,
+                "Age Group": "Preschool",
+                "Average Exercise Duration": 1.8,
+                "Participants": 80
+            },
+            {
+                "Age Group Index": 5,
+                "Age Group": "School Age",
+                "Average Exercise Duration": 2.0,
+                "Participants": 90
+            },
+            {
+                "Age Group Index": 6,
+                "Age Group": "Teens",
+                "Average Exercise Duration": 2.5,
+                "Participants": 100
+            },
+            {
+                "Age Group Index": 7,
+                "Age Group": "Young Adults",
+                "Average Exercise Duration": 1.8,
+                "Participants": 110
+            },
+            {
+                "Age Group Index": 8,
+                "Age Group": "Adults",
+                "Average Exercise Duration": 1.2,
+                "Participants": 120
+            },
+            {
+                "Age Group Index": 9,
+                "Age Group": "Seniors",
+                "Average Exercise Duration": 0.8,
+                "Participants": 130
+            }
+        ]
+    },
+    "height": 400,
+    "width": 600,
+    "mark": {
+        "type": "point",
+        "filled": true,
+        "color": "#2E86C1",
+        "size": 100,
+        "opacity": 0.8
+    },
+    "encoding": {
+        "x": {
+            "field": "Age Group Index",
+            "type": "ordinal",
+            "title": "Age Group",
+            "axis": {
+                "labels": true,
+                "labelExpr": "['Newborn', 'Infants', 'Toddlers', 'Preschool', 'School Age', 'Teens', 'Young Adults', 'Adults', 'Seniors'][datum.value-1]"
+            }
+        },
+        "y": {
+            "field": "Average Exercise Duration",
+            "type": "quantitative",
+            "title": "Average Exercise Duration (hours per day)"
+        },
+        "color": {
+            "field": "Average Exercise Duration",
+            "scale": {
+                "domain": [
+                    0,
+                    2.5
+                ],
+                "range": [
+                    "#1B4F72",
+                    "#2980B9",
+                    "#3498DB",
+                    "#85C1E9",
+                    "#AED6F1"
+                ]
+            },
+            "type": "quantitative",
+            "title": "Average Exercise Duration",
+            "legend": {
+                "offset": 10
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Age Group",
+                "type": "nominal",
+                "title": "Age Group"
+            },
+            {
+                "field": "Average Exercise Duration",
+                "type": "quantitative",
+                "title": "Average Exercise Duration"
+            },
+            {
+                "field": "Participants",
+                "type": "quantitative",
+                "title": "Number of Participants"
+            }
+        ]
+    }
+}

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {renderer: 'canvas', useDirtyRect: false, width: 800, height: 600});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Technology Design and Usability Performance',
+        left: 'center',
+        top: '20'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        top: '50',
+        data: ['Design', 'Usability', 'Performance']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value'
+    },
+    yAxis: {
+        type: 'category',
+        data: ['Web', 'Mobile', 'Desktop', 'Wearable', 'Smart Home', 'IoT', 'VR/AR', 'AI', 'Robotics', 'Drones']
+    },
+    series: [
+        {
+            name: 'Design',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            color: '#FF5733',
+            data: [150, 120, 170, 130, 160, 140, 130, 200, 170, 150]
+        },
+        {
+            name: 'Usability',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            color: '#33FF57',
+            data: [200, 160, 210, 180, 190, 150, 140, 230, 190, 160]
+        },
+        {
+            name: 'Performance',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            color: '#3357FF',
+            data: [180, 190, 160, 170, 150, 160, 180, 220, 210, 190]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

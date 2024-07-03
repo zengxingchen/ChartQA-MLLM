@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+// Your provided dataset
+var data = [
+  {'Month': 'March', 'Number of Pollinators (Bees & Butterflies)': 20, 'Vegetable Yield (kg)': 15},
+  {'Month': 'April', 'Number of Pollinators (Bees & Butterflies)': 35, 'Vegetable Yield (kg)': 30},
+  {'Month': 'May', 'Number of Pollinators (Bees & Butterflies)': 50, 'Vegetable Yield (kg)': 45},
+  {'Month': 'June', 'Number of Pollinators (Bees & Butterflies)': 65, 'Vegetable Yield (kg)': 60},
+  {'Month': 'July', 'Number of Pollinators (Bees & Butterflies)': 80, 'Vegetable Yield (kg)': 75},
+  {'Month': 'August', 'Number of Pollinators (Bees & Butterflies)': 75, 'Vegetable Yield (kg)': 70},
+  {'Month': 'September', 'Number of Pollinators (Bees & Butterflies)': 50, 'Vegetable Yield (kg)': 65},
+  {'Month': 'October', 'Number of Pollinators (Bees & Butterflies)': 35, 'Vegetable Yield (kg)': 40},
+  {'Month': 'November', 'Number of Pollinators (Bees & Butterflies)': 15, 'Vegetable Yield (kg)': 20}
+];
+
+// Preparing data for scatterplot (pollinators vs yield)
+var scatterData = data.map(function (item) {
+  return {
+    value: [
+      item['Number of Pollinators (Bees & Butterflies)'],
+      item['Vegetable Yield (kg)'],
+    ],
+    name: item['Month']
+  };
+});
+
+option = {
+  tooltip: {
+    trigger: 'item',
+    formatter: function (params) {
+      return params.marker + params.name + '<br> Pollinators: ' + params.value[0] + '<br>Yield: ' + params.value[1] + ' kg';
+    }
+  },
+  legend: {
+    right: '5%',
+    data: data.map(function (item) { return item.Month; })
+  },
+  xAxis: {
+    type: 'value',
+    name: 'Number of Pollinators',
+    splitLine: {
+      lineStyle: {
+        type: 'dashed'
+      }
+    }
+  },
+  yAxis: {
+    type: 'value',
+    name: 'Vegetable Yield (kg)',
+    splitLine: {
+      lineStyle: {
+        type: 'dashed'
+      }
+    }
+  },
+  series: [{
+    name: 'Pollinators vs Yield',
+    type: 'scatter',
+    symbolSize: function (value) {
+      // Dynamic symbol size for better visibility
+      return Math.sqrt(value[1]) * 2;
+    },
+    label: {
+      emphasis: {
+        show: true,
+        formatter: function (param) {
+          return param.data.name;
+        },
+        position: 'top'
+      }
+    },
+    itemStyle: {
+      shadowBlur: 10,
+      shadowColor: 'rgba(25, 100, 150, 0.5)',
+      shadowOffsetY: 5,
+      color: function (param) {
+        // Color by month for better differentiation
+        var colorList = [
+          '#c23531', '#2f4554', '#61a0a8', '#d48265',
+          '#91c7ae', '#749f83', '#ca8622', '#bda29a',
+          '#6e7074', '#546570', '#c4ccd3'
+        ];
+        return colorList[param.dataIndex % colorList.length];
+      }
+    },
+    data: scatterData,
+    markLine: {
+      lineStyle: {
+        normal: {
+          type: 'solid'
+        }
+      },
+      data: [
+        {type: 'average', name: 'Average Pollinators'},
+        {type: 'average', name: 'Average Yield', valueIndex: 1}
+      ]
+    }
+  }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

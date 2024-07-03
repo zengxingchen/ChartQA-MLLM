@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, { width: 1200, height: 600 });
+var option;
+
+option = {
+    title: {
+        text: 'Trends in Future Technologies',
+        left: 'center',
+        top: '10'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['2020', '2021', '2022', '2023'],
+        top: '40'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        data: [
+            'Virtual Reality', 'Augmented Reality', 'Artificial Intelligence',
+            'Quantum Computing', 'Blockchain', '5G Technology',
+            'Smart Cities', 'Autonomous Vehicles', 'Biotechnology', 'Nanotechnology'
+        ],
+        axisLabel: {
+            rotate: 45,
+            interval: 0
+        }
+    },
+    yAxis: {
+        type: 'value',
+        axisLabel: {
+            formatter: '{value} %'
+        }
+    },
+    series: [
+        {
+            name: '2020',
+            type: 'bar',
+            data: [20, 15, 30, 10, 25, 35, 20, 15, 30, 20],
+            itemStyle: {
+                color: '#1f77b4'
+            },
+            barWidth: '50%',
+            label: {
+                show: true,
+                position: 'insideTop'
+            }
+        },
+        {
+            name: '2021',
+            type: 'bar',
+            data: [30, 25, 40, 20, 30, 40, 25, 20, 35, 25],
+            itemStyle: {
+                color: '#ff7f0e'
+            },
+            barWidth: '50%',
+            label: {
+                show: true,
+                position: 'insideTop'
+            }
+        },
+        {
+            name: '2022',
+            type: 'bar',
+            data: [45, 35, 50, 30, 35, 50, 30, 25, 40, 30],
+            itemStyle: {
+                color: '#2ca02c'
+            },
+            barWidth: '50%',
+            label: {
+                show: true,
+                position: 'insideTop'
+            }
+        },
+        {
+            name: '2023',
+            type: 'bar',
+            data: [50, 40, 60, 40, 45, 55, 35, 30, 45, 35],
+            itemStyle: {
+                color: '#d62728'
+            },
+            barWidth: '50%',
+            label: {
+                show: true,
+                position: 'insideTop'
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

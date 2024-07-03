@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 800, // changing width of the chart reasonably
+    height: 600 // changing height of the chart reasonably
+});
+var app = {};
+
+var option;
+
+option = {
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Deforestation', 'Pollution', 'Conservation Efforts', 'Natural Disasters']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01]
+    },
+    yAxis: {
+        type: 'category',
+        data: ['2015', '2016', '2017', '2018', '2019', '2020']
+    },
+    series: [
+        {
+            name: 'Deforestation',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35, // change width of bars reasonably
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [10, 12, 9, 7, 5, 3],
+            itemStyle: {
+                color: '#FF7F50' // specific color code for better clarity
+            }
+        },
+        {
+            name: 'Pollution',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [40, 38, 35, 30, 25, 20],
+            itemStyle: {
+                color: '#6495ED'
+            }
+        },
+        {
+            name: 'Conservation Efforts',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [25, 28, 32, 38, 45, 52],
+            itemStyle: {
+                color: '#32CD32'
+            }
+        },
+        {
+            name: 'Natural Disasters',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [25, 22, 24, 25, 25, 25],
+            itemStyle: {
+                color: '#DC143C'
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

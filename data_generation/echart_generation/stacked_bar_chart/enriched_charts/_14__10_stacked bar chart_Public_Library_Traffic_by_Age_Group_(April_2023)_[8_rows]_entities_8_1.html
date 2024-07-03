@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var option;
+
+option = {
+    title: {
+        text: 'Growth of Various Art Forms Over Years',
+        left: 'center',
+        top: '10'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['2019', '2020', '2021', '2022'],
+        bottom: '10'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '15%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        data: ['Visual Arts', 'Music', 'Theater', 'Literature', 'Film', 'Dance', 'Photography', 'Sculpture'],
+        axisLabel: {
+            interval: 0,
+            rotate: 30
+        }
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Number of Events'
+    },
+    series: [
+        {
+            name: '2019',
+            type: 'bar',
+            stack: 'total',
+            barWidth: '30%',
+            color: '#FF7F50',
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            data: [300, 150, 200, 180, 220, 140, 160, 120]
+        },
+        {
+            name: '2020',
+            type: 'bar',
+            stack: 'total',
+            barWidth: '30%',
+            color: '#87CEEB',
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            data: [320, 170, 220, 190, 230, 160, 180, 140]
+        },
+        {
+            name: '2021',
+            type: 'bar',
+            stack: 'total',
+            barWidth: '30%',
+            color: '#32CD32',
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            data: [340, 190, 240, 200, 250, 180, 190, 150]
+        },
+        {
+            name: '2022',
+            type: 'bar',
+            stack: 'total',
+            barWidth: '30%',
+            color: '#FFD700',
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            data: [380, 210, 260, 230, 270, 200, 210, 160]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

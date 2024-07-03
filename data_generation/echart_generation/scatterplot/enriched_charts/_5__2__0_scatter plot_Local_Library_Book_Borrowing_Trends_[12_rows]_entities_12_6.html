@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+var app = {};
+
+var option = {
+    title: {
+        text: 'Height vs Weight Analysis',
+        left: 'center',
+        top: '10%'
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: '{a} <br/>{b} : {c}'
+    },
+    legend: {
+        data: ['Height-Weight'],
+        left: 'right',
+        top: '10%'
+    },
+    xAxis: {
+        type: 'value',
+        name: 'Height (cm)',
+        nameLocation: 'middle',
+        nameTextStyle: {
+            fontWeight: 'bold',
+            fontSize: 14
+        },
+        splitLine: {
+            lineStyle: {
+                type: 'dashed'
+            }
+        }
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Weight (kg)',
+        nameLocation: 'middle',
+        nameTextStyle: {
+            fontWeight: 'bold',
+            fontSize: 14
+        },
+        splitLine: {
+            lineStyle: {
+                type: 'dashed'
+            }
+        }
+    },
+    series: [
+        {
+            name: 'Height-Weight',
+            type: 'scatter',
+            data: [
+                [12, 40],
+                [15, 48],
+                [20, 45],
+                [23, 60],
+                [25, 58],
+                [28, 55],
+                [30, 62],
+                [35, 70],
+                [40, 75],
+                [45, 80],
+                [50, 85],
+                [55, 90],
+                [60, 95],
+                [65, 100],
+                [70, 105],
+                [75, 110],
+                [80, 115],
+                [85, 120],
+                [90, 125],
+                [95, 130],
+                [100, 135]
+            ],
+            itemStyle: {
+                color: '#1f78b4'
+            },
+            symbolSize: 10
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

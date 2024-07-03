@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Electric Vehicle Market Share',
+        left: 'center',
+        top: '5%'
+    },
+    tooltip: {
+        trigger: 'item'
+    },
+    legend: {
+        orient: 'vertical',
+        left: 'left',
+        top: '15%',
+        textStyle: {
+            fontSize: 14
+        }
+    },
+    series: [
+        {
+            name: 'Market Share',
+            type: 'pie',
+            radius: '50%',
+            data: [
+                {value: 19.5, name: 'Tesla'},
+                {value: 13.2, name: 'BYD'},
+                {value: 7.8, name: 'BMW'},
+                {value: 5.6, name: 'Mercedes'},
+                {value: 5.4, name: 'Volkswagen'},
+                {value: 4.9, name: 'Audi'},
+                {value: 3.7, name: 'Porsche'},
+                {value: 3.1, name: 'NIO'},
+                {value: 2.8, name: 'GM'},
+                {value: 2.6, name: 'Ford'},
+                {value: 2.3, name: 'Nissan'},
+                {value: 2.1, name: 'SAIC'},
+                {value: 1.9, name: 'Hyundai'},
+                {value: 1.5, name: 'KIA'},
+                {value: 1.2, name: 'Renault'},
+                {value: 1.0, name: 'Volvo'},
+                {value: 21.4, name: 'Others'}
+            ],
+            emphasis: {
+                itemStyle: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            }
+        }
+    ],
+    color: [
+        '#EF5350', '#EC407A', '#AB47BC', '#7E57C2', '#5C6BC0',
+        '#42A5F5', '#29B6F6', '#26C6DA', '#26A69A', '#66BB6A',
+        '#9CCC65', '#D4E157', '#FFEE58', '#FFCA28', '#FFA726',
+        '#FF7043', '#8D6E63'
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

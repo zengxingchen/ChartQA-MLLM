@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 800, // Change width
+    height: 600 // Change height
+});
+var option;
+
+// Data
+var dataMonth = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+var dataCloudHosting = [75, 80, 85, 80, 75, 70, 75, 80, 85, 90, 95, 100];
+var dataDataAnalytics = [65, 70, 75, 70, 65, 60, 65, 70, 75, 80, 85, 90];
+var dataSecuritySolutions = [80, 85, 90, 85, 80, 75, 80, 85, 90, 95, 100, 105];
+
+option = {
+    title: {
+        text: 'Tech Company Services Revenue (2023)', // Change headline
+        left: 'center', // Proper placement to avoid overlap with the legend
+        top: 20 // Adjust the vertical position
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        top: 60, // Adjust vertical position to avoid overlap with the headline
+        data: ['Cloud Hosting', 'Data Analytics', 'Security Solutions']
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: dataMonth
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Cloud Hosting',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: { focus: 'series' },
+            data: dataCloudHosting
+        },
+        {
+            name: 'Data Analytics',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: { focus: 'series' },
+            data: dataDataAnalytics
+        },
+        {
+            name: 'Security Solutions',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: { focus: 'series' },
+            data: dataSecuritySolutions
+        }
+    ],
+    color: ['#4682B4', '#CD5C5C', '#2E8B57'], // Modify color scheme with specific colors
+    textStyle: {
+        fontFamily: 'Arial, Verdana, sans-serif'
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

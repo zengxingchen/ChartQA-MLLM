@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 800,
+    height: 600
+});
+var option;
+
+option = {
+    title: {
+        text: 'Prevalence of Mental Health Conditions',
+        left: 'center',
+        textStyle: {
+            color: '#333',
+            fontSize: 18,
+            fontWeight: 'bold'
+        }
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    legend: {
+        data: ['Percentage'],
+        bottom: '0%',
+        textStyle: {
+            color: '#000'
+        }
+    },
+    xAxis: {
+        type: 'category',
+        data: ['Depression', 'Anxiety', 'Bipolar', 'Schizophrenia', 'ADHD', 'PTSD', 'OCD', 'Eating Disorders', 'Phobias', 'Autism'],
+        axisLabel: {
+            rotate: 45,
+            color: '#333'
+        }
+    },
+    yAxis: {
+        type: 'value',
+        axisLabel: {
+            formatter: '{value} %',
+            color: '#333'
+        }
+    },
+    series: [
+        {
+            name: 'Percentage',
+            type: 'bar',
+            barWidth: '50%',
+            itemStyle: {
+                color: '#4285F4'
+            },
+            data: [
+                { value: 5.5, label: { show: true, position: 'top', formatter: '{c}%' } },
+                { value: 8.2, label: { show: true, position: 'top', formatter: '{c}%' } },
+                { value: 1.4, label: { show: true, position: 'top', formatter: '{c}%' } },
+                { value: 0.5, label: { show: true, position: 'top', formatter: '{c}%' } },
+                { value: 4.3, label: { show: true, position: 'top', formatter: '{c}%' } },
+                { value: 3.6, label: { show: true, position: 'top', formatter: '{c}%' } },
+                { value: 2.1, label: { show: true, position: 'top', formatter: '{c}%' } },
+                { value: 1.7, label: { show: true, position: 'top', formatter: '{c}%' } },
+                { value: 2.5, label: { show: true, position: 'top', formatter: '{c}%' } },
+                { value: 1.2, label: { show: true, position: 'top', formatter: '{c}%' } }
+            ]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

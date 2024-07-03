@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 800,
+    height: 600
+});
+var option = {
+    title: {
+        text: 'Correlation between Age and Happiness',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: 'Age: {b0}<br/>Happiness: {c0}'
+    },
+    legend: {
+        data: ['Data Points'],
+        top: 'bottom'
+    },
+    xAxis: {
+        type: 'value',
+        name: 'Age',
+        min: 0,
+        max: 35
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Happiness',
+        min: 0,
+        max: 20
+    },
+    series: [{
+        name: 'Data Points',
+        type: 'scatter',
+        itemStyle: {
+            color: '#FF6347'
+        },
+        data: [
+            [3, 9], [4, 8], [5, 7], [6, 6], [7, 5], [8, 4], [9, 3], [10, 2],
+            [11, 1], [12, 1.5], [13, 2.5], [14, 3.5], [15, 4.5], [16, 5.5],
+            [17, 6.5], [18, 7.5], [19, 8.5], [20, 9.5], [21, 10.5], [22, 11.5],
+            [23, 12.5], [24, 13.5], [25, 14.5], [26, 15.5], [27, 16.5], [28, 17.5],
+            [29, 18.5], [30, 19.5]
+        ]
+    }]
+};
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

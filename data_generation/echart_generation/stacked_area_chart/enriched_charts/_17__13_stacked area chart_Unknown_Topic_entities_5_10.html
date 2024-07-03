@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    width: '800',
+    height: '600'
+});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Trends in Lifestyle Categories',
+        left: 'center',
+        top: 10
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            label: {
+                backgroundColor: '#6a7985'
+            }
+        }
+    },
+    legend: {
+        data: ['Education', 'Entertainment', 'Travel'],
+        top: 50
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: [
+        {
+            type: 'category',
+            boundaryGap: false,
+            data: ['2021-01', '2021-02', '2021-03', '2021-04', '2021-05', '2021-06', '2021-07', '2021-08', '2021-09', '2021-10', '2021-11', '2021-12', '2022-01', '2022-02', '2022-03', '2022-04', '2022-05', '2022-06', '2022-07', '2022-08', '2022-09', '2022-10', '2022-11', '2022-12']
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value'
+        }
+    ],
+    series: [
+        {
+            name: 'Education',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [1200, 1367, 1523, 1660, 1825, 1972, 2106, 2254, 2387, 2518, 2657, 2790, 2921, 3048, 3182, 3301, 3450, 3552, 3685, 3802, 3926, 4082, 4195, 4307],
+            color: '#37A2DA'
+        },
+        {
+            name: 'Entertainment',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [1042, 1132, 1276, 1348, 1488, 1552, 1673, 1728, 1901, 2026, 2130, 2210, 2355, 2501, 2627, 2715, 2820, 2967, 3071, 3127, 3248, 3361, 3480, 3602],
+            color: '#32C5E9'
+        },
+        {
+            name: 'Travel',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [982, 1023, 1155, 1210, 1320, 1424, 1538, 1664, 1782, 1867, 1945, 2023, 2130, 2214, 2340, 2445, 2569, 2680, 2776, 2864, 2967, 3053, 3121, 3246],
+            color: '#67E0E3'
+        }
+    ],
+    markPoint: {
+        data: [
+            {type: 'max', name: 'Max', symbolSize: 80},
+            {type: 'min', name: 'Min', symbolSize: 80}
+        ]
+    },
+    markLine: {
+        data: [
+            {type: 'average', name: 'Average'}
+        ]
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

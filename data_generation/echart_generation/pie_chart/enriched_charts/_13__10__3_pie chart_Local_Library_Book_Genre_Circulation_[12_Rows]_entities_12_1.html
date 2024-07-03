@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Global Smartphone Market Share',
+        left: 'center',
+        top: 20,
+        textStyle: {
+            color: '#333',
+            fontWeight: 'normal'
+        }
+    },
+    tooltip: {
+        trigger: 'item'
+    },
+    legend: {
+        orient: 'vertical',
+        left: 'left',
+        top: 'middle'
+    },
+    series: [
+        {
+            name: 'Market Share',
+            type: 'pie',
+            radius: '65%',
+            center: ['50%', '60%'],
+            data: [
+                { value: 25.4, name: 'Apple' },
+                { value: 20.5, name: 'Samsung' },
+                { value: 15.2, name: 'Huawei' },
+                { value: 10.6, name: 'Xiaomi' },
+                { value: 8.9, name: 'OPPO' },
+                { value: 7.1, name: 'Vivo' },
+                { value: 3.5, name: 'Lenovo' },
+                { value: 2.6, name: 'LG' },
+                { value: 2.2, name: 'ZTE' },
+                { value: 1.8, name: 'Realme' },
+                { value: 2.2, name: 'Others' }
+            ],
+            emphasis: {
+                itemStyle: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            }
+        }
+    ],
+    color: [
+        '#5470C6', '#91CC75', '#FAC858', '#EE6666',
+        '#73C0DE', '#3BA272', '#FC8452', '#9A60B4',
+        '#EA7CCC', '#ff8c00', '#B3B3B3'
+    ],
+    label: {
+        position: 'outside',
+        formatter: '{b}: {d}%'
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

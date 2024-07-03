@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false
+});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Future Technologies & Society',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        },
+        formatter: function (params) {
+            let total = 0;
+            let tooltipStr = params[0].name + '<br/>';
+            params.forEach(function (item) {
+                total += item.value;
+            });
+            params.forEach(function (item) {
+                tooltipStr += item.marker + " " + item.seriesName + ": " + ((item.value / total) * 100).toFixed(2) + '%<br/>';
+            });
+            return tooltipStr;
+        }
+    },
+    legend: {
+        data: ['Robotics', 'AI', 'Quantum Computing', 'IoT', 'Cyber Security'],
+        top: '10%'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01],
+        max: 100,
+    },
+    yAxis: {
+        type: 'category',
+        data: ['2020', '2021', '2022', '2023']
+    },
+    series: [
+        {
+            name: 'Robotics',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            data: [15, 20, 25, 35],
+            color: '#FF7F50'
+        },
+        {
+            name: 'AI',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            data: [25, 30, 35, 25],
+            color: '#32CD32'
+        },
+        {
+            name: 'Quantum Computing',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            data: [5, 10, 15, 20],
+            color: '#6495ED'
+        },
+        {
+            name: 'IoT',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            data: [40, 25, 15, 10],
+            color: '#FFD700'
+        },
+        {
+            name: 'Cyber Security',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            data: [15, 15, 10, 10],
+            color: '#DC143C'
+        }
+    ]
+};
+
+myChart.setOption(option);
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

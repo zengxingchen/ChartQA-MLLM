@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+const chartData = [
+  {'Day': 'Monday', 'Kids (0-12)': 120, 'Teens (13-19)': 80, 'Adults (20-64)': 200, 'Seniors (65+)': 40},
+  {'Day': 'Tuesday', 'Kids (0-12)': 135, 'Teens (13-19)': 75, 'Adults (20-64)': 180, 'Seniors (65+)': 60},
+  {'Day': 'Wednesday', 'Kids (0-12)': 100, 'Teens (13-19)': 60, 'Adults (20-64)': 190, 'Seniors (65+)': 55},
+  {'Day': 'Thursday', 'Kids (0-12)': 110, 'Teens (13-19)': 65, 'Adults (20-64)': 205, 'Seniors (65+)': 50},
+  {'Day': 'Friday', 'Kids (0-12)': 150, 'Teens (13-19)': 80, 'Adults (20-64)': 220, 'Seniors (65+)': 45},
+  {'Day': 'Saturday', 'Kids (0-12)': 180, 'Teens (13-19)': 90, 'Adults (20-64)': 250, 'Seniors (65+)': 70},
+  {'Day': 'Sunday', 'Kids (0-12)': 160, 'Teens (13-19)': 85, 'Adults (20-64)': 230, 'Seniors (65+)': 65}
+];
+
+let days = chartData.map(function (item) {
+  return item.Day;
+});
+
+let kidsData = chartData.map(function (item) {
+  return item['Kids (0-12)'];
+});
+let teensData = chartData.map(function (item) {
+  return item['Teens (13-19)'];
+});
+let adultsData = chartData.map(function (item) {
+  return item['Adults (20-64)'];
+});
+let seniorsData = chartData.map(function (item) {
+  return item['Seniors (65+)'];
+});
+
+option = {
+  tooltip: {
+    trigger: 'axis',
+    axisPointer: {
+      type: 'shadow'
+    }
+  },
+  legend: {
+    data: ['Kids (0-12)', 'Teens (13-19)', 'Adults (20-64)', 'Seniors (65+)']
+  },
+  grid: {
+    left: '3%',
+    right: '4%',
+    bottom: '3%',
+    containLabel: true
+  },
+  xAxis: {
+    type: 'value',
+    boundaryGap: [0, 0.01]
+  },
+  yAxis: {
+    type: 'category',
+    data: days
+  },
+  series: [
+    {
+      name: 'Kids (0-12)',
+      type: 'bar',
+      data: kidsData
+    },
+    {
+      name: 'Teens (13-19)',
+      type: 'bar',
+      data: teensData
+    },
+    {
+      name: 'Adults (20-64)',
+      type: 'bar',
+      data: adultsData
+    },
+    {
+      name: 'Seniors (65+)',
+      type: 'bar',
+      data: seniorsData
+    }
+  ],
+  color: ['#5470C6', '#91CC75', '#EE6666', '#73C0DE'],
+  itemStyle: {
+    barBorderRadius: [5, 5, 0, 0] // make the bars have rounded corners
+  },
+  textStyle: {
+    fontFamily: 'Arial, Verdana, sans-serif'
+  }
+};
+
+if (option && typeof option === 'object') {
+  myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

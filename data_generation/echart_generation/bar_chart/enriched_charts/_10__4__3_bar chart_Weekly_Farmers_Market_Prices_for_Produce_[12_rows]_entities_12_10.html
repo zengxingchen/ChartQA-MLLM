@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 800,
+    height: 600
+});
+var option;
+
+option = {
+    title: {
+        text: 'Future Technologies & Society',
+        left: 'center',
+        top: '10%'
+    },
+    color: ['#FF5733', '#33FF57', '#3357FF', '#FF33A5', '#A533FF', '#FF9633', '#33FFD1', '#FF3333', '#33FF85', '#FF5733'],
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Value'],
+        top: '15%'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        data: ['Artificial Intelligence', 'Quantum Computing', 'Robotics', 'Blockchain', 'Virtual Reality', 'Augmented Reality', 'Nanotechnology', '3D Printing', 'Genetic Engineering', 'Biotechnology'],
+        axisLabel: {
+            rotate: 30,
+            interval: 0
+        }
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Value',
+            type: 'bar',
+            barWidth: '40%',
+            data: [
+                { value: 78, label: { show: true, position: 'top' } },
+                { value: 85, label: { show: true, position: 'top' } },
+                { value: 90, label: { show: true, position: 'top' } },
+                { value: 70, label: { show: true, position: 'top' } },
+                { value: 65, label: { show: true, position: 'top' } },
+                { value: 75, label: { show: true, position: 'top' } },
+                { value: 80, label: { show: true, position: 'top' } },
+                { value: 72, label: { show: true, position: 'top' } },
+                { value: 88, label: { show: true, position: 'top' } },
+                { value: 82, label: { show: true, position: 'top' } }
+            ]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

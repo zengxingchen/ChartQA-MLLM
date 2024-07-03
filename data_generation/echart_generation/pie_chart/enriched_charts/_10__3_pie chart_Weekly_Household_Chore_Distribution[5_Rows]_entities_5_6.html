@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Global Energy Consumption Sources',
+        left: 'center',
+        top: '5%'
+    },
+    tooltip: {
+        trigger: 'item'
+    },
+    legend: {
+        orient: 'vertical',
+        left: 'left',
+        top: '15%'
+    },
+    series: [
+        {
+            name: 'Energy Source',
+            type: 'pie',
+            radius: '55%',
+            center: ['50%', '60%'],
+            data: [
+                {value: 650, name: 'Renewable Energy'},
+                {value: 800, name: 'Fossil Fuels'},
+                {value: 300, name: 'Nuclear Power'},
+                {value: 450, name: 'Hydroelectric Power'},
+                {value: 200, name: 'Bioenergy'},
+                {value: 150, name: 'Geothermal Energy'},
+                {value: 700, name: 'Solar Power'},
+                {value: 600, name: 'Wind Power'}
+            ],
+            emphasis: {
+                itemStyle: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            },
+            label: {
+                show: true,
+                formatter: '{b}: {c} ({d}%)'
+            }
+        }
+    ],
+    color: [
+        '#e06343',
+        '#d5a6a6',
+        '#ffd666',
+        '#6e7074',
+        '#546570',
+        '#c4ccd3',
+        '#f49f42',
+        '#61a0a8'
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

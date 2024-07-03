@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Renewable Energy Use in 2022',
+        left: 'center',
+        top: 20
+    },
+    tooltip: {
+        trigger: 'item'
+    },
+    legend: {
+        orient: 'vertical',
+        left: 20,
+        top: 'middle',
+        textStyle: {
+            padding: [6, 10] // Keep distance between legend and pie
+        }
+    },
+    series: [
+        {
+            name: 'Energy Source',
+            type: 'pie',
+            radius: '50%',
+            data: [
+                { value: 20, name: 'Solar Power' },
+                { value: 25, name: 'Wind Power' },
+                { value: 15, name: 'Hydropower' },
+                { value: 13, name: 'Biomass' },
+                { value: 10, name: 'Geothermal' },
+                { value: 17, name: 'Nuclear' }
+            ],
+            emphasis: {
+                itemStyle: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            },
+            avoidLabelOverlap: false,
+            label: {
+                show: false,
+                position: 'center'
+            },
+            labelLine: {
+                show: false
+            },
+            itemStyle: {
+                borderRadius: 5,
+                borderColor: '#fff',
+                borderWidth: 2,
+                color: function(params) {
+                    var colorList = [
+                        '#FFD54F', // Solar Power
+                        '#4FC3F7', // Wind Power
+                        '#4DD0E1', // Hydropower
+                        '#81C784', // Biomass
+                        '#FF8A65', // Geothermal
+                        '#BA68C8'  // Nuclear
+                    ];
+                    return colorList[params.dataIndex]
+                }
+            },
+            tooltip: {
+                valueFormatter: function(value) {
+                    return value + ' %';
+                }
+            }
+        }
+    ],
+    label: {
+        show: true,
+        formatter: '{b}: {c} ({d}%)'
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

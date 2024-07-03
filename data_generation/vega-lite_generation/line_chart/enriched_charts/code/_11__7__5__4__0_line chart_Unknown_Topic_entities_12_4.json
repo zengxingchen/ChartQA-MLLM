@@ -1,0 +1,197 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+        "values": [
+            {
+                "Month": "January",
+                "Rainfall (mm)": 120,
+                "Temperature (\u00b0C)": 5.5
+            },
+            {
+                "Month": "February",
+                "Rainfall (mm)": 110,
+                "Temperature (\u00b0C)": 6.0
+            },
+            {
+                "Month": "March",
+                "Rainfall (mm)": 100,
+                "Temperature (\u00b0C)": 10.0
+            },
+            {
+                "Month": "April",
+                "Rainfall (mm)": 90,
+                "Temperature (\u00b0C)": 15.0
+            },
+            {
+                "Month": "May",
+                "Rainfall (mm)": 80,
+                "Temperature (\u00b0C)": 20.0
+            },
+            {
+                "Month": "June",
+                "Rainfall (mm)": 70,
+                "Temperature (\u00b0C)": 25.0
+            },
+            {
+                "Month": "July",
+                "Rainfall (mm)": 60,
+                "Temperature (\u00b0C)": 30.0
+            },
+            {
+                "Month": "August",
+                "Rainfall (mm)": 50,
+                "Temperature (\u00b0C)": 29.0
+            },
+            {
+                "Month": "September",
+                "Rainfall (mm)": 60,
+                "Temperature (\u00b0C)": 24.0
+            },
+            {
+                "Month": "October",
+                "Rainfall (mm)": 70,
+                "Temperature (\u00b0C)": 18.0
+            },
+            {
+                "Month": "November",
+                "Rainfall (mm)": 90,
+                "Temperature (\u00b0C)": 10.0
+            },
+            {
+                "Month": "December",
+                "Rainfall (mm)": 110,
+                "Temperature (\u00b0C)": 5.0
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Rainfall (mm)",
+                "Temperature (\u00b0C)"
+            ],
+            "as": [
+                "Measure",
+                "Value"
+            ]
+        }
+    ],
+    "width": 800,
+    "height": 600,
+    "mark": {
+        "type": "line",
+        "point": {
+            "filled": true,
+            "fill": "white"
+        },
+        "tooltip": true
+    },
+    "encoding": {
+        "x": {
+            "field": "Month",
+            "type": "ordinal",
+            "title": "Month",
+            "axis": {
+                "labelAngle": 0
+            }
+        },
+        "y": {
+            "field": "Value",
+            "type": "quantitative",
+            "title": "Value",
+            "scale": {
+                "reverse": true
+            }
+        },
+        "color": {
+            "field": "Measure",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Rainfall (mm)",
+                    "Temperature (\u00b0C)"
+                ],
+                "range": [
+                    "#4CAF50",
+                    "#FF5722"
+                ]
+            },
+            "legend": {
+                "title": "Measure"
+            }
+        }
+    },
+    "layer": [
+        {
+            "mark": {
+                "type": "line",
+                "point": {
+                    "filled": true,
+                    "fill": "white"
+                },
+                "tooltip": true
+            },
+            "encoding": {
+                "x": {
+                    "field": "Month",
+                    "type": "ordinal",
+                    "title": "Month",
+                    "axis": {
+                        "labelAngle": 0
+                    }
+                },
+                "y": {
+                    "field": "Value",
+                    "type": "quantitative",
+                    "title": "Value",
+                    "scale": {
+                        "reverse": true
+                    }
+                },
+                "color": {
+                    "field": "Measure",
+                    "type": "nominal",
+                    "scale": {
+                        "domain": [
+                            "Rainfall (mm)",
+                            "Temperature (\u00b0C)"
+                        ],
+                        "range": [
+                            "#4CAF50",
+                            "#FF5722"
+                        ]
+                    },
+                    "legend": {
+                        "title": "Measure"
+                    }
+                }
+            }
+        },
+        {
+            "mark": {
+                "type": "text",
+                "align": "left",
+                "dx": 5,
+                "dy": -5
+            },
+            "encoding": {
+                "x": {
+                    "field": "Month",
+                    "type": "ordinal"
+                },
+                "y": {
+                    "field": "Value",
+                    "type": "quantitative"
+                },
+                "text": {
+                    "field": "Value"
+                }
+            }
+        }
+    ],
+    "title": {
+        "text": "Environment & Climate Change: Monthly Rainfall and Temperature",
+        "subtitle": "Data representing environmental indicators over a year",
+        "anchor": "start"
+    }
+}

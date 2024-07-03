@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 600, height: 400});
+var app = {};
+
+option = {
+  title: {
+    text: 'Progress in Different Sectors Over Time',
+    subtext: 'Education & Learning',
+    left: 'center',
+    top: '0'
+  },
+  tooltip: {
+    trigger: 'axis',
+    axisPointer: {
+      type: 'shadow'
+    },
+  },
+  legend: {
+    data: ['Education', 'Economy', 'Healthcare', 'Environment', 'Technology'],
+    top: '7%'
+  },
+  grid: {
+    left: '3%',
+    right: '4%',
+    bottom: '3%',
+    containLabel: true
+  },
+  xAxis: {
+    type: 'value',
+    boundaryGap: [0, 0.01],
+  },
+  yAxis: {
+    type: 'category',
+    data: ['2016', '2017', '2018', '2019', '2020']
+  },
+  series: [
+    {
+      name: 'Education',
+      type: 'bar',
+      stack: 'total',
+      barWidth: 30,
+      itemStyle: {
+        color: '#ff79c6'
+      },
+      data: [10, 15, 20, 30, 35]
+    },
+    {
+      name: 'Economy',
+      type: 'bar',
+      stack: 'total',
+      barWidth: 30,
+      itemStyle: {
+        color: '#ffb86c'
+      },
+      data: [30, 25, 35, 30, 20]
+    },
+    {
+      name: 'Healthcare',
+      type: 'bar',
+      stack: 'total',
+      barWidth: 30,
+      itemStyle: {
+        color: '#8be9fd'
+      },
+      data: [40, 35, 25, 20, 30]
+    },
+    {
+      name: 'Environment',
+      type: 'bar',
+      stack: 'total',
+      barWidth: 30,
+      itemStyle: {
+        color: '#50fa7b'
+      },
+      data: [15, 20, 15, 15, 10]
+    },
+    {
+      name: 'Technology',
+      type: 'bar',
+      stack: 'total',
+      barWidth: 30,
+      itemStyle: {
+        color: '#bd93f9'
+      },
+      data: [5, 5, 5, 5, 5]
+    }
+  ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

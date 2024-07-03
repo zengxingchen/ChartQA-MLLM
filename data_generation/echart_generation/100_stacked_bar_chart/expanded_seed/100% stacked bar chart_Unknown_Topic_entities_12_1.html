@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+            var dom = document.getElementById('container');
+            var myChart = echarts.init(dom, null, {
+            renderer: 'canvas',
+            useDirtyRect: false
+            });
+            var app = {};
+            
+            var option;
+
+            
+// Assuming you have an instance of an ECharts object created and assigned to a variable 'myChart'
+
+// Data as provided in the question
+var chartData = [
+    {'Week': '2021-02-01', 'Coffee': 300, 'Tea': 150, 'Frappe': 200, 'Juice': 80, 'Smoothies': 70},
+    {'Week': '2021-02-08', 'Coffee': 310, 'Tea': 155, 'Frappe': 190, 'Juice': 85, 'Smoothies': 75},
+    // ... more data points
+    {'Week': '2021-04-19', 'Coffee': 400, 'Tea': 205, 'Frappe': 130, 'Juice': 135, 'Smoothies': 125}
+];
+
+// Extract categories and weeks from the data
+var legends = ['Coffee', 'Tea', 'Frappe', 'Juice', 'Smoothies'];
+var weeks = chartData.map(function(item) {
+    return item.Week;
+});
+
+// Calculating percentages for each category per week
+var seriesData = legends.map(function(legend) {
+    var seriesData = [];
+    chartData.forEach(function(item) {
+        var total = legends.reduce(function(total, legend) {
+            return total + item[legend];
+        }, 0);
+        seriesData.push((item[legend] / total * 100).toFixed(2)); // Two decimal places
+    });
+    return {
+        name: legend,
+        type: 'bar',
+        stack: 'total',
+        label: {
+            show: true,
+            position: 'inside',
+            formatter: '{c}%'
+        },
+        data: seriesData
+    };
+});
+
+// Set up the ECharts option variable
+option = {
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        },
+        formatter: function(params) {
+            var tooltipData = [];
+            tooltipData.push(params[0].name + '<br/>');
+            params.forEach(function(param) {
+                tooltipData.push(param.marker + ' ' + param.seriesName + ': ' + param.value + '%<br/>');
+            });
+            return tooltipData.join('');
+        }
+    },
+    legend: {
+        data: legends
+    },
+    toolbox: {
+        show: true,
+        feature: {
+            saveAsImage: {},
+            restore: {},
+            magicType: {
+                type: ['stack', 'tiled']
+            },
+            dataView: {}
+        }
+    },
+    xAxis: {
+        type: 'category',
+        data: weeks,
+        axisLabel: {
+            interval: 0,
+            rotate: 45
+        }
+    },
+    yAxis: {
+        type: 'value',
+        axisLabel: {
+            formatter: '{value}%'
+        }
+    },
+    series: seriesData
+};
+
+// Now you'd typically setup the chart with `myChart.setOption(option);` after this code block
+
+            if (option && typeof option === 'object') {
+            myChart.setOption(option);
+            }
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

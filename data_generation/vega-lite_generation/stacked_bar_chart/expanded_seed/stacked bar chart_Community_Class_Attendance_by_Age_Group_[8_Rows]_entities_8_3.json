@@ -1,0 +1,159 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+        "values": [
+            {
+                "Week": "Week 1",
+                "Children (5-12)": 25,
+                "Teens (13-19)": 30,
+                "Adults (20-64)": 45,
+                "Seniors (65+)": 20
+            },
+            {
+                "Week": "Week 2",
+                "Children (5-12)": 22,
+                "Teens (13-19)": 25,
+                "Adults (20-64)": 50,
+                "Seniors (65+)": 22
+            },
+            {
+                "Week": "Week 3",
+                "Children (5-12)": 30,
+                "Teens (13-19)": 35,
+                "Adults (20-64)": 40,
+                "Seniors (65+)": 25
+            },
+            {
+                "Week": "Week 4",
+                "Children (5-12)": 28,
+                "Teens (13-19)": 33,
+                "Adults (20-64)": 47,
+                "Seniors (65+)": 23
+            },
+            {
+                "Week": "Week 5",
+                "Children (5-12)": 35,
+                "Teens (13-19)": 40,
+                "Adults (20-64)": 45,
+                "Seniors (65+)": 30
+            },
+            {
+                "Week": "Week 6",
+                "Children (5-12)": 20,
+                "Teens (13-19)": 25,
+                "Adults (20-64)": 50,
+                "Seniors (65+)": 21
+            },
+            {
+                "Week": "Week 7",
+                "Children (5-12)": 27,
+                "Teens (13-19)": 32,
+                "Adults (20-64)": 43,
+                "Seniors (65+)": 22
+            },
+            {
+                "Week": "Week 8",
+                "Children (5-12)": 31,
+                "Teens (13-19)": 37,
+                "Adults (20-64)": 46,
+                "Seniors (65+)": 24
+            }
+        ]
+    },
+    "width": 500,
+    "height": 300,
+    "title": {
+        "text": "Age Group Attendance by Week",
+        "subtitle": "A stacked bar chart showing the number of attendees in different age groups each week.",
+        "subtitleFontStyle": "italic",
+        "subtitleFontSize": 10,
+        "anchor": "start"
+    },
+    "transform": [
+        {
+            "fold": [
+                "Children (5-12)",
+                "Teens (13-19)",
+                "Adults (20-64)",
+                "Seniors (65+)"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "bar"
+    },
+    "encoding": {
+        "x": {
+            "field": "Week",
+            "type": "ordinal",
+            "title": "Week",
+            "axis": {
+                "labelAngle": 0
+            }
+        },
+        "y": {
+            "field": "value",
+            "type": "quantitative",
+            "title": "Number of Attendees",
+            "stack": "zero"
+        },
+        "color": {
+            "field": "key",
+            "type": "nominal",
+            "title": "Age Group",
+            "scale": {
+                "domain": [
+                    "Children (5-12)",
+                    "Teens (13-19)",
+                    "Adults (20-64)",
+                    "Seniors (65+)"
+                ],
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e",
+                    "#2ca02c",
+                    "#d62728"
+                ]
+            },
+            "legend": {
+                "orient": "right",
+                "titleFontSize": 12
+            }
+        },
+        "order": {
+            "field": "key",
+            "type": "nominal",
+            "sort": [
+                "Children (5-12)",
+                "Teens (13-19)",
+                "Adults (20-64)",
+                "Seniors (65+)"
+            ]
+        },
+        "tooltip": [
+            {
+                "field": "Week",
+                "type": "nominal"
+            },
+            {
+                "field": "key",
+                "type": "nominal",
+                "title": "Age Group"
+            },
+            {
+                "field": "value",
+                "type": "quantitative",
+                "title": "Number of Attendees"
+            }
+        ]
+    },
+    "config": {
+        "axis": {
+            "titleFontWeight": "normal",
+            "labelFont": "sans-serif"
+        },
+        "bar": {
+            "strokeWidth": 0
+        }
+    }
+}

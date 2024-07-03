@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 800,   // New width
+    height: 600   // New height
+});
+var app = {};
+
+var option;
+option = {
+    title: {
+        text: 'Daily Active Users by App Category',
+        left: 'center',
+        top: 20
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            label: {
+                backgroundColor: '#6a7985'
+            }
+        }
+    },
+    legend: {
+        data: ['Social Networking', 'Productivity', 'Entertainment', 'Education'],
+        top: 50
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: [
+        {
+            type: 'category',
+            boundaryGap: false,
+            data: ['2021-01-01', '2021-01-02', '2021-01-03', '2021-01-04', '2021-01-05', '2021-01-06', '2021-01-07', '2021-01-08', '2021-01-09', '2021-01-10', /* etc */, '2021-02-25', '2021-02-26', '2021-02-27', '2021-02-28', '2021-03-01', '2021-03-02', '2021-03-03', '2021-03-04', '2021-03-05', '2021-03-06']
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value'
+        }
+    ],
+    series: [
+        {
+            name: 'Social Networking',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [120, 130, 140, 135, 145, 150, 155, 160, 165, 170, /* etc */, 260, 265, 270, 275, 280, 290, 295, 300, 310, 320],
+            color: '#40c4ff' // New color
+        },
+        {
+            name: 'Productivity',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [80, 85, 90, 95, 100, 105, 110, 115, 120, 125, /* etc */, 180, 190, 200, 210, 220, 230, 240, 250, 260, 270],
+            color: '#ff9800' // New color
+        },
+        {
+            name: 'Entertainment',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [50, 55, 60, 65, 70, 75, 80, 85, 90, 92, /* etc */, 140, 145, 150, 155, 160, 165, 170, 175, 180, 185],
+            color: '#673ab7' // New color
+        },
+        {
+            name: 'Education',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [70, 72, 75, 78, 80, 82, 85, 88, 90, 92, /* etc */, 120, 125, 130, 135, 140, 145, 150, 155, 160, 165],
+            color: '#4caf50' // New color
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+var option;
+
+option = {
+    title: {
+        text: 'Trends in Various Sectors',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    xAxis: {
+        type: 'category',
+        data: ['Future Technologies', 'Art & Design', 'Science & Nature', 'Health & Psychology', 'Culture & Society', 'Economics & Finance', 'Education & Learning', 'Entertainment & Leisure', 'Environment & Climate Change', 'Food & Nutrition', 'Travel & Adventure', 'Fashion & Beauty', 'Politics & Governance', 'Sports & Fitness', 'History & Archaeology', 'Philosophy & Ethics', 'Music & Performing Arts', 'Literature & Writing', 'Business & Entrepreneurship', 'Astronomy & Space Exploration']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [{
+        data: [120, 98, 140, 110, 135, 125, 150, 130, 145, 115, 105, 100, 90, 95, 80, 85, 102, 110, 138, 132],
+        type: 'bar',
+        barWidth: '60%',
+        itemStyle: {
+            color: function(params) {
+                var colorList = ['#5470C6', '#91CC75', '#EE6666', '#73C0DE', '#3BA272', '#FC8452', '#9A60B4', '#EA7CCC', '#FFDB5C', '#37A2DA', '#32C5E9', '#FF69B4', '#FFA07A', '#87CEEB', '#9370DB', '#3CB371', '#8B0000', '#DAA520', '#FF4500', '#1E90FF'];
+                return colorList[params.dataIndex]
+            }
+        },
+        label: {
+            show: true,
+            position: 'top'
+        }
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

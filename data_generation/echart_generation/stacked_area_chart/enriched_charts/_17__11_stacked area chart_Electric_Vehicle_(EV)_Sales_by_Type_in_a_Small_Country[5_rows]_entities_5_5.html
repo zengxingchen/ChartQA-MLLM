@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 400});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Annual Greenhouse Gas Emissions by Sector (1990-2020)',
+        left: 'center',
+        top: 'top'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            label: {
+                backgroundColor: '#6a7985'
+            }
+        }
+    },
+    legend: {
+        data: ['Energy', 'Industrial Processes', 'Agriculture', 'Waste Management', 'Land-Use Change and Forestry'],
+        top: '4%'
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: [
+        {
+            type: 'category',
+            boundaryGap: false,
+            data: [...Array(31).keys()].map(year => 1990 + year)
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value'
+        }
+    ],
+    series: [
+        {
+            name: 'Energy',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [12000, 12300, 12700, 13000, 13400, 13900, 14500, 15000, 15500, 16000, 
+                   15700, 15900, 16200, 16500, 16800, 17200, 17500, 17800, 18100, 18300, 
+                   18500, 18800, 19100, 19300, 19600, 19800, 20000, 20200, 20500, 20700, 21000],
+            color: '#FF5733'
+        },
+        {
+            name: 'Industrial Processes',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [3000, 3100, 3200, 3300, 3400, 3500, 3600, 3700, 3750, 3800, 
+                   3850, 3900, 3950, 4000, 4050, 4100, 4150, 4200, 4250, 4300, 
+                   4350, 4400, 4450, 4500, 4550, 4600, 4650, 4700, 4750, 4800, 4850],
+            color: '#33FF57'
+        },
+        {
+            name: 'Agriculture',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [4000, 4050, 4100, 4200, 4300, 4400, 4500, 4600, 4700, 4800, 
+                   4850, 4900, 4950, 5000, 5050, 5100, 5150, 5200, 5250, 5300, 
+                   5350, 5400, 5450, 5500, 5550, 5600, 5650, 5700, 5750, 5800, 5850],
+            color: '#3375FF'
+        },
+        {
+            name: 'Waste Management',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [1500, 1550, 1600, 1650, 1700, 1750, 1800, 1850, 1900, 1950, 
+                   2000, 2050, 2100, 2150, 2200, 2250, 2300, 2350, 2400, 2450, 
+                   2500, 2550, 2600, 2650, 2700, 2750, 2800, 2850, 2900, 2950, 3000],
+            color: '#931FF3'
+        },
+        {
+            name: 'Land-Use Change and Forestry',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [2000, 1950, 1900, 1850, 1800, 1770, 1750, 1700, 1650, 1600, 
+                   1550, 1500, 1450, 1400, 1370, 1350, 1320, 1300, 1290, 1280, 
+                   1270, 1250, 1230, 1210, 1200, 1190, 1180, 1170, 1150, 1130, 1100],
+            color: '#F3DF1F'
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

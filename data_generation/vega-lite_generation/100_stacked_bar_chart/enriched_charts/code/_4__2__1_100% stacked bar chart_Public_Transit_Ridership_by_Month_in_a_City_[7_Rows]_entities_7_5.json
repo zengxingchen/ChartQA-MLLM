@@ -1,0 +1,193 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": {
+        "text": "Monthly Hours Spent in Different Hobbies",
+        "anchor": "start"
+    },
+    "width": 600,
+    "height": 500,
+    "padding": 5,
+    "data": {
+        "values": [
+            {
+                "Month": "January",
+                "Reading": 10,
+                "Gaming": 15,
+                "Cooking": 8,
+                "Gardening": 5,
+                "Traveling": 12
+            },
+            {
+                "Month": "February",
+                "Reading": 12,
+                "Gaming": 18,
+                "Cooking": 9,
+                "Gardening": 6,
+                "Traveling": 10
+            },
+            {
+                "Month": "March",
+                "Reading": 14,
+                "Gaming": 20,
+                "Cooking": 10,
+                "Gardening": 7,
+                "Traveling": 14
+            },
+            {
+                "Month": "April",
+                "Reading": 15,
+                "Gaming": 22,
+                "Cooking": 12,
+                "Gardening": 8,
+                "Traveling": 16
+            },
+            {
+                "Month": "May",
+                "Reading": 18,
+                "Gaming": 25,
+                "Cooking": 14,
+                "Gardening": 9,
+                "Traveling": 18
+            },
+            {
+                "Month": "June",
+                "Reading": 20,
+                "Gaming": 28,
+                "Cooking": 16,
+                "Gardening": 10,
+                "Traveling": 20
+            },
+            {
+                "Month": "July",
+                "Reading": 22,
+                "Gaming": 30,
+                "Cooking": 18,
+                "Gardening": 11,
+                "Traveling": 22
+            },
+            {
+                "Month": "August",
+                "Reading": 24,
+                "Gaming": 32,
+                "Cooking": 20,
+                "Gardening": 12,
+                "Traveling": 24
+            },
+            {
+                "Month": "September",
+                "Reading": 26,
+                "Gaming": 35,
+                "Cooking": 22,
+                "Gardening": 13,
+                "Traveling": 26
+            },
+            {
+                "Month": "October",
+                "Reading": 28,
+                "Gaming": 38,
+                "Cooking": 24,
+                "Gardening": 14,
+                "Traveling": 28
+            },
+            {
+                "Month": "November",
+                "Reading": 30,
+                "Gaming": 40,
+                "Cooking": 26,
+                "Gardening": 15,
+                "Traveling": 30
+            },
+            {
+                "Month": "December",
+                "Reading": 32,
+                "Gaming": 42,
+                "Cooking": 28,
+                "Gardening": 16,
+                "Traveling": 32
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Reading",
+                "Gaming",
+                "Cooking",
+                "Gardening",
+                "Traveling"
+            ],
+            "as": [
+                "Hobby",
+                "Hours"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "bar",
+        "tooltip": true,
+        "cornerRadiusEnd": 4
+    },
+    "encoding": {
+        "y": {
+            "field": "Month",
+            "type": "ordinal",
+            "axis": {
+                "title": "Month",
+                "labelAngle": 0
+            }
+        },
+        "x": {
+            "field": "Hours",
+            "type": "quantitative",
+            "axis": {
+                "title": "Hours Spent"
+            },
+            "stack": "normalize"
+        },
+        "color": {
+            "field": "Hobby",
+            "type": "nominal",
+            "scale": {
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e",
+                    "#2ca02c",
+                    "#d62728",
+                    "#9467bd"
+                ]
+            },
+            "legend": {
+                "title": "Hobby",
+                "orient": "right",
+                "symbolType": "square"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Hobby",
+                "type": "nominal"
+            },
+            {
+                "field": "Hours",
+                "type": "quantitative",
+                "title": "Hours Spent"
+            }
+        ]
+    },
+    "config": {
+        "axis": {
+            "labelFontSize": 12,
+            "titleFontSize": 14
+        },
+        "legend": {
+            "labelFontSize": 12,
+            "titleFontSize": 14
+        },
+        "bar": {
+            "binSpacing": 2,
+            "width": {
+                "band": 0.7
+            }
+        }
+    }
+}

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Decline in Air Quality Index Over Time',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: function (params) {
+            return 'Day: ' + params.data[0] + '<br/>AQI: ' + params.data[1];
+        }
+    },
+    xAxis: {
+        name: 'Day',
+        type: 'value',
+        splitLine: {
+            lineStyle: {
+                type: 'dashed'
+            }
+        }
+    },
+    yAxis: {
+        name: 'Air Quality Index',
+        type: 'value',
+        splitLine: {
+            lineStyle: {
+                type: 'dashed'
+            }
+        }
+    },
+    series: [{
+        name: 'AQI',
+        type: 'scatter',
+        data: [
+            [1, 100], [2, 95], [3, 90], [4, 85], [5, 80], [6, 75], [7, 70], [8, 65], [9, 60], [10, 55],
+            [11, 53], [12, 50], [13, 48], [14, 45], [15, 42], [16, 40], [17, 38], [18, 35], [19, 33], [20, 30],
+            [21, 29], [22, 28], [23, 26], [24, 25], [25, 24], [26, 22], [27, 21], [28, 20], [29, 18], [30, 17],
+            [31, 16], [32, 15], [33, 14], [34, 13], [35, 12], [36, 11], [37, 10], [38, 9], [39, 8], [40, 7],
+            [41, 6], [42, 5], [43, 4], [44, 3], [45, 2], [46, 1]
+        ],
+        itemStyle: {
+            color: '#FF6347'
+        }
+    }],
+    grid: {
+        left: '10%',
+        right: '10%',
+        top: '15%',
+        bottom: '15%'
+    },
+    legend: {
+        data: ['AQI'],
+        left: 'right',
+        top: '10%'
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

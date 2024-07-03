@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+var option = {
+    title: {
+        text: 'Future Technologies & Society',
+        left: 'center',
+        top: 20,
+        textStyle: {
+            fontSize: 24,
+            color: '#333'
+        }
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        data: ['Artificial Intelligence', 'Quantum Computing', 'Virtual Reality', 'Blockchain', '3D Printing', 'IoT', 'Robotics', 'Cybersecurity', 'Bioengineering', 'Augmented Reality', 'Nanotechnology', 'Space Exploration', 'Green Energy', 'Autonomous Vehicles', 'Smart Cities', 'Genetic Editing', 'Wearable Tech', 'Big Data'],
+        axisLabel: {
+            rotate: 45,
+            interval: 0
+        }
+    },
+    yAxis: {
+        type: 'value',
+        min: 0,
+        max: 100
+    },
+    series: [
+        {
+            name: 'Value',
+            type: 'bar',
+            barWidth: '40%',
+            itemStyle: {
+                color: function(params) {
+                    var colorList = [
+                        '#FF5733', '#33FF57', '#3357FF', '#FF33A1', '#33FFA1', '#FF8633', 
+                        '#FF33F6', '#33FFF6', '#F633FF', '#FF5733', '#57FF33', '#5733FF',
+                        '#33A1FF', '#A1FF33', '#33FF85', '#FF3333', '#33FF85', '#3375FF'
+                    ];
+                    return colorList[params.dataIndex % colorList.length];
+                }
+            },
+            data: [85, 70, 65, 50, 75, 80, 60, 90, 55, 60, 70, 95, 80, 88, 77, 65, 58, 92],
+            label: {
+                show: true,
+                position: 'top'
+            }
+        }
+    ]
+};
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var app = {};
+
+var option;
+
+option = {
+  title: {
+    text: 'Progress in Future Technologies',
+    left: 'center',
+    top: 20
+  },
+  tooltip: {
+    trigger: 'axis',
+    axisPointer: {
+      type: 'shadow'
+    }
+  },
+  legend: {
+    data: ['Electric Vehicles', 'Smart Homes', 'Virtual Reality', 'AI Research', 'Quantum Computing'],
+    top: 50
+  },
+  grid: {
+    left: '3%',
+    right: '4%',
+    bottom: '3%',
+    containLabel: true
+  },
+  xAxis: {
+    type: 'value',
+    boundaryGap: [0, 0.01],
+    axisLabel: {
+      formatter: '{value}'
+    }
+  },
+  yAxis: {
+    type: 'category',
+    data: ['2015', '2016', '2017', '2018', '2019', '2020', '2021'],
+    axisLabel: {
+      show: true
+    }
+  },
+  series: [
+    {
+      name: 'Electric Vehicles',
+      type: 'bar',
+      stack: 'total',
+      label: {
+        show: true
+      },
+      emphasis: {
+        focus: 'series'
+      },
+      data: [120, 150, 200, 270, 350, 450, 580],
+      color: '#0A8A9F'
+    },
+    {
+      name: 'Smart Homes',
+      type: 'bar',
+      stack: 'total',
+      label: {
+        show: true
+      },
+      emphasis: {
+        focus: 'series'
+      },
+      data: [80, 90, 110, 130, 160, 180, 220],
+      color: '#A6BF4B'
+    },
+    {
+      name: 'Virtual Reality',
+      type: 'bar',
+      stack: 'total',
+      label: {
+        show: true
+      },
+      emphasis: {
+        focus: 'series'
+      },
+      data: [30, 60, 90, 140, 200, 300, 400],
+      color: '#D94E5D'
+    },
+    {
+      name: 'AI Research',
+      type: 'bar',
+      stack: 'total',
+      label: {
+        show: true
+      },
+      emphasis: {
+        focus: 'series'
+      },
+      data: [50, 75, 120, 190, 260, 330, 420],
+      color: '#FF9F1C'
+    },
+    {
+      name: 'Quantum Computing',
+      type: 'bar',
+      stack: 'total',
+      label: {
+        show: true
+      },
+      emphasis: {
+        focus: 'series'
+      },
+      data: [10, 20, 40, 65, 90, 120, 150],
+      color: '#6D4C41'
+    }
+  ]
+};
+
+if (option && typeof option === 'object') {
+  myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+
+var option = {
+    title: {
+        text: 'Industry Growth Over Years',
+        left: 'center',
+        top: '10'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        top: '40',
+        left: 'center',
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        data: ['2019', '2020', '2021', '2022'],
+        axisLabel: {
+            formatter: '{value}',
+            rotate: 30,
+            fontSize: 12
+        }
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Technology',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            data: [320, 402, 451, 523],
+            itemStyle: {
+                color: '#ff6347'
+            },
+            barWidth: 20
+        },
+        {
+            name: 'Healthcare',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            data: [380, 450, 512, 590],
+            itemStyle: {
+                color: '#4682b4'
+            },
+            barWidth: 20
+        },
+        {
+            name: 'Finance',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            data: [420, 480, 530, 610],
+            itemStyle: {
+                color: '#3cb371'
+            },
+            barWidth: 20
+        },
+        {
+            name: 'Education',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            data: [350, 410, 455, 520],
+            itemStyle: {
+                color: '#ff8c00'
+            },
+            barWidth: 20
+        },
+        {
+            name: 'Environment',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            data: [300, 370, 420, 490],
+            itemStyle: {
+                color: '#9932cc'
+            },
+            barWidth: 20
+        },
+        {
+            name: 'Entertainment',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            data: [360, 430, 485, 550],
+            itemStyle: {
+                color: '#ffd700'
+            },
+            barWidth: 20
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

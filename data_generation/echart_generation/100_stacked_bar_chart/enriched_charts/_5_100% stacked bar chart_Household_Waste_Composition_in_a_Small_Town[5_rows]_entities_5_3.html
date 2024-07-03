@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 800, // change width of the chart
+    height: 600 // change height of the chart
+});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Trends in Future Technologies & Society', // Change headline
+        textStyle: {
+            fontSize: 20
+        },
+        left: 'center',
+        top: 5
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        top: 30
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value'
+    },
+    yAxis: {
+        type: 'category',
+        data: ['2015', '2016', '2017', '2018', '2019', '2020', '2021']
+    },
+    series: [
+        {
+            name: 'Education & Learning',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35, // change width of bars
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [20, 18, 22, 24, 25, 26, 28],
+            color: '#4169E1' // specific color code
+        },
+        {
+            name: 'Entertainment & Leisure',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            barWidth: 35,
+            emphasis: {
+                focus: 'series'
+            },
+            data: [15, 17, 14, 12, 13, 11, 16],
+            color: '#32CD32'
+        },
+        {
+            name: 'Science & Nature',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            barWidth: 35,
+            emphasis: {
+                focus: 'series'
+            },
+            data: [30, 28, 33, 31, 29, 34, 26],
+            color: '#8B008B'
+        },
+        {
+            name: 'Health & Psychology',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            barWidth: 35,
+            emphasis: {
+                focus: 'series'
+            },
+            data: [25, 27, 22, 23, 24, 20, 21],
+            color: '#FFA500'
+        },
+        {
+            name: 'Culture & Society',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            barWidth: 35,
+            emphasis: {
+                focus: 'series'
+            },
+            data: [10, 10, 9, 10, 9, 9, 9],
+            color: '#B22222'
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

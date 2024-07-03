@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {renderer: 'canvas', useDirtyRect: false, width: 800, height: 600});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Calorie Distribution in Common Foods',
+        left: 'center',
+        top: 20,
+        textStyle: {
+            color: '#333'
+        }
+    },
+    tooltip: {
+        trigger: 'item'
+    },
+    xAxis: {
+        type: 'category',
+        data: ['180-200', '200-220', '220-240', '240-260', '260-280', '280-300', '300-320', '320-340', '340-360', '360-380', '380-400', '400-420', '420-440', '440-460', '460-480', '480-500'],
+        axisLabel: {
+            rotate: 45,
+            textStyle: {
+                color: '#333'
+            }
+        }
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Frequency',
+        nameTextStyle: {
+            color: '#333'
+        },
+        axisLabel: {
+            textStyle: {
+                color: '#333'
+            }
+        }
+    },
+    series: [{
+        name: 'Calorie Count',
+        type: 'bar',
+        data: [1, 1, 2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1],
+        itemStyle: {
+            color: '#FF6347'
+        },
+        barWidth: '50%',
+        label: {
+            show: true,
+            position: 'inside',
+            formatter: '{c}'
+        }
+    }],
+    backgroundColor: '#F5F5F5'
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 800, // Change width
+    height: 600 // Change height
+});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Investment Distribution over Years', // Headline
+        left: 'center',
+        top: 10 // Make sure it does not overlap with legend
+    },
+    color: ['#FF69B4', '#1E90FF', '#32CD32', '#FFD700', '#FFA500'], // Modify color scheme
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Technology', 'Finance', 'Healthcare', 'Manufacturing', 'Energy'],
+        top: 50 // Move legend to avoid overlap with headline
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value', // Change orientation to horizontal
+        boundaryGap: [0, 0.01]
+    },
+    yAxis: {
+        type: 'category',
+        data: ['2016', '2017', '2018', '2019', '2020', '2021'] // Assuring no entity text label is skipped
+    },
+    series: [
+        {
+            name: 'Technology',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'insideRight' // Numerical/text label
+            },
+            data: [12000, 14000, 15000, 16000, 17000, 18000],
+            barWidth: 15 // Change band width and bar width
+        },
+        {
+            name: 'Finance',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            data: [15000, 15500, 16000, 16500, 17000, 17500],
+            barWidth: 15
+        },
+        {
+            name: 'Healthcare',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            data: [11000, 11500, 12000, 12500, 13000, 13500],
+            barWidth: 15
+        },
+        {
+            name: 'Manufacturing',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            data: [9000, 9500, 10000, 10500, 11000, 11500],
+            barWidth: 15
+        },
+        {
+            name: 'Energy',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            data: [8000, 8500, 9000, 9500, 10000, 10500],
+            barWidth: 15
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

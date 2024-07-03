@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Economic Growth vs. Technological Advancements',
+        left: 'center',
+        top: '20'
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: '{a} <br/>{b}: ({c})'
+    },
+    legend: {
+        data: ['Data Points'],
+        left: 'left',
+        top: 'bottom'
+    },
+    xAxis: {
+        name: 'Technological Advancements (Index)',
+        nameLocation: 'middle',
+        nameGap: 30
+    },
+    yAxis: {
+        name: 'Economic Growth (GDP %)',
+        nameLocation: 'middle',
+        nameGap: 50
+    },
+    series: [{
+        name: 'Data Points',
+        type: 'scatter',
+        itemStyle: {
+            color: '#ff5733'
+        },
+        data: [
+            [45, 180], [72, 150], [95, 200], [110, 210], [130, 220], 
+            [140, 260], [150, 230], [160, 270], [170, 280], [185, 290], 
+            [200, 300], [210, 320], [225, 310], [240, 330], [255, 340], 
+            [270, 350], [285, 360], [300, 370], [320, 380], [340, 390], 
+            [360, 400], [380, 410], [400, 420], [420, 430], [440, 440], 
+            [460, 450], [480, 460], [500, 470], [520, 480], [540, 490], 
+            [560, 500], [580, 510], [600, 520], [620, 530], [640, 540], 
+            [660, 550], [680, 560], [700, 570], [720, 580], [740, 590], 
+            [760, 600], [780, 610], [800, 620]
+        ]
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

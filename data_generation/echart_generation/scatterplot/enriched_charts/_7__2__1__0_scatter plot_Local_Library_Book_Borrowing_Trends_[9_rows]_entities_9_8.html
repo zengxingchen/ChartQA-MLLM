@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var app = {};
+
+var option = {
+    title: {
+        text: 'Nutrition Trends in Diet',
+        left: 'center'
+    },
+    tooltip: {},
+    legend: {
+        data: ['Nutrient Level'],
+        left: 'right',
+        top: '10%'
+    },
+    xAxis: {
+        name: 'Day',
+        type: 'category',
+        data: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30]
+    },
+    yAxis: {
+        name: 'Nutrient Level',
+        type: 'value'
+    },
+    series: [{
+        name: 'Nutrient Level',
+        type: 'scatter',
+        data: [
+            [1, 10.5], [2, 9.8], [3, 10.2], [4, 9.9], [5, 9.7], 
+            [6, 10.1], [7, 9.6], [8, 10.0], [9, 9.5], [10, 9.9], 
+            [11, 10.3], [12, 9.8], [13, 9.7], [14, 10.2], [15, 9.6], 
+            [16, 10.1], [17, 9.7], [18, 10.0], [19, 9.8], [20, 10.2], 
+            [21, 9.9], [22, 10.1], [23, 9.5], [24, 10.3], [25, 9.7], 
+            [26, 10.0], [27, 9.8], [28, 10.1], [29, 9.9], [30, 10.2]
+        ],
+        itemStyle: {
+            color: '#ff7f50'
+        }
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var option;
+
+option = {
+    title: {
+        text: 'Science & Nature: Data Distribution',
+        left: 'center',
+        top: '10'
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: function (params) {
+            return 'X: ' + params.value[0] + '<br>Y: ' + params.value[1];
+        }
+    },
+    xAxis: {
+        name: 'X-Axis',
+        nameLocation: 'middle',
+        nameTextStyle: {
+            fontWeight: 'bold',
+            fontSize: 16
+        },
+        axisLabel: {
+            formatter: '{value}'
+        }
+    },
+    yAxis: {
+        name: 'Y-Axis',
+        nameLocation: 'middle',
+        nameTextStyle: {
+            fontWeight: 'bold',
+            fontSize: 16
+        },
+        axisLabel: {
+            formatter: '{value}'
+        }
+    },
+    series: [{
+        name: 'Data Points',
+        type: 'scatter',
+        data: [
+            [1.0,2.1], [2.0,3.4], [3.0,1.8], [4.0,4.2], [5.0,5.5], 
+            [6.0,3.3], [7.0,6.8], [8.0,4.9], [9.0,7.4], [10.0,6.1], 
+            [11.0,8.3], [12.0,7.6], [13.0,9.1], [14.0,8.8], [15.0,10.5], 
+            [16.0,9.7], [17.0,11.3], [18.0,10.1], [19.0,12.4], [20.0,11.7], 
+            [21.0,13.5], [22.0,12.9], [23.0,14.2], [24.0,13.8], [25.0,15.0], 
+            [26.0,14.3], [27.0,16.2], [28.0,15.5], [29.0,17.3], [30.0,16.8]
+        ],
+        itemStyle: {
+            color: '#3498DB'
+        }
+    }],
+    legend: {
+        data: ['Data Points'],
+        left: 'left',
+        top: 'top'
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

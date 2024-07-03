@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 500, height: 400});
+var app = {};
+
+var option;
+
+option = {
+    color: ['#3366CC', '#DC3912', '#FF9900', '#109618'],
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        },
+        formatter: function (params) {
+            return params[0].name + '<br/>'
+                + echarts.format.addCommas(params[0].value) + ' ' + params[0].seriesName + '<br/>'
+                + echarts.format.addCommas(params[1].value) + ' ' + params[1].seriesName + '<br/>'
+                + echarts.format.addCommas(params[2].value) + ' ' + params[2].seriesName + '<br/>'
+                + echarts.format.addCommas(params[3].value) + ' ' + params[3].seriesName;
+        }
+    },
+    legend: {
+        data: ['Electric Vehicles', 'Hybrid Vehicles', 'Gasoline Vehicles', 'Diesel Vehicles']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01],
+        axisLabel: {
+            formatter: '{value} %'
+        }
+    },
+    yAxis: {
+        type: 'category',
+        data: ['2021', '2022', '2023', '2024', '2025'],
+        axisTick: {
+            show: false
+        },
+        axisLabel: {
+            interval: 0
+        }
+    },
+    series: [
+        {
+            name: 'Electric Vehicles',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 40,
+            data: [25, 30, 35, 40, 45]
+        },
+        {
+            name: 'Hybrid Vehicles',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 40,
+            data: [30, 35, 30, 25, 20]
+        },
+        {
+            name: 'Gasoline Vehicles',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 40,
+            data: [40, 30, 25, 25, 25]
+        },
+        {
+            name: 'Diesel Vehicles',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 40,
+            data: [5, 5, 10, 10, 10]
+        }
+    ]
+};
+
+option && myChart.setOption(option);
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

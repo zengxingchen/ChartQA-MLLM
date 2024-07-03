@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 400});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Online Course Enrollment Trends (2010 - 2020)',
+        left: 'center',
+        top: 'bottom'
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['Course A', 'Course B', 'Course C', 'Course D'],
+        bottom: 10
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '15%',
+        containLabel: true
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ['2010','2011','2012','2013','2014','2015','2016','2017','2018','2019','2020']
+    },
+    yAxis: {
+        type: 'value',
+        max: 'dataMax'
+    },
+    series: [
+        {
+            name: 'Course A',
+            type: 'line',
+            stack: 'total',
+            emphasis: {
+                focus: 'series'
+            },
+            areaStyle: {},
+            data: [120, 160, 200, 240, 280, 320, 360, 400, 450, 480, 500],
+            color: '#ff7f0e'
+        },
+        {
+            name: 'Course B',
+            type: 'line',
+            stack: 'total',
+            emphasis: {
+                focus: 'series'
+            },
+            label: {
+                show: true,
+                position: 'insideBottom',
+                distance: 15,
+                align: 'left',
+                verticalAlign: 'middle',
+                rotate: 90,
+                formatter: '{c}',
+                fontSize: 10,
+                color: 'white'
+            },
+            areaStyle: {},
+            data: [300, 340, 360, 380, 400, 450, 480, 520, 560, 580, 600],
+            color: '#2ca02c'
+        },
+        {
+            name: 'Course C',
+            type: 'line',
+            stack: 'total',
+            emphasis: {
+                focus: 'series'
+            },
+            areaStyle: {},
+            data: [256, 275, 300, 330, 370, 400, 440, 470, 510, 540, 570],
+            color: '#1f77b4'
+        },
+        {
+            name: 'Course D',
+            type: 'line',
+            stack: 'total',
+            emphasis: {
+                focus: 'series'
+            },
+            areaStyle: {},
+            data: [180, 200, 230, 250, 270, 300, 320, 340, 360, 380, 400],
+            color: '#9467bd'
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

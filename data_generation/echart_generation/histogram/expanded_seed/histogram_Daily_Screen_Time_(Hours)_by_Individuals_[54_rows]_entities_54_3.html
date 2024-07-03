@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+
+var screenTimeData = [
+    5.5, 3.0, 2.5, 4.0, 6.5,
+    7.0, 4.0, 3.5, 5.0, 6.0,
+    2.0, 8.0, 1.5, 3.0, 4.5
+];
+
+// Helper function to generate histogram bins
+function makeBins(data, binWidth) {
+    var bins = [];
+    
+    // Sort data to find the range
+    var sorted = data.slice().sort((a, b) => a - b);
+    var minBin = Math.floor(sorted[0]);
+    var maxBin = Math.ceil(sorted[sorted.length - 1]);
+
+    // Create bins
+    for (var x = minBin; x < maxBin; x += binWidth) {
+        bins.push({
+            x0: x,
+            x1: x + binWidth,
+            count: 0
+        });
+    }
+
+    // Fill bins with counts
+    data.forEach(value => {
+        var binIndex = Math.floor((value - minBin) / binWidth);
+        if (binIndex >= bins.length) {
+            binIndex = bins.length - 1;
+        }
+        bins[binIndex].count += 1;
+    });
+
+    return bins;
+}
+
+var binWidth = 1; // Define the width of one bin
+var bins = makeBins(screenTimeData, binWidth);
+
+var option = {
+    title: {
+        text: 'Screen Time Histogram',
+        subtext: 'Frequency by Hour',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'item',
+        axisPointer: {
+            type: 'shadow'
+        },
+        formatter: function (params) {
+            return `Hours: ${params.value[0]} - ${params.value[1]}<br/>Frequency: ${params.value[2]}`;
+        }
+    },
+    xAxis: {
+        title: {
+            text: 'Screen Time (hours)',
+            subtext: 'Bin range'
+        },
+        scale: true,
+        splitLine: {
+            show: false
+        }
+    },
+    yAxis: {
+        title: {
+            text: 'Frequency'
+        },
+        type: 'value'
+    },
+    series: [{
+        name: 'Frequency',
+        type: 'bar',
+        barWidth: '99%',
+        itemStyle: {
+            color: '#749f83'
+        },
+        data: bins.map(bin => {
+            return [bin.x0, bin.x1, bin.count];
+        })
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

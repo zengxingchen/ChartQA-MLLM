@@ -1,0 +1,176 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "A horizontal stacked bar chart representing the monthly sales of various food categories in a supermarket.",
+    "data": {
+        "values": [
+            {
+                "Month": "Jan",
+                "Fruits": 150,
+                "Vegetables": 180,
+                "Dairy": 200,
+                "Meat": 220,
+                "Bakery": 170
+            },
+            {
+                "Month": "Feb",
+                "Fruits": 160,
+                "Vegetables": 190,
+                "Dairy": 210,
+                "Meat": 230,
+                "Bakery": 180
+            },
+            {
+                "Month": "Mar",
+                "Fruits": 170,
+                "Vegetables": 200,
+                "Dairy": 220,
+                "Meat": 240,
+                "Bakery": 190
+            },
+            {
+                "Month": "Apr",
+                "Fruits": 180,
+                "Vegetables": 210,
+                "Dairy": 230,
+                "Meat": 250,
+                "Bakery": 200
+            },
+            {
+                "Month": "May",
+                "Fruits": 190,
+                "Vegetables": 220,
+                "Dairy": 240,
+                "Meat": 260,
+                "Bakery": 210
+            },
+            {
+                "Month": "Jun",
+                "Fruits": 200,
+                "Vegetables": 230,
+                "Dairy": 250,
+                "Meat": 270,
+                "Bakery": 220
+            },
+            {
+                "Month": "Jul",
+                "Fruits": 210,
+                "Vegetables": 240,
+                "Dairy": 260,
+                "Meat": 280,
+                "Bakery": 230
+            },
+            {
+                "Month": "Aug",
+                "Fruits": 220,
+                "Vegetables": 250,
+                "Dairy": 270,
+                "Meat": 290,
+                "Bakery": 240
+            },
+            {
+                "Month": "Sep",
+                "Fruits": 230,
+                "Vegetables": 260,
+                "Dairy": 280,
+                "Meat": 300,
+                "Bakery": 250
+            },
+            {
+                "Month": "Oct",
+                "Fruits": 240,
+                "Vegetables": 270,
+                "Dairy": 290,
+                "Meat": 310,
+                "Bakery": 260
+            },
+            {
+                "Month": "Nov",
+                "Fruits": 250,
+                "Vegetables": 280,
+                "Dairy": 300,
+                "Meat": 320,
+                "Bakery": 270
+            },
+            {
+                "Month": "Dec",
+                "Fruits": 260,
+                "Vegetables": 290,
+                "Dairy": 310,
+                "Meat": 330,
+                "Bakery": 280
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Fruits",
+                "Vegetables",
+                "Dairy",
+                "Meat",
+                "Bakery"
+            ],
+            "as": [
+                "Category",
+                "Sales"
+            ]
+        }
+    ],
+    "width": 700,
+    "height": 500,
+    "mark": {
+        "type": "bar",
+        "height": {
+            "band": 0.7
+        }
+    },
+    "encoding": {
+        "y": {
+            "field": "Month",
+            "type": "nominal",
+            "axis": {
+                "title": "Month"
+            }
+        },
+        "x": {
+            "field": "Sales",
+            "type": "quantitative",
+            "stack": "zero",
+            "axis": {
+                "title": "Sales (in units)"
+            }
+        },
+        "color": {
+            "field": "Category",
+            "type": "nominal",
+            "scale": {
+                "range": [
+                    "#8B0000",
+                    "#FFA07A",
+                    "#00FF00",
+                    "#4682B4",
+                    "#DAA520"
+                ]
+            },
+            "legend": {
+                "title": "Food Categories"
+            }
+        }
+    },
+    "title": {
+        "text": "Monthly Sales of Food Categories in a Supermarket",
+        "anchor": "start",
+        "offset": 20,
+        "frame": "group"
+    },
+    "config": {
+        "background": "#f9f9f9",
+        "view": {
+            "stroke": "transparent"
+        },
+        "axis": {
+            "labelFontSize": 12,
+            "titleFontSize": 14
+        }
+    }
+}

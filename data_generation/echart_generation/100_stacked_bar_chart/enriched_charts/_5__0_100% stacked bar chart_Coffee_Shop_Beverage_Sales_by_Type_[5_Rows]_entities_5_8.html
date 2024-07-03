@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 800,
+    height: 600
+});
+var app = {};
+
+var option;
+
+option = {
+    color: ['#EE2C2C', '#228B22', '#1E90FF', '#DAA520', '#8B008B'],
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Online Courses', 'Books', 'Seminars', 'Workshops', 'Videos']
+    },
+    title: {
+        text: 'Preferred Educational Resources (2016-2021)',
+        left: 'center',
+        top: '1%'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: [
+        {
+            type: 'value'
+        }
+    ],
+    yAxis: [
+        {
+            type: 'category',
+            axisTick: {
+                show: false
+            },
+            data: ['2016', '2017', '2018', '2019', '2020', '2021']
+        }
+    ],
+    series: [
+        {
+            name: 'Online Courses',
+            type: 'bar',
+            stack: 'total',
+            barWidth: '60%',
+            data: [25, 30, 35, 40, 50, 55]
+        },
+        {
+            name: 'Books',
+            type: 'bar',
+            stack: 'total',
+            barWidth: '60%',
+            data: [30, 25, 20, 15, 10, 10]
+        },
+        {
+            name: 'Seminars',
+            type: 'bar',
+            stack: 'total',
+            barWidth: '60%',
+            data: [15, 15, 15, 15, 15, 10]
+        },
+        {
+            name: 'Workshops',
+            type: 'bar',
+            stack: 'total',
+            data: [20, 20, 20, 20, 15, 15]
+        },
+        {
+            name: 'Videos',
+            type: 'bar',
+            stack: 'total',
+            data: [10, 10, 10, 10, 10, 10]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

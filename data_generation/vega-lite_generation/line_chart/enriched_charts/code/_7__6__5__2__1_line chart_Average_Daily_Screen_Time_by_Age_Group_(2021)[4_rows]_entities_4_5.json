@@ -1,0 +1,222 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Line chart showing projected monthly book sales by month for different regions.",
+    "title": {
+        "text": "Projected Monthly Book Sales by Region",
+        "fontSize": 22,
+        "anchor": "start",
+        "color": "#333333"
+    },
+    "width": 800,
+    "height": 500,
+    "data": {
+        "values": [
+            {
+                "Region": "North America",
+                "January": 1200,
+                "February": 1300,
+                "March": 1250,
+                "April": 1450,
+                "May": 1600,
+                "June": 1700,
+                "July": 1750,
+                "August": 1800,
+                "September": 1850,
+                "October": 1950,
+                "November": 2000,
+                "December": 2100
+            },
+            {
+                "Region": "South America",
+                "January": 900,
+                "February": 950,
+                "March": 1000,
+                "April": 1100,
+                "May": 1150,
+                "June": 1250,
+                "July": 1300,
+                "August": 1350,
+                "September": 1400,
+                "October": 1500,
+                "November": 1550,
+                "December": 1600
+            },
+            {
+                "Region": "Europe",
+                "January": 1500,
+                "February": 1600,
+                "March": 1700,
+                "April": 1750,
+                "May": 1850,
+                "June": 1950,
+                "July": 2000,
+                "August": 2100,
+                "September": 2200,
+                "October": 2300,
+                "November": 2400,
+                "December": 2500
+            },
+            {
+                "Region": "Asia",
+                "January": 1800,
+                "February": 1900,
+                "March": 2000,
+                "April": 2100,
+                "May": 2200,
+                "June": 2300,
+                "July": 2400,
+                "August": 2500,
+                "September": 2600,
+                "October": 2700,
+                "November": 2800,
+                "December": 2900
+            },
+            {
+                "Region": "Australia",
+                "January": 700,
+                "February": 750,
+                "March": 800,
+                "April": 850,
+                "May": 900,
+                "June": 950,
+                "July": 1000,
+                "August": 1050,
+                "September": 1100,
+                "October": 1150,
+                "November": 1200,
+                "December": 1250
+            },
+            {
+                "Region": "Africa",
+                "January": 300,
+                "February": 350,
+                "March": 400,
+                "April": 450,
+                "May": 500,
+                "June": 550,
+                "July": 600,
+                "August": 650,
+                "September": 700,
+                "October": 750,
+                "November": 800,
+                "December": 850
+            },
+            {
+                "Region": "Middle East",
+                "January": 400,
+                "February": 450,
+                "March": 500,
+                "April": 550,
+                "May": 600,
+                "June": 650,
+                "July": 700,
+                "August": 750,
+                "September": 800,
+                "October": 850,
+                "November": 900,
+                "December": 950
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "January",
+                "February",
+                "March",
+                "April",
+                "May",
+                "June",
+                "July",
+                "August",
+                "September",
+                "October",
+                "November",
+                "December"
+            ],
+            "as": [
+                "Month",
+                "Projected Sales"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "line",
+        "point": true
+    },
+    "encoding": {
+        "x": {
+            "field": "Month",
+            "type": "ordinal",
+            "title": "Month",
+            "axis": {
+                "titleFontSize": 14,
+                "labelAngle": -45
+            }
+        },
+        "y": {
+            "field": "Projected Sales",
+            "type": "quantitative",
+            "title": "Projected Sales (units)",
+            "axis": {
+                "titleFontSize": 14
+            }
+        },
+        "color": {
+            "field": "Region",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "North America",
+                    "South America",
+                    "Europe",
+                    "Asia",
+                    "Australia",
+                    "Africa",
+                    "Middle East"
+                ],
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e",
+                    "#2ca02c",
+                    "#d62728",
+                    "#9467bd",
+                    "#8c564b",
+                    "#e377c2"
+                ]
+            },
+            "legend": {
+                "title": "Region"
+            }
+        },
+        "strokeDash": {
+            "condition": {
+                "test": "datum['Region'] == 'Europe'",
+                "value": [
+                    5,
+                    5
+                ]
+            },
+            "value": []
+        },
+        "tooltip": [
+            {
+                "field": "Region",
+                "type": "nominal"
+            },
+            {
+                "field": "Month",
+                "type": "ordinal"
+            },
+            {
+                "field": "Projected Sales",
+                "type": "quantitative"
+            }
+        ]
+    },
+    "config": {
+        "axisY": {
+            "minExtent": 30
+        }
+    }
+}

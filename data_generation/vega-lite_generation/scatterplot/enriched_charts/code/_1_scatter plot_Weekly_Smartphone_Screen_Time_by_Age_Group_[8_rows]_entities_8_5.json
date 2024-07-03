@@ -1,0 +1,119 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Bubble chart of average monthly study hours by education level",
+    "title": {
+        "text": "Average Monthly Study Hours by Education Level",
+        "fontSize": 16,
+        "anchor": "start",
+        "offset": 20,
+        "subtitle": [
+            "Insights into study habits across different education levels"
+        ],
+        "subtitleFontStyle": "italic",
+        "subtitleFontSize": 12
+    },
+    "data": {
+        "values": [
+            {
+                "Education Level Index": 1,
+                "Education Level": "Primary School",
+                "Average Study Hours": 10,
+                "Students": 200
+            },
+            {
+                "Education Level Index": 2,
+                "Education Level": "Middle School",
+                "Average Study Hours": 15,
+                "Students": 180
+            },
+            {
+                "Education Level Index": 3,
+                "Education Level": "High School",
+                "Average Study Hours": 20,
+                "Students": 160
+            },
+            {
+                "Education Level Index": 4,
+                "Education Level": "Undergraduate",
+                "Average Study Hours": 25,
+                "Students": 140
+            },
+            {
+                "Education Level Index": 5,
+                "Education Level": "Graduate",
+                "Average Study Hours": 30,
+                "Students": 120
+            },
+            {
+                "Education Level Index": 6,
+                "Education Level": "PhD",
+                "Average Study Hours": 35,
+                "Students": 100
+            }
+        ]
+    },
+    "height": 350,
+    "width": 500,
+    "mark": {
+        "type": "point",
+        "filled": true,
+        "color": "darkblue"
+    },
+    "encoding": {
+        "x": {
+            "field": "Education Level Index",
+            "type": "ordinal",
+            "title": "Education Level",
+            "axis": {
+                "labels": true,
+                "labelExpr": "datum.value == 1 ? 'Primary' : datum.value == 2 ? 'Middle' : datum.value == 3 ? 'High' : datum.value == 4 ? 'Undergrad' : datum.value == 5 ? 'Graduate' : 'PhD'"
+            }
+        },
+        "y": {
+            "field": "Average Study Hours",
+            "type": "quantitative",
+            "title": "Average Study Hours (per month)"
+        },
+        "size": {
+            "field": "Students",
+            "type": "quantitative",
+            "title": "Number of Students",
+            "legend": {
+                "title": "Students",
+                "offset": 10
+            }
+        },
+        "color": {
+            "field": "Students",
+            "scale": {
+                "domain": [
+                    100,
+                    200
+                ],
+                "range": [
+                    "#f26645",
+                    "#2ca02c"
+                ]
+            },
+            "type": "quantitative",
+            "title": "Student Body Size"
+        },
+        "tooltip": [
+            {
+                "field": "Education Level",
+                "type": "nominal",
+                "title": "Education Level"
+            },
+            {
+                "field": "Average Study Hours",
+                "type": "quantitative",
+                "title": "Average Monthly Hours"
+            },
+            {
+                "field": "Students",
+                "type": "quantitative",
+                "title": "Number of Students"
+            }
+        ]
+    }
+}

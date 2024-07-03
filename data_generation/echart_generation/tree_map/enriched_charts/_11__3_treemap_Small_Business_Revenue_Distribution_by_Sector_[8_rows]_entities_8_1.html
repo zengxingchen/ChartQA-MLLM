@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var option;
+
+option = {
+    title: {
+        text: 'Nutrition & Food Categories',
+        left: 'center',
+        top: '10px',
+        textStyle: {
+            fontSize: 18,
+            color: '#333333'
+        }
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: '{b}: {c}'
+    },
+    series: [
+        {
+            name: 'Nutrition & Food',
+            type: 'treemap',
+            width: '100%',
+            height: '90%',
+            label: {
+                show: true,
+                formatter: '{b}\n{c}'
+            },
+            itemStyle: {
+                borderColor: '#ffffff',
+                borderWidth: 2,
+                gapWidth: 2
+            },
+            levels: [
+                {
+                    itemStyle: {
+                        borderColor: '#777777',
+                        borderWidth: 2,
+                        gapWidth: 1
+                    },
+                    color: ['#8B0000', '#FF4500', '#FFD700', '#ADFF2F', '#32CD32', '#00BFFF', '#FF69B4', '#4B0082', '#A52A2A', '#708090']
+                }
+            ],
+            data: [
+                {
+                    name: 'Fruits',
+                    value: 500
+                },
+                {
+                    name: 'Vegetables',
+                    value: 700
+                },
+                {
+                    name: 'Grains',
+                    value: 300
+                },
+                {
+                    name: 'Dairy',
+                    value: 400
+                },
+                {
+                    name: 'Proteins',
+                    value: 600
+                },
+                {
+                    name: 'Sugars',
+                    value: 200
+                },
+                {
+                    name: 'Fats',
+                    value: 150
+                },
+                {
+                    name: 'Beverages',
+                    value: 350
+                },
+                {
+                    name: 'Snacks',
+                    value: 250
+                },
+                {
+                    name: 'Spices',
+                    value: 100
+                }
+            ]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

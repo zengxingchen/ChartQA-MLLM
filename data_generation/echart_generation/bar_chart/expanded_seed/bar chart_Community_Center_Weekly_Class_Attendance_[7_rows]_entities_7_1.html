@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+
+// Parse the provided data
+var data = [
+  {'Day': 'Monday', 'Yoga Class': 34, 'Coding Workshop': 12, 'Art Class': 25, 'Cooking Class': 13, 'Dance Lessons': 19, 'Language Exchange': 29},
+  {'Day': 'Tuesday', 'Yoga Class': 40, 'Coding Workshop': 15, 'Art Class': 22, 'Cooking Class': 18, 'Dance Lessons': 23, 'Language Exchange': 35},
+  {'Day': 'Wednesday', 'Yoga Class': 37, 'Coding Workshop': 14, 'Art Class': 19, 'Cooking Class': 11, 'Dance Lessons': 16, 'Language Exchange': 32},
+  {'Day': 'Thursday', 'Yoga Class': 43, 'Coding Workshop': 16, 'Art Class': 28, 'Cooking Class': 20, 'Dance Lessons': 26, 'Language Exchange': 30},
+  {'Day': 'Friday', 'Yoga Class': 29, 'Coding Workshop': 18, 'Art Class': 24, 'Cooking Class': 15, 'Dance Lessons': 21, 'Language Exchange': 25},
+  {'Day': 'Saturday', 'Yoga Class': 55, 'Coding Workshop': 21, 'Art Class': 33, 'Cooking Class': 22, 'Dance Lessons': 30, 'Language Exchange': 40},
+  {'Day': 'Sunday', 'Yoga Class': 60, 'Coding Workshop': 19, 'Art Class': 36, 'Cooking Class': 25, 'Dance Lessons': 33, 'Language Exchange': 38}
+];
+
+// Extract categories and series from data
+var categories = data.map(function(item) {
+  return item.Day;
+});
+
+var seriesNames = Object.keys(data[0]).filter(function(name) {
+  return name !== 'Day';
+});
+
+var seriesData = seriesNames.map(function(name) {
+  return {
+    name: name,
+    type: 'bar',
+    data: data.map(function(item) {
+      return item[name];
+    }),
+    markPoint: {
+      data: [
+        {type: 'max', name: 'Max'},
+        {type: 'min', name: 'Min'}
+      ]
+    },
+    markLine: { data: [{type: 'average', name: 'Average'}] }
+  };
+});
+
+// Bar chart option
+var option = {
+  tooltip: {
+    trigger: 'axis',
+    axisPointer: { type: 'shadow' }
+  },
+  legend: {
+    data: seriesNames
+  },
+  grid: {
+    left: '3%',
+    right: '4%',
+    bottom: '3%',
+    containLabel: true
+  },
+  xAxis: {
+    type: 'category',
+    data: categories,
+    axisTick: {
+      alignWithLabel: true
+    }
+  },
+  yAxis: {
+    type: 'value'
+  },
+  series: seriesData
+};
+
+if (option && typeof option === 'object') {
+  myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

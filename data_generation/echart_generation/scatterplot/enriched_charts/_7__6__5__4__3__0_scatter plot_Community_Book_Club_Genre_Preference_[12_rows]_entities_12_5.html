@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 800,
+    height: 600
+});
+var option = {
+    title: {
+        text: 'Daily Exercise Time vs. Mental Wellbeing',
+        left: 'center',
+        top: '20'
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: function (params) {
+            return 'Exercise: ' + params.value[0] + ' min<br/>Wellbeing: ' + params.value[1];
+        }
+    },
+    legend: {
+        data: ['Exercise vs Wellbeing'],
+        left: 'right',
+        top: 'middle'
+    },
+    xAxis: {
+        name: 'Daily Exercise Time (min)',
+        type: 'value',
+        min: 0,
+        max: 320
+    },
+    yAxis: {
+        name: 'Mental Wellbeing Score',
+        type: 'value',
+        min: 40,
+        max: 100
+    },
+    series: [{
+        name: 'Exercise vs Wellbeing',
+        type: 'scatter',
+        itemStyle: {
+            color: '#FF5733'
+        },
+        data: [
+            [15, 50], [30, 55], [45, 60], [60, 62], [75, 65],
+            [90, 70], [105, 72], [120, 75], [135, 78], [150, 80],
+            [165, 82], [180, 85], [195, 87], [210, 88], [225, 90],
+            [240, 91], [255, 92], [270, 93], [285, 94], [300, 95]
+        ]
+    }]
+};
+if (option && typeof option === 'object') myChart.setOption(option);
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Quarterly GDP Growth',
+        left: 'center',
+        top: '5%'
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['GDP Growth'],
+        top: '10%'
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ['Q1 2021', 'Q2 2021', 'Q3 2021', 'Q4 2021', 'Q1 2022', 'Q2 2022', 'Q3 2022', 'Q4 2022', 'Q1 2023', 'Q2 2023', 'Q3 2023', 'Q4 2023']
+    },
+    yAxis: {
+        type: 'value',
+        axisLabel: {
+            formatter: '{value} %'
+        }
+    },
+    series: [
+        {
+            name: 'GDP Growth',
+            type: 'line',
+            data: [2.3, 1.9, 3.1, 2.8, 2.5, 2.2, 1.7, 2.9, 3.4, 2.6, 1.8, 2.7],
+            markPoint: {
+                data: [
+                    {type: 'max', name: 'Max', itemStyle: {color: '#FF0000'}},
+                    {type: 'min', name: 'Min', itemStyle: {color: '#0000FF'}}
+                ]
+            },
+            markLine: {
+                data: [
+                    {type: 'average', name: 'Average', lineStyle: {color: '#00FF00'}}
+                ]
+            },
+            itemStyle: {
+                color: '#FF5733'
+            },
+            lineStyle: {
+                color: '#33FF57'
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

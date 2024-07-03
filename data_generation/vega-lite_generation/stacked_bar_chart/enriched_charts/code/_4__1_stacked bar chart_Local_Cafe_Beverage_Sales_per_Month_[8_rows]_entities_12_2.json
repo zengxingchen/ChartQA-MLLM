@@ -1,0 +1,169 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "A stacked bar chart showing the monthly expenses on various fitness activities.",
+    "data": {
+        "values": [
+            {
+                "Month": "January",
+                "Gym": 120,
+                "Yoga": 80,
+                "Swimming": 50,
+                "Cycling": 70
+            },
+            {
+                "Month": "February",
+                "Gym": 130,
+                "Yoga": 75,
+                "Swimming": 55,
+                "Cycling": 65
+            },
+            {
+                "Month": "March",
+                "Gym": 140,
+                "Yoga": 78,
+                "Swimming": 60,
+                "Cycling": 80
+            },
+            {
+                "Month": "April",
+                "Gym": 125,
+                "Yoga": 82,
+                "Swimming": 58,
+                "Cycling": 75
+            },
+            {
+                "Month": "May",
+                "Gym": 135,
+                "Yoga": 85,
+                "Swimming": 62,
+                "Cycling": 90
+            },
+            {
+                "Month": "June",
+                "Gym": 150,
+                "Yoga": 90,
+                "Swimming": 65,
+                "Cycling": 85
+            },
+            {
+                "Month": "July",
+                "Gym": 160,
+                "Yoga": 88,
+                "Swimming": 70,
+                "Cycling": 95
+            },
+            {
+                "Month": "August",
+                "Gym": 170,
+                "Yoga": 92,
+                "Swimming": 75,
+                "Cycling": 100
+            },
+            {
+                "Month": "September",
+                "Gym": 180,
+                "Yoga": 95,
+                "Swimming": 78,
+                "Cycling": 105
+            },
+            {
+                "Month": "October",
+                "Gym": 190,
+                "Yoga": 98,
+                "Swimming": 80,
+                "Cycling": 110
+            },
+            {
+                "Month": "November",
+                "Gym": 200,
+                "Yoga": 100,
+                "Swimming": 85,
+                "Cycling": 115
+            },
+            {
+                "Month": "December",
+                "Gym": 210,
+                "Yoga": 105,
+                "Swimming": 90,
+                "Cycling": 120
+            }
+        ]
+    },
+    "title": {
+        "text": "Monthly Fitness Expenses",
+        "subtitle": "Expenses data of Gym, Yoga, Swimming, and Cycling",
+        "subtitleFontStyle": "italic",
+        "subtitleFontSize": 10,
+        "anchor": "start",
+        "color": "#333",
+        "offset": 20
+    },
+    "width": 500,
+    "height": 400,
+    "transform": [
+        {
+            "fold": [
+                "Gym",
+                "Yoga",
+                "Swimming",
+                "Cycling"
+            ],
+            "as": [
+                "Activity",
+                "Expenses"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "bar",
+        "width": 25
+    },
+    "encoding": {
+        "x": {
+            "field": "Month",
+            "type": "ordinal",
+            "axis": {
+                "title": "Month"
+            }
+        },
+        "y": {
+            "field": "Expenses",
+            "type": "quantitative",
+            "axis": {
+                "title": "Total Expenses"
+            }
+        },
+        "color": {
+            "field": "Activity",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Gym",
+                    "Yoga",
+                    "Swimming",
+                    "Cycling"
+                ],
+                "range": [
+                    "#4e79a7",
+                    "#f28e2c",
+                    "#e15759",
+                    "#76b7b2"
+                ]
+            },
+            "legend": {
+                "title": "Activities",
+                "orient": "top",
+                "offset": 10
+            }
+        }
+    },
+    "config": {
+        "background": "#fafbfb",
+        "view": {
+            "stroke": "transparent"
+        },
+        "axisX": {
+            "bandPosition": 0.5
+        }
+    }
+}

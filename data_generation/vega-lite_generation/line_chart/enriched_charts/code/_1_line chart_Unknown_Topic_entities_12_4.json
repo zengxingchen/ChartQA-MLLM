@@ -1,0 +1,229 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+        "values": [
+            {
+                "Year": "2000",
+                "Transportation": 5,
+                "Industry": 10,
+                "Residential": 7,
+                "Energy": 15,
+                "Agriculture": 3
+            },
+            {
+                "Year": "2001",
+                "Transportation": 6,
+                "Industry": 11,
+                "Residential": 8,
+                "Energy": 16,
+                "Agriculture": 4
+            },
+            {
+                "Year": "2002",
+                "Transportation": 7,
+                "Industry": 12,
+                "Residential": 9,
+                "Energy": 17,
+                "Agriculture": 5
+            },
+            {
+                "Year": "2003",
+                "Transportation": 8,
+                "Industry": 13,
+                "Residential": 10,
+                "Energy": 18,
+                "Agriculture": 6
+            },
+            {
+                "Year": "2004",
+                "Transportation": 9,
+                "Industry": 14,
+                "Residential": 11,
+                "Energy": 19,
+                "Agriculture": 7
+            },
+            {
+                "Year": "2005",
+                "Transportation": 10,
+                "Industry": 15,
+                "Residential": 12,
+                "Energy": 20,
+                "Agriculture": 8
+            },
+            {
+                "Year": "2006",
+                "Transportation": 11,
+                "Industry": 16,
+                "Residential": 13,
+                "Energy": 21,
+                "Agriculture": 9
+            },
+            {
+                "Year": "2007",
+                "Transportation": 12,
+                "Industry": 17,
+                "Residential": 14,
+                "Energy": 22,
+                "Agriculture": 10
+            },
+            {
+                "Year": "2008",
+                "Transportation": 13,
+                "Industry": 18,
+                "Residential": 15,
+                "Energy": 23,
+                "Agriculture": 11
+            },
+            {
+                "Year": "2009",
+                "Transportation": 14,
+                "Industry": 17,
+                "Residential": 14,
+                "Energy": 22,
+                "Agriculture": 12
+            },
+            {
+                "Year": "2010",
+                "Transportation": 15,
+                "Industry": 18,
+                "Residential": 15,
+                "Energy": 23,
+                "Agriculture": 13
+            },
+            {
+                "Year": "2011",
+                "Transportation": 16,
+                "Industry": 19,
+                "Residential": 16,
+                "Energy": 24,
+                "Agriculture": 14
+            },
+            {
+                "Year": "2012",
+                "Transportation": 15,
+                "Industry": 20,
+                "Residential": 15,
+                "Energy": 25,
+                "Agriculture": 13
+            },
+            {
+                "Year": "2013",
+                "Transportation": 14,
+                "Industry": 21,
+                "Residential": 16,
+                "Energy": 26,
+                "Agriculture": 12
+            },
+            {
+                "Year": "2014",
+                "Transportation": 13,
+                "Industry": 22,
+                "Residential": 17,
+                "Energy": 27,
+                "Agriculture": 11
+            },
+            {
+                "Year": "2015",
+                "Transportation": 14,
+                "Industry": 23,
+                "Residential": 18,
+                "Energy": 28,
+                "Agriculture": 12
+            },
+            {
+                "Year": "2016",
+                "Transportation": 15,
+                "Industry": 24,
+                "Residential": 17,
+                "Energy": 29,
+                "Agriculture": 13
+            },
+            {
+                "Year": "2017",
+                "Transportation": 16,
+                "Industry": 25,
+                "Residential": 18,
+                "Energy": 30,
+                "Agriculture": 14
+            },
+            {
+                "Year": "2018",
+                "Transportation": 17,
+                "Industry": 26,
+                "Residential": 19,
+                "Energy": 31,
+                "Agriculture": 15
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Transportation",
+                "Industry",
+                "Residential",
+                "Energy",
+                "Agriculture"
+            ],
+            "as": [
+                "Sector",
+                "Emissions"
+            ]
+        }
+    ],
+    "width": 600,
+    "height": 400,
+    "mark": {
+        "type": "line",
+        "point": {
+            "filled": true,
+            "fill": "white"
+        },
+        "tooltip": true
+    },
+    "encoding": {
+        "x": {
+            "field": "Year",
+            "type": "ordinal",
+            "title": "Year",
+            "axis": {
+                "labelAngle": 0
+            }
+        },
+        "y": {
+            "field": "Emissions",
+            "type": "quantitative",
+            "title": "CO2 Emissions (in Millions of Tons)"
+        },
+        "color": {
+            "field": "Sector",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Transportation",
+                    "Industry",
+                    "Residential",
+                    "Energy",
+                    "Agriculture"
+                ],
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e",
+                    "#2ca02c",
+                    "#d62728",
+                    "#9467bd"
+                ]
+            },
+            "legend": {
+                "title": "Sector"
+            }
+        }
+    },
+    "title": {
+        "text": "CO2 Emissions by Sector Over Time",
+        "subtitle": [
+            "Tracking the carbon footprint of different sectors from 2000 to 2018"
+        ],
+        "anchor": "start"
+    }
+}

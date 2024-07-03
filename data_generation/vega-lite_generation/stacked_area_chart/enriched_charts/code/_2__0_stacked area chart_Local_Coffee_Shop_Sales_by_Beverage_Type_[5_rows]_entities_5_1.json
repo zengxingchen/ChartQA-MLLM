@@ -1,0 +1,197 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Monthly Music Streaming by Genre",
+    "width": 1000,
+    "height": 500,
+    "title": {
+        "text": "Monthly Music Streaming",
+        "subtitle": "Streaming from January to December",
+        "fontSize": 24,
+        "subtitleFontSize": 14,
+        "anchor": "start"
+    },
+    "data": {
+        "values": [
+            {
+                "Month": "January",
+                "Pop": 15000,
+                "Rock": 12000,
+                "Hip-Hop": 10000,
+                "Jazz": 7000,
+                "Classical": 6000
+            },
+            {
+                "Month": "February",
+                "Pop": 16000,
+                "Rock": 11000,
+                "Hip-Hop": 10500,
+                "Jazz": 8000,
+                "Classical": 6500
+            },
+            {
+                "Month": "March",
+                "Pop": 17000,
+                "Rock": 13000,
+                "Hip-Hop": 11000,
+                "Jazz": 9000,
+                "Classical": 7000
+            },
+            {
+                "Month": "April",
+                "Pop": 18000,
+                "Rock": 14000,
+                "Hip-Hop": 11500,
+                "Jazz": 9500,
+                "Classical": 7500
+            },
+            {
+                "Month": "May",
+                "Pop": 19000,
+                "Rock": 15000,
+                "Hip-Hop": 12000,
+                "Jazz": 10000,
+                "Classical": 8000
+            },
+            {
+                "Month": "June",
+                "Pop": 20000,
+                "Rock": 16000,
+                "Hip-Hop": 12500,
+                "Jazz": 10500,
+                "Classical": 8500
+            },
+            {
+                "Month": "July",
+                "Pop": 21000,
+                "Rock": 17000,
+                "Hip-Hop": 13000,
+                "Jazz": 11000,
+                "Classical": 9000
+            },
+            {
+                "Month": "August",
+                "Pop": 22000,
+                "Rock": 18000,
+                "Hip-Hop": 13500,
+                "Jazz": 11500,
+                "Classical": 9500
+            },
+            {
+                "Month": "September",
+                "Pop": 23000,
+                "Rock": 19000,
+                "Hip-Hop": 14000,
+                "Jazz": 12000,
+                "Classical": 10000
+            },
+            {
+                "Month": "October",
+                "Pop": 24000,
+                "Rock": 20000,
+                "Hip-Hop": 14500,
+                "Jazz": 12500,
+                "Classical": 10500
+            },
+            {
+                "Month": "November",
+                "Pop": 25000,
+                "Rock": 21000,
+                "Hip-Hop": 15000,
+                "Jazz": 13000,
+                "Classical": 11000
+            },
+            {
+                "Month": "December",
+                "Pop": 26000,
+                "Rock": 22000,
+                "Hip-Hop": 15500,
+                "Jazz": 13500,
+                "Classical": 11500
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Pop",
+                "Rock",
+                "Hip-Hop",
+                "Jazz",
+                "Classical"
+            ],
+            "as": [
+                "Genre",
+                "Streams"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "area",
+        "opacity": 0.6
+    },
+    "encoding": {
+        "x": {
+            "field": "Month",
+            "type": "ordinal",
+            "axis": {
+                "title": "Month"
+            }
+        },
+        "y": {
+            "field": "Streams",
+            "type": "quantitative",
+            "axis": {
+                "title": "Number of Streams"
+            },
+            "stack": "zero"
+        },
+        "color": {
+            "field": "Genre",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Pop",
+                    "Rock",
+                    "Hip-Hop",
+                    "Jazz",
+                    "Classical"
+                ],
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e",
+                    "#2ca02c",
+                    "#d62728",
+                    "#9467bd"
+                ]
+            },
+            "legend": {
+                "title": "Music Genre"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Month",
+                "type": "ordinal",
+                "title": "Month"
+            },
+            {
+                "field": "Genre",
+                "type": "nominal",
+                "title": "Genre"
+            },
+            {
+                "field": "Streams",
+                "type": "quantitative",
+                "title": "Streams"
+            }
+        ]
+    },
+    "config": {
+        "view": {
+            "stroke": "transparent"
+        },
+        "axis": {
+            "grid": false
+        }
+    }
+}

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var app = {};
+
+var option;
+option = {
+    title: {
+        text: 'Trends in Art, Science, and Health Over Years',
+        left: 'center',
+        top: 20,
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Art & Design', 'Science & Nature', 'Health & Psychology'],
+        top: 50
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        data: ['2018', '2019', '2020', '2021', '2022', '2023']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Art & Design',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            barWidth: '40%',
+            itemStyle: {
+                color: '#FF5733'
+            },
+            data: [320, 360, 400, 420, 450, 470]
+        },
+        {
+            name: 'Science & Nature',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            barWidth: '40%',
+            itemStyle: {
+                color: '#33FF57'
+            },
+            data: [300, 340, 370, 390, 410, 430]
+        },
+        {
+            name: 'Health & Psychology',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            barWidth: '40%',
+            itemStyle: {
+                color: '#3357FF'
+            },
+            data: [280, 320, 350, 370, 400, 420]
+        },
+        {
+            name: 'Art & Design',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            barWidth: '40%',
+            itemStyle: {
+                color: '#FF5733'
+            },
+            data: [450, 480, 490, 500, 520, 530]
+        },
+        {
+            name: 'Science & Nature',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            barWidth: '40%',
+            itemStyle: {
+                color: '#33FF57'
+            },
+            data: [420, 450, 460, 480, 500, 520]
+        },
+        {
+            name: 'Health & Psychology',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            barWidth: '40%',
+            itemStyle: {
+                color: '#3357FF'
+            },
+            data: [410, 430, 450, 470, 490, 510]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

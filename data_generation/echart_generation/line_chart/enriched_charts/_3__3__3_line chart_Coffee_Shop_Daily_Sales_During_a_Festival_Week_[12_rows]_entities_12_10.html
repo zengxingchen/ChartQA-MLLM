@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Daily Water Intake Over a Month',
+        left: 'center',
+        textStyle: {
+            color: '#333333',
+            fontSize: 20,
+            fontWeight: 'bold'
+        }
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30'],
+        axisLabel: {
+            formatter: 'Day {value}'
+        }
+    },
+    yAxis: {
+        type: 'value',
+        axisLabel: {
+            formatter: '{value} L'
+        }
+    },
+    series: [
+        {
+            name: 'Water Intake',
+            type: 'line',
+            data: [2.5, 2.8, 3.0, 2.2, 2.7, 3.1, 2.9, 2.6, 3.2, 2.4, 2.9, 3.0, 2.8, 2.7, 3.1, 2.6, 2.9, 3.3, 2.5, 2.7, 3.2, 2.8, 2.9, 3.0, 2.6, 3.1, 2.7, 3.2, 2.8, 2.9],
+            lineStyle: {
+                color: '#FF5733',
+                width: 2
+            },
+            itemStyle: {
+                color: '#C70039'
+            },
+            label: {
+                show: true,
+                position: 'top',
+                formatter: '{c} L'
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

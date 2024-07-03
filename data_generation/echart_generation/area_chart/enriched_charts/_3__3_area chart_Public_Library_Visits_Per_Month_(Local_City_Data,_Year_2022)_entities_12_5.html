@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var option;
+
+option = {
+    title: {
+        text: 'Monthly Sales of Technology Products',
+        left: 'center',
+        top: 20
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['Sales'],
+        top: 50
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+    },
+    yAxis: {
+        type: 'value',
+        axisLabel: {
+            formatter: '{value} Units'
+        }
+    },
+    series: [
+        {
+            name: 'Sales',
+            type: 'line',
+            stack: 'Units',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [
+                {value: 1200, name: 'January'},
+                {value: 1150, name: 'February'},
+                {value: 1100, name: 'March'},
+                {value: 1050, name: 'April'},
+                {value: 1000, name: 'May'},
+                {value: 950, name: 'June'},
+                {value: 900, name: 'July'},
+                {value: 850, name: 'August'},
+                {value: 800, name: 'September'},
+                {value: 750, name: 'October'},
+                {value: 700, name: 'November'},
+                {value: 650, name: 'December'},
+            ],
+            color: ['#3398DB']
+        }
+    ],
+    visualMap: {
+        top: 60,
+        right: 10,
+        pieces: [{
+            gt: 1000,
+            color: '#ffde33'
+        }, {
+            gte: 700,
+            lte: 1000,
+            color: '#ff9933'
+        }, {
+            lt: 700,
+            color: '#cc0033'
+        }],
+        outOfRange: {
+            color: '#999'
+        }
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var data = [
+  {'Item': 'Espresso', 'Size': 'Small', 'Price ($)': 2.5},
+  {'Item': 'Espresso', 'Size': 'Large', 'Price ($)': 3.5},
+  {'Item': 'Americano', 'Size': 'Small', 'Price ($)': 2.75},
+  {'Item': 'Americano', 'Size': 'Large', 'Price ($)': 3.75},
+  {'Item': 'Latte', 'Size': 'Small', 'Price ($)': 3.5},
+  {'Item': 'Latte', 'Size': 'Large', 'Price ($)': 4.5},
+  {'Item': 'Cappuccino', 'Size': 'Small', 'Price ($)': 3.5},
+  {'Item': 'Cappuccino', 'Size': 'Large', 'Price ($)': 4.5},
+  {'Item': 'Iced Coffee', 'Size': 'Small', 'Price ($)': 2.75},
+  {'Item': 'Iced Coffee', 'Size': 'Large', 'Price ($)': 3.75},
+  {'Item': 'Mocha', 'Size': 'Small', 'Price ($)': 3.75},
+  {'Item': 'Mocha', 'Size': 'Large', 'Price ($)': 4.75}
+];
+
+// Transform the data to be suitable for echart series format
+var seriesDataSmall = [];
+var seriesDataLarge = [];
+var items = [];
+
+data.forEach(function (d) {
+  if (items.indexOf(d.Item) === -1) items.push(d.Item);
+  if (d.Size === 'Small') {
+    seriesDataSmall.push(d['Price ($)']);
+  } else {
+    seriesDataLarge.push(d['Price ($)']);
+  }
+});
+
+option = {
+  tooltip: {
+    trigger: 'axis',
+    axisPointer: {
+      type: 'shadow'
+    }
+  },
+  legend: {
+    data: ['Small', 'Large']
+  },
+  toolbox: {
+    show: true,
+    feature: {
+      dataView: {show: true, readOnly: false},
+      magicType: {show: true, type: ['line', 'bar']},
+      restore: {show: true},
+      saveAsImage: {show: true}
+    }
+  },
+  xAxis: {
+    type: 'category',
+    data: items
+  },
+  yAxis: {
+    type: 'value',
+    name: 'Price ($)',
+    min: 0,
+    max: 5,
+    interval: 0.5,
+    axisLabel: {
+      formatter: '${value}'
+    }
+  },
+  series: [
+    {
+      name: 'Small',
+      type: 'bar',
+      data: seriesDataSmall,
+      itemStyle: {
+        barBorderRadius: [6, 6, 0, 0],
+        color: 'rgba(255, 69, 0, 0.5)'
+      },
+      markPoint: {
+        data: [
+          {type: 'max', name: 'Max'},
+          {type: 'min', name: 'Min'}
+        ]
+      }
+    },
+    {
+      name: 'Large',
+      type: 'bar',
+      data: seriesDataLarge,
+      itemStyle: {
+        barBorderRadius: [6, 6, 0, 0],
+        color: 'rgba(50, 205, 50, 0.5)'
+      },
+      markLine: {
+        data: [
+          {type: 'average', name: 'Average'}
+        ]
+      }
+    }
+  ]
+};
+
+if (option && typeof option === 'object') {
+  myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

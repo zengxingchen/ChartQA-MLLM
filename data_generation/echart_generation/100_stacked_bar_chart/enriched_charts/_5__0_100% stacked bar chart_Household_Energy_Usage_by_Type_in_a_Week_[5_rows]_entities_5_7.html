@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    width: 800,
+    height: 500
+});
+var app = {};
+
+var option;
+
+option = {
+    color: ['#3366CC', '#DC3912', '#FF9900', '#109618', '#990099'],
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Future Technologies', 'Health & Psychology', 'Entertainment & Leisure', 'Environment & Climate Change', 'Education & Learning']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value'
+    },
+    yAxis: {
+        type: 'category',
+        data: [
+            'January', 'February', 'March', 'April', 'May', 'June', 
+            'July', 'August', 'September', 'October', 'November', 'December'
+        ]
+    },
+    series: [
+        {
+            name: 'Future Technologies',
+            type: 'bar',
+            stack: 'total',
+            barWidth: '50%',
+            label: {
+                show: true,
+                formatter: '{b}'
+            },
+            data: [20, 25, 30, 15, 20, 20, 30, 25, 20, 25, 15, 30]
+        },
+        {
+            name: 'Health & Psychology',
+            type: 'bar',
+            stack: 'total',
+            barWidth: '50%',
+            label: {
+                show: true
+            },
+            data: [30, 20, 25, 35, 15, 25, 25, 20, 30, 25, 20, 15]
+        },
+        {
+            name: 'Entertainment & Leisure',
+            type: 'bar',
+            stack: 'total',
+            barWidth: '50%',
+            label: {
+                show: true
+            },
+            data: [10, 15, 10, 25, 35, 30, 20, 30, 25, 15, 40, 20]
+        },
+        {
+            name: 'Environment & Climate Change',
+            type: 'bar',
+            stack: 'total',
+            barWidth: '50%',
+            label: {
+                show: true
+            },
+            data: [25, 30, 20, 10, 20, 15, 15, 15, 15, 20, 15, 25]
+        },
+        {
+            name: 'Education & Learning',
+            type: 'bar',
+            stack: 'total',
+            barWidth: '50%',
+            label: {
+                show: true
+            },
+            data: [15, 10, 15, 15, 10, 10, 10, 10, 10, 15, 10, 10]
+        }
+    ],
+    title: {
+        text: 'Monthly Breakdown of Interest Areas',
+        left: 'center',
+        top: 'top'
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

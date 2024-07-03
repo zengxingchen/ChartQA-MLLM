@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 800,
+    height: 600
+});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Predicted Impact of Future Technologies on Society by Age Group',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        top: 'bottom'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01]
+    },
+    yAxis: {
+        type: 'category',
+        data: ['18-24', '25-34', '35-44', '45-54', '55-64', '65+']
+    },
+    series: [
+        {
+            name: 'Artificial Intelligence',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [25, 30, 28, 22, 18, 15],
+            barWidth: 35,
+            itemStyle: {
+                color: '#7cb5ec'
+            }
+        },
+        {
+            name: 'Quantum Computing',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            data: [20, 25, 22, 18, 15, 10],
+            barWidth: 35,
+            itemStyle: {
+                color: '#434348'
+            }
+        },
+        {
+            name: 'Cybersecurity',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            data: [15, 10, 18, 25, 27, 20],
+            barWidth: 35,
+            itemStyle: {
+                color: '#90ed7d'
+            }
+        },
+        {
+            name: 'Nanotechnology',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            data: [23, 20, 15, 17, 20, 18],
+            barWidth: 35,
+            itemStyle: {
+                color: '#f7a35c'
+            }
+        },
+        {
+            name: 'Biotechnology',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            data: [17, 15, 17, 18, 20, 17],
+            barWidth: 35,
+            itemStyle: {
+                color: '#8085e9'
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

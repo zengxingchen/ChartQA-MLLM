@@ -1,0 +1,200 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Monthly participation numbers for various wellness activities",
+    "width": 600,
+    "height": 400,
+    "title": {
+        "text": "Monthly Wellness Activity Participation",
+        "anchor": "start",
+        "fontSize": 18,
+        "offset": 30,
+        "orient": "top"
+    },
+    "data": {
+        "values": [
+            {
+                "Month": "January",
+                "Yoga": 3000,
+                "Meditation": 1500,
+                "Running": 4500,
+                "Cycling": 2000,
+                "Swimming": 1800,
+                "Gymnastics": 1200
+            },
+            {
+                "Month": "February",
+                "Yoga": 3200,
+                "Meditation": 1600,
+                "Running": 4700,
+                "Cycling": 2200,
+                "Swimming": 1900,
+                "Gymnastics": 1250
+            },
+            {
+                "Month": "March",
+                "Yoga": 3500,
+                "Meditation": 1700,
+                "Running": 5000,
+                "Cycling": 2400,
+                "Swimming": 2000,
+                "Gymnastics": 1300
+            },
+            {
+                "Month": "April",
+                "Yoga": 3700,
+                "Meditation": 1750,
+                "Running": 5200,
+                "Cycling": 2500,
+                "Swimming": 2100,
+                "Gymnastics": 1350
+            },
+            {
+                "Month": "May",
+                "Yoga": 4000,
+                "Meditation": 1800,
+                "Running": 5400,
+                "Cycling": 2600,
+                "Swimming": 2200,
+                "Gymnastics": 1400
+            },
+            {
+                "Month": "June",
+                "Yoga": 4500,
+                "Meditation": 1900,
+                "Running": 5700,
+                "Cycling": 2800,
+                "Swimming": 2300,
+                "Gymnastics": 1450
+            },
+            {
+                "Month": "July",
+                "Yoga": 4800,
+                "Meditation": 2000,
+                "Running": 6000,
+                "Cycling": 3000,
+                "Swimming": 2400,
+                "Gymnastics": 1500
+            },
+            {
+                "Month": "August",
+                "Yoga": 5000,
+                "Meditation": 2100,
+                "Running": 6200,
+                "Cycling": 3100,
+                "Swimming": 2500,
+                "Gymnastics": 1550
+            },
+            {
+                "Month": "September",
+                "Yoga": 4700,
+                "Meditation": 2050,
+                "Running": 6100,
+                "Cycling": 3050,
+                "Swimming": 2450,
+                "Gymnastics": 1520
+            },
+            {
+                "Month": "October",
+                "Yoga": 4400,
+                "Meditation": 2000,
+                "Running": 5800,
+                "Cycling": 2900,
+                "Swimming": 2350,
+                "Gymnastics": 1480
+            },
+            {
+                "Month": "November",
+                "Yoga": 4200,
+                "Meditation": 1950,
+                "Running": 5500,
+                "Cycling": 2800,
+                "Swimming": 2250,
+                "Gymnastics": 1400
+            },
+            {
+                "Month": "December",
+                "Yoga": 4000,
+                "Meditation": 1900,
+                "Running": 5300,
+                "Cycling": 2700,
+                "Swimming": 2200,
+                "Gymnastics": 1300
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Yoga",
+                "Meditation",
+                "Running",
+                "Cycling",
+                "Swimming",
+                "Gymnastics"
+            ],
+            "as": [
+                "Activity",
+                "Participants"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "area",
+        "opacity": 0.7
+    },
+    "encoding": {
+        "x": {
+            "field": "Month",
+            "type": "ordinal",
+            "axis": {
+                "title": "Month"
+            }
+        },
+        "y": {
+            "field": "Participants",
+            "type": "quantitative",
+            "title": "Number of Participants",
+            "stack": "zero"
+        },
+        "color": {
+            "field": "Activity",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Yoga",
+                    "Meditation",
+                    "Running",
+                    "Cycling",
+                    "Swimming",
+                    "Gymnastics"
+                ],
+                "range": [
+                    "#FFB6C1",
+                    "#6A5ACD",
+                    "#FFA500",
+                    "#20B2AA",
+                    "#87CEEB",
+                    "#32CD32"
+                ]
+            },
+            "title": "Wellness Activity"
+        },
+        "tooltip": [
+            {
+                "field": "Month",
+                "type": "ordinal",
+                "title": "Month"
+            },
+            {
+                "field": "Activity",
+                "type": "nominal",
+                "title": "Activity"
+            },
+            {
+                "field": "Participants",
+                "type": "quantitative",
+                "title": "Number of Participants"
+            }
+        ]
+    }
+}

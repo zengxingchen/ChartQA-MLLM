@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+
+var option;
+
+option = {
+    title: {
+        text: 'Tech Market Trends',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        orient: 'vertical',
+        left: 'right'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01],
+        min: 0,
+        max: 100
+    },
+    yAxis: {
+        type: 'category',
+        data: ['2019', '2020', '2021', '2022', '2023']
+    },
+    series: [
+        {
+            name: 'VR',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [10, 12, 15, 18, 20],
+            itemStyle: {
+                color: '#1f77b4'
+            },
+            barWidth: 20
+        },
+        {
+            name: 'AR',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [20, 22, 18, 25, 28],
+            itemStyle: {
+                color: '#ff7f0e'
+            },
+            barWidth: 20
+        },
+        {
+            name: 'Wearable Tech',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [30, 28, 35, 30, 25],
+            itemStyle: {
+                color: '#2ca02c'
+            },
+            barWidth: 20
+        },
+        {
+            name: 'Smart Home',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [25, 20, 17, 15, 17],
+            itemStyle: {
+                color: '#d62728'
+            },
+            barWidth: 20
+        },
+        {
+            name: 'Biotech',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [15, 18, 15, 12, 10],
+            itemStyle: {
+                color: '#9467bd'
+            },
+            barWidth: 20
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

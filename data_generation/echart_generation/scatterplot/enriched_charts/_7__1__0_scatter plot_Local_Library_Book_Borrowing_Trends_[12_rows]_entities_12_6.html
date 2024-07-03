@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Correlation between Hours of Study and Exam Scores',
+        left: 'center',
+        top: '10%'
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: function (params) {
+            return 'Hours: ' + params.value[0] + '<br>Score: ' + params.value[1];
+        }
+    },
+    legend: {
+        data: ['Scores'],
+        top: '20%',
+        right: '10%'
+    },
+    xAxis: {
+        name: 'Hours of Study',
+        type: 'value',
+        min: 0,
+        max: 21,
+        splitLine: {
+            lineStyle: {
+                type: 'dashed'
+            }
+        }
+    },
+    yAxis: {
+        name: 'Exam Score',
+        type: 'value',
+        min: 2,
+        max: 5,
+        splitLine: {
+            lineStyle: {
+                type: 'dashed'
+            }
+        }
+    },
+    series: [{
+        name: 'Scores',
+        type: 'scatter',
+        itemStyle: {
+            color: '#FF5733'
+        },
+        data: [
+            [1.2, 4.5], [2.3, 3.7], [3.1, 4.1], [4.0, 2.9], [5.5, 3.3],
+            [6.2, 4.0], [7.8, 2.4], [8.4, 3.1], [9.7, 2.6], [10.5, 4.2],
+            [11.2, 3.8], [12.0, 2.7], [13.3, 4.4], [14.7, 3.2], [15.1, 3.9],
+            [16.4, 2.8], [17.6, 4.3], [18.5, 2.9], [19.8, 3.5], [20.2, 4.1]
+        ]
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

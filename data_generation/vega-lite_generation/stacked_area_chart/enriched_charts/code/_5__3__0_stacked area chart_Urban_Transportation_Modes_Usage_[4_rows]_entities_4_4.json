@@ -1,0 +1,129 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Stacked area chart of quarterly mental health visitation trends by age group",
+    "width": 600,
+    "height": 400,
+    "title": {
+        "text": "Quarterly Mental Health Visitation Trends by Age Group",
+        "fontSize": 20,
+        "anchor": "start",
+        "color": "black",
+        "offset": 20,
+        "frame": "group"
+    },
+    "data": {
+        "values": [
+            {
+                "Quarter": "Q1",
+                "Under 18": 120,
+                "18-34": 320,
+                "35-54": 460,
+                "55+": 300
+            },
+            {
+                "Quarter": "Q2",
+                "Under 18": 130,
+                "18-34": 340,
+                "35-54": 480,
+                "55+": 320
+            },
+            {
+                "Quarter": "Q3",
+                "Under 18": 140,
+                "18-34": 360,
+                "35-54": 500,
+                "55+": 330
+            },
+            {
+                "Quarter": "Q4",
+                "Under 18": 110,
+                "18-34": 310,
+                "35-54": 450,
+                "55+": 310
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Under 18",
+                "18-34",
+                "35-54",
+                "55+"
+            ],
+            "as": [
+                "Age Group",
+                "Visitations"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "area",
+        "line": true,
+        "opacity": 0.6
+    },
+    "encoding": {
+        "x": {
+            "field": "Quarter",
+            "type": "ordinal",
+            "axis": {
+                "title": "Quarter"
+            }
+        },
+        "y": {
+            "field": "Visitations",
+            "type": "quantitative",
+            "stack": "zero",
+            "axis": {
+                "title": "Number of Visitations"
+            }
+        },
+        "color": {
+            "field": "Age Group",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Under 18",
+                    "18-34",
+                    "35-54",
+                    "55+"
+                ],
+                "range": [
+                    "#ffd700",
+                    "#da70d6",
+                    "#6495ed",
+                    "#ff6347"
+                ]
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Quarter",
+                "type": "ordinal",
+                "title": "Quarter"
+            },
+            {
+                "field": "Age Group",
+                "type": "nominal",
+                "title": "Age Group"
+            },
+            {
+                "field": "Visitations",
+                "type": "quantitative",
+                "title": "Visitations",
+                "format": ".1f"
+            }
+        ]
+    },
+    "config": {
+        "view": {
+            "stroke": "transparent"
+        },
+        "legend": {
+            "title": null,
+            "labelFontSize": 12,
+            "symbolSize": 100,
+            "offset": 50
+        }
+    }
+}

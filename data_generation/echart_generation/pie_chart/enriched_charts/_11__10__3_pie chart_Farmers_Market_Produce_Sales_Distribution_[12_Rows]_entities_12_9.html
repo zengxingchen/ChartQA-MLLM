@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var app = {};
+option = null;
+option = {
+    title: {
+        text: 'Future Technologies Impacting Society',
+        left: 'center',
+        top: '20'
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: '{a} <br/>{b} : {c} ({d}%)'
+    },
+    legend: {
+        orient: 'vertical',
+        left: 'left',
+        data: [
+            'Renewable Energy', 
+            'Electric Cars', 
+            'Smart Homes', 
+            'Biotechnology', 
+            'Quantum Computing', 
+            'Robotics', 
+            'Artificial Intelligence', 
+            '5G Technology', 
+            'Virtual Reality', 
+            'Cybersecurity'
+        ],
+        top: 50 // This ensures that the legend does not overlap with the title.
+    },
+    color: [
+        '#e6194b', '#3cb44b', '#ffe119', '#4363d8', 
+        '#f58231', '#911eb4', '#46f0f0', '#f032e6', 
+        '#bcf60c', '#fabebe'
+    ],
+    series: [{
+        name: 'Tech Segment',
+        type: 'pie',
+        radius: '55%',
+        center: ['50%', '60%'],
+        data: [
+            {value: 800, name: 'Renewable Energy'},
+            {value: 600, name: 'Electric Cars'},
+            {value: 400, name: 'Smart Homes'},
+            {value: 650, name: 'Biotechnology'},
+            {value: 300, name: 'Quantum Computing'},
+            {value: 450, name: 'Robotics'},
+            {value: 750, name: 'Artificial Intelligence'},
+            {value: 500, name: '5G Technology'},
+            {value: 350, name: 'Virtual Reality'},
+            {value: 550, name: 'Cybersecurity'}
+        ],
+        emphasis: {
+            itemStyle: {
+                shadowBlur: 10,
+                shadowOffsetX: 0,
+                shadowColor: 'rgba(0, 0, 0, 0.5)'
+            }
+        },
+        label: {
+            normal: {
+                formatter: '{b}\n{c} ({d}%)'
+            }
+        }
+    }]
+};
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false
+});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Future Technologies & Society',
+        left: 'center',
+        top: '10'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    xAxis: {
+        type: 'category',
+        data: ['Innovation', 'AI', 'Blockchain', 'Quantum Computing', 'Virtual Reality', 'Renewable Energy', '5G Technology', 'Internet of Things', 'Biotechnology', 'Cybersecurity', 'Nanotechnology', 'Space Exploration', 'Augmented Reality', 'Robotics', 'Genomics', 'Smart Cities', 'Wearable Tech', 'Big Data', 'Autonomous Vehicles', 'Smart Homes'],
+        axisLabel: {
+            rotate: 45,
+            interval: 0
+        }
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Technology',
+            type: 'bar',
+            barWidth: '60%',
+            itemStyle: {
+                color: '#3398DB'
+            },
+            data: [120, 150, 100, 180, 140, 160, 130, 110, 170, 145, 155, 175, 135, 125, 165, 105, 115, 155, 170, 130],
+            label: {
+                show: true,
+                position: 'top',
+                formatter: '{c}'
+            }
+        }
+    ],
+    grid: {
+        left: '10%',
+        right: '10%',
+        bottom: '20%',
+        containLabel: true
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+
+var data = [
+  {name: 'Sunny Fields', value: 1200, path: 'Sunny Fields', itemStyle: {color: '#fdae61'}},
+  {name: 'Green Acres', value: 800, path: 'Green Acres', itemStyle: {color: '#a6d96a'}},
+  {name: 'Riverside Farms', value: 600, path: 'Riverside Farms', itemStyle: {color: '#1f78b4'}},
+  {name: 'Orchard Oasis', value: 900, path: 'Orchard Oasis', itemStyle: {color: '#e377c2'}},
+  {name: 'Berry Patch', value: 1000, path: 'Berry Patch', itemStyle: {color: '#ffffbf'}},
+  {name: 'Harvest Moon', value: 700, path: 'Harvest Moon', itemStyle: {color: '#9999c0'}},
+  {name: 'Meadowland', value: 500, path: 'Meadowland', itemStyle: {color: '#bcbd22'}}
+];
+
+option = {
+  series: [
+    {
+      name: 'Farms',
+      type: 'treemap',
+      visibleMin: 300,
+      label: {
+        show: true,
+        formatter: '{b}\n${c}'
+      },
+      upperLabel: {
+        normal: {
+          show: true,
+          height: 30
+        }
+      },
+      itemStyle: {
+        normal: {
+          borderColor: '#fff'
+        }
+      },
+      levels: [
+        {
+          itemStyle: {
+            normal: {
+              borderWidth: 0,
+              gapWidth: 5
+            }
+          }
+        }
+      ],
+      data: data.map(function (item) {
+        return {
+          value: item.value,
+          name: item.name,
+          path: item.path,
+          itemStyle: {
+            color: item.itemStyle.color
+          }
+        };
+      })
+    }
+  ],
+  tooltip: {
+    formatter: function (info) {
+      var value = info.value;
+      var name = info.name;
+      return `${name}: $${value}`;
+    }
+  }
+};
+
+if (option && typeof option === 'object') {
+  myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

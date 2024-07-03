@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 800, // Change width of the chart
+    height: 600 // Change height of the chart
+});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Market Share of Car Types Over Years', // Added headline
+        subtext: 'Electric, Hybrid, and Traditional Cars', // Added subheadline
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Electric Cars', 'Hybrid Cars', 'Traditional Cars']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value'
+    },
+    yAxis: {
+        type: 'category',
+        data: ['2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022']
+    },
+    series: [
+        {
+            name: 'Electric Cars',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [5, 8, 12, 16, 20, 25, 30, 35],
+            itemStyle: {
+                color: '#33A1C9' // Specific color for Electric Cars
+            },
+            barWidth: 35 // Modified bar width
+        },
+        {
+            name: 'Hybrid Cars',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [15, 18, 20, 25, 28, 30, 33, 35],
+            itemStyle: {
+                color: '#90EE90' // Specific color for Hybrid Cars
+            },
+            barWidth: 35 // Modified bar width
+        },
+        {
+            name: 'Traditional Cars',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [80, 74, 68, 59, 52, 45, 37, 30],
+            itemStyle: {
+                color: '#CD5C5C' // Specific color for Traditional Cars
+            },
+            barWidth: 35 // Modified bar width
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

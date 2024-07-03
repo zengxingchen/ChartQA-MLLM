@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+// Assuming you've already created bins and calculated frequencies,
+// the `data` array will look like this:
+var data = [
+  // These values are placeholders and should be replaced with actual bin data
+  {value: 5, xAxis: 1, yAxis: '0-50'}, // Bin for sales 0-50, frequency 5
+  {value: 10, xAxis: 2, yAxis: '51-100'}, // Bin for sales 51-100, frequency 10
+  {value: 7, xAxis: 3, yAxis: '101-150'}, // Bin for sales 101-150, frequency 7
+  // ...and so on for each bin you calculate
+];
+
+option = {
+  tooltip: {
+    trigger: 'item',
+    axisPointer: {
+      type: 'shadow'
+    }
+  },
+  grid: {
+    left: '3%',
+    right: '4%',
+    bottom: '3%',
+    containLabel: true
+  },
+  xAxis: {
+    type: 'value',
+    boundaryGap: [0, 0.01],
+    name: 'Sales Frequency',
+  },
+  yAxis: {
+    type: 'category',
+    data: data.map(function (item) {
+      return item.yAxis;
+    }),
+    name: 'Sales Range'
+  },
+  series: [
+    {
+      name: 'Sales',
+      type: 'bar',
+      data: data,
+      itemStyle: {
+        color: function(params) {
+          // Here's an example of how to change the color of each bar.
+          var colors = ['#5470C6', '#91CC75', '#EE6666', '#73C0DE', '#3BA272', '#FC8452', '#9A60B4', '#EA7CCC'];
+          return colors[params.dataIndex % colors.length];
+        }
+      }
+    }
+  ]
+};
+
+if (option && typeof option === 'object') {
+  myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var app = {};
+
+var option = {
+    title: {
+        text: 'Economics: Income vs. Expenditure',
+        left: 'center',
+        top: 20
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: function (params) {
+            return `Income: ${params.value[0]}<br/>Expenditure: ${params.value[1]}`;
+        }
+    },
+    legend: {
+        data: ['Income vs. Expenditure'],
+        left: 'right',
+        top: 'top'
+    },
+    xAxis: {
+        type: 'value',
+        name: 'Income',
+        nameLocation: 'middle',
+        nameGap: 30
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Expenditure',
+        nameLocation: 'middle',
+        nameGap: 30
+    },
+    series: [{
+        name: 'Income vs. Expenditure',
+        type: 'scatter',
+        itemStyle: {
+            color: '#FF6347'
+        },
+        data: [
+            [12, 4.1], [15, 5.3], [14, 3.7], [20, 6.9], [25, 8.2], 
+            [30, 10.1], [28, 9.4], [35, 12.3], [40, 13.9], [45, 15.4], 
+            [50, 16.7], [48, 15.8], [52, 17.3], [60, 19.1], [58, 18.3], 
+            [65, 20.7], [70, 22.4], [68, 21.6], [75, 23.9], [80, 25.3], 
+            [85, 26.8], [90, 28.2], [88, 27.6], [95, 29.9], [100, 31.4]
+        ]
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 800, // change width of the chart
+    height: 400 // change height of the chart
+});
+var app = {};
+
+option = {
+    title: {
+        text: 'Economic Sector Contributions Over Five Years',
+        subtext: 'Economics & Finance',
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Technology', 'Manufacturing', 'Services', 'Agriculture']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01]
+    },
+    yAxis: {
+        type: 'category',
+        data: ['2016', '2017', '2018', '2019', '2020']
+    },
+    series: [
+        {
+            name: 'Technology',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35, // change width of bars
+            data: [20, 25, 30, 35, 40],
+            itemStyle: { color: '#1f77b4' } // specific color
+        },
+        {
+            name: 'Manufacturing',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35, // change width of bars
+            data: [30, 25, 20, 15, 10],
+            itemStyle: { color: '#ff7f0e' } // specific color
+        },
+        {
+            name: 'Services',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35, // change width of bars to be reasonably
+            data: [40, 40, 40, 40, 40],
+            itemStyle: { color: '#2ca02c' } // specific color
+        },
+        {
+            name: 'Agriculture',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35, // change width of bars
+            data: [10, 10, 10, 10, 10],
+            itemStyle: { color: '#d62728' } // specific color
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

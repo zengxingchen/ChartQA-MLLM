@@ -1,0 +1,276 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": {
+        "text": "Monthly Genre Preferences in Music Streaming",
+        "anchor": "middle",
+        "offset": 10
+    },
+    "description": "A 100% stacked bar chart showing the preferences of music genres over different months.",
+    "data": {
+        "values": [
+            {
+                "Month": "January",
+                "Pop": 30,
+                "Rock": 20,
+                "Jazz": 15,
+                "Classical": 10,
+                "HipHop": 25
+            },
+            {
+                "Month": "February",
+                "Pop": 28,
+                "Rock": 22,
+                "Jazz": 18,
+                "Classical": 12,
+                "HipHop": 20
+            },
+            {
+                "Month": "March",
+                "Pop": 22,
+                "Rock": 19,
+                "Jazz": 20,
+                "Classical": 15,
+                "HipHop": 24
+            },
+            {
+                "Month": "April",
+                "Pop": 30,
+                "Rock": 25,
+                "Jazz": 10,
+                "Classical": 12,
+                "HipHop": 23
+            },
+            {
+                "Month": "May",
+                "Pop": 27,
+                "Rock": 23,
+                "Jazz": 17,
+                "Classical": 13,
+                "HipHop": 20
+            },
+            {
+                "Month": "June",
+                "Pop": 26,
+                "Rock": 21,
+                "Jazz": 14,
+                "Classical": 17,
+                "HipHop": 22
+            },
+            {
+                "Month": "July",
+                "Pop": 24,
+                "Rock": 26,
+                "Jazz": 19,
+                "Classical": 15,
+                "HipHop": 16
+            },
+            {
+                "Month": "August",
+                "Pop": 29,
+                "Rock": 24,
+                "Jazz": 16,
+                "Classical": 14,
+                "HipHop": 17
+            },
+            {
+                "Month": "September",
+                "Pop": 31,
+                "Rock": 20,
+                "Jazz": 18,
+                "Classical": 11,
+                "HipHop": 20
+            },
+            {
+                "Month": "October",
+                "Pop": 28,
+                "Rock": 22,
+                "Jazz": 15,
+                "Classical": 13,
+                "HipHop": 22
+            },
+            {
+                "Month": "November",
+                "Pop": 26,
+                "Rock": 21,
+                "Jazz": 16,
+                "Classical": 12,
+                "HipHop": 25
+            },
+            {
+                "Month": "December",
+                "Pop": 32,
+                "Rock": 19,
+                "Jazz": 14,
+                "Classical": 10,
+                "HipHop": 25
+            },
+            {
+                "Month": "January",
+                "Pop": 25,
+                "Rock": 23,
+                "Jazz": 18,
+                "Classical": 12,
+                "HipHop": 22
+            },
+            {
+                "Month": "February",
+                "Pop": 30,
+                "Rock": 21,
+                "Jazz": 20,
+                "Classical": 10,
+                "HipHop": 19
+            },
+            {
+                "Month": "March",
+                "Pop": 22,
+                "Rock": 24,
+                "Jazz": 17,
+                "Classical": 15,
+                "HipHop": 22
+            },
+            {
+                "Month": "April",
+                "Pop": 30,
+                "Rock": 20,
+                "Jazz": 15,
+                "Classical": 12,
+                "HipHop": 23
+            },
+            {
+                "Month": "May",
+                "Pop": 27,
+                "Rock": 19,
+                "Jazz": 17,
+                "Classical": 13,
+                "HipHop": 24
+            },
+            {
+                "Month": "June",
+                "Pop": 26,
+                "Rock": 21,
+                "Jazz": 19,
+                "Classical": 17,
+                "HipHop": 17
+            },
+            {
+                "Month": "July",
+                "Pop": 24,
+                "Rock": 20,
+                "Jazz": 18,
+                "Classical": 15,
+                "HipHop": 23
+            },
+            {
+                "Month": "August",
+                "Pop": 29,
+                "Rock": 24,
+                "Jazz": 16,
+                "Classical": 14,
+                "HipHop": 17
+            },
+            {
+                "Month": "September",
+                "Pop": 31,
+                "Rock": 22,
+                "Jazz": 14,
+                "Classical": 11,
+                "HipHop": 22
+            },
+            {
+                "Month": "October",
+                "Pop": 28,
+                "Rock": 19,
+                "Jazz": 20,
+                "Classical": 13,
+                "HipHop": 20
+            },
+            {
+                "Month": "November",
+                "Pop": 26,
+                "Rock": 21,
+                "Jazz": 17,
+                "Classical": 15,
+                "HipHop": 21
+            },
+            {
+                "Month": "December",
+                "Pop": 32,
+                "Rock": 19,
+                "Jazz": 16,
+                "Classical": 10,
+                "HipHop": 23
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Pop",
+                "Rock",
+                "Jazz",
+                "Classical",
+                "HipHop"
+            ],
+            "as": [
+                "Genre",
+                "Percentage"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "bar",
+        "cursor": "pointer"
+    },
+    "width": 800,
+    "height": 600,
+    "encoding": {
+        "y": {
+            "field": "Month",
+            "type": "nominal",
+            "axis": {
+                "title": "Month"
+            }
+        },
+        "x": {
+            "field": "Percentage",
+            "type": "quantitative",
+            "axis": {
+                "title": "Percentage"
+            },
+            "stack": "normalize"
+        },
+        "color": {
+            "field": "Genre",
+            "type": "nominal",
+            "scale": {
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e",
+                    "#2ca02c",
+                    "#d62728",
+                    "#9467bd"
+                ]
+            },
+            "legend": {
+                "title": "Genre",
+                "orient": "right"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Genre",
+                "type": "nominal"
+            },
+            {
+                "field": "Percentage",
+                "type": "quantitative",
+                "title": "Percentage"
+            }
+        ]
+    },
+    "config": {
+        "bar": {
+            "binSpacing": 2
+        }
+    }
+}

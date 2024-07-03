@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Distribution of Daily Steps',
+        left: 'center'
+    },
+    xAxis: {
+        type: 'category',
+        data: ['1000-2000', '2000-3000', '3000-4000', '4000-5000', '5000-6000', '6000-7000', '7000-8000', '8000-9000', '9000-10000'],
+        name: 'Steps'
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Frequency'
+    },
+    series: [{
+        type: 'bar',
+        data: [
+            3, // 1000-2000
+            2, // 2000-3000
+            3, // 3000-4000
+            2, // 4000-5000
+            2, // 5000-6000
+            4, // 6000-7000
+            4, // 7000-8000
+            5, // 8000-9000
+            1  // 9000-10000
+        ],
+        itemStyle: {
+            color: '#8B0000' // Dark Red color for better visual appeal
+        },
+        barWidth: '60%',
+        label: {
+            show: true,
+            position: 'top',
+            formatter: '{c}'
+        }
+    }],
+    grid: {
+        width: '80%',
+        height: '70%',
+        top: '15%'
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

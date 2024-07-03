@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 1000,
+    height: 600
+});
+var option;
+
+option = {
+    title: {
+        text: 'Nutrient Composition in Different Diets',
+        left: 'center',
+        top: '10'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        bottom: '10',
+        data: ['Carbohydrates', 'Proteins', 'Fats', 'Vitamins', 'Minerals']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '20%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01]
+    },
+    yAxis: {
+        type: 'category',
+        data: ['Keto', 'Vegan', 'Paleo', 'Mediterranean', 'Atkins']
+    },
+    series: [
+        {
+            name: 'Carbohydrates',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            itemStyle: {
+                color: '#FF5733'
+            },
+            data: [5, 60, 40, 50, 10]
+        },
+        {
+            name: 'Proteins',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            itemStyle: {
+                color: '#33FF57'
+            },
+            data: [20, 15, 30, 20, 35]
+        },
+        {
+            name: 'Fats',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            itemStyle: {
+                color: '#3357FF'
+            },
+            data: [70, 10, 20, 25, 50]
+        },
+        {
+            name: 'Vitamins',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            itemStyle: {
+                color: '#FF33A1'
+            },
+            data: [3, 8, 6, 3, 3]
+        },
+        {
+            name: 'Minerals',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            itemStyle: {
+                color: '#33FFF0'
+            },
+            data: [2, 7, 4, 2, 2]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

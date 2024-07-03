@@ -1,0 +1,169 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "A stacked bar chart showing the monthly expenditures on various environmental initiatives.",
+    "data": {
+        "values": [
+            {
+                "Month": "January",
+                "Recycling": 150,
+                "Renewable Energy": 200,
+                "Water Conservation": 100,
+                "Pollution Control": 50
+            },
+            {
+                "Month": "February",
+                "Recycling": 160,
+                "Renewable Energy": 220,
+                "Water Conservation": 90,
+                "Pollution Control": 60
+            },
+            {
+                "Month": "March",
+                "Recycling": 170,
+                "Renewable Energy": 210,
+                "Water Conservation": 120,
+                "Pollution Control": 70
+            },
+            {
+                "Month": "April",
+                "Recycling": 180,
+                "Renewable Energy": 230,
+                "Water Conservation": 110,
+                "Pollution Control": 80
+            },
+            {
+                "Month": "May",
+                "Recycling": 190,
+                "Renewable Energy": 240,
+                "Water Conservation": 130,
+                "Pollution Control": 90
+            },
+            {
+                "Month": "June",
+                "Recycling": 200,
+                "Renewable Energy": 250,
+                "Water Conservation": 140,
+                "Pollution Control": 100
+            },
+            {
+                "Month": "July",
+                "Recycling": 210,
+                "Renewable Energy": 260,
+                "Water Conservation": 150,
+                "Pollution Control": 110
+            },
+            {
+                "Month": "August",
+                "Recycling": 220,
+                "Renewable Energy": 270,
+                "Water Conservation": 160,
+                "Pollution Control": 120
+            },
+            {
+                "Month": "September",
+                "Recycling": 230,
+                "Renewable Energy": 280,
+                "Water Conservation": 170,
+                "Pollution Control": 130
+            },
+            {
+                "Month": "October",
+                "Recycling": 240,
+                "Renewable Energy": 290,
+                "Water Conservation": 180,
+                "Pollution Control": 140
+            },
+            {
+                "Month": "November",
+                "Recycling": 250,
+                "Renewable Energy": 300,
+                "Water Conservation": 190,
+                "Pollution Control": 150
+            },
+            {
+                "Month": "December",
+                "Recycling": 260,
+                "Renewable Energy": 310,
+                "Water Conservation": 200,
+                "Pollution Control": 160
+            }
+        ]
+    },
+    "title": {
+        "text": "Monthly Environmental Expenditures",
+        "subtitle": "Expenses data of Recycling, Renewable Energy, Water Conservation, and Pollution Control",
+        "subtitleFontStyle": "italic",
+        "subtitleFontSize": 10,
+        "anchor": "start",
+        "color": "#333",
+        "offset": 20
+    },
+    "width": 700,
+    "height": 400,
+    "transform": [
+        {
+            "fold": [
+                "Recycling",
+                "Renewable Energy",
+                "Water Conservation",
+                "Pollution Control"
+            ],
+            "as": [
+                "Category",
+                "Expenses"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "bar",
+        "height": 20
+    },
+    "encoding": {
+        "x": {
+            "field": "Month",
+            "type": "ordinal",
+            "axis": {
+                "title": "Month"
+            }
+        },
+        "y": {
+            "field": "Expenses",
+            "type": "quantitative",
+            "axis": {
+                "title": "Total Expenses"
+            }
+        },
+        "color": {
+            "field": "Category",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Recycling",
+                    "Renewable Energy",
+                    "Water Conservation",
+                    "Pollution Control"
+                ],
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e",
+                    "#2ca02c",
+                    "#d62728"
+                ]
+            },
+            "legend": {
+                "title": "Categories",
+                "orient": "top",
+                "offset": 10
+            }
+        }
+    },
+    "config": {
+        "background": "#fafbfb",
+        "view": {
+            "stroke": "transparent"
+        },
+        "axisX": {
+            "bandPosition": 0.5
+        }
+    }
+}

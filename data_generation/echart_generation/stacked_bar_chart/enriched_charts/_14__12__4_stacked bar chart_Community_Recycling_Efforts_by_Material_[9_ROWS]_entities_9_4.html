@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 800,
+    height: 600
+});
+var option = {
+    title: {
+        text: 'Weekly Exercise Hours of Different Age Groups',
+        left: 'center',
+        top: '20'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Age 10-20', 'Age 21-30', 'Age 31-40', 'Age 41-50', 'Age 51-60'],
+        bottom: 10
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '15%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        data: ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5', 'Week 6', 'Week 7', 'Week 8'],
+        axisLabel: {
+            rotate: 30,
+            interval: 0
+        }
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Hours',
+        nameLocation: 'end'
+    },
+    series: [
+        {
+            name: 'Age 10-20',
+            type: 'bar',
+            stack: 'Total',
+            barWidth: '20%',
+            itemStyle: {
+                color: '#4CAF50'
+            },
+            label: {
+                show: true,
+                position: 'insideTop'
+            },
+            data: [5, 6, 7, 8, 6, 5, 7, 8]
+        },
+        {
+            name: 'Age 21-30',
+            type: 'bar',
+            stack: 'Total',
+            barWidth: '20%',
+            itemStyle: {
+                color: '#2196F3'
+            },
+            label: {
+                show: true,
+                position: 'insideTop'
+            },
+            data: [8, 7, 9, 10, 8, 7, 9, 10]
+        },
+        {
+            name: 'Age 31-40',
+            type: 'bar',
+            stack: 'Total',
+            barWidth: '20%',
+            itemStyle: {
+                color: '#FF9800'
+            },
+            label: {
+                show: true,
+                position: 'insideTop'
+            },
+            data: [7, 6, 8, 9, 7, 6, 8, 9]
+        },
+        {
+            name: 'Age 41-50',
+            type: 'bar',
+            stack: 'Total',
+            barWidth: '20%',
+            itemStyle: {
+                color: '#9C27B0'
+            },
+            label: {
+                show: true,
+                position: 'insideTop'
+            },
+            data: [6, 7, 7, 8, 7, 6, 7, 8]
+        },
+        {
+            name: 'Age 51-60',
+            type: 'bar',
+            stack: 'Total',
+            barWidth: '20%',
+            itemStyle: {
+                color: '#F44336'
+            },
+            label: {
+                show: true,
+                position: 'insideTop'
+            },
+            data: [4, 5, 6, 7, 5, 4, 6, 7]
+        }
+    ]
+};
+if (option && typeof option === 'object') myChart.setOption(option);
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

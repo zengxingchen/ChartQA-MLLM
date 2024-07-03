@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option = {
+    title: {
+        text: 'Impact of Pollution on Plant Growth',
+        left: 'center',
+        top: '20px',
+        textStyle: {
+            fontSize: 18,
+            fontWeight: 'bold'
+        }
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: 'X: {b0}<br/>Y: {c0}'
+    },
+    legend: {
+        left: '10px',
+        top: '50px'
+    },
+    xAxis: {
+        type: 'value',
+        name: 'Pollution Level',
+        nameLocation: 'middle',
+        nameGap: 30,
+        splitLine: {
+            lineStyle: {
+                type: 'dashed'
+            }
+        }
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Plant Growth',
+        nameLocation: 'middle',
+        nameGap: 40,
+        splitLine: {
+            lineStyle: {
+                type: 'dashed'
+            }
+        }
+    },
+    series: [{
+        name: 'Plant Growth',
+        type: 'scatter',
+        symbolSize: 10,
+        itemStyle: {
+            color: '#FF5733'
+        },
+        data: [
+            [10, 70],
+            [20, 68],
+            [30, 65],
+            [40, 60],
+            [50, 55],
+            [60, 52],
+            [70, 48],
+            [80, 43],
+            [90, 40],
+            [100, 35],
+            [110, 32],
+            [120, 30],
+            [130, 28],
+            [140, 25],
+            [150, 23],
+            [160, 20],
+            [170, 18],
+            [180, 15],
+            [190, 12],
+            [200, 10]
+        ]
+    }],
+    grid: {
+        left: '10%',
+        right: '10%',
+        bottom: '15%',
+        top: '20%'
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

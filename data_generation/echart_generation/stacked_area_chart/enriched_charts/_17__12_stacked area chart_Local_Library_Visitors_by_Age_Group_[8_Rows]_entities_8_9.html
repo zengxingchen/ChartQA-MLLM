@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    width: 800,
+    height: 600
+});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Trends in Education & Learning: 2001-2002',
+        left: 'center',
+        top: 20
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['Education & Learning - Elementary', 'Education & Learning - High School', 'Education & Learning - University'],
+        top: 50
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ['2001-01', '2001-02', '2001-03', '2001-04', '2001-05', '2001-06', '2001-07', '2001-08', '2001-09', '2001-10', '2001-11', '2001-12', '2002-01', '2002-02', '2002-03', '2002-04', '2002-05', '2002-06', '2002-07', '2002-08', '2002-09', '2002-10', '2002-11', '2002-12']
+    },
+    yAxis: {
+        type: 'value',
+        axisLabel: {
+            formatter: '{value} Students'
+        }
+    },
+    series: [
+        {
+            name: 'Education & Learning - Elementary',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {color: '#f28c83'},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [4000, 4080, 4161, 4244, 4328, 4414, 4501, 4589, 4679, 4770, 4862, 4956, 5051, 5147, 5245, 5344, 5444, 5546, 5649, 5753, 5859, 5966, 6075, 6185]
+        },
+        {
+            name: 'Education & Learning - High School',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {color: '#9cc2cb'},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [2000, 2020, 2041, 2063, 2085, 2108, 2131, 2155, 2180, 2205, 2231, 2257, 2284, 2311, 2339, 2367, 2396, 2425, 2455, 2485, 2516, 2547, 2579, 2611]
+        },
+        {
+            name: 'Education & Learning - University',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {color: '#cbe596'},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [1000, 1040, 1081, 1124, 1168, 1213, 1259, 1307, 1356, 1406, 1458, 1511, 1565, 1621, 1678, 1737, 1797, 1859, 1922, 1987, 2053, 2121, 2190, 2261]
+        }
+    ],
+    markPoint: {
+        data: [
+            {type: 'max', name: 'Maximum', symbolSize: 50},
+            {type: 'min', name: 'Minimum', symbolSize: 50}
+        ]
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var option;
+
+option = {
+    title: {
+        text: 'Monthly Sales Distribution in 2021-2022',
+        left: 'center',
+        top: 10
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['Automotive Sales', 'Technology Products', 'Clothing Sales'],
+        top: 50
+    },
+    color: ['#3366CC', '#DC3912', '#FF9900'],
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: [
+            '2021-01', '2021-02', '2021-03', '2021-04', '2021-05', '2021-06',
+            '2021-07', '2021-08', '2021-09', '2021-10', '2021-11', '2021-12',
+            '2022-01', '2022-02', '2022-03', '2022-04', '2022-05', '2022-06',
+            '2022-07', '2022-08', '2022-09', '2022-10', '2022-11', '2022-12'
+        ]
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Automotive Sales',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [
+                320, 334, 350, 373, 387, 401, 413, 426, 439,
+                451, 463, 480, 494, 505, 517, 529, 542, 553,
+                563, 574, 584, 593, 602, 611
+            ]
+        },
+        {
+            name: 'Technology Products',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [
+                332, 340, 355, 366, 378, 390, 401, 411, 420,
+                429, 439, 450, 460, 471, 480, 490, 499, 507,
+                515, 523, 530, 538, 545, 553
+            ]
+        },
+        {
+            name: 'Clothing Sales',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [
+                301, 314, 328, 342, 353, 365, 372, 380, 390,
+                398, 406, 415, 425, 433, 442, 450, 460, 468,
+                475, 482, 490, 497, 503, 510
+            ]
+        }
+    ],
+    annotations: [{
+        type: 'text',
+        position: ['2022-12', 550],
+        value: 'End of Year',
+        style: {
+            fill: '#000'
+        }
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

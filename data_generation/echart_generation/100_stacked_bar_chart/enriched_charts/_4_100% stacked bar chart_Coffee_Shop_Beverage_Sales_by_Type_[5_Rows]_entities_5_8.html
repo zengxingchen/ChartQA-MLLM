@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    width: 800,
+    height: 500
+});
+
+var option;
+
+option = {
+  title: {
+    text: 'Diverse Interests Over Time',
+    left: 'center',
+    top: 5
+  },
+  tooltip: {
+    trigger: 'axis',
+    axisPointer: {
+      type: 'shadow'
+    }
+  },
+  legend: {
+    data: ['Education & Learning', 'Entertainment & Leisure', 'Science & Nature', 'Health & Psychology', 'Culture & Society'],
+    bottom: 0
+  },
+  grid: {
+    left: '3%',
+    right: '4%',
+    bottom: '10%',
+    containLabel: true
+  },
+  xAxis: {
+    type: 'value',
+    boundaryGap: [0, 0.01],
+    position: 'top'
+  },
+  yAxis: {
+    type: 'category',
+    data: ['2020', '2021', '2022', '2023', '2024']
+  },
+  series: [
+    {
+      name: 'Education & Learning',
+      type: 'bar',
+      stack: 'total',
+      barWidth: 35,
+      label: {
+        show: true,
+        position: 'insideRight'
+      },
+      itemStyle: {
+        color: '#3366CC'
+      },
+      data: [35, 40, 30, 45, 50]
+    },
+    {
+      name: 'Entertainment & Leisure',
+      type: 'bar',
+      stack: 'total',
+      barWidth: 35,
+      label: {
+        show: true,
+        position: 'insideRight'
+      },
+      itemStyle: {
+        color: '#DC3912'
+      },
+      data: [25, 20, 25, 15, 10]
+    },
+    {
+      name: 'Science & Nature',
+      type: 'bar',
+      stack: 'total',
+      barWidth: 35,
+      label: {
+        show: true,
+        position: 'insideRight'
+      },
+      itemStyle: {
+        color: '#FF9900'
+      },
+      data: [15, 20, 25, 20, 20]
+    },
+    {
+      name: 'Health & Psychology',
+      type: 'bar',
+      stack: 'total',
+      barWidth: 35,
+      label: {
+        show: true,
+        position: 'insideRight'
+      },
+      itemStyle: {
+        color: '#109618'
+      },
+      data: [10, 5, 10, 10, 5]
+    },
+    {
+      name: 'Culture & Society',
+      type: 'bar',
+      stack: 'total',
+      barWidth: 35,
+      label: {
+        show: true,
+        position: 'insideRight'
+      },
+      itemStyle: {
+        color: '#990099'
+      },
+      data: [15, 15, 10, 10, 15]
+    }
+  ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

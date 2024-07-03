@@ -1,0 +1,230 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "A 100% horizontal stacked bar chart showing the distribution of different types of foods consumed over two weeks",
+    "title": {
+        "text": "Distribution of Food Types Consumed Over Two Weeks",
+        "fontSize": 16,
+        "anchor": "start"
+    },
+    "width": 700,
+    "height": 400,
+    "data": {
+        "values": [
+            {
+                "Day": "Monday",
+                "Fruits": 25,
+                "Vegetables": 30,
+                "Grains": 20,
+                "Proteins": 15,
+                "Dairy": 10
+            },
+            {
+                "Day": "Tuesday",
+                "Fruits": 20,
+                "Vegetables": 25,
+                "Grains": 25,
+                "Proteins": 20,
+                "Dairy": 10
+            },
+            {
+                "Day": "Wednesday",
+                "Fruits": 30,
+                "Vegetables": 20,
+                "Grains": 25,
+                "Proteins": 15,
+                "Dairy": 10
+            },
+            {
+                "Day": "Thursday",
+                "Fruits": 15,
+                "Vegetables": 30,
+                "Grains": 20,
+                "Proteins": 25,
+                "Dairy": 10
+            },
+            {
+                "Day": "Friday",
+                "Fruits": 25,
+                "Vegetables": 20,
+                "Grains": 30,
+                "Proteins": 15,
+                "Dairy": 10
+            },
+            {
+                "Day": "Saturday",
+                "Fruits": 20,
+                "Vegetables": 25,
+                "Grains": 20,
+                "Proteins": 25,
+                "Dairy": 10
+            },
+            {
+                "Day": "Sunday",
+                "Fruits": 30,
+                "Vegetables": 25,
+                "Grains": 20,
+                "Proteins": 15,
+                "Dairy": 10
+            },
+            {
+                "Day": "Monday",
+                "Fruits": 25,
+                "Vegetables": 30,
+                "Grains": 20,
+                "Proteins": 15,
+                "Dairy": 10
+            },
+            {
+                "Day": "Tuesday",
+                "Fruits": 20,
+                "Vegetables": 25,
+                "Grains": 25,
+                "Proteins": 20,
+                "Dairy": 10
+            },
+            {
+                "Day": "Wednesday",
+                "Fruits": 30,
+                "Vegetables": 20,
+                "Grains": 25,
+                "Proteins": 15,
+                "Dairy": 10
+            },
+            {
+                "Day": "Thursday",
+                "Fruits": 15,
+                "Vegetables": 30,
+                "Grains": 20,
+                "Proteins": 25,
+                "Dairy": 10
+            },
+            {
+                "Day": "Friday",
+                "Fruits": 25,
+                "Vegetables": 20,
+                "Grains": 30,
+                "Proteins": 15,
+                "Dairy": 10
+            },
+            {
+                "Day": "Saturday",
+                "Fruits": 20,
+                "Vegetables": 25,
+                "Grains": 20,
+                "Proteins": 25,
+                "Dairy": 10
+            },
+            {
+                "Day": "Sunday",
+                "Fruits": 30,
+                "Vegetables": 25,
+                "Grains": 20,
+                "Proteins": 15,
+                "Dairy": 10
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Fruits",
+                "Vegetables",
+                "Grains",
+                "Proteins",
+                "Dairy"
+            ],
+            "as": [
+                "FoodType",
+                "Count"
+            ]
+        },
+        {
+            "joinaggregate": [
+                {
+                    "op": "sum",
+                    "field": "Count",
+                    "as": "TotalCount"
+                }
+            ],
+            "groupby": [
+                "Day"
+            ]
+        },
+        {
+            "calculate": "datum.Count / datum.TotalCount",
+            "as": "PercentOfTotal"
+        }
+    ],
+    "mark": {
+        "type": "bar",
+        "height": {
+            "band": 0.7
+        }
+    },
+    "encoding": {
+        "y": {
+            "field": "Day",
+            "type": "ordinal",
+            "title": "Day of the Week"
+        },
+        "x": {
+            "field": "PercentOfTotal",
+            "type": "quantitative",
+            "axis": {
+                "format": "%",
+                "title": "Percentage of Total Food"
+            }
+        },
+        "color": {
+            "field": "FoodType",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Fruits",
+                    "Vegetables",
+                    "Grains",
+                    "Proteins",
+                    "Dairy"
+                ],
+                "range": [
+                    "#FF5733",
+                    "#33FF57",
+                    "#3357FF",
+                    "#FF33A1",
+                    "#33FFF5"
+                ]
+            },
+            "legend": {
+                "title": "Type of Food",
+                "orient": "bottom"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "FoodType",
+                "type": "nominal",
+                "title": "Type of Food"
+            },
+            {
+                "field": "PercentOfTotal",
+                "type": "quantitative",
+                "title": "Percentage",
+                "format": ".1%"
+            }
+        ],
+        "order": {
+            "field": "FoodType",
+            "type": "nominal"
+        }
+    },
+    "config": {
+        "axis": {
+            "labelFontSize": 12,
+            "titleFontSize": 14
+        },
+        "legend": {
+            "labelFontSize": 12,
+            "titleFontSize": 14
+        }
+    }
+}

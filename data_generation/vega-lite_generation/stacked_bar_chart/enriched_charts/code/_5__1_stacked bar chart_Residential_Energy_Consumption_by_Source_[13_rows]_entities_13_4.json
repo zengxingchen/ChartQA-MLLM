@@ -1,0 +1,180 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Horizontal stacked bar chart showing the distribution of different fruit sales over years.",
+    "title": {
+        "text": "Annual Fruit Sales Distribution",
+        "fontSize": 15,
+        "anchor": "start",
+        "color": "black",
+        "offset": 10
+    },
+    "width": 600,
+    "height": 400,
+    "data": {
+        "values": [
+            {
+                "Year": 2010,
+                "Apples": 150,
+                "Bananas": 200,
+                "Cherries": 100,
+                "Dates": 50
+            },
+            {
+                "Year": 2011,
+                "Apples": 160,
+                "Bananas": 210,
+                "Cherries": 110,
+                "Dates": 60
+            },
+            {
+                "Year": 2012,
+                "Apples": 170,
+                "Bananas": 220,
+                "Cherries": 120,
+                "Dates": 70
+            },
+            {
+                "Year": 2013,
+                "Apples": 180,
+                "Bananas": 230,
+                "Cherries": 130,
+                "Dates": 80
+            },
+            {
+                "Year": 2014,
+                "Apples": 190,
+                "Bananas": 240,
+                "Cherries": 140,
+                "Dates": 90
+            },
+            {
+                "Year": 2015,
+                "Apples": 200,
+                "Bananas": 250,
+                "Cherries": 150,
+                "Dates": 100
+            },
+            {
+                "Year": 2016,
+                "Apples": 210,
+                "Bananas": 260,
+                "Cherries": 160,
+                "Dates": 110
+            },
+            {
+                "Year": 2017,
+                "Apples": 220,
+                "Bananas": 270,
+                "Cherries": 170,
+                "Dates": 120
+            },
+            {
+                "Year": 2018,
+                "Apples": 230,
+                "Bananas": 280,
+                "Cherries": 180,
+                "Dates": 130
+            },
+            {
+                "Year": 2019,
+                "Apples": 240,
+                "Bananas": 290,
+                "Cherries": 190,
+                "Dates": 140
+            },
+            {
+                "Year": 2020,
+                "Apples": 250,
+                "Bananas": 300,
+                "Cherries": 200,
+                "Dates": 150
+            },
+            {
+                "Year": 2021,
+                "Apples": 260,
+                "Bananas": 310,
+                "Cherries": 210,
+                "Dates": 160
+            },
+            {
+                "Year": 2022,
+                "Apples": 270,
+                "Bananas": 320,
+                "Cherries": 220,
+                "Dates": 170
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Apples",
+                "Bananas",
+                "Cherries",
+                "Dates"
+            ],
+            "as": [
+                "Fruit",
+                "Sales"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "bar",
+        "width": {
+            "band": 0.5
+        }
+    },
+    "encoding": {
+        "y": {
+            "field": "Year",
+            "type": "ordinal",
+            "axis": {
+                "labelAngle": 0,
+                "title": "Year"
+            }
+        },
+        "x": {
+            "field": "Sales",
+            "type": "quantitative",
+            "stack": "zero",
+            "axis": {
+                "title": "Sales (in thousands)"
+            }
+        },
+        "color": {
+            "field": "Fruit",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Apples",
+                    "Bananas",
+                    "Cherries",
+                    "Dates"
+                ],
+                "range": [
+                    "#FF6347",
+                    "#FFD700",
+                    "#8A2BE2",
+                    "#D2691E"
+                ]
+            },
+            "title": "Fruit"
+        },
+        "tooltip": [
+            {
+                "field": "Year",
+                "type": "ordinal"
+            },
+            {
+                "field": "Fruit",
+                "type": "nominal"
+            },
+            {
+                "field": "Sales",
+                "type": "quantitative",
+                "title": "Sales (in thousands)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var option;
+
+option = {
+    title: {
+        text: 'Art & Design Performance',
+        left: 'center',
+        top: '5%',
+        textStyle: {
+            color: '#333333',
+            fontSize: 24
+        }
+    },
+    legend: {
+        data: ['Art', 'Design'],
+        left: 'right',
+        top: '10%'
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: '{a} <br/>{b}: {c}'
+    },
+    xAxis: {
+        type: 'category',
+        data: ['Art', 'Design']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Art',
+            type: 'scatter',
+            data: [
+                { value: 85, itemStyle: { color: '#FF5733' } },
+                { value: 78, itemStyle: { color: '#FF5733' } },
+                { value: 95, itemStyle: { color: '#FF5733' } },
+                { value: 72, itemStyle: { color: '#FF5733' } },
+                { value: 93, itemStyle: { color: '#FF5733' } },
+                { value: 75, itemStyle: { color: '#FF5733' } },
+                { value: 91, itemStyle: { color: '#FF5733' } },
+                { value: 79, itemStyle: { color: '#FF5733' } }
+            ],
+            symbolSize: 20
+        },
+        {
+            name: 'Design',
+            type: 'scatter',
+            data: [
+                { value: 92, itemStyle: { color: '#33FF57' } },
+                { value: 88, itemStyle: { color: '#33FF57' } },
+                { value: 81, itemStyle: { color: '#33FF57' } },
+                { value: 89, itemStyle: { color: '#33FF57' } },
+                { value: 80, itemStyle: { color: '#33FF57' } },
+                { value: 87, itemStyle: { color: '#33FF57' } },
+                { value: 82, itemStyle: { color: '#33FF57' } },
+                { value: 86, itemStyle: { color: '#33FF57' } }
+            ],
+            symbolSize: 20
+        }
+    ],
+    grid: {
+        width: '80%',
+        height: '70%',
+        left: '10%',
+        top: '20%'
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

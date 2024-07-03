@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 1000, height: 600});
+var app = {};
+
+var option;
+option = {
+    title: {
+        text: 'Quarterly Revenue Growth of Tech Companies',
+        left: 'center',
+        textStyle: {
+            color: '#333'
+        }
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['Apple', 'Google', 'Microsoft', 'Amazon'],
+        bottom: 10
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '10%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ['Q1-2019', 'Q2-2019', 'Q3-2019', 'Q4-2019', 'Q1-2020', 'Q2-2020', 'Q3-2020', 'Q4-2020', 'Q1-2021', 'Q2-2021', 'Q3-2021', 'Q4-2021', 'Q1-2022', 'Q2-2022', 'Q3-2022', 'Q4-2022']
+    },
+    yAxis: {
+        type: 'value',
+        axisLabel: {
+            formatter: '{value}k'
+        }
+    },
+    series: [
+        {
+            name: 'Apple',
+            type: 'line',
+            stack: 'Total revenue',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [58021, 53809, 64040, 91819, 58313, 59685, 64698, 111439, 89584, 81434, 83360, 123946, 97278, 83370, 90730, 148166]
+        },
+        {
+            name: 'Google',
+            type: 'line',
+            stack: 'Total revenue',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [36148, 38604, 40540, 46101, 41159, 38237, 46150, 56089, 55314, 61897, 65118, 75932, 68234, 69112, 65201, 84121]
+        },
+        {
+            name: 'Microsoft',
+            type: 'line',
+            stack: 'Total revenue',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [30571, 33171, 33006, 36906, 35021, 38307, 37154, 43076, 41706, 46152, 45317, 51732, 49725, 46908, 51310, 56100]
+        },
+        {
+            name: 'Amazon',
+            type: 'line',
+            stack: 'Total revenue',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [59700, 63404, 69981, 87437, 75452, 88912, 96145, 125555, 108518, 113080, 110812, 137416, 116444, 121334, 110780, 140541]
+        }
+    ],
+    color: ['#FFA07A', '#20B2AA', '#778899', '#9370DB'],
+    dataZoom: [
+        {
+            type: 'slider',
+            start: 0,
+            end: 100
+        }
+    ],
+    markPoint : {
+        data : [
+            {type : 'max', name: 'Max'},
+            {type : 'min', name: 'Min'}
+        ]
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

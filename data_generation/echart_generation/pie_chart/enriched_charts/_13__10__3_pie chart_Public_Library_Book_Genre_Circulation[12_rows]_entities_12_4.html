@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Smartphone Market Share Q4 2022',
+        subtext: 'Data from IDC',
+        left: 'left'
+    },
+    tooltip: {
+        trigger: 'item'
+    },
+    legend: {
+        orient: 'vertical',
+        left: 'right',
+        top: 'center',
+        formatter: function (name) {
+            return name.length > 10 ? name.slice(0, 10) + '...' : name;
+        }
+    },
+    series: [
+        {
+            name: 'Market Share',
+            type: 'pie',
+            radius: '50%',
+            data: [
+                { value: 20.6, name: 'Samsung' },
+                { value: 15.9, name: 'Apple' },
+                { value: 8.6, name: 'Xiaomi' },
+                { value: 5.7, name: 'OPPO' },
+                { value: 5.4, name: 'Vivo' },
+                { value: 4.3, name: 'Huawei' },
+                { value: 2.9, name: 'Lenovo' },
+                { value: 2.7, name: 'Realme' },
+                { value: 1.7, name: 'LG' },
+                { value: 32.2, name: 'Others' }
+            ],
+            emphasis: {
+                itemStyle: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            },
+            color: [
+                '#007bff', '#28a745', '#dc3545', '#ffc107', '#17a2b8',
+                '#fd7e14', '#e83e8c', '#6f42c1', '#20c997', '#5a6268'
+            ],
+            label: {
+                formatter: '{b|{b}: }{c}%',
+                backgroundColor: '#F6F8FC',
+                borderColor: '#8C8D8E',
+                borderWidth: 1,
+                borderRadius: 4,
+                rich: {
+                    b: {
+                        fontSize: 12,
+                        lineHeight: 33
+                    }
+                }
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,132 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "A 100% stacked bar chart showing the proportion of different energy sources used from 2016 to 2020.",
+    "data": {
+        "values": [
+            {
+                "Year": 2016,
+                "Electricity": 48,
+                "Natural Gas": 30,
+                "Heating Oil": 10,
+                "Propane": 5,
+                "Renewable Energy": 7
+            },
+            {
+                "Year": 2017,
+                "Electricity": 47,
+                "Natural Gas": 30,
+                "Heating Oil": 11,
+                "Propane": 5,
+                "Renewable Energy": 7
+            },
+            {
+                "Year": 2018,
+                "Electricity": 45,
+                "Natural Gas": 32,
+                "Heating Oil": 11,
+                "Propane": 5,
+                "Renewable Energy": 7
+            },
+            {
+                "Year": 2019,
+                "Electricity": 44,
+                "Natural Gas": 33,
+                "Heating Oil": 10,
+                "Propane": 5,
+                "Renewable Energy": 8
+            },
+            {
+                "Year": 2020,
+                "Electricity": 43,
+                "Natural Gas": 33,
+                "Heating Oil": 9,
+                "Propane": 5,
+                "Renewable Energy": 10
+            }
+        ]
+    },
+    "width": 500,
+    "height": 300,
+    "transform": [
+        {
+            "fold": [
+                "Electricity",
+                "Natural Gas",
+                "Heating Oil",
+                "Propane",
+                "Renewable Energy"
+            ],
+            "as": [
+                "Energy Source",
+                "Value"
+            ]
+        }
+    ],
+    "mark": "bar",
+    "encoding": {
+        "x": {
+            "field": "Year",
+            "type": "nominal",
+            "axis": {
+                "title": "Year"
+            }
+        },
+        "y": {
+            "field": "Value",
+            "type": "quantitative",
+            "axis": {
+                "title": "Percentage"
+            },
+            "stack": "normalize"
+        },
+        "color": {
+            "field": "Energy Source",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Electricity",
+                    "Natural Gas",
+                    "Heating Oil",
+                    "Propane",
+                    "Renewable Energy"
+                ],
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e",
+                    "#2ca02c",
+                    "#d62728",
+                    "#9467bd"
+                ]
+            },
+            "legend": {
+                "title": "Energy Source"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Year",
+                "type": "nominal",
+                "title": "Year"
+            },
+            {
+                "field": "Energy Source",
+                "type": "nominal",
+                "title": "Energy Source"
+            },
+            {
+                "field": "Value",
+                "type": "quantitative",
+                "title": "Percentage",
+                "format": ".2%"
+            }
+        ]
+    },
+    "config": {
+        "view": {
+            "stroke": "transparent"
+        },
+        "axis": {
+            "domainWidth": 1
+        }
+    }
+}

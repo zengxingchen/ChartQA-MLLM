@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 600,  // Chart width
+    height: 400  // Chart height
+});
+var app = {};
+
+var option;
+
+option = {
+    color: ['#FF5733', '#33FF57', '#3357FF', '#FF33AB'],  // Custom color scheme
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Carbon Emissions', 'Deforestation', 'Green Energy', 'Conservation Efforts'],
+        top: '5%'  // Position legend to avoid overlap with the headline
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01]
+    },
+    yAxis: {
+        type: 'category',
+        data: ['2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019']
+    },
+    title: {
+        text: 'Environment & Climate Change Overview (2010-2019)',
+        left: 'center',
+        top: 'top'  // Position headline at top
+    },
+    series: [
+        {
+            name: 'Carbon Emissions',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,  // Width of the bars
+            data: [40, 35, 30, 25, 20, 15, 10, 5, 4, 3]
+        },
+        {
+            name: 'Deforestation',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            data: [30, 25, 20, 30, 30, 25, 20, 15, 15, 12]
+        },
+        {
+            name: 'Green Energy',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            data: [20, 25, 30, 35, 40, 45, 50, 60, 65, 70]
+        },
+        {
+            name: 'Conservation Efforts',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            data: [10, 15, 20, 10, 10, 15, 20, 20, 16, 15]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

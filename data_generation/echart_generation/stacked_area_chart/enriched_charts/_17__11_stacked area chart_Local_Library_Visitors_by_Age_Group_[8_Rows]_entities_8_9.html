@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    width: 800,
+    height: 600
+});
+var app = {};
+
+var option;
+option = {
+    title: {
+        text: 'Monthly Sector Growth Analysis',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['Education', 'Entertainment', 'Healthcare', 'Technology'],
+        top: '7%'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ['2021-01-01', '2021-01-02', '2021-01-03', '2021-01-04', '2021-01-05', '2021-01-06', '2021-01-07', '2021-01-08', '2021-01-09', '2021-01-10', '2021-01-11', '2021-01-12', '2021-01-13', '2021-01-14', '2021-01-15', '2021-01-16', '2021-01-17', '2021-01-18', '2021-01-19', '2021-01-20', '2021-01-21', '2021-01-22', '2021-01-23', '2021-01-24', '2021-01-25', '2021-01-26', '2021-01-27', '2021-01-28', '2021-01-29', '2021-01-30', '2021-01-31']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Education',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [1000, 1170, 1226, 1245, 1360, 1460, 1590, 1700, 1800, 1850, 1930, 2000, 2060, 2130, 2200, 2260, 2350, 2400, 2450, 2500, 2540, 2600, 2650, 2700, 2760, 2800, 2850, 2900, 2950, 3000, 3050],
+            color: '#FF7F50'
+        },
+        {
+            name: 'Entertainment',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [500, 526, 540, 560, 630, 710, 780, 850, 950, 1000, 1100, 1150, 1180, 1220, 1250, 1290, 1400, 1430, 1460, 1500, 1520, 1550, 1570, 1590, 1600, 1620, 1630, 1650, 1660, 1680, 1700],
+            color: '#87CEEB'
+        },
+        {
+            name: 'Healthcare',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [800, 823, 830, 850, 900, 910, 950, 980, 1020, 1050, 1100, 1120, 1135, 1150, 1165, 1170, 1180, 1190, 1200, 1215, 1220, 1230, 1240, 1250, 1260, 1270, 1280, 1290, 1300, 1310, 1320],
+            color: '#98FB98'
+        },
+        {
+            name: 'Technology',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [700, 732, 750, 788, 820, 860, 880, 905, 950, 965, 980, 1000, 1020, 1030, 1050, 1070, 1100, 1120, 1150, 1170, 1190, 1210, 1225, 1240, 1250, 1260, 1270, 1280, 1290, 1300, 1310],
+            color: '#FFD700'
+        }
+    ],
+    markPoint: {
+        data: [
+            {type: 'max', name: 'Max'},
+            {type: 'min', name: 'Min'}
+        ]
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

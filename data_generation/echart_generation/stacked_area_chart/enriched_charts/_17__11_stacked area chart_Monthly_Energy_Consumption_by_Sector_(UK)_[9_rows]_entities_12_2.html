@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+option = {
+    title: {
+        text: 'Financial Sectors Growth Over Time',
+        left: 'center',
+        top: 20,
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            label: {
+                backgroundColor: '#6a7985'
+            }
+        }
+    },
+    legend: {
+        data: ['Technology', 'Banking', 'Retail', 'Energy'],
+        top: 50
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    color: ['#FF6347', '#4682B4', '#32CD32', '#FFD700'],
+    xAxis: [
+        {
+            type: 'category',
+            boundaryGap: false,
+            data: ['2010,Q1', '2010,Q2', '2010,Q3', '2010,Q4', '2011,Q1', '2011,Q2', '2011,Q3', '2011,Q4', '2012,Q1', '2012,Q2', '2012,Q3', '2012,Q4', '2013,Q1', '2013,Q2', '2013,Q3', '2013,Q4', '2014,Q1', '2014,Q2', '2014,Q3', '2014,Q4'],
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value'
+        }
+    ],
+    series: [
+        {
+            name: 'Technology',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            data: [20, 25, 30, 35, 40, 42, 48, 50, 55, 60, 62, 65, 67, 70, 75, 80, 82, 85, 90, 95]
+        },
+        {
+            name: 'Banking',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            data: [30, 35, 40, 45, 50, 52, 50, 58, 62, 65, 70, 75, 76, 80, 82, 85, 89, 92, 96, 100]
+        },
+        {
+            name: 'Retail',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            data: [40, 45, 50, 55, 60, 62, 65, 60, 65, 70, 75, 80, 82, 85, 90, 95, 100, 105, 110, 115]
+        },
+        {
+            name: 'Energy',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            data: [50, 55, 60, 65, 70, 72, 75, 80, 85, 90, 95, 100, 104, 108, 110, 115, 120, 125, 130, 135]
+        }
+    ]
+};
+
+myChart.setOption(option, true);
+myChart.resize({ width: 800, height: 500 });
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

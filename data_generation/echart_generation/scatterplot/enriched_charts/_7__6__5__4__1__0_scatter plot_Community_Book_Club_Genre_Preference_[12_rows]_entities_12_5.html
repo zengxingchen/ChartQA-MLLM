@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+var option;
+
+option = {
+    title: {
+        text: 'Correlation between Age and Salary in Different Sectors',
+        left: 'center',
+        top: '10%'
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: function (params) {
+            return params.seriesName + '<br/>' + 'Age: ' + params.value[0] + '<br/>' + 'Salary: $' + params.value[1];
+        }
+    },
+    legend: {
+        left: 'right',
+        top: '10%',
+        data: ['Sector A', 'Sector B', 'Sector C']
+    },
+    xAxis: {
+        name: 'Age',
+        nameLocation: 'middle',
+        nameGap: 30
+    },
+    yAxis: {
+        name: 'Salary ($)',
+        nameLocation: 'middle',
+        nameGap: 50
+    },
+    series: [
+        {
+            name: 'Sector A',
+            type: 'scatter',
+            data: [
+                [34, 200], [67, 189], [45, 210], [78, 185], [90, 195]
+            ],
+            itemStyle: {
+                color: '#FF5733'
+            }
+        },
+        {
+            name: 'Sector B',
+            type: 'scatter',
+            data: [
+                [150, 300], [155, 310], [140, 290], [170, 280], [160, 305]
+            ],
+            itemStyle: {
+                color: '#33FF57'
+            }
+        },
+        {
+            name: 'Sector C',
+            type: 'scatter',
+            data: [
+                [230, 400], [245, 390], [260, 420], [235, 410], [250, 405]
+            ],
+            itemStyle: {
+                color: '#3357FF'
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

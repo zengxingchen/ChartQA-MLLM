@@ -1,0 +1,124 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "A pie chart representing the monthly revenue generated from different types of cuisine in a restaurant.",
+    "height": 350,
+    "width": 350,
+    "padding": 5,
+    "config": {
+        "font": "Roboto",
+        "style": {
+            "guide-label": {
+                "fill": "#44475a"
+            },
+            "guide-title": {
+                "fill": "#44475a"
+            }
+        },
+        "axis": {
+            "domainColor": "#44475a",
+            "tickColor": "#44475a"
+        }
+    },
+    "data": {
+        "values": [
+            {
+                "Cuisine": "Italian",
+                "Revenue": 45000
+            },
+            {
+                "Cuisine": "Chinese",
+                "Revenue": 38000
+            },
+            {
+                "Cuisine": "Indian",
+                "Revenue": 25000
+            },
+            {
+                "Cuisine": "Mexican",
+                "Revenue": 30000
+            },
+            {
+                "Cuisine": "Thai",
+                "Revenue": 22000
+            },
+            {
+                "Cuisine": "French",
+                "Revenue": 27000
+            },
+            {
+                "Cuisine": "Japanese",
+                "Revenue": 24000
+            },
+            {
+                "Cuisine": "Greek",
+                "Revenue": 15000
+            }
+        ]
+    },
+    "mark": {
+        "type": "arc",
+        "tooltip": true
+    },
+    "encoding": {
+        "theta": {
+            "field": "Revenue",
+            "type": "quantitative",
+            "stack": true
+        },
+        "color": {
+            "field": "Cuisine",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Italian",
+                    "Chinese",
+                    "Indian",
+                    "Mexican",
+                    "Thai",
+                    "French",
+                    "Japanese",
+                    "Greek"
+                ],
+                "range": [
+                    "#ff6347",
+                    "#ffa07a",
+                    "#7fffd4",
+                    "#4682b4",
+                    "#dda0dd",
+                    "#8a2be2",
+                    "#5f9ea0",
+                    "#ffdab9"
+                ]
+            },
+            "legend": {
+                "direction": "horizontal",
+                "orient": "bottom"
+            }
+        },
+        "opacity": {
+            "condition": {
+                "selection": "element",
+                "value": 1
+            },
+            "value": 0.7
+        }
+    },
+    "selection": {
+        "element": {
+            "type": "multi",
+            "fields": [
+                "Cuisine"
+            ],
+            "bind": "legend"
+        }
+    },
+    "title": {
+        "text": "Monthly Revenue by Cuisine Type",
+        "anchor": "start",
+        "fontSize": 18,
+        "offset": 20
+    },
+    "view": {
+        "stroke": null
+    }
+}

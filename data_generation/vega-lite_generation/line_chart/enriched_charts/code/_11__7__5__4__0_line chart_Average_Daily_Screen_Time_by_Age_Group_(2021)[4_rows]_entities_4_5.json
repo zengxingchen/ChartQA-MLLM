@@ -1,0 +1,199 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Line chart showing the trend of art piece sales over a week in different cities.",
+    "title": {
+        "text": "Weekly Art Piece Sales by City",
+        "fontSize": 18,
+        "anchor": "start",
+        "color": "black"
+    },
+    "width": 800,
+    "height": 500,
+    "data": {
+        "values": [
+            {
+                "City": "New York",
+                "Monday": 5,
+                "Tuesday": 8,
+                "Wednesday": 12,
+                "Thursday": 15,
+                "Friday": 18,
+                "Saturday": 20,
+                "Sunday": 22
+            },
+            {
+                "City": "Los Angeles",
+                "Monday": 4,
+                "Tuesday": 6,
+                "Wednesday": 9,
+                "Thursday": 11,
+                "Friday": 14,
+                "Saturday": 17,
+                "Sunday": 19
+            },
+            {
+                "City": "Chicago",
+                "Monday": 3,
+                "Tuesday": 5,
+                "Wednesday": 8,
+                "Thursday": 10,
+                "Friday": 13,
+                "Saturday": 15,
+                "Sunday": 18
+            },
+            {
+                "City": "Houston",
+                "Monday": 6,
+                "Tuesday": 9,
+                "Wednesday": 12,
+                "Thursday": 14,
+                "Friday": 17,
+                "Saturday": 19,
+                "Sunday": 21
+            },
+            {
+                "City": "Phoenix",
+                "Monday": 7,
+                "Tuesday": 10,
+                "Wednesday": 13,
+                "Thursday": 16,
+                "Friday": 19,
+                "Saturday": 21,
+                "Sunday": 23
+            },
+            {
+                "City": "San Francisco",
+                "Monday": 2,
+                "Tuesday": 4,
+                "Wednesday": 6,
+                "Thursday": 8,
+                "Friday": 10,
+                "Saturday": 12,
+                "Sunday": 14
+            },
+            {
+                "City": "Boston",
+                "Monday": 3,
+                "Tuesday": 6,
+                "Wednesday": 9,
+                "Thursday": 12,
+                "Friday": 14,
+                "Saturday": 16,
+                "Sunday": 18
+            },
+            {
+                "City": "Miami",
+                "Monday": 5,
+                "Tuesday": 7,
+                "Wednesday": 10,
+                "Thursday": 12,
+                "Friday": 15,
+                "Saturday": 18,
+                "Sunday": 20
+            },
+            {
+                "City": "Seattle",
+                "Monday": 1,
+                "Tuesday": 3,
+                "Wednesday": 5,
+                "Thursday": 7,
+                "Friday": 9,
+                "Saturday": 11,
+                "Sunday": 13
+            },
+            {
+                "City": "Denver",
+                "Monday": 4,
+                "Tuesday": 6,
+                "Wednesday": 9,
+                "Thursday": 11,
+                "Friday": 14,
+                "Saturday": 16,
+                "Sunday": 18
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday",
+                "Friday",
+                "Saturday",
+                "Sunday"
+            ],
+            "as": [
+                "Day",
+                "Sales"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "line",
+        "point": true
+    },
+    "encoding": {
+        "x": {
+            "field": "Day",
+            "type": "ordinal",
+            "title": "Day of the Week",
+            "axis": {
+                "titleFontSize": 14,
+                "labelAngle": -45
+            }
+        },
+        "y": {
+            "field": "Sales",
+            "type": "quantitative",
+            "title": "Number of Art Pieces Sold",
+            "axis": {
+                "titleFontSize": 14
+            },
+            "scale": {
+                "reverse": true
+            }
+        },
+        "color": {
+            "field": "City",
+            "type": "nominal",
+            "scale": {
+                "range": [
+                    "#ff0000",
+                    "#00ff00",
+                    "#0000ff",
+                    "#ff00ff",
+                    "#00ffff",
+                    "#ff8800",
+                    "#8800ff",
+                    "#0088ff",
+                    "#88ff00",
+                    "#ff0088"
+                ]
+            },
+            "legend": {
+                "title": "City"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "City",
+                "type": "nominal"
+            },
+            {
+                "field": "Day",
+                "type": "ordinal"
+            },
+            {
+                "field": "Sales",
+                "type": "quantitative"
+            }
+        ]
+    },
+    "config": {
+        "axisY": {
+            "minExtent": 30
+        }
+    }
+}

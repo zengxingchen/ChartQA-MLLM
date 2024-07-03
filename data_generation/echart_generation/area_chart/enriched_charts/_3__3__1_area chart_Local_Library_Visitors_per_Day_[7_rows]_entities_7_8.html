@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: '600', height: '400'});
+var app = {};
+
+var option;
+
+option = {
+  title: {
+    text: 'Stock Closing Prices - January 2023',
+    left: 'center',
+    top: 10
+  },
+  tooltip: {
+    trigger: 'axis'
+  },
+  legend: {
+    data: ['Price'],
+    bottom: 10
+  },
+  grid: {
+    left: '3%',
+    right: '4%',
+    bottom: '3%',
+    containLabel: true
+  },
+  xAxis: {
+    type: 'category',
+    boundaryGap: false,
+    data: ['2023-01-01', '2023-01-02', '2023-01-03', '2023-01-04', '2023-01-05', '2023-01-06', '2023-01-07', '2023-01-08', '2023-01-09', '2023-01-10', '2023-01-11', '2023-01-12', '2023-01-13', '2023-01-14', '2023-01-15', '2023-01-16', '2023-01-17', '2023-01-18', '2023-01-19', '2023-01-20', '2023-01-21', '2023-01-22', '2023-01-23', '2023-01-24', '2023-01-25', '2023-01-26', '2023-01-27', '2023-01-28', '2023-01-29', '2023-01-30', '2023-01-31']
+  },
+  yAxis: {
+    type: 'value',
+    axisLabel: {
+      formatter: '${value}'
+    }
+  },
+  series: [
+    {
+      name: 'Price',
+      type: 'line',
+      stack: 'Total',
+      areaStyle: {},
+      emphasis: {
+        focus: 'series'
+      },
+      data: [150, 148, 146, 143, 139, 137, 134, 132, 129, 125, 123, 121, 118, 114, 112, 108, 105, 102, 99, 97, 95, 93, 91, 89, 87, 85, 82, 80, 78, 75, 73],
+      markPoint: {
+        data: [
+          {type: 'max', name: 'Max', symbolSize: 50},
+          {type: 'min', name: 'Min', symbolSize: 50}
+        ]
+      },
+      color: ['#FF7F50']
+    }
+  ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

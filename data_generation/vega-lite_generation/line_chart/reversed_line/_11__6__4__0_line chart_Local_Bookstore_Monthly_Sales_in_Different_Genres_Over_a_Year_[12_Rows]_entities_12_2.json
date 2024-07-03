@@ -1,0 +1,181 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Monthly Expenditure by Food Category",
+    "data": {
+        "values": [
+            {
+                "Month": "January",
+                "Fruits": 120,
+                "Vegetables": 150,
+                "Meat": 200,
+                "Dairy": 180,
+                "Grains": 140
+            },
+            {
+                "Month": "February",
+                "Fruits": 110,
+                "Vegetables": 140,
+                "Meat": 190,
+                "Dairy": 170,
+                "Grains": 130
+            },
+            {
+                "Month": "March",
+                "Fruits": 130,
+                "Vegetables": 160,
+                "Meat": 210,
+                "Dairy": 190,
+                "Grains": 150
+            },
+            {
+                "Month": "April",
+                "Fruits": 140,
+                "Vegetables": 170,
+                "Meat": 220,
+                "Dairy": 200,
+                "Grains": 160
+            },
+            {
+                "Month": "May",
+                "Fruits": 150,
+                "Vegetables": 180,
+                "Meat": 230,
+                "Dairy": 210,
+                "Grains": 170
+            },
+            {
+                "Month": "June",
+                "Fruits": 160,
+                "Vegetables": 190,
+                "Meat": 240,
+                "Dairy": 220,
+                "Grains": 180
+            },
+            {
+                "Month": "July",
+                "Fruits": 170,
+                "Vegetables": 200,
+                "Meat": 250,
+                "Dairy": 230,
+                "Grains": 190
+            },
+            {
+                "Month": "August",
+                "Fruits": 180,
+                "Vegetables": 210,
+                "Meat": 260,
+                "Dairy": 240,
+                "Grains": 200
+            },
+            {
+                "Month": "September",
+                "Fruits": 190,
+                "Vegetables": 220,
+                "Meat": 270,
+                "Dairy": 250,
+                "Grains": 210
+            },
+            {
+                "Month": "October",
+                "Fruits": 200,
+                "Vegetables": 230,
+                "Meat": 280,
+                "Dairy": 260,
+                "Grains": 220
+            },
+            {
+                "Month": "November",
+                "Fruits": 210,
+                "Vegetables": 240,
+                "Meat": 290,
+                "Dairy": 270,
+                "Grains": 230
+            },
+            {
+                "Month": "December",
+                "Fruits": 220,
+                "Vegetables": 250,
+                "Meat": 300,
+                "Dairy": 280,
+                "Grains": 240
+            }
+        ]
+    },
+    "width": 900,
+    "height": 450,
+    "transform": [
+        {
+            "fold": [
+                "Fruits",
+                "Vegetables",
+                "Meat",
+                "Dairy",
+                "Grains"
+            ],
+            "as": [
+                "Category",
+                "Expenditure"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "line",
+        "point": {
+            "filled": true,
+            "fill": "white"
+        }
+    },
+    "encoding": {
+        "x": {
+            "field": "Month",
+            "type": "ordinal",
+            "title": "Month",
+            "axis": {
+                "labelAngle": 0
+            }
+        },
+        "y": {
+            "field": "Expenditure",
+            "type": "quantitative",
+            "title": "Expenditure (in Dollars)",
+            "scale": {
+                "reverse": true
+            }
+        },
+        "color": {
+            "field": "Category",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Fruits",
+                    "Vegetables",
+                    "Meat",
+                    "Dairy",
+                    "Grains"
+                ],
+                "range": [
+                    "#FF4500",
+                    "#32CD32",
+                    "#1E90FF",
+                    "#FFD700",
+                    "#8B008B"
+                ]
+            },
+            "title": "Category"
+        },
+        "tooltip": [
+            {
+                "field": "Month",
+                "type": "nominal"
+            },
+            {
+                "field": "Category",
+                "type": "nominal"
+            },
+            {
+                "field": "Expenditure",
+                "type": "quantitative"
+            }
+        ]
+    }
+}

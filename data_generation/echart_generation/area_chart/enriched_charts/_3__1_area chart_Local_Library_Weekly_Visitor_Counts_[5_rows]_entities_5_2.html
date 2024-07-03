@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    width: 800,
+    height: 600
+});
+var app = {};
+option = null;
+
+var data = [
+    ['2020-01', 220],
+    ['2020-02', 210],
+    ['2020-03', 200],
+    ['2020-04', 190],
+    ['2020-05', 180],
+    ['2020-06', 170],
+    ['2020-07', 160],
+    ['2020-08', 150],
+    ['2020-09', 140],
+    ['2020-10', 130],
+    ['2020-11', 120],
+    ['2020-12', 110],
+    ['2021-01', 105],
+    ['2021-02', 95],
+    ['2021-03', 85],
+    ['2021-04', 80],
+    ['2021-05', 75],
+    ['2021-06', 70],
+    ['2021-07', 65],
+    ['2021-08', 60],
+    ['2021-09', 55],
+    ['2021-10', 50],
+    ['2021-11', 45],
+    ['2021-12', 40]
+];
+
+option = {
+    title: {
+        text: 'Decline of Pollinators - Environment & Climate Change',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis',
+        formatter: function (params) {
+            params = params[0];
+            return params.name + ': ' + params.value[1];
+        },
+        axisPointer: {
+            animation: false
+        }
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: data.map(function (item) {
+            return item[0];
+        })
+    },
+    yAxis: {
+        type: 'value',
+        boundaryGap: [0, '100%']
+    },
+    series: [
+        {
+            name: 'Number of Pollinators',
+            type: 'line',
+            smooth: true,
+            symbol: 'none',
+            sampling: 'average',
+            itemStyle: {
+                color: '#68b3a5'
+            },
+            areaStyle: {
+                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                    offset: 0,
+                    color: '#e6f7f1'
+                }, {
+                    offset: 1,
+                    color: '#68b3a5'
+                }])
+            },
+            data: data
+        }
+    ],
+    markPoint: {
+        symbolSize: 60,
+        data: [
+            {type: 'max', name: 'Max Value'},
+            {type: 'min', name: 'Min Value'}
+        ],
+        label: {
+            show: true,
+            formatter: '{b}: {c}',
+            color: '#000'
+        }
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

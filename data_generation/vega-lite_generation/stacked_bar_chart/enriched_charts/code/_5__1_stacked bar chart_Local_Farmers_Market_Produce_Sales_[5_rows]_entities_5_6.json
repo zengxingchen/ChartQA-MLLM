@@ -1,0 +1,203 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Monthly revenue from various sports activities offered by a fitness club.",
+    "data": {
+        "values": [
+            {
+                "Month": "2023-01",
+                "Yoga": 2400,
+                "Zumba": 1800,
+                "Pilates": 2000,
+                "Spinning": 2200,
+                "CrossFit": 2500,
+                "HIIT": 2100
+            },
+            {
+                "Month": "2023-02",
+                "Yoga": 2600,
+                "Zumba": 1900,
+                "Pilates": 2100,
+                "Spinning": 2300,
+                "CrossFit": 2700,
+                "HIIT": 2300
+            },
+            {
+                "Month": "2023-03",
+                "Yoga": 2700,
+                "Zumba": 2000,
+                "Pilates": 2200,
+                "Spinning": 2400,
+                "CrossFit": 2900,
+                "HIIT": 2400
+            },
+            {
+                "Month": "2023-04",
+                "Yoga": 2800,
+                "Zumba": 2100,
+                "Pilates": 2300,
+                "Spinning": 2500,
+                "CrossFit": 3100,
+                "HIIT": 2500
+            },
+            {
+                "Month": "2023-05",
+                "Yoga": 2900,
+                "Zumba": 2200,
+                "Pilates": 2400,
+                "Spinning": 2600,
+                "CrossFit": 3300,
+                "HIIT": 2600
+            },
+            {
+                "Month": "2023-06",
+                "Yoga": 3000,
+                "Zumba": 2300,
+                "Pilates": 2500,
+                "Spinning": 2700,
+                "CrossFit": 3500,
+                "HIIT": 2800
+            },
+            {
+                "Month": "2023-07",
+                "Yoga": 3100,
+                "Zumba": 2400,
+                "Pilates": 2600,
+                "Spinning": 2800,
+                "CrossFit": 3600,
+                "HIIT": 3000
+            },
+            {
+                "Month": "2023-08",
+                "Yoga": 3200,
+                "Zumba": 2500,
+                "Pilates": 2700,
+                "Spinning": 2900,
+                "CrossFit": 3700,
+                "HIIT": 3200
+            },
+            {
+                "Month": "2023-09",
+                "Yoga": 3300,
+                "Zumba": 2600,
+                "Pilates": 2800,
+                "Spinning": 3000,
+                "CrossFit": 3800,
+                "HIIT": 3400
+            },
+            {
+                "Month": "2023-10",
+                "Yoga": 3400,
+                "Zumba": 2700,
+                "Pilates": 2900,
+                "Spinning": 3100,
+                "CrossFit": 3900,
+                "HIIT": 3600
+            },
+            {
+                "Month": "2023-11",
+                "Yoga": 3500,
+                "Zumba": 2800,
+                "Pilates": 3000,
+                "Spinning": 3200,
+                "CrossFit": 4000,
+                "HIIT": 3800
+            },
+            {
+                "Month": "2023-12",
+                "Yoga": 3600,
+                "Zumba": 2900,
+                "Pilates": 3100,
+                "Spinning": 3300,
+                "CrossFit": 4100,
+                "HIIT": 4000
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Yoga",
+                "Zumba",
+                "Pilates",
+                "Spinning",
+                "CrossFit",
+                "HIIT"
+            ],
+            "as": [
+                "Activity",
+                "Revenue"
+            ]
+        }
+    ],
+    "mark": "bar",
+    "width": 700,
+    "height": 400,
+    "title": {
+        "text": "Fitness Club Monthly Revenue by Activity",
+        "anchor": "start",
+        "subtitle": "Monthly Revenue in USD, 2023",
+        "subtitleFontStyle": "italic",
+        "subtitleFontSize": 12,
+        "color": "black",
+        "offset": 10
+    },
+    "encoding": {
+        "x": {
+            "field": "Month",
+            "type": "ordinal",
+            "axis": {
+                "title": "Month"
+            }
+        },
+        "y": {
+            "field": "Revenue",
+            "type": "quantitative",
+            "stack": "zero",
+            "axis": {
+                "title": "Total Revenue (USD)"
+            }
+        },
+        "color": {
+            "field": "Activity",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Yoga",
+                    "Zumba",
+                    "Pilates",
+                    "Spinning",
+                    "CrossFit",
+                    "HIIT"
+                ],
+                "range": [
+                    "#4c78a8",
+                    "#f58518",
+                    "#54a24b",
+                    "#e45756",
+                    "#b279a2",
+                    "#ff9da6"
+                ]
+            },
+            "title": "Activity Type"
+        },
+        "tooltip": [
+            {
+                "field": "Activity",
+                "type": "nominal",
+                "title": "Activity"
+            },
+            {
+                "field": "Revenue",
+                "type": "quantitative",
+                "title": "Revenue (USD)"
+            }
+        ]
+    },
+    "config": {
+        "bar": {
+            "width": {
+                "band": 0.7
+            }
+        }
+    }
+}

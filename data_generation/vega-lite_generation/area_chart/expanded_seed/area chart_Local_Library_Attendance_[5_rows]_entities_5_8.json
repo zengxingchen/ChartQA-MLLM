@@ -1,0 +1,102 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": 300,
+    "height": 200,
+    "title": {
+        "text": "Visitors by Year",
+        "subtitle": "An area chart representing visitor numbers",
+        "subtitleFontStyle": "italic",
+        "subtitleFontSize": 10,
+        "anchor": "start",
+        "color": "black"
+    },
+    "data": {
+        "values": [
+            {
+                "Year": 2019,
+                "Visitors": 34000
+            },
+            {
+                "Year": 2020,
+                "Visitors": 15000
+            },
+            {
+                "Year": 2021,
+                "Visitors": 25000
+            },
+            {
+                "Year": 2022,
+                "Visitors": 22000
+            },
+            {
+                "Year": 2023,
+                "Visitors": 28000
+            }
+        ]
+    },
+    "mark": {
+        "type": "area",
+        "interpolate": "monotone",
+        "color": {
+            "x1": 1,
+            "y1": 1,
+            "x2": 1,
+            "y2": 0,
+            "gradient": "linear",
+            "stops": [
+                {
+                    "offset": 0,
+                    "color": "skyblue"
+                },
+                {
+                    "offset": 1,
+                    "color": "rebeccapurple"
+                }
+            ]
+        },
+        "line": {
+            "color": "#3b00fe"
+        }
+    },
+    "encoding": {
+        "x": {
+            "field": "Year",
+            "type": "ordinal",
+            "title": "Year"
+        },
+        "y": {
+            "field": "Visitors",
+            "type": "quantitative",
+            "title": "Number of Visitors"
+        },
+        "tooltip": [
+            {
+                "field": "Year",
+                "type": "ordinal",
+                "title": "Year"
+            },
+            {
+                "field": "Visitors",
+                "type": "quantitative",
+                "title": "Visitors"
+            }
+        ]
+    },
+    "params": [
+        {
+            "name": "Year",
+            "value": 2019,
+            "bind": {
+                "input": "select",
+                "options": [
+                    2019,
+                    2020,
+                    2021,
+                    2022,
+                    2023
+                ],
+                "name": "Select Year:"
+            }
+        }
+    ]
+}

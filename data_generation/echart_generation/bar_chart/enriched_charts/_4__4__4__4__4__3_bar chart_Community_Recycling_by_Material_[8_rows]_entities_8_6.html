@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {renderer: 'canvas', useDirtyRect: false, width: 800, height: 600});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Future Technologies & Society',
+        left: 'center',
+        top: '20'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Value'],
+        top: 'bottom'
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01],
+        name: 'Value',
+        nameLocation: 'middle',
+        nameTextStyle: {
+            padding: 20
+        }
+    },
+    yAxis: {
+        type: 'category',
+        data: ['Artificial Intelligence', 'Blockchain', 'Quantum Computing', 'Augmented Reality', 'Virtual Reality', 'Internet of Things', '5G Technology', 'Biotechnology', 'Nanotechnology', 'Robotics'],
+        name: 'Category',
+        nameLocation: 'middle',
+        nameTextStyle: {
+            padding: 30
+        }
+    },
+    series: [
+        {
+            name: 'Value',
+            type: 'bar',
+            barWidth: '50%',
+            data: [
+                {value: 95, itemStyle: {color: '#FF5733'}, label: {show: true, position: 'inside', formatter: '{c}'}},
+                {value: 85, itemStyle: {color: '#33FF57'}, label: {show: true, position: 'inside', formatter: '{c}'}},
+                {value: 90, itemStyle: {color: '#3357FF'}, label: {show: true, position: 'inside', formatter: '{c}'}},
+                {value: 80, itemStyle: {color: '#FF33A8'}, label: {show: true, position: 'inside', formatter: '{c}'}},
+                {value: 75, itemStyle: {color: '#33FFA8'}, label: {show: true, position: 'inside', formatter: '{c}'}},
+                {value: 88, itemStyle: {color: '#A833FF'}, label: {show: true, position: 'inside', formatter: '{c}'}},
+                {value: 92, itemStyle: {color: '#FFA833'}, label: {show: true, position: 'inside', formatter: '{c}'}},
+                {value: 89, itemStyle: {color: '#33A8FF'}, label: {show: true, position: 'inside', formatter: '{c}'}},
+                {value: 83, itemStyle: {color: '#FF5733'}, label: {show: true, position: 'inside', formatter: '{c}'}},
+                {value: 91, itemStyle: {color: '#33FF57'}, label: {show: true, position: 'inside', formatter: '{c}'}}
+            ]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

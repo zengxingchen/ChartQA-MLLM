@@ -1,0 +1,108 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "A pie chart showing the distribution of different types of food in a balanced diet.",
+    "width": 500,
+    "height": 500,
+    "padding": 10,
+    "config": {
+        "font": "Roboto",
+        "style": {
+            "guide-label": {
+                "fill": "#44475a"
+            },
+            "guide-title": {
+                "fill": "#44475a"
+            }
+        },
+        "axis": {
+            "domainColor": "#44475a",
+            "tickColor": "#44475a"
+        }
+    },
+    "data": {
+        "values": [
+            {
+                "Food": "Vegetables",
+                "Percentage": 30
+            },
+            {
+                "Food": "Fruits",
+                "Percentage": 25
+            },
+            {
+                "Food": "Proteins",
+                "Percentage": 20
+            },
+            {
+                "Food": "Grains",
+                "Percentage": 15
+            },
+            {
+                "Food": "Dairy",
+                "Percentage": 10
+            }
+        ]
+    },
+    "mark": {
+        "type": "arc",
+        "tooltip": true
+    },
+    "encoding": {
+        "theta": {
+            "field": "Percentage",
+            "type": "quantitative",
+            "stack": true
+        },
+        "color": {
+            "field": "Food",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Vegetables",
+                    "Fruits",
+                    "Proteins",
+                    "Grains",
+                    "Dairy"
+                ],
+                "range": [
+                    "#4CAF50",
+                    "#FF9800",
+                    "#F44336",
+                    "#9C27B0",
+                    "#2196F3"
+                ]
+            },
+            "legend": {
+                "direction": "horizontal",
+                "orient": "bottom"
+            }
+        },
+        "opacity": {
+            "condition": {
+                "selection": "element",
+                "value": 1
+            },
+            "value": 0.7
+        }
+    },
+    "selection": {
+        "element": {
+            "type": "multi",
+            "fields": [
+                "Food"
+            ],
+            "bind": "legend"
+        }
+    },
+    "view": {
+        "stroke": null
+    },
+    "title": {
+        "text": "Distribution of Food Types in a Balanced Diet",
+        "fontSize": 18,
+        "fontWeight": "bold",
+        "anchor": "start",
+        "dx": 20,
+        "dy": -20
+    }
+}

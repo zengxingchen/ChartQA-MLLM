@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 800,
+    height: 600
+});
+
+var option = {
+    title: {
+        text: 'Technology Adoption in Future Society',
+        left: 'center',
+        top: '10'
+    },
+    xAxis: {
+        type: 'category',
+        data: ['10-20', '21-30', '31-40', '41-50', '51-60'],
+        axisLabel: {
+            formatter: '{value} years'
+        }
+    },
+    yAxis: {
+        type: 'value',
+        axisLabel: {
+            formatter: '{value} users'
+        }
+    },
+    series: [{
+        data: [5, 10, 15, 10, 5],
+        type: 'bar',
+        barWidth: '50%',
+        itemStyle: {
+            color: '#3398DB'
+        },
+        label: {
+            show: true,
+            position: 'top',
+            formatter: '{c} users'
+        }
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

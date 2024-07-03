@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var option;
+
+option = {
+    title: {
+        text: 'Correlation Between Age and Cognitive Decline',
+        left: 'center',
+        top: '10%'
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    xAxis: {
+        name: 'Age',
+        type: 'value'
+    },
+    yAxis: {
+        name: 'Cognitive Score',
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Cognitive Score',
+            type: 'scatter',
+            itemStyle: {
+                color: '#FF5733'
+            },
+            data: [
+                [10, 85], [12, 78], [15, 74], [18, 70], [21, 65], [24, 60],
+                [28, 55], [32, 50], [35, 45], [39, 42], [42, 38], [45, 35],
+                [48, 33], [51, 31], [55, 29], [59, 27], [63, 25], [67, 23],
+                [72, 21], [76, 20]
+            ]
+        }
+    ],
+    grid: {
+        left: '10%',
+        right: '10%',
+        top: '20%',
+        bottom: '15%'
+    },
+    legend: {
+        data: ['Cognitive Score'],
+        left: 'right',
+        top: '5%'
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+var option = {
+    title: {
+        text: 'Design Aspects in Art & Design',
+        left: 'center',
+        top: '5%'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: { 
+            type: 'shadow' 
+        }
+    },
+    legend: {
+        data: ['Design', 'Innovation', 'Functionality'],
+        top: '10%',
+        right: '10%'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        axisLabel: {
+            formatter: '{value}'
+        }
+    },
+    yAxis: {
+        type: 'category',
+        data: ['Art & Design', 'Architecture', 'Painting', 'Sculpture', 'Photography', 'Graphic Design', 'Fashion Design', 'Interior Design', 'Product Design', 'Industrial Design'],
+        axisLabel: {
+            interval: 0
+        }
+    },
+    series: [
+        {
+            name: 'Design',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [120, 180, 240, 300, 140, 210, 270, 230, 280, 220],
+            itemStyle: {
+                color: '#FF5733'
+            },
+            barWidth: '40%'
+        },
+        {
+            name: 'Innovation',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [200, 150, 180, 210, 170, 140, 190, 210, 250, 230],
+            itemStyle: {
+                color: '#33FF57'
+            },
+            barWidth: '40%'
+        },
+        {
+            name: 'Functionality',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [150, 200, 230, 190, 220, 250, 200, 240, 220, 260],
+            itemStyle: {
+                color: '#3357FF'
+            },
+            barWidth: '40%'
+        }
+    ]
+};
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

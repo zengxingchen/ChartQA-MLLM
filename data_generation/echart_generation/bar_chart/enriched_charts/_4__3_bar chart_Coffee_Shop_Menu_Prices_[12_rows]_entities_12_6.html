@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Future Technologies & Society',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Value'],
+        top: '10%'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01]
+    },
+    yAxis: {
+        type: 'category',
+        data: ['Technology', 'Art', 'Science', 'Health', 'Culture', 'Economics', 'Education', 'Entertainment', 'Environment', 'Food', 'Travel', 'Fashion', 'Politics', 'Sports', 'History', 'Philosophy', 'Music', 'Literature', 'Business', 'Astronomy']
+    },
+    series: [
+        {
+            name: 'Value',
+            type: 'bar',
+            data: [120, 85, 95, 110, 80, 130, 100, 90, 75, 115, 105, 95, 125, 110, 90, 85, 100, 105, 120, 115],
+            itemStyle: {
+                color: function (params) {
+                    var colorList = [
+                        '#c23531', '#2f4554', '#61a0a8', '#d48265', '#91c7ae',
+                        '#749f83', '#ca8622', '#bda29a', '#6e7074', '#546570',
+                        '#c4ccd3', '#f05b72', '#ef5b9c', '#f47920', '#905a3d',
+                        '#fab27b', '#2a5caa', '#444693', '#726930', '#b2d235'
+                    ];
+                    return colorList[params.dataIndex];
+                },
+                barBorderRadius: [0, 5, 5, 0]
+            },
+            label: {
+                show: true,
+                position: 'insideRight'
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

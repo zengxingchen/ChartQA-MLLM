@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var option;
+
+option = {
+    title: {
+        text: 'Fitness and Nutrition Data Correlation',
+        left: 'center',
+        top: '10%'
+    },
+    legend: {
+        data: ['Fitness', 'Nutrition'],
+        left: 'right',
+        top: '20%'
+    },
+    xAxis: {
+        name: 'Age',
+        type: 'value'
+    },
+    yAxis: {
+        name: 'Metric Value',
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Fitness',
+            type: 'scatter',
+            itemStyle: {
+                color: '#FF5733'
+            },
+            data: [
+                [23, 120],
+                [25, 112],
+                [28, 115],
+                [30, 108],
+                [32, 102],
+                [35, 110],
+                [37, 99],
+                [40, 105],
+                [42, 98],
+                [45, 95]
+            ]
+        },
+        {
+            name: 'Nutrition',
+            type: 'scatter',
+            itemStyle: {
+                color: '#33FF57'
+            },
+            data: [
+                [23, 130],
+                [25, 128],
+                [28, 122],
+                [30, 118],
+                [32, 115],
+                [35, 120],
+                [37, 110],
+                [40, 112],
+                [42, 105],
+                [45, 100]
+            ]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

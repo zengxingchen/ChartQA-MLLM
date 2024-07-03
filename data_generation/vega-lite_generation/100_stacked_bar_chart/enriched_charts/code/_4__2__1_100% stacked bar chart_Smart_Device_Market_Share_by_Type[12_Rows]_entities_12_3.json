@@ -1,0 +1,180 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": {
+        "text": "Weekly Workout Distribution by Activity",
+        "anchor": "start",
+        "offset": 5
+    },
+    "description": "A 100% stacked bar chart showing the distribution of different workout activities over the weeks.",
+    "data": {
+        "values": [
+            {
+                "Week": "Week 1",
+                "Running": 30,
+                "Cycling": 20,
+                "Swimming": 15,
+                "Yoga": 25,
+                "Strength Training": 10
+            },
+            {
+                "Week": "Week 2",
+                "Running": 25,
+                "Cycling": 25,
+                "Swimming": 20,
+                "Yoga": 20,
+                "Strength Training": 10
+            },
+            {
+                "Week": "Week 3",
+                "Running": 35,
+                "Cycling": 15,
+                "Swimming": 15,
+                "Yoga": 25,
+                "Strength Training": 10
+            },
+            {
+                "Week": "Week 4",
+                "Running": 30,
+                "Cycling": 20,
+                "Swimming": 20,
+                "Yoga": 20,
+                "Strength Training": 10
+            },
+            {
+                "Week": "Week 5",
+                "Running": 28,
+                "Cycling": 22,
+                "Swimming": 20,
+                "Yoga": 20,
+                "Strength Training": 10
+            },
+            {
+                "Week": "Week 6",
+                "Running": 32,
+                "Cycling": 18,
+                "Swimming": 20,
+                "Yoga": 20,
+                "Strength Training": 10
+            },
+            {
+                "Week": "Week 7",
+                "Running": 30,
+                "Cycling": 20,
+                "Swimming": 20,
+                "Yoga": 20,
+                "Strength Training": 10
+            },
+            {
+                "Week": "Week 8",
+                "Running": 27,
+                "Cycling": 23,
+                "Swimming": 20,
+                "Yoga": 20,
+                "Strength Training": 10
+            },
+            {
+                "Week": "Week 9",
+                "Running": 33,
+                "Cycling": 17,
+                "Swimming": 20,
+                "Yoga": 20,
+                "Strength Training": 10
+            },
+            {
+                "Week": "Week 10",
+                "Running": 30,
+                "Cycling": 20,
+                "Swimming": 18,
+                "Yoga": 22,
+                "Strength Training": 10
+            },
+            {
+                "Week": "Week 11",
+                "Running": 29,
+                "Cycling": 21,
+                "Swimming": 20,
+                "Yoga": 20,
+                "Strength Training": 10
+            },
+            {
+                "Week": "Week 12",
+                "Running": 34,
+                "Cycling": 16,
+                "Swimming": 20,
+                "Yoga": 20,
+                "Strength Training": 10
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Running",
+                "Cycling",
+                "Swimming",
+                "Yoga",
+                "Strength Training"
+            ],
+            "as": [
+                "Activity",
+                "Hours"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "bar",
+        "cursor": "pointer"
+    },
+    "width": 500,
+    "height": 300,
+    "encoding": {
+        "y": {
+            "field": "Hours",
+            "type": "quantitative",
+            "axis": {
+                "title": "Percentage"
+            },
+            "stack": "normalize"
+        },
+        "x": {
+            "field": "Week",
+            "type": "nominal",
+            "axis": {
+                "title": "Week"
+            }
+        },
+        "color": {
+            "field": "Activity",
+            "type": "nominal",
+            "scale": {
+                "range": [
+                    "#ff5733",
+                    "#33ff57",
+                    "#3357ff",
+                    "#ff33a1",
+                    "#a1ff33"
+                ]
+            },
+            "legend": {
+                "title": "Activity",
+                "orient": "bottom"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Activity",
+                "type": "nominal"
+            },
+            {
+                "field": "Hours",
+                "type": "quantitative",
+                "title": "Hours Percentage"
+            }
+        ]
+    },
+    "config": {
+        "bar": {
+            "binSpacing": 5
+        }
+    }
+}

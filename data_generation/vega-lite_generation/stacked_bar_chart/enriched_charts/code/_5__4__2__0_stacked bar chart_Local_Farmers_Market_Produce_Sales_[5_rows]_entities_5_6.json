@@ -1,0 +1,170 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Daily Screen Time by Activity.",
+    "data": {
+        "values": [
+            {
+                "Day": "Monday",
+                "Reading": 1.5,
+                "Gaming": 2,
+                "Social Media": 3,
+                "Work": 6
+            },
+            {
+                "Day": "Tuesday",
+                "Reading": 1,
+                "Gaming": 2.5,
+                "Social Media": 2.5,
+                "Work": 5.5
+            },
+            {
+                "Day": "Wednesday",
+                "Reading": 1.2,
+                "Gaming": 1.8,
+                "Social Media": 3.1,
+                "Work": 6.3
+            },
+            {
+                "Day": "Thursday",
+                "Reading": 1.3,
+                "Gaming": 2.1,
+                "Social Media": 2.8,
+                "Work": 5.8
+            },
+            {
+                "Day": "Friday",
+                "Reading": 1.8,
+                "Gaming": 3,
+                "Social Media": 3.2,
+                "Work": 5.6
+            },
+            {
+                "Day": "Saturday",
+                "Reading": 2,
+                "Gaming": 4,
+                "Social Media": 4,
+                "Work": 2
+            },
+            {
+                "Day": "Sunday",
+                "Reading": 2.5,
+                "Gaming": 3.5,
+                "Social Media": 4.5,
+                "Work": 1.5
+            },
+            {
+                "Day": "Monday",
+                "Reading": 1.4,
+                "Gaming": 2.2,
+                "Social Media": 2.9,
+                "Work": 5.9
+            },
+            {
+                "Day": "Tuesday",
+                "Reading": 1.1,
+                "Gaming": 2.6,
+                "Social Media": 2.7,
+                "Work": 5.7
+            },
+            {
+                "Day": "Wednesday",
+                "Reading": 1.3,
+                "Gaming": 1.9,
+                "Social Media": 3.3,
+                "Work": 6.2
+            },
+            {
+                "Day": "Thursday",
+                "Reading": 1.5,
+                "Gaming": 2.3,
+                "Social Media": 2.6,
+                "Work": 5.6
+            },
+            {
+                "Day": "Friday",
+                "Reading": 1.9,
+                "Gaming": 3.1,
+                "Social Media": 3.1,
+                "Work": 5.4
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Reading",
+                "Gaming",
+                "Social Media",
+                "Work"
+            ],
+            "as": [
+                "Activity",
+                "Hours"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "bar",
+        "height": {
+            "band": 30
+        }
+    },
+    "width": 700,
+    "height": 500,
+    "title": {
+        "text": "Daily Screen Time by Activity",
+        "anchor": "middle",
+        "color": "black"
+    },
+    "encoding": {
+        "x": {
+            "field": "Day",
+            "type": "ordinal",
+            "axis": {
+                "title": "Day"
+            }
+        },
+        "y": {
+            "field": "Hours",
+            "type": "quantitative",
+            "stack": "zero",
+            "axis": {
+                "title": "Hours Spent"
+            }
+        },
+        "color": {
+            "field": "Activity",
+            "type": "nominal",
+            "legend": {
+                "orient": "top"
+            },
+            "scale": {
+                "domain": [
+                    "Reading",
+                    "Gaming",
+                    "Social Media",
+                    "Work"
+                ],
+                "range": [
+                    "#636EFA",
+                    "#EF553B",
+                    "#00CC96",
+                    "#AB63FA"
+                ]
+            },
+            "title": "Activity Type"
+        },
+        "tooltip": [
+            {
+                "field": "Activity",
+                "type": "nominal",
+                "title": "Activity"
+            },
+            {
+                "field": "Hours",
+                "type": "quantitative",
+                "title": "Hours"
+            }
+        ]
+    }
+}

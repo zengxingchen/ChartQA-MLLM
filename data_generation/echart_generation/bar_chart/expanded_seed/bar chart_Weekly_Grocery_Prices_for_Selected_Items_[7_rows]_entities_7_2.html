@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+option = {
+    color: ['#c23531', '#2f4554', '#61a0a8', '#d48265'],
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Price (Week 1)', 'Price (Week 2)', 'Price (Week 3)', 'Price (Week 4)']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01]
+    },
+    yAxis: {
+        type: 'category',
+        data: []
+    },
+    series: []
+};
+
+const items = [];
+const pricesWeek1 = [];
+const pricesWeek2 = [];
+const pricesWeek3 = [];
+const pricesWeek4 = [];
+
+const tableData = [
+    {'Item': 'Milk (1 gallon)', 'Price (Week 1)': 3.5, 'Price (Week 2)': 3.6, 'Price (Week 3)': 3.55, 'Price (Week 4)': 3.65},
+    {'Item': 'Bread (1 loaf)', 'Price (Week 1)': 2.3, 'Price (Week 2)': 2.35, 'Price (Week 3)': 2.4, 'Price (Week 4)': 2.29},
+    {'Item': 'Eggs (Dozen)', 'Price (Week 1)': 2.5, 'Price (Week 2)': 2.45, 'Price (Week 3)': 2.6, 'Price (Week 4)': 2.55},
+    {'Item': 'Bananas (per lb)', 'Price (Week 1)': 0.58, 'Price (Week 2)': 0.6, 'Price (Week 3)': 0.57, 'Price (Week 4)': 0.59},
+    {'Item': 'Chicken Breast (per lb)', 'Price (Week 1)': 3.2, 'Price (Week 2)': 3.15, 'Price (Week 3)': 3.1, 'Price (Week 4)': 3.25},
+    {'Item': 'Apples (per lb)', 'Price (Week 1)': 1.3, 'Price (Week 2)': 1.35, 'Price (Week 3)': 1.29, 'Price (Week 4)': 1.4},
+    {'Item': 'Rice (1 lb bag)', 'Price (Week 1)': 0.99, 'Price (Week 2)': 1.05, 'Price (Week 3)': 1.02, 'Price (Week 4)': 0.98}
+];
+
+tableData.forEach(function (item) {
+    items.push(item.Item);
+    pricesWeek1.push(item['Price (Week 1)']);
+    pricesWeek2.push(item['Price (Week 2)']);
+    pricesWeek3.push(item['Price (Week 3)']);
+    pricesWeek4.push(item['Price (Week 4)']);
+});
+
+option.yAxis.data = items;
+option.series.push({ name: 'Price (Week 1)', type: 'bar', data: pricesWeek1 });
+option.series.push({ name: 'Price (Week 2)', type: 'bar', data: pricesWeek2 });
+option.series.push({ name: 'Price (Week 3)', type: 'bar', data: pricesWeek3 });
+option.series.push({ name: 'Price (Week 4)', type: 'bar', data: pricesWeek4 });
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

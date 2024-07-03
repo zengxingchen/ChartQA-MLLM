@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 600, height: 400});
+var app = {};
+
+var option;
+
+// Define the data for the bar chart
+var data = [
+    {value: 92, name: 'Math'},
+    {value: 87, name: 'Science'},
+    {value: 80, name: 'History'},
+    {value: 85, name: 'Geography'},
+    {value: 90, name: 'Language Arts'},
+    {value: 88, name: 'Art'},
+    {value: 93, name: 'Physical Education'},
+    {value: 89, name: 'Music'},
+    {value: 91, name: 'Technology'},
+    {value: 86, name: 'Health'}
+];
+
+option = {
+    title: {
+        text: 'Education & Learning: Average Test Scores',
+        left: 'center'
+    },
+    color: [
+        '#3465A4', '#CC0000', '#F57900', '#EDD400', '#204A87',
+        '#5C3566', '#C17D11', '#8F5902', '#CE5C00', '#8AE234'
+    ],
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Scores'],
+        top: '5%'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        data: data.map(function (item) {
+            return item.name;
+        })
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Scores',
+            type: 'bar',
+            barWidth: '60%',
+            data: data,
+            label: {
+                show: true,
+                position: 'top',
+                color: '#000'
+            }
+        }
+    ],
+    itemStyle: {
+        // Changes the width of the bars
+        barWidth: 14
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

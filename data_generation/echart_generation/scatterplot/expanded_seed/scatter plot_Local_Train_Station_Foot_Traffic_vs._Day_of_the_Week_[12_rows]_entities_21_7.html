@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var daysOfWeekMap = {
+    'Monday': 1,
+    'Tuesday': 2,
+    'Wednesday': 3,
+    'Thursday': 4,
+    'Friday': 5,
+};
+
+var timesOfDay = ['Morning', 'Afternoon', 'Evening'];
+var data = {
+    'Morning': [],
+    'Afternoon': [],
+    'Evening': []
+};
+
+var tableData = [
+    {'Day of Week': 'Monday', ' Time of Day': ' Morning', ' Foot Traffic (people/hour)': 250},
+    {'Day of Week': 'Monday', ' Time of Day': ' Afternoon', ' Foot Traffic (people/hour)': 150},
+    {'Day of Week': 'Monday', ' Time of Day': ' Evening', ' Foot Traffic (people/hour)': 200},
+    {'Day of Week': 'Tuesday', ' Time of Day': ' Morning', ' Foot Traffic (people/hour)': 300},
+    {'Day of Week': 'Tuesday', ' Time of Day': ' Afternoon', ' Foot Traffic (people/hour)': 120},
+    {'Day of Week': 'Tuesday', ' Time of Day': ' Evening', ' Foot Traffic (people/hour)': 180},
+    {'Day of Week': 'Wednesday', ' Time of Day': ' Morning', ' Foot Traffic (people/hour)': 310},
+    {'Day of Week': 'Wednesday', ' Time of Day': ' Afternoon', ' Foot Traffic (people/hour)': 160},
+    {'Day of Week': 'Wednesday', ' Time of Day': ' Evening', ' Foot Traffic (people/hour)': 210},
+    {'Day of Week': 'Thursday', ' Time of Day': ' Morning', ' Foot Traffic (people/hour)': 320},
+    {'Day of Week': 'Thursday', ' Time of Day': ' Afternoon', ' Foot Traffic (people/hour)': 150},
+    {'Day of Week': 'Thursday', ' Time of Day': ' Evening', ' Foot Traffic (people/hour)': 220},
+    {'Day of Week': 'Friday', ' Time of Day': ' Morning', ' Foot Traffic (people/hour)': 400},
+    {'Day of Week': 'Friday', ' Time of Day': ' Afternoon', ' Foot Traffic (people/hour)': 180},
+    {'Day of Week': 'Friday', ' Time of Day': ' Evening', ' Foot Traffic (people/hour)': 300}
+];
+
+// Format the data for ECharts
+tableData.forEach(function (item) {
+    var dayValue = daysOfWeekMap[item['Day of Week']];
+    var timeOfDay = item[' Time of Day'].trim(); // Remove leading space in key
+    var trafficValue = item[' Foot Traffic (people/hour)'];
+    data[timeOfDay].push([dayValue, trafficValue]);
+});
+
+// Create series array
+var series = timesOfDay.map(function (time) {
+    return {
+        name: time,
+        type: 'scatter',
+        symbolSize: function (val) {
+            // Using a fixed base size for visibility and scaling by foot traffic value
+            return Math.sqrt(val[1]) * 2;
+        },
+        data: data[time]
+    };
+});
+
+option = {
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross'
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '7%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        name: 'Day of Week',
+        data: Object.keys(daysOfWeekMap),
+        boundaryGap: true
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Foot Traffic (people/hour)',
+        scale: true,
+    },
+    series: series
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

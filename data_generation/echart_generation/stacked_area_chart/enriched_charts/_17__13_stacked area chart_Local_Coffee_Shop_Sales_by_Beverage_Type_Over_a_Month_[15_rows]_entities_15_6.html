@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+  renderer: 'canvas',
+  useDirtyRect: false,
+  width: 800,
+  height: 400
+});
+var app = {};
+
+var option;
+
+option = {
+  title: {
+    text: 'Energy Consumption and Emissions in 2021-2022',
+    left: 'center'
+  },
+  tooltip: {
+    trigger: 'axis'
+  },
+  legend: {
+    data: ['Green Energy Consumption', 'Non-Renewable Energy Consumption', 'Energy Emissions'],
+    top: 30
+  },
+  grid: {
+    left: '3%',
+    right: '4%',
+    bottom: '3%',
+    containLabel: true
+  },
+  xAxis: {
+    type: 'category',
+    boundaryGap: false,
+    data: [
+      '2021-01', '2021-02', '2021-03',
+      '2021-04', '2021-05', '2021-06',
+      '2021-07', '2021-08', '2021-09',
+      '2021-10', '2021-11', '2021-12',
+      '2022-01', '2022-02', '2022-03',
+      '2022-04', '2022-05', '2022-06',
+      '2022-07', '2022-08', '2022-09',
+      '2022-10', '2022-11', '2022-12'
+    ]
+  },
+  yAxis: {
+    type: 'value'
+  },
+  series: [
+    {
+      name: 'Green Energy Consumption',
+      type: 'line',
+      stack: 'total',
+      areaStyle: {},
+      emphasis: {
+        focus: 'series'
+      },
+      data: [
+        800, 820, 840, 860, 880, 900,
+        920, 940, 960, 980, 1000, 1020,
+        1040, 1060, 1080, 1100, 1120, 1140,
+        1160, 1180, 1200, 1220, 1240, 1260
+      ],
+      color: '#90ee90' // Light Green
+    },
+    {
+      name: 'Non-Renewable Energy Consumption',
+      type: 'line',
+      stack: 'total',
+      areaStyle: {},
+      emphasis: {
+        focus: 'series'
+      },
+      data: [
+        300, 320, 340, 330, 325, 310,
+        300, 290, 280, 260, 250, 240,
+        230, 220, 210, 200, 190, 180,
+        170, 160, 150, 140, 130, 120
+      ],
+      color: '#ff6347' // Tomato Red
+    },
+    {
+      name: 'Energy Emissions',
+      type: 'line',
+      stack: 'total',
+      label: {
+        show: true,
+        position: 'top'
+      },
+      areaStyle: {},
+      emphasis: {
+        focus: 'series'
+      },
+      data: [
+        150, 160, 165, 154, 148, 142,
+        138, 132, 126, 118, 110, 105,
+        99, 93, 88, 82, 78, 73,
+        69, 65, 60, 55, 50, 46
+      ],
+      color: '#1e90ff' // Dodger Blue
+    }
+  ]
+};
+
+if (option && typeof option === 'object') {
+  myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

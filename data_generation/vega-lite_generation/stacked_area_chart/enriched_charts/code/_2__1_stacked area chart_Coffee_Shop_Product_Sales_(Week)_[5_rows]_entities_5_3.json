@@ -1,0 +1,200 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Daily Stock Prices by Industry Sector",
+    "width": 700,
+    "height": 400,
+    "title": {
+        "text": "Stock Prices Across Different Industry Sectors",
+        "anchor": "start",
+        "offset": 5,
+        "fontSize": 16
+    },
+    "data": {
+        "values": [
+            {
+                "Date": "2023-03-01",
+                "Technology": 150,
+                "Healthcare": 140,
+                "Finance": 130,
+                "Energy": 120
+            },
+            {
+                "Date": "2023-03-02",
+                "Technology": 152,
+                "Healthcare": 142,
+                "Finance": 128,
+                "Energy": 122
+            },
+            {
+                "Date": "2023-03-03",
+                "Technology": 148,
+                "Healthcare": 139,
+                "Finance": 131,
+                "Energy": 119
+            },
+            {
+                "Date": "2023-03-04",
+                "Technology": 155,
+                "Healthcare": 144,
+                "Finance": 134,
+                "Energy": 121
+            },
+            {
+                "Date": "2023-03-05",
+                "Technology": 153,
+                "Healthcare": 143,
+                "Finance": 135,
+                "Energy": 123
+            },
+            {
+                "Date": "2023-03-06",
+                "Technology": 150,
+                "Healthcare": 141,
+                "Finance": 132,
+                "Energy": 120
+            },
+            {
+                "Date": "2023-03-07",
+                "Technology": 149,
+                "Healthcare": 140,
+                "Finance": 133,
+                "Energy": 121
+            },
+            {
+                "Date": "2023-03-08",
+                "Technology": 151,
+                "Healthcare": 142,
+                "Finance": 130,
+                "Energy": 122
+            },
+            {
+                "Date": "2023-03-09",
+                "Technology": 152,
+                "Healthcare": 141,
+                "Finance": 129,
+                "Energy": 124
+            },
+            {
+                "Date": "2023-03-10",
+                "Technology": 154,
+                "Healthcare": 145,
+                "Finance": 136,
+                "Energy": 125
+            },
+            {
+                "Date": "2023-03-11",
+                "Technology": 150,
+                "Healthcare": 139,
+                "Finance": 133,
+                "Energy": 123
+            },
+            {
+                "Date": "2023-03-12",
+                "Technology": 157,
+                "Healthcare": 146,
+                "Finance": 137,
+                "Energy": 126
+            },
+            {
+                "Date": "2023-03-13",
+                "Technology": 153,
+                "Healthcare": 144,
+                "Finance": 134,
+                "Energy": 124
+            },
+            {
+                "Date": "2023-03-14",
+                "Technology": 151,
+                "Healthcare": 142,
+                "Finance": 130,
+                "Energy": 123
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Technology",
+                "Healthcare",
+                "Finance",
+                "Energy"
+            ],
+            "as": [
+                "Sector",
+                "Price"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "area",
+        "opacity": 0.6
+    },
+    "encoding": {
+        "x": {
+            "field": "Date",
+            "type": "temporal",
+            "axis": {
+                "title": "Date",
+                "format": "%Y-%m-%d",
+                "labelAngle": -45
+            }
+        },
+        "y": {
+            "field": "Price",
+            "type": "quantitative",
+            "stack": "zero",
+            "axis": {
+                "title": "Stock Price ($)"
+            }
+        },
+        "color": {
+            "field": "Sector",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Technology",
+                    "Healthcare",
+                    "Finance",
+                    "Energy"
+                ],
+                "range": [
+                    "#1f78b4",
+                    "#33a02c",
+                    "#e31a1c",
+                    "#ff7f00"
+                ]
+            },
+            "legend": {
+                "title": "Sector",
+                "labelFontSize": 12,
+                "titleFontSize": 14
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Date",
+                "type": "temporal",
+                "title": "Date"
+            },
+            {
+                "field": "Sector",
+                "type": "nominal",
+                "title": "Sector"
+            },
+            {
+                "field": "Price",
+                "type": "quantitative",
+                "title": "Stock Price ($)"
+            }
+        ]
+    },
+    "config": {
+        "view": {
+            "stroke": "transparent"
+        },
+        "axis": {
+            "labelFontSize": 12,
+            "titleFontSize": 14
+        }
+    }
+}

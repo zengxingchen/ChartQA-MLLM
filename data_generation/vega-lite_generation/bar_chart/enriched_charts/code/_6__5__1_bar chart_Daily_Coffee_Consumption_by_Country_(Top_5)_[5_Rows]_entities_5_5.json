@@ -1,0 +1,155 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Fruit Consumption by Age Group",
+    "width": 600,
+    "height": 400,
+    "title": {
+        "text": "Fruit Consumption",
+        "subtitle": [
+            "Average daily servings of fruit",
+            "Source: Nutrition Survey 2023"
+        ],
+        "subtitleFontSize": 10,
+        "subtitleFontStyle": "italic",
+        "anchor": "start",
+        "frame": "group"
+    },
+    "data": {
+        "values": [
+            {
+                "Age Group": "0-9",
+                "Servings": 2.5
+            },
+            {
+                "Age Group": "10-19",
+                "Servings": 3.0
+            },
+            {
+                "Age Group": "20-29",
+                "Servings": 3.2
+            },
+            {
+                "Age Group": "30-39",
+                "Servings": 2.8
+            },
+            {
+                "Age Group": "40-49",
+                "Servings": 2.6
+            },
+            {
+                "Age Group": "50-59",
+                "Servings": 2.4
+            },
+            {
+                "Age Group": "60-69",
+                "Servings": 2.2
+            },
+            {
+                "Age Group": "70-79",
+                "Servings": 2.0
+            },
+            {
+                "Age Group": "80+",
+                "Servings": 1.8
+            },
+            {
+                "Age Group": "Children (0-9)",
+                "Servings": 2.7
+            },
+            {
+                "Age Group": "Teens (10-19)",
+                "Servings": 3.1
+            },
+            {
+                "Age Group": "Young Adults (20-29)",
+                "Servings": 3.3
+            },
+            {
+                "Age Group": "Adults (30-49)",
+                "Servings": 2.9
+            },
+            {
+                "Age Group": "Middle-aged (50-69)",
+                "Servings": 2.3
+            },
+            {
+                "Age Group": "Seniors (70+)",
+                "Servings": 1.9
+            }
+        ]
+    },
+    "params": [
+        {
+            "name": "highlight",
+            "select": {
+                "type": "point",
+                "on": "mouseover"
+            }
+        }
+    ],
+    "mark": {
+        "type": "bar",
+        "width": {
+            "band": 0.6
+        },
+        "color": "#ff7f0e",
+        "strokeWidth": 1,
+        "opacity": {
+            "condition": {
+                "param": "highlight",
+                "empty": false,
+                "value": 1
+            },
+            "value": 0.7
+        },
+        "cursor": "pointer"
+    },
+    "encoding": {
+        "y": {
+            "field": "Servings",
+            "type": "quantitative",
+            "axis": {
+                "grid": false,
+                "title": "Average Daily Servings",
+                "labelFontSize": 12
+            },
+            "scale": {
+                "domain": [
+                    0,
+                    4
+                ]
+            }
+        },
+        "x": {
+            "field": "Age Group",
+            "type": "ordinal",
+            "axis": {
+                "labelAngle": -45,
+                "labelFontSize": 12,
+                "title": "Age Group"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Age Group",
+                "type": "nominal",
+                "title": "Age Group"
+            },
+            {
+                "field": "Servings",
+                "type": "quantitative",
+                "title": "Servings"
+            }
+        ],
+        "text": {
+            "field": "Servings",
+            "type": "quantitative"
+        }
+    },
+    "config": {
+        "bar": {
+            "binSpacing": 0,
+            "continuousBandSize": 30
+        }
+    }
+}

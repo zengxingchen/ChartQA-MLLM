@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Distribution of Exercise Duration Among Participants',
+        left: 'center',
+        top: '10%'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    xAxis: {
+        name: 'Duration (minutes)',
+        type: 'category',
+        data: ['0-2', '2-4', '4-6', '6-8', '8-10', '10-12']
+    },
+    yAxis: {
+        name: 'Frequency',
+        type: 'value'
+    },
+    series: [{
+        data: [
+            {value: 4, itemStyle: {color: '#FF5733'}},
+            {value: 8, itemStyle: {color: '#33FF57'}},
+            {value: 12, itemStyle: {color: '#3357FF'}},
+            {value: 20, itemStyle: {color: '#F0FF33'}},
+            {value: 16, itemStyle: {color: '#FF33A2'}},
+            {value: 4, itemStyle: {color: '#33FFF7'}}
+        ],
+        type: 'bar',
+        barWidth: '50%',
+        label: {
+            show: true,
+            position: 'top',
+            formatter: '{c}'
+        }
+    }],
+    grid: {
+        left: '10%',
+        right: '10%',
+        top: '20%',
+        bottom: '10%'
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 600, // width of the chart
+    height: 400 // height of the chart
+});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Energy Mix Evolution',
+        left: 'center',
+        top: 5
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Solar Energy', 'Wind Energy', 'Hydropower', 'Nuclear Energy'],
+        bottom: 10
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '10%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01]
+    },
+    yAxis: {
+        type: 'category',
+        data: ['2016', '2017', '2018', '2019', '2020', '2021']
+    },
+    series: [
+        {
+            name: 'Solar Energy',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35, // Change width of bars
+            label: {
+                show: true
+            },
+            data: [20, 24, 28, 22, 30, 35],
+            itemStyle: {
+                color: '#ffcd02' // Specific color for Solar Energy
+            }
+        },
+        {
+            name: 'Wind Energy',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35, // Change width of bars
+            label: {
+                show: true
+            },
+            data: [30, 35, 40, 45, 42, 40],
+            itemStyle: {
+                color: '#228b22' // Specific color for Wind Energy
+            }
+        },
+        {
+            name: 'Hydropower',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35, // Change width of bars
+            label: {
+                show: true
+            },
+            data: [40, 36, 27, 25, 23, 20],
+            itemStyle: {
+                color: '#1e90ff' // Specific color for Hydropower
+            }
+        },
+        {
+            name: 'Nuclear Energy',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35, // Change width of bars
+            label: {
+                show: true
+            },
+            data: [10, 5, 5, 8, 5, 5],
+            itemStyle: {
+                color: '#ffa07a' // Specific color for Nuclear Energy
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var data = [
+    {'name': 'Central Library', 'value': 200000, 'Digital Media (Units)': 15000, 'Memberships (Thousands)': 50, 'Free Public Events (Yearly)': 200, 'City': ' New York'},
+    {'name': 'Grand Library', 'value': 175000, 'Digital Media (Units)': 10000, 'Memberships (Thousands)': 45, 'Free Public Events (Yearly)': 150, 'City': ' Los Angeles'},
+    {'name': 'City Library', 'value': 150000, 'Digital Media (Units)': 12000, 'Memberships (Thousands)': 40, 'Free Public Events (Yearly)': 100, 'City': ' Chicago'},
+    {'name': 'Metro Library', 'value': 120000, 'Digital Media (Units)': 9000, 'Memberships (Thousands)': 35, 'Free Public Events (Yearly)': 80, 'City': ' Houston'},
+    {'name': 'Riverfront Library', 'value': 90000, 'Digital Media (Units)': 7000, 'Memberships (Thousands)': 30, 'Free Public Events (Yearly)': 60, 'City': ' Philadelphia'},
+    {'name': 'Civic Center Library', 'value': 80000, 'Digital Media (Units)': 8000, 'Memberships (Thousands)': 25, 'Free Public Events (Yearly)': 120, 'City': ' Phoenix'},
+    {'name': 'Hillside Library', 'value': 50000, 'Digital Media (Units)': 5000, 'Memberships (Thousands)': 20, 'Free Public Events (Yearly)': 50, 'City': ' San Antonio'}
+];
+
+option = {
+    tooltip: {
+        formatter: function (info) {
+            var value = info.value;
+            var treePathInfo = info.treePathInfo;
+            var treePath = [];
+
+            for (var i = 1; i < treePathInfo.length; i++) {
+                treePath.push(treePathInfo[i].name);
+            }
+
+            return [
+                '<div class="tooltip-title">' + echarts.format.encodeHTML(treePath.join('/')) + '</div>',
+                'Number of Books: ' + echarts.format.addCommas(value) + '<br>',
+                'Digital Media (Units): ' + echarts.format.addCommas(info.data['Digital Media (Units)']) + '<br>',
+                'Memberships (Thousands): ' + echarts.format.addCommas(info.data['Memberships (Thousands)']) + '<br>',
+                'Free Public Events (Yearly): ' + echarts.format.addCommas(info.data['Free Public Events (Yearly)']) + '<br>',
+                'City: ' + info.data['City'].trim() + '<br>'
+            ].join('');
+        }
+    },
+    series: [
+        {
+            name: 'Libraries',
+            type: 'treemap',
+            visibleMin: 30000,
+            label: {
+                show: true,
+                formatter: '{b}'
+            },
+            itemStyle: {
+                normal: {
+                    borderColor: '#fff'
+                }
+            },
+            levels: [
+                {
+                    itemStyle: {
+                        normal: {
+                            borderColor: '#555',
+                            borderWidth: 4,
+                            gapWidth: 4
+                        }
+                    }
+                }
+            ],
+            data: data.map(function (item) {
+                return {
+                    name: item.name,
+                    value: item.value,
+                    path: item.name,
+                    'Digital Media (Units)': item['Digital Media (Units)'],
+                    'Memberships (Thousands)': item['Memberships (Thousands)'],
+                    'Free Public Events (Yearly)': item['Free Public Events (Yearly)'],
+                    'City': item['City'],
+                    itemStyle: {
+                        color: getColorByMembership(item['Memberships (Thousands)'])
+                    }
+                };
+            })
+        }
+    ]
+};
+
+function getColorByMembership(memberships) {
+    // Assume a linear relationship between membership size and color depth
+    var minMembership = 20; // Minimum memberships (from the data)
+    var maxMembership = 50; // Maximum memberships (from the data)
+    var minHue = 0.1; // Light Red
+    var maxHue = 0.6; // Dark Red
+    var hue = ((memberships - minMembership) / (maxMembership - minMembership) * (maxHue - minHue)) + minHue;
+    return echarts.color.stringify(echarts.color.modifyHSL('#ff0000', {h: hue}), 'rgb');
+}
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

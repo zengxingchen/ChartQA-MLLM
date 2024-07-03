@@ -1,0 +1,262 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": {
+        "text": "Monthly Web Traffic Growth Over 2 Years",
+        "anchor": "start",
+        "offset": 5,
+        "fontWeight": "bold",
+        "fontSize": 18,
+        "dx": 155,
+        "dy": -10,
+        "color": "#333"
+    },
+    "description": "Stacked area chart showing monthly web traffic growth data for a tech company from January 2020 to December 2021.",
+    "width": 600,
+    "height": 300,
+    "data": {
+        "values": [
+            {
+                "Month": "Jan 2020",
+                "Organic": 3000,
+                "Direct": 1500,
+                "Social": 800,
+                "Paid": 500
+            },
+            {
+                "Month": "Feb 2020",
+                "Organic": 3200,
+                "Direct": 1550,
+                "Social": 850,
+                "Paid": 520
+            },
+            {
+                "Month": "Mar 2020",
+                "Organic": 3400,
+                "Direct": 1600,
+                "Social": 900,
+                "Paid": 540
+            },
+            {
+                "Month": "Apr 2020",
+                "Organic": 3600,
+                "Direct": 1650,
+                "Social": 950,
+                "Paid": 560
+            },
+            {
+                "Month": "May 2020",
+                "Organic": 3800,
+                "Direct": 1700,
+                "Social": 1000,
+                "Paid": 580
+            },
+            {
+                "Month": "Jun 2020",
+                "Organic": 4000,
+                "Direct": 1750,
+                "Social": 1100,
+                "Paid": 600
+            },
+            {
+                "Month": "Jul 2020",
+                "Organic": 4200,
+                "Direct": 1800,
+                "Social": 1150,
+                "Paid": 620
+            },
+            {
+                "Month": "Aug 2020",
+                "Organic": 4400,
+                "Direct": 1850,
+                "Social": 1200,
+                "Paid": 640
+            },
+            {
+                "Month": "Sep 2020",
+                "Organic": 4600,
+                "Direct": 1900,
+                "Social": 1250,
+                "Paid": 660
+            },
+            {
+                "Month": "Oct 2020",
+                "Organic": 4800,
+                "Direct": 1950,
+                "Social": 1300,
+                "Paid": 680
+            },
+            {
+                "Month": "Nov 2020",
+                "Organic": 5000,
+                "Direct": 2000,
+                "Social": 1350,
+                "Paid": 700
+            },
+            {
+                "Month": "Dec 2020",
+                "Organic": 5200,
+                "Direct": 2050,
+                "Social": 1400,
+                "Paid": 720
+            },
+            {
+                "Month": "Jan 2021",
+                "Organic": 5400,
+                "Direct": 2100,
+                "Social": 1450,
+                "Paid": 740
+            },
+            {
+                "Month": "Feb 2021",
+                "Organic": 5600,
+                "Direct": 2150,
+                "Social": 1500,
+                "Paid": 760
+            },
+            {
+                "Month": "Mar 2021",
+                "Organic": 5800,
+                "Direct": 2200,
+                "Social": 1550,
+                "Paid": 780
+            },
+            {
+                "Month": "Apr 2021",
+                "Organic": 6000,
+                "Direct": 2250,
+                "Social": 1600,
+                "Paid": 800
+            },
+            {
+                "Month": "May 2021",
+                "Organic": 6200,
+                "Direct": 2300,
+                "Social": 1650,
+                "Paid": 820
+            },
+            {
+                "Month": "Jun 2021",
+                "Organic": 6400,
+                "Direct": 2350,
+                "Social": 1700,
+                "Paid": 840
+            },
+            {
+                "Month": "Jul 2021",
+                "Organic": 6600,
+                "Direct": 2400,
+                "Social": 1750,
+                "Paid": 860
+            },
+            {
+                "Month": "Aug 2021",
+                "Organic": 6800,
+                "Direct": 2450,
+                "Social": 1800,
+                "Paid": 880
+            },
+            {
+                "Month": "Sep 2021",
+                "Organic": 7000,
+                "Direct": 2500,
+                "Social": 1850,
+                "Paid": 900
+            },
+            {
+                "Month": "Oct 2021",
+                "Organic": 7200,
+                "Direct": 2550,
+                "Social": 1900,
+                "Paid": 920
+            },
+            {
+                "Month": "Nov 2021",
+                "Organic": 7400,
+                "Direct": 2600,
+                "Social": 1950,
+                "Paid": 940
+            },
+            {
+                "Month": "Dec 2021",
+                "Organic": 7600,
+                "Direct": 2650,
+                "Social": 2000,
+                "Paid": 960
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Organic",
+                "Direct",
+                "Social",
+                "Paid"
+            ],
+            "as": [
+                "Source",
+                "Visitors"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "area",
+        "opacity": 0.7
+    },
+    "encoding": {
+        "x": {
+            "field": "Month",
+            "type": "ordinal",
+            "title": "Month",
+            "axis": {
+                "labelAngle": -45
+            }
+        },
+        "y": {
+            "field": "Visitors",
+            "type": "quantitative",
+            "stack": "zero",
+            "title": "Number of Visitors"
+        },
+        "color": {
+            "field": "Source",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Organic",
+                    "Direct",
+                    "Social",
+                    "Paid"
+                ],
+                "range": [
+                    "#2ca02c",
+                    "#1f77b4",
+                    "#ff7f0e",
+                    "#d62728"
+                ]
+            },
+            "title": "Traffic Source"
+        },
+        "tooltip": [
+            {
+                "field": "Source",
+                "type": "nominal",
+                "title": "Traffic Source"
+            },
+            {
+                "field": "Visitors",
+                "type": "quantitative",
+                "title": "Visitors",
+                "format": ",.0f"
+            }
+        ]
+    },
+    "config": {
+        "view": {
+            "stroke": "transparent"
+        },
+        "axisY": {
+            "grid": true
+        }
+    }
+}

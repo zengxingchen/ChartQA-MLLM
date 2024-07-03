@@ -1,0 +1,163 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "A 100% stacked bar chart showing the distribution of different exercise types across various fitness levels.",
+    "width": 700,
+    "height": 500,
+    "padding": 5,
+    "data": {
+        "values": [
+            {
+                "Fitness Level": "Beginner",
+                "Cardio": 35,
+                "Strength": 25,
+                "Flexibility": 15,
+                "Balance": 10,
+                "Endurance": 15
+            },
+            {
+                "Fitness Level": "Intermediate",
+                "Cardio": 30,
+                "Strength": 30,
+                "Flexibility": 15,
+                "Balance": 10,
+                "Endurance": 15
+            },
+            {
+                "Fitness Level": "Advanced",
+                "Cardio": 25,
+                "Strength": 35,
+                "Flexibility": 15,
+                "Balance": 10,
+                "Endurance": 15
+            },
+            {
+                "Fitness Level": "Expert",
+                "Cardio": 20,
+                "Strength": 40,
+                "Flexibility": 10,
+                "Balance": 10,
+                "Endurance": 20
+            },
+            {
+                "Fitness Level": "Beginner",
+                "Cardio": 40,
+                "Strength": 20,
+                "Flexibility": 20,
+                "Balance": 10,
+                "Endurance": 10
+            },
+            {
+                "Fitness Level": "Intermediate",
+                "Cardio": 35,
+                "Strength": 25,
+                "Flexibility": 20,
+                "Balance": 10,
+                "Endurance": 10
+            },
+            {
+                "Fitness Level": "Advanced",
+                "Cardio": 30,
+                "Strength": 30,
+                "Flexibility": 20,
+                "Balance": 10,
+                "Endurance": 10
+            },
+            {
+                "Fitness Level": "Expert",
+                "Cardio": 25,
+                "Strength": 35,
+                "Flexibility": 15,
+                "Balance": 10,
+                "Endurance": 15
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Cardio",
+                "Strength",
+                "Flexibility",
+                "Balance",
+                "Endurance"
+            ],
+            "as": [
+                "Exercise Type",
+                "Percentage"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "bar",
+        "tooltip": true,
+        "cornerRadiusEnd": 4
+    },
+    "encoding": {
+        "x": {
+            "field": "Fitness Level",
+            "type": "ordinal",
+            "axis": {
+                "title": "Fitness Level",
+                "labelAngle": 0
+            }
+        },
+        "y": {
+            "field": "Percentage",
+            "type": "quantitative",
+            "axis": {
+                "title": "Percentage (%)",
+                "format": ".0f"
+            },
+            "stack": "normalize"
+        },
+        "color": {
+            "field": "Exercise Type",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Cardio",
+                    "Strength",
+                    "Flexibility",
+                    "Balance",
+                    "Endurance"
+                ],
+                "range": [
+                    "#FF6384",
+                    "#36A2EB",
+                    "#FFCE56",
+                    "#4BC0C0",
+                    "#9966FF"
+                ]
+            },
+            "legend": {
+                "title": "Exercise Type",
+                "orient": "top",
+                "symbolType": "circle"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Exercise Type",
+                "type": "nominal"
+            },
+            {
+                "field": "Percentage",
+                "type": "quantitative",
+                "title": "Percentage"
+            }
+        ]
+    },
+    "config": {
+        "axis": {
+            "labelFontSize": 12,
+            "titleFontSize": 14
+        },
+        "legend": {
+            "labelFontSize": 12,
+            "titleFontSize": 14
+        },
+        "bar": {
+            "binSpacing": 2
+        }
+    }
+}

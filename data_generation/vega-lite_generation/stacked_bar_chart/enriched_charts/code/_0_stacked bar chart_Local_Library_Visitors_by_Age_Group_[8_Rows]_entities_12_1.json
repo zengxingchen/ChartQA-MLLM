@@ -1,0 +1,114 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+        "values": [
+            {
+                "Quarter": "Q1",
+                "North America": 200,
+                "Europe": 150,
+                "Asia": 300,
+                "South America": 100
+            },
+            {
+                "Quarter": "Q2",
+                "North America": 220,
+                "Europe": 130,
+                "Asia": 350,
+                "South America": 120
+            },
+            {
+                "Quarter": "Q3",
+                "North America": 210,
+                "Europe": 180,
+                "Asia": 400,
+                "South America": 110
+            },
+            {
+                "Quarter": "Q4",
+                "North America": 230,
+                "Europe": 160,
+                "Asia": 420,
+                "South America": 130
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "North America",
+                "Europe",
+                "Asia",
+                "South America"
+            ],
+            "as": [
+                "Region",
+                "Sales"
+            ]
+        }
+    ],
+    "mark": "bar",
+    "width": 400,
+    "height": 200,
+    "title": {
+        "text": "Quarterly Sales by Region",
+        "subtitleFontStyle": "italic",
+        "subtitleFontSize": 10,
+        "anchor": "start",
+        "offset": 5,
+        "subtitleColor": "gray"
+    },
+    "encoding": {
+        "y": {
+            "field": "Quarter",
+            "type": "ordinal",
+            "title": "Quarter"
+        },
+        "x": {
+            "field": "Sales",
+            "type": "quantitative",
+            "title": "Sales (in million $)"
+        },
+        "color": {
+            "field": "Region",
+            "type": "nominal",
+            "legend": {
+                "title": "Regions",
+                "orient": "right"
+            },
+            "scale": {
+                "domain": [
+                    "North America",
+                    "Europe",
+                    "Asia",
+                    "South America"
+                ],
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e",
+                    "#2ca02c",
+                    "#d62728"
+                ]
+            }
+        },
+        "height": {
+            "field": "Sales",
+            "type": "quantitative",
+            "band": 0.5
+        },
+        "tooltip": [
+            {
+                "field": "Quarter",
+                "type": "nominal"
+            },
+            {
+                "field": "Region",
+                "type": "nominal"
+            },
+            {
+                "field": "Sales",
+                "type": "quantitative",
+                "title": "Sales (in million $)"
+            }
+        ]
+    }
+}

@@ -1,0 +1,205 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Investment Portfolio Value Over a Year",
+    "width": 600,
+    "height": 400,
+    "data": {
+        "values": [
+            {
+                "Date": "2023-01",
+                "Stocks": 30000,
+                "Bonds": 15000,
+                "Real Estate": 20000,
+                "Cryptocurrency": 5000,
+                "Commodities": 8000
+            },
+            {
+                "Date": "2023-02",
+                "Stocks": 30500,
+                "Bonds": 15200,
+                "Real Estate": 20200,
+                "Cryptocurrency": 4800,
+                "Commodities": 8100
+            },
+            {
+                "Date": "2023-03",
+                "Stocks": 31000,
+                "Bonds": 15400,
+                "Real Estate": 20400,
+                "Cryptocurrency": 4700,
+                "Commodities": 8200
+            },
+            {
+                "Date": "2023-04",
+                "Stocks": 32000,
+                "Bonds": 15700,
+                "Real Estate": 20800,
+                "Cryptocurrency": 4600,
+                "Commodities": 8300
+            },
+            {
+                "Date": "2023-05",
+                "Stocks": 33000,
+                "Bonds": 16000,
+                "Real Estate": 21000,
+                "Cryptocurrency": 4500,
+                "Commodities": 8400
+            },
+            {
+                "Date": "2023-06",
+                "Stocks": 34000,
+                "Bonds": 16200,
+                "Real Estate": 21200,
+                "Cryptocurrency": 4400,
+                "Commodities": 8500
+            },
+            {
+                "Date": "2023-07",
+                "Stocks": 35000,
+                "Bonds": 16400,
+                "Real Estate": 21400,
+                "Cryptocurrency": 4350,
+                "Commodities": 8600
+            },
+            {
+                "Date": "2023-08",
+                "Stocks": 35500,
+                "Bonds": 16500,
+                "Real Estate": 21600,
+                "Cryptocurrency": 4300,
+                "Commodities": 8700
+            },
+            {
+                "Date": "2023-09",
+                "Stocks": 36000,
+                "Bonds": 16700,
+                "Real Estate": 21800,
+                "Cryptocurrency": 4250,
+                "Commodities": 8800
+            },
+            {
+                "Date": "2023-10",
+                "Stocks": 36500,
+                "Bonds": 16900,
+                "Real Estate": 22000,
+                "Cryptocurrency": 4200,
+                "Commodities": 8900
+            },
+            {
+                "Date": "2023-11",
+                "Stocks": 37000,
+                "Bonds": 17100,
+                "Real Estate": 22200,
+                "Cryptocurrency": 4100,
+                "Commodities": 9000
+            },
+            {
+                "Date": "2023-12",
+                "Stocks": 38000,
+                "Bonds": 17300,
+                "Real Estate": 22500,
+                "Cryptocurrency": 4000,
+                "Commodities": 9100
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Stocks",
+                "Bonds",
+                "Real Estate",
+                "Cryptocurrency",
+                "Commodities"
+            ],
+            "as": [
+                "InvestmentType",
+                "Value"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "area",
+        "opacity": 0.6
+    },
+    "encoding": {
+        "x": {
+            "field": "Date",
+            "type": "temporal",
+            "axis": {
+                "title": "Date",
+                "format": "%Y-%m",
+                "labelAngle": -45
+            }
+        },
+        "y": {
+            "field": "Value",
+            "type": "quantitative",
+            "stack": "zero",
+            "axis": {
+                "title": "Investment Value (USD)"
+            }
+        },
+        "color": {
+            "field": "InvestmentType",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Stocks",
+                    "Bonds",
+                    "Real Estate",
+                    "Cryptocurrency",
+                    "Commodities"
+                ],
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e",
+                    "#2ca02c",
+                    "#d62728",
+                    "#9467bd"
+                ]
+            },
+            "legend": {
+                "title": "Investment Type",
+                "orient": "right"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Date",
+                "type": "temporal",
+                "title": "Date"
+            },
+            {
+                "field": "InvestmentType",
+                "type": "nominal",
+                "title": "Investment Type"
+            },
+            {
+                "field": "Value",
+                "type": "quantitative",
+                "title": "Value (USD)"
+            }
+        ]
+    },
+    "config": {
+        "view": {
+            "stroke": "transparent"
+        },
+        "axis": {
+            "labelFontSize": 12,
+            "titleFontSize": 14
+        },
+        "legend": {
+            "labelFontSize": 12,
+            "titleFontSize": 14
+        },
+        "title": {
+            "text": "Investment Portfolio Value Over a Year",
+            "anchor": "start",
+            "fontSize": 16,
+            "offset": 20,
+            "don'tOverlap": true
+        }
+    }
+}

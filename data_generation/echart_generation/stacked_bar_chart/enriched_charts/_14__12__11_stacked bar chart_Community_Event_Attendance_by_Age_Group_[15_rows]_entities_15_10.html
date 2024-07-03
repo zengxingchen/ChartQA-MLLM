@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Student Performance Across Grades',
+        left: 'center',
+        top: '5%'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Reading', 'Writing', 'Arithmetic', 'Science', 'Arts'],
+        top: '10%'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '10%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        data: ['Grade 1', 'Grade 2', 'Grade 3', 'Grade 4', 'Grade 5', 'Grade 6', 'Grade 7', 'Grade 8', 'Grade 9', 'Grade 10']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Reading',
+            type: 'bar',
+            stack: 'total',
+            barWidth: '50%',
+            itemStyle: {
+                color: '#5470C6'
+            },
+            label: {
+                show: true,
+                position: 'insideBottom'
+            },
+            data: [70, 75, 78, 82, 85, 88, 90, 93, 95, 97]
+        },
+        {
+            name: 'Writing',
+            type: 'bar',
+            stack: 'total',
+            barWidth: '50%',
+            itemStyle: {
+                color: '#91CC75'
+            },
+            label: {
+                show: true,
+                position: 'insideBottom'
+            },
+            data: [85, 80, 90, 92, 88, 90, 93, 95, 98, 99]
+        },
+        {
+            name: 'Arithmetic',
+            type: 'bar',
+            stack: 'total',
+            barWidth: '50%',
+            itemStyle: {
+                color: '#FAC858'
+            },
+            label: {
+                show: true,
+                position: 'insideBottom'
+            },
+            data: [90, 88, 85, 89, 92, 91, 94, 96, 97, 99]
+        },
+        {
+            name: 'Science',
+            type: 'bar',
+            stack: 'total',
+            barWidth: '50%',
+            itemStyle: {
+                color: '#EE6666'
+            },
+            label: {
+                show: true,
+                position: 'insideBottom'
+            },
+            data: [80, 85, 82, 87, 90, 89, 92, 95, 96, 98]
+        },
+        {
+            name: 'Arts',
+            type: 'bar',
+            stack: 'total',
+            barWidth: '50%',
+            itemStyle: {
+                color: '#73C0DE'
+            },
+            label: {
+                show: true,
+                position: 'insideBottom'
+            },
+            data: [65, 70, 75, 78, 80, 82, 85, 88, 90, 92]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

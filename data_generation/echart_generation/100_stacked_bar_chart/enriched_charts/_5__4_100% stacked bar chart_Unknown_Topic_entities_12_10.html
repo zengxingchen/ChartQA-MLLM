@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {renderer: 'canvas', width: 600, height: 400});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Environment & Climate Change - Green Initiatives Over Years',
+        left: 'center',
+        top: 20
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Green Energy', 'Carbon Emissions', 'Recycling', 'Waste'],
+        top: 40
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        data: ['2016', '2017', '2018', '2019', '2020', '2021']
+    },
+    yAxis: {
+        type: 'value',
+        axisLabel: {
+            formatter: '{value}%'
+        }
+    },
+    series: [
+        {
+            name: 'Green Energy',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            data: [25, 30, 35, 40, 45, 50],
+            color: '#76B041'
+        },
+        {
+            name: 'Carbon Emissions',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            data: [50, 45, 40, 35, 30, 25],
+            color: '#BB3F3F'
+        },
+        {
+            name: 'Recycling',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            data: [15, 15, 15, 15, 15, 15],
+            color: '#346CA5'
+        },
+        {
+            name: 'Waste',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            data: [10, 10, 10, 10, 10, 10],
+            color: '#D8A629'
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

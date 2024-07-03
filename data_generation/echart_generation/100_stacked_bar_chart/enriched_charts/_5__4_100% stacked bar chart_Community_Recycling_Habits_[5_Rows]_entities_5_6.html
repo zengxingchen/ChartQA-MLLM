@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 600,
+    height: 400
+});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Future Technologies Growth Over Years',
+        left: 'center',
+        top: '20'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            // Use axis to trigger tooltip
+            type: 'shadow' // 'shadow' as default; can also be 'line' or 'shadow'
+        }
+    },
+    legend: {
+        data: ['Quantum Computing', 'Biotechnology', 'Nanotechnology', 'Renewable Energy', 'Artificial Intelligence', 'Blockchain'],
+        bottom: '10'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '10%',
+        top: '10%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01]
+    },
+    yAxis: {
+        type: 'category',
+        data: ['2020', '2021', '2022', '2023', '2024']
+    },
+    series: [
+        {
+            name: 'Quantum Computing',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            color: '#FF7F0E',
+            emphasis: {
+                focus: 'series'
+            },
+            data: [7, 8, 10, 12, 14]
+        },
+        {
+            name: 'Biotechnology',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            color: '#2CA02C',
+            emphasis: {
+                focus: 'series'
+            },
+            data: [13, 15, 18, 21, 22]
+        },
+        {
+            name: 'Nanotechnology',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            color: '#1F77B4',
+            emphasis: {
+                focus: 'series'
+            },
+            data: [10, 12, 15, 18, 19]
+        },
+        {
+            name: 'Renewable Energy',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            color: '#D62728',
+            emphasis: {
+                focus: 'series'
+            },
+            data: [30, 32, 33, 34, 36]
+        },
+        {
+            name: 'Artificial Intelligence',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            color: '#9467BD',
+            emphasis: {
+                focus: 'series'
+            },
+            data: [25, 27, 30, 35, 37]
+        },
+        {
+            name: 'Blockchain',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            color: '#8C564B',
+            emphasis: {
+                focus: 'series'
+            },
+            data: [15, 16, 14, 10, 12]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

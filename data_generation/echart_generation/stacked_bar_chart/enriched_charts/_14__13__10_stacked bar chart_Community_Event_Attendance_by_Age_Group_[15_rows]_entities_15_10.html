@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Academic Performance in Various Subjects',
+        left: 'center',
+        top: 20
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        bottom: 10
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '15%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value'
+    },
+    yAxis: {
+        type: 'category',
+        data: ['Biology', 'Chemistry', 'Physics', 'Mathematics', 'Computer Science', 'Psychology', 'Sociology', 'Economics', 'History', 'Literature', 'Philosophy', 'Art', 'Music', 'Theater', 'Physical Education', 'Health', 'Environmental Science']
+    },
+    series: [
+        {
+            name: '2018',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            data: [85, 72, 95, 80, 92, 70, 65, 78, 80, 75, 68, 90, 85, 78, 95, 82, 88],
+            itemStyle: {
+                color: '#5470C6'
+            }
+        },
+        {
+            name: '2019',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            data: [45, 53, 70, 65, 75, 50, 45, 62, 58, 50, 48, 60, 55, 50, 80, 70, 68],
+            itemStyle: {
+                color: '#91CC75'
+            }
+        },
+        {
+            name: '2020',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            data: [78, 60, 68, 85, 70, 65, 55, 70, 60, 55, 52, 65, 60, 55, 85, 75, 72],
+            itemStyle: {
+                color: '#FAC858'
+            }
+        },
+        {
+            name: '2021',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            data: [92, 80, 88, 90, 95, 85, 78, 88, 85, 80, 75, 88, 82, 78, 95, 90, 85],
+            itemStyle: {
+                color: '#EE6666'
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

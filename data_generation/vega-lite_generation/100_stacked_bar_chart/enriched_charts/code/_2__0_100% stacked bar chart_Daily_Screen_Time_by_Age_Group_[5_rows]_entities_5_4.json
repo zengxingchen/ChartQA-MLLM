@@ -1,0 +1,158 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Percentage Stacked Bar Chart of Weekly Exercise Distribution",
+    "data": {
+        "values": [
+            {
+                "Day": "Monday",
+                "Running": 30,
+                "Cycling": 20,
+                "Swimming": 25,
+                "Yoga": 25
+            },
+            {
+                "Day": "Tuesday",
+                "Running": 35,
+                "Cycling": 25,
+                "Swimming": 20,
+                "Yoga": 20
+            },
+            {
+                "Day": "Wednesday",
+                "Running": 25,
+                "Cycling": 30,
+                "Swimming": 20,
+                "Yoga": 25
+            },
+            {
+                "Day": "Thursday",
+                "Running": 20,
+                "Cycling": 35,
+                "Swimming": 25,
+                "Yoga": 20
+            },
+            {
+                "Day": "Friday",
+                "Running": 30,
+                "Cycling": 25,
+                "Swimming": 25,
+                "Yoga": 20
+            },
+            {
+                "Day": "Saturday",
+                "Running": 35,
+                "Cycling": 20,
+                "Swimming": 25,
+                "Yoga": 20
+            },
+            {
+                "Day": "Sunday",
+                "Running": 25,
+                "Cycling": 30,
+                "Swimming": 20,
+                "Yoga": 25
+            }
+        ]
+    },
+    "padding": {
+        "left": 5,
+        "top": 40,
+        "right": 5,
+        "bottom": 20
+    },
+    "width": 600,
+    "height": 300,
+    "transform": [
+        {
+            "fold": [
+                "Running",
+                "Cycling",
+                "Swimming",
+                "Yoga"
+            ],
+            "as": [
+                "Exercise",
+                "Percentage"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "bar",
+        "tooltip": true
+    },
+    "encoding": {
+        "y": {
+            "field": "Day",
+            "type": "nominal",
+            "axis": {
+                "title": "Day of the Week"
+            },
+            "sort": null
+        },
+        "x": {
+            "field": "Percentage",
+            "type": "quantitative",
+            "stack": "normalize",
+            "axis": {
+                "format": ".0%",
+                "title": "Percentage"
+            }
+        },
+        "color": {
+            "field": "Exercise",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Running",
+                    "Cycling",
+                    "Swimming",
+                    "Yoga"
+                ],
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e",
+                    "#2ca02c",
+                    "#d62728"
+                ]
+            },
+            "legend": {
+                "title": "Exercise Type"
+            }
+        },
+        "height": {
+            "band": 0.7
+        },
+        "tooltip": [
+            {
+                "field": "Day",
+                "type": "nominal",
+                "title": "Day"
+            },
+            {
+                "field": "Exercise",
+                "type": "nominal",
+                "title": "Exercise Type"
+            },
+            {
+                "field": "Percentage",
+                "type": "quantitative",
+                "title": "Percentage",
+                "format": ".0%"
+            }
+        ]
+    },
+    "config": {
+        "axisY": {
+            "titleFontSize": 10,
+            "labelFontSize": 10
+        },
+        "axisX": {
+            "titleFontSize": 10,
+            "labelFontSize": 10
+        },
+        "legend": {
+            "titleFontSize": 12,
+            "labelFontSize": 10
+        }
+    }
+}

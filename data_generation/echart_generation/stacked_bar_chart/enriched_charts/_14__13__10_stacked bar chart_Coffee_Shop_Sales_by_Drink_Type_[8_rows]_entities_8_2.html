@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+var option = {
+    title: {
+        text: 'Population Growth by Region (2010-2020)',
+        left: 'center',
+        top: '5%'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['North America', 'Europe', 'Asia', 'South America', 'Africa', 'Australia'],
+        top: '10%'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        data: ['2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'North America',
+            type: 'bar',
+            stack: 'Total',
+            barWidth: '60%',
+            color: '#1f77b4',
+            data: [100, 110, 120, 130, 140, 150, 160, 170, 180, 190, 200]
+        },
+        {
+            name: 'Europe',
+            type: 'bar',
+            stack: 'Total',
+            barWidth: '60%',
+            color: '#ff7f0e',
+            data: [120, 130, 140, 150, 160, 170, 180, 190, 200, 210, 220]
+        },
+        {
+            name: 'Asia',
+            type: 'bar',
+            stack: 'Total',
+            barWidth: '60%',
+            color: '#2ca02c',
+            data: [90, 100, 110, 120, 130, 140, 150, 160, 170, 180, 190]
+        },
+        {
+            name: 'South America',
+            type: 'bar',
+            stack: 'Total',
+            barWidth: '60%',
+            color: '#d62728',
+            data: [80, 85, 90, 95, 100, 105, 110, 115, 120, 125, 130]
+        },
+        {
+            name: 'Africa',
+            type: 'bar',
+            stack: 'Total',
+            barWidth: '60%',
+            color: '#9467bd',
+            data: [70, 75, 80, 85, 90, 95, 100, 105, 110, 115, 120]
+        },
+        {
+            name: 'Australia',
+            type: 'bar',
+            stack: 'Total',
+            barWidth: '60%',
+            color: '#8c564b',
+            data: [60, 65, 70, 75, 80, 85, 90, 95, 100, 105, 110]
+        }
+    ]
+};
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

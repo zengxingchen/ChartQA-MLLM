@@ -1,0 +1,143 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": {
+        "text": "Weekly Participation by Age Group",
+        "subtitle": "Stacked representation of age group participation over 8 weeks",
+        "subtitleFontStyle": "italic",
+        "subtitleFontSize": 10,
+        "anchor": "start"
+    },
+    "data": {
+        "values": [
+            {
+                "Week": "Week 1",
+                "Age 18-30": 6,
+                "Age 31-45": 4,
+                "Age 46-60": 3,
+                "Age 60+": 2
+            },
+            {
+                "Week": "Week 2",
+                "Age 18-30": 7,
+                "Age 31-45": 5,
+                "Age 46-60": 3,
+                "Age 60+": 2
+            },
+            {
+                "Week": "Week 3",
+                "Age 18-30": 8,
+                "Age 31-45": 4,
+                "Age 46-60": 4,
+                "Age 60+": 3
+            },
+            {
+                "Week": "Week 4",
+                "Age 18-30": 5,
+                "Age 31-45": 6,
+                "Age 46-60": 3,
+                "Age 60+": 2
+            },
+            {
+                "Week": "Week 5",
+                "Age 18-30": 6,
+                "Age 31-45": 5,
+                "Age 46-60": 3,
+                "Age 60+": 2
+            },
+            {
+                "Week": "Week 6",
+                "Age 18-30": 7,
+                "Age 31-45": 5,
+                "Age 46-60": 4,
+                "Age 60+": 2
+            },
+            {
+                "Week": "Week 7",
+                "Age 18-30": 8,
+                "Age 31-45": 6,
+                "Age 46-60": 4,
+                "Age 60+": 3
+            },
+            {
+                "Week": "Week 8",
+                "Age 18-30": 6,
+                "Age 31-45": 7,
+                "Age 46-60": 3,
+                "Age 60+": 2
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Age 18-30",
+                "Age 31-45",
+                "Age 46-60",
+                "Age 60+"
+            ],
+            "as": [
+                "Age Group",
+                "Count"
+            ]
+        }
+    ],
+    "width": 700,
+    "height": 400,
+    "mark": "bar",
+    "encoding": {
+        "x": {
+            "field": "Week",
+            "type": "nominal",
+            "axis": {
+                "title": "Week",
+                "labelAngle": 0
+            }
+        },
+        "y": {
+            "field": "Count",
+            "type": "quantitative",
+            "axis": {
+                "title": "Number of Participants"
+            },
+            "stack": "normalize"
+        },
+        "color": {
+            "field": "Age Group",
+            "type": "nominal",
+            "scale": {
+                "range": [
+                    "#1f77b4",
+                    "#aec7e8",
+                    "#ff7f0e",
+                    "#ffbb78"
+                ]
+            },
+            "legend": {
+                "title": "Age Group",
+                "orient": "right"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Age Group",
+                "type": "nominal",
+                "title": "Age Group"
+            },
+            {
+                "field": "Week",
+                "type": "nominal",
+                "title": "Week"
+            },
+            {
+                "field": "Count",
+                "type": "quantitative",
+                "title": "Count"
+            }
+        ]
+    },
+    "config": {
+        "axisY": {
+            "minExtent": 30
+        }
+    }
+}

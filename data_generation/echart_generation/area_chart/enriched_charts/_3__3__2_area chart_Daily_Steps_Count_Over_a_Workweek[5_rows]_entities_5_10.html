@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var app = {};
+
+var option;
+
+option = {
+  title: {
+    text: 'Stock Market Trends',
+    subtext: 'Price of XYZ Stock Over 20 Days',
+    left: 'left'
+  },
+  tooltip: {
+    trigger: 'axis'
+  },
+  legend: {
+    data: ['Stock Price'],
+    right: 10
+  },
+  grid: {
+    left: '3%',
+    right: '4%',
+    bottom: '3%',
+    containLabel: true
+  },
+  xAxis: {
+    type: 'category',
+    boundaryGap: false,
+    data: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20']
+  },
+  yAxis: {
+    type: 'value',
+    axisLabel: {
+      formatter: '${value}'
+    }
+  },
+  series: [
+    {
+      name: 'Stock Price',
+      type: 'line',
+      stack: 'Total',
+      areaStyle: {},
+      emphasis: {
+        focus: 'series'
+      },
+      data: [100, 98, 97, 95, 92, 90, 88, 85, 82, 79, 77, 74, 70, 68, 65, 63, 60, 57, 55, 53],
+      markPoint: {
+        data: [
+          {type: 'max', name: 'Max'},
+          {type: 'min', name: 'Min'}
+        ]
+      },
+      itemStyle: {
+        color: '#a2d2ff'
+      }
+    }
+  ],
+  visualMap: {
+    top: 50,
+    right: 10,
+    pieces: [{
+      gt: 55,
+      lte: 100,
+      color: '#ffafcc'
+    }, {
+      gt: 0,
+      lte: 55,
+      color: '#a2d2ff'
+    }],
+    outOfRange: {
+      color: '#999'
+    }
+  }
+};
+
+if (option && typeof option === 'object') myChart.setOption(option);
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

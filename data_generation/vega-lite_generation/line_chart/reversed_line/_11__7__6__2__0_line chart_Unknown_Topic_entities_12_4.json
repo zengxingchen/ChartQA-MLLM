@@ -1,0 +1,178 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+        "values": [
+            {
+                "Month": "January",
+                "Revenue": 20000,
+                "Profit Margin": 20
+            },
+            {
+                "Month": "February",
+                "Revenue": 21000,
+                "Profit Margin": 22
+            },
+            {
+                "Month": "March",
+                "Revenue": 23000,
+                "Profit Margin": 24
+            },
+            {
+                "Month": "April",
+                "Revenue": 25000,
+                "Profit Margin": 25
+            },
+            {
+                "Month": "May",
+                "Revenue": 27000,
+                "Profit Margin": 26
+            },
+            {
+                "Month": "June",
+                "Revenue": 30000,
+                "Profit Margin": 28
+            },
+            {
+                "Month": "July",
+                "Revenue": 32000,
+                "Profit Margin": 30
+            },
+            {
+                "Month": "August",
+                "Revenue": 34000,
+                "Profit Margin": 29
+            },
+            {
+                "Month": "September",
+                "Revenue": 28000,
+                "Profit Margin": 27
+            },
+            {
+                "Month": "October",
+                "Revenue": 26000,
+                "Profit Margin": 25
+            },
+            {
+                "Month": "November",
+                "Revenue": 24000,
+                "Profit Margin": 23
+            },
+            {
+                "Month": "December",
+                "Revenue": 25000,
+                "Profit Margin": 24
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Revenue",
+                "Profit Margin"
+            ],
+            "as": [
+                "Measure",
+                "Value"
+            ]
+        }
+    ],
+    "width": 900,
+    "height": 600,
+    "mark": {
+        "type": "line",
+        "point": {
+            "filled": true,
+            "fill": "white"
+        },
+        "tooltip": true
+    },
+    "encoding": {
+        "x": {
+            "field": "Month",
+            "type": "ordinal",
+            "title": "Month",
+            "axis": {
+                "labelAngle": 0
+            }
+        },
+        "y": {
+            "field": "Value",
+            "type": "quantitative",
+            "title": "Values",
+            "scale": {
+                "reverse": true
+            }
+        },
+        "color": {
+            "field": "Measure",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Revenue",
+                    "Profit Margin"
+                ],
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e"
+                ]
+            },
+            "legend": {
+                "title": "Measure"
+            }
+        }
+    },
+    "title": {
+        "text": "Monthly Financial Overview",
+        "subtitle": "Tracking revenue and profit margin",
+        "anchor": "start"
+    },
+    "layer": [
+        {
+            "mark": {
+                "type": "line",
+                "point": true,
+                "tooltip": true
+            },
+            "encoding": {
+                "x": {
+                    "field": "Month",
+                    "type": "ordinal"
+                },
+                "y": {
+                    "field": "Value",
+                    "type": "quantitative"
+                },
+                "color": {
+                    "field": "Measure",
+                    "type": "nominal"
+                }
+            }
+        },
+        {
+            "mark": {
+                "type": "text",
+                "align": "left",
+                "dx": 5,
+                "dy": -5
+            },
+            "encoding": {
+                "x": {
+                    "field": "Month",
+                    "type": "ordinal"
+                },
+                "y": {
+                    "field": "Value",
+                    "type": "quantitative"
+                },
+                "text": {
+                    "field": "Value",
+                    "type": "quantitative"
+                },
+                "color": {
+                    "field": "Measure",
+                    "type": "nominal"
+                }
+            }
+        }
+    ]
+}

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+option = {
+    title: {
+        text: 'Distribution of Survey Responses on Future Space Travel',
+        left: 'center',
+        top: '10%'
+    },
+    tooltip: {},
+    xAxis: {
+        type: 'category',
+        data: ['0-10', '11-20', '21-30', '31-40', '41-50', '51-60', '61-70', '71-80'],
+        axisLabel: {
+            rotate: 30,
+            interval: 0
+        }
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Frequency',
+            type: 'bar',
+            data: [5, 15, 25, 40, 50, 30, 20, 10],
+            itemStyle: {
+                color: '#1f77b4'
+            },
+            barWidth: '50%'
+        }
+    ],
+    grid: {
+        left: '5%',
+        right: '5%',
+        bottom: '15%',
+        top: '25%'
+    },
+    label: {
+        show: true,
+        position: 'top'
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

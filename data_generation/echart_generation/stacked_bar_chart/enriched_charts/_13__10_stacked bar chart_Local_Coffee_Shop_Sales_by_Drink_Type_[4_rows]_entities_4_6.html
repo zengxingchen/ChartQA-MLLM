@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+var option;
+
+option = {
+    title: {
+        text: 'Research Topics in Science and Nature',
+        left: 'center',
+        top: '5%'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Value1', 'Value2', 'Value3'],
+        top: '10%'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value'
+    },
+    yAxis: {
+        type: 'category',
+        data: ['Physics', 'Chemistry', 'Biology', 'Mathematics', 'Wildlife', 'Forests', 'Oceans', 'Deserts', 'Pollution', 'Climate Change', 'Sustainability', 'Conservation']
+    },
+    series: [
+        {
+            name: 'Value1',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            data: [12, 14, 16, 20, 18, 22, 25, 14, 15, 20, 22, 18],
+            itemStyle: {
+                color: '#1f77b4'
+            },
+            barWidth: '20%'
+        },
+        {
+            name: 'Value2',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            data: [15, 10, 18, 25, 22, 18, 20, 16, 12, 25, 24, 20],
+            itemStyle: {
+                color: '#ff7f0e'
+            },
+            barWidth: '20%'
+        },
+        {
+            name: 'Value3',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            data: [10, 18, 12, 22, 14, 20, 24, 18, 20, 18, 26, 22],
+            itemStyle: {
+                color: '#2ca02c'
+            },
+            barWidth: '20%'
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

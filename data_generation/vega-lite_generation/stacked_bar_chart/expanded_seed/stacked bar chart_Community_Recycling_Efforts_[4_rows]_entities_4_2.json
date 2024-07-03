@@ -1,0 +1,115 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+        "values": [
+            {
+                "Year": 2019,
+                "Paper": 15000,
+                "Glass": 5000,
+                "Plastic": 12000,
+                "Metal": 3000
+            },
+            {
+                "Year": 2020,
+                "Paper": 15700,
+                "Glass": 5200,
+                "Plastic": 13000,
+                "Metal": 3500
+            },
+            {
+                "Year": 2021,
+                "Paper": 16200,
+                "Glass": 5300,
+                "Plastic": 13500,
+                "Metal": 4000
+            },
+            {
+                "Year": 2022,
+                "Paper": 17000,
+                "Glass": 5400,
+                "Plastic": 14500,
+                "Metal": 4500
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Paper",
+                "Glass",
+                "Plastic",
+                "Metal"
+            ],
+            "as": [
+                "Material",
+                "Tons"
+            ]
+        }
+    ],
+    "width": 250,
+    "height": 300,
+    "mark": "bar",
+    "title": {
+        "text": "Recycling Volumes by Material per Year",
+        "subtitle": "Tons of Material Collected, source: Recycling Statistics",
+        "subtitleFontStyle": "italic",
+        "subtitleFontSize": 10,
+        "anchor": "start",
+        "color": "black"
+    },
+    "encoding": {
+        "y": {
+            "field": "Year",
+            "type": "ordinal",
+            "axis": {
+                "title": "Year"
+            }
+        },
+        "x": {
+            "field": "Tons",
+            "type": "quantitative",
+            "axis": {
+                "title": "Tons of Material Collected"
+            }
+        },
+        "color": {
+            "field": "Material",
+            "type": "nominal",
+            "legend": {
+                "orient": "bottom-right"
+            },
+            "scale": {
+                "domain": [
+                    "Paper",
+                    "Glass",
+                    "Plastic",
+                    "Metal"
+                ],
+                "scheme": "tableau20"
+            },
+            "title": "Material Type"
+        },
+        "tooltip": [
+            {
+                "field": "Year",
+                "type": "ordinal",
+                "title": "Year"
+            },
+            {
+                "field": "Tons",
+                "type": "quantitative",
+                "title": "Tons Collected"
+            },
+            {
+                "field": "Material",
+                "type": "nominal",
+                "title": "Material Type"
+            }
+        ]
+    },
+    "config": {
+        "axisY": {
+            "labelAngle": 0
+        }
+    }
+}

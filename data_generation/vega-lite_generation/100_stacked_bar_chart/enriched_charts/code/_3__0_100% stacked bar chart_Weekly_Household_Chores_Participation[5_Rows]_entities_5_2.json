@@ -1,0 +1,189 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "A 100% Stacked Vertical Bar Chart showing the distribution of study activities.",
+    "data": {
+        "values": [
+            {
+                "Student": "Alice",
+                "Reading": 30,
+                "Writing": 20,
+                "Research": 40,
+                "Discussion": 25,
+                "Presentation": 35
+            },
+            {
+                "Student": "Bob",
+                "Reading": 40,
+                "Writing": 25,
+                "Research": 30,
+                "Discussion": 20,
+                "Presentation": 30
+            },
+            {
+                "Student": "Charlie",
+                "Reading": 20,
+                "Writing": 30,
+                "Research": 25,
+                "Discussion": 35,
+                "Presentation": 25
+            },
+            {
+                "Student": "David",
+                "Reading": 25,
+                "Writing": 35,
+                "Research": 20,
+                "Discussion": 30,
+                "Presentation": 20
+            },
+            {
+                "Student": "Eva",
+                "Reading": 35,
+                "Writing": 20,
+                "Research": 35,
+                "Discussion": 25,
+                "Presentation": 25
+            },
+            {
+                "Student": "Frank",
+                "Reading": 30,
+                "Writing": 25,
+                "Research": 30,
+                "Discussion": 35,
+                "Presentation": 30
+            },
+            {
+                "Student": "Grace",
+                "Reading": 25,
+                "Writing": 30,
+                "Research": 20,
+                "Discussion": 30,
+                "Presentation": 35
+            },
+            {
+                "Student": "Hank",
+                "Reading": 30,
+                "Writing": 20,
+                "Research": 30,
+                "Discussion": 20,
+                "Presentation": 25
+            },
+            {
+                "Student": "Ivy",
+                "Reading": 35,
+                "Writing": 25,
+                "Research": 25,
+                "Discussion": 25,
+                "Presentation": 30
+            },
+            {
+                "Student": "Jack",
+                "Reading": 20,
+                "Writing": 30,
+                "Research": 35,
+                "Discussion": 30,
+                "Presentation": 35
+            },
+            {
+                "Student": "Kate",
+                "Reading": 25,
+                "Writing": 35,
+                "Research": 25,
+                "Discussion": 25,
+                "Presentation": 20
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Reading",
+                "Writing",
+                "Research",
+                "Discussion",
+                "Presentation"
+            ],
+            "as": [
+                "Activity",
+                "Hours"
+            ]
+        }
+    ],
+    "padding": {
+        "left": 60,
+        "top": 40,
+        "right": 20,
+        "bottom": 30
+    },
+    "width": 500,
+    "height": 300,
+    "mark": {
+        "type": "bar",
+        "height": {
+            "band": 0.7
+        }
+    },
+    "encoding": {
+        "x": {
+            "field": "Student",
+            "type": "nominal",
+            "axis": {
+                "title": "Student"
+            },
+            "sort": null
+        },
+        "y": {
+            "field": "Hours",
+            "type": "quantitative",
+            "stack": "normalize",
+            "axis": {
+                "title": "Percentage of Total Hours",
+                "format": ".0%"
+            },
+            "sort": null
+        },
+        "color": {
+            "field": "Activity",
+            "type": "nominal",
+            "scale": {
+                "range": [
+                    "#ff6347",
+                    "#4682b4",
+                    "#3cb371",
+                    "#9370db",
+                    "#ff8c00"
+                ]
+            },
+            "legend": {
+                "title": "Activity Type"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Student",
+                "type": "nominal"
+            },
+            {
+                "field": "Activity",
+                "type": "nominal",
+                "title": "Activity"
+            },
+            {
+                "field": "Hours",
+                "type": "quantitative",
+                "title": "Hours Spent"
+            }
+        ]
+    },
+    "title": {
+        "text": "Distribution of Study Activities Among Students",
+        "fontSize": 16,
+        "anchor": "start",
+        "offset": 10
+    },
+    "config": {
+        "bar": {
+            "cornerRadiusTopLeft": 3,
+            "cornerRadiusTopRight": 3
+        }
+    }
+}

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 800, // Changed width of the chart
+    height: 600 // Changed height of the chart
+});
+var app = {};
+
+var option;
+
+option = {
+    title: { // Placing Title and making sure it does not overlap with the legend
+        text: 'Sports & Fitness Participation by Age Group',
+        left: 'center',
+        top: 20
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Running', 'Yoga', 'Gymnastics', 'Cycling', 'Swimming'],
+        top: 50 // Adjust legend position to prevent overlap with title
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: { // xAxis is now for categories since it's a vertical chart
+        type: 'value'
+    },
+    yAxis: { // yAxis now represents the value since it's a vertical chart
+        type: 'category',
+        data: ['18-25', '26-35', '36-45', '46-55', '56-65']
+    },
+    series: [
+        {
+            name: 'Running',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35, // Changed bar width
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            color: '#FFD700', // Changed color scheme
+            data: [30, 25, 20, 15, 10]
+        },
+        {
+            name: 'Yoga',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35, // Changed bar width
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            color: '#FF69B4', // Changed color scheme
+            data: [20, 25, 30, 35, 40]
+        },
+        {
+            name: 'Gymnastics',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35, // Changed bar width
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            color: '#8A2BE2', // Changed color scheme
+            data: [15, 10, 20, 25, 30]
+        },
+        {
+            name: 'Cycling',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35, // Changed bar width
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            color: '#1E90FF', // Changed color scheme
+            data: [25, 30, 20, 15, 10]
+        },
+        {
+            name: 'Swimming',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35, // Changed bar width
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            color: '#00FA9A', // Changed color scheme
+            data: [10, 10, 10, 10, 10]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

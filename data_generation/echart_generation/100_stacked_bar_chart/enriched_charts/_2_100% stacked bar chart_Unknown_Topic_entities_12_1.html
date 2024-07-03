@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {height: '600', width: '800'});
+var app = {};
+var option;
+
+option = {
+    color: ['#34495E', '#3498DB', '#16A085', '#F1C40F', '#E74C3C'],
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            // Use axis to trigger tooltip
+            type: 'shadow' // 'shadow' as default; can also be 'line' or 'shadow'
+        }
+    },
+    legend: {
+        data: ['Electric Cars', 'Solar Energy', 'Wind Energy', 'Hydropower', 'Nuclear Energy']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value'
+    },
+    yAxis: {
+        type: 'category',
+        data: ['2020', '2021', '2022', '2023']
+    },
+    series: [
+        {
+            name: 'Electric Cars',
+            type: 'bar',
+            stack: 'total',
+            barWidth : 50,
+            label: {
+                show: true,
+                formatter: '{b}'
+            },
+            data: [25, 30, 35, 40]
+        },
+        {
+            name: 'Solar Energy',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 50,
+            label: {
+                show: true
+            },
+            data: [15, 20, 25, 30]
+        },
+        {
+            name: 'Wind Energy',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 50,
+            label: {
+                show: true
+            },
+            data: [30, 25, 20, 15]
+        },
+        {
+            name: 'Hydropower',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 50,
+            label: {
+                show: true
+            },
+            data: [20, 15, 10, 5]
+        },
+        {
+            name: 'Nuclear Energy',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 50,
+            label: {
+                show: true
+            },
+            data: [10, 10, 10, 10]
+        }
+    ],
+    title: {
+        text: 'Future Technologies & Society: Energy Mix',
+        left: 'center',
+        top: 20
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

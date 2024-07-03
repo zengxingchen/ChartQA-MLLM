@@ -1,0 +1,177 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+        "values": [
+            {
+                "Month": "January",
+                "Desktop": 320,
+                "Laptop": 510,
+                "Tablet": 210,
+                "Smartphone": 410
+            },
+            {
+                "Month": "February",
+                "Desktop": 330,
+                "Laptop": 530,
+                "Tablet": 220,
+                "Smartphone": 430
+            },
+            {
+                "Month": "March",
+                "Desktop": 340,
+                "Laptop": 540,
+                "Tablet": 230,
+                "Smartphone": 440
+            },
+            {
+                "Month": "April",
+                "Desktop": 350,
+                "Laptop": 550,
+                "Tablet": 240,
+                "Smartphone": 460
+            },
+            {
+                "Month": "May",
+                "Desktop": 360,
+                "Laptop": 560,
+                "Tablet": 250,
+                "Smartphone": 470
+            },
+            {
+                "Month": "June",
+                "Desktop": 370,
+                "Laptop": 570,
+                "Tablet": 260,
+                "Smartphone": 480
+            },
+            {
+                "Month": "July",
+                "Desktop": 380,
+                "Laptop": 580,
+                "Tablet": 270,
+                "Smartphone": 490
+            },
+            {
+                "Month": "August",
+                "Desktop": 390,
+                "Laptop": 590,
+                "Tablet": 280,
+                "Smartphone": 500
+            },
+            {
+                "Month": "September",
+                "Desktop": 400,
+                "Laptop": 600,
+                "Tablet": 290,
+                "Smartphone": 510
+            },
+            {
+                "Month": "October",
+                "Desktop": 410,
+                "Laptop": 610,
+                "Tablet": 300,
+                "Smartphone": 520
+            },
+            {
+                "Month": "November",
+                "Desktop": 420,
+                "Laptop": 620,
+                "Tablet": 310,
+                "Smartphone": 530
+            },
+            {
+                "Month": "December",
+                "Desktop": 430,
+                "Laptop": 630,
+                "Tablet": 320,
+                "Smartphone": 540
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Desktop",
+                "Laptop",
+                "Tablet",
+                "Smartphone"
+            ],
+            "as": [
+                "DeviceType",
+                "Sales"
+            ]
+        }
+    ],
+    "mark": "bar",
+    "width": 700,
+    "height": 500,
+    "title": {
+        "text": "Monthly Tech Device Sales Analysis",
+        "anchor": "start",
+        "fontSize": 18,
+        "fontWeight": "bold"
+    },
+    "encoding": {
+        "x": {
+            "field": "Month",
+            "type": "ordinal",
+            "axis": {
+                "title": "Month"
+            }
+        },
+        "y": {
+            "field": "Sales",
+            "type": "quantitative",
+            "axis": {
+                "title": "Total Sales"
+            },
+            "stack": "zero"
+        },
+        "color": {
+            "field": "DeviceType",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Desktop",
+                    "Laptop",
+                    "Tablet",
+                    "Smartphone"
+                ],
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e",
+                    "#2ca02c",
+                    "#d62728"
+                ]
+            },
+            "legend": {
+                "orient": "top",
+                "title": "Device Type"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Month",
+                "type": "nominal",
+                "title": "Month"
+            },
+            {
+                "field": "DeviceType",
+                "type": "nominal",
+                "title": "Device Type"
+            },
+            {
+                "field": "Sales",
+                "type": "quantitative",
+                "title": "Sales"
+            }
+        ]
+    },
+    "config": {
+        "bar": {
+            "width": {
+                "band": 0.6
+            }
+        }
+    }
+}

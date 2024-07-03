@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {renderer: 'canvas', width: 750, height: 500});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Education Budget Over Years (in Thousand USD)',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {            
+            type: 'shadow'        
+        }
+    },
+    legend: {
+        data: ['Primary Education', 'Secondary Education', 'Tertiary Education', 'Vocational Training', 'Research & Development'],
+        top: 'bottom'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01]
+    },
+    yAxis: {
+        type: 'category',
+        data: ['2016','2017','2018','2019','2020']
+    },
+    series: [
+        {
+            name: 'Primary Education',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                formatter: '{b} PE: {c}'
+            },
+            data: [40000, 42000, 45000, 46000, 48000],
+            itemStyle: {
+                color: '#1F78B4'
+            },
+            barWidth: '50%'
+        },
+        {
+            name: 'Secondary Education',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                formatter: '{c}'
+            },
+            data: [38000, 40000, 41000, 43000, 45000],
+            itemStyle: {
+                color: '#33A02C'
+            },
+            barWidth: '50%'
+        },
+        {
+            name: 'Tertiary Education',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                formatter: '{c}'
+            },
+            data: [25000, 26000, 27000, 29000, 31000],
+            itemStyle: {
+                color: '#FB9A99'
+            },
+            barWidth: '50%'
+        },
+        {
+            name: 'Vocational Training',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                formatter: '{c}'
+            },
+            data: [7000, 8000, 8500, 9000, 9500],
+            itemStyle: {
+                color: '#E31A1C'
+            },
+            barWidth: '50%'
+        },
+        {
+            name: 'Research & Development',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                formatter: '{c}'
+            },
+            data: [15000, 16000, 17000, 18000, 20000],
+            itemStyle: {
+                color: '#FF7F00'
+            },
+            barWidth: '50%'
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

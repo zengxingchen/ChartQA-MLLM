@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var option;
+
+option = {
+    title: {
+        text: 'Stress Levels and Sleep Duration',
+        left: 'center',
+        top: '5%'
+    },
+    tooltip: {
+        trigger: 'axis',
+        showDelay: 0,
+        formatter: function (params) {
+            if (params.value.length > 1) {
+                return params.seriesName + ' :<br/>' 
+                + params.value[0] + ' hours ' 
+                + params.value[1] + ' level ';
+            } else {
+                return params.seriesName + ' :<br/>' 
+                + params.name + ' : ' 
+                + params.value + ' level ';
+            }
+        },  
+        axisPointer: {
+            show: true,
+            type: 'cross',
+            lineStyle: {
+                type: 'dashed',
+                width: 1
+            }
+        }
+    },
+    legend: {
+        data: ['Stress Level'],
+        left: 'right',
+        top: '10%'
+    },
+    xAxis: {
+        type: 'value',
+        scale: true,
+        axisLabel: {
+            formatter: '{value} h'
+        },
+        splitLine: {
+            show: false
+        }
+    },
+    yAxis: {
+        type: 'value',
+        scale: true,
+        axisLabel: {
+            formatter: '{value} level'
+        },
+        splitLine: {
+            show: false
+        }
+    },
+    series: [
+        {
+            name: 'Stress Level',
+            type: 'scatter',
+            itemStyle: {
+                color: '#FF6347'
+            },
+            data: [
+                [7.8, 2], [6.4, 5], [8.2, 1], [5.3, 8], [7.0, 4], [6.7, 6], [8.0, 2], [7.2, 3], 
+                [5.9, 7], [6.1, 5], [7.5, 3], [7.3, 4], [8.1, 2], [6.0, 6], [7.4, 3], [7.9, 2], 
+                [6.3, 5], [8.3, 1], [5.6, 7], [6.8, 4], [7.1, 3], [6.2, 5], [8.4, 1], [5.5, 8], 
+                [7.7, 2], [6.5, 6]
+            ]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

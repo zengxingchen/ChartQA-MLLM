@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+
+var option = {
+  title: {
+    text: 'Carbon Emissions by Sector (2000-2019)',
+    left: 'center',
+    top: 10
+  },
+  tooltip: {
+    trigger: 'axis',
+    axisPointer: {
+      type: 'cross',
+      label: {
+        backgroundColor: '#6a7985'
+      }
+    }
+  },
+  legend: {
+    data: ['Transportation', 'Industrial', 'Residential', 'Commercial'],
+    left: 10,
+    top: 40
+  },
+  grid: {
+    left: '3%',
+    right: '4%',
+    bottom: '3%',
+    containLabel: true
+  },
+  xAxis: [
+    {
+      type: 'category',
+      boundaryGap: false,
+      data: ['2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019']
+    }
+  ],
+  yAxis: [
+    {
+      type: 'value'
+    }
+  ],
+  series: [
+    {
+      name: 'Transportation',
+      type: 'line',
+      stack: 'total',
+      areaStyle: {},
+      emphasis: {
+        focus: 'series'
+      },
+      data: [5.8, 5.9, 6.0, 6.2, 6.4, 6.6, 6.8, 7.0, 7.2, 7.1, 7.3, 7.4, 7.6, 7.8, 8.0, 8.1, 8.3, 8.5, 8.7, 8.8],
+      color: '#4EAF47'
+    },
+    {
+      name: 'Industrial',
+      type: 'line',
+      stack: 'total',
+      areaStyle: {},
+      emphasis: {
+        focus: 'series'
+      },
+      data: [6.2, 6.3, 6.4, 6.5, 6.7, 6.8, 6.9, 7.1, 7.3, 7.4, 7.5, 7.8, 7.9, 8.0, 8.2, 8.3, 8.5, 8.6, 8.8, 9.0],
+      color: '#DF5353'
+    },
+    {
+      name: 'Residential',
+      type: 'line',
+      stack: 'total',
+      areaStyle: {},
+      emphasis: {
+        focus: 'series'
+      },
+      data: [3.1, 3.2, 3.3, 3.4, 3.5, 3.5, 3.6, 3.7, 3.8, 3.7, 3.8, 3.9, 4.0, 4.1, 4.2, 4.3, 4.4, 4.5, 4.6, 4.7],
+      color: '#55B1DF'
+    },
+    {
+      name: 'Commercial',
+      type: 'line',
+      stack: 'total',
+      areaStyle: {},
+      emphasis: {
+        focus: 'series'
+      },
+      data: [2.5, 2.6, 2.7, 2.8, 2.9, 2.9, 3.0, 3.1, 3.2, 3.1, 3.2, 3.3, 3.4, 3.5, 3.6, 3.7, 3.8, 3.9, 4.0, 4.1],
+      color: '#F8E81C'
+    }
+  ],
+  toolbox: {
+    feature: {
+      saveAsImage: {}
+    }
+  },
+  color: ['#4EAF47', '#DF5353', '#55B1DF', '#F8E81C'],
+  grid: {
+    top: 80,
+    bottom: 50,
+    left: 100,
+    right: 100
+  },
+  dataZoom: [
+    {
+      type: 'inside',
+      start: 0,
+      end: 100
+    },
+    {
+      start: 0,
+      end: 10,
+      handleIcon: 'M8.2,13.5V2.5c0-0.3-0.2-0.5-0.5-0.5H5.3C5,2,4.8,2.2,4.8,2.5v11c0,0.3,0.2,0.5,0.5,0.5h2.4C8,14,8.2,13.8,8.2,13.5z',
+      handleSize: '80%',
+      handleStyle: {
+        color: '#fff',
+        shadowBlur: 3,
+        shadowColor: 'rgba(0, 0, 0, 0.6)',
+        shadowOffsetX: 2,
+        shadowOffsetY: 2
+      }
+    }
+  ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

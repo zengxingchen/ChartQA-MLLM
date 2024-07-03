@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+var option;
+
+option = {
+    title: {
+        text: 'GDP Growth Rates of Various Countries',
+        left: 'center',
+        top: '20'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    xAxis: {
+        type: 'value',
+        name: 'GDP Growth Rate (%)',
+        nameLocation: 'middle',
+        nameGap: 30
+    },
+    yAxis: {
+        type: 'category',
+        data: ['USA', 'China', 'Japan', 'Germany', 'India', 'UK', 'France', 'Brazil', 'Italy', 'Canada', 'South Korea', 'Russia', 'Australia', 'Mexico', 'Indonesia', 'Saudi Arabia', 'Turkey', 'Netherlands', 'Switzerland', 'Spain'],
+        name: 'Country',
+        nameLocation: 'middle',
+        nameGap: 60
+    },
+    series: [
+        {
+            name: 'GDP Growth Rate (%)',
+            type: 'bar',
+            data: [2.3, 6.1, 1.0, 0.6, 5.0, 1.4, 1.3, 1.1, 0.3, 1.6, 2.0, 1.3, 2.2, 0.2, 5.0, 0.8, 0.9, 1.7, 1.1, 2.0],
+            itemStyle: {
+                color: function (params) {
+                    var colorList = ['#5470C6', '#91CC75', '#FAC858', '#EE6666', '#73C0DE', '#3BA272', '#FC8452', '#9A60B4', '#EA7CCC', '#2D8CF0', '#37A2DA', '#32C5E9', '#67E0E3', '#9FE6B8', '#FFDB5C', '#FF9F7F', '#FB7293', '#E062AE', '#E690D1', '#96BFFF'];
+                    return colorList[params.dataIndex];
+                }
+            },
+            barWidth: '50%',
+            label: {
+                show: true,
+                position: 'right',
+                formatter: '{c}%'
+            }
+        }
+    ],
+    grid: {
+        left: '3%',
+        right: '10%',
+        bottom: '3%',
+        containLabel: true
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var option;
+
+option = {
+    title: {
+        text: 'Future Technologies & Society',
+        left: 'center'
+    },
+    xAxis: {
+        type: 'category',
+        data: ['1-5', '6-10', '11-15', '16-20', '21-25', '26-30', '31-35'],
+        name: 'Value Range'
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Frequency'
+    },
+    series: [{
+        type: 'bar',
+        data: [
+            {value: 12, label: {show: true, position: 'top', formatter: '{c}'}},
+            {value: 20, label: {show: true, position: 'top', formatter: '{c}'}},
+            {value: 16, label: {show: true, position: 'top', formatter: '{c}'}},
+            {value: 4, label: {show: true, position: 'top', formatter: '{c}'}},
+            {value: 3, label: {show: true, position: 'top', formatter: '{c}'}},
+            {value: 1, label: {show: true, position: 'top', formatter: '{c}'}},
+            {value: 2, label: {show: true, position: 'top', formatter: '{c}'}}
+        ],
+        itemStyle: {
+            color: '#3398DB'
+        },
+        barWidth: '60%',
+    }],
+    grid: {
+        width: '80%',
+        height: '70%',
+        left: '10%',
+        bottom: '15%'
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

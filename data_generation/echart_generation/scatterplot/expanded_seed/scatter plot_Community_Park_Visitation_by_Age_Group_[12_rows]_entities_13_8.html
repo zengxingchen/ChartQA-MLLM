@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var data = [
+  {'Day': 'Monday', 'Ages 0-12': 35, 'Ages 13-18': 20, 'Ages 19-35': 25, 'Ages 36-60': 30, 'Ages 61+': 15},
+  // ... (include other data points here)
+  {'Day': 'Saturday', 'Ages 0-12': 53, 'Ages 13-18': 31, 'Ages 19-35': 47, 'Ages 36-60': 44, 'Ages 61+': 26}
+];
+
+// Convert the data into a format suitable for ECharts
+var seriesData = {
+  'Ages 0-12': [],
+  'Ages 13-18': [],
+  'Ages 19-35': [],
+  'Ages 36-60': [],
+  'Ages 61+': []
+};
+var daysMap = {
+  'Monday': 1,
+  'Tuesday': 2,
+  'Wednesday': 3,
+  'Thursday': 4,
+  'Friday': 5,
+  'Saturday': 6,
+  'Sunday': 7
+};
+
+data.forEach(function(item) {
+  for (var ageGroup in seriesData) {
+    if (seriesData.hasOwnProperty(ageGroup)) {
+      seriesData[ageGroup].push([daysMap[item.Day], item[ageGroup]]);
+    }
+  }
+});
+
+var series = Object.keys(seriesData).map(function(ageGroup) {
+  return {
+    name: ageGroup,
+    type: 'scatter',
+    data: seriesData[ageGroup]
+  };
+});
+
+// Visual encoding of the scatterplot
+var option = {
+  tooltip: {
+    trigger: 'axis',
+    showDelay: 0,
+    formatter: function (params) {
+      if (params.value.length > 1) {
+        return params.seriesName + ' :<br/>' +
+          params.value[0] + ' ' + 'Day' +
+          '(' + params.value[1] + ')';
+      } else {
+        return params.seriesName + ' :<br/>' +
+          params.name + ' : ' +
+          params.value + ' People';
+      }
+    },
+    axisPointer: {
+      show: true,
+      type: 'cross',
+      lineStyle: {
+        type: 'dashed',
+        width: 1
+      }
+    }
+  },
+  legend: {
+    data: Object.keys(seriesData),
+    left: 'center'
+  },
+  xAxis: [{
+    type: 'value',
+    scale: true,
+    name: 'Day',
+    max: 7,
+    min: 1,
+    boundaryGap: [0.2, 0.2],
+    splitLine: {
+      show: false
+    }
+  }],
+  yAxis: [{
+    type: 'value',
+    scale: true,
+    name: 'People',
+    max: 60,
+    min: 0,
+    splitLine: {
+      show: false
+    }
+  }],
+  series: series
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

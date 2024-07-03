@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var option;
+
+option = {
+    title: {
+        text: 'Annual Revenue of Major Tech Companies (in Billion USD)',
+        left: 'center',
+        textStyle: {
+            color: '#333333',
+            fontSize: 18
+        }
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['2018', '2019', '2020', '2021', '2022'],
+        bottom: '0',
+        textStyle: {
+            color: '#666666'
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '15%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        data: ['Apple', 'Microsoft', 'Amazon', 'Google', 'Facebook', 'Tesla'],
+        axisLabel: {
+            textStyle: {
+                color: '#555555'
+            }
+        }
+    },
+    yAxis: {
+        type: 'value',
+        axisLabel: {
+            textStyle: {
+                color: '#555555'
+            }
+        }
+    },
+    series: [
+        {
+            name: '2018',
+            type: 'bar',
+            data: [265.59, 110.36, 232.89, 136.81, 55.84, 21.46],
+            itemStyle: {
+                color: '#FF6666'
+            },
+            barWidth: '10%'
+        },
+        {
+            name: '2019',
+            type: 'bar',
+            data: [260.17, 125.84, 280.52, 161.86, 70.70, 24.58],
+            itemStyle: {
+                color: '#FFCC66'
+            },
+            barWidth: '10%'
+        },
+        {
+            name: '2020',
+            type: 'bar',
+            data: [274.52, 143.02, 386.06, 182.53, 85.96, 31.53],
+            itemStyle: {
+                color: '#99CC66'
+            },
+            barWidth: '10%'
+        },
+        {
+            name: '2021',
+            type: 'bar',
+            data: [365.82, 168.09, 469.82, 257.64, 117.92, 53.82],
+            itemStyle: {
+                color: '#66CCCC'
+            },
+            barWidth: '10%'
+        },
+        {
+            name: '2022',
+            type: 'bar',
+            data: [394.33, 198.27, 502.19, 279.54, 116.61, 81.46],
+            itemStyle: {
+                color: '#6666FF'
+            },
+            barWidth: '10%'
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,224 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "A 100% stacked bar chart showing the changes in dietary preferences over time.",
+    "data": {
+        "values": [
+            {
+                "Year": 2010,
+                "Vegetables": 20,
+                "Fruits": 25,
+                "Grains": 15,
+                "Protein": 20,
+                "Dairy": 10,
+                "Sweets": 10
+            },
+            {
+                "Year": 2011,
+                "Vegetables": 22,
+                "Fruits": 24,
+                "Grains": 16,
+                "Protein": 18,
+                "Dairy": 12,
+                "Sweets": 8
+            },
+            {
+                "Year": 2012,
+                "Vegetables": 23,
+                "Fruits": 23,
+                "Grains": 17,
+                "Protein": 17,
+                "Dairy": 13,
+                "Sweets": 7
+            },
+            {
+                "Year": 2013,
+                "Vegetables": 24,
+                "Fruits": 22,
+                "Grains": 18,
+                "Protein": 16,
+                "Dairy": 12,
+                "Sweets": 8
+            },
+            {
+                "Year": 2014,
+                "Vegetables": 25,
+                "Fruits": 21,
+                "Grains": 19,
+                "Protein": 15,
+                "Dairy": 10,
+                "Sweets": 10
+            },
+            {
+                "Year": 2015,
+                "Vegetables": 26,
+                "Fruits": 20,
+                "Grains": 20,
+                "Protein": 14,
+                "Dairy": 12,
+                "Sweets": 8
+            },
+            {
+                "Year": 2016,
+                "Vegetables": 27,
+                "Fruits": 19,
+                "Grains": 21,
+                "Protein": 13,
+                "Dairy": 11,
+                "Sweets": 9
+            },
+            {
+                "Year": 2017,
+                "Vegetables": 28,
+                "Fruits": 18,
+                "Grains": 22,
+                "Protein": 12,
+                "Dairy": 10,
+                "Sweets": 10
+            },
+            {
+                "Year": 2018,
+                "Vegetables": 29,
+                "Fruits": 17,
+                "Grains": 23,
+                "Protein": 11,
+                "Dairy": 9,
+                "Sweets": 11
+            },
+            {
+                "Year": 2019,
+                "Vegetables": 30,
+                "Fruits": 16,
+                "Grains": 24,
+                "Protein": 10,
+                "Dairy": 8,
+                "Sweets": 12
+            },
+            {
+                "Year": 2020,
+                "Vegetables": 31,
+                "Fruits": 15,
+                "Grains": 25,
+                "Protein": 9,
+                "Dairy": 7,
+                "Sweets": 13
+            },
+            {
+                "Year": 2021,
+                "Vegetables": 32,
+                "Fruits": 14,
+                "Grains": 26,
+                "Protein": 8,
+                "Dairy": 6,
+                "Sweets": 14
+            },
+            {
+                "Year": 2022,
+                "Vegetables": 33,
+                "Fruits": 13,
+                "Grains": 27,
+                "Protein": 7,
+                "Dairy": 5,
+                "Sweets": 15
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Vegetables",
+                "Fruits",
+                "Grains",
+                "Protein",
+                "Dairy",
+                "Sweets"
+            ],
+            "as": [
+                "Food Group",
+                "Percentage"
+            ]
+        },
+        {
+            "calculate": "datum.Percentage / 100",
+            "as": "NormalizedPercentage"
+        }
+    ],
+    "title": {
+        "text": "Changes in Dietary Preferences Over Time",
+        "color": "black",
+        "fontSize": 14,
+        "anchor": "start",
+        "dy": -20
+    },
+    "width": 500,
+    "height": 300,
+    "mark": {
+        "type": "bar",
+        "tooltip": true
+    },
+    "encoding": {
+        "x": {
+            "field": "Year",
+            "type": "ordinal",
+            "axis": {
+                "title": "Year"
+            }
+        },
+        "y": {
+            "field": "NormalizedPercentage",
+            "type": "quantitative",
+            "axis": {
+                "title": "Percentage"
+            },
+            "stack": "normalize"
+        },
+        "color": {
+            "field": "Food Group",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Vegetables",
+                    "Fruits",
+                    "Grains",
+                    "Protein",
+                    "Dairy",
+                    "Sweets"
+                ],
+                "range": [
+                    "#ff9999",
+                    "#66b3ff",
+                    "#99ff99",
+                    "#ffcc99",
+                    "#c2c2f0",
+                    "#ffb3e6"
+                ]
+            },
+            "legend": {
+                "title": "Food Group",
+                "orient": "bottom",
+                "titleFontSize": 12,
+                "labelFontSize": 10
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Year",
+                "type": "ordinal"
+            },
+            {
+                "field": "Food Group",
+                "type": "nominal"
+            },
+            {
+                "field": "Percentage",
+                "type": "quantitative",
+                "title": "Percentage"
+            }
+        ]
+    },
+    "config": {
+        "bar": {
+            "binSpacing": 0,
+            "continuousBandSize": 12
+        }
+    }
+}

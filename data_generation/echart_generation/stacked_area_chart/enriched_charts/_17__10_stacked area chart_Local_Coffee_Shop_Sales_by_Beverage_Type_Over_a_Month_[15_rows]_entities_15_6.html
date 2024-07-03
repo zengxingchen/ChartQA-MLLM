@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {renderer: 'canvas', width: 800, height: 600});
+var app = {};
+option = null;
+
+option = {
+  title: {
+    text: 'Diet Trend Analysis 2021-2022',
+    left: 'center'
+  },
+  tooltip: {
+    trigger: 'axis'
+  },
+  legend: {
+    data: ['Low Fat Diets', 'High Protein Diets', 'Vegan Diets', 'Low Carb Diets'],
+    top: 50
+  },
+  grid: {
+    left: '3%',
+    right: '3%',
+    bottom: '3%',
+    containLabel: true
+  },
+  xAxis: {
+    type: 'category',
+    boundaryGap: false,
+    data: [
+      '2021-01', '2021-02', '2021-03', '2021-04', '2021-05', '2021-06',
+      '2021-07', '2021-08', '2021-09', '2021-10', '2021-11', '2021-12',
+      '2022-01', '2022-02', '2022-03', '2022-04', '2022-05', '2022-06',
+      '2022-07', '2022-08', '2022-09', '2022-10', '2022-11', '2022-12'
+    ]
+  },
+  yAxis: {
+    type: 'value'
+  },
+  series: [
+    {
+      name: 'Low Fat Diets',
+      type: 'line',
+      stack: 'Total',
+      areaStyle: {},
+      emphasis: {
+        focus: 'series'
+      },
+      data: [
+        120, 115, 130, 125, 140, 150,
+        160, 170, 180, 190, 200, 190,
+        185, 180, 175, 165, 160, 155,
+        150, 145, 140, 130, 120, 110
+      ],
+      color: '#FF7F50'
+    },
+    {
+      name: 'High Protein Diets',
+      type: 'line',
+      stack: 'Total',
+      areaStyle: {},
+      emphasis: {
+        focus: 'series'
+      },
+      data: [
+        80, 85, 90, 100, 110, 100,
+        110, 120, 130, 140, 130, 135,
+        140, 145, 155, 160, 165, 170,
+        175, 180, 185, 190, 195, 200
+      ],
+      color: '#32CD32'
+    },
+    {
+      name: 'Vegan Diets',
+      type: 'line',
+      stack: 'Total',
+      areaStyle: {},
+      emphasis: {
+        focus: 'series'
+      },
+      data: [
+        50, 55, 60, 70, 80, 85,
+        90, 95, 100, 110, 115, 120,
+        125, 130, 135, 140, 145, 150,
+        155, 160, 165, 170, 175, 180
+      ],
+      color: '#6495ED'
+    },
+    {
+      name: 'Low Carb Diets',
+      type: 'line',
+      stack: 'Total',
+      areaStyle: {},
+      emphasis: {
+        focus: 'series'
+      },
+      data: [
+        70, 75, 65, 60, 55, 50,
+        60, 70, 80, 90, 85, 80,
+        75, 70, 65, 60, 55, 50,
+        45, 40, 35, 30, 25, 20
+      ],
+      color: '#8A2BE2'
+    }
+  ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

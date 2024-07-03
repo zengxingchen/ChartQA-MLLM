@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+var option = {
+    title: {
+        text: 'Adoption of Future Technologies',
+        left: 'center',
+        top: '5%'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01]
+    },
+    yAxis: {
+        type: 'category',
+        data: ['Artificial Intelligence', 'Quantum Computing', 'Blockchain', '5G Technology', 'Augmented Reality', 'Renewable Energy', 'Biotechnology', 'Robotics', 'Internet of Things', 'Cybersecurity']
+    },
+    series: [
+        {
+            name: 'Adoption Rate',
+            type: 'bar',
+            data: [
+                { value: 150, itemStyle: { color: '#FF5733' }, label: { show: true, position: 'insideRight', formatter: '{c}%' } },
+                { value: 95, itemStyle: { color: '#33FF57' }, label: { show: true, position: 'insideRight', formatter: '{c}%' } },
+                { value: 110, itemStyle: { color: '#3357FF' }, label: { show: true, position: 'insideRight', formatter: '{c}%' } },
+                { value: 130, itemStyle: { color: '#FF33A1' }, label: { show: true, position: 'insideRight', formatter: '{c}%' } },
+                { value: 105, itemStyle: { color: '#33FFF1' }, label: { show: true, position: 'insideRight', formatter: '{c}%' } },
+                { value: 125, itemStyle: { color: '#FFA733' }, label: { show: true, position: 'insideRight', formatter: '{c}%' } },
+                { value: 100, itemStyle: { color: '#A733FF' }, label: { show: true, position: 'insideRight', formatter: '{c}%' } },
+                { value: 115, itemStyle: { color: '#33A1FF' }, label: { show: true, position: 'insideRight', formatter: '{c}%' } },
+                { value: 120, itemStyle: { color: '#A1FF33' }, label: { show: true, position: 'insideRight', formatter: '{c}%' } },
+                { value: 140, itemStyle: { color: '#FF5733' }, label: { show: true, position: 'insideRight', formatter: '{c}%' } }
+            ],
+            barWidth: 20
+        }
+    ]
+};
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

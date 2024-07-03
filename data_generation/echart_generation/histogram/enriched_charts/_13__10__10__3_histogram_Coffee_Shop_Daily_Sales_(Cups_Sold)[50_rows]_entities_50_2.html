@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Distribution of Fitness Activity Durations',
+        left: 'center',
+        top: '10%'
+    },
+    color: ['#5470C6'],
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        data: [
+            '15-30', '30-45', '45-60', '60-75', '75-90', 
+            '90-105', '105-120', '120-135', '135-150', '150-165', 
+            '165-180', '180-195', '195-210', '210-225', '225-240', 
+            '240-255', '255-270', '270-285', '285-300', '300-315', 
+            '315-330', '330-345', '345-360', '360-375', '375-390', 
+            '390-405', '405-420', '420-435', '435-450', '450-465', 
+            '465-480', '480-495', '495-510', '510-525', '525-540', 
+            '540-555', '555-570', '570-585', '585-600'
+        ],
+        axisTick: {
+            alignWithLabel: true
+        }
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Frequency'
+    },
+    series: [{
+        name: 'Duration',
+        type: 'bar',
+        barWidth: '60%',
+        data: [
+            2, 4, 6, 8, 10, 
+            12, 14, 16, 18, 20, 
+            22, 24, 26, 28, 30, 
+            32, 34, 36, 38, 40, 
+            42, 44, 46, 48, 50, 
+            52, 54, 56, 58, 60, 
+            62, 64, 66, 68, 70, 
+            72, 74, 76, 78, 80
+        ]
+    }],
+    width: 800,
+    height: 600
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

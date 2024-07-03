@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+// processing the provided data
+var data = [{'Date': '2023-04-01', 'Steps': 4920}, {'Date': '2023-04-02', 'Steps': 7035}, {'Date': '2023-04-03', 'Steps': 5870}, {'Date': '2023-04-04', 'Steps': 6540}, {'Date': '2023-04-05', 'Steps': 7310}, {'Date': '2023-04-06', 'Steps': 5690}, {'Date': '2023-04-07', 'Steps': 8160}, {'Date': '2023-04-08', 'Steps': 4980}, {'Date': '2023-04-09', 'Steps': 5320}, {'Date': '2023-04-10', 'Steps': 6890}, {'Date': '2023-04-11', 'Steps': 7600}, {'Date': '2023-04-12', 'Steps': 8025}, {'Date': '2023-04-13', 'Steps': 8455}, {'Date': '2023-04-14', 'Steps': 9020}, {'Date': '2023-04-15', 'Steps': 4330}];
+
+// Separate the date and steps into their own arrays for ease of use in the chart.
+var dates = data.map(function (item) {
+    return item.Date;
+});
+var steps = data.map(function (item) {
+    return item.Steps;
+});
+
+option = {
+    tooltip: {
+        trigger: 'axis',
+        position: function (pt) {
+            return [pt[0], '10%'];
+        }
+    },
+    title: {
+        left: 'center',
+        text: 'Daily Steps Area Chart'
+    },
+    toolbox: {
+        feature: {
+            dataZoom: {
+                yAxisIndex: 'none'
+            },
+            restore: {},
+            saveAsImage: {}
+        }
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: dates
+    },
+    yAxis: {
+        type: 'value',
+        boundaryGap: [0, '100%']
+    },
+    dataZoom: [{
+        type: 'inside',
+        start: 0,
+        end: 100
+    }, {
+        start: 0,
+        end: 10
+    }],
+    series: [
+        {
+            name: 'Steps',
+            type: 'line',
+            smooth: true,
+            symbol: 'none',
+            sampling: 'average',
+            itemStyle: {
+                color: 'rgb(255, 70, 131)'
+            },
+            areaStyle: {
+                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                    offset: 0,
+                    color: 'rgb(255, 158, 68)'
+                }, {
+                    offset: 1,
+                    color: 'rgb(255, 70, 131)'
+                }])
+            },
+            data: steps
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

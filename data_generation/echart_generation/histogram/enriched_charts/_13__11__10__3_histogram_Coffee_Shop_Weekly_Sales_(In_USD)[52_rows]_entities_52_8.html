@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var option;
+
+option = {
+    title: {
+        text: 'Distribution of Monthly Expenses',
+        left: 'center',
+        top: '10%'
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: '{a} <br/>{b}: {c} ({d}%)'
+    },
+    xAxis: {
+        type: 'value',
+        name: 'Expense ($)',
+        nameLocation: 'middle',
+        nameGap: 30
+    },
+    yAxis: {
+        type: 'category',
+        name: 'Frequency',
+        nameLocation: 'end',
+        data: ['5', '15', '25', '35', '45', '55', '65', '75', '85', '95', '105', '115', '125', '135', '145', '155', '165', '175', '185', '195']
+    },
+    series: [
+        {
+            name: 'Monthly Expenses',
+            type: 'bar',
+            data: [
+                { value: 2, name: '5' },
+                { value: 5, name: '15' },
+                { value: 9, name: '25' },
+                { value: 13, name: '35' },
+                { value: 20, name: '45' },
+                { value: 18, name: '55' },
+                { value: 25, name: '65' },
+                { value: 22, name: '75' },
+                { value: 28, name: '85' },
+                { value: 26, name: '95' },
+                { value: 30, name: '105' },
+                { value: 35, name: '115' },
+                { value: 40, name: '125' },
+                { value: 38, name: '135' },
+                { value: 45, name: '145' },
+                { value: 50, name: '155' },
+                { value: 42, name: '165' },
+                { value: 47, name: '175' },
+                { value: 55, name: '185' },
+                { value: 60, name: '195' }
+            ],
+            itemStyle: {
+                color: '#3399FF'
+            },
+            barWidth: '60%',
+            label: {
+                show: true,
+                position: 'insideRight',
+                formatter: '{b} ({c})'
+            }
+        }
+    ],
+    grid: {
+        width: '80%',
+        height: '70%',
+        left: '10%',
+        top: '20%'
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

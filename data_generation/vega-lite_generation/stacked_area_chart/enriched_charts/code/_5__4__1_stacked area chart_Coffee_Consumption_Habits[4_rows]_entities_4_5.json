@@ -1,0 +1,149 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Area Chart of Online Education Platform Users by Category",
+    "width": 800,
+    "height": 300,
+    "data": {
+        "values": [
+            {
+                "Year": 2014,
+                "Math": 20000,
+                "Science": 18000,
+                "Arts": 15000,
+                "Technology": 22000
+            },
+            {
+                "Year": 2015,
+                "Math": 21000,
+                "Science": 18500,
+                "Arts": 15500,
+                "Technology": 23000
+            },
+            {
+                "Year": 2016,
+                "Math": 22500,
+                "Science": 19000,
+                "Arts": 16000,
+                "Technology": 24000
+            },
+            {
+                "Year": 2017,
+                "Math": 23000,
+                "Science": 19500,
+                "Arts": 16500,
+                "Technology": 25000
+            },
+            {
+                "Year": 2018,
+                "Math": 24000,
+                "Science": 20500,
+                "Arts": 17000,
+                "Technology": 26000
+            },
+            {
+                "Year": 2019,
+                "Math": 25000,
+                "Science": 21000,
+                "Arts": 18000,
+                "Technology": 27000
+            },
+            {
+                "Year": 2020,
+                "Math": 30000,
+                "Science": 25000,
+                "Arts": 20000,
+                "Technology": 30000
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Math",
+                "Science",
+                "Arts",
+                "Technology"
+            ],
+            "as": [
+                "Category",
+                "Users"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "area",
+        "opacity": 0.6
+    },
+    "encoding": {
+        "x": {
+            "field": "Year",
+            "type": "ordinal",
+            "axis": {
+                "title": "Year"
+            }
+        },
+        "y": {
+            "field": "Users",
+            "type": "quantitative",
+            "stack": "zero",
+            "axis": {
+                "title": "Number of Users"
+            }
+        },
+        "color": {
+            "field": "Category",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Math",
+                    "Science",
+                    "Arts",
+                    "Technology"
+                ],
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e",
+                    "#2ca02c",
+                    "#d62728"
+                ]
+            },
+            "legend": {
+                "title": "Category",
+                "orient": "bottom-left"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Year",
+                "type": "ordinal"
+            },
+            {
+                "field": "Category",
+                "type": "nominal"
+            },
+            {
+                "field": "Users",
+                "type": "quantitative",
+                "title": "Number of Users"
+            }
+        ]
+    },
+    "title": {
+        "text": "Users of Online Education Platforms by Category (2014-2020)",
+        "fontSize": 16,
+        "anchor": "start",
+        "offset": 10,
+        "frame": "group"
+    },
+    "config": {
+        "view": {
+            "stroke": "transparent"
+        },
+        "area": {
+            "line": true
+        },
+        "axisY": {
+            "grid": true
+        }
+    }
+}

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+option = {
+    title: {
+        text: 'Frequency Distribution of Exam Scores',
+        left: 'center'
+    },
+    xAxis: {
+        type: 'category',
+        data: ['5-10', '11-20', '21-30', '31-40', '41-50', '51-60', '61-70', '71-80', '81-90', '91-100'],
+        name: 'Score Range',
+        nameLocation: 'middle',
+        nameTextStyle: {
+            padding: 25
+        }
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Frequency',
+        nameLocation: 'middle',
+        nameTextStyle: {
+            padding: 30
+        }
+    },
+    series: [{
+        data: [
+            {value: 3, itemStyle: {color: '#5470C6'}},
+            {value: 8, itemStyle: {color: '#91CC75'}},
+            {value: 6, itemStyle: {color: '#FAC858'}},
+            {value: 5, itemStyle: {color: '#EE6666'}},
+            {value: 4, itemStyle: {color: '#73C0DE'}},
+            {value: 4, itemStyle: {color: '#3BA272'}},
+            {value: 4, itemStyle: {color: '#FC8452'}},
+            {value: 3, itemStyle: {color: '#9A60B4'}},
+            {value: 4, itemStyle: {color: '#EA7CCC'}},
+            {value: 3, itemStyle: {color: '#5470C6'}}
+        ],
+        type: 'bar',
+        barWidth: '60%',
+        label: {
+            show: true,
+            position: 'top'
+        }
+    }],
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

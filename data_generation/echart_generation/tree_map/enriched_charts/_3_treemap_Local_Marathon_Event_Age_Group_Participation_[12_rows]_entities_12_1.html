@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Market Capitalization of Tech Companies',
+        left: 'center',
+        top: 'top'
+    },
+    color: [
+        '#61A5E8', '#7ECF51', '#EECB5F', '#E4925D', '#E16757',
+        '#9570E5', '#605FF0', '#85ca36', '#1c8b82', '#1E90FF',
+        '#FF8C00', '#D2691E', '#C71585', '#FFD700', '#6495ED'
+    ],
+    tooltip: {
+        trigger: 'item',
+        formatter: '{b}: {c}'
+    },
+    series: [{
+        name: 'Market Cap',
+        type: 'treemap',
+        visibleMin: 300,
+        label: {
+            show: true,
+            formatter: '{b}'
+        },
+        upperLabel: {
+            normal: {
+                show: true,
+                height: 30
+            }
+        },
+        itemStyle: {
+            borderColor: '#fff'
+        },
+        levels: [
+            {
+                itemStyle: {
+                    borderWidth: 0,
+                    gapWidth: 5
+                }
+            },
+            {
+                itemStyle: {
+                    gapWidth: 1
+                }
+            },
+            {
+                colorSaturation: [0.35, 0.5],
+                itemStyle: {
+                    gapWidth: 1,
+                    borderColorSaturation: 0.6
+                }
+            }
+        ],
+        data: [
+            {name: 'Apple', value: 2425219},
+            {name: 'Microsoft', value: 1844247},
+            {name: 'Alphabet (Google)', value: 1526133},
+            {name: 'Amazon', value: 1516689},
+            {name: 'Facebook', value: 785734},
+            {name: 'Tencent', value: 637909},
+            {name: 'Alibaba', value: 620985},
+            {name: 'Taiwan Semiconductor Manufacturing', value: 558053},
+            {name: 'Samsung', value: 470665},
+            {name: 'NVIDIA', value: 379264},
+            {name: 'Visa', value: 374126},
+            {name: 'JPMorgan Chase', value: 345784},
+            {name: 'Johnson & Johnson', value: 340987},
+            {name: 'Walmart', value: 329380},
+            {name: 'UnitedHealth Group', value: 324892}
+        ]
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

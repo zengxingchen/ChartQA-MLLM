@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: '600', height: '400'});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Startup Investment Trend in January',
+        left: 'center',
+        top: 'top'
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['Investment'],
+        left: 'left'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: [
+            '2022-01-01', '2022-01-02', '2022-01-03', '2022-01-04', '2022-01-05', 
+            '2022-01-06', '2022-01-07', '2022-01-08', '2022-01-09', '2022-01-10', 
+            '2022-01-11', '2022-01-12', '2022-01-13', '2022-01-14', '2022-01-15', 
+            '2022-01-16', '2022-01-17', '2022-01-18', '2022-01-19', '2022-01-20', 
+            '2022-01-21', '2022-01-22', '2022-01-23', '2022-01-24', '2022-01-25', 
+            '2022-01-26', '2022-01-27', '2022-01-28', '2022-01-29', '2022-01-30', 
+            '2022-01-31'
+        ]
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Investment',
+            type: 'line',
+            stack: 'Total amount',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [
+                { value: 1000, name: 'Funding' },
+                1180, 1320, 1290, 1340, 
+                1310, { value: 1350, name: 'Record' },
+                1370, 1420, 1550, 
+                { value: 1560, name: 'Peak' },
+                1590, 1650, 1620,
+                { value: 1700, name: 'Stable' },
+                1720, 1730, 1690, 
+                1760, 1800, 
+                { value: 1880, name: 'Upward Trend' },
+                1850, 1890, 
+                { value: 1950, name: 'New Tech' },
+                2000, 2050, 2080,
+                { value: 2100, name: 'Consistent' },
+                2130, 2150,
+                { value: 2200, name: 'Month End' }
+            ],
+            color: ['#6E8EA5']
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

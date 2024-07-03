@@ -1,0 +1,103 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Market Share of Popular Educational Platforms in 2023",
+    "width": 600,
+    "height": 450,
+    "title": {
+        "text": "Market Share of Popular Educational Platforms in 2023",
+        "anchor": "start",
+        "fontSize": 20,
+        "dy": -20
+    },
+    "data": {
+        "values": [
+            {
+                "Platform": "Coursera",
+                "Market Share": 28
+            },
+            {
+                "Platform": "edX",
+                "Market Share": 22
+            },
+            {
+                "Platform": "Udacity",
+                "Market Share": 14
+            },
+            {
+                "Platform": "Khan Academy",
+                "Market Share": 12
+            },
+            {
+                "Platform": "FutureLearn",
+                "Market Share": 8
+            },
+            {
+                "Platform": "LinkedIn Learning",
+                "Market Share": 10
+            },
+            {
+                "Platform": "Skillshare",
+                "Market Share": 6
+            }
+        ]
+    },
+    "transform": [
+        {
+            "calculate": "datum['Market Share']",
+            "as": "MarketValue"
+        }
+    ],
+    "mark": {
+        "type": "arc",
+        "innerRadius": 70,
+        "outerRadius": 180,
+        "tooltip": true
+    },
+    "encoding": {
+        "theta": {
+            "field": "MarketValue",
+            "type": "quantitative",
+            "stack": true
+        },
+        "color": {
+            "field": "Platform",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Coursera",
+                    "edX",
+                    "Udacity",
+                    "Khan Academy",
+                    "FutureLearn",
+                    "LinkedIn Learning",
+                    "Skillshare"
+                ],
+                "range": [
+                    "#1E90FF",
+                    "#32CD32",
+                    "#FFD700",
+                    "#FF4500",
+                    "#8A2BE2",
+                    "#FF69B4",
+                    "#00CED1"
+                ]
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Platform",
+                "type": "nominal",
+                "title": "Platform"
+            },
+            {
+                "field": "MarketValue",
+                "type": "quantitative",
+                "title": "Market Share",
+                "format": ".1f"
+            }
+        ]
+    },
+    "view": {
+        "stroke": null
+    }
+}

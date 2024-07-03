@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+var option;
+
+option = {
+    title: {
+        text: 'Distribution of Daily Step Counts',
+        left: 'center',
+        textStyle: {
+            fontSize: 24
+        }
+    },
+    tooltip: {
+        trigger: 'item'
+    },
+    xAxis: {
+        type: 'category',
+        data: ['0-5', '5-10', '10-15', '15-20', '20-25', '25-30', '30-35', '35-40', '40-45', '45-50'],
+        name: 'Steps'
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Frequency'
+    },
+    series: [
+        {
+            name: 'Steps',
+            type: 'bar',
+            data: [
+                { value: 2, itemStyle: { color: '#1f77b4' } },
+                { value: 4, itemStyle: { color: '#ff7f0e' } },
+                { value: 2, itemStyle: { color: '#2ca02c' } },
+                { value: 4, itemStyle: { color: '#d62728' } },
+                { value: 3, itemStyle: { color: '#9467bd' } },
+                { value: 2, itemStyle: { color: '#8c564b' } },
+                { value: 3, itemStyle: { color: '#e377c2' } },
+                { value: 2, itemStyle: { color: '#7f7f7f' } },
+                { value: 2, itemStyle: { color: '#bcbd22' } },
+                { value: 3, itemStyle: { color: '#17becf' } }
+            ],
+            barWidth: '40%',
+            label: {
+                show: true,
+                position: 'top'
+            }
+        }
+    ],
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

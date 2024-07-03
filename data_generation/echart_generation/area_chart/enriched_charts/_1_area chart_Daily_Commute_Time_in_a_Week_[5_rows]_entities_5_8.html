@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+option = {
+  title: {
+    text: 'COVID-19 Vaccination Progress',
+    left: 'center'
+  },
+  tooltip: {
+    trigger: 'axis'
+  },
+  xAxis: {
+    type: 'category',
+    boundaryGap: false,
+    data: [
+      '2021-01-01', '2021-01-02', '2021-01-03', '2021-01-04', '2021-01-05',
+      '2021-01-06', '2021-01-07', '2021-01-08', '2021-01-09', '2021-01-10',
+      '2021-01-11', '2021-01-12', '2021-01-13', '2021-01-14', '2021-01-15',
+      '2021-01-16', '2021-01-17', '2021-01-18', '2021-01-19', '2021-01-20',
+      '2021-01-21'
+    ]
+  },
+  yAxis: {
+    type: 'value'
+  },
+  series: [{
+    data: [
+      10000, 20000, 30150, 40500, 51050, 62000, 73150, 84500, 96300,
+      108100, 120250, 132900, 145950, 159500, 173550, 188100, 203150, 218700,
+      234750, 251300, 268350
+    ],
+    type: 'line',
+    areaStyle: {},
+    color: '#3ba272', // A fresh green color representing health and vitality
+  }],
+  grid: {
+    left: '3%',
+    right: '4%',
+    bottom: '3%',
+    containLabel: true
+  },
+  toolbox: {
+    feature: {
+      saveAsImage: {}
+    }
+  },
+  legend: {
+    data: ['Total Vaccinations'],
+    left: 'right'
+  },
+  dataZoom: [
+    {
+      type: 'inside',
+      start: 0,
+      end: 100
+    },
+    {
+      start: 0,
+      end: 10,
+      handleIcon: 'M8.2,13.4V6.1H2V8.3H5.7V13.4c-2.4,0.2-4.3,2.5-4.3,5v2.3h10.9V18.4C8.2,15.9,6.4,13.6,8.2,13.4z',
+      handleSize: '80%',
+      handleStyle: {
+        color: '#fff',
+        shadowBlur: 3,
+        shadowColor: 'rgba(0, 0, 0, 0.6)',
+        shadowOffsetX: 2,
+        shadowOffsetY: 2
+      }
+    }
+  ],
+  responsive: [
+    {
+      breakpoint: 500,
+      options: {
+        legend: {
+          left: 'center',
+          top: 'bottom'
+        }
+      }
+    }
+  ]
+};
+
+if (option && typeof option === 'object') myChart.setOption(option);
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

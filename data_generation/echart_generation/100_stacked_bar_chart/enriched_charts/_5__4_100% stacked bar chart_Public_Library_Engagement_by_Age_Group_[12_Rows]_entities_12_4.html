@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false
+});
+var app = {};
+
+var option;
+
+option = {
+    color: ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd'],
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['AI & Robotics', 'Biotechnology', 'Nanotechnology', 'Renewable Energy', 'Quantum Computing']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01]
+    },
+    yAxis: {
+        type: 'category',
+        data: ['2020', '2021', '2022', '2023', '2024']
+    },
+    series: [
+        {
+            name: 'AI & Robotics',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            data: [25, 30, 35, 45, 55]
+        },
+        {
+            name: 'Biotechnology',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            data: [15, 18, 20, 25, 30]
+        },
+        {
+            name: 'Nanotechnology',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            data: [10, 12, 15, 10, 10]
+        },
+        {
+            name: 'Renewable Energy',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            data: [30, 25, 20, 15, 5]
+        },
+        {
+            name: 'Quantum Computing',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            data: [20, 15, 10, 5, 0]
+        }
+    ],
+    title: {
+        text: 'Future Technologies Impact on Society (2020-2024)',
+        left: 'center',
+        padding: [24, 0],
+        textStyle: {
+            fontSize: 18
+        }
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

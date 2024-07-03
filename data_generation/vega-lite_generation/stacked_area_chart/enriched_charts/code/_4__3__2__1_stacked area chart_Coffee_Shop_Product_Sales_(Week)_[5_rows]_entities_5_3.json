@@ -1,0 +1,205 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Monthly Average Food Consumption by Continent (in kg)",
+    "width": 800,
+    "height": 400,
+    "title": {
+        "text": "Monthly Average Food Consumption Across Continents",
+        "anchor": "start",
+        "offset": 10,
+        "fontSize": 18,
+        "orient": "top-left",
+        "fontWeight": "bold"
+    },
+    "data": {
+        "values": [
+            {
+                "Month": "2023-01",
+                "Vegetables": 5,
+                "Fruits": 3,
+                "Meats": 25,
+                "Grains": 15,
+                "Dairy": 20
+            },
+            {
+                "Month": "2023-02",
+                "Vegetables": 7,
+                "Fruits": 4,
+                "Meats": 27,
+                "Grains": 16,
+                "Dairy": 24
+            },
+            {
+                "Month": "2023-03",
+                "Vegetables": 8,
+                "Fruits": 7,
+                "Meats": 26,
+                "Grains": 18,
+                "Dairy": 25
+            },
+            {
+                "Month": "2023-04",
+                "Vegetables": 12,
+                "Fruits": 9,
+                "Meats": 24,
+                "Grains": 21,
+                "Dairy": 30
+            },
+            {
+                "Month": "2023-05",
+                "Vegetables": 14,
+                "Fruits": 12,
+                "Meats": 23,
+                "Grains": 23,
+                "Dairy": 35
+            },
+            {
+                "Month": "2023-06",
+                "Vegetables": 16,
+                "Fruits": 15,
+                "Meats": 22,
+                "Grains": 25,
+                "Dairy": 38
+            },
+            {
+                "Month": "2023-07",
+                "Vegetables": 17,
+                "Fruits": 17,
+                "Meats": 20,
+                "Grains": 27,
+                "Dairy": 40
+            },
+            {
+                "Month": "2023-08",
+                "Vegetables": 18,
+                "Fruits": 18,
+                "Meats": 19,
+                "Grains": 28,
+                "Dairy": 42
+            },
+            {
+                "Month": "2023-09",
+                "Vegetables": 15,
+                "Fruits": 15,
+                "Meats": 22,
+                "Grains": 26,
+                "Dairy": 40
+            },
+            {
+                "Month": "2023-10",
+                "Vegetables": 13,
+                "Fruits": 11,
+                "Meats": 24,
+                "Grains": 24,
+                "Dairy": 38
+            },
+            {
+                "Month": "2023-11",
+                "Vegetables": 10,
+                "Fruits": 7,
+                "Meats": 26,
+                "Grains": 22,
+                "Dairy": 35
+            },
+            {
+                "Month": "2023-12",
+                "Vegetables": 8,
+                "Fruits": 5,
+                "Meats": 27,
+                "Grains": 20,
+                "Dairy": 30
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Vegetables",
+                "Fruits",
+                "Meats",
+                "Grains",
+                "Dairy"
+            ],
+            "as": [
+                "Category",
+                "Consumption"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "area",
+        "opacity": 0.7
+    },
+    "encoding": {
+        "x": {
+            "field": "Month",
+            "type": "temporal",
+            "axis": {
+                "title": "Month",
+                "format": "%b",
+                "labelAngle": -45
+            }
+        },
+        "y": {
+            "field": "Consumption",
+            "type": "quantitative",
+            "stack": "zero",
+            "axis": {
+                "title": "Consumption (kg)"
+            }
+        },
+        "color": {
+            "field": "Category",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Vegetables",
+                    "Fruits",
+                    "Meats",
+                    "Grains",
+                    "Dairy"
+                ],
+                "range": [
+                    "#a6cee3",
+                    "#1f78b4",
+                    "#b2df8a",
+                    "#33a02c",
+                    "#fb9a99"
+                ]
+            },
+            "legend": {
+                "title": "Food Category",
+                "labelFontSize": 12,
+                "titleFontSize": 14,
+                "titleLimit": 150,
+                "offset": 40
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Month",
+                "type": "temporal",
+                "title": "Month"
+            },
+            {
+                "field": "Category",
+                "type": "nominal",
+                "title": "Food Category"
+            },
+            {
+                "field": "Consumption",
+                "type": "quantitative",
+                "title": "Consumption (kg)"
+            }
+        ]
+    },
+    "config": {
+        "view": {
+            "stroke": "transparent"
+        },
+        "axis": {
+            "labelFontSize": 12,
+            "titleFontSize": 14
+        }
+    }
+}

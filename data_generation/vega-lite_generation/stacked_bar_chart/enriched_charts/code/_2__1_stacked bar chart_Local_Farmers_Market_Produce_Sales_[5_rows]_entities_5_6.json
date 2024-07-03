@@ -1,0 +1,188 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Monthly sales revenue from various types of books at a bookstore.",
+    "data": {
+        "values": [
+            {
+                "Month": "2023-01",
+                "Fiction": 3400,
+                "Non-Fiction": 1800,
+                "Science": 1500,
+                "Children": 2200,
+                "Comics": 2500
+            },
+            {
+                "Month": "2023-02",
+                "Fiction": 3200,
+                "Non-Fiction": 1900,
+                "Science": 1700,
+                "Children": 2100,
+                "Comics": 2700
+            },
+            {
+                "Month": "2023-03",
+                "Fiction": 3000,
+                "Non-Fiction": 2000,
+                "Science": 1600,
+                "Children": 2000,
+                "Comics": 2900
+            },
+            {
+                "Month": "2023-04",
+                "Fiction": 3500,
+                "Non-Fiction": 2100,
+                "Science": 1800,
+                "Children": 2500,
+                "Comics": 3100
+            },
+            {
+                "Month": "2023-05",
+                "Fiction": 3600,
+                "Non-Fiction": 2200,
+                "Science": 1900,
+                "Children": 2600,
+                "Comics": 3300
+            },
+            {
+                "Month": "2023-06",
+                "Fiction": 3700,
+                "Non-Fiction": 2300,
+                "Science": 2000,
+                "Children": 2700,
+                "Comics": 3500
+            },
+            {
+                "Month": "2023-07",
+                "Fiction": 3800,
+                "Non-Fiction": 2400,
+                "Science": 2100,
+                "Children": 2800,
+                "Comics": 3600
+            },
+            {
+                "Month": "2023-08",
+                "Fiction": 3900,
+                "Non-Fiction": 2500,
+                "Science": 2200,
+                "Children": 2900,
+                "Comics": 3700
+            },
+            {
+                "Month": "2023-09",
+                "Fiction": 4000,
+                "Non-Fiction": 2600,
+                "Science": 2300,
+                "Children": 3000,
+                "Comics": 3800
+            },
+            {
+                "Month": "2023-10",
+                "Fiction": 4100,
+                "Non-Fiction": 2700,
+                "Science": 2400,
+                "Children": 3100,
+                "Comics": 3900
+            },
+            {
+                "Month": "2023-11",
+                "Fiction": 4200,
+                "Non-Fiction": 2800,
+                "Science": 2500,
+                "Children": 3200,
+                "Comics": 4000
+            },
+            {
+                "Month": "2023-12",
+                "Fiction": 4300,
+                "Non-Fiction": 2900,
+                "Science": 2600,
+                "Children": 3300,
+                "Comics": 4100
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Fiction",
+                "Non-Fiction",
+                "Science",
+                "Children",
+                "Comics"
+            ],
+            "as": [
+                "BookType",
+                "Revenue"
+            ]
+        }
+    ],
+    "mark": "bar",
+    "width": 800,
+    "height": 400,
+    "title": {
+        "text": "Bookstore Monthly Sales Revenue by Book Type",
+        "anchor": "start",
+        "subtitle": "Monthly Revenue in USD, 2023",
+        "subtitleFontStyle": "italic",
+        "subtitleFontSize": 12,
+        "color": "black",
+        "offset": 10
+    },
+    "encoding": {
+        "x": {
+            "field": "Month",
+            "type": "ordinal",
+            "axis": {
+                "title": "Month"
+            }
+        },
+        "y": {
+            "field": "Revenue",
+            "type": "quantitative",
+            "stack": "zero",
+            "axis": {
+                "title": "Total Revenue (USD)"
+            }
+        },
+        "color": {
+            "field": "BookType",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Fiction",
+                    "Non-Fiction",
+                    "Science",
+                    "Children",
+                    "Comics"
+                ],
+                "range": [
+                    "#3498db",
+                    "#e74c3c",
+                    "#2ecc71",
+                    "#f1c40f",
+                    "#9b59b6"
+                ]
+            },
+            "title": "Book Type"
+        },
+        "tooltip": [
+            {
+                "field": "BookType",
+                "type": "nominal",
+                "title": "Book Type"
+            },
+            {
+                "field": "Revenue",
+                "type": "quantitative",
+                "title": "Revenue (USD)"
+            }
+        ]
+    },
+    "config": {
+        "bar": {
+            "width": {
+                "band": 0.7
+            }
+        }
+    }
+}

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: '600', height: '400'});
+var app = {};
+
+var option;
+
+option = {
+  title: {
+    text: 'Global Internet Users Over Time',
+    left: 'center'
+  },
+  color: ['#3398DB'],
+  tooltip: {
+    trigger: 'axis',
+    axisPointer: {
+      type: 'shadow'
+    }
+  },
+  grid: {
+    left: '3%',
+    right: '4%',
+    bottom: '3%',
+    containLabel: true
+  },
+  xAxis: [
+    {
+      type: 'category',
+      data: ['1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', 
+             '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', 
+             '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', 
+             '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021'],
+      axisTick: {
+        alignWithLabel: true
+      }
+    }
+  ],
+  yAxis: [
+    {
+      type: 'value'
+    }
+  ],
+  series: [
+    {
+      name: 'Internet Users',
+      type: 'bar',
+      barWidth: '60%',
+      data: [0, 0, 0, 2, 4, 16, 36, 70, 147, 248, 413, 513, 587, 719, 817, 1018, 
+             1087, 1245, 1461, 1586, 2026, 2236, 2497, 2782, 3045, 3343, 3605, 
+             3900, 4142, 4404, 4691, 5012],
+      itemStyle: {
+        color: function(params) {
+          var colorList = [
+            '#C23531','#2F4554','#61A0A8','#D48265','#91C7AE',
+            '#749F83','#CA8622','#BDA29A','#6E7074','#546570',
+            '#C4CCD3','#F05B72','#F47C7C','#F59A9A','#FDB8A1',
+            '#F2B3B3','#B279A2','#BDA29A','#6E7074','#546570',
+            '#C4CCD3','#7EB00A','#6FAB57','#919E8B','#C6E573',
+            '#961F79','#BFA8A8','#61649F','#C4CCD3','#6E7074',
+            '#546570','#C23531'
+          ];
+          return colorList[params.dataIndex];
+        },
+        barBorderRadius: 4,
+      },
+      markPoint: {
+        data: [
+          { type: 'max', name: 'Max' },
+          { type: 'min', name: 'Min' }
+        ]
+      },
+      markLine: {
+        data: [{ type: 'average', name: 'Avg'}]
+      }
+    }
+  ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

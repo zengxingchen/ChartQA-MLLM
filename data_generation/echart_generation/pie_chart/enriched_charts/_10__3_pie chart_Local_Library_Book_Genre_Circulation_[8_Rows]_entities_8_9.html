@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Smartphone Market Share 2023',
+        left: 'center',
+        top: 20,
+        textStyle: {
+            color: '#333'
+        }
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: '{a} <br/>{b} : {c} ({d}%)'
+    },
+    visualMap: {
+        show: false,
+        min: 5,
+        max: 20,
+        inRange: {
+            // Use custom color scale for visual appeal
+            colorLightness: [0, 1]
+        }
+    },
+    series: [
+        {
+            name: 'Market Share',
+            type: 'pie',
+            radius: '55%',
+            center: ['50%', '50%'],
+            data: [
+                {value: 20.5, name: 'Samsung'},
+                {value: 14.7, name: 'Apple'},
+                {value: 8.9, name: 'Huawei'},
+                {value: 8.3, name: 'Xiaomi'},
+                {value: 5.7, name: 'OPPO'},
+                {value: 5.4, name: 'Vivo'},
+                {value: 36.5, name: 'Others'}
+            ].sort(function (a, b) { return a.value - b.value; }),
+            roseType: 'radius',
+            label: {
+                color: 'rgba(0, 0, 0, 0.5)',
+                formatter: '{b}: {d}%',
+            },
+            labelLine: {
+                lineStyle: {
+                    color: 'rgba(0, 0, 0, 0.3)'
+                },
+                smooth: 0.2,
+                length: 10,
+                length2: 20
+            },
+            itemStyle: {
+                color: function(params) {
+                    // Color mapping to make the chart more colorful and visually appealing
+                    const colorList = [
+                        '#c23531', '#2f4554', '#61a0a8', '#d48265', '#91c7ae', '#749f83', '#ca8622'
+                    ];
+                    return colorList[params.dataIndex];
+                },
+                shadowBlur: 200,
+                shadowColor: 'rgba(0, 0, 0, 0.5)'
+            },
+            animationType: 'scale',
+            animationEasing: 'elasticOut',
+            animationDelay: function () {
+                return Math.random() * 200;
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

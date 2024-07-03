@@ -1,0 +1,131 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Stacked area chart showing average calorie intake on weekdays and weekends across different age groups",
+    "data": {
+        "values": [
+            {
+                "Age Group": "0-5",
+                "Weekdays (Cal)": 700,
+                "Weekend (Cal)": 800
+            },
+            {
+                "Age Group": "6-10",
+                "Weekdays (Cal)": 900,
+                "Weekend (Cal)": 1000
+            },
+            {
+                "Age Group": "11-16",
+                "Weekdays (Cal)": 1600,
+                "Weekend (Cal)": 1800
+            },
+            {
+                "Age Group": "17-25",
+                "Weekdays (Cal)": 2100,
+                "Weekend (Cal)": 2300
+            },
+            {
+                "Age Group": "26-40",
+                "Weekdays (Cal)": 2000,
+                "Weekend (Cal)": 2200
+            },
+            {
+                "Age Group": "41-55",
+                "Weekdays (Cal)": 1800,
+                "Weekend (Cal)": 1900
+            },
+            {
+                "Age Group": "56-65",
+                "Weekdays (Cal)": 1600,
+                "Weekend (Cal)": 1700
+            },
+            {
+                "Age Group": "66+",
+                "Weekdays (Cal)": 1400,
+                "Weekend (Cal)": 1500
+            }
+        ]
+    },
+    "width": 500,
+    "height": 350,
+    "title": {
+        "text": "Average Calorie Intake by Age Group",
+        "subtitle": "Comparing weekdays and weekends",
+        "fontSize": 15,
+        "subtitleFontSize": 10,
+        "anchor": "start",
+        "color": "black"
+    },
+    "mark": {
+        "type": "area",
+        "opacity": 0.7
+    },
+    "encoding": {
+        "x": {
+            "field": "Age Group",
+            "type": "ordinal",
+            "title": "Age Group"
+        },
+        "y": {
+            "field": "Calories",
+            "type": "quantitative",
+            "title": "Average Calorie Intake",
+            "stack": "zero"
+        },
+        "color": {
+            "field": "daytype",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Weekdays (Cal)",
+                    "Weekend (Cal)"
+                ],
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e"
+                ]
+            },
+            "legend": {
+                "title": "Day Type",
+                "orient": "bottom",
+                "direction": "horizontal"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Age Group",
+                "type": "nominal"
+            },
+            {
+                "field": "Calories",
+                "type": "quantitative",
+                "title": "Average Calorie Intake"
+            },
+            {
+                "field": "daytype",
+                "type": "nominal",
+                "title": "Day Type"
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Weekdays (Cal)",
+                "Weekend (Cal)"
+            ],
+            "as": [
+                "daytype",
+                "Calories"
+            ]
+        }
+    ],
+    "config": {
+        "view": {
+            "stroke": "transparent"
+        },
+        "axis": {
+            "labelFontSize": 10,
+            "titleFontSize": 12
+        }
+    }
+}

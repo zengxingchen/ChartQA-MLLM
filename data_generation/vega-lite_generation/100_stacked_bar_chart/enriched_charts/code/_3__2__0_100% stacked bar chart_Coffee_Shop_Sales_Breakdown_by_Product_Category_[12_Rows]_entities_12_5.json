@@ -1,0 +1,188 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "100% Stacked horizontal bar chart of monthly nutrition intake percentages by type",
+    "title": {
+        "text": "Monthly Nutrition Intake Percentages by Type",
+        "anchor": "middle",
+        "dy": -20
+    },
+    "width": 600,
+    "height": 800,
+    "data": {
+        "values": [
+            {
+                "Month": "January",
+                "Protein (%)": 25,
+                "Carbs (%)": 45,
+                "Fat (%)": 20,
+                "Fiber (%)": 5,
+                "Other (%)": 5
+            },
+            {
+                "Month": "February",
+                "Protein (%)": 30,
+                "Carbs (%)": 40,
+                "Fat (%)": 20,
+                "Fiber (%)": 5,
+                "Other (%)": 5
+            },
+            {
+                "Month": "March",
+                "Protein (%)": 20,
+                "Carbs (%)": 50,
+                "Fat (%)": 15,
+                "Fiber (%)": 10,
+                "Other (%)": 5
+            },
+            {
+                "Month": "April",
+                "Protein (%)": 25,
+                "Carbs (%)": 45,
+                "Fat (%)": 20,
+                "Fiber (%)": 5,
+                "Other (%)": 5
+            },
+            {
+                "Month": "May",
+                "Protein (%)": 30,
+                "Carbs (%)": 40,
+                "Fat (%)": 20,
+                "Fiber (%)": 5,
+                "Other (%)": 5
+            },
+            {
+                "Month": "June",
+                "Protein (%)": 20,
+                "Carbs (%)": 50,
+                "Fat (%)": 15,
+                "Fiber (%)": 10,
+                "Other (%)": 5
+            },
+            {
+                "Month": "July",
+                "Protein (%)": 25,
+                "Carbs (%)": 45,
+                "Fat (%)": 20,
+                "Fiber (%)": 5,
+                "Other (%)": 5
+            },
+            {
+                "Month": "August",
+                "Protein (%)": 30,
+                "Carbs (%)": 40,
+                "Fat (%)": 20,
+                "Fiber (%)": 5,
+                "Other (%)": 5
+            },
+            {
+                "Month": "September",
+                "Protein (%)": 20,
+                "Carbs (%)": 50,
+                "Fat (%)": 15,
+                "Fiber (%)": 10,
+                "Other (%)": 5
+            },
+            {
+                "Month": "October",
+                "Protein (%)": 25,
+                "Carbs (%)": 45,
+                "Fat (%)": 20,
+                "Fiber (%)": 5,
+                "Other (%)": 5
+            },
+            {
+                "Month": "November",
+                "Protein (%)": 30,
+                "Carbs (%)": 40,
+                "Fat (%)": 20,
+                "Fiber (%)": 5,
+                "Other (%)": 5
+            },
+            {
+                "Month": "December",
+                "Protein (%)": 20,
+                "Carbs (%)": 50,
+                "Fat (%)": 15,
+                "Fiber (%)": 10,
+                "Other (%)": 5
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Protein (%)",
+                "Carbs (%)",
+                "Fat (%)",
+                "Fiber (%)",
+                "Other (%)"
+            ],
+            "as": [
+                "Nutrient",
+                "Percentage"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "bar",
+        "height": {
+            "band": 0.6
+        }
+    },
+    "encoding": {
+        "y": {
+            "field": "Month",
+            "title": "Month",
+            "type": "ordinal"
+        },
+        "x": {
+            "field": "Percentage",
+            "type": "quantitative",
+            "title": "Percentage (%)",
+            "stack": "normalize",
+            "axis": {
+                "format": "%"
+            }
+        },
+        "color": {
+            "field": "Nutrient",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Protein (%)",
+                    "Carbs (%)",
+                    "Fat (%)",
+                    "Fiber (%)",
+                    "Other (%)"
+                ],
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e",
+                    "#2ca02c",
+                    "#d62728",
+                    "#9467bd"
+                ]
+            },
+            "legend": {
+                "title": "Nutrient",
+                "orient": "top"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Month",
+                "type": "ordinal"
+            },
+            {
+                "field": "Nutrient",
+                "type": "nominal"
+            },
+            {
+                "field": "Percentage",
+                "type": "quantitative",
+                "title": "Percentage",
+                "format": ".1f"
+            }
+        ]
+    }
+}

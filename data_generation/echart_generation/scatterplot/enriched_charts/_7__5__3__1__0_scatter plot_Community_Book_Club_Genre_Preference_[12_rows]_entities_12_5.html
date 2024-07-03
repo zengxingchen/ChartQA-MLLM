@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, { width: 800, height: 600 });
+
+var option = {
+    title: {
+        text: 'Average Daily Temperature vs. Number of Tourists in Various Cities',
+        left: 'center',
+        top: '10'
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: '{a} <br/>{b} : {c}'
+    },
+    legend: {
+        orient: 'horizontal',
+        left: 'center',
+        top: 'bottom'
+    },
+    xAxis: {
+        type: 'value',
+        name: 'Temperature (°C)',
+        min: 10,
+        max: 40,
+        nameLocation: 'middle',
+        nameGap: 30
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Tourists (Thousands)',
+        min: 1000,
+        max: 3000,
+        nameLocation: 'middle',
+        nameGap: 50
+    },
+    series: [
+        {
+            name: 'Cities',
+            type: 'scatter',
+            itemStyle: {
+                color: '#FF6347'
+            },
+            data: [
+                [22, 2500],
+                [18, 2200],
+                [26, 1800],
+                [20, 1600],
+                [30, 1500],
+                [28, 2700],
+                [25, 2400],
+                [23, 1900],
+                [35, 2000],
+                [19, 1700],
+                [15, 1400],
+                [27, 2300],
+                [31, 2100],
+                [33, 2500],
+                [24, 1950],
+                [21, 1750],
+                [29, 2650],
+                [20, 1850],
+                [34, 1550],
+                [17, 1450]
+            ]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

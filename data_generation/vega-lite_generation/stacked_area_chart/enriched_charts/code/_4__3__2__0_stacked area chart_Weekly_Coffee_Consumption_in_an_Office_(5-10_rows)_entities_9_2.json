@@ -1,0 +1,158 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Annual Smartphone Sales by Manufacturer",
+    "width": 600,
+    "height": 400,
+    "data": {
+        "values": [
+            {
+                "Manufacturer": "Brand A",
+                "Q1": 200,
+                "Q2": 220,
+                "Q3": 210,
+                "Q4": 230
+            },
+            {
+                "Manufacturer": "Brand B",
+                "Q1": 150,
+                "Q2": 160,
+                "Q3": 170,
+                "Q4": 175
+            },
+            {
+                "Manufacturer": "Brand C",
+                "Q1": 100,
+                "Q2": 120,
+                "Q3": 130,
+                "Q4": 140
+            },
+            {
+                "Manufacturer": "Brand D",
+                "Q1": 180,
+                "Q2": 190,
+                "Q3": 200,
+                "Q4": 210
+            },
+            {
+                "Manufacturer": "Brand E",
+                "Q1": 130,
+                "Q2": 135,
+                "Q3": 140,
+                "Q4": 145
+            },
+            {
+                "Manufacturer": "Brand F",
+                "Q1": 80,
+                "Q2": 85,
+                "Q3": 90,
+                "Q4": 95
+            },
+            {
+                "Manufacturer": "Brand G",
+                "Q1": 210,
+                "Q2": 215,
+                "Q3": 220,
+                "Q4": 225
+            },
+            {
+                "Manufacturer": "Brand H",
+                "Q1": 140,
+                "Q2": 145,
+                "Q3": 150,
+                "Q4": 160
+            },
+            {
+                "Manufacturer": "Brand I",
+                "Q1": 190,
+                "Q2": 200,
+                "Q3": 215,
+                "Q4": 225
+            },
+            {
+                "Manufacturer": "Brand J",
+                "Q1": 170,
+                "Q2": 180,
+                "Q3": 185,
+                "Q4": 190
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Q1",
+                "Q2",
+                "Q3",
+                "Q4"
+            ],
+            "as": [
+                "Quarter",
+                "Sales"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "area",
+        "opacity": 0.7
+    },
+    "encoding": {
+        "x": {
+            "field": "Quarter",
+            "type": "ordinal",
+            "title": "Quarter",
+            "axis": {
+                "labelAngle": 0
+            }
+        },
+        "y": {
+            "field": "Sales",
+            "type": "quantitative",
+            "stack": "normalize",
+            "title": "Percentage of Total Sales"
+        },
+        "color": {
+            "field": "Manufacturer",
+            "type": "nominal",
+            "scale": {
+                "range": [
+                    "#f768a1",
+                    "#7a0177",
+                    "#c51b8a",
+                    "#7b3294",
+                    "#8c510a",
+                    "#bf812d",
+                    "#dfc27d",
+                    "#80cdc1",
+                    "#35978f",
+                    "#01665e"
+                ]
+            },
+            "legend": {
+                "orient": "right",
+                "title": "Manufacturer"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Manufacturer",
+                "type": "nominal"
+            },
+            {
+                "field": "Quarter",
+                "type": "ordinal"
+            },
+            {
+                "field": "Sales",
+                "type": "quantitative",
+                "title": "Smartphone Sales"
+            }
+        ]
+    },
+    "title": {
+        "text": "Annual Smartphone Sales by Manufacturer",
+        "anchor": "start",
+        "fontSize": 16,
+        "dy": -10,
+        "dx": 450
+    }
+}

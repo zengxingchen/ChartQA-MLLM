@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 800,
+    height: 400,
+});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Technology Adoption Over Years',
+        left: 'center',
+        top: 10,
+        textStyle: {
+            color: '#333',
+            fontWeight: 'bold',
+        },
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            label: {
+                backgroundColor: '#6a7985',
+            },
+        },
+    },
+    legend: {
+        data: ['Artificial Intelligence', 'Virtual Reality', 'Quantum Computing', 'Internet Of Things'],
+        top: 40,
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true,
+    },
+    xAxis: [{
+        type: 'category',
+        boundaryGap: false,
+        data: ['2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020']
+    }],
+    yAxis: [{
+        type: 'value'
+    }],
+    series: [
+        {
+            name: 'Artificial Intelligence',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [10, 15, 20, 25, 30, 40, 50, 60, 70, 80, 95], // Artificial Intelligence data
+            itemStyle: {
+                color: '#1f77b4'
+            },
+        },
+        {
+            name: 'Virtual Reality',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [5, 7, 10, 13, 16, 20, 25, 30, 35, 40, 45], // Virtual Reality data
+            itemStyle: {
+                color: '#aec7e8'
+            },
+        },
+        {
+            name: 'Quantum Computing',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [2, 4, 6, 8, 11, 15, 18, 22, 27, 32, 38], // Quantum Computing data
+            itemStyle: {
+                color: '#2ca02c'
+            },
+        },
+        {
+            name: 'Internet Of Things',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [4, 6, 9, 13, 18, 25, 30, 36, 44, 52, 60], // Internet Of Things data
+            itemStyle: {
+                color: '#ff7f0e'
+            },
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

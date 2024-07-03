@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false
+});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Future Technologies & Society',
+        left: 'center',
+        top: '10'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: { type: 'shadow' }
+    },
+    xAxis: {
+        type: 'category',
+        data: ['Artificial Intelligence', 'Virtual Reality', 'Quantum Computing', 'Robotics', 'Biotechnology', 'Cybersecurity', 'Blockchain', 'IoT', '3D Printing', 'Nanotechnology'],
+        axisLabel: {
+            rotate: 45,
+            interval: 0
+        }
+    },
+    yAxis: {
+        type: 'value',
+        min: 0,
+        max: 100
+    },
+    series: [{
+        name: 'Value',
+        type: 'bar',
+        data: [85, 70, 60, 75, 65, 80, 90, 78, 68, 73],
+        itemStyle: {
+            color: function(params) {
+                var colorList = ['#FF5733','#33FF57','#3357FF','#FF33A1','#A133FF','#33FFF3','#FF9A33','#33FF9A','#9A33FF','#FF339A'];
+                return colorList[params.dataIndex]
+            }
+        },
+        label: {
+            show: true,
+            position: 'top',
+            formatter: '{c}'
+        },
+        barWidth: '50%',
+        barGap: '5%'
+    }],
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '10%',
+        containLabel: true
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

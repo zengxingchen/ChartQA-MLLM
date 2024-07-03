@@ -1,0 +1,99 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Pie chart showing the popularity of different sports",
+    "width": 600,
+    "height": 600,
+    "title": {
+        "text": "Popularity of Sports",
+        "anchor": "start",
+        "fontSize": 20,
+        "font": "Arial",
+        "dy": -30
+    },
+    "data": {
+        "values": [
+            {
+                "Sport": "Soccer",
+                "Popularity": 40.2
+            },
+            {
+                "Sport": "Basketball",
+                "Popularity": 25.5
+            },
+            {
+                "Sport": "Tennis",
+                "Popularity": 15.8
+            },
+            {
+                "Sport": "Cricket",
+                "Popularity": 10.1
+            },
+            {
+                "Sport": "Baseball",
+                "Popularity": 5.7
+            },
+            {
+                "Sport": "Rugby",
+                "Popularity": 2.7
+            }
+        ]
+    },
+    "layer": [
+        {
+            "mark": {
+                "type": "arc",
+                "tooltip": true
+            },
+            "encoding": {
+                "theta": {
+                    "field": "Popularity",
+                    "type": "quantitative",
+                    "stack": true
+                },
+                "color": {
+                    "field": "Sport",
+                    "type": "nominal",
+                    "scale": {
+                        "range": [
+                            "#FF6347",
+                            "#4682B4",
+                            "#32CD32",
+                            "#FFD700",
+                            "#8A2BE2",
+                            "#FF69B4"
+                        ]
+                    },
+                    "legend": {
+                        "title": "Sport",
+                        "orient": "right",
+                        "titleFontSize": 14,
+                        "labelFontSize": 12
+                    }
+                }
+            }
+        },
+        {
+            "mark": {
+                "type": "text",
+                "radius": 250
+            },
+            "encoding": {
+                "text": {
+                    "field": "Popularity",
+                    "type": "quantitative"
+                },
+                "theta": {
+                    "field": "Popularity",
+                    "type": "quantitative",
+                    "stack": true
+                },
+                "color": {
+                    "value": "black"
+                }
+            }
+        }
+    ],
+    "view": {
+        "stroke": null
+    }
+}

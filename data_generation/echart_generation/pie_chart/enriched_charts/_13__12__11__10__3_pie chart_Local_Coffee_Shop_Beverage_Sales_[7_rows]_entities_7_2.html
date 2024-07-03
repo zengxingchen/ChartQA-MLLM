@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Investment Distribution in Emerging Technologies',
+        left: 'center',
+        top: 20
+    },
+    tooltip: {
+        trigger: 'item'
+    },
+    legend: {
+        orient: 'vertical',
+        left: 'left',
+        top: 50,
+        textStyle: {
+            color: '#666',
+            fontSize: 12
+        }
+    },
+    series: [
+        {
+            name: 'Investment',
+            type: 'pie',
+            radius: '50%',
+            data: [
+                {value: 15, name: 'Renewable Energy'},
+                {value: 12, name: 'Electric Vehicles'},
+                {value: 25, name: 'Artificial Intelligence'},
+                {value: 13, name: 'Biotechnology'},
+                {value: 10, name: 'Nanotechnology'},
+                {value: 8, name: 'Quantum Computing'},
+                {value: 5, name: 'Space Tourism'},
+                {value: 12, name: 'Genetic Engineering'}
+            ],
+            emphasis: {
+                itemStyle: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            }
+        }
+    ],
+    color: [
+        '#FFD700', // Renewable Energy - Gold
+        '#FF8C00', // Electric Vehicles - Orange
+        '#FF6347', // Artificial Intelligence - Tomato
+        '#4682B4', // Biotechnology - SteelBlue
+        '#8A2BE2', // Nanotechnology - BlueViolet
+        '#98FB98', // Quantum Computing - PaleGreen
+        '#40E0D0', // Space Tourism - Turquoise
+        '#D2691E'  // Genetic Engineering - Chocolate
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

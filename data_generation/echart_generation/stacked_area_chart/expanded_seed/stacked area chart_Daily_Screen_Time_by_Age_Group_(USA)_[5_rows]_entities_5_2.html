@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+var data = [{
+        'Year': 2015,
+        '2-4 Years': 1.0,
+        '5-8 Years': 1.5,
+        '9-12 Years': 2.0,
+        '13-18 Years': 3.0,
+        '19-35 Years': 3.5,
+        '36-50 Years': 3.0,
+        '51-65 Years': 2.5,
+        'Over 65 Years': 2.0
+    },
+    {
+        'Year': 2016,
+        '2-4 Years': 1.1,
+        '5-8 Years': 1.6,
+        '9-12 Years': 2.2,
+        '13-18 Years': 3.2,
+        '19-35 Years': 3.7,
+        '36-50 Years': 3.2,
+        '51-65 Years': 2.7,
+        'Over 65 Years': 2.2
+    },
+    {
+        'Year': 2017,
+        '2-4 Years': 1.2,
+        '5-8 Years': 1.7,
+        '9-12 Years': 2.4,
+        '13-18 Years': 3.3,
+        '19-35 Years': 4.0,
+        '36-50 Years': 3.4,
+        '51-65 Years': 2.9,
+        'Over 65 Years': 2.3
+    },
+    {
+        'Year': 2018,
+        '2-4 Years': 1.3,
+        '5-8 Years': 1.8,
+        '9-12 Years': 2.6,
+        '13-18 Years': 3.5,
+        '19-35 Years': 4.3,
+        '36-50 Years': 3.6,
+        '51-65 Years': 3.0,
+        'Over 65 Years': 2.4
+    },
+    {
+        'Year': 2019,
+        '2-4 Years': 1.4,
+        '5-8 Years': 1.9,
+        '9-12 Years': 2.8,
+        '13-18 Years': 3.7,
+        '19-35 Years': 4.5,
+        '36-50 Years': 3.8,
+        '51-65 Years': 3.1,
+        'Over 65 Years': 2.5
+    }
+];
+
+option = {
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            label: {
+                backgroundColor: '#6a7985'
+            }
+        }
+    },
+    legend: {
+        data: ['2-4 Years', '5-8 Years', '9-12 Years', '13-18 Years', '19-35 Years', '36-50 Years', '51-65 Years', 'Over 65 Years']
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: [
+        {
+            type: 'category',
+            boundaryGap: false,
+            data: data.map(function (item) {
+                return item.Year;
+            })
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value'
+        }
+    ],
+    series: [
+        {
+            name:'2-4 Years',
+            type:'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data:data.map(function (item) {
+                return item['2-4 Years'];
+            })
+        },
+        {
+            name:'5-8 Years',
+            type:'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data:data.map(function (item) {
+                return item['5-8 Years'];
+            })
+        },
+        {
+            name:'9-12 Years',
+            type:'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data:data.map(function (item) {
+                return item['9-12 Years'];
+            })
+        },
+        {
+            name:'13-18 Years',
+            type:'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data:data.map(function (item) {
+                return item['13-18 Years'];
+            })
+        },
+        {
+            name:'19-35 Years',
+            type:'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data:data.map(function (item) {
+                return item['19-35 Years'];
+            })
+        },
+        {
+            name:'36-50 Years',
+            type:'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data:data.map(function (item) {
+                return item['36-50 Years'];
+            })
+        },
+        {
+            name:'51-65 Years',
+            type:'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data:data.map(function (item) {
+                return item['51-65 Years'];
+            })
+        },
+        {
+            name:'Over 65 Years',
+            type:'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data:data.map(function (item) {
+                return item['Over 65 Years'];
+            })
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

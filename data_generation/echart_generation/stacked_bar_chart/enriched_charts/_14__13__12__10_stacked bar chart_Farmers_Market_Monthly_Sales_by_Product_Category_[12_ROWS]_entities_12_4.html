@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var option;
+
+option = {
+    title: {
+        text: 'Art Sales Performance Over Time',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        top: '10%',
+        left: 'center',
+        data: ['Digital Art', 'Classic Art', 'Modern Art', 'Abstract Art']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        data: ['Q1', 'Q2', 'Q3', 'Q4', 'Q5', 'Q6', 'Q7', 'Q8', 'Q9', 'Q10', 'Q11', 'Q12'],
+        axisLabel: {
+            formatter: function (value) {
+                return value;
+            }
+        }
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Digital Art',
+            type: 'bar',
+            stack: 'Total',
+            barWidth: '20%',
+            itemStyle: {
+                color: '#FF5733'
+            },
+            label: {
+                show: true,
+                position: 'inside'
+            },
+            data: [200, 240, 270, 320, 360, 410, 450, 480, 510, 550, 590, 620]
+        },
+        {
+            name: 'Classic Art',
+            type: 'bar',
+            stack: 'Total',
+            itemStyle: {
+                color: '#33FF57'
+            },
+            label: {
+                show: true,
+                position: 'inside'
+            },
+            data: [180, 210, 230, 250, 280, 310, 340, 370, 400, 430, 460, 490]
+        },
+        {
+            name: 'Modern Art',
+            type: 'bar',
+            stack: 'Total',
+            itemStyle: {
+                color: '#3357FF'
+            },
+            label: {
+                show: true,
+                position: 'inside'
+            },
+            data: [220, 250, 260, 280, 300, 330, 360, 390, 420, 450, 480, 510]
+        },
+        {
+            name: 'Abstract Art',
+            type: 'bar',
+            stack: 'Total',
+            itemStyle: {
+                color: '#FF33A1'
+            },
+            label: {
+                show: true,
+                position: 'inside'
+            },
+            data: [170, 190, 210, 230, 250, 270, 290, 310, 330, 350, 370, 390]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

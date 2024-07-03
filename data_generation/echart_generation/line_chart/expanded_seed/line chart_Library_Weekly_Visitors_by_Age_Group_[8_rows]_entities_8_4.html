@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+const weeks = ['2023-W09', '2023-W10', '2023-W11', '2023-W12', '2023-W13', '2023-W14', '2023-W15', '2023-W16'];
+const childrenData = [120, 110, 130, 150, 140, 155, 145, 160];
+const teensData = [80, 90, 95, 100, 85, 90, 88, 95];
+const adultsData = [340, 360, 320, 330, 350, 375, 340, 365];
+const seniorsData = [220, 200, 210, 195, 205, 215, 220, 230];
+
+option = {
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['Children (0-12)', 'Teens (13-18)', 'Adults (19-64)', 'Seniors (65+)']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: weeks
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Children (0-12)',
+            type: 'line',
+            stack: 'total',
+            data: childrenData,
+            markPoint: {
+                data: [
+                    {type: 'max', name: 'Max'},
+                    {type: 'min', name: 'Min'}
+                ]
+            }
+        },
+        {
+            name: 'Teens (13-18)',
+            type: 'line',
+            stack: 'total',
+            data: teensData,
+            markPoint: {
+                data: [
+                    {type: 'max', name: 'Max'},
+                    {type: 'min', name: 'Min'}
+                ]
+            }
+        },
+        {
+            name: 'Adults (19-64)',
+            type: 'line',
+            stack: 'total',
+            data: adultsData,
+            markPoint: {
+                data: [
+                    {type: 'max', name: 'Max'},
+                    {type: 'min', name: 'Min'}
+                ]
+            }
+        },
+        {
+            name: 'Seniors (65+)',
+            type: 'line',
+            stack: 'total',
+            data: seniorsData,
+            markPoint: {
+                data: [
+                    {type: 'max', name: 'Max'},
+                    {type: 'min', name: 'Min'}
+                ]
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

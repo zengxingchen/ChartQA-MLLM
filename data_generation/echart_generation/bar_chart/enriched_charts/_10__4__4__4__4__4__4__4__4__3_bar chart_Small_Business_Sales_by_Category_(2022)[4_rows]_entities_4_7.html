@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {renderer: 'canvas', useDirtyRect: false, width: 800, height: 600});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Future Technologies & Society',
+        left: 'center',
+        top: 20
+    },
+    xAxis: {
+        type: 'category',
+        data: ['Artificial Intelligence', 'Quantum Computing', 'Blockchain Technology', 'Cybersecurity', 'Virtual Reality', 'Augmented Reality', 'Internet of Things', '3D Printing', 'Nanotechnology', 'Renewable Energy', 'Space Exploration', 'Robotics']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Value',
+            type: 'bar',
+            data: [120, 90, 75, 100, 110, 85, 95, 70, 65, 130, 140, 125],
+            itemStyle: {
+                color: function(params) {
+                    var colorList = ['#FF5733','#33FF57','#3357FF','#FF33A1','#FF8333','#33FFF4','#8D33FF','#FF3384','#33FFB2','#FFAF33','#6AFF33','#3355FF'];
+                    return colorList[params.dataIndex];
+                }
+            },
+            barWidth: '60%'
+        }
+    ],
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

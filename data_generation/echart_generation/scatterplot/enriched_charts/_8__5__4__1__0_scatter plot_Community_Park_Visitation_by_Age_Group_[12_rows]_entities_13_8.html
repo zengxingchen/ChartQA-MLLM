@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {renderer: 'canvas', useDirtyRect: false, width: 800, height: 600});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Impact of Climate Change on Temperature',
+        left: 'center',
+        top: 20
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: 'Temperature: {c[1]}°C<br>Year: {c[0]}'
+    },
+    xAxis: {
+        type: 'value',
+        name: 'Year',
+        nameLocation: 'middle',
+        nameGap: 25
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Temperature (°C)',
+        nameLocation: 'middle',
+        nameGap: 50
+    },
+    series: [{
+        name: 'Temperature Data',
+        type: 'scatter',
+        data: [
+            [1, 99], [2, 97], [3, 95], [4, 90], [5, 85], [6, 80], [7, 78], [8, 75], 
+            [9, 73], [10, 70], [11, 68], [12, 65], [13, 63], [14, 60], [15, 58], [16, 55], 
+            [17, 53], [18, 50], [19, 48], [20, 45], [21, 43], [22, 40], [23, 38], [24, 35], 
+            [25, 33], [26, 30], [27, 28], [28, 25], [29, 23], [30, 20], [31, 18], [32, 15], 
+            [33, 13], [34, 10], [35, 8], [36, 5], [37, 3], [38, 0], [39, -2], [40, -5]
+        ],
+        itemStyle: {
+            color: '#FF5733'
+        }
+    }],
+    legend: {
+        data: ['Temperature Data'],
+        left: 'right',
+        top: 40
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

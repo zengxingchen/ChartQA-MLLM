@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Monthly Recycling Statistics',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Glass', 'Plastic', 'Metal', 'Paper', 'Organic'],
+        top: 'bottom'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        data: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+    },
+    yAxis: {
+        type: 'value',
+        axisLabel: {
+            formatter: '{value} %'
+        }
+    },
+    series: [
+        {
+            name: 'Glass',
+            type: 'bar',
+            barGap: 0,
+            label: {
+                show: true,
+                position: 'inside'
+            },
+            data: [20, 22, 21, 23, 24, 27, 26, 25, 28, 29, 27, 30],
+            color: '#1f77b4',
+            barWidth: '8%'
+        },
+        {
+            name: 'Plastic',
+            type: 'bar',
+            label: {
+                show: true,
+                position: 'inside'
+            },
+            data: [25, 27, 23, 26, 22, 30, 28, 31, 26, 29, 32, 27],
+            color: '#ff7f0e',
+            barWidth: '8%'
+        },
+        {
+            name: 'Metal',
+            type: 'bar',
+            label: {
+                show: true,
+                position: 'inside'
+            },
+            data: [15, 19, 17, 20, 16, 22, 18, 21, 23, 25, 20, 24],
+            color: '#2ca02c',
+            barWidth: '8%'
+        },
+        {
+            name: 'Paper',
+            type: 'bar',
+            label: {
+                show: true,
+                position: 'inside'
+            },
+            data: [60, 63, 61, 65, 62, 67, 64, 66, 65, 67, 69, 70],
+            color: '#d62728',
+            barWidth: '8%'
+        },
+        {
+            name: 'Organic',
+            type: 'bar',
+            label: {
+                show: true,
+                position: 'inside'
+            },
+            data: [40, 43, 42, 44, 41, 45, 43, 46, 44, 40, 47, 49],
+            color: '#9467bd',
+            barWidth: '8%'
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

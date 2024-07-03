@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 800, // Changed width
+    height: 600 // Changed height
+});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Monthly Stock Price Trend',
+        left: 'center',
+        top: 20 // Ensure the title does not overlap with the legend
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['Stock Price'],
+        top: 50 // Move legend down to prevent overlapping with title
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ['Day 1', 'Day 2', 'Day 3', 'Day 4', 'Day 5', 'Day 6', 'Day 7', 'Day 8', 'Day 9', 'Day 10', 'Day 11', 'Day 12', 'Day 13', 'Day 14', 'Day 15', 'Day 16', 'Day 17', 'Day 18', 'Day 19', 'Day 20', 'Day 21', 'Day 22', 'Day 23', 'Day 24', 'Day 25', 'Day 26', 'Day 27', 'Day 28', 'Day 29', 'Day 30' ]
+    },
+    yAxis: {
+        type: 'value',
+        axisLabel: {
+            formatter: '${value}' // Formatting for currency
+        }
+    },
+    series: [
+        {
+            name: 'Stock Price',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [100, 101, 102, 104, 105, 107, 106, 108, 110, 111, 113, 115, 114, 116, 117, 119, 120, 121, 123, 122, 124, 125, 127, 128, 130, 131, 129, 132, 134, 133], // Data is injected here
+            markPoint: {
+                data: [
+                    { type: 'max', name: 'Max', itemStyle: { color: '#1E90FF' } },
+                    { type: 'min', name: 'Min', itemStyle: { color: '#FF6347' } }
+                ]
+            },
+            color: ['#00FA9A'] // Modified color scheme
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

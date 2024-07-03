@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+// Prepare the data
+const chartData = [
+    {'Age Group': '0-12', 'Week 1': 150, 'Week 2': 175, 'Week 3': 160, 'Week 4': 180},
+    {'Age Group': '13-18', 'Week 1': 200, 'Week 2': 210, 'Week 3': 205, 'Week 4': 220},
+    {'Age Group': '19-30', 'Week 1': 320, 'Week 2': 310, 'Week 3': 330, 'Week 4': 340},
+    {'Age Group': '31-45', 'Week 1': 280, 'Week 2': 270, 'Week 3': 290, 'Week 4': 300},
+    {'Age Group': '46-65', 'Week 1': 220, 'Week 2': 230, 'Week 3': 210, 'Week 4': 200},
+    {'Age Group': '66+', 'Week 1': 100, 'Week 2': 110, 'Week 3': 120, 'Week 4': 115}
+];
+
+// Weeks for the x-axis
+const weeks = ['Week 1', 'Week 2', 'Week 3', 'Week 4'];
+
+// Age groups for legends and series
+const ageGroups = chartData.map(item => item['Age Group']);
+
+// Generate series data
+const seriesData = ageGroups.map(group => {
+    const groupData = chartData.find(item => item['Age Group'] === group);
+    return {
+        name: group,
+        type: 'line',
+        data: weeks.map(week => groupData[week]),
+        // Include more options for a diversified visual encoding
+        smooth: true,
+        symbol: 'circle',
+        symbolSize: 10,
+        lineStyle: {
+            width: 2
+        },
+        markPoint: {
+            data: [
+                {type: 'max', name: 'Max'},
+                {type: 'min', name: 'Min'}
+            ]
+        },
+        emphasis: {
+            focus: 'series'
+        }
+    };
+});
+
+// Configure the options
+option = {
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ageGroups
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: weeks
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: seriesData
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

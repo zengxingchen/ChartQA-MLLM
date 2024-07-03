@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Trends in Emerging Consumer Technologies',
+        subtext: '2016-2018',
+        left: 'center',
+        top: 20
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['Smart Wearables', 'Home Automation', 'Self-driving Vehicles'],
+        top: 70
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: [
+            '2016-01-01', '2016-02-01', '2016-03-01', '2016-04-01', '2016-05-01', '2016-06-01', '2016-07-01',
+            '2016-08-01', '2016-09-01', '2016-10-01', '2016-11-01', '2016-12-01', '2017-01-01', '2017-02-01',
+            '2017-03-01', '2017-04-01', '2017-05-01', '2017-06-01', '2017-07-01', '2017-08-01', '2017-09-01',
+            '2017-10-01', '2017-11-01', '2017-12-01', '2018-01-01', '2018-02-01', '2018-03-01', '2018-04-01',
+            '2018-05-01', '2018-06-01', '2018-07-01', '2018-08-01', '2018-09-01', '2018-10-01', '2018-11-01',
+            '2018-12-01'
+        ]
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Smart Wearables',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: { focus: 'series' },
+            data: [
+                320, 332, 301, 334, 390, 330, 320, 332, 301, 334, 390, 330, 
+                320, 332, 301, 334, 390, 330, 320, 332, 301, 334, 390, 330, 
+                320, 332, 301, 334, 390, 330, 320, 332, 301, 334, 390, 330
+            ],
+            color: '#FF7F0E'
+        },
+        {
+            name: 'Home Automation',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: { focus: 'series' },
+            data: [
+                120, 182, 191, 290, 330, 350, 370, 380, 390, 420, 450, 475, 
+                452, 403, 430, 470, 480, 480, 530, 540, 560, 580, 601, 620, 
+                630, 640, 650, 660, 670, 680, 690, 700, 710, 720, 730, 740
+            ],
+            color: '#2CA02C'
+        },
+        {
+            name: 'Self-driving Vehicles',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: { focus: 'series' },
+            data: [
+                60, 69, 100, 130, 132, 180, 210, 215, 235, 256, 276, 295, 
+                320, 353, 367, 380, 390, 420, 445, 455, 463, 480, 490, 500, 
+                510, 530, 540, 550, 560, 570, 580, 590, 600, 610, 620, 630
+            ],
+            color: '#1F77B4'
+        }
+    ],
+    color: ['#FF7F0E', '#2CA02C', '#1F77B4'],
+    toolbox: {
+        show: true,
+        feature: {
+            dataZoom: {
+                yAxisIndex: 'none'
+            },
+            restore: {},
+            saveAsImage: {}
+        }
+    },
+    dataZoom: [
+        {
+            type: 'inside',
+            start: 0,
+            end: 100
+        },
+        {
+            start: 0,
+            end: 10
+        }
+    ],
+    visualMap: {
+        top: 50,
+        right: 10,
+        pieces: [
+            {
+                gt: 0,
+                lte: 290,
+                color: '#93CE07'
+            },
+            {
+                gt: 290,
+                lte: 490,
+                color: '#FBDB0F'
+            },
+            {
+                gt: 490,
+                color: '#FC7D02'
+            }
+        ],
+        outOfRange: {
+            color: '#999'
+        }
+    },
+    graphic: {
+        elements: [
+            {
+                type: 'text',
+                left: 'center',
+                top: '90%',
+                style: {
+                    text: 'Emerging Consumer Tech Index',
+                    textAlign: 'center',
+                    fill: '#333',
+                    fontSize: 14,
+                    fontWeight: 'bold'
+                }
+            }
+        ]
+    },
+    responsive: true
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

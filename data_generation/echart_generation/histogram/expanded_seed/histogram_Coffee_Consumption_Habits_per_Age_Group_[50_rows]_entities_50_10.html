@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var rawData = [
+    {'Age Group': '16-24', ' Cups of Coffee per Day': 1},
+    {'Age Group': '16-24', ' Cups of Coffee per Day': 2},
+    {'Age Group': '16-24', ' Cups of Coffee per Day': 0},
+    {'Age Group': '16-24', ' Cups of Coffee per Day': 1},
+    {'Age Group': '16-24', ' Cups of Coffee per Day': 3},
+    {'Age Group': '25-34', ' Cups of Coffee per Day': 2},
+    {'Age Group': '25-34', ' Cups of Coffee per Day': 2},
+    {'Age Group': '25-34', ' Cups of Coffee per Day': 1},
+    {'Age Group': '25-34', ' Cups of Coffee per Day': 3},
+    {'Age Group': '25-34', ' Cups of Coffee per Day': 4},
+    {'Age Group': '25-34', ' Cups of Coffee per Day': 2},
+    {'Age Group': '25-34', ' Cups of Coffee per Day': 1},
+    {'Age Group': '35-44', ' Cups of Coffee per Day': 3},
+    {'Age Group': '35-44', ' Cups of Coffee per Day': 2},
+    {'Age Group': '35-44', ' Cups of Coffee per Day': 3}
+];
+
+// Bin the data manually based on age group and cups of coffee per day
+var ageGroups = ['16-24', '25-34', '35-44'];
+var coffeeBins = {}; // {'16-24': {'0': count, '1': count, ...}, '25-34': {...}, '35-44': {...}};
+
+ageGroups.forEach(function (ageGroup) {
+    coffeeBins[ageGroup] = {};
+    rawData.forEach(function (entry) {
+        if (entry['Age Group'] === ageGroup) {
+            var cups = entry[' Cups of Coffee per Day'].toString();
+            coffeeBins[ageGroup][cups] = (coffeeBins[ageGroup][cups] || 0) + 1;
+        }
+    });
+});
+
+// Prepare series data
+var seriesData = [];
+ageGroups.forEach(function (ageGroup) {
+    var binnedData = [];
+    Object.keys(coffeeBins[ageGroup]).forEach(function (key) {
+        binnedData.push({
+            value: coffeeBins[ageGroup][key],
+            name: key
+        });
+    });
+    seriesData.push({
+        name: ageGroup,
+        type: 'bar',
+        data: binnedData,
+        // Visually encode the bars
+        itemStyle: {
+            // Color palette for the bars
+            color: function(params) {
+                var colorList = ['#c23531','#2f4554','#61a0a8','#d48265','#91c7ae'];
+                return colorList[params.dataIndex % colorList.length];
+            }
+        }
+    });
+});
+
+// ECharts option
+var option = {
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ageGroups
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01],
+        title: {
+            text: 'Cups of Coffee'
+        }
+    },
+    yAxis: {
+        type: 'category',
+        data: Object.keys(coffeeBins[ageGroups[0]]).sort(),
+        title: {
+            text: 'Frequency'
+        }
+    },
+    series: seriesData
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

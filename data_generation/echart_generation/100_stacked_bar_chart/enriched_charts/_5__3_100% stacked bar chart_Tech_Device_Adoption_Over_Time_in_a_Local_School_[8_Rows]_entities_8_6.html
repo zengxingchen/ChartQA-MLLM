@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Travel & Adventure Trends by Year',
+        left: 'center'
+    },
+    color: ['#3398DB', '#33DBCA', '#DB3368', '#DBB833', '#6733DB'],
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {            
+            type: 'shadow'       
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true,
+        width: 'auto',
+        height: 'auto'
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01],
+        min: 0,
+        max: 100
+    },
+    yAxis: {
+        type: 'category',
+        data: ['2018', '2019', '2020', '2021', '2022'],
+        axisLabel: {
+          show: true,
+          interval: 0
+        },
+        axisTick: {
+            show: false
+        }
+    },
+    series: [
+        {
+            name: 'Domestic Travel',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            data: [20, 25, 30, 35, 40]
+        },
+        {
+            name: 'International Travel',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            data: [30, 25, 15, 20, 20]
+        },
+        {
+            name: 'Eco Tourism',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            data: [15, 20, 25, 25, 20]
+        },
+        {
+            name: 'Business Travel',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            data: [25, 20, 20, 10, 10]
+        },
+        {
+            name: 'Others',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            data: [10, 10, 10, 10, 10]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

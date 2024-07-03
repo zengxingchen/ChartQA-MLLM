@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, { width: 800, height: 600 });
+var app = {};
+var option;
+
+option = {
+    title: {
+        text: 'Future Technologies & Society: Monthly Spending',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Future Tech Spending',
+            type: 'line',
+            data: [500, 450, 470, 520, 580, 600, 610, 590, 620, 650, 630, 700],
+            markPoint: {
+                data: [
+                    { type: 'max', name: 'Max', itemStyle: { color: '#FF5733' } },
+                    { type: 'min', name: 'Min', itemStyle: { color: '#33FF57' } }
+                ]
+            },
+            markLine: {
+                data: [
+                    { type: 'average', name: 'Average', itemStyle: { color: '#3375FF' } }
+                ]
+            },
+            lineStyle: {
+                color: '#FF33AA'
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

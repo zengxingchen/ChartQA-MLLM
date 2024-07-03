@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+var app = {};
+var option;
+
+option = {
+    title: {
+        text: 'Future Technologies & Society',
+        left: 'center',
+        top: 20
+    },
+    color: ['#3398DB'],
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    xAxis: {
+        type: 'category',
+        data: ['Quantum Computing', 'Artificial Intelligence', 'Nanotechnology', 'Biotechnology', 'Augmented Reality', 'Blockchain', '3D Printing', 'Genomics', 'Robotics', 'Cybersecurity'],
+        axisLabel: {
+            interval: 0,
+            rotate: 30,
+            margin: 10
+        }
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Value',
+            type: 'bar',
+            barWidth: '50%',
+            data: [
+                {value: 45, itemStyle: {color: '#FF5733'}, label: {show: true, position: 'top'}},
+                {value: 70, itemStyle: {color: '#33FF57'}, label: {show: true, position: 'top'}},
+                {value: 55, itemStyle: {color: '#3357FF'}, label: {show: true, position: 'top'}},
+                {value: 60, itemStyle: {color: '#FF33A1'}, label: {show: true, position: 'top'}},
+                {value: 50, itemStyle: {color: '#A133FF'}, label: {show: true, position: 'top'}},
+                {value: 65, itemStyle: {color: '#33FFF5'}, label: {show: true, position: 'top'}},
+                {value: 75, itemStyle: {color: '#F5FF33'}, label: {show: true, position: 'top'}},
+                {value: 80, itemStyle: {color: '#FFAF33'}, label: {show: true, position: 'top'}},
+                {value: 90, itemStyle: {color: '#33FFAF'}, label: {show: true, position: 'top'}},
+                {value: 85, itemStyle: {color: '#AF33FF'}, label: {show: true, position: 'top'}}
+            ]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

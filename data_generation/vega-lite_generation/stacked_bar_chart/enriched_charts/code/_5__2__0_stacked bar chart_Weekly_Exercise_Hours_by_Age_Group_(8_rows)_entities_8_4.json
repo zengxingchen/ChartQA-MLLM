@@ -1,0 +1,260 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": {
+        "text": "Monthly Study Hours by Subject",
+        "subtitle": "Vertical stacked representation of study hours over a year",
+        "subtitleFontStyle": "italic",
+        "subtitleFontSize": 10,
+        "anchor": "start"
+    },
+    "data": {
+        "values": [
+            {
+                "Month": "January",
+                "Math": 12,
+                "Science": 18,
+                "History": 8,
+                "Art": 5
+            },
+            {
+                "Month": "February",
+                "Math": 14,
+                "Science": 20,
+                "History": 10,
+                "Art": 6
+            },
+            {
+                "Month": "March",
+                "Math": 16,
+                "Science": 22,
+                "History": 12,
+                "Art": 8
+            },
+            {
+                "Month": "April",
+                "Math": 18,
+                "Science": 24,
+                "History": 14,
+                "Art": 10
+            },
+            {
+                "Month": "May",
+                "Math": 20,
+                "Science": 26,
+                "History": 16,
+                "Art": 12
+            },
+            {
+                "Month": "June",
+                "Math": 22,
+                "Science": 28,
+                "History": 18,
+                "Art": 14
+            },
+            {
+                "Month": "July",
+                "Math": 24,
+                "Science": 30,
+                "History": 20,
+                "Art": 16
+            },
+            {
+                "Month": "August",
+                "Math": 26,
+                "Science": 32,
+                "History": 22,
+                "Art": 18
+            },
+            {
+                "Month": "September",
+                "Math": 28,
+                "Science": 34,
+                "History": 24,
+                "Art": 20
+            },
+            {
+                "Month": "October",
+                "Math": 30,
+                "Science": 36,
+                "History": 26,
+                "Art": 22
+            },
+            {
+                "Month": "November",
+                "Math": 32,
+                "Science": 38,
+                "History": 28,
+                "Art": 24
+            },
+            {
+                "Month": "December",
+                "Math": 34,
+                "Science": 40,
+                "History": 30,
+                "Art": 26
+            },
+            {
+                "Month": "January",
+                "Math": 15,
+                "Science": 20,
+                "History": 10,
+                "Art": 7
+            },
+            {
+                "Month": "February",
+                "Math": 18,
+                "Science": 22,
+                "History": 12,
+                "Art": 9
+            },
+            {
+                "Month": "March",
+                "Math": 20,
+                "Science": 25,
+                "History": 15,
+                "Art": 10
+            },
+            {
+                "Month": "April",
+                "Math": 22,
+                "Science": 28,
+                "History": 18,
+                "Art": 12
+            },
+            {
+                "Month": "May",
+                "Math": 25,
+                "Science": 30,
+                "History": 20,
+                "Art": 15
+            },
+            {
+                "Month": "June",
+                "Math": 28,
+                "Science": 32,
+                "History": 22,
+                "Art": 18
+            },
+            {
+                "Month": "July",
+                "Math": 30,
+                "Science": 35,
+                "History": 25,
+                "Art": 20
+            },
+            {
+                "Month": "August",
+                "Math": 35,
+                "Science": 38,
+                "History": 28,
+                "Art": 22
+            },
+            {
+                "Month": "September",
+                "Math": 40,
+                "Science": 40,
+                "History": 30,
+                "Art": 25
+            },
+            {
+                "Month": "October",
+                "Math": 45,
+                "Science": 42,
+                "History": 32,
+                "Art": 28
+            },
+            {
+                "Month": "November",
+                "Math": 50,
+                "Science": 45,
+                "History": 35,
+                "Art": 30
+            },
+            {
+                "Month": "December",
+                "Math": 55,
+                "Science": 48,
+                "History": 40,
+                "Art": 35
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Math",
+                "Science",
+                "History",
+                "Art"
+            ],
+            "as": [
+                "Subject",
+                "Hours"
+            ]
+        }
+    ],
+    "width": 400,
+    "height": 600,
+    "mark": {
+        "type": "bar",
+        "width": {
+            "band": 0.6
+        }
+    },
+    "encoding": {
+        "x": {
+            "field": "Month",
+            "type": "nominal",
+            "axis": {
+                "title": "Month",
+                "labelAngle": 0
+            }
+        },
+        "y": {
+            "field": "Hours",
+            "type": "quantitative",
+            "axis": {
+                "title": "Total Hours"
+            },
+            "stack": "normalize"
+        },
+        "color": {
+            "field": "Subject",
+            "type": "nominal",
+            "scale": {
+                "range": [
+                    "#e6194b",
+                    "#3cb44b",
+                    "#ffe119",
+                    "#4363d8"
+                ]
+            },
+            "legend": {
+                "title": "Subject",
+                "orient": "bottom"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Subject",
+                "type": "nominal",
+                "title": "Subject"
+            },
+            {
+                "field": "Month",
+                "type": "nominal",
+                "title": "Month"
+            },
+            {
+                "field": "Hours",
+                "type": "quantitative",
+                "title": "Hours"
+            }
+        ]
+    },
+    "config": {
+        "axisX": {
+            "minExtent": 30
+        }
+    }
+}

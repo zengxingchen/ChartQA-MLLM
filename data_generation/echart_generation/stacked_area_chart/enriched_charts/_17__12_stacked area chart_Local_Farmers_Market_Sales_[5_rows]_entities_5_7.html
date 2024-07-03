@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var app = {};
+
+var option;
+option = {
+    title: {
+        text: 'Daily Exercise Trends by Activity',
+        left: 'center',
+        top: 10
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['Running', 'Cycling', 'Swimming'],
+        top: 40
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ['2021-01-01', '2021-01-02', '2021-01-03', '2021-01-04', '2021-01-05', '2021-01-06', '2021-01-07', '2021-01-08', '2021-01-09', '2021-01-10', '2021-01-11', '2021-01-12', '2021-01-13', '2021-01-14', '2021-01-15', '2021-01-16', '2021-01-17', '2021-01-18', '2021-01-19', '2021-01-20']
+    },
+    yAxis: {
+        type: 'value',
+        axisLabel: {
+            formatter: '{value} km'
+        }
+    },
+    series: [
+        {
+            name: 'Running',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {focus: 'series'},
+            data: [10, 12, 14, 13, 15, 17, 16, 18, 20, 18, 19, 17, 22, 24, 23, 25, 27, 28, 26, 25],
+            color: '#FF7F50'
+        },
+        {
+            name: 'Cycling',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {focus: 'series'},
+            data: [5, 7, 6, 5, 7, 8, 7, 9, 8, 10, 11, 10, 9, 13, 14, 15, 14, 16, 17, 18],
+            color: '#87CEFA'
+        },
+        {
+            name: 'Swimming',
+            type: 'line',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'top'
+            },
+            areaStyle: {},
+            emphasis: {focus: 'series'},
+            data: [2, 3, 4, 5, 8, 6, 7, 9, 10, 12, 13, 15, 14, 16, 18, 17, 20, 19, 18, 21],
+            color: '#32CD32'
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

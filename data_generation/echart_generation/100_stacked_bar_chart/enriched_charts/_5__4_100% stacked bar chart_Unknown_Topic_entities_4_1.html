@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 700, // Changed width of the chart
+    height: 500  // Changed height of the chart
+});
+var app = {};
+
+var option;
+
+option = {
+    color: ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd'], // Modified color scheme
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Primary', 'Secondary', 'Tertiary', 'Vocational', 'Online']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: false,
+        max: 100 // This ensures that our percentage stacked bar chart sums to 100%
+    },
+    yAxis: {
+        type: 'category',
+        data: ['2016', '2017', '2018', '2019', '2020', '2021', '2022']
+    },
+    series: [
+        {
+            name: 'Primary',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 30, // Changed width of the bars
+            data: [35, 34, 33, 31, 30, 29, 28]
+        },
+        {
+            name: 'Secondary',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 30,
+            data: [45, 47, 49, 50, 52, 54, 55]
+        },
+        {
+            name: 'Tertiary',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 30,
+            data: [15, 15, 14, 15, 14, 13, 13]
+        },
+        {
+            name: 'Vocational',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 30,
+            data: [3, 2, 2, 2, 2, 2, 2]
+        },
+        {
+            name: 'Online',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 30,
+            data: [2, 2, 2, 2, 2, 2, 2]
+        }
+    ],
+    title: {
+        text: 'Education & Learning Enrollment Trends',
+        left: 'center',
+        top: 20 // Adjust the position so it doesn't overlap with the legend
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

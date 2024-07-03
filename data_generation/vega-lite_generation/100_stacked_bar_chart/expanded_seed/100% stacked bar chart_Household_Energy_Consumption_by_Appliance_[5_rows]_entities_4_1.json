@@ -1,0 +1,115 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "A 100% stacked bar chart showing the distribution of energy use categories over years",
+    "width": 500,
+    "height": 300,
+    "data": {
+        "values": [
+            {
+                "Year": 2020,
+                "Heating": 25,
+                "VAC": 35,
+                "Water Heating": 15
+            },
+            {
+                "Year": 2021,
+                "Heating": 24,
+                "VAC": 36,
+                "Water Heating": 14
+            },
+            {
+                "Year": 2022,
+                "Heating": 23,
+                "VAC": 37,
+                "Water Heating": 15
+            },
+            {
+                "Year": 2023,
+                "Heating": 22,
+                "VAC": 38,
+                "Water Heating": 14
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Heating",
+                "VAC",
+                "Water Heating"
+            ],
+            "as": [
+                "Category",
+                "Value"
+            ]
+        }
+    ],
+    "mark": "bar",
+    "encoding": {
+        "x": {
+            "field": "Year",
+            "type": "ordinal",
+            "axis": {
+                "title": "Year"
+            }
+        },
+        "y": {
+            "aggregate": "sum",
+            "field": "Value",
+            "type": "quantitative",
+            "axis": {
+                "format": ".0%"
+            },
+            "title": "Percentage of Total Energy Use"
+        },
+        "color": {
+            "field": "Category",
+            "type": "nominal",
+            "scale": {
+                "scheme": "category10"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Year",
+                "type": "temporal",
+                "title": "Year"
+            },
+            {
+                "field": "Category",
+                "type": "nominal",
+                "title": "Energy Use Category"
+            },
+            {
+                "field": "Value",
+                "type": "quantitative",
+                "title": "Value"
+            }
+        ]
+    },
+    "config": {
+        "axisY": {
+            "minExtent": 30
+        }
+    },
+    "layer": [
+        {
+            "mark": "bar"
+        },
+        {
+            "mark": {
+                "type": "text",
+                "align": "center",
+                "baseline": "middle",
+                "dy": -5
+            },
+            "encoding": {
+                "text": {
+                    "field": "Value",
+                    "type": "quantitative",
+                    "aggregate": "sum"
+                }
+            }
+        }
+    ]
+}

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Innovations Shaping the 21st Century',
+        left: 'center',
+        top: 20
+    },
+    tooltip: {
+        trigger: 'item'
+    },
+    legend: {
+        orient: 'vertical',
+        left: 'left',
+        top: '15%'
+    },
+    color: ['#FFD700', '#FF8C00', '#FF4500', '#008000', '#4B0082', '#00FFFF','#FFFF00', '#FFC0CB', '#00FA9A'],
+    series: [
+        {
+            name: 'Innovation Areas',
+            type: 'pie',
+            radius: '55%',
+            center: ['50%', '60%'],
+            data: [
+                {value: 25, name: 'Smart Home Devices'},
+                {value: 35, name: 'AI in Medicine'},
+                {value: 40, name: 'Renewable Energy Solutions'},
+                {value: 30, name: 'Autonomous Vehicles'},
+                {value: 15, name: 'Quantum Computing'},
+                {value: 10, name: 'Blockchain Applications'},
+                {value: 12, name: 'Augmented Reality'},
+                {value: 8, name: 'Space Tourism'},
+                {value: 20, name: 'Advanced Robotics'}
+            ],
+            emphasis: {
+                itemStyle: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

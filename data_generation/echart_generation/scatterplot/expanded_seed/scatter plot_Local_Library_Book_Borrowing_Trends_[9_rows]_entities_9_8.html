@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+
+var option;
+
+// Data
+var scatterData = {
+    "Children's Books": [],
+    'Adult Fiction': [],
+    'Non-Fiction': []
+};
+
+var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September'];
+
+// Converting table data to scatterData format
+var tableData = [
+    {'Month': 'January', "Children's Books": 120, 'Adult Fiction': 80, 'Non-Fiction': 60},
+    {'Month': 'February', "Children's Books": 95, 'Adult Fiction': 87, 'Non-Fiction': 55},
+    {'Month': 'March', "Children's Books": 110, 'Adult Fiction': 76, 'Non-Fiction': 65},
+    {'Month': 'April', "Children's Books": 130, 'Adult Fiction': 90, 'Non-Fiction': 70},
+    {'Month': 'May', "Children's Books": 123, 'Adult Fiction': 85, 'Non-Fiction': 75},
+    {'Month': 'June', "Children's Books": 115, 'Adult Fiction': 82, 'Non-Fiction': 80},
+    {'Month': 'July', "Children's Books": 128, 'Adult Fiction': 79, 'Non-Fiction': 82},
+    {'Month': 'August', "Children's Books": 136, 'Adult Fiction': 88, 'Non-Fiction': 79},
+    {'Month': 'September', "Children's Books": 111, 'Adult Fiction': 90, 'Non-Fiction': 85}
+];
+
+// Transform the data
+tableData.forEach(function (item, idx) {
+    scatterData["Children's Books"].push([idx, item["Children's Books"]]);
+    scatterData['Adult Fiction'].push([idx, item['Adult Fiction']]);
+    scatterData['Non-Fiction'].push([idx, item['Non-Fiction']]);
+});
+
+// Series array generation
+var seriesData = Object.keys(scatterData).map(function (key) {
+    return {
+        name: key,
+        type: 'scatter',
+        data: scatterData[key],
+        symbolSize: function (data) {
+            return Math.sqrt(data[1]) * 1.5;
+        }
+    };
+});
+
+option = {
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross'
+        }
+    },
+    legend: {
+        data: Object.keys(scatterData)
+    },
+    xAxis: {
+        type: 'category',
+        data: months,
+        splitLine: {
+            lineStyle: {
+                type: 'dashed'
+            }
+        }
+    },
+    yAxis: {
+        type: 'value',
+        splitLine: {
+            lineStyle: {
+                type: 'dashed'
+            }
+        },
+        scale: true
+    },
+    series: seriesData
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

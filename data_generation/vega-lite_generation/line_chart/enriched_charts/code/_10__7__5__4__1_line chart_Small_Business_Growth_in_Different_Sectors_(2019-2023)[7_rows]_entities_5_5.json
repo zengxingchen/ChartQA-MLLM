@@ -1,0 +1,174 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Economic Indicators Over the Years",
+    "data": {
+        "values": [
+            {
+                "Year": 2010,
+                "GDP Growth": 2.5,
+                "Unemployment Rate": 9.6,
+                "Inflation Rate": 1.6,
+                "Trade Balance": -550,
+                "Foreign Direct Investment": 200
+            },
+            {
+                "Year": 2011,
+                "GDP Growth": 1.6,
+                "Unemployment Rate": 8.9,
+                "Inflation Rate": 3.2,
+                "Trade Balance": -600,
+                "Foreign Direct Investment": 250
+            },
+            {
+                "Year": 2012,
+                "GDP Growth": 2.2,
+                "Unemployment Rate": 8.1,
+                "Inflation Rate": 2.1,
+                "Trade Balance": -500,
+                "Foreign Direct Investment": 300
+            },
+            {
+                "Year": 2013,
+                "GDP Growth": 1.8,
+                "Unemployment Rate": 7.4,
+                "Inflation Rate": 1.5,
+                "Trade Balance": -450,
+                "Foreign Direct Investment": 350
+            },
+            {
+                "Year": 2014,
+                "GDP Growth": 2.4,
+                "Unemployment Rate": 6.2,
+                "Inflation Rate": 1.6,
+                "Trade Balance": -400,
+                "Foreign Direct Investment": 400
+            },
+            {
+                "Year": 2015,
+                "GDP Growth": 2.9,
+                "Unemployment Rate": 5.3,
+                "Inflation Rate": 0.1,
+                "Trade Balance": -350,
+                "Foreign Direct Investment": 450
+            },
+            {
+                "Year": 2016,
+                "GDP Growth": 1.6,
+                "Unemployment Rate": 4.9,
+                "Inflation Rate": 1.3,
+                "Trade Balance": -300,
+                "Foreign Direct Investment": 500
+            },
+            {
+                "Year": 2017,
+                "GDP Growth": 2.4,
+                "Unemployment Rate": 4.4,
+                "Inflation Rate": 2.1,
+                "Trade Balance": -250,
+                "Foreign Direct Investment": 550
+            },
+            {
+                "Year": 2018,
+                "GDP Growth": 2.9,
+                "Unemployment Rate": 3.9,
+                "Inflation Rate": 2.4,
+                "Trade Balance": -200,
+                "Foreign Direct Investment": 600
+            },
+            {
+                "Year": 2019,
+                "GDP Growth": 2.3,
+                "Unemployment Rate": 3.7,
+                "Inflation Rate": 2.3,
+                "Trade Balance": -150,
+                "Foreign Direct Investment": 650
+            },
+            {
+                "Year": 2020,
+                "GDP Growth": -3.4,
+                "Unemployment Rate": 8.1,
+                "Inflation Rate": 1.2,
+                "Trade Balance": -100,
+                "Foreign Direct Investment": 700
+            },
+            {
+                "Year": 2021,
+                "GDP Growth": 5.7,
+                "Unemployment Rate": 5.4,
+                "Inflation Rate": 2.5,
+                "Trade Balance": -50,
+                "Foreign Direct Investment": 750
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "GDP Growth",
+                "Unemployment Rate",
+                "Inflation Rate",
+                "Trade Balance",
+                "Foreign Direct Investment"
+            ],
+            "as": [
+                "Indicator",
+                "Value"
+            ]
+        }
+    ],
+    "width": 1000,
+    "height": 650,
+    "mark": {
+        "type": "line",
+        "point": true,
+        "tooltip": true
+    },
+    "encoding": {
+        "x": {
+            "field": "Year",
+            "type": "ordinal",
+            "title": "Year"
+        },
+        "y": {
+            "field": "Value",
+            "type": "quantitative",
+            "title": "Indicator Values",
+            "axis": {
+                "format": ".1f"
+            },
+            "scale": {
+                "reverse": true
+            }
+        },
+        "color": {
+            "field": "Indicator",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "GDP Growth",
+                    "Unemployment Rate",
+                    "Inflation Rate",
+                    "Trade Balance",
+                    "Foreign Direct Investment"
+                ],
+                "range": [
+                    "#FF0000",
+                    "#00FF00",
+                    "#0000FF",
+                    "#FFFF00",
+                    "#FF00FF"
+                ]
+            },
+            "title": "Economic Indicator"
+        },
+        "text": {
+            "field": "Value",
+            "type": "quantitative"
+        }
+    },
+    "config": {
+        "axisY": {
+            "minExtent": 30
+        }
+    }
+}

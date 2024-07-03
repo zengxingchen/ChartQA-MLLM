@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 500});
+var app = {};
+
+var option;
+
+const dataAxis = [
+    '2020-01-01', '2020-01-02', '2020-01-03', '2020-01-04', '2020-01-05',
+    '2020-01-06', '2020-01-07', '2020-01-08', '2020-01-09', '2020-01-10',
+    '2020-01-11', '2020-01-12', '2020-01-13', '2020-01-14', '2020-01-15',
+    '2020-01-16', '2020-01-17', '2020-01-18', '2020-01-19', '2020-01-20'
+];
+
+const dataCoffee = [1500, 1600, 1700, 1750, 1800, 1850, 1900, 1950, 2000, 2050, 2100, 2000, 1950, 1900, 1850, 1800, 1750, 1700, 1650, 1600];
+const dataTea = [1200, 1300, 1400, 1500, 1600, 1620, 1650, 1680, 1700, 1725, 1750, 1800, 1850, 1900, 1950, 2000, 2025, 2050, 2075, 2100];
+const dataSoda = [300, 350, 400, 420, 450, 430, 410, 415, 420, 425, 430, 440, 450, 460, 470, 480, 485, 490, 495, 500];
+
+option = {
+    title: {
+        text: 'Beverage Consumption Trends',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            label: {
+                backgroundColor: '#6a7985'
+            }
+        }
+    },
+    legend: {
+        data: ['Coffee Consumption', 'Tea Consumption', 'Soda Consumption'],
+        top: '7%'
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: [
+        {
+            type: 'category',
+            boundaryGap: false,
+            data: dataAxis
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value'
+        }
+    ],
+    series: [
+        {
+            name: 'Coffee Consumption',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: dataCoffee,
+            color: '#FF6F61'
+        },
+        {
+            name: 'Tea Consumption',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: dataTea,
+            color: '#6B5B95'
+        },
+        {
+            name: 'Soda Consumption',
+            type: 'line',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'top'
+            },
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: dataSoda,
+            color: '#88B04B'
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

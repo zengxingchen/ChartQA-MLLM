@@ -1,0 +1,108 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Stacked area chart showing transportation usage over years",
+    "width": "container",
+    "title": {
+        "text": "Transportation Usage Over the Years",
+        "fontSize": 15,
+        "anchor": "start",
+        "color": "black"
+    },
+    "data": {
+        "values": [
+            {
+                "Year": 2019,
+                "Buses": 120,
+                "Subways": 95,
+                "Bicycles": 40,
+                "Car Sharing": 30
+            },
+            {
+                "Year": 2020,
+                "Buses": 90,
+                "Subways": 80,
+                "Bicycles": 55,
+                "Car Sharing": 50
+            },
+            {
+                "Year": 2021,
+                "Buses": 100,
+                "Subways": 85,
+                "Bicycles": 60,
+                "Car Sharing": 65
+            },
+            {
+                "Year": 2022,
+                "Buses": 110,
+                "Subways": 90,
+                "Bicycles": 70,
+                "Car Sharing": 70
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Buses",
+                "Subways",
+                "Bicycles",
+                "Car Sharing"
+            ],
+            "as": [
+                "Transportation Mode",
+                "Usage"
+            ]
+        }
+    ],
+    "mark": "area",
+    "encoding": {
+        "x": {
+            "field": "Year",
+            "type": "ordinal",
+            "axis": {
+                "title": "Year"
+            }
+        },
+        "y": {
+            "field": "Usage",
+            "type": "quantitative",
+            "stack": "zero",
+            "axis": {
+                "title": "Usage (in units)"
+            }
+        },
+        "color": {
+            "field": "Transportation Mode",
+            "type": "nominal",
+            "scale": {
+                "scheme": "category20b"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Year",
+                "type": "ordinal",
+                "title": "Year"
+            },
+            {
+                "field": "Transportation Mode",
+                "type": "nominal",
+                "title": "Transportation Mode"
+            },
+            {
+                "field": "Usage",
+                "type": "quantitative",
+                "title": "Usage",
+                "format": ",.2f"
+            }
+        ]
+    },
+    "config": {
+        "view": {
+            "stroke": "transparent"
+        },
+        "area": {
+            "line": true
+        }
+    }
+}

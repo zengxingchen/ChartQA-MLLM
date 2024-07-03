@@ -1,0 +1,132 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Average Daily Water Consumption by Country",
+    "width": 300,
+    "height": 150,
+    "title": {
+        "text": "Average Water Consumption",
+        "subtitle": [
+            "Liters per day by country",
+            "Source: Global Water Statistico"
+        ],
+        "subtitleFontSize": 10,
+        "subtitleFontStyle": "italic",
+        "anchor": "start"
+    },
+    "data": {
+        "values": [
+            {
+                "Country": "USA",
+                "Liters per day": 300
+            },
+            {
+                "Country": "Australia",
+                "Liters per day": 340
+            },
+            {
+                "Country": "Brazil",
+                "Liters per day": 200
+            },
+            {
+                "Country": "Canada",
+                "Liters per day": 290
+            },
+            {
+                "Country": "China",
+                "Liters per day": 230
+            },
+            {
+                "Country": "France",
+                "Liters per day": 250
+            },
+            {
+                "Country": "Germany",
+                "Liters per day": 220
+            },
+            {
+                "Country": "India",
+                "Liters per day": 135
+            },
+            {
+                "Country": "Japan",
+                "Liters per day": 270
+            },
+            {
+                "Country": "Mexico",
+                "Liters per day": 194
+            },
+            {
+                "Country": "Russia",
+                "Liters per day": 320
+            },
+            {
+                "Country": "South Africa",
+                "Liters per day": 180
+            },
+            {
+                "Country": "United Kingdom",
+                "Liters per day": 200
+            }
+        ]
+    },
+    "params": [
+        {
+            "name": "highlight",
+            "select": {
+                "type": "point",
+                "on": "mouseover"
+            }
+        },
+        {
+            "name": "select",
+            "select": "point"
+        }
+    ],
+    "mark": {
+        "type": "bar",
+        "color": "#4B89AC",
+        "strokeWidth": 1.5,
+        "cursor": "pointer",
+        "height": {
+            "band": 0.6
+        },
+        "opacity": {
+            "condition": {
+                "param": "highlight",
+                "value": 1
+            },
+            "value": 0.7
+        }
+    },
+    "encoding": {
+        "y": {
+            "field": "Country",
+            "type": "ordinal",
+            "axis": {
+                "labelFontSize": 10,
+                "title": "Country"
+            }
+        },
+        "x": {
+            "field": "Liters per day",
+            "type": "quantitative",
+            "axis": {
+                "grid": false,
+                "title": "Average Liters per Day",
+                "labelFontSize": 10
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Country",
+                "type": "nominal",
+                "title": "Country"
+            },
+            {
+                "field": "Liters per day",
+                "type": "quantitative",
+                "title": "Liters per Day"
+            }
+        ]
+    }
+}

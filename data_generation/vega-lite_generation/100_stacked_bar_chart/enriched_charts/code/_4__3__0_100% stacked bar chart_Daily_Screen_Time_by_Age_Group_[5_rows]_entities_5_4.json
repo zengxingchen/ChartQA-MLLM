@@ -1,0 +1,213 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "100% Stacked Bar Chart of Weekly Food Consumption",
+    "data": {
+        "values": [
+            {
+                "Day": "Monday",
+                "Fruits": 15,
+                "Vegetables": 25,
+                "Meat": 40,
+                "Dairy": 20
+            },
+            {
+                "Day": "Tuesday",
+                "Fruits": 20,
+                "Vegetables": 30,
+                "Meat": 30,
+                "Dairy": 20
+            },
+            {
+                "Day": "Wednesday",
+                "Fruits": 25,
+                "Vegetables": 20,
+                "Meat": 35,
+                "Dairy": 20
+            },
+            {
+                "Day": "Thursday",
+                "Fruits": 15,
+                "Vegetables": 25,
+                "Meat": 30,
+                "Dairy": 30
+            },
+            {
+                "Day": "Friday",
+                "Fruits": 20,
+                "Vegetables": 25,
+                "Meat": 35,
+                "Dairy": 20
+            },
+            {
+                "Day": "Saturday",
+                "Fruits": 25,
+                "Vegetables": 20,
+                "Meat": 30,
+                "Dairy": 25
+            },
+            {
+                "Day": "Sunday",
+                "Fruits": 20,
+                "Vegetables": 25,
+                "Meat": 25,
+                "Dairy": 30
+            },
+            {
+                "Day": "Monday",
+                "Fruits": 15,
+                "Vegetables": 30,
+                "Meat": 35,
+                "Dairy": 20
+            },
+            {
+                "Day": "Tuesday",
+                "Fruits": 25,
+                "Vegetables": 25,
+                "Meat": 30,
+                "Dairy": 20
+            },
+            {
+                "Day": "Wednesday",
+                "Fruits": 20,
+                "Vegetables": 30,
+                "Meat": 25,
+                "Dairy": 25
+            },
+            {
+                "Day": "Thursday",
+                "Fruits": 25,
+                "Vegetables": 20,
+                "Meat": 30,
+                "Dairy": 25
+            },
+            {
+                "Day": "Friday",
+                "Fruits": 30,
+                "Vegetables": 25,
+                "Meat": 25,
+                "Dairy": 20
+            },
+            {
+                "Day": "Saturday",
+                "Fruits": 20,
+                "Vegetables": 30,
+                "Meat": 25,
+                "Dairy": 25
+            },
+            {
+                "Day": "Sunday",
+                "Fruits": 25,
+                "Vegetables": 25,
+                "Meat": 30,
+                "Dairy": 20
+            }
+        ]
+    },
+    "padding": {
+        "left": 5,
+        "top": 40,
+        "right": 5,
+        "bottom": 20
+    },
+    "width": 700,
+    "height": 400,
+    "transform": [
+        {
+            "fold": [
+                "Fruits",
+                "Vegetables",
+                "Meat",
+                "Dairy"
+            ],
+            "as": [
+                "Food Type",
+                "Percentage"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "bar",
+        "tooltip": true
+    },
+    "encoding": {
+        "y": {
+            "field": "Percentage",
+            "type": "quantitative",
+            "stack": "normalize",
+            "axis": {
+                "format": ".0%",
+                "title": "Percentage"
+            }
+        },
+        "x": {
+            "field": "Day",
+            "type": "nominal",
+            "axis": {
+                "title": "Day of the Week"
+            },
+            "sort": null
+        },
+        "color": {
+            "field": "Food Type",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Fruits",
+                    "Vegetables",
+                    "Meat",
+                    "Dairy"
+                ],
+                "range": [
+                    "#4daf4a",
+                    "#377eb8",
+                    "#ff7f00",
+                    "#984ea3"
+                ]
+            },
+            "legend": {
+                "title": "Food Type"
+            }
+        },
+        "width": {
+            "band": 0.7
+        },
+        "tooltip": [
+            {
+                "field": "Day",
+                "type": "nominal",
+                "title": "Day"
+            },
+            {
+                "field": "Food Type",
+                "type": "nominal",
+                "title": "Food Type"
+            },
+            {
+                "field": "Percentage",
+                "type": "quantitative",
+                "title": "Percentage",
+                "format": ".0%"
+            }
+        ]
+    },
+    "title": {
+        "text": "Weekly Food Consumption",
+        "anchor": "start",
+        "fontSize": 16,
+        "dy": -20
+    },
+    "config": {
+        "axisY": {
+            "titleFontSize": 12,
+            "labelFontSize": 10
+        },
+        "axisX": {
+            "titleFontSize": 12,
+            "labelFontSize": 10
+        },
+        "legend": {
+            "titleFontSize": 12,
+            "labelFontSize": 10
+        }
+    }
+}

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+var option;
+
+option = {
+    title: {
+        text: 'Future Technologies & Society',
+        left: 'center',
+        top: '5%',
+        textStyle: {
+            color: '#333'
+        }
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    toolbox: {
+        show: true,
+        feature: {
+            saveAsImage: { show: true }
+        }
+    },
+    xAxis: {
+        type: 'category',
+        data: ['Artificial Intelligence', 'Virtual Reality', 'Quantum Computing', 'Blockchain', 'Biotechnology', '5G Networks', 'Renewable Energy', 'Smart Cities', 'Space Exploration', 'Autonomous Vehicles'],
+        axisLabel: {
+            rotate: 45,
+            interval: 0,
+            textStyle: {
+                fontSize: 12,
+                color: '#333'
+            }
+        }
+    },
+    yAxis: {
+        type: 'value',
+        min: 0,
+        max: 100,
+        axisLabel: {
+            textStyle: {
+                fontSize: 12,
+                color: '#333'
+            }
+        }
+    },
+    series: [
+        {
+            name: 'Value',
+            type: 'bar',
+            data: [
+                { value: 85, itemStyle: { color: '#1f77b4' } },
+                { value: 72, itemStyle: { color: '#ff7f0e' } },
+                { value: 90, itemStyle: { color: '#2ca02c' } },
+                { value: 78, itemStyle: { color: '#d62728' } },
+                { value: 88, itemStyle: { color: '#9467bd' } },
+                { value: 95, itemStyle: { color: '#8c564b' } },
+                { value: 80, itemStyle: { color: '#e377c2' } },
+                { value: 70, itemStyle: { color: '#7f7f7f' } },
+                { value: 92, itemStyle: { color: '#bcbd22' } },
+                { value: 75, itemStyle: { color: '#17becf' } }
+            ],
+            label: {
+                show: true,
+                position: 'top',
+                textStyle: {
+                    fontSize: 12,
+                    color: '#333'
+                }
+            },
+            barWidth: '60%'
+        }
+    ],
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

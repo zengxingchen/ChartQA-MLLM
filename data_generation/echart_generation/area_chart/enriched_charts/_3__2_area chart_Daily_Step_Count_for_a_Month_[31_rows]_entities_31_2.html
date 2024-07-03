@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 400});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Electric Vehicle (EV) Sales Over Time',
+        left: 'center',
+        top: '10',
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['EV Sales'],
+        top: '30'
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ['2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023']
+    },
+    yAxis: {
+        type: 'value',
+        axisLabel: {
+            formatter: '{value} units'
+        }
+    },
+    series: [
+        {
+            name: 'EV Sales',
+            type: 'line',
+            stack: 'Total amount',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [5000, 7000, 10000, 15000, 22000, 35000, 58000, 78000, 118000, 165000, 230000, 300000, 390000, 480000],
+            color: '#4C9BFB',
+            label: {
+                show: true,
+                position: 'top',
+                formatter: '{c} units'
+            }
+        }
+    ],
+    color: ['#4C9BFB'],
+    textStyle: {
+        fontFamily: 'Arial, Verdana, sans-serif'
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

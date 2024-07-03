@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 800,
+    height: 600
+});
+var option = {
+    title: {
+        text: 'Monthly Art Activities',
+        left: 'center',
+        top: '10'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Art Sales', 'Art Exhibitions', 'Art Workshops', 'Publications'],
+        top: '50'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        data: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+        axisLabel: {
+            rotate: 45
+        }
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Count'
+    },
+    series: [
+        {
+            name: 'Art Sales',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 30,
+            itemStyle: {
+                color: '#5470C6'
+            },
+            label: {
+                show: true,
+                position: 'insideTop'
+            },
+            data: [300, 250, 320, 280, 350, 400, 420, 410, 390, 430, 440, 450]
+        },
+        {
+            name: 'Art Exhibitions',
+            type: 'bar',
+            stack: 'total',
+            itemStyle: {
+                color: '#91CC75'
+            },
+            label: {
+                show: true,
+                position: 'insideTop'
+            },
+            data: [120, 180, 150, 200, 170, 210, 190, 220, 200, 230, 210, 250]
+        },
+        {
+            name: 'Art Workshops',
+            type: 'bar',
+            stack: 'total',
+            itemStyle: {
+                color: '#FAC858'
+            },
+            label: {
+                show: true,
+                position: 'insideTop'
+            },
+            data: [45, 60, 70, 50, 80, 75, 90, 85, 65, 95, 85, 100]
+        },
+        {
+            name: 'Publications',
+            type: 'bar',
+            stack: 'total',
+            itemStyle: {
+                color: '#EE6666'
+            },
+            label: {
+                show: true,
+                position: 'insideTop'
+            },
+            data: [10, 20, 15, 25, 30, 35, 40, 50, 45, 55, 60, 70]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

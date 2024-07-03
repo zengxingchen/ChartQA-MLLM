@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+var option;
+
+option = {
+    title: {
+        text: 'Distribution of Educational Topics',
+        left: 'center',
+        textStyle: {
+            fontSize: 18,
+            fontWeight: 'bold'
+        }
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: '{b}: {c}'
+    },
+    series: [{
+        type: 'treemap',
+        data: [
+            {
+                name: 'Literature',
+                value: 30,
+                itemStyle: {
+                    color: '#FF6347'
+                },
+                children: [
+                    {
+                        name: 'Fiction',
+                        value: 10,
+                        itemStyle: {
+                            color: '#FFD700'
+                        }
+                    },
+                    {
+                        name: 'Non-Fiction',
+                        value: 20,
+                        itemStyle: {
+                            color: '#ADFF2F'
+                        }
+                    },
+                    {
+                        name: 'Fantasy',
+                        value: 5,
+                        itemStyle: {
+                            color: '#87CEFA'
+                        }
+                    },
+                    {
+                        name: 'Mystery',
+                        value: 5,
+                        itemStyle: {
+                            color: '#FF69B4'
+                        }
+                    },
+                    {
+                        name: 'Biography',
+                        value: 10,
+                        itemStyle: {
+                            color: '#8A2BE2'
+                        }
+                    }
+                ]
+            },
+            {
+                name: 'Education',
+                value: 70,
+                itemStyle: {
+                    color: '#20B2AA'
+                },
+                children: [
+                    {
+                        name: 'Primary',
+                        value: 20,
+                        itemStyle: {
+                            color: '#7B68EE'
+                        }
+                    },
+                    {
+                        name: 'Secondary',
+                        value: 30,
+                        itemStyle: {
+                            color: '#FF4500'
+                        }
+                    },
+                    {
+                        name: 'Tertiary',
+                        value: 20,
+                        itemStyle: {
+                            color: '#DAA520'
+                        }
+                    }
+                ]
+            },
+            {
+                name: 'Science',
+                value: 50,
+                itemStyle: {
+                    color: '#4682B4'
+                },
+                children: [
+                    {
+                        name: 'Physics',
+                        value: 15,
+                        itemStyle: {
+                            color: '#CD5C5C'
+                        }
+                    },
+                    {
+                        name: 'Chemistry',
+                        value: 15,
+                        itemStyle: {
+                            color: '#4B0082'
+                        }
+                    },
+                    {
+                        name: 'Biology',
+                        value: 20,
+                        itemStyle: {
+                            color: '#32CD32'
+                        }
+                    }
+                ]
+            },
+            {
+                name: 'Arts',
+                value: 40,
+                itemStyle: {
+                    color: '#FA8072'
+                },
+                children: [
+                    {
+                        name: 'Painting',
+                        value: 10,
+                        itemStyle: {
+                            color: '#FF7F50'
+                        }
+                    },
+                    {
+                        name: 'Sculpture',
+                        value: 10,
+                        itemStyle: {
+                            color: '#FFDAB9'
+                        }
+                    },
+                    {
+                        name: 'Music',
+                        value: 20,
+                        itemStyle: {
+                            color: '#FFDEAD'
+                        }
+                    }
+                ]
+            }
+        ]
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,252 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "A 100% stacked bar chart showing the distribution of different genres of books over years.",
+    "data": {
+        "values": [
+            {
+                "Year": 2000,
+                "Fiction": 30,
+                "Non-Fiction": 25,
+                "Comics": 10,
+                "Science": 15,
+                "Biographies": 10,
+                "Poetry": 10
+            },
+            {
+                "Year": 2001,
+                "Fiction": 32,
+                "Non-Fiction": 24,
+                "Comics": 11,
+                "Science": 14,
+                "Biographies": 10,
+                "Poetry": 9
+            },
+            {
+                "Year": 2002,
+                "Fiction": 34,
+                "Non-Fiction": 23,
+                "Comics": 12,
+                "Science": 13,
+                "Biographies": 11,
+                "Poetry": 7
+            },
+            {
+                "Year": 2003,
+                "Fiction": 35,
+                "Non-Fiction": 22,
+                "Comics": 13,
+                "Science": 12,
+                "Biographies": 12,
+                "Poetry": 6
+            },
+            {
+                "Year": 2004,
+                "Fiction": 36,
+                "Non-Fiction": 21,
+                "Comics": 14,
+                "Science": 11,
+                "Biographies": 12,
+                "Poetry": 6
+            },
+            {
+                "Year": 2005,
+                "Fiction": 37,
+                "Non-Fiction": 20,
+                "Comics": 15,
+                "Science": 10,
+                "Biographies": 11,
+                "Poetry": 7
+            },
+            {
+                "Year": 2006,
+                "Fiction": 38,
+                "Non-Fiction": 19,
+                "Comics": 16,
+                "Science": 9,
+                "Biographies": 10,
+                "Poetry": 8
+            },
+            {
+                "Year": 2007,
+                "Fiction": 39,
+                "Non-Fiction": 18,
+                "Comics": 17,
+                "Science": 8,
+                "Biographies": 9,
+                "Poetry": 9
+            },
+            {
+                "Year": 2008,
+                "Fiction": 40,
+                "Non-Fiction": 17,
+                "Comics": 18,
+                "Science": 7,
+                "Biographies": 8,
+                "Poetry": 10
+            },
+            {
+                "Year": 2009,
+                "Fiction": 41,
+                "Non-Fiction": 16,
+                "Comics": 19,
+                "Science": 6,
+                "Biographies": 7,
+                "Poetry": 11
+            },
+            {
+                "Year": 2010,
+                "Fiction": 42,
+                "Non-Fiction": 15,
+                "Comics": 20,
+                "Science": 5,
+                "Biographies": 6,
+                "Poetry": 12
+            },
+            {
+                "Year": 2011,
+                "Fiction": 43,
+                "Non-Fiction": 14,
+                "Comics": 21,
+                "Science": 4,
+                "Biographies": 5,
+                "Poetry": 13
+            },
+            {
+                "Year": 2012,
+                "Fiction": 44,
+                "Non-Fiction": 13,
+                "Comics": 22,
+                "Science": 3,
+                "Biographies": 4,
+                "Poetry": 14
+            },
+            {
+                "Year": 2013,
+                "Fiction": 45,
+                "Non-Fiction": 12,
+                "Comics": 23,
+                "Science": 2,
+                "Biographies": 3,
+                "Poetry": 15
+            },
+            {
+                "Year": 2014,
+                "Fiction": 46,
+                "Non-Fiction": 11,
+                "Comics": 24,
+                "Science": 1,
+                "Biographies": 2,
+                "Poetry": 16
+            },
+            {
+                "Year": 2015,
+                "Fiction": 47,
+                "Non-Fiction": 10,
+                "Comics": 25,
+                "Science": 0,
+                "Biographies": 1,
+                "Poetry": 17
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Fiction",
+                "Non-Fiction",
+                "Comics",
+                "Science",
+                "Biographies",
+                "Poetry"
+            ],
+            "as": [
+                "Genre",
+                "Percentage"
+            ]
+        },
+        {
+            "calculate": "datum.Percentage / 100",
+            "as": "NormalizedPercentage"
+        }
+    ],
+    "title": {
+        "text": "Distribution of Book Genres Over Years",
+        "color": "black",
+        "fontSize": 18,
+        "anchor": "middle",
+        "dy": -10
+    },
+    "width": 600,
+    "height": 800,
+    "mark": {
+        "type": "bar",
+        "tooltip": true,
+        "width": 30
+    },
+    "encoding": {
+        "x": {
+            "field": "Year",
+            "type": "ordinal",
+            "axis": {
+                "title": "Year"
+            }
+        },
+        "y": {
+            "field": "NormalizedPercentage",
+            "type": "quantitative",
+            "axis": {
+                "title": "Percentage"
+            },
+            "stack": "normalize"
+        },
+        "color": {
+            "field": "Genre",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Fiction",
+                    "Non-Fiction",
+                    "Comics",
+                    "Science",
+                    "Biographies",
+                    "Poetry"
+                ],
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e",
+                    "#2ca02c",
+                    "#d62728",
+                    "#9467bd",
+                    "#8c564b"
+                ]
+            },
+            "legend": {
+                "title": "Genre",
+                "orient": "bottom-right",
+                "titleFontSize": 12,
+                "labelFontSize": 10
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Year",
+                "type": "ordinal"
+            },
+            {
+                "field": "Genre",
+                "type": "nominal"
+            },
+            {
+                "field": "Percentage",
+                "type": "quantitative",
+                "title": "Percentage"
+            }
+        ]
+    },
+    "config": {
+        "bar": {
+            "binSpacing": 5,
+            "continuousBandSize": 15
+        }
+    }
+}

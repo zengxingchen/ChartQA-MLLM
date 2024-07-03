@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+var app = {};
+
+var option = {
+    title: {
+        text: 'Environmental Pollution Over Time',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'item'
+    },
+    legend: {
+        data: ['Pollution Level'],
+        left: 'right'
+    },
+    xAxis: {
+        type: 'value',
+        name: 'Year',
+        nameLocation: 'middle',
+        nameGap: 30
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Pollution Index',
+        nameLocation: 'middle',
+        nameGap: 50
+    },
+    series: [
+        {
+            name: 'Pollution Level',
+            type: 'scatter',
+            itemStyle: {
+                color: '#FF5733'
+            },
+            data: [
+                [10, 90],
+                [20, 85],
+                [30, 75],
+                [40, 65],
+                [50, 60],
+                [60, 55],
+                [70, 50],
+                [80, 45],
+                [90, 40],
+                [100, 35],
+                [110, 30],
+                [120, 28],
+                [130, 25],
+                [140, 23],
+                [150, 22],
+                [160, 20],
+                [170, 18],
+                [180, 16],
+                [190, 15],
+                [200, 14],
+                [210, 13],
+                [220, 12],
+                [230, 11],
+                [240, 10],
+                [250, 9],
+                [260, 8],
+                [270, 7],
+                [280, 6],
+                [290, 5],
+                [300, 4]
+            ]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

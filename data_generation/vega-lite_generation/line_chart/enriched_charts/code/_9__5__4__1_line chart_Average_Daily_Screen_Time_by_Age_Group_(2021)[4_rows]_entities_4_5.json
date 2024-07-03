@@ -1,0 +1,166 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Line chart showing average monthly mental well-being score by different age groups.",
+    "title": {
+        "text": "Average Monthly Mental Well-being Score by Age Group",
+        "fontSize": 18,
+        "anchor": "start",
+        "color": "#000000"
+    },
+    "width": 900,
+    "height": 600,
+    "data": {
+        "values": [
+            {
+                "Age Group": "Teens",
+                "January": 5.5,
+                "February": 5.6,
+                "March": 5.8,
+                "April": 6.0,
+                "May": 6.2,
+                "June": 6.4,
+                "July": 6.5,
+                "August": 6.3,
+                "September": 6.2,
+                "October": 6.0,
+                "November": 5.8,
+                "December": 5.7
+            },
+            {
+                "Age Group": "Young Adults",
+                "January": 6.0,
+                "February": 6.1,
+                "March": 6.3,
+                "April": 6.5,
+                "May": 6.7,
+                "June": 6.8,
+                "July": 7.0,
+                "August": 6.9,
+                "September": 6.7,
+                "October": 6.5,
+                "November": 6.3,
+                "December": 6.1
+            },
+            {
+                "Age Group": "Adults",
+                "January": 4.5,
+                "February": 4.6,
+                "March": 4.8,
+                "April": 5.0,
+                "May": 5.1,
+                "June": 5.2,
+                "July": 5.4,
+                "August": 5.3,
+                "September": 5.2,
+                "October": 5.1,
+                "November": 4.9,
+                "December": 4.8
+            },
+            {
+                "Age Group": "Seniors",
+                "January": 2.5,
+                "February": 2.6,
+                "March": 2.7,
+                "April": 2.8,
+                "May": 2.9,
+                "June": 3.0,
+                "July": 3.2,
+                "August": 3.1,
+                "September": 3.0,
+                "October": 2.9,
+                "November": 2.8,
+                "December": 2.7
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "January",
+                "February",
+                "March",
+                "April",
+                "May",
+                "June",
+                "July",
+                "August",
+                "September",
+                "October",
+                "November",
+                "December"
+            ],
+            "as": [
+                "Month",
+                "Well-being Score"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "line",
+        "point": true
+    },
+    "encoding": {
+        "x": {
+            "field": "Month",
+            "type": "ordinal",
+            "title": "Month",
+            "axis": {
+                "titleFontSize": 14,
+                "labelAngle": -45
+            }
+        },
+        "y": {
+            "field": "Well-being Score",
+            "type": "quantitative",
+            "title": "Well-being Score",
+            "axis": {
+                "titleFontSize": 14
+            }
+        },
+        "color": {
+            "field": "Age Group",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Teens",
+                    "Young Adults",
+                    "Adults",
+                    "Seniors"
+                ],
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e",
+                    "#2ca02c",
+                    "#d62728"
+                ]
+            },
+            "legend": {
+                "title": "Age Group"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Age Group",
+                "type": "nominal"
+            },
+            {
+                "field": "Month",
+                "type": "ordinal"
+            },
+            {
+                "field": "Well-being Score",
+                "type": "quantitative"
+            }
+        ]
+    },
+    "config": {
+        "axisY": {
+            "minExtent": 30
+        },
+        "text": {
+            "align": "left",
+            "dx": 5,
+            "dy": -5
+        }
+    }
+}

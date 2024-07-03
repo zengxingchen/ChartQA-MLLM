@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Smartphone Screen Sizes in 2024',
+        left: 'center',
+        top: '10%'
+    },
+    xAxis: {
+        type: 'category',
+        data: ['4.0', '4.2', '4.5', '4.7', '5.0', '5.2', '5.5', '5.7', '5.9', '6.0', '6.2', '6.5', '6.7', '6.8', '7.0', '7.2', '7.5'],
+        name: 'Screen Size (inches)'
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Frequency'
+    },
+    series: [{
+        data: [5, 8, 12, 15, 20, 25, 30, 28, 22, 18, 24, 27, 21, 19, 16, 14, 10],
+        type: 'bar',
+        itemStyle: {
+            color: '#3498db'
+        },
+        barWidth: '40%',
+        label: {
+            show: true,
+            position: 'top'
+        }
+    }],
+    grid: {
+        left: '10%',
+        right: '10%',
+        bottom: '20%',
+        top: '20%'
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

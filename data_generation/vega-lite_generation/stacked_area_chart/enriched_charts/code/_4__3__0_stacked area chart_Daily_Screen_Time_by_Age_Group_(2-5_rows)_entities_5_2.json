@@ -1,0 +1,128 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Stacked area chart showing average weekly hours of sleep by age group on weekdays and weekends.",
+    "data": {
+        "values": [
+            {
+                "Age Group": "0-2",
+                "Weekdays": 13,
+                "Weekend": 14
+            },
+            {
+                "Age Group": "3-5",
+                "Weekdays": 11,
+                "Weekend": 12
+            },
+            {
+                "Age Group": "6-13",
+                "Weekdays": 10,
+                "Weekend": 11
+            },
+            {
+                "Age Group": "14-17",
+                "Weekdays": 9,
+                "Weekend": 10
+            },
+            {
+                "Age Group": "18-25",
+                "Weekdays": 8,
+                "Weekend": 9
+            },
+            {
+                "Age Group": "26-64",
+                "Weekdays": 7,
+                "Weekend": 8
+            },
+            {
+                "Age Group": "65+",
+                "Weekdays": 7,
+                "Weekend": 8
+            }
+        ]
+    },
+    "width": 500,
+    "height": 300,
+    "title": {
+        "text": "Average Weekly Hours of Sleep by Age Group",
+        "fontSize": 15,
+        "align": "left",
+        "anchor": "start",
+        "color": "black",
+        "frame": "group",
+        "dy": -5
+    },
+    "mark": {
+        "type": "area",
+        "opacity": 0.6
+    },
+    "encoding": {
+        "x": {
+            "field": "Age Group",
+            "type": "ordinal",
+            "title": "Age Group"
+        },
+        "y": {
+            "field": "Hours",
+            "type": "quantitative",
+            "title": "Average Hours of Sleep",
+            "stack": "zero"
+        },
+        "color": {
+            "field": "daytype",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Weekdays",
+                    "Weekend"
+                ],
+                "range": [
+                    "#6baed6",
+                    "#fd8d3c"
+                ]
+            },
+            "legend": {
+                "title": "Day of the Week",
+                "orient": "top-left",
+                "offset": 0,
+                "direction": "horizontal"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Age Group",
+                "type": "nominal"
+            },
+            {
+                "field": "Hours",
+                "type": "quantitative",
+                "title": "Average Hours"
+            },
+            {
+                "field": "daytype",
+                "type": "nominal",
+                "title": "Day of the Week"
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Weekdays",
+                "Weekend"
+            ],
+            "as": [
+                "daytype",
+                "Hours"
+            ]
+        }
+    ],
+    "config": {
+        "view": {
+            "stroke": "transparent"
+        },
+        "axis": {
+            "labelFontSize": 10,
+            "titleFontSize": 12
+        }
+    }
+}

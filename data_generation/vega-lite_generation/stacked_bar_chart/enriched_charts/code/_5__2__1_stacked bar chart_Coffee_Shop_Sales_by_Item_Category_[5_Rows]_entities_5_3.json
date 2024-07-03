@@ -1,0 +1,188 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+        "values": [
+            {
+                "Month": "Jan",
+                "Yoga": 140,
+                "Running": 90,
+                "Cycling": 120,
+                "Swimming": 80,
+                "Gym": 110
+            },
+            {
+                "Month": "Feb",
+                "Yoga": 150,
+                "Running": 100,
+                "Cycling": 130,
+                "Swimming": 90,
+                "Gym": 120
+            },
+            {
+                "Month": "Mar",
+                "Yoga": 160,
+                "Running": 110,
+                "Cycling": 140,
+                "Swimming": 95,
+                "Gym": 125
+            },
+            {
+                "Month": "Apr",
+                "Yoga": 170,
+                "Running": 115,
+                "Cycling": 150,
+                "Swimming": 100,
+                "Gym": 130
+            },
+            {
+                "Month": "May",
+                "Yoga": 180,
+                "Running": 120,
+                "Cycling": 160,
+                "Swimming": 110,
+                "Gym": 135
+            },
+            {
+                "Month": "Jun",
+                "Yoga": 190,
+                "Running": 130,
+                "Cycling": 170,
+                "Swimming": 120,
+                "Gym": 140
+            },
+            {
+                "Month": "Jul",
+                "Yoga": 200,
+                "Running": 140,
+                "Cycling": 180,
+                "Swimming": 130,
+                "Gym": 150
+            },
+            {
+                "Month": "Aug",
+                "Yoga": 210,
+                "Running": 145,
+                "Cycling": 190,
+                "Swimming": 135,
+                "Gym": 155
+            },
+            {
+                "Month": "Sep",
+                "Yoga": 220,
+                "Running": 150,
+                "Cycling": 200,
+                "Swimming": 140,
+                "Gym": 160
+            },
+            {
+                "Month": "Oct",
+                "Yoga": 230,
+                "Running": 160,
+                "Cycling": 210,
+                "Swimming": 145,
+                "Gym": 170
+            },
+            {
+                "Month": "Nov",
+                "Yoga": 240,
+                "Running": 170,
+                "Cycling": 220,
+                "Swimming": 150,
+                "Gym": 180
+            },
+            {
+                "Month": "Dec",
+                "Yoga": 250,
+                "Running": 180,
+                "Cycling": 230,
+                "Swimming": 160,
+                "Gym": 190
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Yoga",
+                "Running",
+                "Cycling",
+                "Swimming",
+                "Gym"
+            ],
+            "as": [
+                "Activity",
+                "Participation"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "bar",
+        "height": {
+            "band": 0.6
+        }
+    },
+    "width": 800,
+    "height": 400,
+    "title": {
+        "text": "Monthly Sports Activity Participation",
+        "fontSize": 18,
+        "anchor": "start",
+        "color": "black",
+        "frame": "group"
+    },
+    "encoding": {
+        "x": {
+            "field": "Participation",
+            "type": "quantitative",
+            "title": "Participation (in thousands)"
+        },
+        "y": {
+            "field": "Month",
+            "type": "ordinal",
+            "title": "Month"
+        },
+        "color": {
+            "field": "Activity",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Yoga",
+                    "Running",
+                    "Cycling",
+                    "Swimming",
+                    "Gym"
+                ],
+                "range": [
+                    "#FF6347",
+                    "#4682B4",
+                    "#32CD32",
+                    "#FFD700",
+                    "#6A5ACD"
+                ]
+            },
+            "title": "Activity",
+            "legend": {
+                "orient": "top-right",
+                "titleFontSize": 14,
+                "labelFontSize": 12
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Month",
+                "type": "nominal",
+                "title": "Month"
+            },
+            {
+                "field": "Activity",
+                "type": "nominal",
+                "title": "Activity"
+            },
+            {
+                "field": "Participation",
+                "type": "quantitative",
+                "title": "Participation (in thousands)"
+            }
+        ]
+    }
+}

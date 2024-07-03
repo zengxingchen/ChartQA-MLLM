@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 800,
+    height: 600
+});
+var app = {};
+var option;
+
+option = {
+    title: {
+        text: 'Art & Design Popularity',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['Art', 'Design'],
+        top: 'bottom'
+    },
+    xAxis: {
+        type: 'category',
+        name: 'Category',
+        data: ['Art', 'Design']
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Value'
+    },
+    series: [
+        {
+            name: 'Art',
+            type: 'scatter',
+            itemStyle: {
+                color: '#FF6347'
+            },
+            data: [
+                23, 35, 47, 56, 67, 78, 89, 99, 45, 63, 74, 86, 92
+            ]
+        },
+        {
+            name: 'Design',
+            type: 'scatter',
+            itemStyle: {
+                color: '#4682B4'
+            },
+            data: [
+                15, 25, 38, 49, 59, 69, 79, 88, 95, 32, 47, 57, 66, 78, 87, 93, 100, 46, 64, 75, 83, 91, 50, 58, 72, 81, 90, 97, 54, 62, 73, 80, 89, 96, 56, 69, 77, 85, 93, 58, 71, 78, 84, 92, 99
+            ]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

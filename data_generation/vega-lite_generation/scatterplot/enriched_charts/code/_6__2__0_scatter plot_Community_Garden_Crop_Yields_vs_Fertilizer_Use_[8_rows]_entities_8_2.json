@@ -1,0 +1,168 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "A scatter plot showing the relationship between time spent on weekly physical activities and various indicators of mental well-being.",
+    "title": {
+        "text": "The Impact of Physical Activities on Mental Well-being",
+        "subtitle": [
+            "A weekly analysis of time spent on physical activities versus stress levels, happiness indices, and sleep quality."
+        ],
+        "subtitleFontSize": 10,
+        "anchor": "start",
+        "color": "black",
+        "frame": "group"
+    },
+    "width": 600,
+    "height": 450,
+    "data": {
+        "values": [
+            {
+                "Week": "Week 1",
+                "Stress Level": 30,
+                "Happiness Index": 70,
+                "Sleep Quality": 75,
+                "Physical Activity Hours": 5
+            },
+            {
+                "Week": "Week 2",
+                "Stress Level": 28,
+                "Happiness Index": 72,
+                "Sleep Quality": 78,
+                "Physical Activity Hours": 5.5
+            },
+            {
+                "Week": "Week 3",
+                "Stress Level": 26,
+                "Happiness Index": 74,
+                "Sleep Quality": 80,
+                "Physical Activity Hours": 6
+            },
+            {
+                "Week": "Week 4",
+                "Stress Level": 25,
+                "Happiness Index": 76,
+                "Sleep Quality": 82,
+                "Physical Activity Hours": 6.5
+            },
+            {
+                "Week": "Week 5",
+                "Stress Level": 24,
+                "Happiness Index": 77,
+                "Sleep Quality": 83,
+                "Physical Activity Hours": 7
+            },
+            {
+                "Week": "Week 6",
+                "Stress Level": 23,
+                "Happiness Index": 78,
+                "Sleep Quality": 85,
+                "Physical Activity Hours": 7.5
+            },
+            {
+                "Week": "Week 7",
+                "Stress Level": 22,
+                "Happiness Index": 79,
+                "Sleep Quality": 86,
+                "Physical Activity Hours": 8
+            },
+            {
+                "Week": "Week 8",
+                "Stress Level": 20,
+                "Happiness Index": 81,
+                "Sleep Quality": 88,
+                "Physical Activity Hours": 8.5
+            },
+            {
+                "Week": "Week 9",
+                "Stress Level": 19,
+                "Happiness Index": 82,
+                "Sleep Quality": 89,
+                "Physical Activity Hours": 9
+            },
+            {
+                "Week": "Week 10",
+                "Stress Level": 18,
+                "Happiness Index": 83,
+                "Sleep Quality": 90,
+                "Physical Activity Hours": 9.5
+            }
+        ]
+    },
+    "repeat": {
+        "layer": [
+            "Stress Level",
+            "Happiness Index",
+            "Sleep Quality"
+        ]
+    },
+    "spec": {
+        "mark": "point",
+        "encoding": {
+            "x": {
+                "field": "Physical Activity Hours",
+                "type": "quantitative",
+                "title": "Hours of Physical Activity"
+            },
+            "y": {
+                "field": {
+                    "repeat": "layer"
+                },
+                "type": "quantitative",
+                "title": "Well-being Indicator Value"
+            },
+            "color": {
+                "field": {
+                    "repeat": "layer"
+                },
+                "type": "nominal",
+                "legend": {
+                    "title": "Mental Well-being Indicators",
+                    "orient": "right"
+                },
+                "scale": {
+                    "domain": [
+                        "Stress Level",
+                        "Happiness Index",
+                        "Sleep Quality"
+                    ],
+                    "range": [
+                        "#b82e2e",
+                        "#52b865",
+                        "#3165ff"
+                    ]
+                }
+            },
+            "size": {
+                "value": 200
+            },
+            "opacity": {
+                "value": 0.8
+            },
+            "tooltip": [
+                {
+                    "field": "Week",
+                    "type": "ordinal",
+                    "title": "Week"
+                },
+                {
+                    "field": "Physical Activity Hours",
+                    "type": "quantitative",
+                    "title": "Physical Activity Hours"
+                },
+                {
+                    "field": {
+                        "repeat": "layer"
+                    },
+                    "type": "quantitative",
+                    "title": {
+                        "repeat": "layer"
+                    }
+                }
+            ]
+        }
+    },
+    "resolve": {
+        "scale": {
+            "y": "independent"
+        }
+    }
+}

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+  width: 800,
+  height: 600
+});
+var app = {};
+
+var option;
+
+option = {
+  title: {
+    text: 'Innovations Shaping the Future',
+    left: 'center',
+    top: 20,
+  },
+  tooltip: {
+    trigger: 'item'
+  },
+  legend: {
+    orient: 'vertical',
+    left: 20,
+    top: 'middle'
+  },
+  series: [
+    {
+      name: 'Technology Share',
+      type: 'pie',
+      radius: '50%',
+      data: [
+        { value: 5, name: 'Autonomous Vehicles' },
+        { value: 10, name: 'Quantum Computing' },
+        { value: 20, name: 'Renewable Energy' },
+        { value: 25, name: 'AI and Machine Learning' },
+        { value: 15, name: 'Biotechnology' },
+        { value: 8, name: '5G Technology' },
+        { value: 7, name: 'Internet of Things' },
+        { value: 3, name: 'Augmented Reality' },
+        { value: 4, name: 'Blockchain' },
+        { value: 3, name: 'Robotics' }
+      ],
+      emphasis: {
+        itemStyle: {
+          shadowBlur: 10,
+          shadowOffsetX: 0,
+          shadowColor: 'rgba(0, 0, 0, 0.5)'
+        }
+      }
+    }
+  ],
+  color: [
+    '#ff6f69', '#ffcc5c', '#88d8b0', '#96ceb4', 
+    '#ffeead', '#ff6f69', '#d1f2a5', '#e0e0e0', 
+    '#ffd1dc', '#f7b2ad'
+  ]
+};
+
+if (option && typeof option === 'object') {
+  myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

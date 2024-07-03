@@ -1,0 +1,133 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "A 100% stacked bar chart showing the sales distribution of a selection of smart devices over different quarters.",
+    "data": {
+        "values": [
+            {
+                "Quarter": "Q1 2019",
+                "Smartphones": 55,
+                "Smart TVs": 20,
+                "Smart Watches": 10
+            },
+            {
+                "Quarter": "Q2 2019",
+                "Smartphones": 53,
+                "Smart TVs": 21,
+                "Smart Watches": 12
+            },
+            {
+                "Quarter": "Q3 2019",
+                "Smartphones": 51,
+                "Smart TVs": 22,
+                "Smart Watches": 13
+            },
+            {
+                "Quarter": "Q4 2019",
+                "Smartphones": 50,
+                "Smart TVs": 23,
+                "Smart Watches": 14
+            },
+            {
+                "Quarter": "Q1 2020",
+                "Smartphones": 52,
+                "Smart TVs": 22,
+                "Smart Watches": 12
+            },
+            {
+                "Quarter": "Q2 2020",
+                "Smartphones": 53,
+                "Smart TVs": 23,
+                "Smart Watches": 11
+            },
+            {
+                "Quarter": "Q3 2020",
+                "Smartphones": 55,
+                "Smart TVs": 22,
+                "Smart Watches": 10
+            },
+            {
+                "Quarter": "Q4 2020",
+                "Smartphones": 57,
+                "Smart TVs": 20,
+                "Smart Watches": 9
+            },
+            {
+                "Quarter": "Q1 2021",
+                "Smartphones": 55,
+                "Smart TVs": 21,
+                "Smart Watches": 15
+            },
+            {
+                "Quarter": "Q2 2021",
+                "Smartphones": 53,
+                "Smart TVs": 22,
+                "Smart Watches": 13
+            },
+            {
+                "Quarter": "Q3 2021",
+                "Smartphones": 51,
+                "Smart TVs": 23,
+                "Smart Watches": 12
+            },
+            {
+                "Quarter": "Q4 2021",
+                "Smartphones": 49,
+                "Smart TVs": 24,
+                "Smart Watches": 14
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Smartphones",
+                "Smart TVs",
+                "Smart Watches"
+            ],
+            "as": [
+                "Device Type",
+                "Sales"
+            ]
+        }
+    ],
+    "mark": "bar",
+    "width": 500,
+    "height": 300,
+    "encoding": {
+        "y": {
+            "field": "Quarter",
+            "type": "nominal",
+            "axis": {
+                "title": "Quarter"
+            }
+        },
+        "x": {
+            "aggregate": "sum",
+            "field": "Sales",
+            "type": "quantitative",
+            "axis": {
+                "title": "Percentage"
+            },
+            "stack": "normalize"
+        },
+        "color": {
+            "field": "Device Type",
+            "type": "nominal",
+            "scale": {
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e",
+                    "#2ca02c"
+                ]
+            },
+            "legend": {
+                "title": "Device Type"
+            }
+        }
+    },
+    "config": {
+        "bar": {
+            "cornerRadiusEnd": 2
+        }
+    }
+}

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+var option;
+
+option = {
+    title: {
+        text: 'Weight Tracking Over Time',
+        left: 'center',
+        top: '20'
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    xAxis: {
+        type: 'category',
+        data: [
+            '2024-01-01', '2024-02-01', '2024-03-01', '2024-04-01', '2024-05-01', '2024-06-01',
+            '2024-07-01', '2024-08-01', '2024-09-01', '2024-10-01', '2024-11-01', '2024-12-01',
+            '2025-01-01', '2025-02-01', '2025-03-01', '2025-04-01', '2025-05-01', '2025-06-01',
+            '2025-07-01', '2025-08-01', '2025-09-01', '2025-10-01', '2025-11-01', '2025-12-01',
+            '2026-01-01', '2026-02-01', '2026-03-01', '2026-04-01', '2026-05-01', '2026-06-01'
+        ],
+        axisLabel: {
+            rotate: 45,
+            formatter: function (value) {
+                return value.slice(0, 7);
+            }
+        }
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Weight (kg)'
+    },
+    series: [{
+        name: 'Weight',
+        type: 'line',
+        data: [
+            65, 66, 67, 66.5, 68, 67.5, 68.5, 69, 70, 71, 70.5, 72,
+            73, 74, 74.5, 75, 75.5, 76, 76.5, 77, 78, 78.5, 79, 79.5,
+            80, 80.5, 81, 81.5, 82, 82.5
+        ],
+        itemStyle: {
+            color: '#FF6347'
+        },
+        lineStyle: {
+            color: '#4682B4'
+        },
+        label: {
+            show: true,
+            position: 'top',
+            formatter: '{c} kg'
+        }
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

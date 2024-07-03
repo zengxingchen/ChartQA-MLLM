@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 800,
+    height: 600
+});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Climate Change Impact on Coastal Erosion',
+        left: 'center',
+        top: 20
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: 'Location: {b0}<br/>Erosion Rate: {c0} cm/year<br/>Average Tide Height: {c1} m'
+    },
+    xAxis: {
+        name: 'Erosion Rate (cm/year)',
+        nameLocation: 'middle',
+        nameGap: 30
+    },
+    yAxis: {
+        name: 'Average Tide Height (m)',
+        nameLocation: 'middle',
+        nameGap: 50
+    },
+    series: [{
+        name: 'Coastal Erosion Data',
+        type: 'scatter',
+        symbolSize: 10,
+        itemStyle: {
+            color: '#FF6347'
+        },
+        data: [
+            [12.5, 2.4],
+            [10.8, 2.1],
+            [14.1, 2.7],
+            [9.7, 1.9],
+            [15.3, 2.8],
+            [11.6, 2.3],
+            [13.2, 2.5],
+            [8.9, 1.8],
+            [16.4, 2.9],
+            [7.5, 1.6],
+            [12.9, 2.4],
+            [11.0, 2.2],
+            [13.7, 2.6],
+            [9.3, 1.7],
+            [15.1, 2.7],
+            [10.2, 2.0],
+            [14.6, 2.8],
+            [11.3, 2.3],
+            [13.5, 2.5],
+            [8.7, 1.9],
+            [16.1, 2.9],
+            [7.9, 1.7],
+            [13.0, 2.4],
+            [10.5, 2.2],
+            [14.0, 2.6],
+            [9.1, 1.8]
+        ]
+    }],
+    legend: {
+        data: ['Coastal Erosion Data'],
+        left: 'right',
+        top: 'middle'
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

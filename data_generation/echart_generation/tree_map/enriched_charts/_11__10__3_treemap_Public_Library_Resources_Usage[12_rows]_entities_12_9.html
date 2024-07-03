@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false
+});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Art & Science: A Creative Intersection',
+        left: 'center',
+        textStyle: {
+            color: '#333',
+            fontSize: 20
+        }
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: '{b}: {c}'
+    },
+    series: [{
+        type: 'treemap',
+        width: '90%',
+        height: '85%',
+        label: {
+            show: true,
+            formatter: '{b}\n{c}',
+            textStyle: {
+                fontSize: 14,
+                color: '#fff'
+            }
+        },
+        itemStyle: {
+            borderColor: '#fff'
+        },
+        levels: [
+            {
+                itemStyle: {
+                    borderWidth: 0,
+                    gapWidth: 1
+                }
+            },
+            {
+                color: ['#6BAED6', '#9ECAE1', '#C6DBEF', '#DEEBF7', '#F7FBFF'],
+                itemStyle: {
+                    borderColor: '#555',
+                    borderWidth: 2,
+                    gapWidth: 1
+                }
+            }
+        ],
+        data: [
+            {
+                name: 'Art & Design',
+                value: 510,
+                children: [
+                    { name: 'Painting', value: 150 },
+                    { name: 'Sculpture', value: 80 },
+                    { name: 'Photography', value: 120 },
+                    { name: 'Architecture', value: 90 },
+                    { name: 'Graphic Design', value: 70 }
+                ]
+            },
+            {
+                name: 'Science & Nature',
+                value: 780,
+                children: [
+                    { name: 'Biology', value: 200 },
+                    { name: 'Chemistry', value: 180 },
+                    { name: 'Physics', value: 160 },
+                    { name: 'Astronomy', value: 140 },
+                    { name: 'Geology', value: 100 }
+                ]
+            },
+            {
+                name: 'Health & Psychology',
+                value: 750,
+                children: [
+                    { name: 'Mental Health', value: 110 },
+                    { name: 'Nutrition', value: 130 },
+                    { name: 'Fitness', value: 150 },
+                    { name: 'Wellness', value: 170 },
+                    { name: 'Psychotherapy', value: 190 }
+                ]
+            }
+        ]
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

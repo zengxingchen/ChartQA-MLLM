@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 800, // Change width of the chart
+    height: 600 // Change height of the chart
+});
+var app = {};
+
+var option;
+
+option = {
+    color: ['#003f5c', '#58508d', '#bc5090', '#ff6361', '#ffa600'], // Modified color scheme
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['EdTech', 'FinTech', 'HealthTech', 'CleanTech', 'AgriTech']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: { // Changed the direction of the chart by switching xAxis and yAxis
+        type: 'value'
+    },
+    yAxis: {
+        type: 'category',
+        data: ['2020', '2021', '2022', '2023', '2024']
+    },
+    series: [
+        {
+            name: 'EdTech',
+            type: 'bar',
+            stack: 'total',
+            barWidth : 35, // Change width of bars
+            data: [25, 27, 30, 32, 35]
+        },
+        {
+            name: 'FinTech',
+            type: 'bar',
+            stack: 'total',
+            barWidth : 35,
+            data: [30, 25, 20, 22, 18]
+        },
+        {
+            name: 'HealthTech',
+            type: 'bar',
+            stack: 'total',
+            barWidth : 35,
+            data: [15, 19, 20, 18, 22]
+        },
+        {
+            name: 'CleanTech',
+            type: 'bar',
+            stack: 'total',
+            barWidth : 35,
+            data: [20, 15, 15, 16, 15]
+        },
+        {
+            name: 'AgriTech',
+            type: 'bar',
+            stack: 'total',
+            barWidth : 35,
+            data: [10, 14, 15, 12, 10]
+        }
+    ],
+    title: {
+        text: 'Trends in Technology Sector Investment', // Changed headline
+        left: 'center',
+        top: 'top'
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

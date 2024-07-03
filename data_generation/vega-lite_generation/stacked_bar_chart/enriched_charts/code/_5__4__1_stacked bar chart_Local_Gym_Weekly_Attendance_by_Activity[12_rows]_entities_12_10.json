@@ -1,0 +1,206 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Horizontal stacked bar chart showing monthly average temperature in various cities.",
+    "data": {
+        "values": [
+            {
+                "Month": "January",
+                "New York": 3,
+                "Los Angeles": 15,
+                "Chicago": -1,
+                "Houston": 12,
+                "Phoenix": 14,
+                "Philadelphia": 2
+            },
+            {
+                "Month": "February",
+                "New York": 4,
+                "Los Angeles": 16,
+                "Chicago": 0,
+                "Houston": 15,
+                "Phoenix": 16,
+                "Philadelphia": 4
+            },
+            {
+                "Month": "March",
+                "New York": 9,
+                "Los Angeles": 18,
+                "Chicago": 5,
+                "Houston": 18,
+                "Phoenix": 19,
+                "Philadelphia": 8
+            },
+            {
+                "Month": "April",
+                "New York": 14,
+                "Los Angeles": 20,
+                "Chicago": 10,
+                "Houston": 22,
+                "Phoenix": 23,
+                "Philadelphia": 13
+            },
+            {
+                "Month": "May",
+                "New York": 19,
+                "Los Angeles": 22,
+                "Chicago": 16,
+                "Houston": 26,
+                "Phoenix": 28,
+                "Philadelphia": 18
+            },
+            {
+                "Month": "June",
+                "New York": 24,
+                "Los Angeles": 25,
+                "Chicago": 21,
+                "Houston": 30,
+                "Phoenix": 32,
+                "Philadelphia": 23
+            },
+            {
+                "Month": "July",
+                "New York": 27,
+                "Los Angeles": 28,
+                "Chicago": 24,
+                "Houston": 32,
+                "Phoenix": 34,
+                "Philadelphia": 26
+            },
+            {
+                "Month": "August",
+                "New York": 26,
+                "Los Angeles": 28,
+                "Chicago": 24,
+                "Houston": 32,
+                "Phoenix": 34,
+                "Philadelphia": 25
+            },
+            {
+                "Month": "September",
+                "New York": 22,
+                "Los Angeles": 26,
+                "Chicago": 20,
+                "Houston": 29,
+                "Phoenix": 31,
+                "Philadelphia": 21
+            },
+            {
+                "Month": "October",
+                "New York": 16,
+                "Los Angeles": 22,
+                "Chicago": 13,
+                "Houston": 24,
+                "Phoenix": 25,
+                "Philadelphia": 15
+            },
+            {
+                "Month": "November",
+                "New York": 10,
+                "Los Angeles": 18,
+                "Chicago": 7,
+                "Houston": 18,
+                "Phoenix": 19,
+                "Philadelphia": 8
+            },
+            {
+                "Month": "December",
+                "New York": 5,
+                "Los Angeles": 15,
+                "Chicago": 1,
+                "Houston": 13,
+                "Phoenix": 15,
+                "Philadelphia": 3
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "New York",
+                "Los Angeles",
+                "Chicago",
+                "Houston",
+                "Phoenix",
+                "Philadelphia"
+            ],
+            "as": [
+                "City",
+                "Temperature"
+            ]
+        }
+    ],
+    "width": 700,
+    "height": 600,
+    "mark": {
+        "type": "bar",
+        "height": {
+            "band": 0.6
+        }
+    },
+    "title": {
+        "text": "Monthly Average Temperature by City",
+        "subtitle": "Each bar represents a month with cities stacked horizontally",
+        "subtitleFontStyle": "italic",
+        "subtitleFontSize": 12,
+        "anchor": "start",
+        "color": "black",
+        "frame": "group"
+    },
+    "encoding": {
+        "y": {
+            "field": "Month",
+            "type": "ordinal",
+            "title": "Month",
+            "axis": {
+                "labelAngle": 0
+            }
+        },
+        "x": {
+            "field": "Temperature",
+            "type": "quantitative",
+            "title": "Temperature (\u00b0C)"
+        },
+        "color": {
+            "field": "City",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "New York",
+                    "Los Angeles",
+                    "Chicago",
+                    "Houston",
+                    "Phoenix",
+                    "Philadelphia"
+                ],
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e",
+                    "#2ca02c",
+                    "#d62728",
+                    "#9467bd",
+                    "#8c564b"
+                ]
+            },
+            "legend": {
+                "orient": "right"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Month",
+                "type": "ordinal",
+                "title": "Month"
+            },
+            {
+                "field": "City",
+                "type": "nominal",
+                "title": "City"
+            },
+            {
+                "field": "Temperature",
+                "type": "quantitative",
+                "title": "Temperature (\u00b0C)"
+            }
+        ]
+    }
+}

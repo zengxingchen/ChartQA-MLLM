@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var app = {};
+option = null;
+
+option = {
+    title: {
+        text: 'Energy Production Comparison 2020-2021',
+        left: 'center',
+        top: 'top'
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['Green Energy Production', 'Oil Energy Production', 'Nuclear Energy Production'],
+        left: 10,
+        top: 30
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: [
+            '2020-01', '2020-02', '2020-03', '2020-04', '2020-05', '2020-06', 
+            '2020-07', '2020-08', '2020-09', '2020-10', '2020-11', '2020-12',
+            '2021-01', '2021-02', '2021-03', '2021-04', '2021-05', '2021-06',
+            '2021-07', '2021-08'
+        ]
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Green Energy Production',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [
+                20, 22, 25, 28, 30, 35,
+                40, 38, 45, 50, 55, 60,
+                65, 70, 75, 80, 85, 90,
+                95, 100
+            ],
+            color: '#90ee90'
+        },
+        {
+            name: 'Oil Energy Production',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [
+                15, 17, 20, 16, 22, 18,
+                25, 20, 27, 23, 30, 28,
+                25, 22, 30, 35, 28, 26,
+                35, 30
+            ],
+            color: '#ffa500'
+        },
+        {
+            name: 'Nuclear Energy Production',
+            type: 'line',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'top'
+            },
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [
+                5, 4, 6, 7, 5, 8,
+                4, 6, 9, 7, 5, 8,
+                7, 5, 4, 6, 8, 9,
+                3, 5
+            ],
+            color: '#1e90ff'
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

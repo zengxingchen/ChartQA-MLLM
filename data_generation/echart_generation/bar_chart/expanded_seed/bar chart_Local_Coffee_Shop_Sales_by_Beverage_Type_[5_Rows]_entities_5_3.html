@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+// Data
+var data = [
+  { 'Beverage Type': 'Espresso', 'Sales (Cups)': 150 },
+  { 'Beverage Type': 'Cappuccino', 'Sales (Cups)': 200 },
+  { 'Beverage Type': 'Latte', 'Sales (Cups)': 250 },
+  { 'Beverage Type': 'Americano', 'Sales (Cups)': 180 },
+  { 'Beverage Type': 'Mocha', 'Sales (Cups)': 220 }
+];
+
+// Process data to generate xAxis data and series data
+var xAxisData = data.map(item => item['Beverage Type']);
+var seriesData = data.map(item => item['Sales (Cups)']);
+
+option = {
+  // Add a title
+  title: {
+    text: 'Beverage Sales (Cups)',
+    subtext: 'Data Visualisation using ECharts',
+    left: 'center'
+  },
+  // Enable tooltip
+  tooltip: {
+    trigger: 'axis',
+    axisPointer: {
+      type: 'shadow'
+    }
+  },
+  // Legend configuration
+  legend: {
+    data: ['Sales (Cups)'],
+    top: 'bottom'
+  },
+  // Grid configuration for placing the chart properly
+  grid: {
+    left: '3%',
+    right: '4%',
+    bottom: '3%',
+    containLabel: true
+  },
+  // Configure x-axis
+  xAxis: {
+    type: 'category',
+    data: xAxisData,
+    axisTick: {
+      alignWithLabel: true
+    }
+  },
+  // Configure y-axis
+  yAxis: {
+    type: 'value',
+    boundaryGap: [0, 0.01],
+    minInterval: 50, // This makes sure that intervals on the axis are at least 50
+  },
+  // Configure series
+  series: [
+    {
+      name: 'Sales (Cups)',
+      type: 'bar',
+      data: seriesData,
+      // Apply a color gradient to each bar
+      itemStyle: {
+        color: function(params) {
+          var colorList = ['#c23531','#2f4554', '#61a0a8','#d48265','#91c7ae'];
+          return colorList[params.dataIndex % colorList.length];
+        }
+      },
+      // Enable label
+      label: {
+        show: true,
+        position: 'top',
+        formatter: '{c} cups'
+      }
+    }
+  ],
+  // Sequential data zoom option to view data in detail
+  dataZoom: [
+    {
+      type: 'slider',
+      start: 0,
+      end: 100
+    },
+    {
+      type: 'inside',
+      start: 0,
+      end: 100
+    }
+  ]
+ };
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

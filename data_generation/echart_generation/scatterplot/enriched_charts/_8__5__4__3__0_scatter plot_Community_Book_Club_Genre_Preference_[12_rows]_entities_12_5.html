@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option = {
+    title: {
+        text: 'Economic Growth vs Time',
+        left: 'center',
+        top: '10%'
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: function (params) {
+            return 'Year: ' + params.data[0] + '<br/>GDP Growth: ' + params.data[1] + '%';
+        }
+    },
+    legend: {
+        data: ['GDP Growth'],
+        left: '10%',
+        top: '10%'
+    },
+    xAxis: {
+        name: 'Year',
+        nameLocation: 'middle',
+        nameGap: 30,
+    },
+    yAxis: {
+        name: 'GDP Growth (%)',
+        nameLocation: 'middle',
+        nameGap: 50,
+    },
+    series: [{
+        name: 'GDP Growth',
+        type: 'scatter',
+        itemStyle: {
+            color: '#FF5722'
+        },
+        symbolSize: 8,
+        data: [
+            [1, 95],
+            [2, 89],
+            [3, 88],
+            [4, 86],
+            [5, 85],
+            [6, 80],
+            [7, 77],
+            [8, 74],
+            [9, 70],
+            [10, 69],
+            [11, 65],
+            [12, 62],
+            [13, 60],
+            [14, 58],
+            [15, 55],
+            [16, 54],
+            [17, 53],
+            [18, 50],
+            [19, 47],
+            [20, 45],
+            [21, 44],
+            [22, 42],
+            [23, 40],
+            [24, 38],
+            [25, 36],
+            [26, 35],
+            [27, 34],
+            [28, 32],
+            [29, 30],
+            [30, 28],
+            [31, 27],
+            [32, 25],
+            [33, 23],
+            [34, 22],
+            [35, 20],
+            [36, 19],
+            [37, 17],
+            [38, 16],
+            [39, 15],
+            [40, 14],
+            [41, 13],
+            [42, 12],
+            [43, 10],
+            [44, 9],
+            [45, 8],
+            [46, 7],
+            [47, 6],
+            [48, 5],
+            [49, 4],
+            [50, 3],
+            [51, 2],
+            [52, 1],
+            [53, 0]
+        ]
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var option;
+
+var data = [
+    {name: 'Paper', value: 540},
+    {name: 'Cardboard', value: 710},
+    {name: 'Plastic', value: 320},
+    {name: 'Glass', value: 450},
+    {name: 'Metals', value: 375},
+    {name: 'Electronics', value: 90},
+    {name: 'Textiles', value: 60},
+    {name: 'Batteries', value: 30}
+];
+
+option = {
+    tooltip: {
+        formatter: function (info) {
+            var value = info.value;
+            var treePathInfo = info.treePathInfo;
+            var treePath = [];
+
+            for (var i = 1; i < treePathInfo.length; i++) {
+                treePath.push(treePathInfo[i].name);
+            }
+
+            return [
+                '<div class="tooltip-title">' + echarts.format.encodeHTML(treePath.join('/')) + '</div>',
+                'Weight (kg): ' + echarts.format.addCommas(value) + ' kg'
+            ].join('');
+        }
+    },
+    series: [
+        {
+            name: 'Materials',
+            type: 'treemap',
+            visibleMin: 300,
+            label: {
+                show: true,
+                formatter: '{b}',
+                normal: {
+                    textStyle: {
+                        ellipsis: true
+                    }
+                }
+            },
+            upperLabel: {
+                normal: {
+                    show: true,
+                    height: 30
+                }
+            },
+            itemStyle: {
+                normal: {
+                    borderColor: '#fff'
+                }
+            },
+            levels: [
+                {
+                    itemStyle: {
+                        normal: {
+                            borderWidth: 0,
+                            gapWidth: 1
+                        }
+                    }
+                },
+                {
+                    itemStyle: {
+                        normal: {
+                            gapWidth: 1
+                        }
+                    }
+                },
+                {
+                    colorSaturation: [0.35, 0.5],
+                    itemStyle: {
+                        normal: {
+                            gapWidth: 1,
+                            borderColorSaturation: 0.6
+                        }
+                    }
+                }
+            ],
+            data: data
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

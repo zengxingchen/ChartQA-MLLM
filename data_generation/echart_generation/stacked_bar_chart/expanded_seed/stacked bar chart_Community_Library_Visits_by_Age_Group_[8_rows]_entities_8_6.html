@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+
+// Extract weeks and age group labels from the data 
+var data = [{'Week': 'Week 1', 'Children (0-12)': 120, 'Teens (13-18)': 80, 'Adults (19-64)': 250, 'Seniors (65+)': 90}, {'Week': 'Week 2', 'Children (0-12)': 110, 'Teens (13-18)': 85, 'Adults (19-64)': 260, 'Seniors (65+)': 95}, {'Week': 'Week 3', 'Children (0-12)': 130, 'Teens (13-18)': 70, 'Adults (19-64)': 240, 'Seniors (65+)': 85}, {'Week': 'Week 4', 'Children (0-12)': 140, 'Teens (13-18)': 75, 'Adults (19-64)': 270, 'Seniors (65+)': 80}, {'Week': 'Week 5', 'Children (0-12)': 150, 'Teens (13-18)': 90, 'Adults (19-64)': 280, 'Seniors (65+)': 100}, {'Week': 'Week 6', 'Children (0-12)': 160, 'Teens (13-18)': 95, 'Adults (19-64)': 290, 'Seniors (65+)': 110}, {'Week': 'Week 7', 'Children (0-12)': 155, 'Teens (13-18)': 100, 'Adults (19-64)': 300, 'Seniors (65+)': 105}, {'Week': 'Week 8', 'Children (0-12)': 145, 'Teens (13-18)': 85, 'Adults (19-64)': 310, 'Seniors (65+)': 100}];
+var weeks = data.map(function (item) {
+    return item.Week;
+});
+var ageGroups = Object.keys(data[0]).slice(1);
+
+// Prepare series data 
+var seriesData = ageGroups.map(function (group) {
+    var series = {
+        name: group,
+        type: 'bar',
+        stack: 'Total',
+        emphasis: {
+            focus: 'series'
+        },
+        data: data.map(function (item) {
+            return item[group];
+        })
+    };
+    return series;
+});
+
+var option = {
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ageGroups
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        data: weeks
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: seriesData,
+    color: ['#5470C6', '#91CC75', '#FAC858', '#EE6666'] // Sample color customization for each stack
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false
+});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Most Popular Sports in 2022',
+        left: 'center',
+        top: 20
+    },
+    tooltip: {
+        trigger: 'item'
+    },
+    legend: {
+        orient: 'vertical',
+        left: 20,
+        top: 'middle'
+    },
+    series: [
+        {
+            name: 'Participants',
+            type: 'pie',
+            radius: '50%',
+            data: [
+                { value: 450000000, name: 'Soccer' },
+                { value: 300000000, name: 'Cricket' },
+                { value: 250000000, name: 'Basketball' },
+                { value: 200000000, name: 'Hockey' },
+                { value: 150000000, name: 'Tennis' },
+                { value: 90000000,  name: 'Volleyball' },
+                { value: 85000000,  name: 'Table Tennis' },
+                { value: 50000000,  name: 'Baseball' },
+                { value: 30000000,  name: 'Rugby' },
+                { value: 60000000,  name: 'Golf' }
+            ],
+            emphasis: {
+                itemStyle: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            },
+            itemStyle: {
+                normal: {
+                    color: function(params) {
+                        // Define specific color spectrum for slices
+                        var colorList = [
+                            '#c23531', '#2f4554', '#61a0a8', 
+                            '#d48265', '#91c7ae', '#749f83',  
+                            '#ca8622', '#bda29a', '#6e7074', 
+                            '#546570'
+                        ];
+                        return colorList[params.dataIndex];
+                    }
+                }
+            },
+            label: {
+                formatter: '{b}: {c} ({d}%)'
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

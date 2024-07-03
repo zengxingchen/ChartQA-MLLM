@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Energy Consumption Patterns (2000 - 2020)',
+        left: 'center',
+        textStyle: {
+            fontWeight: 'normal',
+            fontSize: 16
+        }
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            label: {
+                backgroundColor: '#6a7985'
+            }
+        }
+    },
+    legend: {
+        data: ['Coal', 'Natural Gas', 'Renewables', 'Nuclear', 'Oil'],
+        top: 30
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    color: ['#34495e', '#2ecc71', '#3498db', '#9b59b6', '#f39c12'],
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    xAxis: [
+        {
+            type: 'category',
+            boundaryGap: false,
+            data: ["2000","2001","2002","2003","2004","2005","2006","2007","2008","2009","2010","2011","2012","2013","2014","2015","2016","2017","2018","2019","2020"]
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value'
+        }
+    ],
+    series: [
+        {
+            name: 'Coal',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [2568,2610,2675,2730,2812,2900,3050,3180,3230,3150,3080,2990,2900,2800,2700,2600,2500,2420,2345,2275,2210]
+        },
+        {
+            name: 'Natural Gas',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [1234,1287,1341,1395,1465,1540,1605,1675,1730,1640,1585,1525,1475,1430,1389,1340,1300,1265,1234,1205,1189]
+        },
+        {
+            name: 'Renewables',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [578,599,615,628,657,689,723,758,796,820,850,895,946,1000,1058,1121,1189,1260,1332,1407,1489]
+        },
+        {
+            name: 'Nuclear',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [943,965,986,1012,1039,1067,1092,1118,1145,1160,1180,1205,1230,1258,1285,1310,1332,1355,1380,1405,1432]
+        },
+        {
+            name: 'Oil',
+            type: 'line',
+            stack: 'Total',
+            label: {
+                show: true,
+                position: 'top'
+            },
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [1100,1150,1200,1250,1310,1380,1450,1530,1600,1550,1500,1445,1390,1340,1295,1250,1210,1175,1140,1110,1085]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+myChart.setOption({
+    grid: {
+        top: 80,
+        bottom: 80,
+        left: 60,
+        right: 40
+    }
+});
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

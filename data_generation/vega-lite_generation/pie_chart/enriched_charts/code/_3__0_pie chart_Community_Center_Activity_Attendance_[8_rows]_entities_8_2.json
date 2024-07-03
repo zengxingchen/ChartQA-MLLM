@@ -1,0 +1,123 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "A pie chart representing the distribution of different leisure activities.",
+    "height": 350,
+    "width": 350,
+    "padding": 5,
+    "config": {
+        "font": "Arial",
+        "axis": {
+            "domainColor": "#44475a",
+            "tickColor": "#44475a"
+        }
+    },
+    "data": {
+        "values": [
+            {
+                "Activity": "Reading",
+                "Hours": 500
+            },
+            {
+                "Activity": "Watching TV",
+                "Hours": 700
+            },
+            {
+                "Activity": "Sports",
+                "Hours": 300
+            },
+            {
+                "Activity": "Gaming",
+                "Hours": 450
+            },
+            {
+                "Activity": "Cooking",
+                "Hours": 250
+            },
+            {
+                "Activity": "Gardening",
+                "Hours": 200
+            },
+            {
+                "Activity": "Traveling",
+                "Hours": 350
+            },
+            {
+                "Activity": "Socializing",
+                "Hours": 400
+            }
+        ]
+    },
+    "mark": {
+        "type": "arc",
+        "tooltip": true
+    },
+    "encoding": {
+        "theta": {
+            "field": "Hours",
+            "type": "quantitative",
+            "stack": true
+        },
+        "color": {
+            "field": "Activity",
+            "type": "nominal",
+            "scale": {
+                "range": [
+                    "#4e79a7",
+                    "#f28e2c",
+                    "#e15759",
+                    "#76b7b2",
+                    "#59a14f",
+                    "#edc949",
+                    "#af7aa1",
+                    "#ff9da7"
+                ]
+            },
+            "legend": {
+                "direction": "horizontal",
+                "orient": "bottom"
+            }
+        },
+        "opacity": {
+            "value": 0.8
+        }
+    },
+    "layer": [
+        {
+            "mark": {
+                "type": "arc",
+                "outerRadius": 140
+            }
+        },
+        {
+            "transform": [
+                {
+                    "calculate": "datum.Hours + ' hrs'",
+                    "as": "formattedHours"
+                }
+            ],
+            "mark": {
+                "type": "text",
+                "radius": 160
+            },
+            "encoding": {
+                "text": {
+                    "field": "formattedHours",
+                    "type": "nominal"
+                },
+                "theta": {
+                    "field": "Hours",
+                    "type": "quantitative",
+                    "stack": true
+                }
+            }
+        }
+    ],
+    "view": {
+        "stroke": null
+    },
+    "title": {
+        "text": "Distribution of Leisure Activities",
+        "fontSize": 20,
+        "anchor": "start"
+    }
+}

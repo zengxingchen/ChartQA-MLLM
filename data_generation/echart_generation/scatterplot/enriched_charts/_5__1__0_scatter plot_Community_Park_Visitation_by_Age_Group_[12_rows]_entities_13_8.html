@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Health vs Happiness',
+        left: 'center',
+        top: '20'
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: function (params) {
+            return 'Health: ' + params.value[0] + '<br>Happiness: ' + params.value[1];
+        }
+    },
+    legend: {
+        data: ['Health vs Happiness'],
+        left: 'right',
+        top: '20'
+    },
+    xAxis: {
+        name: 'Health Score',
+        type: 'value'
+    },
+    yAxis: {
+        name: 'Happiness Score',
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Health vs Happiness',
+            type: 'scatter',
+            itemStyle: {
+                color: '#3398DB'
+            },
+            data: [
+                [3, 4.2], [5, 6.1], [7, 8.5], [9, 10.7], [2, 3.8], [4, 5.9], [6, 7.6], [8, 9.3], 
+                [10, 12.0], [1, 2.7], [3, 4.5], [5, 6.3], [7, 8.1], [9, 10.2], [11, 13.0], [2, 3.9], 
+                [4, 5.7], [6, 7.8], [8, 9.6], [10, 11.5], [12, 14.2], [1, 2.5], [3, 4.8], [5, 6.4], 
+                [7, 8.2], [9, 10.6], [11, 12.8], [2, 3.7], [4, 5.6], [6, 7.4], [8, 9.1], [10, 11.9], 
+                [12, 13.5], [1, 2.9], [3, 4.6], [5, 6.8], [7, 8.4], [9, 10.9], [11, 13.2], [2, 3.6], 
+                [4, 5.5], [6, 7.3], [8, 9.0], [10, 11.7], [12, 14.1]
+            ]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

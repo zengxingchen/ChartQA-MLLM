@@ -1,0 +1,195 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "100% Stacked Horizontal Bar Chart of Weekly Reading Hours by Genre",
+    "data": {
+        "values": [
+            {
+                "Week": "Week 1",
+                "Fiction": 3,
+                "Non-Fiction": 2,
+                "Mystery": 5,
+                "Fantasy": 1,
+                "Science": 2,
+                "History": 2
+            },
+            {
+                "Week": "Week 2",
+                "Fiction": 2,
+                "Non-Fiction": 3,
+                "Mystery": 4,
+                "Fantasy": 2,
+                "Science": 2,
+                "History": 1
+            },
+            {
+                "Week": "Week 3",
+                "Fiction": 4,
+                "Non-Fiction": 1,
+                "Mystery": 3,
+                "Fantasy": 3,
+                "Science": 1,
+                "History": 2
+            },
+            {
+                "Week": "Week 4",
+                "Fiction": 3,
+                "Non-Fiction": 2,
+                "Mystery": 4,
+                "Fantasy": 1,
+                "Science": 3,
+                "History": 2
+            },
+            {
+                "Week": "Week 5",
+                "Fiction": 2,
+                "Non-Fiction": 3,
+                "Mystery": 2,
+                "Fantasy": 2,
+                "Science": 4,
+                "History": 2
+            },
+            {
+                "Week": "Week 6",
+                "Fiction": 1,
+                "Non-Fiction": 2,
+                "Mystery": 5,
+                "Fantasy": 3,
+                "Science": 2,
+                "History": 1
+            },
+            {
+                "Week": "Week 7",
+                "Fiction": 3,
+                "Non-Fiction": 2,
+                "Mystery": 3,
+                "Fantasy": 2,
+                "Science": 2,
+                "History": 3
+            },
+            {
+                "Week": "Week 8",
+                "Fiction": 2,
+                "Non-Fiction": 3,
+                "Mystery": 4,
+                "Fantasy": 1,
+                "Science": 2,
+                "History": 2
+            },
+            {
+                "Week": "Week 9",
+                "Fiction": 3,
+                "Non-Fiction": 3,
+                "Mystery": 2,
+                "Fantasy": 2,
+                "Science": 2,
+                "History": 3
+            },
+            {
+                "Week": "Week 10",
+                "Fiction": 4,
+                "Non-Fiction": 2,
+                "Mystery": 4,
+                "Fantasy": 1,
+                "Science": 3,
+                "History": 1
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Fiction",
+                "Non-Fiction",
+                "Mystery",
+                "Fantasy",
+                "Science",
+                "History"
+            ],
+            "as": [
+                "genre",
+                "hours"
+            ]
+        }
+    ],
+    "width": 600,
+    "height": 400,
+    "mark": {
+        "type": "bar",
+        "tooltip": true
+    },
+    "encoding": {
+        "y": {
+            "field": "Week",
+            "type": "ordinal",
+            "axis": {
+                "title": "Week"
+            }
+        },
+        "x": {
+            "field": "hours",
+            "type": "quantitative",
+            "axis": {
+                "title": "Percentage",
+                "format": "%"
+            },
+            "stack": "normalize"
+        },
+        "color": {
+            "field": "genre",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Fiction",
+                    "Non-Fiction",
+                    "Mystery",
+                    "Fantasy",
+                    "Science",
+                    "History"
+                ],
+                "range": [
+                    "#FF5733",
+                    "#33FF57",
+                    "#3357FF",
+                    "#FF33A1",
+                    "#33FFA1",
+                    "#FFA133"
+                ]
+            },
+            "legend": {
+                "title": "Reading Genre",
+                "orient": "top"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Week",
+                "type": "ordinal"
+            },
+            {
+                "field": "genre",
+                "type": "nominal"
+            },
+            {
+                "field": "hours",
+                "type": "quantitative",
+                "title": "Percentage",
+                "format": ".2%"
+            }
+        ]
+    },
+    "config": {
+        "axis": {
+            "labelFontSize": 12,
+            "titleFontSize": 14
+        },
+        "legend": {
+            "labelFontSize": 12,
+            "titleFontSize": 14,
+            "orient": "top"
+        },
+        "bar": {
+            "binSpacing": 0,
+            "strokeWidth": 0
+        }
+    }
+}

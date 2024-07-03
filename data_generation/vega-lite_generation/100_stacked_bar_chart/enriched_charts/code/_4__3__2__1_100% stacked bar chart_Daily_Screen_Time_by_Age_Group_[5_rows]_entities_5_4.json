@@ -1,0 +1,184 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Average Daily Caloric Intake by Age Group",
+    "padding": {
+        "left": 50,
+        "top": 20,
+        "right": 30,
+        "bottom": 50
+    },
+    "width": 800,
+    "height": 600,
+    "title": {
+        "text": "Average Daily Caloric Intake by Age Group",
+        "anchor": "middle",
+        "offset": 20,
+        "fontSize": 20
+    },
+    "data": {
+        "values": [
+            {
+                "AgeGroup": "15-24",
+                "Carbs": 55,
+                "Proteins": 25,
+                "Fats": 20
+            },
+            {
+                "AgeGroup": "25-34",
+                "Carbs": 50,
+                "Proteins": 30,
+                "Fats": 20
+            },
+            {
+                "AgeGroup": "35-44",
+                "Carbs": 48,
+                "Proteins": 32,
+                "Fats": 20
+            },
+            {
+                "AgeGroup": "45-54",
+                "Carbs": 45,
+                "Proteins": 35,
+                "Fats": 20
+            },
+            {
+                "AgeGroup": "55-64",
+                "Carbs": 50,
+                "Proteins": 30,
+                "Fats": 20
+            },
+            {
+                "AgeGroup": "65+",
+                "Carbs": 45,
+                "Proteins": 30,
+                "Fats": 25
+            },
+            {
+                "AgeGroup": "15-24",
+                "Carbs": 50,
+                "Proteins": 30,
+                "Fats": 20
+            },
+            {
+                "AgeGroup": "25-34",
+                "Carbs": 55,
+                "Proteins": 25,
+                "Fats": 20
+            },
+            {
+                "AgeGroup": "35-44",
+                "Carbs": 52,
+                "Proteins": 28,
+                "Fats": 20
+            },
+            {
+                "AgeGroup": "45-54",
+                "Carbs": 50,
+                "Proteins": 30,
+                "Fats": 20
+            },
+            {
+                "AgeGroup": "55-64",
+                "Carbs": 48,
+                "Proteins": 32,
+                "Fats": 20
+            },
+            {
+                "AgeGroup": "65+",
+                "Carbs": 50,
+                "Proteins": 30,
+                "Fats": 20
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Carbs",
+                "Proteins",
+                "Fats"
+            ],
+            "as": [
+                "Nutrient",
+                "Percentage"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "bar",
+        "tooltip": true
+    },
+    "encoding": {
+        "y": {
+            "field": "AgeGroup",
+            "type": "nominal",
+            "axis": {
+                "title": "Age Group"
+            },
+            "scale": {
+                "band": 0.8
+            }
+        },
+        "x": {
+            "field": "Percentage",
+            "type": "quantitative",
+            "stack": "normalize",
+            "axis": {
+                "format": ".0%"
+            }
+        },
+        "color": {
+            "field": "Nutrient",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Carbs",
+                    "Proteins",
+                    "Fats"
+                ],
+                "range": [
+                    "#FF6347",
+                    "#4682B4",
+                    "#32CD32"
+                ]
+            },
+            "legend": {
+                "title": "Nutrient",
+                "orient": "top",
+                "offset": 10
+            }
+        },
+        "tooltip": [
+            {
+                "field": "AgeGroup",
+                "type": "nominal",
+                "title": "Age Group"
+            },
+            {
+                "field": "Nutrient",
+                "type": "nominal",
+                "title": "Nutrient"
+            },
+            {
+                "field": "Percentage",
+                "type": "quantitative",
+                "title": "Percentage",
+                "format": ".0%"
+            }
+        ]
+    },
+    "config": {
+        "axisX": {
+            "titleFontSize": 14,
+            "labelFontSize": 12
+        },
+        "axisY": {
+            "titleFontSize": 14,
+            "labelFontSize": 12
+        },
+        "legend": {
+            "titleFontSize": 14,
+            "labelFontSize": 12
+        }
+    }
+}

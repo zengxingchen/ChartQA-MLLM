@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+var option;
+
+option = {
+    title: {
+        text: 'Nutrition Over Time',
+        left: 'center',
+        top: '10%'
+    },
+    tooltip: {
+        trigger: 'item'
+    },
+    legend: {
+        data: ['Nutrition'],
+        left: '10%',
+        top: '10%'
+    },
+    xAxis: {
+        type: 'category',
+        data: ['100', '98', '95', '93', '90', '88', '85', '83', '80', '78', '75', '73', '70', '68', '65', '63', '60', '58'],
+        name: 'Time'
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Value'
+    },
+    series: [{
+        name: 'Nutrition',
+        type: 'scatter',
+        data: [
+            [100, 90],
+            [98, 85],
+            [95, 80],
+            [93, 75],
+            [90, 70],
+            [88, 65],
+            [85, 60],
+            [83, 55],
+            [80, 50],
+            [78, 45],
+            [75, 40],
+            [73, 35],
+            [70, 30],
+            [68, 25],
+            [65, 20],
+            [63, 15],
+            [60, 10],
+            [58, 5]
+        ],
+        itemStyle: {
+            color: '#FF5733'
+        }
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

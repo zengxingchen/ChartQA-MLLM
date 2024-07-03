@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Popularity of Art & Science Subcategories',
+        left: 'center',
+        top: '5%'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Art & Design', 'Science & Nature', 'Health & Psychology', 'Culture & Society'],
+        top: '10%'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        axisLabel: {
+            rotate: 45
+        },
+        data: ['Painting', 'Sculpture', 'Photography', 'Digital Art', 'Astronomy', 'Biology', 'Chemistry', 'Physics', 'Mental Health', 'Fitness', 'Nutrition', 'Wellness', 'History', 'Ethics', 'Sociology', 'Anthropology']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Art & Design',
+            type: 'bar',
+            stack: 'total',
+            itemStyle: {
+                color: '#FF5733'
+            },
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            data: [120, 200, 150, 180, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+        },
+        {
+            name: 'Science & Nature',
+            type: 'bar',
+            stack: 'total',
+            itemStyle: {
+                color: '#33FF57'
+            },
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            data: [0, 0, 0, 0, 100, 180, 160, 190, 0, 0, 0, 0, 0, 0, 0, 0]
+        },
+        {
+            name: 'Health & Psychology',
+            type: 'bar',
+            stack: 'total',
+            itemStyle: {
+                color: '#3357FF'
+            },
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            data: [0, 0, 0, 0, 0, 0, 0, 0, 130, 210, 170, 160, 0, 0, 0, 0]
+        },
+        {
+            name: 'Culture & Society',
+            type: 'bar',
+            stack: 'total',
+            itemStyle: {
+                color: '#FF33A6'
+            },
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 110, 140, 180, 160]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

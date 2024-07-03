@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 500});
+var app = {};
+
+option = {
+  title: {
+    text: 'Contributing Factors to Climate Change',
+    left: 'center',
+    top: 10
+  },
+  tooltip: {
+    trigger: 'axis',
+    axisPointer: {
+      type: 'shadow'
+    }
+  },
+  legend: {
+    data: ['Greenhouse Gases', 'Deforestation', 'Industrial Processes', 'Agriculture', 'Waste'],
+    top: 35
+  },
+  grid: {
+    left: '3%',
+    right: '4%',
+    bottom: '3%',
+    containLabel: true
+  },
+  xAxis: {
+    type: 'value',
+    boundaryGap: [0, 0.01]
+  },
+  yAxis: {
+    type: 'category',
+    data: ['2005', '2010', '2015', '2020'],
+    axisLabel: {
+      interval: 0
+    }
+  },
+  series: [
+    {
+      name: 'Greenhouse Gases',
+      type: 'bar',
+      stack: 'total',
+      label: {
+        show: true
+      },
+      itemStyle: {
+        color: '#33CC66'
+      },
+      data: [55, 50, 57, 58]
+    },
+    {
+      name: 'Deforestation',
+      type: 'bar',
+      stack: 'total',
+      label: {
+        show: true
+      },
+      itemStyle: {
+        color: '#FF4500'
+      },
+      data: [20, 22, 18, 16]
+    },
+    {
+      name: 'Industrial Processes',
+      type: 'bar',
+      stack: 'total',
+      label: {
+        show: true
+      },
+      itemStyle: {
+        color: '#1E90FF'
+      },
+      data: [10, 12, 10, 11]
+    },
+    {
+      name: 'Agriculture',
+      type: 'bar',
+      stack: 'total',
+      label: {
+        show: true
+      },
+      itemStyle: {
+        color: '#FFFF66'
+      },
+      data: [10, 11, 12, 12]
+    },
+    {
+      name: 'Waste',
+      type: 'bar',
+      stack: 'total',
+      label: {
+        show: true
+      },
+      itemStyle: {
+        color: '#A52A2A'
+      },
+      data: [5, 5, 3, 3]
+    }
+  ],
+  barWidth: '60%'
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

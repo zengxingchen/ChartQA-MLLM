@@ -1,0 +1,183 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Yearly Participation in Sports by Age Group",
+    "width": 600,
+    "height": 400,
+    "title": {
+        "text": "Yearly Participation in Sports by Age Group",
+        "offset": 10,
+        "anchor": "start",
+        "frame": "group"
+    },
+    "data": {
+        "values": [
+            {
+                "Year": "2010",
+                "Under 18": 25,
+                "18-35": 40,
+                "36-50": 20,
+                "Above 50": 15
+            },
+            {
+                "Year": "2011",
+                "Under 18": 30,
+                "18-35": 35,
+                "36-50": 25,
+                "Above 50": 10
+            },
+            {
+                "Year": "2012",
+                "Under 18": 20,
+                "18-35": 45,
+                "36-50": 25,
+                "Above 50": 10
+            },
+            {
+                "Year": "2013",
+                "Under 18": 25,
+                "18-35": 42,
+                "36-50": 23,
+                "Above 50": 10
+            },
+            {
+                "Year": "2014",
+                "Under 18": 27,
+                "18-35": 38,
+                "36-50": 25,
+                "Above 50": 10
+            },
+            {
+                "Year": "2015",
+                "Under 18": 30,
+                "18-35": 45,
+                "36-50": 15,
+                "Above 50": 10
+            },
+            {
+                "Year": "2016",
+                "Under 18": 35,
+                "18-35": 40,
+                "36-50": 20,
+                "Above 50": 5
+            },
+            {
+                "Year": "2017",
+                "Under 18": 33,
+                "18-35": 42,
+                "36-50": 20,
+                "Above 50": 5
+            },
+            {
+                "Year": "2018",
+                "Under 18": 30,
+                "18-35": 36,
+                "36-50": 24,
+                "Above 50": 10
+            },
+            {
+                "Year": "2019",
+                "Under 18": 32,
+                "18-35": 45,
+                "36-50": 18,
+                "Above 50": 5
+            },
+            {
+                "Year": "2020",
+                "Under 18": 28,
+                "18-35": 50,
+                "36-50": 15,
+                "Above 50": 7
+            },
+            {
+                "Year": "2021",
+                "Under 18": 30,
+                "18-35": 43,
+                "36-50": 20,
+                "Above 50": 7
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Under 18",
+                "18-35",
+                "36-50",
+                "Above 50"
+            ],
+            "as": [
+                "Age Group",
+                "Participants"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "area",
+        "opacity": 0.7
+    },
+    "encoding": {
+        "x": {
+            "field": "Year",
+            "type": "ordinal",
+            "axis": {
+                "labelAngle": 0,
+                "title": "Year"
+            }
+        },
+        "y": {
+            "field": "Participants",
+            "type": "quantitative",
+            "stack": "normalize",
+            "axis": {
+                "title": "Percentage of Participants"
+            }
+        },
+        "color": {
+            "field": "Age Group",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Under 18",
+                    "18-35",
+                    "36-50",
+                    "Above 50"
+                ],
+                "range": [
+                    "#268bd2",
+                    "#2aa198",
+                    "#859900",
+                    "#d33682"
+                ]
+            },
+            "legend": {
+                "orient": "top-right",
+                "title": "Age Group",
+                "titlePadding": 10
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Year",
+                "type": "ordinal"
+            },
+            {
+                "field": "Age Group",
+                "type": "nominal",
+                "title": "Age Group"
+            },
+            {
+                "field": "Participants",
+                "type": "quantitative",
+                "title": "Number of Participants"
+            }
+        ]
+    },
+    "config": {
+        "view": {
+            "stroke": "transparent"
+        },
+        "axis": {
+            "grid": false
+        }
+    }
+}

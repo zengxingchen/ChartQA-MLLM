@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+option = {
+    title: {
+        text: 'Yearly Fitness Trends',
+        left: 'center',
+        top: 10
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['Running', 'Cycling', 'Swimming', 'Gymnastics'],
+        top: 40
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    color: ['#FFD700', '#009ACD', '#20B2AA', '#FF69B4'],
+    series: [
+        {
+            name: 'Running',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {normal: {}},
+            data: [120, 150, 180, 200, 170, 160, 190, 210, 200, 180, 170, 160]
+        },
+        {
+            name: 'Cycling',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {normal: {}},
+            data: [80, 100, 120, 130, 110, 105, 125, 130, 140, 115, 110, 100]
+        },
+        {
+            name: 'Swimming',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {normal: {}},
+            data: [50, 70, 80, 90, 100, 95, 110, 120, 100, 90, 80, 70]
+        },
+        {
+            name: 'Gymnastics',
+            type: 'line',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'top'
+            },
+            areaStyle: {normal: {}},
+            data: [30, 40, 50, 60, 70, 65, 75, 80, 85, 70, 65, 60]
+        }
+    ]
+};
+
+option && myChart.setOption(option, true);
+myChart.resize({width: 800, height: 600});
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

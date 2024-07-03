@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Economics & Finance: Monthly Expenditure Distribution',
+        left: 'center',
+        top: '20px',
+        textStyle: {
+            fontSize: 18,
+            color: '#333333'
+        }
+    },
+    tooltip: {
+        trigger: 'item'
+    },
+    xAxis: {
+        type: 'category',
+        data: ['0-2', '3-5', '6-8', '9-11', '12-14', '15-17'],
+        axisLabel: {
+            interval: 0,
+            rotate: 0
+        }
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [{
+        name: 'Frequency',
+        type: 'bar',
+        data: [2, 3, 3, 3, 3, 1],
+        barWidth: '40%',
+        itemStyle: {
+            color: '#3398DB'
+        },
+        label: {
+            show: true,
+            position: 'top',
+            formatter: '{b}: {c}'
+        }
+    }],
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

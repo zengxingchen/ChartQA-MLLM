@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+// Data
+var data = [{'Week': '1st Week January', 'Visitors': 430}, {'Week': '2nd Week January', 'Visitors': 390}, {'Week': '3rd Week January', 'Visitors': 415}, {'Week': '4th Week January', 'Visitors': 320}, {'Week': '1st Week February', 'Visitors': 360}, {'Week': '2nd Week February', 'Visitors': 400}, {'Week': '3rd Week February', 'Visitors': 375}, {'Week': '4th Week February', 'Visitors': 390}, {'Week': '1st Week March', 'Visitors': 420}];
+
+// Extract 'Week' and 'Visitors' for the axis
+let weeks = data.map(item => item.Week);
+let visitors = data.map(item => item.Visitors);
+
+option = {
+    title: {
+        text: 'Weekly Visitors'
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['Visitors']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: weeks
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Visitors',
+            type: 'line',
+            stack: 'Total',
+            data: visitors,
+            smooth: true, // Smooth the line
+            markPoint: {
+                data: [
+                    {type: 'max', name: 'Max'},
+                    {type: 'min', name: 'Min'}
+                ]
+            },
+            markLine: {
+                data: [{type: 'average', name: 'Avg'}]
+            },
+            itemStyle: {
+                color: 'rgb(255, 70, 131)' // Color of the line
+            }
+        }
+    ],
+    // Adding annotations
+    graphic: [
+        {
+            type: 'text',
+            left: 'center',
+            top: '90%',
+            style: {
+                text: 'Visitor trend over weeks',
+                textAlign: 'center',
+                fill: '#000',
+                fontSize: 12
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var option;
+
+option = {
+    title: {
+        text: 'Art and Design Correlation',
+        left: 'center',
+        top: '5%'
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: function (params) {
+            return `${params.seriesName}<br/>Category: ${params.data[0]}<br/>X: ${params.data[1]}<br/>Y: ${params.data[2]}`;
+        }
+    },
+    legend: {
+        data: ['Art', 'Design', 'History', 'Fashion', 'Music'],
+        top: '15%',
+        left: 'right'
+    },
+    xAxis: {
+        name: 'ValueX',
+        type: 'value'
+    },
+    yAxis: {
+        name: 'ValueY',
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Art',
+            type: 'scatter',
+            data: [
+                ['Art', 32, 82],
+                ['Art', 28, 85],
+                ['Art', 35, 78],
+                ['Art', 29, 80],
+                ['Art', 30, 79]
+            ],
+            itemStyle: {
+                color: '#FF5733'
+            }
+        },
+        {
+            name: 'Design',
+            type: 'scatter',
+            data: [
+                ['Design', 60, 50],
+                ['Design', 55, 45],
+                ['Design', 62, 47],
+                ['Design', 58, 52],
+                ['Design', 61, 49]
+            ],
+            itemStyle: {
+                color: '#33FF57'
+            }
+        },
+        {
+            name: 'History',
+            type: 'scatter',
+            data: [
+                ['History', 90, 30],
+                ['History', 85, 33],
+                ['History', 92, 28],
+                ['History', 88, 35],
+                ['History', 89, 31]
+            ],
+            itemStyle: {
+                color: '#3357FF'
+            }
+        },
+        {
+            name: 'Fashion',
+            type: 'scatter',
+            data: [
+                ['Fashion', 75, 65],
+                ['Fashion', 70, 68],
+                ['Fashion', 77, 62],
+                ['Fashion', 72, 70],
+                ['Fashion', 74, 66]
+            ],
+            itemStyle: {
+                color: '#FF33A1'
+            }
+        },
+        {
+            name: 'Music',
+            type: 'scatter',
+            data: [
+                ['Music', 50, 90],
+                ['Music', 45, 92],
+                ['Music', 52, 88],
+                ['Music', 48, 91],
+                ['Music', 49, 89]
+            ],
+            itemStyle: {
+                color: '#33A1FF'
+            }
+        }
+    ],
+    width: 800,
+    height: 600
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

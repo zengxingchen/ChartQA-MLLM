@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Global Waste Management Practices',
+        subtext: 'Percentage Stacked Bar Chart',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Recycling', 'Composting', 'Landfill', 'Incineration', 'Other'],
+        bottom: 0
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '10%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01]
+    },
+    yAxis: {
+        type: 'category',
+        data: ['USA', 'Germany', 'Japan', 'France', 'Brazil', 'India', 'China', 'Australia']
+    },
+    series: [
+        {
+            name: 'Recycling',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            data: [35, 48, 19, 22, 5, 26, 30, 41],
+            color: '#1f77b4'
+        },
+        {
+            name: 'Composting',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            data: [5, 14, 3, 18, 10, 5, 25, 3],
+            color: '#ff7f0e'
+        },
+        {
+            name: 'Landfill',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            data: [52, 5, 1, 34, 80, 66, 20, 50],
+            color: '#2ca02c'
+        },
+        {
+            name: 'Incineration',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            data: [5, 33, 77, 21, 1, 1, 24, 5],
+            color: '#d62728'
+        },
+        {
+            name: 'Other',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            data: [3, 0, 0, 5, 4, 2, 1, 1],
+            color: '#9467bd'
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+// Data processing
+var data = [
+  {'name': 'Coffee', 'value': 12000},
+  {'name': 'Tea', 'value': 3000},
+  {'name': 'Pastries', 'value': 4500},
+  {'name': 'Sandwiches', 'value': 4000},
+  {'name': 'Merchandise', 'value': 1500}
+];
+
+// Sort data for better visual effect in treemap
+data.sort(function(a, b) {
+  return b.value - a.value;
+});
+
+// Use a predefined color palette for categories. 
+// ECharts includes several color palettes that can be used or custom colors can be set.
+var colorPalette = ['#c23531', '#2f4554', '#61a0a8', '#d48265', '#91c7ae'];
+
+var option = {
+  tooltip: {
+    formatter: function (info) {
+      var value = info.value;
+      var name = info.name;
+      return '<strong>' + name + ':</strong> $' + echarts.format.addCommas(value);
+    }
+  },
+  series: [{
+    name: 'Sales',
+    type: 'treemap',
+    visibleMin: 300,
+    label: {
+      show: true,
+      formatter: '{b}\n{c}',
+      normal: {
+        textStyle: {
+          ellipsis: true
+        }
+      }
+    },
+    upperLabel: {
+      normal: {
+        show: true,
+        height: 30
+      }
+    },
+    itemStyle: {
+      normal: {
+        borderColor: '#fff'
+      }
+    },
+    levels: [
+      {
+        itemStyle: {
+          normal: {
+            borderWidth: 0,
+            gapWidth: 5
+          }
+        }
+      }
+    ],
+    data: data.map(function (item, index) {
+      // Color mapping
+      return {
+        name: item.name,
+        value: item.value,
+        itemStyle: {
+          normal: {
+            color: colorPalette[index % colorPalette.length]
+          }
+        }
+      };
+    })
+  }]
+};
+
+myChart.setOption(option, true);
+
+if (option && typeof option === 'object') {
+  myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

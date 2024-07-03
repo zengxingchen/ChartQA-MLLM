@@ -1,0 +1,172 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Sales of coffee shop products by month",
+    "width": "container",
+    "height": 300,
+    "data": {
+        "values": [
+            {
+                "Month": "January",
+                "Espresso": 300,
+                "Lattes": 450,
+                "Cappuccinos": 350,
+                "Teas": 200,
+                "Pastries": 180
+            },
+            {
+                "Month": "February",
+                "Espresso": 280,
+                "Lattes": 420,
+                "Cappuccinos": 330,
+                "Teas": 190,
+                "Pastries": 160
+            },
+            {
+                "Month": "March",
+                "Espresso": 320,
+                "Lattes": 480,
+                "Cappuccinos": 370,
+                "Teas": 210,
+                "Pastries": 200
+            },
+            {
+                "Month": "April",
+                "Espresso": 350,
+                "Lattes": 500,
+                "Cappuccinos": 420,
+                "Teas": 230,
+                "Pastries": 210
+            },
+            {
+                "Month": "May",
+                "Espresso": 360,
+                "Lattes": 540,
+                "Cappuccinos": 440,
+                "Teas": 250,
+                "Pastries": 220
+            },
+            {
+                "Month": "June",
+                "Espresso": 370,
+                "Lattes": 550,
+                "Cappuccinos": 450,
+                "Teas": 260,
+                "Pastries": 230
+            },
+            {
+                "Month": "July",
+                "Espresso": 380,
+                "Lattes": 560,
+                "Cappuccinos": 460,
+                "Teas": 270,
+                "Pastries": 240
+            },
+            {
+                "Month": "August",
+                "Espresso": 400,
+                "Lattes": 600,
+                "Cappuccinos": 480,
+                "Teas": 290,
+                "Pastries": 250
+            },
+            {
+                "Month": "September",
+                "Espresso": 380,
+                "Lattes": 570,
+                "Cappuccinos": 470,
+                "Teas": 280,
+                "Pastries": 240
+            },
+            {
+                "Month": "October",
+                "Espresso": 370,
+                "Lattes": 560,
+                "Cappuccinos": 450,
+                "Teas": 270,
+                "Pastries": 230
+            },
+            {
+                "Month": "November",
+                "Espresso": 340,
+                "Lattes": 520,
+                "Cappuccinos": 400,
+                "Teas": 240,
+                "Pastries": 210
+            },
+            {
+                "Month": "December",
+                "Espresso": 390,
+                "Lattes": 580,
+                "Cappuccinos": 470,
+                "Teas": 300,
+                "Pastries": 260
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Espresso",
+                "Lattes",
+                "Cappuccinos",
+                "Teas",
+                "Pastries"
+            ],
+            "as": [
+                "Product",
+                "Sales"
+            ]
+        }
+    ],
+    "mark": "area",
+    "encoding": {
+        "x": {
+            "field": "Month",
+            "type": "ordinal",
+            "axis": {
+                "title": "Month",
+                "labelAngle": 0
+            }
+        },
+        "y": {
+            "field": "Sales",
+            "type": "quantitative",
+            "stack": "zero",
+            "axis": {
+                "title": "Total Sales"
+            }
+        },
+        "color": {
+            "field": "Product",
+            "type": "nominal",
+            "scale": {
+                "scheme": "category20"
+            },
+            "legend": {
+                "title": "Product"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Month",
+                "type": "ordinal"
+            },
+            {
+                "field": "Product",
+                "type": "nominal"
+            },
+            {
+                "field": "Sales",
+                "type": "quantitative"
+            }
+        ]
+    },
+    "config": {
+        "view": {
+            "stroke": "transparent"
+        },
+        "axis": {
+            "domainWidth": 1
+        }
+    }
+}

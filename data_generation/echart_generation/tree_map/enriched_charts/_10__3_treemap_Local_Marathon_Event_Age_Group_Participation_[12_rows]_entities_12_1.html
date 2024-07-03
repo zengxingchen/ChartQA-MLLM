@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Art Movements and Their Impact',
+        left: 'center',
+        textStyle: {
+            fontSize: 24,
+            color: '#333'
+        }
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: '{b}: {c}'
+    },
+    series: [{
+        name: 'Art Movements',
+        type: 'treemap',
+        width: '90%',
+        height: '85%',
+        roam: false,
+        nodeClick: false,
+        breadcrumb: {
+            show: false
+        },
+        label: {
+            show: true,
+            formatter: '{b}'
+        },
+        itemStyle: {
+            normal: {
+                borderColor: '#fff'
+            }
+        },
+        data: [
+            { name: 'Art Deco', value: 20, itemStyle: { color: '#ff7f50' } },
+            { name: 'Bauhaus', value: 15, itemStyle: { color: '#87cefa' } },
+            { name: 'Modernism', value: 30, itemStyle: { color: '#da70d6' } },
+            { name: 'Baroque', value: 25, itemStyle: { color: '#32cd32' } },
+            { name: 'Renaissance', value: 35, itemStyle: { color: '#6495ed' } },
+            { name: 'Impressionism', value: 40, itemStyle: { color: '#ff69b4' } },
+            { name: 'Surrealism', value: 10, itemStyle: { color: '#ba55d3' } },
+            { name: 'Cubism', value: 22, itemStyle: { color: '#cd5c5c' } },
+            { name: 'Minimalism', value: 18, itemStyle: { color: '#ffa500' } },
+            { name: 'Pop Art', value: 27, itemStyle: { color: '#40e0d0' } },
+            { name: 'Fauvism', value: 12, itemStyle: { color: '#1e90ff' } },
+            { name: 'Gothic', value: 19, itemStyle: { color: '#ff6347' } },
+            { name: 'Neoclassicism', value: 23, itemStyle: { color: '#7b68ee' } },
+            { name: 'Romanticism', value: 28, itemStyle: { color: '#6b8e23' } },
+            { name: 'Realism', value: 24, itemStyle: { color: '#ff4500' } },
+            { name: 'Expressionism', value: 31, itemStyle: { color: '#00ced1' } },
+            { name: 'Dadaism', value: 16, itemStyle: { color: '#4682b4' } },
+            { name: 'Art Nouveau', value: 29, itemStyle: { color: '#8a2be2' } }
+        ]
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

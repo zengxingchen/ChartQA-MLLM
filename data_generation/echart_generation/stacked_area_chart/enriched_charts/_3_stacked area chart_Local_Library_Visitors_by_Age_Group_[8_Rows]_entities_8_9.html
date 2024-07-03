@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var app = {};
+option = null;
+
+option = {
+    title: {
+        text: 'Economic Sectors Growth Over A Year',
+        left: 'center',
+        top: 5
+    },
+    tooltip : {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            label: {
+                backgroundColor: '#6a7985'
+            }
+        }
+    },
+    legend: {
+        data:['Technology','Healthcare','Energy','Manufacturing','Services'],
+        top: 35
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis : [
+        {
+            type : 'category',
+            boundaryGap : false,
+            data : ['January','February','March','April','May','June','July','August','September','October','November','December']
+        }
+    ],
+    yAxis : [
+        {
+            type : 'value'
+        }
+    ],
+    series : [
+        {
+            name:'Technology',
+            type:'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: { focus: 'series' },
+            data:[8000, 8200, 8600, 9000, 9300, 9600, 9900, 10100, 10300, 10500, 10700, 11000],
+            color: '#2f4554'
+        },
+        {
+            name:'Healthcare',
+            type:'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: { focus: 'series' },
+            data:[7500, 7700, 7900, 8100, 8300, 8500, 8700, 8900, 9100, 9300, 9500, 9700],
+            color: '#61a0a8'
+        },
+        {
+            name:'Energy',
+            type:'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: { focus: 'series' },
+            data:[9000, 9300, 9650, 9850, 10000, 10200, 10350, 10500, 10650, 10800, 10950, 11100],
+            color: '#d48265'
+        },
+        {
+            name:'Manufacturing',
+            type:'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: { focus: 'series' },
+            data:[10000, 10200, 10500, 10700, 11000, 11500, 11800, 12000, 12200, 12500, 12700, 13000],
+            color: '#91c7ae'
+        },
+        {
+            name:'Services',
+            type:'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: { focus: 'series' },
+            data:[5800, 6000, 6200, 6400, 6600, 6800, 7000, 7200, 7400, 7600, 7800, 8000],
+            color: '#749f83'
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

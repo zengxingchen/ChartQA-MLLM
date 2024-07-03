@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Energy Consumption Trends in 2021',
+        subtext: 'Sectors: Residential, Commercial, and Industrial',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        top: '7%',
+        left: 'left'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Residential',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [400, 420, 450, 480, 460, 470, 550, 530, 510, 490, 480, 500],
+            color: '#FF8C00'
+        },
+        {
+            name: 'Commercial',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [460, 480, 470, 530, 540, 550, 620, 600, 580, 570, 550, 590],
+            color: '#20B2AA'
+        },
+        {
+            name: 'Industrial',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [480, 450, 520, 500, 550, 530, 610, 590, 570, 550, 530, 560],
+            color: '#DC143C'
+        }
+    ],
+    color: ['#FF8C00', '#20B2AA', '#DC143C'],
+    responsive: true
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+window.onresize = function() {
+    myChart.resize({
+        width: '80%',
+        height: '600px'
+    });
+};
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+dom.style.cssText = 'width:800px;height:500px;'; // Change width and height
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Sports Preferences in a Community',
+        subtext: 'Distribution by Participants',
+        left: 'center',
+        top: 20 // Position the headline appropriately
+    },
+    tooltip: {
+        trigger: 'item'
+    },
+    legend: {
+        orient: 'vertical',
+        left: 'left'
+    },
+    series: [
+        {
+            name: 'Participants',
+            type: 'pie',
+            radius: '50%',
+            data: [
+                { value: 150, name: 'Running' },
+                { value: 120, name: 'Swimming' },
+                { value: 90, name: 'Cycling' },
+                { value: 70, name: 'Gymnastics' },
+                { value: 110, name: 'Football' },
+                { value: 95, name: 'Basketball' },
+                { value: 80, name: 'Tennis' },
+                { value: 65, name: 'Golf' },
+                { value: 55, name: 'Boxing' },
+                { value: 75, name: 'Yoga' }
+            ],
+            emphasis: {
+                itemStyle: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            },
+            label: {
+                show: true,
+                formatter: '{b}: {c} ({d}%)'
+            }
+        }
+    ],
+    color: [ // Modify the color scheme
+        '#FF5733','#33FF57','#3357FF',
+        '#FF33C9','#33FFEC','#FFEB33',
+        '#B833FF','#33FFF6','#F633FF',
+        '#3AFF33'
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

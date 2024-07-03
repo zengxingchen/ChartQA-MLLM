@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {renderer: 'canvas', width: 800, height: 600});
+var app = {};
+
+option = {
+    title: {
+        text: 'Projected Impact of Future Technologies on Society',
+        subtext: 'Percentage Share from 2025 to 2045'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow' 
+        }
+    },
+    legend: {
+        data: ['AI Innovations', 'Robotics', 'Biotech', 'Quantum Computing', 'Nano Technology']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    yAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01]
+    },
+    xAxis: {
+        type: 'category',
+        data: ['2025', '2030', '2035', '2040', '2045']
+    },
+    series: [
+        {
+            name: 'AI Innovations',
+            type: 'bar',
+            stack: 'total',
+            barWidth: '50%',
+            itemStyle: {color: '#1f77b4'},
+            data: [15, 18, 20, 22, 25]
+        },
+        {
+            name: 'Robotics',
+            type: 'bar',
+            stack: 'total',
+            barWidth: '50%',
+            itemStyle: {color: '#ff7f0e'},
+            data: [25, 23, 20, 18, 15]
+        },
+        {
+            name: 'Biotech',
+            type: 'bar',
+            stack: 'total',
+            barWidth: '50%',
+            itemStyle: {color: '#2ca02c'},
+            data: [32, 35, 40, 45, 50]
+        },
+        {
+            name: 'Quantum Computing',
+            type: 'bar',
+            stack: 'total',
+            barWidth: '50%',
+            itemStyle: {color: '#d62728'},
+            data: [15, 12, 10, 8, 5]
+        },
+        {
+            name: 'Nano Technology',
+            type: 'bar',
+            stack: 'total',
+            barWidth: '50%',
+            itemStyle: {color: '#9467bd'},
+            data: [13, 12, 10, 7, 5]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

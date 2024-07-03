@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+// Parse the provided data
+const data = [
+    {'Date': '2023-03-01', 'Apples Sold (kg)': 150, 'Oranges Sold (kg)': 120, 'Bananas Sold (kg)': 180, 'Berries Sold (kg)': 90},
+    {'Date': '2023-03-08', 'Apples Sold (kg)': 165, 'Oranges Sold (kg)': 130, 'Bananas Sold (kg)': 190, 'Berries Sold (kg)': 110},
+    {'Date': '2023-03-15', 'Apples Sold (kg)': 180, 'Oranges Sold (kg)': 140, 'Bananas Sold (kg)': 160, 'Berries Sold (kg)': 130},
+    {'Date': '2023-03-22', 'Apples Sold (kg)': 200, 'Oranges Sold (kg)': 150, 'Bananas Sold (kg)': 170, 'Berries Sold (kg)': 120},
+    {'Date': '2023-03-29', 'Apples Sold (kg)': 190, 'Oranges Sold (kg)': 160, 'Bananas Sold (kg)': 210, 'Berries Sold (kg)': 140}
+];
+
+// Prepare series data for the stacked area chart
+let seriesData = {
+    'Apples Sold (kg)': [],
+    'Oranges Sold (kg)': [],
+    'Bananas Sold (kg)': [],
+    'Berries Sold (kg)': []
+};
+let dates = [];
+
+data.forEach(function (item) {
+    dates.push(item.Date);
+    for (let key in seriesData) {
+        if (seriesData.hasOwnProperty(key)) {
+            seriesData[key].push(item[key]);
+        }
+    }
+});
+
+let series = [];
+for (let key in seriesData) {
+    if (seriesData.hasOwnProperty(key)) {
+        series.push({
+            name: key,
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: seriesData[key]
+        });
+    }
+}
+
+option = {
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            label: {
+                backgroundColor: '#6a7985'
+            }
+        }
+    },
+    legend: {
+        data: Object.keys(seriesData)
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: [
+        {
+            type: 'category',
+            boundaryGap: false,
+            data: dates
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value'
+        }
+    ],
+    series: series
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

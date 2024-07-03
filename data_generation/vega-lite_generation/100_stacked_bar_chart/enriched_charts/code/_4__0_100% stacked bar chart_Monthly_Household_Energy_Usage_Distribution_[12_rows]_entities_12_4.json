@@ -1,0 +1,150 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "100% Stacked Vertical Bar Chart of Energy Sources by Year",
+    "data": {
+        "values": [
+            {
+                "Year": "2018",
+                "Solar": 25,
+                "Wind": 30,
+                "Hydro": 20,
+                "Nuclear": 15,
+                "Coal": 5,
+                "Gas": 5
+            },
+            {
+                "Year": "2019",
+                "Solar": 28,
+                "Wind": 25,
+                "Hydro": 22,
+                "Nuclear": 12,
+                "Coal": 7,
+                "Gas": 6
+            },
+            {
+                "Year": "2020",
+                "Solar": 30,
+                "Wind": 20,
+                "Hydro": 25,
+                "Nuclear": 10,
+                "Coal": 8,
+                "Gas": 7
+            },
+            {
+                "Year": "2021",
+                "Solar": 35,
+                "Wind": 18,
+                "Hydro": 20,
+                "Nuclear": 10,
+                "Coal": 10,
+                "Gas": 7
+            },
+            {
+                "Year": "2022",
+                "Solar": 32,
+                "Wind": 22,
+                "Hydro": 23,
+                "Nuclear": 8,
+                "Coal": 10,
+                "Gas": 5
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Solar",
+                "Wind",
+                "Hydro",
+                "Nuclear",
+                "Coal",
+                "Gas"
+            ],
+            "as": [
+                "source",
+                "percentage"
+            ]
+        }
+    ],
+    "width": 500,
+    "height": 300,
+    "mark": {
+        "type": "bar",
+        "tooltip": true,
+        "orient": "vertical"
+    },
+    "encoding": {
+        "x": {
+            "field": "Year",
+            "type": "ordinal",
+            "axis": {
+                "title": "Year"
+            }
+        },
+        "y": {
+            "field": "percentage",
+            "type": "quantitative",
+            "axis": {
+                "title": "Percentage",
+                "format": "%"
+            },
+            "stack": "normalize"
+        },
+        "color": {
+            "field": "source",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Solar",
+                    "Wind",
+                    "Hydro",
+                    "Nuclear",
+                    "Coal",
+                    "Gas"
+                ],
+                "range": [
+                    "#ff9999",
+                    "#66b3ff",
+                    "#99ff99",
+                    "#ffcc99",
+                    "#c2c2f0",
+                    "#ffb3e6"
+                ]
+            },
+            "legend": {
+                "title": "Energy Source",
+                "orient": "top"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Year",
+                "type": "ordinal"
+            },
+            {
+                "field": "source",
+                "type": "nominal"
+            },
+            {
+                "field": "percentage",
+                "type": "quantitative",
+                "title": "Percentage",
+                "format": ".2%"
+            }
+        ]
+    },
+    "config": {
+        "axis": {
+            "labelFontSize": 12,
+            "titleFontSize": 14
+        },
+        "legend": {
+            "labelFontSize": 12,
+            "titleFontSize": 14
+        },
+        "bar": {
+            "binSpacing": 1,
+            "strokeWidth": 0
+        }
+    }
+}

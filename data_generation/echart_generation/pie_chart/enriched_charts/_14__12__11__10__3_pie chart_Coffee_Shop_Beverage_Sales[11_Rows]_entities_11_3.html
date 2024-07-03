@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Annual Tourist Visits to City Landmarks',
+        left: 'center',
+        top: 20
+    },
+    tooltip: {
+        trigger: 'item'
+    },
+    legend: {
+        orient: 'vertical',
+        left: 20,
+        top: 'middle'
+    },
+    series: [
+        {
+            name: 'Visits',
+            type: 'pie',
+            radius: '50%',
+            data: [
+                { value: 450000, name: 'The Castle', itemStyle: { color: '#1F77B4' } },
+                { value: 350000, name: 'The Old Town', itemStyle: { color: '#FF7F0E' } },
+                { value: 200000, name: 'The Royal Gardens', itemStyle: { color: '#2CA02C' } },
+                { value: 180000, name: 'The Modern Museum', itemStyle: { color: '#D62728' } },
+                { value: 120000, name: 'The Observatory', itemStyle: { color: '#9467BD' } }
+            ],
+            emphasis: {
+                itemStyle: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            },
+            label: {
+                formatter: '{b}: {d}%'
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

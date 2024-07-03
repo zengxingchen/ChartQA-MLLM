@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {renderer: 'canvas', useDirtyRect: false});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Health & Psychology Metrics',
+        left: 'center',
+        top: '10px'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Value'],
+        top: '30px',
+        left: 'center'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01]
+    },
+    yAxis: {
+        type: 'category',
+        data: ['Stress', 'Anxiety', 'Depression', 'Happiness', 'Satisfaction', 'Sleep Quality', 'Physical Health', 'Mental Well-being', 'Social Interaction', 'Exercise Frequency']
+    },
+    series: [
+        {
+            name: 'Value',
+            type: 'bar',
+            data: [78, 85, 67, 90, 75, 82, 80, 88, 70, 76],
+            itemStyle: {
+                color: function(params) {
+                    var colors = ['#5470C6', '#91CC75', '#FAC858', '#EE6666', '#73C0DE', '#3BA272', '#FC8452', '#9A60B4', '#EA7CCC', '#D4A2F7'];
+                    return colors[params.dataIndex];
+                }
+            },
+            barWidth: '60%'
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+window.addEventListener('resize', myChart.resize);
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

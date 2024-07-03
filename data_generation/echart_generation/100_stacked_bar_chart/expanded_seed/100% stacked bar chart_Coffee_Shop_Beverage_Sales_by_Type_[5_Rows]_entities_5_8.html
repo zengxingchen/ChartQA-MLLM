@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+            var dom = document.getElementById('container');
+            var myChart = echarts.init(dom, null, {
+            renderer: 'canvas',
+            useDirtyRect: false
+            });
+            var app = {};
+            
+            var option;
+
+            
+option = {
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Espresso', 'Latte', 'Cappuccino', 'Americano', 'Iced Coffee']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: [
+        {
+            type: 'value',
+            boundaryGap: [0, 0.01],
+            max: 100,
+            axisLabel: {
+                formatter: '{value} %'
+            }
+        }
+    ],
+    yAxis: [
+        {
+            type: 'category',
+            data: ['January', 'February', 'March', 'April', 'May']
+        }
+    ],
+    series: [
+        {
+            name: 'Espresso',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                formatter: '{c} %'
+            },
+            data: [25, 22, 20, 18, 15]
+        },
+        {
+            name: 'Latte',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                formatter: '{c} %'
+            },
+            data: [35, 38, 40, 42, 45]
+        },
+        {
+            name: 'Cappuccino',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                formatter: '{c} %'
+            },
+            data: [20, 18, 20, 20, 20]
+        },
+        {
+            name: 'Americano',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                formatter: '{c} %'
+            },
+            data: [10, 12, 10, 10, 10]
+        },
+        {
+            name: 'Iced Coffee',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                formatter: '{c} %'
+            },
+            data: [10, 10, 10, 10, 10]
+        }
+    ]
+};
+
+            if (option && typeof option === 'object') {
+            myChart.setOption(option);
+            }
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

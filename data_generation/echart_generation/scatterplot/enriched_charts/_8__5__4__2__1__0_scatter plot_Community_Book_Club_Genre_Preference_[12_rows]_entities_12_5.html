@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+option = {
+    title: {
+        text: 'Weight Loss Progress',
+        left: 'center',
+        top: '10%'
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: function (params) {
+            return `Day: ${params.value[0]}<br/>Weight: ${params.value[1]}kg`;
+        }
+    },
+    legend: {
+        data: ['Weight'],
+        left: 'right',
+        top: '10%'
+    },
+    xAxis: {
+        name: 'Days',
+        min: 0,
+        max: 210,
+    },
+    yAxis: {
+        name: 'Weight (kg)',
+        min: 30,
+        max: 100,
+    },
+    series: [
+        {
+            name: 'Weight',
+            type: 'scatter',
+            itemStyle: {
+                color: '#FF5733'
+            },
+            data: [
+                [10, 90], [20, 85], [30, 80], [40, 78], [50, 76], [60, 72], 
+                [70, 70], [80, 68], [90, 65], [100, 60], [110, 58], [120, 55], 
+                [130, 52], [140, 50], [150, 48], [160, 45], [170, 42], [180, 40], 
+                [190, 38], [200, 35]
+            ]
+        }
+    ],
+    width: 800,
+    height: 600
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

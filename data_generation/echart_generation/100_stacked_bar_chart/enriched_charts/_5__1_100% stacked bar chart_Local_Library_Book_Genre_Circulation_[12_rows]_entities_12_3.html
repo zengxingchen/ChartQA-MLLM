@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 800, // Reasonably changed width of the chart
+    height: 600 // Reasonably changed height of the chart
+});
+var app = {};
+
+var option;
+
+option = {
+    // Change the direction of the chart
+    color: ['#00a65a', '#f39c12', '#c23531', '#2f4554', '#d48265'], // Modify the color scheme using specific color codes
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            // Use shadow as a tooltip indicator
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Renewable Energy', 'Nuclear Power', 'Coal Power', 'Gas Power', 'Oil Power'],
+        left: 'right' // Placing the legend to the right to avoid overlap
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: false  // To display bars from the very beginning of the x-axis
+    },
+    yAxis: {
+        type: 'category',
+        data: ['2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020'],
+        axisLabel: {
+            interval: 0 // Show all years labels on the y-axis
+        },
+        axisTick: {
+            show: false  // Hide axis ticks for cleanliness
+        }
+    },
+    series: [
+        {
+            name: 'Renewable Energy',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'inside'
+            },
+            data: [13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 24],
+            barWidth : 35 // Reasonably changed width of bars
+        },
+        {
+            name: 'Nuclear Power',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'inside'
+            },
+            data: [17, 18, 18, 19, 20, 20, 21, 22, 22, 23, 23],
+            barWidth : 35 // Reasonably changed width of bars
+        },
+        {
+            name: 'Coal Power',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'inside'
+            },
+            data: [36, 35, 34, 32, 30, 28, 27, 25, 24, 22, 20],
+            barWidth : 35 // Reasonably changed width of bars
+        },
+        {
+            name: 'Gas Power',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'inside'
+            },
+            data: [25, 24, 23, 22, 21, 22, 21, 22, 22, 23, 23],
+            barWidth : 35 // Reasonably changed width of bars
+        },
+        {
+            name: 'Oil Power',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'inside'
+            },
+            data: [9, 9, 10, 11, 12, 12, 12, 11, 11, 10, 10],
+            barWidth : 35 // Reasonably changed width of bars
+        }
+    ],
+    // Change title with headline at an appropriate place
+    title: {
+        text: 'Energy Production Sources Over the Years',
+        subtext: 'Environment & Climate Change',
+        left: 'center', // Center the title
+        top: 20 // Ensure no overlapping with the legend
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

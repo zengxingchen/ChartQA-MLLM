@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Global Energy Consumption by Country in 2023',
+        left: 'center',
+        top: '20'
+    },
+    tooltip: {
+        trigger: 'item'
+    },
+    legend: {
+        orient: 'vertical',
+        left: 10,
+        top: '15%',
+        bottom: '15%'
+    },
+    series: [
+        {
+            name: 'Energy Consumption (Exajoules)',
+            type: 'pie',
+            radius: '55%',
+            center: ['50%', '60%'],
+            data: [
+                {value: 143.5, name: 'China'},
+                {value: 98.3, name: 'United States'},
+                {value: 34.0, name: 'India'},
+                {value: 30.5, name: 'Russia'},
+                {value: 22.5, name: 'Japan'},
+                {value: 14.0, name: 'Germany'},
+                {value: 13.1, name: 'South Korea'},
+                {value: 13.1, name: 'Canada'},
+                {value: 12.8, name: 'Brazil'},
+                {value: 11.3, name: 'Saudi Arabia'},
+                {value: 9.4, name: 'Iran'},
+                {value: 8.9, name: 'United Kingdom'},
+                {value: 8.6, name: 'France'},
+                {value: 7.4, name: 'Italy'},
+                {value: 5.6, name: 'Spain'},
+                {value: 5.5, name: 'Australia'},
+                {value: 5.2, name: 'Mexico'},
+                {value: 4.8, name: 'South Africa'},
+                {value: 4.7, name: 'Indonesia'},
+                {value: 4.7, name: 'Turkey'}
+            ],
+            emphasis: {
+                itemStyle: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            }
+        }
+    ],
+    color: [
+        '#7cb5ec', '#434348', '#90ed7d', '#f7a35c', '#8085e9', 
+        '#f15c80', '#e4d354', '#2b908f', '#f45b5b', '#91e8e1',
+        '#2f4554', '#61a0a8', '#d48265', '#c23531', '#749f83',
+        '#ca8622', '#bda29a', '#6e7074', '#546570', '#c4ccd3'
+    ],
+    grid: {
+        bottom: '3%',
+        containLabel: true
+    },
+    responsive: true
+};
+
+myChart.setOption(option, true);
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

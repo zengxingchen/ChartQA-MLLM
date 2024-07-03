@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+var option = {
+    title: {
+        text: 'Art & Design and Science & Nature',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: '{b}: {c}'
+    },
+    series: [{
+        name: 'Categories',
+        type: 'treemap',
+        data: [
+            {
+                name: 'Art & Design',
+                value: 100,
+                itemStyle: {
+                    color: '#FF6347'
+                },
+                children: [
+                    { name: 'Painting', value: 10, itemStyle: { color: '#FF4500' } },
+                    { name: 'Sculpture', value: 20, itemStyle: { color: '#FF8C00' } },
+                    { name: 'Photography', value: 15, itemStyle: { color: '#FFA07A' } },
+                    { name: 'Graphic Design', value: 25, itemStyle: { color: '#FF7F50' } },
+                    { name: 'Textile', value: 30, itemStyle: { color: '#FF6347' } }
+                ]
+            },
+            {
+                name: 'Science & Nature',
+                value: 96,
+                itemStyle: {
+                    color: '#4682B4'
+                },
+                children: [
+                    { name: 'Astronomy', value: 18, itemStyle: { color: '#1E90FF' } },
+                    { name: 'Biology', value: 22, itemStyle: { color: '#00BFFF' } },
+                    { name: 'Chemistry', value: 12, itemStyle: { color: '#87CEFA' } },
+                    { name: 'Physics', value: 17, itemStyle: { color: '#4682B4' } },
+                    { name: 'Geology', value: 27, itemStyle: { color: '#5F9EA0' } }
+                ]
+            },
+            {
+                name: 'Health & Psychology',
+                value: 115,
+                itemStyle: {
+                    color: '#8A2BE2'
+                },
+                children: [
+                    { name: 'Mental Health', value: 21, itemStyle: { color: '#9400D3' } },
+                    { name: 'Nutrition', value: 19, itemStyle: { color: '#9932CC' } },
+                    { name: 'Fitness', value: 24, itemStyle: { color: '#8A2BE2' } },
+                    { name: 'Wellness', value: 28, itemStyle: { color: '#BA55D3' } },
+                    { name: 'Disease Prevention', value: 23, itemStyle: { color: '#9370DB' } }
+                ]
+            }
+        ]
+    }]
+};
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

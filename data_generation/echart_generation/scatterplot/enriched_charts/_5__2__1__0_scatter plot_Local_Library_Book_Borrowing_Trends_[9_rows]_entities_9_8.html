@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+
+var option = {
+    title: {
+        text: 'Travel Adventures: Distance vs. Days',
+        left: 'center',
+        top: '10%'
+    },
+    tooltip: {
+        trigger: 'item'
+    },
+    legend: {
+        data: ['Travel Data'],
+        left: 'left',
+        top: '10%'
+    },
+    xAxis: {
+        name: 'Distance (km)',
+        type: 'value'
+    },
+    yAxis: {
+        name: 'Days',
+        type: 'value'
+    },
+    series: [{
+        name: 'Travel Data',
+        type: 'scatter',
+        itemStyle: {
+            color: '#1f77b4'
+        },
+        data: [
+            [1.2, 3.4],
+            [2.1, 4.2],
+            [3.6, 5.7],
+            [4.8, 6.3],
+            [5.4, 7.1],
+            [6.9, 8.5],
+            [7.3, 9.2],
+            [8.5, 10.4],
+            [9.7, 11.1],
+            [10.2, 12.3],
+            [11.6, 13.4],
+            [12.8, 14.2],
+            [13.4, 15.7],
+            [14.9, 16.3],
+            [15.2, 17.4],
+            [16.3, 18.2],
+            [17.8, 19.5],
+            [18.1, 20.3],
+            [19.6, 21.2],
+            [20.7, 22.4],
+            [21.9, 23.1],
+            [22.3, 24.3],
+            [23.5, 25.2],
+            [24.7, 26.4],
+            [25.1, 27.1],
+            [26.4, 28.5],
+            [27.8, 29.2],
+            [28.2, 30.4],
+            [29.5, 31.3],
+            [30.6, 32.1]
+        ]
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

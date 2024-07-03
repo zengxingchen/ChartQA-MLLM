@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var option;
+
+const data = [
+    {'Member ID': 1, 'Romance Novels (%) Read': 50, 'Thriller Novels (%) Read': 30, 'Sci-Fi Novels (%) Read': 10, 'Non-Fiction (%) Read': 10},
+    {'Member ID': 2, 'Romance Novels (%) Read': 20, 'Thriller Novels (%) Read': 30, 'Sci-Fi Novels (%) Read': 40, 'Non-Fiction (%) Read': 10},
+    // ... include all the other data points as well, omitted here for brevity
+    {'Member ID': 12, 'Romance Novels (%) Read': 30, 'Thriller Novels (%) Read': 40, 'Sci-Fi Novels (%) Read': 20, 'Non-Fiction (%) Read': 10}
+];
+
+// Process the data to fit into echart scatter plot series format
+const genreTypes = ['Romance Novels (%) Read', 'Thriller Novels (%) Read', 'Sci-Fi Novels (%) Read', 'Non-Fiction (%) Read'];
+const scatterData = genreTypes.map(genre => {
+    return data.map(member => ({
+        name: genre,
+        value: [member['Member ID'], member[genre]],
+        itemStyle: {
+            borderColor: genre === 'Romance Novels (%) Read' ? '#e91e63' :
+                         genre === 'Thriller Novels (%) Read' ? '#9c27b0' :
+                         genre === 'Sci-Fi Novels (%) Read' ? '#3f51b5' :
+                         '#4caf50' // Non-Fiction default color
+        }
+    }));
+});
+
+option = {
+    title: {
+        text: 'Member Reading Preferences'
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: function (params) {
+            return params.marker + params.name + '<br>Member ID: ' + params.value[0] + '<br>Percentage: ' + params.value[1] + '%';
+        }
+    },
+    legend: {
+        data: genreTypes
+    },
+    xAxis: {
+        type: 'value',
+        name: 'Member ID',
+        splitLine: {
+            lineStyle: {
+                type: 'dashed'
+            }
+        }
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Percentage',
+        splitLine: {
+            lineStyle: {
+                type: 'dashed'
+            }
+        }
+    },
+    series: genreTypes.map((genre, index) => ({
+        name: genre,
+        data: scatterData[index],
+        type: 'scatter',
+        symbolSize: function (val) {
+            return val[1]; // Size of the bubble
+        },
+        encode: {
+            x: 0,
+            y: 1
+        }
+    }))
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

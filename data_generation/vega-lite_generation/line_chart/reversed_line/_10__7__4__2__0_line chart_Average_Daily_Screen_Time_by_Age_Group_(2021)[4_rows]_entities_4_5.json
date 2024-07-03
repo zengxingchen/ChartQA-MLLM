@@ -1,0 +1,164 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Line chart showing the average daily water intake of individuals over a week.",
+    "title": {
+        "text": "Average Daily Water Intake of Individuals by Day of the Week",
+        "fontSize": 18,
+        "anchor": "start",
+        "color": "black"
+    },
+    "width": 800,
+    "height": 400,
+    "data": {
+        "values": [
+            {
+                "Individual": "John",
+                "Monday": 2.0,
+                "Tuesday": 2.5,
+                "Wednesday": 3.0,
+                "Thursday": 2.8,
+                "Friday": 3.2,
+                "Saturday": 3.5,
+                "Sunday": 4.0
+            },
+            {
+                "Individual": "Jane",
+                "Monday": 2.5,
+                "Tuesday": 2.7,
+                "Wednesday": 3.1,
+                "Thursday": 3.6,
+                "Friday": 3.8,
+                "Saturday": 4.0,
+                "Sunday": 4.5
+            },
+            {
+                "Individual": "Mike",
+                "Monday": 1.8,
+                "Tuesday": 2.2,
+                "Wednesday": 2.8,
+                "Thursday": 3.0,
+                "Friday": 3.4,
+                "Saturday": 4.0,
+                "Sunday": 4.2
+            },
+            {
+                "Individual": "Alice",
+                "Monday": 2.9,
+                "Tuesday": 3.2,
+                "Wednesday": 3.4,
+                "Thursday": 3.6,
+                "Friday": 4.0,
+                "Saturday": 4.5,
+                "Sunday": 5.0
+            },
+            {
+                "Individual": "Bob",
+                "Monday": 2.3,
+                "Tuesday": 2.5,
+                "Wednesday": 2.7,
+                "Thursday": 3.0,
+                "Friday": 3.2,
+                "Saturday": 3.5,
+                "Sunday": 3.8
+            },
+            {
+                "Individual": "Sue",
+                "Monday": 3.0,
+                "Tuesday": 3.4,
+                "Wednesday": 3.6,
+                "Thursday": 3.8,
+                "Friday": 4.2,
+                "Saturday": 4.5,
+                "Sunday": 5.0
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday",
+                "Friday",
+                "Saturday",
+                "Sunday"
+            ],
+            "as": [
+                "Day",
+                "Water Intake (liters)"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "line",
+        "point": true
+    },
+    "encoding": {
+        "x": {
+            "field": "Day",
+            "type": "ordinal",
+            "title": "Day of the Week",
+            "axis": {
+                "titleFontSize": 14,
+                "labelAngle": -45
+            }
+        },
+        "y": {
+            "field": "Water Intake (liters)",
+            "type": "quantitative",
+            "title": "Average Daily Water Intake (liters)",
+            "scale": {
+                "reverse": true
+            },
+            "axis": {
+                "titleFontSize": 14
+            }
+        },
+        "color": {
+            "field": "Individual",
+            "type": "nominal",
+            "scale": {
+                "range": [
+                    "#FF6347",
+                    "#4682B4",
+                    "#32CD32",
+                    "#FFD700",
+                    "#8A2BE2",
+                    "#FF4500"
+                ]
+            },
+            "legend": {
+                "title": "Individual"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Individual",
+                "type": "nominal"
+            },
+            {
+                "field": "Day",
+                "type": "ordinal"
+            },
+            {
+                "field": "Water Intake (liters)",
+                "type": "quantitative"
+            }
+        ],
+        "text": {
+            "field": "Water Intake (liters)",
+            "type": "quantitative"
+        }
+    },
+    "config": {
+        "axisY": {
+            "minExtent": 30
+        },
+        "text": {
+            "align": "left",
+            "baseline": "middle",
+            "dx": 5
+        }
+    }
+}

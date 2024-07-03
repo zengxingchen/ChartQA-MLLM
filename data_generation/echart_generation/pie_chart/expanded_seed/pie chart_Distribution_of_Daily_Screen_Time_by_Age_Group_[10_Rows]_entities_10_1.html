@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+// Construct the data array with the format that ECharts expects
+// Note, we're going to have to skip the '<1' percentage because it's not numeric
+var chartData = [
+    {value: 4, name: '3-4 years'},
+    {value: 7, name: '5-8 years'},
+    {value: 21, name: '9-12 years'},
+    {value: 31, name: '13-18 years'},
+    {value: 24, name: '19-25 years'},
+    {value: 27, name: '26-35 years'},
+    {value: 25, name: '36-45 years'},
+    {value: 22, name: '46-55 years'},
+    {value: 19, name: '56+ years'}
+];
+
+option = {
+    tooltip: {
+        trigger: 'item',
+        formatter: '{a} <br/>{b} : {c} ({d}%)'
+    },
+    legend: {
+        orient: 'vertical',
+        left: 'left',
+        data: chartData.map(function (item) {
+            return item.name;
+        })
+    },
+    series: [
+        {
+            name: 'Age Group Distribution',
+            type: 'pie',
+            radius: '55%',
+            center: ['50%', '60%'],
+            data: chartData,
+            emphasis: {
+                itemStyle: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            },
+            label: {
+                show: true,
+                formatter: '{b}\n{d}%'
+            },
+            labelLine: {
+                show: true
+            }
+        }
+    ],
+    color: ['#c23531', '#2f4554', '#61a0a8', '#d48265', '#91c7ae', '#749f83', '#ca8622', '#bda29a', '#6e7074', '#546570', '#c4ccd3']
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

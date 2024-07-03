@@ -1,0 +1,200 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+        "values": [
+            {
+                "Day": "Monday",
+                "Cardio": 20,
+                "Strength": 15,
+                "Flexibility": 10,
+                "Balance": 5
+            },
+            {
+                "Day": "Tuesday",
+                "Cardio": 25,
+                "Strength": 10,
+                "Flexibility": 15,
+                "Balance": 10
+            },
+            {
+                "Day": "Wednesday",
+                "Cardio": 30,
+                "Strength": 20,
+                "Flexibility": 20,
+                "Balance": 15
+            },
+            {
+                "Day": "Thursday",
+                "Cardio": 35,
+                "Strength": 25,
+                "Flexibility": 25,
+                "Balance": 20
+            },
+            {
+                "Day": "Friday",
+                "Cardio": 40,
+                "Strength": 30,
+                "Flexibility": 30,
+                "Balance": 25
+            },
+            {
+                "Day": "Saturday",
+                "Cardio": 45,
+                "Strength": 35,
+                "Flexibility": 35,
+                "Balance": 30
+            },
+            {
+                "Day": "Sunday",
+                "Cardio": 50,
+                "Strength": 40,
+                "Flexibility": 40,
+                "Balance": 35
+            },
+            {
+                "Day": "Monday",
+                "Cardio": 20,
+                "Strength": 25,
+                "Flexibility": 30,
+                "Balance": 35
+            },
+            {
+                "Day": "Tuesday",
+                "Cardio": 25,
+                "Strength": 30,
+                "Flexibility": 35,
+                "Balance": 40
+            },
+            {
+                "Day": "Wednesday",
+                "Cardio": 30,
+                "Strength": 35,
+                "Flexibility": 40,
+                "Balance": 45
+            },
+            {
+                "Day": "Thursday",
+                "Cardio": 35,
+                "Strength": 40,
+                "Flexibility": 45,
+                "Balance": 50
+            },
+            {
+                "Day": "Friday",
+                "Cardio": 40,
+                "Strength": 45,
+                "Flexibility": 50,
+                "Balance": 55
+            },
+            {
+                "Day": "Saturday",
+                "Cardio": 45,
+                "Strength": 50,
+                "Flexibility": 55,
+                "Balance": 60
+            },
+            {
+                "Day": "Sunday",
+                "Cardio": 50,
+                "Strength": 55,
+                "Flexibility": 60,
+                "Balance": 65
+            }
+        ]
+    },
+    "width": 400,
+    "height": 600,
+    "title": {
+        "text": "Weekly Fitness Routine",
+        "subtitle": "A horizontal stacked bar chart showing the weekly fitness routine across different activities.",
+        "subtitleFontStyle": "italic",
+        "subtitleFontSize": 12,
+        "anchor": "start",
+        "frame": "group"
+    },
+    "transform": [
+        {
+            "fold": [
+                "Cardio",
+                "Strength",
+                "Flexibility",
+                "Balance"
+            ],
+            "as": [
+                "Activity",
+                "Minutes"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "bar",
+        "height": {
+            "band": 0.7
+        }
+    },
+    "encoding": {
+        "y": {
+            "field": "Day",
+            "type": "ordinal",
+            "title": "Day of the Week",
+            "axis": {
+                "labelAngle": 0
+            }
+        },
+        "x": {
+            "field": "Minutes",
+            "type": "quantitative",
+            "title": "Exercise Minutes",
+            "stack": "zero"
+        },
+        "color": {
+            "field": "Activity",
+            "type": "nominal",
+            "title": "Activity",
+            "scale": {
+                "domain": [
+                    "Cardio",
+                    "Strength",
+                    "Flexibility",
+                    "Balance"
+                ],
+                "range": [
+                    "#ff5733",
+                    "#33ff57",
+                    "#3357ff",
+                    "#ff33a6"
+                ]
+            },
+            "legend": {
+                "orient": "top",
+                "titleFontSize": 12,
+                "labelFontSize": 10
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Day",
+                "type": "nominal"
+            },
+            {
+                "field": "Activity",
+                "type": "nominal",
+                "title": "Activity"
+            },
+            {
+                "field": "Minutes",
+                "type": "quantitative",
+                "title": "Minutes"
+            }
+        ]
+    },
+    "config": {
+        "axis": {
+            "titleFontWeight": "normal",
+            "labelFont": "sans-serif"
+        },
+        "bar": {
+            "strokeWidth": 0
+        }
+    }
+}

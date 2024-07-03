@@ -1,0 +1,206 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+        "values": [
+            {
+                "Date": "2023-01-01",
+                "Calories": 2500,
+                "Protein": 120,
+                "Carbs": 300,
+                "Fat": 70
+            },
+            {
+                "Date": "2023-01-02",
+                "Calories": 2400,
+                "Protein": 110,
+                "Carbs": 290,
+                "Fat": 65
+            },
+            {
+                "Date": "2023-01-03",
+                "Calories": 2600,
+                "Protein": 130,
+                "Carbs": 310,
+                "Fat": 75
+            },
+            {
+                "Date": "2023-01-04",
+                "Calories": 2700,
+                "Protein": 140,
+                "Carbs": 320,
+                "Fat": 80
+            },
+            {
+                "Date": "2023-01-05",
+                "Calories": 2550,
+                "Protein": 125,
+                "Carbs": 305,
+                "Fat": 72
+            },
+            {
+                "Date": "2023-01-06",
+                "Calories": 2650,
+                "Protein": 135,
+                "Carbs": 315,
+                "Fat": 78
+            },
+            {
+                "Date": "2023-01-07",
+                "Calories": 2750,
+                "Protein": 145,
+                "Carbs": 325,
+                "Fat": 82
+            },
+            {
+                "Date": "2023-01-08",
+                "Calories": 2450,
+                "Protein": 115,
+                "Carbs": 295,
+                "Fat": 68
+            },
+            {
+                "Date": "2023-01-09",
+                "Calories": 2500,
+                "Protein": 120,
+                "Carbs": 300,
+                "Fat": 70
+            },
+            {
+                "Date": "2023-01-10",
+                "Calories": 2600,
+                "Protein": 130,
+                "Carbs": 310,
+                "Fat": 75
+            },
+            {
+                "Date": "2023-01-11",
+                "Calories": 2500,
+                "Protein": 125,
+                "Carbs": 310,
+                "Fat": 72
+            },
+            {
+                "Date": "2023-01-12",
+                "Calories": 2650,
+                "Protein": 135,
+                "Carbs": 320,
+                "Fat": 78
+            },
+            {
+                "Date": "2023-01-13",
+                "Calories": 2750,
+                "Protein": 145,
+                "Carbs": 330,
+                "Fat": 82
+            },
+            {
+                "Date": "2023-01-14",
+                "Calories": 2450,
+                "Protein": 115,
+                "Carbs": 300,
+                "Fat": 68
+            },
+            {
+                "Date": "2023-01-15",
+                "Calories": 2550,
+                "Protein": 125,
+                "Carbs": 310,
+                "Fat": 72
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Calories",
+                "Protein",
+                "Carbs",
+                "Fat"
+            ],
+            "as": [
+                "Nutrient",
+                "Intake"
+            ]
+        }
+    ],
+    "width": 500,
+    "height": 300,
+    "title": {
+        "text": "Daily Nutrient Intake",
+        "subtitle": "Calories, Protein, Carbs, and Fat consumption",
+        "subtitleFontStyle": "italic",
+        "subtitleFontSize": 12,
+        "anchor": "start",
+        "color": "black"
+    },
+    "mark": {
+        "type": "bar",
+        "width": {
+            "band": 0.7
+        }
+    },
+    "encoding": {
+        "x": {
+            "field": "Date",
+            "type": "ordinal",
+            "title": "Date",
+            "axis": {
+                "labelAngle": -45
+            }
+        },
+        "y": {
+            "field": "Intake",
+            "type": "quantitative",
+            "title": "Nutrient Intake"
+        },
+        "color": {
+            "field": "Nutrient",
+            "type": "nominal",
+            "legend": {
+                "orient": "top",
+                "title": "Nutrient Type",
+                "titleFontSize": 12,
+                "labelFontSize": 10
+            },
+            "scale": {
+                "domain": [
+                    "Calories",
+                    "Protein",
+                    "Carbs",
+                    "Fat"
+                ],
+                "range": [
+                    "#4e79a7",
+                    "#f28e2b",
+                    "#e15759",
+                    "#76b7b2"
+                ]
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Date",
+                "type": "ordinal",
+                "title": "Date"
+            },
+            {
+                "field": "Nutrient",
+                "type": "nominal",
+                "title": "Nutrient Type"
+            },
+            {
+                "field": "Intake",
+                "type": "quantitative",
+                "title": "Intake"
+            }
+        ]
+    },
+    "config": {
+        "axisX": {
+            "labelAngle": -45
+        },
+        "view": {
+            "stroke": "transparent"
+        }
+    }
+}

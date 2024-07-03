@@ -1,0 +1,186 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Scientific Research Indicators Over the Years",
+    "data": {
+        "values": [
+            {
+                "Year": 2010,
+                "Research Funding": 120.5,
+                "Publications": 230,
+                "Patents Filed": 45,
+                "Collaborations": 70,
+                "Breakthroughs": 12
+            },
+            {
+                "Year": 2011,
+                "Research Funding": 125.1,
+                "Publications": 240,
+                "Patents Filed": 50,
+                "Collaborations": 75,
+                "Breakthroughs": 15
+            },
+            {
+                "Year": 2012,
+                "Research Funding": 130.3,
+                "Publications": 250,
+                "Patents Filed": 52,
+                "Collaborations": 78,
+                "Breakthroughs": 17
+            },
+            {
+                "Year": 2013,
+                "Research Funding": 135.0,
+                "Publications": 260,
+                "Patents Filed": 55,
+                "Collaborations": 80,
+                "Breakthroughs": 20
+            },
+            {
+                "Year": 2014,
+                "Research Funding": 140.6,
+                "Publications": 270,
+                "Patents Filed": 60,
+                "Collaborations": 85,
+                "Breakthroughs": 22
+            },
+            {
+                "Year": 2015,
+                "Research Funding": 145.8,
+                "Publications": 280,
+                "Patents Filed": 65,
+                "Collaborations": 90,
+                "Breakthroughs": 25
+            },
+            {
+                "Year": 2016,
+                "Research Funding": 150.5,
+                "Publications": 290,
+                "Patents Filed": 68,
+                "Collaborations": 95,
+                "Breakthroughs": 27
+            },
+            {
+                "Year": 2017,
+                "Research Funding": 155.9,
+                "Publications": 300,
+                "Patents Filed": 70,
+                "Collaborations": 98,
+                "Breakthroughs": 30
+            },
+            {
+                "Year": 2018,
+                "Research Funding": 160.2,
+                "Publications": 310,
+                "Patents Filed": 75,
+                "Collaborations": 100,
+                "Breakthroughs": 32
+            },
+            {
+                "Year": 2019,
+                "Research Funding": 165.5,
+                "Publications": 320,
+                "Patents Filed": 78,
+                "Collaborations": 105,
+                "Breakthroughs": 35
+            },
+            {
+                "Year": 2020,
+                "Research Funding": 170.8,
+                "Publications": 330,
+                "Patents Filed": 80,
+                "Collaborations": 110,
+                "Breakthroughs": 38
+            },
+            {
+                "Year": 2021,
+                "Research Funding": 175.0,
+                "Publications": 340,
+                "Patents Filed": 85,
+                "Collaborations": 115,
+                "Breakthroughs": 40
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Research Funding",
+                "Publications",
+                "Patents Filed",
+                "Collaborations",
+                "Breakthroughs"
+            ],
+            "as": [
+                "Indicator",
+                "Value"
+            ]
+        }
+    ],
+    "width": 800,
+    "height": 500,
+    "mark": {
+        "type": "line",
+        "point": true
+    },
+    "encoding": {
+        "x": {
+            "field": "Year",
+            "type": "ordinal",
+            "title": "Year"
+        },
+        "y": {
+            "field": "Value",
+            "type": "quantitative",
+            "title": "Indicator Values",
+            "axis": {
+                "format": ".1f"
+            }
+        },
+        "color": {
+            "field": "Indicator",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Research Funding",
+                    "Publications",
+                    "Patents Filed",
+                    "Collaborations",
+                    "Breakthroughs"
+                ],
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e",
+                    "#2ca02c",
+                    "#d62728",
+                    "#9467bd"
+                ]
+            },
+            "title": "Scientific Indicator"
+        }
+    },
+    "layer": [
+        {
+            "mark": {
+                "type": "text",
+                "align": "left",
+                "dx": 5,
+                "dy": -5
+            },
+            "encoding": {
+                "text": {
+                    "field": "Value",
+                    "type": "quantitative"
+                },
+                "color": {
+                    "field": "Indicator",
+                    "type": "nominal"
+                }
+            }
+        }
+    ],
+    "config": {
+        "axisY": {
+            "minExtent": 30
+        }
+    }
+}

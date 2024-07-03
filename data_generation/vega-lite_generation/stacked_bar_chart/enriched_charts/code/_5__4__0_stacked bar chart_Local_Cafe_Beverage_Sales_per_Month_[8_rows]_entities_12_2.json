@@ -1,0 +1,155 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "A stacked horizontal bar chart showing the sales of different product categories over various years.",
+    "data": {
+        "values": [
+            {
+                "Year": "2015",
+                "Electronics": 400,
+                "Clothing": 300,
+                "Groceries": 200,
+                "Furniture": 150
+            },
+            {
+                "Year": "2016",
+                "Electronics": 450,
+                "Clothing": 320,
+                "Groceries": 220,
+                "Furniture": 180
+            },
+            {
+                "Year": "2017",
+                "Electronics": 480,
+                "Clothing": 340,
+                "Groceries": 250,
+                "Furniture": 200
+            },
+            {
+                "Year": "2018",
+                "Electronics": 500,
+                "Clothing": 360,
+                "Groceries": 270,
+                "Furniture": 220
+            },
+            {
+                "Year": "2019",
+                "Electronics": 520,
+                "Clothing": 380,
+                "Groceries": 290,
+                "Furniture": 240
+            },
+            {
+                "Year": "2020",
+                "Electronics": 540,
+                "Clothing": 400,
+                "Groceries": 310,
+                "Furniture": 260
+            },
+            {
+                "Year": "2021",
+                "Electronics": 560,
+                "Clothing": 420,
+                "Groceries": 330,
+                "Furniture": 280
+            },
+            {
+                "Year": "2022",
+                "Electronics": 580,
+                "Clothing": 440,
+                "Groceries": 350,
+                "Furniture": 300
+            },
+            {
+                "Year": "2023",
+                "Electronics": 600,
+                "Clothing": 460,
+                "Groceries": 370,
+                "Furniture": 320
+            },
+            {
+                "Year": "2024",
+                "Electronics": 620,
+                "Clothing": 480,
+                "Groceries": 390,
+                "Furniture": 340
+            }
+        ]
+    },
+    "title": {
+        "text": "Annual Product Sales",
+        "subtitle": [
+            "Sales data of Electronics, Clothing, Groceries, and Furniture",
+            "Updated annually with new data"
+        ],
+        "subtitleFontStyle": "italic",
+        "subtitleFontSize": 10,
+        "anchor": "start",
+        "color": "#333",
+        "frame": "group"
+    },
+    "width": 600,
+    "height": 400,
+    "transform": [
+        {
+            "fold": [
+                "Electronics",
+                "Clothing",
+                "Groceries",
+                "Furniture"
+            ],
+            "as": [
+                "Product",
+                "Sales"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "bar",
+        "width": {
+            "band": 0.6
+        }
+    },
+    "encoding": {
+        "y": {
+            "field": "Year",
+            "type": "ordinal",
+            "axis": {
+                "title": "Year"
+            }
+        },
+        "x": {
+            "field": "Sales",
+            "type": "quantitative",
+            "axis": {
+                "title": "Sales Amount"
+            }
+        },
+        "color": {
+            "field": "Product",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Electronics",
+                    "Clothing",
+                    "Groceries",
+                    "Furniture"
+                ],
+                "range": [
+                    "#1f78b4",
+                    "#33a02c",
+                    "#e31a1c",
+                    "#ff7f00"
+                ]
+            },
+            "legend": {
+                "title": "Product Category"
+            }
+        }
+    },
+    "config": {
+        "background": "#ffffff",
+        "view": {
+            "stroke": "transparent"
+        }
+    }
+}

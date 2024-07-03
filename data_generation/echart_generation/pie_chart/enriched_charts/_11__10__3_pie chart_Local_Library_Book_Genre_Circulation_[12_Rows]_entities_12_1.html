@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Market Share of Electronic Devices',
+        left: 'center',
+        top: 20,
+        textStyle: {
+            color: '#0a3d62'
+        }
+    },
+    tooltip: {
+        trigger: 'item'
+    },
+    legend: {
+        orient: 'vertical',
+        left: 'left',
+        top: 'middle'
+    },
+    series: [
+        {
+            name: 'Device Category',
+            type: 'pie',
+            radius: '50%',
+            data: [
+                { value: 870, name: 'Smartphones' },
+                { value: 650, name: 'Laptops' },
+                { value: 300, name: 'Tablets' },
+                { value: 220, name: 'Wearable Tech' },
+                { value: 460, name: 'Gaming Consoles' },
+                { value: 360, name: 'Smart Home Devices' },
+                { value: 180, name: 'VR Headsets' },
+                { value: 80, name: 'E-Readers' },
+                { value: 150, name: 'Drones' },
+                { value: 190, name: 'Cameras' }
+            ],
+            emphasis: {
+                itemStyle: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            },
+            label: {
+                position: 'outside',
+                formatter: '{b} ({d}%)'
+            },
+            itemStyle: {
+                borderRadius: 10,
+                borderColor: '#fff',
+                borderWidth: 2,
+                color: (params) => {
+                    const colorList = [
+                        '#c23531', '#2f4554', '#61a0a8', '#d48265', 
+                        '#91c7ae', '#749f83', '#ca8622', '#bda29a',
+                        '#6e7074', '#546570'
+                    ];
+                    return colorList[params.dataIndex];
+                }
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var option;
+
+option = {
+    title: {
+        text: 'Art & Design and Science & Nature',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: '{b}: {c}'
+    },
+    series: [{
+        type: 'treemap',
+        width: '100%',
+        height: '100%',
+        data: [
+            {
+                name: 'Art & Design',
+                value: 575,
+                children: [
+                    { name: 'Painting', value: 120 },
+                    { name: 'Sculpture', value: 95 },
+                    { name: 'Photography', value: 80 },
+                    { name: 'Graphic Design', value: 70 },
+                    { name: 'Architecture', value: 60 },
+                    { name: 'Digital Art', value: 50 },
+                    { name: 'Crafts', value: 40 },
+                    { name: 'Drawing', value: 30 },
+                    { name: 'Illustration', value: 20 },
+                    { name: 'Fashion Design', value: 10 }
+                ]
+            },
+            {
+                name: 'Science & Nature',
+                value: 550,
+                children: [
+                    { name: 'Astronomy', value: 100 },
+                    { name: 'Biology', value: 90 },
+                    { name: 'Chemistry', value: 80 },
+                    { name: 'Physics', value: 70 },
+                    { name: 'Geology', value: 60 },
+                    { name: 'Ecology', value: 50 },
+                    { name: 'Environment', value: 40 },
+                    { name: 'Marine Biology', value: 30 },
+                    { name: 'Climate Change', value: 20 },
+                    { name: 'Botany', value: 10 }
+                ]
+            }
+        ],
+        label: {
+            show: true,
+            formatter: '{b}\n{c}',
+            textStyle: {
+                color: '#000000',
+                fontSize: 14
+            }
+        },
+        itemStyle: {
+            normal: {
+                borderColor: '#ffffff',
+                borderWidth: 2,
+                gapWidth: 2,
+                color: '#ffcc00'
+            }
+        }
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

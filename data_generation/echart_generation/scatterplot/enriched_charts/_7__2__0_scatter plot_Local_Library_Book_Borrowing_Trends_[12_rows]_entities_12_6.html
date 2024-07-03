@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 800,
+    height: 600
+});
+var option = {
+    title: {
+        text: 'Trend of Health Metrics Over Time',
+        left: 'center',
+        top: '5%'
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: '{a} <br/>{b}: {c}'
+    },
+    legend: {
+        data: ['Health Score'],
+        left: 'left',
+        top: '10%'
+    },
+    xAxis: {
+        name: 'Time',
+        type: 'category',
+        data: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+    },
+    yAxis: {
+        name: 'Score',
+        type: 'value'
+    },
+    series: [{
+        name: 'Health Score',
+        type: 'scatter',
+        data: [
+            [1, 150], [2, 140], [3, 155], [4, 145], [5, 160],
+            [6, 135], [7, 170], [8, 130], [9, 175], [10, 125],
+            [11, 180], [12, 120], [13, 185], [14, 115], [15, 190],
+            [16, 110], [17, 195], [18, 105], [19, 200], [20, 100]
+        ],
+        itemStyle: {
+            color: '#FF6347'
+        }
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

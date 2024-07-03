@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 800,
+    height: 600
+});
+var option;
+
+option = {
+    title: {
+        text: 'Environmental Issues Over Years',
+        left: 'center',
+        top: '5%'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['2019', '2020', '2021'],
+        top: '10%'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        data: ['Climate Change', 'Biodiversity', 'Air Pollution', 'Water Pollution', 'Renewable Energy', 'Recycling', 'Waste Management', 'Deforestation', 'Sustainable Agriculture', 'Green Technology']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: '2019',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            data: [20, 35, 40, 25, 50, 30, 20, 45, 25, 40],
+            itemStyle: {
+                color: '#FF5733'
+            },
+            barWidth: '60%'
+        },
+        {
+            name: '2020',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            data: [30, 45, 60, 35, 70, 50, 25, 50, 35, 60],
+            itemStyle: {
+                color: '#33FF57'
+            },
+            barWidth: '60%'
+        },
+        {
+            name: '2021',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            data: [40, 50, 80, 45, 90, 70, 30, 55, 40, 80],
+            itemStyle: {
+                color: '#3357FF'
+            },
+            barWidth: '60%'
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

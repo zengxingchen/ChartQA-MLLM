@@ -1,0 +1,208 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Monthly Steps Count by City",
+    "data": {
+        "values": [
+            {
+                "Month": "January",
+                "New York": 10000,
+                "Los Angeles": 12000,
+                "Chicago": 9000,
+                "Houston": 11000,
+                "Phoenix": 13000,
+                "Philadelphia": 10500,
+                "San Antonio": 11500
+            },
+            {
+                "Month": "February",
+                "New York": 11000,
+                "Los Angeles": 12500,
+                "Chicago": 9500,
+                "Houston": 11500,
+                "Phoenix": 13500,
+                "Philadelphia": 11000,
+                "San Antonio": 12000
+            },
+            {
+                "Month": "March",
+                "New York": 11500,
+                "Los Angeles": 13000,
+                "Chicago": 10000,
+                "Houston": 12000,
+                "Phoenix": 14000,
+                "Philadelphia": 11500,
+                "San Antonio": 12500
+            },
+            {
+                "Month": "April",
+                "New York": 12000,
+                "Los Angeles": 13500,
+                "Chicago": 10500,
+                "Houston": 12500,
+                "Phoenix": 14500,
+                "Philadelphia": 12000,
+                "San Antonio": 13000
+            },
+            {
+                "Month": "May",
+                "New York": 13000,
+                "Los Angeles": 14000,
+                "Chicago": 11000,
+                "Houston": 13000,
+                "Phoenix": 15000,
+                "Philadelphia": 12500,
+                "San Antonio": 13500
+            },
+            {
+                "Month": "June",
+                "New York": 14000,
+                "Los Angeles": 14500,
+                "Chicago": 12000,
+                "Houston": 13500,
+                "Phoenix": 15500,
+                "Philadelphia": 13000,
+                "San Antonio": 14000
+            },
+            {
+                "Month": "July",
+                "New York": 14500,
+                "Los Angeles": 15000,
+                "Chicago": 12500,
+                "Houston": 14000,
+                "Phoenix": 16000,
+                "Philadelphia": 13500,
+                "San Antonio": 14500
+            },
+            {
+                "Month": "August",
+                "New York": 15000,
+                "Los Angeles": 15500,
+                "Chicago": 13000,
+                "Houston": 14500,
+                "Phoenix": 16500,
+                "Philadelphia": 14000,
+                "San Antonio": 15000
+            },
+            {
+                "Month": "September",
+                "New York": 15500,
+                "Los Angeles": 16000,
+                "Chicago": 13500,
+                "Houston": 15000,
+                "Phoenix": 17000,
+                "Philadelphia": 14500,
+                "San Antonio": 15500
+            },
+            {
+                "Month": "October",
+                "New York": 16000,
+                "Los Angeles": 16500,
+                "Chicago": 14000,
+                "Houston": 15500,
+                "Phoenix": 17500,
+                "Philadelphia": 15000,
+                "San Antonio": 16000
+            },
+            {
+                "Month": "November",
+                "New York": 16500,
+                "Los Angeles": 17000,
+                "Chicago": 14500,
+                "Houston": 16000,
+                "Phoenix": 18000,
+                "Philadelphia": 15500,
+                "San Antonio": 16500
+            },
+            {
+                "Month": "December",
+                "New York": 17000,
+                "Los Angeles": 17500,
+                "Chicago": 15000,
+                "Houston": 16500,
+                "Phoenix": 18500,
+                "Philadelphia": 16000,
+                "San Antonio": 17000
+            }
+        ]
+    },
+    "width": 1000,
+    "height": 600,
+    "transform": [
+        {
+            "fold": [
+                "New York",
+                "Los Angeles",
+                "Chicago",
+                "Houston",
+                "Phoenix",
+                "Philadelphia",
+                "San Antonio"
+            ],
+            "as": [
+                "City",
+                "Steps"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "line",
+        "point": true
+    },
+    "encoding": {
+        "x": {
+            "field": "Month",
+            "type": "ordinal",
+            "title": "Month",
+            "axis": {
+                "labelAngle": 0
+            }
+        },
+        "y": {
+            "field": "Steps",
+            "type": "quantitative",
+            "title": "Steps",
+            "scale": {
+                "reverse": true
+            }
+        },
+        "color": {
+            "field": "City",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "New York",
+                    "Los Angeles",
+                    "Chicago",
+                    "Houston",
+                    "Phoenix",
+                    "Philadelphia",
+                    "San Antonio"
+                ],
+                "range": [
+                    "#E74C3C",
+                    "#3498DB",
+                    "#2ECC71",
+                    "#F1C40F",
+                    "#9B59B6",
+                    "#34495E",
+                    "#E67E22"
+                ]
+            },
+            "title": "City"
+        },
+        "tooltip": [
+            {
+                "field": "Month",
+                "type": "nominal"
+            },
+            {
+                "field": "City",
+                "type": "nominal"
+            },
+            {
+                "field": "Steps",
+                "type": "quantitative"
+            }
+        ]
+    }
+}

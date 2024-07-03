@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Technology Adoption Trends (2020-2023)',
+        left: 'center',
+        textStyle: {
+            color: '#333333',
+            fontSize: 20
+        }
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['2020', '2021', '2022', '2023'],
+        top: '10%'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01]
+    },
+    yAxis: {
+        type: 'category',
+        data: ['AI', 'Blockchain', 'IoT', 'AR/VR', '5G', 'Quantum Computing', 'Biotechnology', 'Cybersecurity']
+    },
+    series: [
+        {
+            name: '2020',
+            type: 'bar',
+            data: [45, 30, 20, 15, 10, 5, 25, 35],
+            itemStyle: {
+                color: '#FF6347'
+            },
+            barWidth: 20
+        },
+        {
+            name: '2021',
+            type: 'bar',
+            data: [50, 35, 25, 20, 15, 10, 30, 40],
+            itemStyle: {
+                color: '#4682B4'
+            },
+            barWidth: 20
+        },
+        {
+            name: '2022',
+            type: 'bar',
+            data: [60, 40, 30, 25, 20, 15, 35, 45],
+            itemStyle: {
+                color: '#32CD32'
+            },
+            barWidth: 20
+        },
+        {
+            name: '2023',
+            type: 'bar',
+            data: [75, 45, 35, 30, 25, 20, 40, 50],
+            itemStyle: {
+                color: '#FFD700'
+            },
+            barWidth: 20
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

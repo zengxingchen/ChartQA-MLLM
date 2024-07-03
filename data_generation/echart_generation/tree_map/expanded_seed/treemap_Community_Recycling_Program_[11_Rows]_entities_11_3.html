@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var rawData = [
+    {'Material': 'Paper', 'Collection Site': 'School A', 'Weight': 3.2, 'Month': 'February'},
+    {'Material': 'Paper', 'Collection Site': 'School B', 'Weight': 4.5, 'Month': 'February'},
+    {'Material': 'Plastic', 'Collection Site': 'Park C', 'Weight': 2.1, 'Month': 'February'},
+    {'Material': 'Plastic', 'Collection Site': 'Community Center', 'Weight': 2.7, 'Month': 'February'},
+    {'Material': 'Glass', 'Collection Site': 'Drop-off Point Z', 'Weight': 1.8, 'Month': 'February'},
+    {'Material': 'Glass', 'Collection Site': 'Recycling Facility Y', 'Weight': 3.3, 'Month': 'February'},
+    {'Material': 'Metal', 'Collection Site': 'Factory X', 'Weight': 5.1, 'Month': 'February'},
+    {'Material': 'Metal', 'Collection Site': 'Drop-off Point W', 'Weight': 4.0, 'Month': 'February'},
+    {'Material': 'Electronics', 'Collection Site': 'Civic Center', 'Weight': 1.2, 'Month': 'February'},
+    {'Material': 'Organic', 'Collection Site': 'Marketplace V', 'Weight': 6.4, 'Month': 'February'},
+    {'Material': 'Organic', 'Collection Site': 'Grocery Store U', 'Weight': 5.7, 'Month': 'February'}
+];
+
+// Transform data into a format suitable for treemap
+var data = rawData.map(function (item) {
+    return {
+        name: `${item['Material']} - ${item['Collection Site']}`,
+        value: item['Weight']
+    };
+});
+
+option = {
+    tooltip: {
+        formatter: function (info) {
+            var value = info.value;
+            var treePathInfo = info.treePathInfo;
+            var treePath = [];
+
+            for (var i = 1; i < treePathInfo.length; i++) {
+                treePath.push(treePathInfo[i].name);
+            }
+
+            return [
+                '<div class="tooltip-title">' + echarts.format.encodeHTML(treePath.join('/')) + '</div>',
+                'Weight: ' + echarts.format.addCommas(value) + ' tons',
+            ].join('');
+        }
+    },
+    series: [
+        {
+            name: 'Collection Data',
+            type: 'treemap',
+            visibleMin: 300,
+            label: {
+                show: true,
+                formatter: '{b}'
+            },
+            itemStyle: {
+                normal: {
+                    borderColor: '#fff'
+                }
+            },
+            levels: [
+                {
+                    itemStyle: {
+                        normal: {
+                            borderWidth: 0,
+                            gapWidth: 5
+                        }
+                    }
+                },
+                {
+                    colorSaturation: [0.3, 0.6],
+                    itemStyle: {
+                        normal: {
+                            gapWidth: 1,
+                            borderColorSaturation: 0.6
+                        }
+                    }
+                }
+            ],
+            data: data
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

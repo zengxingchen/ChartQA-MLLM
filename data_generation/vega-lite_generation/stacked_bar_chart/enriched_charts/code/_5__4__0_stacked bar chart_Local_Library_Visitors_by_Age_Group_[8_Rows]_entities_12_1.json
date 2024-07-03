@@ -1,0 +1,139 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+        "values": [
+            {
+                "Year": "2021",
+                "Rainfall": 120,
+                "Temperature": 23,
+                "Humidity": 70,
+                "Wind": 10
+            },
+            {
+                "Year": "2022",
+                "Rainfall": 130,
+                "Temperature": 25,
+                "Humidity": 65,
+                "Wind": 12
+            },
+            {
+                "Year": "2023",
+                "Rainfall": 115,
+                "Temperature": 22,
+                "Humidity": 75,
+                "Wind": 11
+            },
+            {
+                "Year": "2024",
+                "Rainfall": 140,
+                "Temperature": 24,
+                "Humidity": 60,
+                "Wind": 13
+            },
+            {
+                "Year": "2025",
+                "Rainfall": 125,
+                "Temperature": 26,
+                "Humidity": 68,
+                "Wind": 9
+            },
+            {
+                "Year": "2026",
+                "Rainfall": 135,
+                "Temperature": 27,
+                "Humidity": 72,
+                "Wind": 14
+            },
+            {
+                "Year": "2027",
+                "Rainfall": 145,
+                "Temperature": 28,
+                "Humidity": 63,
+                "Wind": 15
+            },
+            {
+                "Year": "2028",
+                "Rainfall": 150,
+                "Temperature": 29,
+                "Humidity": 66,
+                "Wind": 16
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Rainfall",
+                "Temperature",
+                "Humidity",
+                "Wind"
+            ],
+            "as": [
+                "Condition",
+                "Value"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "bar",
+        "width": {
+            "band": 0.6
+        }
+    },
+    "width": 400,
+    "height": 500,
+    "title": {
+        "text": "Yearly Weather Conditions",
+        "anchor": "middle",
+        "offset": 10
+    },
+    "encoding": {
+        "y": {
+            "field": "Year",
+            "type": "ordinal",
+            "title": "Year"
+        },
+        "x": {
+            "field": "Value",
+            "type": "quantitative",
+            "title": "Value"
+        },
+        "color": {
+            "field": "Condition",
+            "type": "nominal",
+            "legend": {
+                "title": "Conditions",
+                "orient": "top"
+            },
+            "scale": {
+                "domain": [
+                    "Rainfall",
+                    "Temperature",
+                    "Humidity",
+                    "Wind"
+                ],
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e",
+                    "#2ca02c",
+                    "#d62728"
+                ]
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Year",
+                "type": "nominal"
+            },
+            {
+                "field": "Condition",
+                "type": "nominal"
+            },
+            {
+                "field": "Value",
+                "type": "quantitative",
+                "title": "Value"
+            }
+        ]
+    }
+}

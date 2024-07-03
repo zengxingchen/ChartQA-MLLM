@@ -1,0 +1,139 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Line chart of annual music industry revenue by different segments over recent years",
+    "data": {
+        "values": [
+            {
+                "Year": 2019,
+                "Streaming": 15000,
+                "Physical": 5000,
+                "Digital": 8000
+            },
+            {
+                "Year": 2020,
+                "Streaming": 17000,
+                "Physical": 4800,
+                "Digital": 8200
+            },
+            {
+                "Year": 2021,
+                "Streaming": 19000,
+                "Physical": 4600,
+                "Digital": 8500
+            },
+            {
+                "Year": 2022,
+                "Streaming": 21000,
+                "Physical": 4400,
+                "Digital": 8700
+            },
+            {
+                "Year": 2023,
+                "Streaming": 23000,
+                "Physical": 4200,
+                "Digital": 9000
+            },
+            {
+                "Year": 2024,
+                "Streaming": 25000,
+                "Physical": 4000,
+                "Digital": 9500
+            },
+            {
+                "Year": 2025,
+                "Streaming": 27000,
+                "Physical": 3800,
+                "Digital": 10000
+            },
+            {
+                "Year": 2026,
+                "Streaming": 29000,
+                "Physical": 3600,
+                "Digital": 10500
+            },
+            {
+                "Year": 2027,
+                "Streaming": 31000,
+                "Physical": 3400,
+                "Digital": 11000
+            },
+            {
+                "Year": 2028,
+                "Streaming": 33000,
+                "Physical": 3200,
+                "Digital": 11500
+            },
+            {
+                "Year": 2029,
+                "Streaming": 35000,
+                "Physical": 3000,
+                "Digital": 12000
+            },
+            {
+                "Year": 2030,
+                "Streaming": 37000,
+                "Physical": 2800,
+                "Digital": 12500
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Streaming",
+                "Physical",
+                "Digital"
+            ],
+            "as": [
+                "Segment",
+                "Revenue"
+            ]
+        }
+    ],
+    "width": 1000,
+    "height": 600,
+    "mark": {
+        "type": "line",
+        "point": true
+    },
+    "encoding": {
+        "x": {
+            "field": "Year",
+            "type": "ordinal",
+            "title": "Year"
+        },
+        "y": {
+            "field": "Revenue",
+            "type": "quantitative",
+            "title": "Annual Music Industry Revenue (USD)",
+            "scale": {
+                "reverse": true
+            },
+            "axis": {
+                "format": "$.1f"
+            }
+        },
+        "color": {
+            "field": "Segment",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Streaming",
+                    "Physical",
+                    "Digital"
+                ],
+                "range": [
+                    "#FF5733",
+                    "#33FF57",
+                    "#3357FF"
+                ]
+            },
+            "title": "Segment"
+        }
+    },
+    "config": {
+        "axisY": {
+            "minExtent": 30
+        }
+    }
+}

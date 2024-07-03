@@ -1,0 +1,172 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Average Monthly Temperature by Climate Zone",
+    "data": {
+        "values": [
+            {
+                "Month": "January",
+                "Temperate": 5,
+                "Tropical": 30,
+                "Arid": 15,
+                "Polar": -20,
+                "Mountain": 0
+            },
+            {
+                "Month": "February",
+                "Temperate": 6,
+                "Tropical": 30,
+                "Arid": 17,
+                "Polar": -18,
+                "Mountain": 1
+            },
+            {
+                "Month": "March",
+                "Temperate": 10,
+                "Tropical": 31,
+                "Arid": 20,
+                "Polar": -15,
+                "Mountain": 3
+            },
+            {
+                "Month": "April",
+                "Temperate": 15,
+                "Tropical": 32,
+                "Arid": 22,
+                "Polar": -10,
+                "Mountain": 5
+            },
+            {
+                "Month": "May",
+                "Temperate": 18,
+                "Tropical": 33,
+                "Arid": 25,
+                "Polar": -5,
+                "Mountain": 8
+            },
+            {
+                "Month": "June",
+                "Temperate": 21,
+                "Tropical": 34,
+                "Arid": 27,
+                "Polar": 0,
+                "Mountain": 10
+            },
+            {
+                "Month": "July",
+                "Temperate": 24,
+                "Tropical": 35,
+                "Arid": 30,
+                "Polar": 2,
+                "Mountain": 12
+            },
+            {
+                "Month": "August",
+                "Temperate": 23,
+                "Tropical": 35,
+                "Arid": 29,
+                "Polar": 3,
+                "Mountain": 11
+            },
+            {
+                "Month": "September",
+                "Temperate": 19,
+                "Tropical": 34,
+                "Arid": 26,
+                "Polar": -2,
+                "Mountain": 9
+            },
+            {
+                "Month": "October",
+                "Temperate": 14,
+                "Tropical": 32,
+                "Arid": 22,
+                "Polar": -8,
+                "Mountain": 6
+            },
+            {
+                "Month": "November",
+                "Temperate": 9,
+                "Tropical": 31,
+                "Arid": 18,
+                "Polar": -15,
+                "Mountain": 3
+            },
+            {
+                "Month": "December",
+                "Temperate": 6,
+                "Tropical": 30,
+                "Arid": 16,
+                "Polar": -18,
+                "Mountain": 1
+            }
+        ]
+    },
+    "width": 900,
+    "height": 500,
+    "transform": [
+        {
+            "fold": [
+                "Temperate",
+                "Tropical",
+                "Arid",
+                "Polar",
+                "Mountain"
+            ],
+            "as": [
+                "Climate Zone",
+                "Temperature"
+            ]
+        }
+    ],
+    "mark": "line",
+    "encoding": {
+        "x": {
+            "field": "Month",
+            "type": "ordinal",
+            "title": "Month",
+            "axis": {
+                "labelAngle": 0
+            }
+        },
+        "y": {
+            "field": "Temperature",
+            "type": "quantitative",
+            "title": "Average Temperature (\u00b0C)"
+        },
+        "color": {
+            "field": "Climate Zone",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Temperate",
+                    "Tropical",
+                    "Arid",
+                    "Polar",
+                    "Mountain"
+                ],
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e",
+                    "#2ca02c",
+                    "#d62728",
+                    "#9467bd"
+                ]
+            },
+            "title": "Climate Zone"
+        },
+        "tooltip": [
+            {
+                "field": "Month",
+                "type": "nominal"
+            },
+            {
+                "field": "Climate Zone",
+                "type": "nominal"
+            },
+            {
+                "field": "Temperature",
+                "type": "quantitative"
+            }
+        ]
+    }
+}

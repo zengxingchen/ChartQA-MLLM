@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var data = [{'Year': 2018, 'Sedan EVs': 150, 'SUV EVs': 200, 'Hatchback EVs': 180, 'Truck EVs': 20}, {'Year': 2019, 'Sedan EVs': 200, 'SUV EVs': 250, 'Hatchback EVs': 220, 'Truck EVs': 30}, {'Year': 2020, 'Sedan EVs': 300, 'SUV EVs': 350, 'Hatchback EVs': 320, 'Truck EVs': 40}, {'Year': 2021, 'Sedan EVs': 400, 'SUV EVs': 420, 'Hatchback EVs': 350, 'Truck EVs': 50}, {'Year': 2022, 'Sedan EVs': 500, 'SUV EVs': 500, 'Hatchback EVs': 380, 'Truck EVs': 70}];
+
+var categories = data.map(function (item) {
+    return item.Year;
+});
+var series = ['Sedan EVs', 'SUV EVs', 'Hatchback EVs', 'Truck EVs'].map(function (key) {
+    return {
+        name: key,
+        type: 'line',
+        stack: 'EVs',
+        areaStyle: {},
+        emphasis: {
+            focus: 'series'
+        },
+        data: data.map(function (item) {
+            return item[key];
+        })
+    };
+});
+
+var option = {
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            label: {
+                backgroundColor: '#6a7985'
+            }
+        }
+    },
+    legend: {
+        data: ['Sedan EVs', 'SUV EVs', 'Hatchback EVs', 'Truck EVs']
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: [
+        {
+            type: 'category',
+            boundaryGap: false,
+            data: categories
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value'
+        }
+    ],
+    series: series
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

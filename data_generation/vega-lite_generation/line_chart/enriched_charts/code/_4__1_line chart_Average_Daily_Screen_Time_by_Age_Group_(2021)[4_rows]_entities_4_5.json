@@ -1,0 +1,158 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Line chart showing average monthly screen time by age group.",
+    "title": {
+        "text": "Average Monthly Screen Time by Age Group",
+        "fontSize": 16,
+        "anchor": "start",
+        "color": "black"
+    },
+    "width": 600,
+    "height": 400,
+    "data": {
+        "values": [
+            {
+                "Age Group": "Teens",
+                "January": 3.5,
+                "February": 3.6,
+                "March": 3.8,
+                "April": 4.0,
+                "May": 4.2,
+                "June": 4.4,
+                "July": 4.5,
+                "August": 4.3,
+                "September": 4.2,
+                "October": 4.0,
+                "November": 3.8,
+                "December": 3.7
+            },
+            {
+                "Age Group": "Young Adults",
+                "January": 4.0,
+                "February": 4.1,
+                "March": 4.3,
+                "April": 4.5,
+                "May": 4.7,
+                "June": 4.8,
+                "July": 5.0,
+                "August": 4.9,
+                "September": 4.7,
+                "October": 4.5,
+                "November": 4.3,
+                "December": 4.1
+            },
+            {
+                "Age Group": "Adults",
+                "January": 2.5,
+                "February": 2.6,
+                "March": 2.8,
+                "April": 3.0,
+                "May": 3.1,
+                "June": 3.2,
+                "July": 3.4,
+                "August": 3.3,
+                "September": 3.2,
+                "October": 3.1,
+                "November": 2.9,
+                "December": 2.8
+            },
+            {
+                "Age Group": "Seniors",
+                "January": 1.5,
+                "February": 1.6,
+                "March": 1.7,
+                "April": 1.8,
+                "May": 1.9,
+                "June": 2.0,
+                "July": 2.2,
+                "August": 2.1,
+                "September": 2.0,
+                "October": 1.9,
+                "November": 1.8,
+                "December": 1.7
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "January",
+                "February",
+                "March",
+                "April",
+                "May",
+                "June",
+                "July",
+                "August",
+                "September",
+                "October",
+                "November",
+                "December"
+            ],
+            "as": [
+                "Month",
+                "Screen Time (hours)"
+            ]
+        }
+    ],
+    "mark": "line",
+    "encoding": {
+        "x": {
+            "field": "Month",
+            "type": "ordinal",
+            "title": "Month",
+            "axis": {
+                "titleFontSize": 12,
+                "labelAngle": -45
+            }
+        },
+        "y": {
+            "field": "Screen Time (hours)",
+            "type": "quantitative",
+            "title": "Screen Time (hours)",
+            "axis": {
+                "titleFontSize": 12
+            }
+        },
+        "color": {
+            "field": "Age Group",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Teens",
+                    "Young Adults",
+                    "Adults",
+                    "Seniors"
+                ],
+                "range": [
+                    "#FF6347",
+                    "#1E90FF",
+                    "#32CD32",
+                    "#FFD700"
+                ]
+            },
+            "legend": {
+                "title": "Age Group"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Age Group",
+                "type": "nominal"
+            },
+            {
+                "field": "Month",
+                "type": "ordinal"
+            },
+            {
+                "field": "Screen Time (hours)",
+                "type": "quantitative"
+            }
+        ]
+    },
+    "config": {
+        "axisY": {
+            "minExtent": 30
+        }
+    }
+}

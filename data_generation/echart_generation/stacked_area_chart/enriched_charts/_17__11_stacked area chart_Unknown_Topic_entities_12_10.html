@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Monthly Business Expenses Trend Analysis',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['Utilities', 'Rent', 'Salaries', 'Marketing', 'Repairs'],
+        top: 28
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Utilities',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [1200, 1150, 1100, 1050, 1000, 950, 900, 850, 800, 750, 700, 650]
+        },
+        {
+            name: 'Rent',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [3000, 3000, 3000, 3100, 3100, 3200, 3250, 3250, 3300, 3350, 3400, 3400]
+        },
+        {
+            name: 'Salaries',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [8500, 8700, 8900, 9000, 9100, 9300, 9500, 9650, 9750, 9850, 9950, 10000]
+        },
+        {
+            name: 'Marketing',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [2200, 2000, 2400, 2600, 2600, 2800, 2900, 3100, 3300, 3500, 3600, 3700]
+        },
+        {
+            name: 'Repairs',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [600, 800, 500, 700, 300, 600, 500, 550, 450, 400, 300, 250]
+        }
+    ],
+    color:['#836FFF', '#7FFF00', '#FFD700', '#FF6347', '#20B2AA'],
+    itemStyle: {
+        normal: {
+            label: {
+                show: true,
+                position: 'insideBottom',
+                formatter: function(params) {
+                    return params.value > 0 ? params.value : '';
+                }
+            }
+        }
+    },
+    textStyle:{
+        fontFamily:'Verdana'
+    },
+    width: 'auto',
+    height: '600px'
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

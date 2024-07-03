@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+var option;
+
+option = {
+    title: {
+        text: 'Fitness Progress Over Time',
+        left: 'center',
+        top: '5%'
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: '{a} <br/>{b} : {c}'
+    },
+    legend: {
+        left: 'left',
+        top: '15%',
+        data: ['Progress']
+    },
+    xAxis: {
+        type: 'value',
+        name: 'Time (days)'
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Fitness Score'
+    },
+    series: [
+        {
+            name: 'Progress',
+            type: 'scatter',
+            data: [
+                [1, 95],
+                [2, 90],
+                [3, 85],
+                [4, 80],
+                [5, 78],
+                [6, 77],
+                [7, 73],
+                [8, 70],
+                [9, 65],
+                [10, 63],
+                [11, 60],
+                [12, 58],
+                [13, 55],
+                [14, 50],
+                [15, 48],
+                [16, 45],
+                [17, 43],
+                [18, 40],
+                [19, 38],
+                [20, 35],
+                [21, 33],
+                [22, 30],
+                [23, 28],
+                [24, 25],
+                [25, 23],
+                [26, 20],
+                [27, 18],
+                [28, 15],
+                [29, 13],
+                [30, 10]
+            ],
+            itemStyle: {
+                color: '#FF5733'
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

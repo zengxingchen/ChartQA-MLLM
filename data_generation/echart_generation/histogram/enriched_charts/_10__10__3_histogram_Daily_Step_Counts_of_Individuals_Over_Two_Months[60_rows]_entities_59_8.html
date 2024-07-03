@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 800,
+    height: 600
+});
+
+var option = {
+    title: {
+        text: 'Distribution of Scores in Mathematics',
+        left: 'center',
+        top: '10'
+    },
+    xAxis: {
+        type: 'category',
+        data: ['0-10', '11-20', '21-30', '31-40', '41-50', '51-60', '61-70', '71-80', '81-90', '91-100'],
+        axisLabel: {
+            formatter: '{value} points'
+        }
+    },
+    yAxis: {
+        type: 'value',
+        axisLabel: {
+            formatter: '{value} students'
+        }
+    },
+    series: [{
+        type: 'bar',
+        data: [
+            { value: 3, itemStyle: { color: '#FF5733' }, label: { show: true, position: 'top', formatter: '{c} students' } },
+            { value: 5, itemStyle: { color: '#C70039' }, label: { show: true, position: 'top', formatter: '{c} students' } },
+            { value: 8, itemStyle: { color: '#900C3F' }, label: { show: true, position: 'top', formatter: '{c} students' } },
+            { value: 6, itemStyle: { color: '#581845' }, label: { show: true, position: 'top', formatter: '{c} students' } },
+            { value: 5, itemStyle: { color: '#1C2833' }, label: { show: true, position: 'top', formatter: '{c} students' } },
+            { value: 6, itemStyle: { color: '#FFC300' }, label: { show: true, position: 'top', formatter: '{c} students' } },
+            { value: 7, itemStyle: { color: '#DAF7A6' }, label: { show: true, position: 'top', formatter: '{c} students' } },
+            { value: 5, itemStyle: { color: '#FF5733' }, label: { show: true, position: 'top', formatter: '{c} students' } },
+            { value: 4, itemStyle: { color: '#C70039' }, label: { show: true, position: 'top', formatter: '{c} students' } },
+            { value: 1, itemStyle: { color: '#900C3F' }, label: { show: true, position: 'top', formatter: '{c} students' } }
+        ],
+        barWidth: '40%',
+        label: {
+            show: true,
+            position: 'top'
+        }
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

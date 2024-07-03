@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Educational Resource Distribution on Online Platforms',
+        left: 'center',
+        top: '20'
+    },
+    tooltip: {
+        trigger: 'item'
+    },
+    legend: {
+        orient: 'vertical',
+        left: 'left',
+        top: 'middle'
+    },
+    series: [
+        {
+            name: 'Resources',
+            type: 'pie',
+            radius: '50%',
+            data: [
+                { value: 1200, name: 'Coursera' },
+                { value: 900, name: 'edX' },
+                { value: 1500, name: 'Udemy' },
+                { value: 800, name: 'Khan Academy' },
+                { value: 700, name: 'Skillshare' },
+                { value: 650, name: 'Codecademy' },
+                { value: 400, name: 'FutureLearn' },
+                { value: 950, name: 'LinkedIn Learning' },
+                { value: 300, name: 'MasterClass' },
+                { value: 550, name: 'Pluralsight' }
+            ],
+            emphasis: {
+                itemStyle: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            },
+            color: [
+                '#e6194B', '#3cb44b', '#ffe119', '#4363d8', '#f58231',
+                '#911eb4', '#46f0f0', '#f032e6', '#bcf60c', '#fabebe'
+            ],
+            avoidLabelOverlap: true
+        }
+    ],
+    label: {
+        normal: {
+            formatter: '{b}: {c} ({d}%)',
+            position: 'outside'
+        }
+    },
+    labelLine: {
+        normal: {
+            show: true,
+            length: 20,
+            length2: 30
+        }
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

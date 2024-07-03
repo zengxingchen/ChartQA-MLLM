@@ -1,0 +1,193 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": {
+        "text": "Monthly Expenditure in Different Categories",
+        "anchor": "start"
+    },
+    "height": 500,
+    "width": 600,
+    "padding": 5,
+    "data": {
+        "values": [
+            {
+                "Month": "January",
+                "Rent": 1200,
+                "Groceries": 400,
+                "Utilities": 150,
+                "Transport": 100,
+                "Entertainment": 200
+            },
+            {
+                "Month": "February",
+                "Rent": 1200,
+                "Groceries": 420,
+                "Utilities": 160,
+                "Transport": 110,
+                "Entertainment": 210
+            },
+            {
+                "Month": "March",
+                "Rent": 1200,
+                "Groceries": 410,
+                "Utilities": 170,
+                "Transport": 120,
+                "Entertainment": 220
+            },
+            {
+                "Month": "April",
+                "Rent": 1200,
+                "Groceries": 430,
+                "Utilities": 180,
+                "Transport": 130,
+                "Entertainment": 230
+            },
+            {
+                "Month": "May",
+                "Rent": 1200,
+                "Groceries": 440,
+                "Utilities": 190,
+                "Transport": 140,
+                "Entertainment": 240
+            },
+            {
+                "Month": "June",
+                "Rent": 1200,
+                "Groceries": 450,
+                "Utilities": 200,
+                "Transport": 150,
+                "Entertainment": 250
+            },
+            {
+                "Month": "July",
+                "Rent": 1200,
+                "Groceries": 460,
+                "Utilities": 210,
+                "Transport": 160,
+                "Entertainment": 260
+            },
+            {
+                "Month": "August",
+                "Rent": 1200,
+                "Groceries": 470,
+                "Utilities": 220,
+                "Transport": 170,
+                "Entertainment": 270
+            },
+            {
+                "Month": "September",
+                "Rent": 1200,
+                "Groceries": 480,
+                "Utilities": 230,
+                "Transport": 180,
+                "Entertainment": 280
+            },
+            {
+                "Month": "October",
+                "Rent": 1200,
+                "Groceries": 490,
+                "Utilities": 240,
+                "Transport": 190,
+                "Entertainment": 290
+            },
+            {
+                "Month": "November",
+                "Rent": 1200,
+                "Groceries": 500,
+                "Utilities": 250,
+                "Transport": 200,
+                "Entertainment": 300
+            },
+            {
+                "Month": "December",
+                "Rent": 1200,
+                "Groceries": 510,
+                "Utilities": 260,
+                "Transport": 210,
+                "Entertainment": 310
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Rent",
+                "Groceries",
+                "Utilities",
+                "Transport",
+                "Entertainment"
+            ],
+            "as": [
+                "Category",
+                "Expenditure"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "bar",
+        "tooltip": true,
+        "cornerRadiusEnd": 4
+    },
+    "encoding": {
+        "y": {
+            "field": "Month",
+            "type": "ordinal",
+            "axis": {
+                "title": "Month",
+                "labelAngle": 0
+            }
+        },
+        "x": {
+            "field": "Expenditure",
+            "type": "quantitative",
+            "axis": {
+                "title": "Expenditure"
+            },
+            "stack": "normalize"
+        },
+        "color": {
+            "field": "Category",
+            "type": "nominal",
+            "scale": {
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e",
+                    "#2ca02c",
+                    "#d62728",
+                    "#9467bd"
+                ]
+            },
+            "legend": {
+                "title": "Category",
+                "orient": "top-right",
+                "symbolType": "square"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Category",
+                "type": "nominal"
+            },
+            {
+                "field": "Expenditure",
+                "type": "quantitative",
+                "title": "Expenditure"
+            }
+        ]
+    },
+    "config": {
+        "axis": {
+            "labelFontSize": 12,
+            "titleFontSize": 14
+        },
+        "legend": {
+            "labelFontSize": 12,
+            "titleFontSize": 14
+        },
+        "bar": {
+            "binSpacing": 2,
+            "height": {
+                "band": 0.8
+            }
+        }
+    }
+}

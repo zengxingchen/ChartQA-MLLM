@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'GDP vs Life Expectancy',
+        left: 'center',
+        top: '5%'
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: function (params) {
+            return 'GDP: ' + params.value[0] + ' billion<br/>Life Expectancy: ' + params.value[1] + ' years';
+        }
+    },
+    xAxis: {
+        name: 'GDP (in billions)',
+        nameLocation: 'middle',
+        nameGap: 30,
+        splitLine: {
+            show: false
+        }
+    },
+    yAxis: {
+        name: 'Life Expectancy',
+        nameLocation: 'middle',
+        nameGap: 50,
+        splitLine: {
+            show: false
+        }
+    },
+    grid: {
+        containLabel: true,
+        left: '10%',
+        right: '10%',
+        top: '15%',
+        bottom: '10%'
+    },
+    series: [
+        {
+            name: 'Data',
+            type: 'scatter',
+            itemStyle: {
+                color: '#1f77b4'
+            },
+            data: [
+                [5500, 78.5],
+                [6500, 80.2],
+                [7000, 81.1],
+                [4800, 76.4],
+                [7300, 82.0],
+                [5400, 78.1],
+                [6100, 79.8],
+                [5700, 78.7],
+                [6200, 80.0],
+                [6000, 79.2],
+                [5800, 78.9],
+                [5000, 77.5],
+                [4900, 77.0],
+                [7200, 81.7],
+                [6600, 80.5]
+            ]
+        }
+    ],
+    legend: {
+        data: ['Data'],
+        right: '10%',
+        top: '10%'
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

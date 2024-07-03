@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var option;
+option = {
+    title: {
+        text: 'Future Technologies & Society',
+        left: 'center',
+        top: '5%'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    xAxis: {
+        type: 'category',
+        data: ['Artificial Intelligence', 'Virtual Reality', 'Quantum Computing', 'Renewable Energy', 'Biotechnology', 'Nanotechnology', 'Blockchain', 'Autonomous Vehicles', '3D Printing', 'Space Exploration'],
+        axisLabel: {
+            interval: 0,
+            rotate: 30,
+            margin: 10
+        }
+    },
+    yAxis: {
+        type: 'value',
+        axisLabel: {
+            formatter: '{value}'
+        }
+    },
+    series: [
+        {
+            name: 'Value',
+            type: 'bar',
+            barWidth: '40%',
+            data: [
+                { value: 45, itemStyle: { color: '#1f77b4' } },
+                { value: 30, itemStyle: { color: '#ff7f0e' } },
+                { value: 50, itemStyle: { color: '#2ca02c' } },
+                { value: 60, itemStyle: { color: '#d62728' } },
+                { value: 55, itemStyle: { color: '#9467bd' } },
+                { value: 35, itemStyle: { color: '#8c564b' } },
+                { value: 40, itemStyle: { color: '#e377c2' } },
+                { value: 48, itemStyle: { color: '#7f7f7f' } },
+                { value: 42, itemStyle: { color: '#bcbd22' } },
+                { value: 65, itemStyle: { color: '#17becf' } }
+            ]
+        }
+    ],
+    grid: {
+        containLabel: true,
+        left: '3%',
+        right: '4%',
+        bottom: '3%'
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

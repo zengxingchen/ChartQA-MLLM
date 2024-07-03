@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+option = null;
+option = {
+    title: {
+        text: 'Economic Growth over Year',
+        left: 'center',
+        top: 5
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['GDP Growth'],
+        top: 30
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: [
+            '2000','2001','2002','2003','2004','2005',
+            '2006','2007','2008','2009','2010','2011',
+            '2012','2013','2014','2015','2016','2017',
+            '2018','2019','2020','2021','2022'
+        ]
+    },
+    yAxis: {
+        type: 'value',
+        axisLabel: {
+            formatter: '{value} %'
+        }
+    },
+    series: [
+        {
+            name: 'GDP Growth',
+            type: 'line',
+            data: [
+                3.75,0.98,1.58,2.75,3.64,3.51,
+                2.86,1.78,-0.14,-2.53,2.56,1.55,
+                2.25,1.68,2.69,2.91,1.64,2.37,
+                2.27,2.33,-3.51,5.97,3.21
+            ],
+            areaStyle: {},
+            color: '#3398DB',
+            markPoint: {
+                data: [
+                    {type: 'max', name: 'Max'},
+                    {type: 'min', name: 'Min'}
+                ]
+            },
+            label: {
+                normal: {
+                    show: true,
+                    position: 'top'
+                }
+            }
+        }
+    ],
+    color: ['#00BFFF','#40E0D0','#1E90FF','#FFD700'],
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    responsive: true
+};
+myChart.setOption(option, true);
+myChart.resize({width: 800, height: 600});
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

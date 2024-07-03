@@ -1,0 +1,203 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Monthly Sports Activities Analysis",
+    "title": {
+        "text": "Average Monthly Sports Activity Hours by Athletes",
+        "anchor": "start",
+        "offset": 5
+    },
+    "width": 700,
+    "height": 400,
+    "data": {
+        "values": [
+            {
+                "Month": "January",
+                "Running": 20,
+                "Swimming": 15,
+                "Cycling": 10,
+                "Gymnastics": 5,
+                "Soccer": 8
+            },
+            {
+                "Month": "February",
+                "Running": 18,
+                "Swimming": 16,
+                "Cycling": 11,
+                "Gymnastics": 6,
+                "Soccer": 10
+            },
+            {
+                "Month": "March",
+                "Running": 22,
+                "Swimming": 14,
+                "Cycling": 12,
+                "Gymnastics": 7,
+                "Soccer": 9
+            },
+            {
+                "Month": "April",
+                "Running": 25,
+                "Swimming": 18,
+                "Cycling": 14,
+                "Gymnastics": 4,
+                "Soccer": 7
+            },
+            {
+                "Month": "May",
+                "Running": 28,
+                "Swimming": 17,
+                "Cycling": 15,
+                "Gymnastics": 6,
+                "Soccer": 12
+            },
+            {
+                "Month": "June",
+                "Running": 30,
+                "Swimming": 20,
+                "Cycling": 18,
+                "Gymnastics": 4,
+                "Soccer": 8
+            },
+            {
+                "Month": "July",
+                "Running": 32,
+                "Swimming": 22,
+                "Cycling": 20,
+                "Gymnastics": 3,
+                "Soccer": 5
+            },
+            {
+                "Month": "August",
+                "Running": 30,
+                "Swimming": 25,
+                "Cycling": 22,
+                "Gymnastics": 5,
+                "Soccer": 6
+            },
+            {
+                "Month": "September",
+                "Running": 28,
+                "Swimming": 20,
+                "Cycling": 18,
+                "Gymnastics": 7,
+                "Soccer": 11
+            },
+            {
+                "Month": "October",
+                "Running": 26,
+                "Swimming": 18,
+                "Cycling": 16,
+                "Gymnastics": 8,
+                "Soccer": 10
+            },
+            {
+                "Month": "November",
+                "Running": 22,
+                "Swimming": 15,
+                "Cycling": 12,
+                "Gymnastics": 6,
+                "Soccer": 9
+            },
+            {
+                "Month": "December",
+                "Running": 20,
+                "Swimming": 14,
+                "Cycling": 10,
+                "Gymnastics": 5,
+                "Soccer": 7
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Running",
+                "Swimming",
+                "Cycling",
+                "Gymnastics",
+                "Soccer"
+            ],
+            "as": [
+                "Sport",
+                "Hours"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "area",
+        "opacity": 0.6
+    },
+    "encoding": {
+        "x": {
+            "field": "Month",
+            "type": "ordinal",
+            "axis": {
+                "title": "Month",
+                "labelAngle": 0
+            }
+        },
+        "y": {
+            "field": "Hours",
+            "type": "quantitative",
+            "stack": "zero",
+            "axis": {
+                "title": "Average Hours"
+            }
+        },
+        "color": {
+            "field": "Sport",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Running",
+                    "Swimming",
+                    "Cycling",
+                    "Gymnastics",
+                    "Soccer"
+                ],
+                "range": [
+                    "#e41a1c",
+                    "#377eb8",
+                    "#4daf4a",
+                    "#984ea3",
+                    "#ff7f00"
+                ]
+            },
+            "legend": {
+                "title": "Sport Type",
+                "orient": "top-left",
+                "offset": 50
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Month",
+                "type": "ordinal",
+                "title": "Month"
+            },
+            {
+                "field": "Sport",
+                "type": "nominal",
+                "title": "Sport Type"
+            },
+            {
+                "field": "Hours",
+                "type": "quantitative",
+                "title": "Hours"
+            }
+        ]
+    },
+    "config": {
+        "view": {
+            "stroke": "transparent"
+        },
+        "axis": {
+            "labelFontSize": 12,
+            "titleFontSize": 14
+        },
+        "legend": {
+            "labelFontSize": 12,
+            "titleFontSize": 14
+        }
+    }
+}

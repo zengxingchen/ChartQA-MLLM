@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var option;
+
+// Processing the data
+var tableData = [
+  {'Date': '2023-03-01', 'Espresso': 54, 'Americano': 86, 'Cappuccino': 78, 'Latte': 89},
+  {'Date': '2023-03-02', 'Espresso': 47, 'Americano': 76, 'Cappuccino': 88, 'Latte': 96},
+  {'Date': '2023-03-03', 'Espresso': 52, 'Americano': 81, 'Cappuccino': 90, 'Latte': 102},
+  {'Date': '2023-03-04', 'Espresso': 60, 'Americano': 89, 'Cappuccino': 95, 'Latte': 107},
+  {'Date': '2023-03-05', 'Espresso': 65, 'Americano': 94, 'Cappuccino': 100, 'Latte': 115}
+];
+
+var dates = tableData.map(function (item) {
+  return item.Date;
+});
+var espressos = tableData.map(function (item) {
+  return item.Espresso;
+});
+var americanos = tableData.map(function (item) {
+  return item.Americano;
+});
+var cappuccinos = tableData.map(function (item) {
+  return item.Cappuccino;
+});
+var lattes = tableData.map(function (item) {
+  return item.Latte;
+});
+
+option = {
+  tooltip: {
+    trigger: 'axis'
+  },
+  legend: {
+    data: ['Espresso', 'Americano', 'Cappuccino', 'Latte']
+  },
+  grid: {
+    left: '3%',
+    right: '4%',
+    bottom: '3%',
+    containLabel: true
+  },
+  xAxis: {
+    type: 'category',
+    boundaryGap: false,
+    data: dates
+  },
+  yAxis: {
+    type: 'value'
+  },
+  series: [
+    {
+      name: 'Espresso',
+      type: 'line',
+      data: espressos,
+      symbol: 'circle',
+    },
+    {
+      name: 'Americano',
+      type: 'line',
+      data: americanos,
+      symbol: 'rect',
+    },
+    {
+      name: 'Cappuccino',
+      type: 'line',
+      data: cappuccinos,
+      symbol: 'triangle',
+    },
+    {
+      name: 'Latte',
+      type: 'line',
+      data: lattes,
+      symbol: 'diamond',
+    }
+  ],
+  markPoint: {
+    data: [
+      { type: 'max', name: 'Max' },
+      { type: 'min', name: 'Min' }
+    ]
+  },
+  markLine: {
+    data: [
+      { type: 'average', name: 'Avg' }
+    ]
+  }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

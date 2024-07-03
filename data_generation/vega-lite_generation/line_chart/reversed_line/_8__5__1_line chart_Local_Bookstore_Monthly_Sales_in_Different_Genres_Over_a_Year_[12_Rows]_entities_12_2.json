@@ -1,0 +1,173 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Average Monthly Temperature by Region",
+    "data": {
+        "values": [
+            {
+                "Month": "January",
+                "Northern Hemisphere": -5,
+                "Southern Hemisphere": 25,
+                "Equatorial": 27,
+                "Desert": 15,
+                "Mountainous": -10
+            },
+            {
+                "Month": "February",
+                "Northern Hemisphere": 0,
+                "Southern Hemisphere": 26,
+                "Equatorial": 28,
+                "Desert": 18,
+                "Mountainous": -5
+            },
+            {
+                "Month": "March",
+                "Northern Hemisphere": 5,
+                "Southern Hemisphere": 24,
+                "Equatorial": 28,
+                "Desert": 22,
+                "Mountainous": 0
+            },
+            {
+                "Month": "April",
+                "Northern Hemisphere": 10,
+                "Southern Hemisphere": 22,
+                "Equatorial": 29,
+                "Desert": 25,
+                "Mountainous": 5
+            },
+            {
+                "Month": "May",
+                "Northern Hemisphere": 15,
+                "Southern Hemisphere": 20,
+                "Equatorial": 30,
+                "Desert": 28,
+                "Mountainous": 10
+            },
+            {
+                "Month": "June",
+                "Northern Hemisphere": 20,
+                "Southern Hemisphere": 18,
+                "Equatorial": 30,
+                "Desert": 32,
+                "Mountainous": 15
+            },
+            {
+                "Month": "July",
+                "Northern Hemisphere": 25,
+                "Southern Hemisphere": 16,
+                "Equatorial": 31,
+                "Desert": 35,
+                "Mountainous": 20
+            },
+            {
+                "Month": "August",
+                "Northern Hemisphere": 24,
+                "Southern Hemisphere": 17,
+                "Equatorial": 31,
+                "Desert": 34,
+                "Mountainous": 19
+            },
+            {
+                "Month": "September",
+                "Northern Hemisphere": 20,
+                "Southern Hemisphere": 19,
+                "Equatorial": 30,
+                "Desert": 30,
+                "Mountainous": 15
+            },
+            {
+                "Month": "October",
+                "Northern Hemisphere": 15,
+                "Southern Hemisphere": 21,
+                "Equatorial": 29,
+                "Desert": 25,
+                "Mountainous": 10
+            },
+            {
+                "Month": "November",
+                "Northern Hemisphere": 10,
+                "Southern Hemisphere": 23,
+                "Equatorial": 28,
+                "Desert": 20,
+                "Mountainous": 5
+            },
+            {
+                "Month": "December",
+                "Northern Hemisphere": 5,
+                "Southern Hemisphere": 25,
+                "Equatorial": 27,
+                "Desert": 15,
+                "Mountainous": 0
+            }
+        ]
+    },
+    "width": 900,
+    "height": 500,
+    "transform": [
+        {
+            "fold": [
+                "Northern Hemisphere",
+                "Southern Hemisphere",
+                "Equatorial",
+                "Desert",
+                "Mountainous"
+            ],
+            "as": [
+                "Region",
+                "Temperature"
+            ]
+        }
+    ],
+    "mark": "line",
+    "encoding": {
+        "x": {
+            "field": "Month",
+            "type": "ordinal",
+            "title": "Month",
+            "axis": {
+                "labelAngle": 0
+            }
+        },
+        "y": {
+            "field": "Temperature",
+            "type": "quantitative",
+            "title": "Average Temperature (\u00b0C)",
+            "sort": "descending"
+        },
+        "color": {
+            "field": "Region",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Northern Hemisphere",
+                    "Southern Hemisphere",
+                    "Equatorial",
+                    "Desert",
+                    "Mountainous"
+                ],
+                "range": [
+                    "#1f78b4",
+                    "#33a02c",
+                    "#e31a1c",
+                    "#ff7f00",
+                    "#6a3d9a"
+                ]
+            },
+            "title": "Region"
+        },
+        "tooltip": [
+            {
+                "field": "Month",
+                "type": "nominal"
+            },
+            {
+                "field": "Region",
+                "type": "nominal"
+            },
+            {
+                "field": "Temperature",
+                "type": "quantitative"
+            }
+        ]
+    }
+}

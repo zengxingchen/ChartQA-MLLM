@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+            var dom = document.getElementById('container');
+            var myChart = echarts.init(dom, null, {
+            renderer: 'canvas',
+            useDirtyRect: false
+            });
+            var app = {};
+            
+            var option;
+
+            
+option = {
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        },
+        formatter: function (params) {
+            var tooltipData = '<div><p>' + params[0].name + '</p></div>';
+            params.forEach(function (item) {
+                tooltipData += '<div><p>' + item.seriesName + ': ' + item.value + '%</p></div>';
+            });
+            return tooltipData;
+        }
+    },
+    legend: {
+        data: ['Retail', 'Hospitality', 'IT Services', 'Healthcare', 'Construction', 'Education', 'Transportation', 'Finance'],
+        bottom: 0
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '10%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        max: 100,
+        axisLabel: {
+            formatter: '{value}%'
+        }
+    },
+    yAxis: {
+        type: 'category',
+        data: ['Year 2021 (%)', 'Year 2020 (%)', 'Year 2019 (%)', 'Year 2018 (%)', 'Year 2017 (%)', 'Year 2016 (%)', 'Year 2015 (%)']
+    },
+    series: [
+        {
+            name: 'Retail',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                formatter: '{c}%'
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [19, 20, 13, 14, 14, 15, 15]
+        },
+        {
+            name: 'Hospitality',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                formatter: '{c}%'
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [8, 9, 12, 12, 11, 11, 10]
+        },
+        {
+            name: 'IT Services',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                formatter: '{c}%'
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [21, 20, 25, 24, 22, 21, 20]
+        },
+        {
+            name: 'Healthcare',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                formatter: '{c}%'
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [22, 21, 16, 16, 17, 18, 18]
+        },
+        {
+            name: 'Construction',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                formatter: '{c}%'
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [10, 10, 12, 12, 13, 12, 12]
+        },
+        {
+            name: 'Education',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                formatter: '{c}%'
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [8, 7, 10, 9, 8, 8, 8]
+        },
+        {
+            name: 'Transportation',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                formatter: '{c}%'
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [9, 9, 8, 8, 10, 10, 10]
+        },
+        {
+            name: 'Finance',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                formatter: '{c}%'
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [3, 4, 4, 5, 5, 5, 7]
+        }
+    ]
+};
+
+            if (option && typeof option === 'object') {
+            myChart.setOption(option);
+            }
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

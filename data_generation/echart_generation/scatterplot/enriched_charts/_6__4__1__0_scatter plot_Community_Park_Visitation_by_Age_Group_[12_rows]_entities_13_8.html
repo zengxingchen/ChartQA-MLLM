@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Relationship between Vitamin C and Iron Intake',
+        left: 'center',
+        top: '20px'
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: function (params) {
+            return 'Vitamin C: ' + params.data[0] + ' mg<br/>Iron: ' + params.data[1] + ' mg';
+        }
+    },
+    legend: {
+        data: ['Intake Data'],
+        left: 'right',
+        top: '20px'
+    },
+    xAxis: {
+        name: 'Vitamin C (mg)',
+        min: 40,
+        max: 100,
+    },
+    yAxis: {
+        name: 'Iron (mg)',
+        min: 5,
+        max: 20,
+    },
+    series: [{
+        name: 'Intake Data',
+        type: 'scatter',
+        itemStyle: {
+            color: '#ff5733'
+        },
+        data: [
+            [45, 8],
+            [70, 10],
+            [60, 12],
+            [55, 7],
+            [80, 14],
+            [65, 9],
+            [85, 11],
+            [90, 15],
+            [50, 6],
+            [75, 13],
+            [95, 16],
+            [78, 10],
+            [68, 12],
+            [88, 14],
+            [92, 17],
+            [54, 9],
+            [66, 11],
+            [83, 15],
+            [77, 13],
+            [82, 16]
+        ]
+    }],
+    grid: {
+        left: '10%',
+        right: '10%',
+        top: '60px',
+        bottom: '10%'
+    },
+    width: '800px',
+    height: '600px'
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

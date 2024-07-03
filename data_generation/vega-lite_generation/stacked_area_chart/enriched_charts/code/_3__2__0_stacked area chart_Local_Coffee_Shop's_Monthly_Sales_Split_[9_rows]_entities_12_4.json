@@ -1,0 +1,197 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Monthly Tourist Visits by Transportation Type",
+    "width": 800,
+    "height": 500,
+    "title": {
+        "text": "Monthly Tourist Visits by Transportation Type",
+        "anchor": "start",
+        "fontSize": 20,
+        "color": "#333",
+        "dy": -10
+    },
+    "data": {
+        "values": [
+            {
+                "Month": "January",
+                "Car": 200,
+                "Train": 150,
+                "Plane": 300,
+                "Ship": 80,
+                "Bus": 120
+            },
+            {
+                "Month": "February",
+                "Car": 220,
+                "Train": 130,
+                "Plane": 320,
+                "Ship": 75,
+                "Bus": 115
+            },
+            {
+                "Month": "March",
+                "Car": 250,
+                "Train": 160,
+                "Plane": 350,
+                "Ship": 90,
+                "Bus": 130
+            },
+            {
+                "Month": "April",
+                "Car": 275,
+                "Train": 170,
+                "Plane": 375,
+                "Ship": 95,
+                "Bus": 145
+            },
+            {
+                "Month": "May",
+                "Car": 300,
+                "Train": 180,
+                "Plane": 400,
+                "Ship": 100,
+                "Bus": 150
+            },
+            {
+                "Month": "June",
+                "Car": 320,
+                "Train": 190,
+                "Plane": 420,
+                "Ship": 105,
+                "Bus": 160
+            },
+            {
+                "Month": "July",
+                "Car": 350,
+                "Train": 200,
+                "Plane": 450,
+                "Ship": 110,
+                "Bus": 170
+            },
+            {
+                "Month": "August",
+                "Car": 370,
+                "Train": 210,
+                "Plane": 480,
+                "Ship": 115,
+                "Bus": 175
+            },
+            {
+                "Month": "September",
+                "Car": 330,
+                "Train": 190,
+                "Plane": 430,
+                "Ship": 100,
+                "Bus": 155
+            },
+            {
+                "Month": "October",
+                "Car": 310,
+                "Train": 180,
+                "Plane": 410,
+                "Ship": 90,
+                "Bus": 140
+            },
+            {
+                "Month": "November",
+                "Car": 280,
+                "Train": 160,
+                "Plane": 380,
+                "Ship": 85,
+                "Bus": 125
+            },
+            {
+                "Month": "December",
+                "Car": 260,
+                "Train": 150,
+                "Plane": 360,
+                "Ship": 80,
+                "Bus": 110
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Car",
+                "Train",
+                "Plane",
+                "Ship",
+                "Bus"
+            ],
+            "as": [
+                "Transportation Type",
+                "Visits"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "area",
+        "opacity": 0.7
+    },
+    "encoding": {
+        "x": {
+            "field": "Month",
+            "type": "ordinal",
+            "axis": {
+                "title": "Month",
+                "labelAngle": 0
+            }
+        },
+        "y": {
+            "field": "Visits",
+            "type": "quantitative",
+            "stack": "zero",
+            "axis": {
+                "title": "Number of Tourist Visits"
+            }
+        },
+        "color": {
+            "field": "Transportation Type",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Car",
+                    "Train",
+                    "Plane",
+                    "Ship",
+                    "Bus"
+                ],
+                "range": [
+                    "#17becf",
+                    "#bcbd22",
+                    "#e377c2",
+                    "#7f7f7f",
+                    "#8c564b"
+                ]
+            },
+            "legend": {
+                "title": "Transportation Type",
+                "orient": "top-left",
+                "offset": 5
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Month",
+                "type": "ordinal"
+            },
+            {
+                "field": "Transportation Type",
+                "type": "nominal"
+            },
+            {
+                "field": "Visits",
+                "type": "quantitative"
+            }
+        ]
+    },
+    "config": {
+        "view": {
+            "stroke": "transparent"
+        },
+        "axis": {
+            "domainWidth": 1
+        }
+    }
+}

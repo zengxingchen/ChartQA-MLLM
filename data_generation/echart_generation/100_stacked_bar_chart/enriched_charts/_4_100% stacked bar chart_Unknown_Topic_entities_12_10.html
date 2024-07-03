@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 800,
+    height: 600
+});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Device Usage in Different Areas of Interest',
+        subtext: 'Percentage Stacked Bar Chart',
+        left: 'center',
+        top: 20
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Mobile', 'Desktop', 'Laptop', 'Tablet', 'Wearable'],
+        bottom: 0
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '10%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01]
+    },
+    yAxis: {
+        type: 'category',
+        data: ['Art & Design', 'Science & Nature', 'Health & Psychology', 'Culture & Society',
+               'Economics & Finance', 'Education & Learning', 'Entertainment & Leisure',
+               'Environment & Climate Change', 'Food & Nutrition', 'Travel & Adventure',
+               'Fashion & Beauty', 'Politics & Governance', 'Sports & Fitness', 
+               'History & Archaeology', 'Philosophy & Ethics', 'Music & Performing Arts',
+               'Literature & Writing', 'Business & Entrepreneurship', 'Astronomy & Space Exploration']
+    },
+    series: [
+        {
+            name: 'Mobile',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [30, 40, 25, 45, 50, 35, 55, 30, 45, 40, 25, 35, 20, 50, 45, 30, 40, 55, 20],
+            color: '#FFD700'
+        },
+        {
+            name: 'Desktop',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [55, 35, 45, 30, 30, 40, 25, 40, 25, 30, 50, 45, 55, 20, 35, 40, 20, 35, 60],
+            color: '#228B22'
+        },
+        {
+            name: 'Laptop',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [10, 15, 20, 15, 10, 15, 10, 20, 20, 15, 15, 12, 15, 15, 10, 20, 25, 5, 10],
+            color: '#1E90FF'
+        },
+        {
+            name: 'Tablet',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [4, 8, 7, 8, 7, 8, 6, 7, 7, 10, 7, 6, 5, 10, 5, 7, 10, 3, 8],
+            color: '#D2691E'
+        },
+        {
+            name: 'Wearable',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [1, 2, 3, 2, 3, 2, 4, 3, 3, 5, 3, 2, 5, 5, 5, 3, 5, 2, 2],
+            color: '#C71585'
+        }
+    ],
+    barWidth: '20%'
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

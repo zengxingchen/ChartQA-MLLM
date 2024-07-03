@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var app = {};
+
+var option;
+
+const data = [
+    {name: 'Sports', value: 0},
+    {name: 'Basketball', value: 120},
+    {name: 'Football', value: 85},
+    {name: 'Swimming', value: 98},
+    {name: 'Cycling', value: 75},
+    {name: 'Running', value: 110},
+    {name: 'Tennis', value: 90},
+    {name: 'Golf', value: 45},
+    {name: 'Baseball', value: 80},
+    {name: 'Soccer', value: 105},
+    {name: 'Volleyball', value: 70},
+    {name: 'Skateboarding', value: 50},
+    {name: 'Skiing', value: 65},
+    {name: 'Snowboarding', value: 60},
+    {name: 'Surfing', value: 55},
+    {name: 'Dance', value: 82},
+    {name: 'Gymnastics', value: 77},
+    {name: 'Martial Arts', value: 88},
+    {name: 'Boxing', value: 72},
+    {name: 'Yoga', value: 95}
+];
+
+option = {
+    title: {
+        text: 'Sports & Fitness Popularity',
+        subtext: 'Community Survey 2023',
+        left: 'center'
+    },
+    tooltip: {
+        formatter: function (info) {
+            var value = info.value;
+            var treePathInfo = info.treePathInfo;
+            var treePath = [];
+
+            for (var i = 1; i < treePathInfo.length; i++) {
+                treePath.push(treePathInfo[i].name);
+            }
+
+            return [
+                '<div class="tooltip-title">' + echarts.format.encodeHTML(treePath.join('/')) + '</div>',
+                'Popularity: ' + echarts.format.addCommas(value),
+            ].join('');
+        }
+    },
+    series: [
+        {
+            name: 'Popularity',
+            type: 'treemap',
+            visibleMin: 300,
+            data: data.map(function (item) { return {name: item.name, value: item.value}; }),
+            leafDepth: 1, // When a rectangle is clicked, zoom to the next level.
+            levels: [
+                {
+                    itemStyle: {
+                        borderColor: '#555',
+                        borderWidth: 4,
+                        gapWidth: 4
+                    }
+                },
+                {
+                    colorSaturation: [0.3, 0.6],
+                    itemStyle: {
+                        borderColorSaturation: 0.7,
+                        gapWidth: 2,
+                        borderWidth: 2
+                    }
+                },
+                {
+                    colorSaturation: [0.3, 0.5],
+                    itemStyle: {
+                        borderColorSaturation: 0.6,
+                        gapWidth: 1
+                    }
+                }
+            ],
+            color: [
+                '#4e79a7', '#f28e2b', '#e15759', '#76b7b2', '#59a14f',
+                '#edc948', '#b07aa1', '#ff9da7', '#9c755f', '#bab0ac'
+            ]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

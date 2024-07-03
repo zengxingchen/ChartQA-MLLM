@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    width: 800,
+    height: 500
+});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Education Trend Analysis',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['Online Courses', 'Traditional Courses', 'Self-Learning', 'Study Groups'],
+        top: '5%'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: [
+            '2021-01','2021-02','2021-03','2021-04','2021-05','2021-06',
+            '2021-07','2021-08','2021-09','2021-10','2021-11','2021-12',
+            '2022-01','2022-02','2022-03','2022-04','2022-05','2022-06',
+            '2022-07','2022-08','2022-09','2022-10','2022-11','2022-12'
+        ]
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Online Courses',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: { color: '#ffa07a' },
+            emphasis: { focus: 'series' },
+            data: [
+                800,820,860,880,850,870,900,920,950,970,990,1010,1030,1050,1080,1100,1120,1150,1170,1180,1200,1220,1230,1250
+            ]
+        },
+        {
+            name: 'Traditional Courses',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: { color: '#20b2aa' },
+            emphasis: { focus: 'series' },
+            data: [
+                600,610,640,680,700,720,750,780,800,820,830,850,870,890,910,930,950,970,980,990,1000,1010,1030,1050
+            ]
+        },
+        {
+            name: 'Self-Learning',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: { color: '#778899' },
+            emphasis: { focus: 'series' },
+            data: [
+                300,330,320,350,355,370,380,395,400,410,420,430,440,450,465,475,485,495,500,510,520,530,540,550
+            ]
+        },
+        {
+            name: 'Study Groups',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: { color: '#ffdead' },
+            emphasis: { focus: 'series' },
+            data: [
+                200,230,240,260,280,290,300,320,330,340,350,360,370,380,390,400,410,420,430,440,450,460,470,480
+            ]
+        }
+    ],
+    visualMap: {
+        top: 'middle',
+        right: 10,
+        pieces: [
+            {
+                gt: 0,
+                lte: 500,
+                color: '#93CE07'
+            },
+            {
+                gt: 500,
+                lte: 1000,
+                color: '#FBDB0F'
+            },
+            {
+                gt: 1000,
+                color: '#FC7D02'
+            }
+        ],
+        outOfRange: {
+            color: '#999'
+        }
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Correlation between X and Y in a Hypothetical Dataset',
+        left: 'center',
+        top: '10%'
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['Data Points'],
+        top: '15%',
+        right: '10%'
+    },
+    xAxis: {
+        type: 'value',
+        name: 'X Axis',
+        nameLocation: 'middle',
+        nameGap: 30
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Y Axis',
+        nameLocation: 'middle',
+        nameGap: 30
+    },
+    series: [{
+        name: 'Data Points',
+        type: 'scatter',
+        data: [
+            [1, 15], [2, 14], [3, 13], [4, 16], [5, 12], [6, 17], [7, 11], [8, 18], 
+            [9, 10], [10, 19], [11, 9], [12, 20], [13, 8], [14, 21], [15, 7], [16, 22], 
+            [17, 6], [18, 23], [19, 5], [20, 24], [21, 4], [22, 25], [23, 3], [24, 26], 
+            [25, 2], [26, 27], [27, 1], [28, 28], [29, 0], [30, 29], [31, -1], [32, 30], 
+            [33, -2], [34, 31], [35, -3], [36, 32], [37, -4], [38, 33], [39, -5], [40, 34]
+        ],
+        itemStyle: {
+            color: '#FF6347'
+        }
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

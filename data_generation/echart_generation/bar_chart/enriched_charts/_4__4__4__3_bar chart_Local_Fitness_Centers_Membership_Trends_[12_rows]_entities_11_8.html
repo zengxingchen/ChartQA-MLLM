@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+var option = {
+    title: {
+        text: 'Impact of Future Technologies on Society',
+        left: 'center',
+        top: 20,
+        textStyle: {
+            fontSize: 24,
+            color: '#333333'
+        }
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    xAxis: {
+        type: 'value',
+        axisLabel: {
+            formatter: '{value}'
+        }
+    },
+    yAxis: {
+        type: 'category',
+        data: ['Renewable Energy', 'Artificial Intelligence', 'Blockchain', 'Quantum Computing', 'Biotechnology', 'Nanotechnology', 'Cybersecurity', 'Virtual Reality', 'Augmented Reality', '3D Printing', 'Genomics', 'Robotics'],
+        axisLabel: {
+            interval: 0
+        }
+    },
+    series: [
+        {
+            name: 'Value',
+            type: 'bar',
+            data: [120, 150, 110, 95, 130, 105, 140, 125, 115, 100, 135, 145],
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            itemStyle: {
+                color: function(params) {
+                    var colorList = ['#5470C6', '#91CC75', '#EE6666', '#FAC858', '#73C0DE', '#3BA272', '#FC8452', '#9A60B4', '#EA7CCC', '#FF9F7F', '#FF7171', '#737373'];
+                    return colorList[params.dataIndex];
+                }
+            },
+            barWidth: '60%'
+        }
+    ]
+};
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

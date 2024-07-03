@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 800,
+    height: 600
+});
+var option;
+
+option = {
+    title: {
+        text: 'Correlation between Exercise and Mental Well-being',
+        left: 'center',
+        top: 20
+    },
+    tooltip: {
+        trigger: 'item'
+    },
+    legend: {
+        data: ['Data'],
+        left: 'left',
+        top: '10%'
+    },
+    xAxis: {
+        type: 'value',
+        name: 'Minutes of Exercise per Day',
+        nameLocation: 'middle',
+        nameGap: 25,
+        splitLine: {
+            show: false
+        }
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Mental Well-being Score',
+        nameLocation: 'middle',
+        nameGap: 40,
+        splitLine: {
+            show: false
+        }
+    },
+    series: [{
+        name: 'Data',
+        type: 'scatter',
+        symbolSize: 10,
+        itemStyle: {
+            color: '#ff6347'
+        },
+        data: [
+            [10, 15],
+            [20, 35],
+            [30, 45],
+            [40, 30],
+            [50, 55],
+            [60, 65],
+            [70, 80],
+            [80, 75],
+            [90, 85],
+            [100, 95],
+            [110, 60],
+            [120, 50],
+            [130, 40],
+            [140, 20],
+            [150, 25],
+            [160, 35],
+            [170, 50],
+            [180, 70],
+            [190, 85],
+            [200, 90],
+            [210, 75],
+            [220, 60],
+            [230, 55],
+            [240, 45],
+            [250, 35],
+            [260, 25],
+            [270, 15],
+            [280, 10],
+            [290, 20],
+            [300, 30]
+        ]
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

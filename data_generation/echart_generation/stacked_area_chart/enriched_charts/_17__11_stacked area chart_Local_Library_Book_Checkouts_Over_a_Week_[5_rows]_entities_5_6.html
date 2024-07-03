@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: '800', height: '400'});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Annual Carbon Emissions by Sector',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            label: {
+                backgroundColor: '#6a7985'
+            }
+        }
+    },
+    legend: {
+        data: ['Transportation', 'Energy', 'Industry', 'Agriculture'],
+        top: '8%'
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: [
+        {
+            type: 'category',
+            boundaryGap: false,
+            data: ['2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021']
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value'
+        }
+    ],
+    series: [
+        {
+            name: 'Transportation',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [5.1, 5.2, 5.3, 5.5, 5.6, 5.7, 5.7, 5.8, 6.0, 6.1, 5.8, 6.2],
+            color: '#43a1ff'
+        },
+        {
+            name: 'Energy',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [7.2, 7.5, 7.4, 7.2, 7.8, 8.0, 8.2, 8.4, 8.6, 8.8, 7.9, 8.3],
+            color: '#ffae43'
+        },
+        {
+            name: 'Industry',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [6.5, 6.7, 6.9, 7.1, 7.3, 7.6, 7.8, 7.9, 8.0, 8.2, 7.7, 8.1],
+            color: '#46e2c0'
+        },
+        {
+            name: 'Agriculture',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [3.3, 3.4, 3.5, 3.6, 3.6, 3.7, 3.8, 3.9, 4.0, 4.1, 4.2, 4.3],
+            color: '#c046e2'
+        }
+    ],
+    markLine : {
+        silent: true,
+        data : [{
+            yAxis: 10,
+            label: {
+                formatter: 'Dangerous Level'
+            }
+        }]
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

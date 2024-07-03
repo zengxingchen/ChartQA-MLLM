@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas', // Use canvas renderer, SVG is the another available option
+    useDirtyRect: false // This is for performance enhancement, set it to true for better performance in some cases
+});
+
+var app = {};
+var option;
+
+// Data preparation
+var data = [{'Material': 'Paper', 'Weight (kg)': 320}, {'Material': 'Plastic', 'Weight (kg)': 250}, {'Material': 'Glass', 'Weight (kg)': 150}, {'Material': 'Metals', 'Weight (kg)': 400}, {'Material': 'Textiles', 'Weight (kg)': 80}, {'Material': 'Electronics', 'Weight (kg)': 45}, {'Material': 'Batteries', 'Weight (kg)': 15}, {'Material': 'Organics', 'Weight (kg)': 220}];
+
+var materials = data.map(function (item) {
+    return item['Material'];
+});
+
+var weights = data.map(function (item) {
+    return item['Weight (kg)'];
+});
+
+option = {
+    title: {
+        text: 'Materials Weight Distribution',
+        subtext: 'in KG',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow' // Type of tooltip trigger, 'shadow' for shadow, 'line' for line
+        }
+    },
+    legend: {
+        data: ['Weight (kg)'],
+        top: 'bottom'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        data: materials,
+        axisTick: {
+            alignWithLabel: true
+        }
+    },
+    yAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01],
+        axisLabel: {
+            formatter: '{value} kg'
+        }
+    },
+    series: [
+        {
+            name: 'Weight (kg)',
+            type: 'bar',
+            data: weights,
+            itemStyle: {
+                barBorderRadius: 5, // create rounded corners on the bars
+                color: function (params) {
+                    // Give each bar a unique color
+                    var colorList = ['#c23531', '#2f4554', '#61a0a8', '#d48265', '#91c7ae', '#749f83', '#ca8622', '#bda29a'];
+                    return colorList[params.dataIndex % colorList.length];
+                }
+            },
+            markPoint: {
+                data: [
+                    {type: 'max', name: 'Max'},
+                    {type: 'min', name: 'Min'}
+                ]
+            },
+            markLine: {
+                data: [
+                    {type: 'average', name: 'Average'}
+                ]
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

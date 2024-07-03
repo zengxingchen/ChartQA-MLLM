@@ -1,0 +1,175 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Monthly Carbon Emissions by Sector",
+    "data": {
+        "values": [
+            {
+                "Month": "January",
+                "Transportation": 820,
+                "Agriculture": 760,
+                "Manufacturing": 780,
+                "Residential": 750,
+                "Commercial": 800
+            },
+            {
+                "Month": "February",
+                "Transportation": 810,
+                "Agriculture": 770,
+                "Manufacturing": 755,
+                "Residential": 730,
+                "Commercial": 780
+            },
+            {
+                "Month": "March",
+                "Transportation": 830,
+                "Agriculture": 780,
+                "Manufacturing": 765,
+                "Residential": 750,
+                "Commercial": 790
+            },
+            {
+                "Month": "April",
+                "Transportation": 840,
+                "Agriculture": 800,
+                "Manufacturing": 770,
+                "Residential": 760,
+                "Commercial": 810
+            },
+            {
+                "Month": "May",
+                "Transportation": 850,
+                "Agriculture": 815,
+                "Manufacturing": 780,
+                "Residential": 770,
+                "Commercial": 820
+            },
+            {
+                "Month": "June",
+                "Transportation": 860,
+                "Agriculture": 810,
+                "Manufacturing": 790,
+                "Residential": 780,
+                "Commercial": 830
+            },
+            {
+                "Month": "July",
+                "Transportation": 870,
+                "Agriculture": 805,
+                "Manufacturing": 800,
+                "Residential": 790,
+                "Commercial": 840
+            },
+            {
+                "Month": "August",
+                "Transportation": 880,
+                "Agriculture": 790,
+                "Manufacturing": 795,
+                "Residential": 780,
+                "Commercial": 830
+            },
+            {
+                "Month": "September",
+                "Transportation": 890,
+                "Agriculture": 780,
+                "Manufacturing": 785,
+                "Residential": 770,
+                "Commercial": 820
+            },
+            {
+                "Month": "October",
+                "Transportation": 900,
+                "Agriculture": 800,
+                "Manufacturing": 775,
+                "Residential": 760,
+                "Commercial": 810
+            },
+            {
+                "Month": "November",
+                "Transportation": 910,
+                "Agriculture": 820,
+                "Manufacturing": 780,
+                "Residential": 750,
+                "Commercial": 800
+            },
+            {
+                "Month": "December",
+                "Transportation": 920,
+                "Agriculture": 830,
+                "Manufacturing": 790,
+                "Residential": 760,
+                "Commercial": 820
+            }
+        ]
+    },
+    "width": 800,
+    "height": 400,
+    "transform": [
+        {
+            "fold": [
+                "Transportation",
+                "Agriculture",
+                "Manufacturing",
+                "Residential",
+                "Commercial"
+            ],
+            "as": [
+                "Sector",
+                "Carbon Emissions"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "line",
+        "point": true
+    },
+    "encoding": {
+        "x": {
+            "field": "Month",
+            "type": "ordinal",
+            "title": "Month",
+            "axis": {
+                "labelAngle": 0
+            }
+        },
+        "y": {
+            "field": "Carbon Emissions",
+            "type": "quantitative",
+            "title": "Carbon Emissions (in Metric Tons)"
+        },
+        "color": {
+            "field": "Sector",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Transportation",
+                    "Agriculture",
+                    "Manufacturing",
+                    "Residential",
+                    "Commercial"
+                ],
+                "range": [
+                    "#1E88E5",
+                    "#D81B60",
+                    "#FFC107",
+                    "#004D40",
+                    "#8E24AA"
+                ]
+            },
+            "title": "Sector"
+        },
+        "tooltip": [
+            {
+                "field": "Month",
+                "type": "nominal"
+            },
+            {
+                "field": "Sector",
+                "type": "nominal"
+            },
+            {
+                "field": "Carbon Emissions",
+                "type": "quantitative"
+            }
+        ]
+    }
+}

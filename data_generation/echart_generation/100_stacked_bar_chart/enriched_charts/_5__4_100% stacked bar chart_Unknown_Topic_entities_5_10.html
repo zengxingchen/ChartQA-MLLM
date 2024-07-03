@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 700, // Reasonable width for the chart
+    height: 500  // Reasonable height for the chart
+});
+
+var option;
+
+option = {
+    title: {
+        text: 'Economic Growth by Sector',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Technology', 'Agriculture', 'Manufacturing', 'Services'],
+        top: '10%'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: [
+        {
+            type: 'value',
+            boundaryGap: [0, 0.01]
+        }
+    ],
+    yAxis: [
+        {
+            type: 'category',
+            data: ['2016', '2017', '2018', '2019', '2020']
+        }
+    ],
+    series: [
+        {
+            name: 'Technology',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                    show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [25, 28, 30, 35, 40],
+            color: '#1f77b4', // Specific color code
+            barWidth : 35 // Reasonable width for bars
+        },
+        {
+            name: 'Agriculture',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                    show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [15, 14, 13, 12, 10],
+            color: '#ff7f0e', // Specific color code
+            barWidth : 35 // Reasonable width for bars
+        },
+        {
+            name: 'Manufacturing',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                    show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [35, 33, 32, 30, 28],
+            color: '#2ca02c', // Specific color code
+            barWidth : 35 // Reasonable width for bars
+        },
+        {
+            name: 'Services',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                    show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [25, 25, 25, 23, 22],
+            color: '#d62728', // Specific color code
+            barWidth : 35 // Reasonable width for bars
+        },
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

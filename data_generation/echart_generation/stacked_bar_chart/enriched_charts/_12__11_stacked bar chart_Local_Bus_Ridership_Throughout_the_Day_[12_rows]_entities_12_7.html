@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var app = {};
+
+var option = {
+    title: {
+        text: 'Energy Consumption by Source (2010-2022)',
+        left: 'center',
+        top: '10'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Solar', 'Wind', 'Hydro', 'Nuclear', 'Coal', 'Gas', 'Oil'],
+        top: 'bottom'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '10%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        data: ['2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022'],
+        axisLabel: {
+            interval: 0,
+            rotate: 45
+        }
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Energy (TWh)'
+    },
+    series: [
+        {
+            name: 'Solar',
+            type: 'bar',
+            stack: 'Energy',
+            barWidth: '20%',
+            itemStyle: { color: '#FFD700' },
+            data: [30, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95]
+        },
+        {
+            name: 'Wind',
+            type: 'bar',
+            stack: 'Energy',
+            barWidth: '20%',
+            itemStyle: { color: '#32CD32' },
+            data: [50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150, 160, 170]
+        },
+        {
+            name: 'Hydro',
+            type: 'bar',
+            stack: 'Energy',
+            barWidth: '20%',
+            itemStyle: { color: '#1E90FF' },
+            data: [80, 85, 90, 95, 100, 105, 110, 115, 120, 125, 130, 135, 140]
+        },
+        {
+            name: 'Nuclear',
+            type: 'bar',
+            stack: 'Energy',
+            barWidth: '20%',
+            itemStyle: { color: '#8A2BE2' },
+            data: [100, 105, 110, 115, 120, 125, 130, 135, 140, 145, 150, 155, 160]
+        },
+        {
+            name: 'Coal',
+            type: 'bar',
+            stack: 'Energy',
+            barWidth: '20%',
+            itemStyle: { color: '#A52A2A' },
+            data: [200, 195, 190, 185, 180, 175, 170, 165, 160, 155, 150, 145, 140]
+        },
+        {
+            name: 'Gas',
+            type: 'bar',
+            stack: 'Energy',
+            barWidth: '20%',
+            itemStyle: { color: '#FFA500' },
+            data: [150, 145, 140, 135, 130, 125, 120, 115, 110, 105, 100, 95, 90]
+        },
+        {
+            name: 'Oil',
+            type: 'bar',
+            stack: 'Energy',
+            barWidth: '20%',
+            itemStyle: { color: '#808080' },
+            data: [100, 90, 85, 80, 75, 70, 65, 60, 55, 50, 45, 40, 35]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

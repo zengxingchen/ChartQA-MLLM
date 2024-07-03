@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var app = {};
+
+var option;
+
+option = {
+  title: {
+    text: 'Energy Consumption Trends in Tech Industry',
+    subtext: '2020',
+    left: 'center'
+  },
+  tooltip: {
+    trigger: 'axis'
+  },
+  legend: {
+    data: ['Green Energy', 'Non-Renewable Energy', 'Innovations'],
+    top: 30
+  },
+  grid: {
+    left: '3%',
+    right: '4%',
+    bottom: '3%',
+    containLabel: true
+  },
+  toolbox: {
+    feature: {
+      saveAsImage: {}
+    }
+  },
+  xAxis: {
+    type: 'category',
+    boundaryGap: false,
+    data: ['2020-01', '2020-02', '2020-03', '2020-04', '2020-05', '2020-06', '2020-07', '2020-08', '2020-09', '2020-10', '2020-11', '2020-12']
+  },
+  yAxis: {
+    type: 'value'
+  },
+  series: [
+    {
+      name: 'Green Energy',
+      type: 'line',
+      stack: 'total',
+      areaStyle: {},
+      emphasis: { focus: 'series' },
+      data: [120, 115, 130, 145, 160, 155, 165, 170, 180, 185, 190, 200],
+      color: '#32CD32'
+    },
+    {
+      name: 'Non-Renewable Energy',
+      type: 'line',
+      stack: 'total',
+      areaStyle: {},
+      emphasis: { focus: 'series' },
+      data: [80, 85, 70, 65, 55, 60, 50, 45, 40, 38, 35, 30],
+      color: '#FF8C00'
+    },
+    {
+      name: 'Innovations',
+      type: 'line',
+      stack: 'total',
+      label: {
+        show: true,
+        position: 'top'
+      },
+      areaStyle: {},
+      emphasis: { focus: 'series' },
+      data: [10, 20, 15, 25, 30, 35, 40, 50, 55, 60, 65, 70],
+      color: '#1E90FF'
+    }
+  ]
+};
+
+if (option && typeof option === 'object') {
+  myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

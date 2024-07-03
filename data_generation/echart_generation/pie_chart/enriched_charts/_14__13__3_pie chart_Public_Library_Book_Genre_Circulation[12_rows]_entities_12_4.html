@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Market Sector Capitalization Distribution',
+        left: 'center',
+        top: 20
+    },
+    tooltip: {
+        trigger: 'item'
+    },
+    legend: {
+        orient: 'vertical',
+        left: 10,
+        top: 'middle',
+        textStyle: {
+            fontSize: 16
+        }
+    },
+    series: [
+        {
+            name: 'Market Cap',
+            type: 'pie',
+            radius: ['40%', '70%'],
+            avoidLabelOverlap: false,
+            itemStyle: {
+                borderRadius: 10,
+                borderColor: '#fff',
+                borderWidth: 2
+            },
+            label: {
+                show: false,
+                position: 'center'
+            },
+            emphasis: {
+                label: {
+                    show: true,
+                    fontSize: '18',
+                    fontWeight: 'bold'
+                }
+            },
+            labelLine: {
+                show: false
+            },
+            data: [
+                { value: 28, name: 'Technology', itemStyle: { color: '#3366CC' } },
+                { value: 15, name: 'Health Care', itemStyle: { color: '#DC3912' } },
+                { value: 14, name: 'Financials', itemStyle: { color: '#FF9900' } },
+                { value: 13, name: 'Consumer Discretionary', itemStyle: { color: '#109618' } },
+                { value: 12, name: 'Industrials', itemStyle: { color: '#990099' } },
+                { value: 10, name: 'Consumer Staples', itemStyle: { color: '#3B3EAC' } },
+                { value: 5, name: 'Energy', itemStyle: { color: '#0099C6' } },
+                { value: 2, name: 'Utilities', itemStyle: { color: '#DD4477' } },
+                { value: 1, name: 'Real Estate', itemStyle: { color: '#66AA00' } }
+            ]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

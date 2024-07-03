@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var option;
+
+option = {
+    title: {
+        text: 'Monthly Performance in 2023',
+        left: 'center',
+        top: 20,
+        textStyle: {
+            color: '#333'
+        }
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Design', 'Marketing', 'Development', 'Sales'],
+        top: 50,
+        left: 'center'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        data: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+        axisLabel: {
+            interval: 0,
+            rotate: 30,
+            textStyle: {
+                color: '#000',
+                fontSize: 12
+            }
+        }
+    },
+    yAxis: {
+        type: 'value',
+        axisLabel: {
+            textStyle: {
+                color: '#000',
+                fontSize: 12
+            }
+        }
+    },
+    series: [
+        {
+            name: 'Design',
+            type: 'bar',
+            stack: 'total',
+            barWidth: '40%',
+            itemStyle: {
+                color: '#5470C6'
+            },
+            data: [120, 200, 150, 170, 190, 160, 180, 210, 230, 220, 240, 250]
+        },
+        {
+            name: 'Marketing',
+            type: 'bar',
+            stack: 'total',
+            barWidth: '40%',
+            itemStyle: {
+                color: '#91CC75'
+            },
+            data: [180, 150, 200, 160, 140, 170, 150, 190, 200, 210, 220, 230]
+        },
+        {
+            name: 'Development',
+            type: 'bar',
+            stack: 'total',
+            barWidth: '40%',
+            itemStyle: {
+                color: '#FAC858'
+            },
+            data: [150, 180, 220, 190, 210, 200, 230, 240, 250, 260, 270, 280]
+        },
+        {
+            name: 'Sales',
+            type: 'bar',
+            stack: 'total',
+            barWidth: '40%',
+            itemStyle: {
+                color: '#EE6666'
+            },
+            data: [200, 210, 230, 240, 250, 220, 260, 270, 280, 290, 300, 310]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

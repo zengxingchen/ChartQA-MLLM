@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Popular Travel Destinations by Latitude and Longitude',
+        left: 'center',
+        top: '10%'
+    },
+    legend: {
+        data: ['Destination'],
+        left: 'right',
+        top: '5%'
+    },
+    xAxis: {
+        type: 'value',
+        name: 'Longitude',
+        nameLocation: 'middle',
+        nameGap: 25
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Latitude',
+        nameLocation: 'middle',
+        nameGap: 50
+    },
+    series: [
+        {
+            name: 'Destination',
+            type: 'scatter',
+            data: [
+                [2.3522, 48.8566],
+                [-74.0060, 40.7128],
+                [139.6917, 35.6895],
+                [151.2093, -33.8688],
+                [18.4241, -33.9249],
+                [-43.1729, -22.9068],
+                [31.2357, 30.0444],
+                [116.4074, 39.9042],
+                [37.6176, 55.7558],
+                [-99.1332, 19.4326],
+                [12.4964, 41.9028],
+                [100.5018, 13.7563],
+                [55.2708, 25.2048],
+                [103.8198, 1.3521],
+                [-118.2437, 34.0522],
+                [28.9784, 41.0082],
+                [72.8777, 19.0760],
+                [-0.1278, 51.5074],
+                [114.1694, 22.3193],
+                [-58.3816, -34.6037]
+            ],
+            itemStyle: {
+                color: '#FF5733'
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

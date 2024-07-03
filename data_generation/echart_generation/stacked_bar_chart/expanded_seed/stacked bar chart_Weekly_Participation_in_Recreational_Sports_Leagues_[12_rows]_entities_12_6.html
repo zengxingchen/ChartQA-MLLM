@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+// Parsing data for ECharts
+var data = [
+  {'Week': 'Week 1', 'Soccer': 320, 'Basketball': 240, 'Volleyball': 200, 'Baseball': 180, 'Ultimate Frisbee': 160},
+  {'Week': 'Week 2', 'Soccer': 310, 'Basketball': 250, 'Volleyball': 210, 'Baseball': 190, 'Ultimate Frisbee': 155},
+  {'Week': 'Week 3', 'Soccer': 330, 'Basketball': 260, 'Volleyball': 205, 'Baseball': 185, 'Ultimate Frisbee': 150},
+  {'Week': 'Week 4', 'Soccer': 340, 'Basketball': 270, 'Volleyball': 215, 'Baseball': 195, 'Ultimate Frisbee': 165},
+  {'Week': 'Week 5', 'Soccer': 325, 'Basketball': 280, 'Volleyball': 220, 'Baseball': 200, 'Ultimate Frisbee': 160},
+  {'Week': 'Week 6', 'Soccer': 335, 'Basketball': 265, 'Volleyball': 230, 'Baseball': 190, 'Ultimate Frisbee': 158},
+  {'Week': 'Week 7', 'Soccer': 345, 'Basketball': 275, 'Volleyball': 225, 'Baseball': 185, 'Ultimate Frisbee': 162},
+  {'Week': 'Week 8', 'Soccer': 350, 'Basketball': 280, 'Volleyball': 235, 'Baseball': 180, 'Ultimate Frisbee': 170},
+  {'Week': 'Week 9', 'Soccer': 360, 'Basketball': 285, 'Volleyball': 240, 'Baseball': 190, 'Ultimate Frisbee': 175},
+  {'Week': 'Week 10', 'Soccer': 370, 'Basketball': 290, 'Volleyball': 245, 'Baseball': 195, 'Ultimate Frisbee': 180},
+  {'Week': 'Week 11', 'Soccer': 365, 'Basketball': 295, 'Volleyball': 250, 'Baseball': 200, 'Ultimate Frisbee': 185},
+  {'Week': 'Week 12', 'Soccer': 380, 'Basketball': 300, 'Volleyball': 255, 'Baseball': 205, 'Ultimate Frisbee': 190}
+];
+
+var sports = ['Soccer', 'Basketball', 'Volleyball', 'Baseball', 'Ultimate Frisbee'];
+var weeks = data.map(function(item) {
+  return item.Week;
+});
+
+var seriesData = sports.map(function(sport) {
+  var sportData = data.map(function(item) {
+    return item[sport];
+  });
+  return {
+    name: sport,
+    type: 'bar',
+    stack: 'total',
+    emphasis: {
+      focus: 'series'
+    },
+    data: sportData
+  };
+});
+
+option = {
+  tooltip: {
+    trigger: 'axis',
+    axisPointer: {
+      type: 'shadow'
+    }
+  },
+  legend: {
+    data: sports
+  },
+  toolbox: {
+    show: true,
+    feature: {
+      magicType: {show: true, type: ['stack', 'tiled']},
+      saveAsImage: {show: true}
+    }
+  },
+  xAxis: {
+    type: 'category',
+    boundaryGap: true,
+    data: weeks
+  },
+  yAxis: {
+    type: 'value'
+  },
+  series: seriesData,
+  color: ['#5470C6', '#91CC75', '#EE6666', '#FAC858', '#73C0DE']
+};
+
+if (option && typeof option === 'object') {
+  myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

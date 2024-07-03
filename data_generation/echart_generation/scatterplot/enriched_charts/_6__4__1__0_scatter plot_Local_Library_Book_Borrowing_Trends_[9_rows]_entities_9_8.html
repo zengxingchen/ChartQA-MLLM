@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Monthly Sales Performance',
+        left: 'center',
+        top: '20'
+    },
+    tooltip: {
+        trigger: 'item'
+    },
+    legend: {
+        data: ['Sales'],
+        left: 'left',
+        top: '10%'
+    },
+    xAxis: {
+        name: 'Month',
+        type: 'category',
+        data: Array.from({length: 30}, (_, i) => i + 1),
+        axisLabel: {
+            rotate: 45
+        }
+    },
+    yAxis: {
+        name: 'Sales',
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Sales',
+            type: 'scatter',
+            color: '#FF5733',
+            data: [
+                [1, 15], [2, 23], [3, 18], [4, 24], [5, 22], 
+                [6, 35], [7, 30], [8, 25], [9, 27], [10, 40], 
+                [11, 32], [12, 38], [13, 45], [14, 41], [15, 50], 
+                [16, 42], [17, 48], [18, 52], [19, 47], [20, 55], 
+                [21, 53], [22, 60], [23, 58], [24, 62], [25, 65], 
+                [26, 68], [27, 63], [28, 70], [29, 66], [30, 75]
+            ]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

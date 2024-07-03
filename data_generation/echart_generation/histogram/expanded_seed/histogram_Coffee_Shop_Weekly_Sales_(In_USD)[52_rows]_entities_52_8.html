@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+
+// Given chart table data
+var data = [{'Week': 'Week 1', 'Sales': 3200}, {'Week': 'Week 2', 'Sales': 2850}, {'Week': 'Week 3', 'Sales': 4100}, {'Week': 'Week 4', 'Sales': 3900}, {'Week': 'Week 5', 'Sales': 2500}, {'Week': 'Week 6', 'Sales': 3650}, {'Week': 'Week 7', 'Sales': 4350}, {'Week': 'Week 8', 'Sales': 4800}, {'Week': 'Week 9', 'Sales': 5200}, {'Week': 'Week 10', 'Sales': 3300}, {'Week': 'Week 11', 'Sales': 4500}, {'Week': 'Week 12', 'Sales': 4700}, {'Week': 'Week 13', 'Sales': 3200}, {'Week': 'Week 14', 'Sales': 5100}, {'Week': 'Week 15', 'Sales': 3600}];
+
+// Processing data into bins for histogram
+var histogramBins = {};
+var binSize = 500; // Set bin size
+data.forEach(function (item) {
+    var bin = Math.floor(item.Sales / binSize) * binSize;
+    histogramBins[bin] = (histogramBins[bin] || 0) + 1;
+});
+
+var histogramData = [];
+for (var bin in histogramBins) {
+    histogramData.push({value: histogramBins[bin], name: `${bin} - ${parseInt(bin) + binSize}`});
+}
+
+// Sorting the histogram data based on bin name
+histogramData.sort(function (a, b) {
+    return parseInt(a.name) - parseInt(b.name);
+});
+
+var option = {
+    tooltip: {},
+    xAxis: {
+        type: 'category',
+        name: 'Sales Range',
+        data: histogramData.map(function (item) { return item.name; }),
+        axisLabel: { interval: 0, rotate: 45 },
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Frequency',
+    },
+    series: [
+        {
+            name: 'Sales',
+            type: 'bar',
+            data: histogramData,
+            itemStyle: {
+                color: 'rgba(120, 140, 180, 0.8)', // Diversified visual encoding
+                barBorderRadius: 4
+            },
+            label: {
+                show: true,
+                position: 'top'
+            }
+        }
+    ],
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '10%',
+        containLabel: true
+    },
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

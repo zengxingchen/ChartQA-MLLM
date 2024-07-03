@@ -1,0 +1,142 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Average Yearly Temperature Changes in Three Cities Over Decades",
+    "title": {
+        "text": "Average Yearly Temperature Changes",
+        "fontSize": 18,
+        "anchor": "start",
+        "dy": -10,
+        "dx": 100
+    },
+    "width": 600,
+    "height": 400,
+    "data": {
+        "values": [
+            {
+                "Year": "1960",
+                "New York": 10.2,
+                "Los Angeles": 15.5,
+                "Chicago": 9.5
+            },
+            {
+                "Year": "1970",
+                "New York": 10.4,
+                "Los Angeles": 15.7,
+                "Chicago": 9.7
+            },
+            {
+                "Year": "1980",
+                "New York": 10.6,
+                "Los Angeles": 16.0,
+                "Chicago": 9.9
+            },
+            {
+                "Year": "1990",
+                "New York": 10.9,
+                "Los Angeles": 16.2,
+                "Chicago": 10.1
+            },
+            {
+                "Year": "2000",
+                "New York": 11.1,
+                "Los Angeles": 16.5,
+                "Chicago": 10.2
+            },
+            {
+                "Year": "2010",
+                "New York": 11.3,
+                "Los Angeles": 16.8,
+                "Chicago": 10.4
+            },
+            {
+                "Year": "2020",
+                "New York": 11.6,
+                "Los Angeles": 17.1,
+                "Chicago": 10.6
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "New York",
+                "Los Angeles",
+                "Chicago"
+            ],
+            "as": [
+                "City",
+                "Temperature"
+            ]
+        },
+        {
+            "calculate": "datum.Temperature",
+            "as": "yearly_temperature"
+        }
+    ],
+    "mark": {
+        "type": "area",
+        "opacity": 0.7,
+        "line": true
+    },
+    "encoding": {
+        "x": {
+            "field": "Year",
+            "type": "ordinal",
+            "axis": {
+                "title": "Year"
+            }
+        },
+        "y": {
+            "field": "yearly_temperature",
+            "type": "quantitative",
+            "stack": "zero",
+            "axis": {
+                "title": "Average Temperature (\u00b0C)"
+            }
+        },
+        "color": {
+            "field": "City",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "New York",
+                    "Los Angeles",
+                    "Chicago"
+                ],
+                "range": [
+                    "#3366cc",
+                    "#dc3912",
+                    "#ff9900"
+                ]
+            },
+            "legend": {
+                "title": "City",
+                "orient": "top-right",
+                "offset": 10
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Year",
+                "type": "ordinal"
+            },
+            {
+                "field": "City",
+                "type": "nominal"
+            },
+            {
+                "field": "yearly_temperature",
+                "type": "quantitative",
+                "title": "Temperature (\u00b0C)"
+            }
+        ]
+    },
+    "config": {
+        "view": {
+            "stroke": "transparent"
+        },
+        "area": {
+            "line": true
+        }
+    }
+}

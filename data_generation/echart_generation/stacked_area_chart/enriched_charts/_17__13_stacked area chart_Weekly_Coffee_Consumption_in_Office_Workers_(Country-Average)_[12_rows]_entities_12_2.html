@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+dom.style.width = '1000px';
+dom.style.height = '600px';
+var myChart = echarts.init(dom);
+
+option = {
+    title: {
+        text: 'Technological Sector Growth Trends (2023)',
+        left: 'center',
+        top: '3%'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            label: {
+                backgroundColor: '#6a7985'
+            }
+        }
+    },
+    legend: {
+        data: ['Artificial Intelligence', 'Blockchain', 'Virtual Reality', 'Quantum Computing'],
+        top: '8%'
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: [
+        {
+            type: 'category',
+            boundaryGap: false,
+            data: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value'
+        }
+    ],
+    series: [
+        {
+            name: 'Artificial Intelligence',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [120, 150, 170, 180, 190, 200, 210, 220, 230, 240, 250, 260],
+            color: '#FF6F61'
+        },
+        {
+            name: 'Blockchain',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [80, 90, 100, 110, 120, 130, 140, 150, 155, 160, 170, 180],
+            color: '#6B5B95'
+        },
+        {
+            name: 'Virtual Reality',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [200, 210, 220, 230, 240, 250, 260, 270, 280, 290, 300, 310],
+            color: '#88B04B'
+        },
+        {
+            name: 'Quantum Computing',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [40, 50, 65, 70, 80, 100, 130, 165, 190, 200, 210, 230],
+            color: '#F7CAC9'
+        }
+    ],
+    markPoint: {
+        data: [
+            { type: 'max', name: 'Max', symbolSize: 75, seriesName: 'Quantum Computing', itemStyle: { color: '#2A4B7C' } },
+            { xAxis: 7, yAxis: 150, name: 'Blockchain Breakthrough', value: 'BB', itemStyle: { color: '#FFA07A' } }
+        ]
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

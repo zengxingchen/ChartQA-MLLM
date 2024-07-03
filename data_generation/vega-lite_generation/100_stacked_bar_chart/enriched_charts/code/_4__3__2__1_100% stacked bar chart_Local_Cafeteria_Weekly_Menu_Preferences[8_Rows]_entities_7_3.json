@@ -1,0 +1,217 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "A 100% stacked vertical bar chart showing the distribution of expenses over a year",
+    "width": 600,
+    "height": 400,
+    "data": {
+        "values": [
+            {
+                "Month": "January",
+                "Rent": 1200,
+                "Groceries": 300,
+                "Utilities": 150,
+                "Entertainment": 200,
+                "Miscellaneous": 150
+            },
+            {
+                "Month": "February",
+                "Rent": 1200,
+                "Groceries": 320,
+                "Utilities": 160,
+                "Entertainment": 180,
+                "Miscellaneous": 140
+            },
+            {
+                "Month": "March",
+                "Rent": 1200,
+                "Groceries": 310,
+                "Utilities": 155,
+                "Entertainment": 210,
+                "Miscellaneous": 130
+            },
+            {
+                "Month": "April",
+                "Rent": 1200,
+                "Groceries": 330,
+                "Utilities": 165,
+                "Entertainment": 190,
+                "Miscellaneous": 150
+            },
+            {
+                "Month": "May",
+                "Rent": 1200,
+                "Groceries": 300,
+                "Utilities": 150,
+                "Entertainment": 220,
+                "Miscellaneous": 140
+            },
+            {
+                "Month": "June",
+                "Rent": 1200,
+                "Groceries": 310,
+                "Utilities": 160,
+                "Entertainment": 200,
+                "Miscellaneous": 160
+            },
+            {
+                "Month": "July",
+                "Rent": 1200,
+                "Groceries": 320,
+                "Utilities": 155,
+                "Entertainment": 210,
+                "Miscellaneous": 170
+            },
+            {
+                "Month": "August",
+                "Rent": 1200,
+                "Groceries": 330,
+                "Utilities": 165,
+                "Entertainment": 190,
+                "Miscellaneous": 150
+            },
+            {
+                "Month": "September",
+                "Rent": 1200,
+                "Groceries": 300,
+                "Utilities": 150,
+                "Entertainment": 200,
+                "Miscellaneous": 140
+            },
+            {
+                "Month": "October",
+                "Rent": 1200,
+                "Groceries": 310,
+                "Utilities": 160,
+                "Entertainment": 180,
+                "Miscellaneous": 130
+            },
+            {
+                "Month": "November",
+                "Rent": 1200,
+                "Groceries": 320,
+                "Utilities": 155,
+                "Entertainment": 210,
+                "Miscellaneous": 140
+            },
+            {
+                "Month": "December",
+                "Rent": 1200,
+                "Groceries": 330,
+                "Utilities": 165,
+                "Entertainment": 220,
+                "Miscellaneous": 150
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Rent",
+                "Groceries",
+                "Utilities",
+                "Entertainment",
+                "Miscellaneous"
+            ],
+            "as": [
+                "ExpenseType",
+                "Amount"
+            ]
+        },
+        {
+            "joinaggregate": [
+                {
+                    "op": "sum",
+                    "field": "Amount",
+                    "as": "TotalAmount"
+                }
+            ],
+            "groupby": [
+                "Month"
+            ]
+        },
+        {
+            "calculate": "datum.Amount / datum.TotalAmount",
+            "as": "PercentOfTotal"
+        }
+    ],
+    "mark": {
+        "type": "bar",
+        "height": {
+            "band": 0.8
+        }
+    },
+    "encoding": {
+        "x": {
+            "field": "Month",
+            "type": "ordinal",
+            "title": "Month",
+            "axis": {
+                "labelFontSize": 12,
+                "titleFontSize": 14
+            }
+        },
+        "y": {
+            "field": "PercentOfTotal",
+            "type": "quantitative",
+            "axis": {
+                "format": "%",
+                "title": "Percentage of Total Expenses"
+            }
+        },
+        "color": {
+            "field": "ExpenseType",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Rent",
+                    "Groceries",
+                    "Utilities",
+                    "Entertainment",
+                    "Miscellaneous"
+                ],
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e",
+                    "#2ca02c",
+                    "#d62728",
+                    "#9467bd"
+                ]
+            },
+            "legend": {
+                "title": "Type of Expense",
+                "orient": "top"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "ExpenseType",
+                "type": "nominal",
+                "title": "Expense Type"
+            },
+            {
+                "field": "PercentOfTotal",
+                "type": "quantitative",
+                "title": "Percentage",
+                "format": ".1%"
+            }
+        ]
+    },
+    "title": {
+        "text": "Monthly Distribution of Expenses",
+        "anchor": "start",
+        "offset": 10,
+        "color": "#333",
+        "fontSize": 16,
+        "fontWeight": "bold"
+    },
+    "config": {
+        "axis": {
+            "labelFontSize": 12,
+            "titleFontSize": 14
+        },
+        "legend": {
+            "labelFontSize": 12,
+            "titleFontSize": 14
+        }
+    }
+}

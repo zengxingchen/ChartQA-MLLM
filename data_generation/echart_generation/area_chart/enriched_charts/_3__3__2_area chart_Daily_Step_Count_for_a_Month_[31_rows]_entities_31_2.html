@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 500});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Monthly Revenue Decline',
+        left: 'center',
+        top: 20
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: [
+          '2023-01-01','2023-01-02','2023-01-03','2023-01-04','2023-01-05',
+          '2023-01-06','2023-01-07','2023-01-08','2023-01-09','2023-01-10',
+          '2023-01-11','2023-01-12','2023-01-13','2023-01-14','2023-01-15',
+          '2023-01-16','2023-01-17','2023-01-18','2023-01-19','2023-01-20',
+          '2023-01-21','2023-01-22','2023-01-23','2023-01-24','2023-01-25',
+          '2023-01-26','2023-01-27','2023-01-28','2023-01-29','2023-01-30'
+        ]
+    },
+    yAxis: {
+        type: 'value',
+        axisLabel: {
+            formatter: '${value}'
+        }
+    },
+    series: [
+        {
+            name: 'Revenue',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [
+                100000, 99000, 98000, 96500, 96000, 95000, 94000, 93000, 92000, 91000,
+                90000, 89000, 88000, 87000, 86000, 85000, 84000, 83000, 82000, 81000,
+                80000, 79000, 78000, 77000, 76000, 75000, 74000, 73000, 72000, 71000
+            ]
+        }
+    ],
+    color: ['#3fa7dc'],
+    dataZoom: [
+        {
+            type: 'inside',
+            start: 0,
+            end: 100
+        },
+        {
+            start: 0,
+            end: 10
+        }
+    ],
+    markLine: {
+        silent: true,
+        data: [
+            {
+                yAxis: 90000,
+                label: {
+                    formatter: 'Average'
+                }
+            }
+        ]
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

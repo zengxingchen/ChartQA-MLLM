@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {renderer: 'canvas', width: 800, height: 400});
+var app = {};
+option = null;
+
+var data = [
+    ['2023-01-01', 500],
+    ['2023-01-02', 495],
+    ['2023-01-03', 490],
+    ['2023-01-04', 480],
+    ['2023-01-05', 470],
+    ['2023-01-06', 460],
+    ['2023-01-07', 450],
+    ['2023-01-08', 440],
+    ['2023-01-09', 430],
+    ['2023-01-10', 425],
+    ['2023-01-11', 420],
+    ['2023-01-12', 410],
+    ['2023-01-13', 405],
+    ['2023-01-14', 400],
+    ['2023-01-15', 395],
+    ['2023-01-16', 390],
+    ['2023-01-17', 385],
+    ['2023-01-18', 380],
+    ['2023-01-19', 375],
+    ['2023-01-20', 370],
+    ['2023-01-21', 365],
+    ['2023-01-22', 360],
+    ['2023-01-23', 355],
+    ['2023-01-24', 350],
+    ['2023-01-25', 345],
+    ['2023-01-26', 340],
+    ['2023-01-27', 335],
+    ['2023-01-28', 330],
+    ['2023-01-29', 325],
+    ['2023-01-30', 320],
+    ['2023-01-31', 315],
+];
+
+option = {
+    title: {
+        text: 'Stock Price Trend in January 2023',
+        left: 'center',
+        textStyle: {
+            color: '#333'
+        }
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: data.map(function (item) {
+            return item[0];
+        })
+    },
+    yAxis: {
+        type: 'value',
+        boundaryGap: [0, '100%']
+    },
+    dataZoom: [{
+        type: 'inside',
+        start: 0,
+        end: 100
+    }, {
+        start: 0,
+        end: 10
+    }],
+    series: [
+        {
+            name: 'Stock Price',
+            type: 'line',
+            smooth: true,
+            symbol: 'none',
+            sampling: 'average',
+            itemStyle: {
+                color: '#d14a61'
+            },
+            areaStyle: {
+                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                    offset: 0,
+                    color: '#d14a61'
+                }, {
+                    offset: 1,
+                    color: '#580000'
+                }])
+            },
+            data: data.map(function (item) {
+                return item[1];
+            })
+        }
+    ],
+    markLine: {
+        silent: true,
+        data: [{
+            yAxis: 450,
+            label: {
+                show: true,
+                formatter: 'Target',
+                position: 'end'
+            },
+            lineStyle: {
+                color: '#c23531'
+            }
+        }]
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

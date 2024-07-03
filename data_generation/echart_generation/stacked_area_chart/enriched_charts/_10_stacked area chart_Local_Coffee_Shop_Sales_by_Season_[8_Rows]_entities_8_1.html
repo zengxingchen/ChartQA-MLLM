@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 400});
+var app = {};
+
+var option;
+
+option = {
+  title: {
+    text: 'Electric Vehicle Sales Forecast by Brand',
+    left: 'center',
+    top: 20
+  },
+  tooltip: {
+    trigger: 'axis',
+    axisPointer: {
+      type: 'cross',
+      label: {
+        backgroundColor: '#6a7985'
+      }
+    }
+  },
+  legend: {
+    data: ['Tesla', 'BMW', 'Nissan', 'Chevrolet'],
+    top: 50
+  },
+  toolbox: {
+    feature: {
+      saveAsImage: {}
+    }
+  },
+  grid: {
+    left: '3%',
+    right: '4%',
+    bottom: '3%',
+    containLabel: true
+  },
+  xAxis: {
+    type: 'category',
+    boundaryGap: false,
+    data: ['2021', '2022', '2023', '2024', '2025', '2026', '2027', '2028', '2029', '2030']
+  },
+  yAxis: {
+    type: 'value',
+    axisLabel: {
+		formatter: '{value} units'
+	}
+  },
+  series: [
+    {
+      name: 'Tesla',
+      type: 'line',
+      stack: 'Total',
+      areaStyle: {},
+      emphasis: {
+        focus: 'series'
+      },
+      data: [50000, 55000, 60000, 70000, 80000, 90000, 95000, 100000, 105000, 110000],
+      color: '#FF4949' // Red shade
+    },
+    {
+      name: 'BMW',
+      type: 'line',
+      stack: 'Total',
+      areaStyle: {},
+      emphasis: {
+        focus: 'series'
+      },
+      data: [30000, 32000, 34000, 40000, 45000, 50000, 54000, 58000, 62000, 65000],
+      color: '#546E7A' // Blue Grey
+    },
+    {
+      name: 'Nissan',
+      type: 'line',
+      stack: 'Total',
+      areaStyle: {},
+      emphasis: {
+        focus: 'series'
+      },
+      data: [20000, 23000, 26000, 30000, 34000, 40000, 43000, 47000, 51000, 54000],
+      color: '#FDD835' // Yellow
+    },
+    {
+      name: 'Chevrolet',
+      type: 'line',
+      stack: 'Total',
+      areaStyle: {},
+      emphasis: {
+        focus: 'series'
+      },
+      data: [10000, 12000, 14000, 16000, 18000, 21000, 22000, 24000, 26000, 28000],
+      color: '#00C853' // Green
+    }
+  ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

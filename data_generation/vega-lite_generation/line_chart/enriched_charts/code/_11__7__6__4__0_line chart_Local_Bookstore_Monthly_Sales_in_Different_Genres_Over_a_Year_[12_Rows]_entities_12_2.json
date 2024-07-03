@@ -1,0 +1,185 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Monthly Travel Activity Popularity",
+    "data": {
+        "values": [
+            {
+                "Month": "January",
+                "Hiking": 65,
+                "Camping": 70,
+                "Beach": 85,
+                "Museum": 60,
+                "Road Trip": 75
+            },
+            {
+                "Month": "February",
+                "Hiking": 68,
+                "Camping": 72,
+                "Beach": 88,
+                "Museum": 62,
+                "Road Trip": 78
+            },
+            {
+                "Month": "March",
+                "Hiking": 70,
+                "Camping": 75,
+                "Beach": 90,
+                "Museum": 65,
+                "Road Trip": 80
+            },
+            {
+                "Month": "April",
+                "Hiking": 72,
+                "Camping": 78,
+                "Beach": 92,
+                "Museum": 68,
+                "Road Trip": 82
+            },
+            {
+                "Month": "May",
+                "Hiking": 75,
+                "Camping": 80,
+                "Beach": 95,
+                "Museum": 70,
+                "Road Trip": 85
+            },
+            {
+                "Month": "June",
+                "Hiking": 78,
+                "Camping": 83,
+                "Beach": 98,
+                "Museum": 72,
+                "Road Trip": 88
+            },
+            {
+                "Month": "July",
+                "Hiking": 80,
+                "Camping": 85,
+                "Beach": 100,
+                "Museum": 75,
+                "Road Trip": 90
+            },
+            {
+                "Month": "August",
+                "Hiking": 82,
+                "Camping": 88,
+                "Beach": 102,
+                "Museum": 78,
+                "Road Trip": 92
+            },
+            {
+                "Month": "September",
+                "Hiking": 85,
+                "Camping": 90,
+                "Beach": 105,
+                "Museum": 80,
+                "Road Trip": 95
+            },
+            {
+                "Month": "October",
+                "Hiking": 88,
+                "Camping": 92,
+                "Beach": 108,
+                "Museum": 83,
+                "Road Trip": 98
+            },
+            {
+                "Month": "November",
+                "Hiking": 90,
+                "Camping": 95,
+                "Beach": 110,
+                "Museum": 85,
+                "Road Trip": 100
+            },
+            {
+                "Month": "December",
+                "Hiking": 92,
+                "Camping": 97,
+                "Beach": 112,
+                "Museum": 88,
+                "Road Trip": 103
+            }
+        ]
+    },
+    "width": 800,
+    "height": 400,
+    "transform": [
+        {
+            "fold": [
+                "Hiking",
+                "Camping",
+                "Beach",
+                "Museum",
+                "Road Trip"
+            ],
+            "as": [
+                "Activity",
+                "Popularity"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "line",
+        "point": true
+    },
+    "encoding": {
+        "x": {
+            "field": "Month",
+            "type": "ordinal",
+            "title": "Month",
+            "axis": {
+                "labelAngle": 0
+            }
+        },
+        "y": {
+            "field": "Popularity",
+            "type": "quantitative",
+            "title": "Activity Popularity (%)",
+            "scale": {
+                "reverse": true
+            },
+            "axis": {
+                "labelAngle": 0
+            }
+        },
+        "color": {
+            "field": "Activity",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Hiking",
+                    "Camping",
+                    "Beach",
+                    "Museum",
+                    "Road Trip"
+                ],
+                "range": [
+                    "#FF5733",
+                    "#33FF57",
+                    "#3357FF",
+                    "#FF33A8",
+                    "#A833FF"
+                ]
+            },
+            "title": "Activity"
+        },
+        "tooltip": [
+            {
+                "field": "Month",
+                "type": "nominal"
+            },
+            {
+                "field": "Activity",
+                "type": "nominal"
+            },
+            {
+                "field": "Popularity",
+                "type": "quantitative"
+            }
+        ],
+        "text": {
+            "field": "Popularity",
+            "type": "quantitative"
+        }
+    }
+}

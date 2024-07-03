@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Emerging Technologies Impact',
+        left: 'center',
+        top: '5%'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Value'],
+        top: '10%'
+    },
+    xAxis: {
+        type: 'category',
+        data: ['Artificial Intelligence', 'Quantum Computing', 'Biotechnology', 'Cybersecurity', 'Blockchain', 'Nanotechnology', 'Augmented Reality', '5G Technology', 'Green Energy', 'Robotics', 'Internet of Things', '3D Printing', 'Autonomous Vehicles', 'Space Exploration', 'Renewable Resources', 'Virtual Reality'],
+        axisLabel: {
+            rotate: 45
+        }
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Value',
+            type: 'bar',
+            barWidth: '50%',
+            data: [
+                {value: 85, itemStyle: {color: '#FF6F61'}},
+                {value: 92, itemStyle: {color: '#6B5B95'}},
+                {value: 78, itemStyle: {color: '#88B04B'}},
+                {value: 88, itemStyle: {color: '#FFA500'}},
+                {value: 76, itemStyle: {color: '#D65076'}},
+                {value: 80, itemStyle: {color: '#45B8AC'}},
+                {value: 70, itemStyle: {color: '#EFC050'}},
+                {value: 90, itemStyle: {color: '#5B5EA6'}},
+                {value: 82, itemStyle: {color: '#9B2335'}},
+                {value: 84, itemStyle: {color: '#BC243C'}},
+                {value: 86, itemStyle: {color: '#009B77'}},
+                {value: 74, itemStyle: {color: '#DD4124'}},
+                {value: 88, itemStyle: {color: '#D94F70'}},
+                {value: 94, itemStyle: {color: '#45A29E'}},
+                {value: 81, itemStyle: {color: '#92A8D1'}},
+                {value: 75, itemStyle: {color: '#FF6F61'}}
+            ]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

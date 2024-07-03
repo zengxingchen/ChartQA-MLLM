@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {renderer: 'canvas', useDirtyRect: false, width: 800, height: 600});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Scatterplot of Monthly Temperature Decrease',
+        left: 'center',
+        top: '10%'
+    },
+    tooltip: {
+        trigger: 'item'
+    },
+    legend: {
+        data: ['Temperature'],
+        top: '5%',
+        right: '10%'
+    },
+    xAxis: {
+        type: 'value',
+        name: 'Month',
+        nameLocation: 'middle',
+        nameGap: 30
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Temperature (°C)',
+        nameLocation: 'middle',
+        nameGap: 50
+    },
+    series: [
+        {
+            name: 'Temperature',
+            type: 'scatter',
+            itemStyle: {
+                color: '#FF5733'
+            },
+            data: [
+                [10, 50],
+                [20, 45],
+                [30, 40],
+                [40, 35],
+                [50, 30],
+                [60, 28],
+                [70, 25],
+                [80, 22],
+                [90, 20],
+                [100, 18],
+                [110, 15],
+                [120, 13],
+                [130, 10],
+                [140, 8],
+                [150, 5],
+                [160, 3],
+                [170, 2],
+                [180, 1],
+                [190, 0],
+                [200, -2],
+                [210, -4],
+                [220, -5],
+                [230, -7],
+                [240, -8],
+                [250, -10],
+                [260, -11],
+                [270, -12],
+                [280, -13],
+                [290, -14],
+                [300, -15]
+            ]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 500
+});
+
+var app = {};
+
+var option;
+
+const data = [
+    {value: [20, 30, 35, 15], name: '2021'},
+    {value: [25, 28, 30, 17], name: '2022'},
+    {value: [30, 26, 28, 16], name: '2023'},
+    {value: [35, 25, 25, 15], name: '2024'},
+    {value: [40, 23, 22, 15], name: '2025'}
+];
+
+option = {
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Green Energy', 'Solar Power', 'Wind Power', 'Hydro Power']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value'
+    },
+    yAxis: {
+        type: 'category',
+        data: ['2021', '2022', '2023', '2024', '2025'],
+        axisLabel: {
+            interval: 0
+        }
+    },
+    series: [
+        {
+            name: 'Green Energy',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 40,
+            data: data.map(item => item.value[0]),
+            color: '#76B041'
+        },
+        {
+            name: 'Solar Power',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 40,
+            data: data.map(item => item.value[1]),
+            color: '#FFD700'
+        },
+        {
+            name: 'Wind Power',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 40,
+            data: data.map(item => item.value[2]),
+            color: '#00BFFF'
+        },
+        {
+            name: 'Hydro Power',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 40,
+            data: data.map(item => item.value[3]),
+            color: '#0F5E9C'
+        }
+    ],
+    title: {
+        left: 'center',
+        text: 'Energy Production by Source (2021-2025)',
+        subtext: 'Future Technologies & Society',
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

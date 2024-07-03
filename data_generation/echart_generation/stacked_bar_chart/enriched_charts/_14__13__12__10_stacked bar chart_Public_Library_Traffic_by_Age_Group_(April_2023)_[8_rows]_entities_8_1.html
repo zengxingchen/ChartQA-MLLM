@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+var option;
+
+option = {
+    title: {
+        text: 'Monthly Sales Report for Three Products',
+        left: 'center',
+        top: '5%'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Product A', 'Product B', 'Product C'],
+        top: '10%'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        data: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Product A',
+            type: 'bar',
+            stack: 'sales',
+            label: {
+                show: true,
+                position: 'inside'
+            },
+            data: [120, 150, 180, 200, 220, 240, 260, 280, 300, 320, 340, 360],
+            itemStyle: {
+                color: '#FF6347'
+            }
+        },
+        {
+            name: 'Product B',
+            type: 'bar',
+            stack: 'sales',
+            label: {
+                show: true,
+                position: 'inside'
+            },
+            data: [90, 110, 140, 160, 180, 200, 220, 240, 260, 280, 300, 320],
+            itemStyle: {
+                color: '#4682B4'
+            }
+        },
+        {
+            name: 'Product C',
+            type: 'bar',
+            stack: 'sales',
+            label: {
+                show: true,
+                position: 'inside'
+            },
+            data: [60, 80, 100, 120, 140, 160, 180, 200, 220, 240, 260, 280],
+            itemStyle: {
+                color: '#32CD32'
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, { width: 600, height: 400 });
+var app = {};
+
+option = {
+    title: {
+        text: 'Education Level Distribution by Region',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        bottom: 10
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '15%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01]
+    },
+    yAxis: {
+        type: 'category',
+        data: ['North America', 'Europe', 'Asia', 'South America', 'Africa', 'Oceania']
+    },
+    series: [
+        {
+            name: 'Primary',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 15,
+            data: [30, 25, 40, 35, 50, 20],
+            itemStyle: {
+                color: '#FFD700'
+            }
+        },
+        {
+            name: 'Secondary',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 15,
+            data: [40, 45, 35, 40, 30, 50],
+            itemStyle: {
+                color: '#C0C0C0'
+            }
+        },
+        {
+            name: 'Tertiary',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 15,
+            data: [30, 30, 25, 25, 20, 30],
+            itemStyle: {
+                color: '#CD7F32'
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

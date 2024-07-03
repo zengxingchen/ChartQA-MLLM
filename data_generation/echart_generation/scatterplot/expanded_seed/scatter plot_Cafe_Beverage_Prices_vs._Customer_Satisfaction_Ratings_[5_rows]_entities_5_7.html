@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+// Prepare data
+var data = [
+  { name: 'Espresso', value: [2.5, 4.3] },
+  { name: 'Cappuccino', value: [3.5, 4.5] },
+  { name: 'Iced Latte', value: [4.0, 4.7] },
+  { name: 'Chai Latte', value: [3.8, 4.2] },
+  { name: 'Matcha Tea', value: [4.5, 4.6] }
+];
+
+// Define colors for each drink
+var colors = ['#c23531', '#2f4554', '#61a0a8', '#d48265', '#91c7ae'];
+
+// Create a series with different symbols
+var seriesData = data.map(function (item, idx) {
+  return {
+    name: item.name,
+    value: item.value,
+    symbol: idx % 2 === 0 ? 'circle' : 'rect',
+    symbolSize: 20,
+    itemStyle: {
+      color: colors[idx]
+    },
+    label: {
+      show: true,
+      formatter: '{b}',
+      color: '#333',
+      position: 'right'
+    }
+  };
+});
+
+option = {
+  title: {
+    text: 'Coffee Shop Drinks Scatterplot',
+    subtext: 'Average Price vs Customer Satisfaction',
+    left: 'center'
+  },
+  grid: {
+    left: '3%',
+    right: '7%',
+    bottom: '3%',
+    containLabel: true
+  },
+  tooltip: {
+    trigger: 'item',
+    formatter: function (params) {
+      return params.data.name + ':<br />Average Price ($) ' + params.data.value[0] +
+        '<br />Customer Satisfaction (1-5) ' + params.data.value[1];
+    }
+  },
+  xAxis: {
+    type: 'value',
+    name: 'Average Price ($)',
+    nameLocation: 'middle',
+    nameGap: 25
+  },
+  yAxis: {
+    type: 'value',
+    name: 'Customer Satisfaction (1-5)',
+    nameLocation: 'middle',
+    nameGap: 50
+  },
+  series: [{
+    name: 'Drinks',
+    type: 'scatter',
+    data: seriesData,
+    emphasis: {
+      focus: 'series',
+      label: {
+        show: true,
+        position: 'top'
+      }
+    }
+  }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

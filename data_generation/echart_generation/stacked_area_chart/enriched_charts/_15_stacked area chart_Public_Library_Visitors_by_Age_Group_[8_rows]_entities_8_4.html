@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 400});
+var app = {};
+
+var option;
+option = {
+  title: {
+    text: 'Monthly Sales Revenue of Products',
+    left: 'center'
+  },
+  tooltip: {
+    trigger: 'axis',
+    axisPointer: {
+      type: 'cross',
+      label: {
+        backgroundColor: '#6a7985',
+      },
+    },
+  },
+  legend: {
+    data: ['Product A', 'Product B', 'Product C'],
+    bottom: 10,
+  },
+  toolbox: {
+    feature: {
+      saveAsImage: {},
+    },
+  },
+  grid: {
+    left: '3%',
+    right: '4%',
+    bottom: '3%',
+    containLabel: true,
+  },
+  xAxis: {
+    type: 'category',
+    boundaryGap: false,
+    data: [
+      'January', 'February', 'March', 'April', 'May', 
+      'June', 'July', 'August', 'September', 
+      'October', 'November', 'December'
+    ],
+  },
+  yAxis: {
+    type: 'value',
+  },
+  series: [
+    {
+      name: 'Product A',
+      type: 'line',
+      stack: 'Total',
+      areaStyle: {},
+      emphasis: {
+        focus: 'series',
+      },
+      data: [1200, 1180, 1350, 1400, 1450, 1500, 1550, 1600, 1650, 1700, 1800, 2000],
+      color: '#FF7F50',
+    },
+    {
+      name: 'Product B',
+      type: 'line',
+      stack: 'Total',
+      areaStyle: {},
+      emphasis: {
+        focus: 'series',
+      },
+      data: [980, 1022, 1100, 1200, 1180, 1220, 1270, 1300, 1400, 1450, 1500, 1550],
+      color: '#87CEFA',
+    },
+    {
+      name: 'Product C',
+      type: 'line',
+      stack: 'Total',
+      areaStyle: {},
+      emphasis: {
+        focus: 'series',
+      },
+      data: [860, 910, 950, 980, 1050, 1100, 1150, 1200, 1300, 1390, 1450, 1500],
+      color: '#32CD32',
+    },
+  ],
+  dataZoom: [
+    {
+      type: 'inside',
+      start: 0,
+      end: 100,
+    },
+    {
+      start: 0,
+      end: 100,
+    },
+  ],
+  markPoint: {
+    data: [
+      { type: 'max', name: 'Max' },
+      { type: 'min', name: 'Min' },
+    ],
+    seriesIndex: [0, 1, 2],
+  },
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

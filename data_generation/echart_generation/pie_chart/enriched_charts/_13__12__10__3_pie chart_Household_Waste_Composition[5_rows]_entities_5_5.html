@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+option = {
+    title: {
+        text: 'Investment in Future Technologies',
+        left: 'center',
+        top: 20
+    },
+    tooltip: {
+        trigger: 'item'
+    },
+    legend: {
+        orient: 'vertical',
+        left: 'left',
+        top: '15%',
+        textStyle: {
+            lineHeight: 20
+        }
+    },
+    series: [
+        {
+            name: 'Technology',
+            type: 'pie',
+            radius: '55%',
+            center: ['50%', '60%'],
+            data: [
+                {value: 130, name: 'Electric Cars'},
+                {value: 120, name: 'Solar Power'},
+                {value: 100, name: 'AI & Robotics'},
+                {value: 80, name: 'Biotechnology'},
+                {value: 60, name: 'Quantum Computing'},
+                {value: 55, name: 'Autonomous Drones'},
+                {value: 50, name: '3D Printing'},
+                {value: 45, name: 'Blockchain'},
+                {value: 40, name: 'Augmented Reality'},
+                {value: 35, name: 'Smart Homes'},
+                {value: 25, name: 'Space Tourism'}
+            ],
+            emphasis: {
+                itemStyle: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            }
+        }
+    ],
+    color: [
+        '#FF5733', '#FFC300', '#DAF7A6', 
+        '#581845', '#C70039', '#900C3F', 
+        '#FFC0CB', '#34495E', '#27AE60',
+        '#2980B9', '#8E44AD'
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

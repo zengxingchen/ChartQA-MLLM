@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+option = {
+  title: {
+    text: 'Tech Industry Trends by Segment',
+    left: 'center'
+  },
+  tooltip: {
+    trigger: 'axis',
+    axisPointer: {
+      type: 'shadow'
+    }
+  },
+  legend: {
+    data: ['Consumer Electronics', 'Software & Services', 'Telecommunications', 'Others']
+  },
+  grid: {
+    left: '3%',
+    right: '4%',
+    bottom: '3%',
+    containLabel: true
+  },
+  xAxis: {
+    type: 'value',
+  },
+  yAxis: {
+    type: 'category',
+    data: ['2016', '2017', '2018', '2019', '2020', '2021', '2022']
+  },
+  series: [
+    {
+      name: 'Consumer Electronics',
+      type: 'bar',
+      stack: 'total',
+      color: '#FF5733',
+      barWidth: 35,
+      data: [40, 35, 50, 45, 55, 50, 45]
+    },
+    {
+      name: 'Software & Services',
+      type: 'bar',
+      stack: 'total',
+      color: '#33BEFF',
+      barWidth: 35,
+      data: [30, 30, 20, 25, 15, 20, 25]
+    },
+    {
+      name: 'Telecommunications',
+      type: 'bar',
+      stack: 'total',
+      color: '#F033FF',
+      barWidth: 35,
+      data: [15, 20, 15, 15, 15, 20, 20]
+    },
+    {
+      name: 'Others',
+      type: 'bar',
+      stack: 'total',
+      color: '#33FF57',
+      barWidth: 35,
+      data: [15, 15, 15, 15, 15, 10, 10]
+    }
+  ],
+  itemStyle: {
+    barBorderRadius: [0, 0, 0, 0]
+  }
+};
+
+if (option && typeof option === 'object') {
+  myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

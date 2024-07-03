@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 400});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Futuristic Investment Trends',
+        left: 'center',
+        top: 20
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Astronomy & Space Exploration (%)', 'Technology Advancement (%)', 'Innovative Energy Solutions (%)', 'Artificial Intelligence (%)', 'Biotechnology (%)'],
+        bottom: 0
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '10%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        max: 'auto',
+        axisLabel: {
+            formatter: function(value){
+                return value + '%';
+            }
+        }
+    },
+    yAxis: {
+        type: 'category',
+        data: ['2021', '2022', '2023', '2024', '2025', '2026'],
+        axisLabel: {
+            margin: 15
+        }
+    },
+    series: [
+        {
+            name: 'Astronomy & Space Exploration (%)',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 30,
+            itemStyle: {
+                color: '#1f77b4'
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [15, 18, 22, 19, 21, 23]
+        },
+        {
+            name: 'Technology Advancement (%)',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 30,
+            itemStyle: {
+                color: '#2ca02c'
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [25, 22, 20, 28, 29, 26]
+        },
+        {
+            name: 'Innovative Energy Solutions (%)',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 30,
+            itemStyle: {
+                color: '#d62728'
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [20, 23, 18, 17, 19, 16]
+        },
+        {
+            name: 'Artificial Intelligence (%)',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 30,
+            itemStyle: {
+                color: '#9467bd'
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [25, 20, 25, 22, 17, 20]
+        },
+        {
+            name: 'Biotechnology (%)',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 30,
+            itemStyle: {
+                color: '#8c564b'
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [15, 17, 15, 14, 14, 15]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

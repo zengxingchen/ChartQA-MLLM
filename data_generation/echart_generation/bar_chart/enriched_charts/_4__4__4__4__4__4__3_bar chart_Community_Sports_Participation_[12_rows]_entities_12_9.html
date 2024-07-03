@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+option = {
+    title: {
+        text: 'Diverse Aspects of Modern Society',
+        left: 'center',
+        top: '20px',
+        textStyle: {
+            fontSize: 18
+        }
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Value'],
+        top: '10px',
+        right: '10px'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01]
+    },
+    yAxis: {
+        type: 'category',
+        data: ['Technology', 'Art', 'Science', 'Health', 'Culture', 'Economics', 'Education', 'Entertainment', 'Environment', 'Food', 'Travel', 'Fashion', 'Politics', 'Sports', 'History', 'Philosophy', 'Music', 'Literature', 'Business', 'Astronomy']
+    },
+    series: [
+        {
+            name: 'Value',
+            type: 'bar',
+            data: [150, 100, 200, 180, 130, 170, 190, 140, 160, 120, 210, 110, 175, 195, 135, 115, 185, 125, 165, 155],
+            itemStyle: {
+                color: '#4caf50'
+            },
+            barWidth: '50%',
+            label: {
+                show: true,
+                position: 'right',
+                formatter: '{c}'
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

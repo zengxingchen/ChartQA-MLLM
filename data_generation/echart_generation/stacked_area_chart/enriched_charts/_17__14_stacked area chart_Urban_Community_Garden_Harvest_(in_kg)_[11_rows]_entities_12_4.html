@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+  width: 800,
+  height: 400
+});
+
+var option;
+option = {
+  title: {
+    text: 'Monthly Sales Trends for Tech Gadgets',
+    left: 'center',
+    top: 20
+  },
+  tooltip: {
+    trigger: 'axis'
+  },
+  legend: {
+    data: ['E-commerce Sales', 'In-Store Sales', 'Total Sales'],
+    top: 50
+  },
+  toolbox: {
+    feature: {
+      saveAsImage: {}
+    }
+  },
+  grid: {
+    left: '3%',
+    right: '4%',
+    bottom: '3%',
+    containLabel: true
+  },
+  xAxis: {
+    type: 'category',
+    boundaryGap: false,
+    data: [
+      '2021-01', '2021-02', '2021-03', '2021-04', '2021-05', '2021-06',
+      '2021-07', '2021-08', '2021-09', '2021-10', '2021-11', '2021-12',
+      '2022-01', '2022-02', '2022-03', '2022-04', '2022-05', '2022-06',
+      '2022-07', '2022-08', '2022-09', '2022-10', '2022-11', '2022-12'
+    ]
+  },
+  yAxis: {
+    type: 'value'
+  },
+  series: [
+    {
+      name: 'E-commerce Sales',
+      type: 'line',
+      stack: 'total',
+      areaStyle: {},
+      emphasis: {
+        focus: 'series'
+      },
+      data: [
+        20000, 21000, 25000, 26000, 27000, 28000,
+        29000, 31000, 32000, 33000, 34000, 35000,
+        36000, 37000, 38000, 39000, 40000, 41000,
+        42000, 43000, 44000, 45000, 46000, 47000
+      ],
+      color: '#1f77b4'
+    },
+    {
+      name: 'In-Store Sales',
+      type: 'line',
+      stack: 'total',
+      areaStyle: {},
+      emphasis: {
+        focus: 'series'
+      },
+      data: [
+        10000, 11000, 13000, 14000, 15000, 15500,
+        16000, 16500, 17000, 18000, 18500, 19000,
+        19500, 20000, 20500, 21000, 21500, 22000,
+        22500, 23000, 23500, 24000, 24500, 25000
+      ],
+      color: '#2ca02c'
+    },
+    {
+      name: 'Total Sales',
+      type: 'line',
+      stack: 'total',
+      label: {
+        show: true,
+        position: 'top'
+      },
+      areaStyle: { opacity: 0.5 },
+      emphasis: {
+        focus: 'series'
+      },
+      data: [
+        30000, 32000, 38000, 40000, 42000, 43500,
+        45000, 47500, 49000, 51000, 52500, 54000,
+        55500, 57000, 58500, 60000, 61500, 63000,
+        64500, 66000, 67500, 69000, 70500, 72000
+      ],
+      color: '#d62728'
+    }
+  ]
+};
+
+if (option && typeof option === 'object') {
+  myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

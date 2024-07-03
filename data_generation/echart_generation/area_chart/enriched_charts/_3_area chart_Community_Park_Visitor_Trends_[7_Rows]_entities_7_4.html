@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    width: 800,
+    height: 600
+});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Monthly Trend of Fictional Stock Price',
+        left: 'center',
+        top: 20
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['Stock Price'],
+        top: 60
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: [
+            '2023-03-01', '2023-03-02', '2023-03-03', '2023-03-04', '2023-03-05', 
+            '2023-03-06', '2023-03-07', '2023-03-08', '2023-03-09', '2023-03-10', 
+            '2023-03-11', '2023-03-12', '2023-03-13', '2023-03-14', '2023-03-15', 
+            '2023-03-16', '2023-03-17', '2023-03-18', '2023-03-19', '2023-03-20', 
+            '2023-03-21', '2023-03-22', '2023-03-23', '2023-03-24', '2023-03-25', 
+            '2023-03-26', '2023-03-27', '2023-03-28', '2023-03-29', '2023-03-30'
+        ]
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Stock Price',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [
+                100, 102, 101, 103, 107, 106, 105, 109, 108, 112, 115, 114, 116, 118, 117, 
+                119, 122, 121, 123, 125, 128, 126, 130, 132, 131, 135, 133, 138, 140, 142
+            ],
+            color: '#34a853', // A green shade
+            markPoint: {
+                data: [
+                    {type: 'max', name: 'Max Price'},
+                    {type: 'min', name: 'Min Price'}
+                ]
+            }
+        }
+    ],
+    color: ['#3366CC', '#DC3912', '#FF9900', '#109618', '#990099']
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,219 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Monthly Expenses Breakdown Over a Year",
+    "width": 500,
+    "height": 300,
+    "data": {
+        "values": [
+            {
+                "Month": "2023-01",
+                "Rent": 1200,
+                "Utilities": 300,
+                "Groceries": 450,
+                "Transportation": 150,
+                "Entertainment": 230,
+                "Healthcare": 200
+            },
+            {
+                "Month": "2023-02",
+                "Rent": 1210,
+                "Utilities": 310,
+                "Groceries": 460,
+                "Transportation": 155,
+                "Entertainment": 225,
+                "Healthcare": 210
+            },
+            {
+                "Month": "2023-03",
+                "Rent": 1200,
+                "Utilities": 300,
+                "Groceries": 470,
+                "Transportation": 165,
+                "Entertainment": 220,
+                "Healthcare": 220
+            },
+            {
+                "Month": "2023-04",
+                "Rent": 1230,
+                "Utilities": 320,
+                "Groceries": 480,
+                "Transportation": 160,
+                "Entertainment": 215,
+                "Healthcare": 230
+            },
+            {
+                "Month": "2023-05",
+                "Rent": 1220,
+                "Utilities": 315,
+                "Groceries": 490,
+                "Transportation": 170,
+                "Entertainment": 245,
+                "Healthcare": 240
+            },
+            {
+                "Month": "2023-06",
+                "Rent": 1250,
+                "Utilities": 325,
+                "Groceries": 495,
+                "Transportation": 180,
+                "Entertainment": 235,
+                "Healthcare": 250
+            },
+            {
+                "Month": "2023-07",
+                "Rent": 1260,
+                "Utilities": 330,
+                "Groceries": 500,
+                "Transportation": 175,
+                "Entertainment": 240,
+                "Healthcare": 260
+            },
+            {
+                "Month": "2023-08",
+                "Rent": 1270,
+                "Utilities": 335,
+                "Groceries": 510,
+                "Transportation": 185,
+                "Entertainment": 250,
+                "Healthcare": 270
+            },
+            {
+                "Month": "2023-09",
+                "Rent": 1275,
+                "Utilities": 340,
+                "Groceries": 520,
+                "Transportation": 178,
+                "Entertainment": 265,
+                "Healthcare": 280
+            },
+            {
+                "Month": "2023-10",
+                "Rent": 1280,
+                "Utilities": 345,
+                "Groceries": 530,
+                "Transportation": 190,
+                "Entertainment": 255,
+                "Healthcare": 285
+            },
+            {
+                "Month": "2023-11",
+                "Rent": 1290,
+                "Utilities": 355,
+                "Groceries": 540,
+                "Transportation": 200,
+                "Entertainment": 260,
+                "Healthcare": 290
+            },
+            {
+                "Month": "2023-12",
+                "Rent": 1300,
+                "Utilities": 360,
+                "Groceries": 550,
+                "Transportation": 210,
+                "Entertainment": 275,
+                "Healthcare": 300
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Rent",
+                "Utilities",
+                "Groceries",
+                "Transportation",
+                "Entertainment",
+                "Healthcare"
+            ],
+            "as": [
+                "ExpenseType",
+                "Amount"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "area",
+        "opacity": 0.7
+    },
+    "encoding": {
+        "x": {
+            "field": "Month",
+            "type": "temporal",
+            "axis": {
+                "title": "Month",
+                "format": "%Y-%m",
+                "labelAngle": -45
+            }
+        },
+        "y": {
+            "field": "Amount",
+            "type": "quantitative",
+            "stack": "zero",
+            "axis": {
+                "title": "Monthly Expense (USD)"
+            }
+        },
+        "color": {
+            "field": "ExpenseType",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Rent",
+                    "Utilities",
+                    "Groceries",
+                    "Transportation",
+                    "Entertainment",
+                    "Healthcare"
+                ],
+                "range": [
+                    "#e41a1c",
+                    "#377eb8",
+                    "#4daf4a",
+                    "#984ea3",
+                    "#ff7f00",
+                    "#ffff33"
+                ]
+            },
+            "legend": {
+                "title": "Expense Type",
+                "orient": "top-left"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Month",
+                "type": "temporal",
+                "title": "Month"
+            },
+            {
+                "field": "ExpenseType",
+                "type": "nominal",
+                "title": "Expense Type"
+            },
+            {
+                "field": "Amount",
+                "type": "quantitative",
+                "title": "Amount (USD)"
+            }
+        ]
+    },
+    "config": {
+        "view": {
+            "stroke": "transparent"
+        },
+        "axis": {
+            "labelFontSize": 12,
+            "titleFontSize": 14
+        },
+        "legend": {
+            "labelFontSize": 12,
+            "titleFontSize": 14
+        },
+        "title": {
+            "text": "Monthly Expenses Breakdown Over a Year",
+            "anchor": "start",
+            "fontSize": 16,
+            "offset": 20
+        }
+    }
+}

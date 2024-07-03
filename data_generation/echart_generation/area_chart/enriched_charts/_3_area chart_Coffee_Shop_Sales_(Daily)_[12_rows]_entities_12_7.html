@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {renderer: 'canvas', width: '600', height: '400'});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Monthly Average Temperatures',
+        left: 'center',
+        textStyle: {
+            fontSize: 20,
+            fontStyle: 'normal',
+            fontWeight: 'bold',
+            color: '#333' // Explicit color code for better clarity, matches a standard dark text
+        }
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['Temperature'],
+        top: 'bottom'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+    },
+    yAxis: {
+        type: 'value',
+        axisLabel: {
+            formatter: '{value} °C'
+        }
+    },
+    series: [
+        {
+            name: 'Temperature',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [
+                { value: -3, itemStyle: { color: '#ff0000'} }, // Using specific colors for data points (red for cold)
+                { value: -1, itemStyle: { color: '#ff4500'} },
+                { value: 4, itemStyle: { color: '#ff8c00'} },
+                { value: 10, itemStyle: { color: '#ffb000'} },
+                { value: 16, itemStyle: { color: '#ffd700'} }, // Warmer months have colors towards the yellow spectrum
+                { value: 20, itemStyle: { color: '#ffff00'} },
+                { value: 22, itemStyle: { color: '#9acd32'} },
+                { value: 21, itemStyle: { color: '#32cd32'} }, // Peak summer month in green
+                { value: 17, itemStyle: { color: '#ffd700'} },
+                { value: 11, itemStyle: { color: '#ffa500'} },
+                { value: 5, itemStyle: { color: '#ff8c00'} },
+                { value: -2, itemStyle: { color: '#ff4500'} }
+            ]
+        }
+    ],
+    markPoint: {
+        data: [
+            {type: 'max', name: 'Max Temp', symbolSize: 70},
+            {type: 'min', name: 'Min Temp', symbolSize: 70}
+        ],
+        label: {
+            color: '#FFF' // White color for visibility against the areas with colors
+        }
+    },
+    visualMap: {
+        top: 50,
+        right: 0,
+        pieces: [{
+            lte: 0,
+            color: '#73a0c4' // Cold temperatures in blue hues
+        }, {
+            gt: 0,
+            lte: 15,
+            color: '#eac736' // Mild temperatures in yellow hues
+        }, {
+            gt: 15,
+            color: '#d94e5d' // Warm temperatures in red hues
+        }],
+        outOfRange: {
+            color: '#999' // Grey color for values out of the defined range
+        }
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

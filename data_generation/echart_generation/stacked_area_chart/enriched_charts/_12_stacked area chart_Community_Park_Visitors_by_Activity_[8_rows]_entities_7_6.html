@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+  renderer: 'canvas',
+  useDirtyRect: false,
+  width: 800,
+  height: 600
+});
+var app = {};
+
+var option;
+
+option = {
+  title: {
+    text: 'Daily Average Test Scores in Education & Learning',
+    left: 'center',
+    top: 10
+  },
+  tooltip: {
+    trigger: 'axis',
+    axisPointer: {
+      type: 'cross',
+      label: {
+        backgroundColor: '#6a7985'
+      }
+    }
+  },
+  legend: {
+    data: ['Math', 'Physics', 'Literature'],
+    top: 40
+  },
+  toolbox: {
+    feature: {
+      saveAsImage: {}
+    }
+  },
+  grid: {
+    left: '3%',
+    right: '4%',
+    bottom: '3%',
+    containLabel: true
+  },
+  xAxis: [
+    {
+      type: 'category',
+      boundaryGap: false,
+      data: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30']
+    }
+  ],
+  yAxis: [
+    {
+      type: 'value'
+    }
+  ],
+  series: [
+    {
+      name: 'Math',
+      type: 'line',
+      stack: 'total',
+      areaStyle: {},
+      emphasis: {
+        focus: 'series'
+      },
+      data: [85,88,86,90,87,92,94,93,89,91,95,97,96,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114],
+      itemStyle: { color: '#4c8eda' }
+    },
+    {
+      name: 'Physics',
+      type: 'line',
+      stack: 'total',
+      areaStyle: {},
+      emphasis: {
+        focus: 'series'
+      },
+      data: [75,77,79,81,83,85,87,86,88,90,89,91,93,92,94,96,97,99,98,100,101,103,104,106,107,108,109,111,112,113],
+      itemStyle: { color: '#e67e22' }
+    },
+    {
+      name: 'Literature',
+      type: 'line',
+      stack: 'total',
+      areaStyle: {},
+      emphasis: {
+        focus: 'series'
+      },
+      data: [82,84,85,86,88,90,89,92,91,93,90,94,95,96,97,98,99,100,101,102,103,105,106,108,107,109,110,111,113,114],
+      itemStyle: { color: '#2ecc71' }
+    },
+    {
+      name: 'Annotations',
+      type: 'line',
+      showSymbol: false,
+      data: [0],
+      markLine: {
+        silent: true,
+        lineStyle: {
+          normal: {
+            color: '#333'
+          }
+        },
+        label: {
+          position: 'start',
+          formatter: 'Average Threshold'
+        },
+        data: [{
+          yAxis: 100
+        }]
+      }
+    }
+  ]
+};
+
+if (option && typeof option === 'object') {
+  myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

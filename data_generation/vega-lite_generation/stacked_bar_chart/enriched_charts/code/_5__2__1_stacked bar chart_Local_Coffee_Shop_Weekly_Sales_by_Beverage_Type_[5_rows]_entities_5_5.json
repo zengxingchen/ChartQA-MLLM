@@ -1,0 +1,169 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+        "values": [
+            {
+                "Month": "January",
+                "Revenue": 8000,
+                "Expenses": 4500,
+                "Profit": 3500
+            },
+            {
+                "Month": "February",
+                "Revenue": 8200,
+                "Expenses": 4600,
+                "Profit": 3600
+            },
+            {
+                "Month": "March",
+                "Revenue": 8400,
+                "Expenses": 4700,
+                "Profit": 3700
+            },
+            {
+                "Month": "April",
+                "Revenue": 8600,
+                "Expenses": 4800,
+                "Profit": 3800
+            },
+            {
+                "Month": "May",
+                "Revenue": 8800,
+                "Expenses": 4900,
+                "Profit": 3900
+            },
+            {
+                "Month": "June",
+                "Revenue": 9000,
+                "Expenses": 5000,
+                "Profit": 4000
+            },
+            {
+                "Month": "July",
+                "Revenue": 9200,
+                "Expenses": 5100,
+                "Profit": 4100
+            },
+            {
+                "Month": "August",
+                "Revenue": 9400,
+                "Expenses": 5200,
+                "Profit": 4200
+            },
+            {
+                "Month": "September",
+                "Revenue": 9600,
+                "Expenses": 5300,
+                "Profit": 4300
+            },
+            {
+                "Month": "October",
+                "Revenue": 9800,
+                "Expenses": 5400,
+                "Profit": 4400
+            },
+            {
+                "Month": "November",
+                "Revenue": 10000,
+                "Expenses": 5500,
+                "Profit": 4500
+            },
+            {
+                "Month": "December",
+                "Revenue": 10200,
+                "Expenses": 5600,
+                "Profit": 4600
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Revenue",
+                "Expenses",
+                "Profit"
+            ],
+            "as": [
+                "Category",
+                "Amount"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "bar",
+        "height": {
+            "band": 0.5
+        }
+    },
+    "width": 800,
+    "height": 600,
+    "title": {
+        "text": "Monthly Financial Overview",
+        "anchor": "start",
+        "offset": 20
+    },
+    "encoding": {
+        "y": {
+            "field": "Month",
+            "type": "ordinal",
+            "title": "Month",
+            "axis": {
+                "labelAngle": 0
+            }
+        },
+        "x": {
+            "field": "Amount",
+            "type": "quantitative",
+            "title": "Amount ($)",
+            "stack": "zero"
+        },
+        "color": {
+            "field": "Category",
+            "type": "nominal",
+            "legend": {
+                "orient": "top-right",
+                "offset": 30
+            },
+            "scale": {
+                "domain": [
+                    "Revenue",
+                    "Expenses",
+                    "Profit"
+                ],
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e",
+                    "#2ca02c"
+                ]
+            },
+            "title": "Financial Metrics"
+        },
+        "tooltip": [
+            {
+                "field": "Month",
+                "type": "ordinal",
+                "title": "Month"
+            },
+            {
+                "field": "Category",
+                "type": "nominal",
+                "title": "Category"
+            },
+            {
+                "field": "Amount",
+                "type": "quantitative",
+                "title": "Amount ($)"
+            }
+        ]
+    },
+    "config": {
+        "axisX": {
+            "labelPadding": 10,
+            "tickSize": 5
+        },
+        "axisY": {
+            "labelPadding": 10,
+            "tickSize": 5
+        }
+    }
+}

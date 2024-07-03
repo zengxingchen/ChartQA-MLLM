@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+            var dom = document.getElementById('container');
+            var myChart = echarts.init(dom, null, {
+            renderer: 'canvas',
+            useDirtyRect: false
+            });
+            var app = {};
+            
+            var option;
+
+            
+option = {
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        },
+        formatter: function (params) {
+            var result = params[0].name + '<br>';
+            params.forEach(function (item) {
+                var percent = ((item.value / params[0].value)*100).toFixed(2) + '%';
+                result += item.marker + ' ' + item.seriesName + ': ' + percent + ' (' + item.value + ' hrs)<br>';
+            });
+            return result;
+        }
+    },
+    legend: {
+        data: ['Mom', 'Dad', 'Daughter', 'Son']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01],
+        axisLabel: {
+            formatter: '{value} %'
+        }
+    },
+    yAxis: {
+        type: 'category',
+        data: ['Cooking', 'Cleaning', 'Laundry', 'Grocery Shopping', 'Dish Washing', 'Gardening', 'Paying Bills', 'Car Maintenance']
+    },
+    series: [
+        {
+            name: 'Mom',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                formatter: '{c} %'
+            },
+            data: [80, 30, 70, 40, 20, 10, 5, 5]
+        },
+        {
+            name: 'Dad',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                formatter: '{c} %'
+            },
+            data: [15, 50, 5, 40, 30, 60, 90, 85]
+        },
+        {
+            name: 'Daughter',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                formatter: '{c} %'
+            },
+            data: [3, 10, 15, 10, 25, 20, 3, 5]
+        },
+        {
+            name: 'Son',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                formatter: '{c} %'
+            },
+            data: [2, 10, 10, 10, 25, 10, 2, 5]
+        }
+    ]
+};
+
+            if (option && typeof option === 'object') {
+            myChart.setOption(option);
+            }
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

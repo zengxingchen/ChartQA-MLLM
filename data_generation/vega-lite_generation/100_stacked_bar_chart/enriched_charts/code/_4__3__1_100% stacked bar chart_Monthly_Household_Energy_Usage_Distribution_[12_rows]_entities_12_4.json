@@ -1,0 +1,200 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Percentage Stacked Bar Chart of Weekly Reading Habits by Age Group",
+    "title": {
+        "text": "Weekly Reading Habits by Age Group",
+        "anchor": "start",
+        "offset": 5,
+        "frame": "group"
+    },
+    "data": {
+        "values": [
+            {
+                "Age Group": "Under 18",
+                "Fiction": 25,
+                "Non-Fiction": 20,
+                "Magazines": 15,
+                "Comics": 20,
+                "Newspapers": 10,
+                "Others": 10
+            },
+            {
+                "Age Group": "18 to 30",
+                "Fiction": 30,
+                "Non-Fiction": 25,
+                "Magazines": 15,
+                "Comics": 10,
+                "Newspapers": 10,
+                "Others": 10
+            },
+            {
+                "Age Group": "31 to 45",
+                "Fiction": 20,
+                "Non-Fiction": 30,
+                "Magazines": 20,
+                "Comics": 10,
+                "Newspapers": 10,
+                "Others": 10
+            },
+            {
+                "Age Group": "46 to 60",
+                "Fiction": 15,
+                "Non-Fiction": 25,
+                "Magazines": 20,
+                "Comics": 15,
+                "Newspapers": 15,
+                "Others": 10
+            },
+            {
+                "Age Group": "Above 60",
+                "Fiction": 10,
+                "Non-Fiction": 30,
+                "Magazines": 20,
+                "Comics": 10,
+                "Newspapers": 20,
+                "Others": 10
+            },
+            {
+                "Age Group": "Under 18",
+                "Fiction": 35,
+                "Non-Fiction": 15,
+                "Magazines": 20,
+                "Comics": 10,
+                "Newspapers": 10,
+                "Others": 10
+            },
+            {
+                "Age Group": "18 to 30",
+                "Fiction": 25,
+                "Non-Fiction": 20,
+                "Magazines": 20,
+                "Comics": 10,
+                "Newspapers": 15,
+                "Others": 10
+            },
+            {
+                "Age Group": "31 to 45",
+                "Fiction": 30,
+                "Non-Fiction": 20,
+                "Magazines": 15,
+                "Comics": 10,
+                "Newspapers": 15,
+                "Others": 10
+            },
+            {
+                "Age Group": "46 to 60",
+                "Fiction": 20,
+                "Non-Fiction": 25,
+                "Magazines": 15,
+                "Comics": 15,
+                "Newspapers": 15,
+                "Others": 10
+            },
+            {
+                "Age Group": "Above 60",
+                "Fiction": 15,
+                "Non-Fiction": 30,
+                "Magazines": 15,
+                "Comics": 10,
+                "Newspapers": 20,
+                "Others": 10
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Fiction",
+                "Non-Fiction",
+                "Magazines",
+                "Comics",
+                "Newspapers",
+                "Others"
+            ],
+            "as": [
+                "category",
+                "percentage"
+            ]
+        }
+    ],
+    "width": 600,
+    "height": 400,
+    "mark": {
+        "type": "bar",
+        "tooltip": true,
+        "height": {
+            "band": 0.7
+        }
+    },
+    "encoding": {
+        "x": {
+            "field": "Age Group",
+            "type": "ordinal",
+            "axis": {
+                "title": "Age Group"
+            }
+        },
+        "y": {
+            "field": "percentage",
+            "type": "quantitative",
+            "axis": {
+                "title": "Percentage",
+                "format": "%"
+            },
+            "stack": "normalize"
+        },
+        "color": {
+            "field": "category",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Fiction",
+                    "Non-Fiction",
+                    "Magazines",
+                    "Comics",
+                    "Newspapers",
+                    "Others"
+                ],
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e",
+                    "#2ca02c",
+                    "#d62728",
+                    "#9467bd",
+                    "#8c564b"
+                ]
+            },
+            "legend": {
+                "title": "Reading Type"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Age Group",
+                "type": "ordinal"
+            },
+            {
+                "field": "category",
+                "type": "nominal"
+            },
+            {
+                "field": "percentage",
+                "type": "quantitative",
+                "title": "Percentage",
+                "format": ".2%"
+            }
+        ]
+    },
+    "config": {
+        "axis": {
+            "labelFontSize": 12,
+            "titleFontSize": 14
+        },
+        "legend": {
+            "labelFontSize": 12,
+            "titleFontSize": 14,
+            "orient": "right",
+            "titleAnchor": "middle"
+        }
+    }
+}

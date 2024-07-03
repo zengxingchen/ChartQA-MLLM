@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Art & Design: Color Variations',
+        left: 'center',
+        top: 20
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: function (params) {
+            return 'X: ' + params.data[0] + '<br>Y: ' + params.data[1];
+        }
+    },
+    legend: {
+        data: ['Data Points'],
+        left: 'right',
+        top: 'middle'
+    },
+    xAxis: {
+        name: 'X',
+        type: 'value'
+    },
+    yAxis: {
+        name: 'Y',
+        type: 'value'
+    },
+    series: [{
+        name: 'Data Points',
+        type: 'scatter',
+        itemStyle: {
+            color: '#ff7f50'
+        },
+        data: [
+            [1.2, 3.4],
+            [2.1, 4.8],
+            [3.0, 2.9],
+            [4.5, 3.2],
+            [5.7, 5.1],
+            [6.8, 4.2],
+            [7.9, 5.3],
+            [8.4, 6.2],
+            [9.1, 7.3],
+            [10.5, 8.1],
+            [11.2, 7.8],
+            [12.4, 9.0],
+            [13.1, 9.5],
+            [14.8, 10.2],
+            [15.0, 11.5],
+            [16.2, 12.3],
+            [17.5, 13.4],
+            [18.6, 14.2],
+            [19.1, 15.1],
+            [20.0, 16.0]
+        ]
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

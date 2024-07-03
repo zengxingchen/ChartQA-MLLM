@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+
+var option;
+
+// Transforms the provided data into the format eCharts expects for a pie chart
+var data = [
+    { value: 7500, name: 'Fantasy' },
+    { value: 6200, name: 'Science Fiction' },
+    { value: 5300, name: 'Mystery' },
+    { value: 4800, name: 'Romance' },
+    { value: 3900, name: 'Historical' },
+    { value: 4100, name: 'Biography' },
+    { value: 8900, name: "Children's Literature" },
+    { value: 6800, name: 'Young Adult' },
+    { value: 3700, name: 'Non-Fiction' },
+    { value: 3100, name: 'Classic Literature' },
+    { value: 2700, name: 'Self-Help' },
+    { value: 4500, name: 'Graphic Novels' }
+];
+
+option = {
+    tooltip: {
+        trigger: 'item'
+    },
+    legend: {
+        orient: 'vertical',
+        left: 'left'
+    },
+    series: [
+        {
+            name: 'Checkout Count',
+            type: 'pie',
+            radius: '50%',
+            data: data,
+            emphasis: {
+                itemStyle: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            }
+        }
+    ],
+    visualMap: {
+        show: false,
+        min: 2700,
+        max: 8900,
+        inRange: {
+            colorLightness: [0.2, 0.7]
+        }
+    },
+    color: ['#003366', '#006699', '#4cabce', '#e5323e', '#c4ccd3'],
+    backgroundColor: '#2c343c',
+    textStyle: {
+        color: 'rgba(255, 255, 255, 0.3)'
+    },
+    title: {
+        text: 'Library Genre Checkout Count',
+        left: 'center',
+        top: 20,
+        textStyle: {
+            color: '#ccc'
+        }
+    },
+    animationEasing: 'elasticOut',
+    animationDelayUpdate: function (idx) {
+        return idx * 5;
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

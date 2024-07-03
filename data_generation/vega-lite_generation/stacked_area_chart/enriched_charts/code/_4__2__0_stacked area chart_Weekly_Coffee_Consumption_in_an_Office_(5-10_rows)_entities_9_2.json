@@ -1,0 +1,186 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Monthly Website Traffic by Region",
+    "width": 900,
+    "height": 400,
+    "data": {
+        "values": [
+            {
+                "Region": "North America",
+                "January": 1200,
+                "February": 1300,
+                "March": 1250,
+                "April": 1400,
+                "May": 1500,
+                "June": 1600,
+                "July": 1550,
+                "August": 1650,
+                "September": 1500,
+                "October": 1450,
+                "November": 1400,
+                "December": 1300
+            },
+            {
+                "Region": "Europe",
+                "January": 800,
+                "February": 850,
+                "March": 900,
+                "April": 950,
+                "May": 1000,
+                "June": 1050,
+                "July": 1100,
+                "August": 1150,
+                "September": 1100,
+                "October": 1050,
+                "November": 1000,
+                "December": 950
+            },
+            {
+                "Region": "Asia",
+                "January": 2100,
+                "February": 2200,
+                "March": 2300,
+                "April": 2400,
+                "May": 2450,
+                "June": 2500,
+                "July": 2600,
+                "August": 2700,
+                "September": 2600,
+                "October": 2500,
+                "November": 2400,
+                "December": 2300
+            },
+            {
+                "Region": "South America",
+                "January": 500,
+                "February": 550,
+                "March": 600,
+                "April": 620,
+                "May": 630,
+                "June": 640,
+                "July": 650,
+                "August": 660,
+                "September": 640,
+                "October": 620,
+                "November": 610,
+                "December": 600
+            },
+            {
+                "Region": "Africa",
+                "January": 450,
+                "February": 460,
+                "March": 470,
+                "April": 480,
+                "May": 490,
+                "June": 500,
+                "July": 510,
+                "August": 520,
+                "September": 500,
+                "October": 490,
+                "November": 480,
+                "December": 470
+            },
+            {
+                "Region": "Oceania",
+                "January": 300,
+                "February": 320,
+                "March": 330,
+                "April": 350,
+                "May": 360,
+                "June": 370,
+                "July": 380,
+                "August": 390,
+                "September": 380,
+                "October": 370,
+                "November": 360,
+                "December": 350
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "January",
+                "February",
+                "March",
+                "April",
+                "May",
+                "June",
+                "July",
+                "August",
+                "September",
+                "October",
+                "November",
+                "December"
+            ],
+            "as": [
+                "Month",
+                "Traffic"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "area",
+        "opacity": 0.5
+    },
+    "encoding": {
+        "x": {
+            "field": "Month",
+            "type": "ordinal",
+            "title": "Month",
+            "axis": {
+                "labelAngle": 0
+            }
+        },
+        "y": {
+            "field": "Traffic",
+            "type": "quantitative",
+            "stack": "normalize",
+            "title": "Percentage of Website Traffic"
+        },
+        "color": {
+            "field": "Region",
+            "type": "nominal",
+            "scale": {
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e",
+                    "#2ca02c",
+                    "#d62728",
+                    "#9467bd",
+                    "#8c564b"
+                ]
+            },
+            "legend": {
+                "orient": "right",
+                "title": "Region"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Region",
+                "type": "nominal"
+            },
+            {
+                "field": "Month",
+                "type": "ordinal"
+            },
+            {
+                "field": "Traffic",
+                "type": "quantitative",
+                "title": "Website Traffic"
+            }
+        ]
+    },
+    "title": {
+        "text": "Monthly Website Traffic by Region",
+        "anchor": "middle",
+        "fontSize": 20,
+        "dy": -10
+    },
+    "config": {
+        "legend": {
+            "offset": 10
+        }
+    }
+}

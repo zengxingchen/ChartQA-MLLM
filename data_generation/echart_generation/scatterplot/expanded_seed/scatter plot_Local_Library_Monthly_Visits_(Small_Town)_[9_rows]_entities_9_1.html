@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false
+});
+var app = {};
+var option;
+
+// Prepare data
+var data = [
+    ['January', 2023, 450],
+    ['February', 2023, 475],
+    ['March', 2023, 520],
+    ['April', 2023, 560],
+    ['May', 2023, 590],
+    ['June', 2023, 610],
+    ['July', 2023, 570],
+    ['August', 2023, 630],
+    ['September', 2023, 600]
+];
+
+// Define axis names for readability
+var months = data.map(function (item) {
+    return item[0];
+});
+var years = [...new Set(data.map(function (item) {
+    return item[1];
+}))];
+var visitors = data.map(function (item) {
+    return item[2];
+});
+
+option = {
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross'
+        },
+        formatter: function (params) {
+            return params.seriesName + '<br/>Month: ' + params.value[0] + '<br/>Year: ' + params.value[1] + '<br/>Visitors: ' + params.value[2];
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '7%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        data: months
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Number of Visitors',
+        min: 400,
+        max: 650
+    },
+    series: [
+        {
+            name: 'Visitor Data',
+            type: 'scatter',
+            symbolSize: function (val) {
+                return val[2] / 100; // Size of symbol based on visitor count
+            },
+            data: data,
+            emphasis: {
+                focus: 'series'
+            },
+            itemStyle: {
+                borderWidth: 2,
+                borderColor: '#c23531',
+                color: 'blue'
+            },
+            encode: {
+                x: 0,
+                y: 2
+            }
+        }
+    ],
+    visualMap: [
+        {
+            type: 'piecewise',
+            dimension: 1,
+            categories: years,
+            calculable: true,
+            precision: 0.1,
+            inRange: {
+                symbolSize: [10, 70]
+            },
+            outOfRange: {
+                symbolSize: [10, 70],
+                color: ['rgba(255,255,255,.2)']
+            },
+            controller: {
+                inRange: {
+                    color: ['#c23531']
+                },
+                outOfRange: {
+                    color: ['#444']
+                }
+            }
+        }
+    ]
+};
+
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+
+var data = [
+    {
+        name: 'Bus',
+        value: 75000,
+        path: 'Bus',
+        details: {
+            'Average Distance (miles)': 12,
+            'Days of Operation Per Week': 5
+        }
+    },
+    {
+        name: 'Subway',
+        value: 100000,
+        path: 'Subway',
+        details: {
+            'Average Distance (miles)': 8,
+            'Days of Operation Per Week': 7
+        }
+    },
+    {
+        name: 'Bicycle',
+        value: 15000,
+        path: 'Bicycle',
+        details: {
+            'Average Distance (miles)': 3,
+            'Days of Operation Per Week': 5
+        }
+    },
+    {
+        name: 'Car',
+        value: 50000,
+        path: 'Car',
+        details: {
+            'Average Distance (miles)': 15,
+            'Days of Operation Per Week': 5
+        }
+    },
+    {
+        name: 'Walking',
+        value: 8000,
+        path: 'Walking',
+        details: {
+            'Average Distance (miles)': 2,
+            'Days of Operation Per Week': 5
+        }
+    },
+    {
+        name: 'Motorcycle',
+        value: 7000,
+        path: 'Motorcycle',
+        details: {
+            'Average Distance (miles)': 10,
+            'Days of Operation Per Week': 5
+        }
+    },
+    {
+        name: 'Taxi',
+        value: 5000,
+        path: 'Taxi',
+        details: {
+            'Average Distance (miles)': 8,
+            'Days of Operation Per Week': 7
+        }
+    },
+    {
+        name: 'Rideshare',
+        value: 15000,
+        path: 'Rideshare',
+        details: {
+            'Average Distance (miles)': 10,
+            'Days of Operation Per Week': 7
+        }
+    }
+];
+
+var option = {
+    tooltip: {
+        formatter: function (info) {
+            var details = info.data.details;
+            var tooltipText = `<strong>${info.name}</strong>`;
+            tooltipText += '<ul>';
+            Object.keys(details).forEach(function (key) {
+                tooltipText += `<li>${key}: ${details[key]}</li>`;
+            });
+            tooltipText += '</ul>';
+            return tooltipText;
+        }
+    },
+    series: [
+        {
+            type: 'treemap',
+            data: data,
+            leafDepth: 1, // When a rectangle is clicked, zoom in to show the children of that rectangle.
+            breadcrumb: {
+                show: true
+            },
+            label: {
+                show: true,
+                formatter: '{b}'
+            },
+            levels: [
+                {
+                    itemStyle: {
+                        borderColor: '#fff',
+                        borderWidth: 3,
+                        gapWidth: 3
+                    }
+                },
+                {
+                    colorSaturation: [0.3, 0.6],
+                    itemStyle: {
+                        borderColorSaturation: 0.7,
+                        gapWidth: 2,
+                        borderWidth: 2
+                    }
+                }
+            ]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

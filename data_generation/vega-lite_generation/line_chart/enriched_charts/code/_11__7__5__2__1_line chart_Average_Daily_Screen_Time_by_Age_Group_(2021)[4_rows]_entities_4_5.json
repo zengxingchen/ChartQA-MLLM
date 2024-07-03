@@ -1,0 +1,195 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Line chart showing average monthly temperatures by month for different cities.",
+    "title": {
+        "text": "Average Monthly Temperatures by City",
+        "fontSize": 18,
+        "anchor": "start",
+        "color": "#333333"
+    },
+    "width": 1200,
+    "height": 700,
+    "data": {
+        "values": [
+            {
+                "City": "New York",
+                "January": 32,
+                "February": 35,
+                "March": 42,
+                "April": 55,
+                "May": 65,
+                "June": 75,
+                "July": 80,
+                "August": 79,
+                "September": 70,
+                "October": 60,
+                "November": 50,
+                "December": 40
+            },
+            {
+                "City": "Los Angeles",
+                "January": 58,
+                "February": 60,
+                "March": 62,
+                "April": 65,
+                "May": 68,
+                "June": 72,
+                "July": 75,
+                "August": 77,
+                "September": 75,
+                "October": 70,
+                "November": 65,
+                "December": 60
+            },
+            {
+                "City": "London",
+                "January": 45,
+                "February": 47,
+                "March": 50,
+                "April": 55,
+                "May": 60,
+                "June": 65,
+                "July": 70,
+                "August": 70,
+                "September": 65,
+                "October": 60,
+                "November": 55,
+                "December": 50
+            },
+            {
+                "City": "Tokyo",
+                "January": 40,
+                "February": 42,
+                "March": 50,
+                "April": 60,
+                "May": 68,
+                "June": 75,
+                "July": 80,
+                "August": 82,
+                "September": 75,
+                "October": 65,
+                "November": 55,
+                "December": 45
+            },
+            {
+                "City": "Sydney",
+                "January": 75,
+                "February": 76,
+                "March": 72,
+                "April": 68,
+                "May": 65,
+                "June": 60,
+                "July": 55,
+                "August": 58,
+                "September": 62,
+                "October": 68,
+                "November": 70,
+                "December": 73
+            },
+            {
+                "City": "Cape Town",
+                "January": 80,
+                "February": 78,
+                "March": 75,
+                "April": 70,
+                "May": 65,
+                "June": 60,
+                "July": 58,
+                "August": 60,
+                "September": 65,
+                "October": 70,
+                "November": 75,
+                "December": 78
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "January",
+                "February",
+                "March",
+                "April",
+                "May",
+                "June",
+                "July",
+                "August",
+                "September",
+                "October",
+                "November",
+                "December"
+            ],
+            "as": [
+                "Month",
+                "Temperature (\u00b0F)"
+            ]
+        }
+    ],
+    "mark": "line",
+    "encoding": {
+        "x": {
+            "field": "Month",
+            "type": "ordinal",
+            "title": "Month",
+            "axis": {
+                "titleFontSize": 14,
+                "labelAngle": -45
+            }
+        },
+        "y": {
+            "field": "Temperature (\u00b0F)",
+            "type": "quantitative",
+            "title": "Temperature (\u00b0F)",
+            "axis": {
+                "titleFontSize": 14
+            },
+            "scale": {
+                "reverse": true
+            }
+        },
+        "color": {
+            "field": "City",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "New York",
+                    "Los Angeles",
+                    "London",
+                    "Tokyo",
+                    "Sydney",
+                    "Cape Town"
+                ],
+                "range": [
+                    "#FF0000",
+                    "#00FF00",
+                    "#0000FF",
+                    "#FFFF00",
+                    "#FF00FF",
+                    "#00FFFF"
+                ]
+            },
+            "legend": {
+                "title": "City"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "City",
+                "type": "nominal"
+            },
+            {
+                "field": "Month",
+                "type": "ordinal"
+            },
+            {
+                "field": "Temperature (\u00b0F)",
+                "type": "quantitative"
+            }
+        ]
+    },
+    "config": {
+        "axisY": {
+            "minExtent": 30
+        }
+    }
+}

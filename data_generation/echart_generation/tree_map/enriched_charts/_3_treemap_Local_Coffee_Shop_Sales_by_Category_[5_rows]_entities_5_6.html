@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 800, // Changed width from the default
+    height: 600 // Changed height from the default
+});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Economics & Finance - Sector Allocation',
+        left: 'center',
+        top: '2%'
+    },
+    tooltip: {
+        formatter: function (info) {
+            var value = info.value;
+            var treePathInfo = info.treePathInfo;
+            var treePath = [];
+
+            for (var i = 1; i < treePathInfo.length; i++) {
+                treePath.push(treePathInfo[i].name);
+            }
+
+            return [
+                '<div class="tooltip-title">' + echarts.format.encodeHTML(treePath.join('/')) + '</div>',
+                'Market Value: ' + echarts.format.addCommas(value) + ' Bn',
+            ].join('');
+        }
+    },
+    series: [
+        {
+            name: 'Sector',
+            type: 'treemap',
+            visibleMin: 300,
+            label: {
+                show: true,
+                formatter: '{b}'
+            },
+            itemStyle: {
+                borderColor: '#fff'
+            },
+            levels: [
+                {
+                    itemStyle: {
+                        borderWidth: 0,
+                        gapWidth: 5
+                    }
+                }
+            ],
+            data: [
+                {name: 'Energy', value: 9},
+                {name: 'Materials', value: 8},
+                {name: 'Industrials', value: 15},
+                {name: 'Consumer Discretionary', value: 7},
+                {name: 'Consumer Staples', value: 14},
+                {name: 'Health Care', value: 12},
+                {name: 'Financials', value: 6},
+                {name: 'Information Technology', value: 4},
+                {name: 'Telecommunication Services', value: 6},
+                {name: 'Utilities', value: 5},
+                {name: 'Real Estate', value: 3},
+            ],
+            color: [
+                '#ff715e', '#ffda77', '#0a437a',
+                '#73b9bc', '#7289ab', '#91ca8c',
+                '#f49f42', '#d0648a', '#eb64fb',
+                '#9984e3', '#61a0a8'
+            ] // New color scheme applied
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

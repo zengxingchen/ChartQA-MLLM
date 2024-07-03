@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+var option;
+
+option = {
+    title: {
+        text: 'Arts & Entertainment Participation',
+        left: 'center',
+        top: '10%'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        bottom: '5%',
+        left: 'center'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '15%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        data: ['Art', 'Design', 'Music', 'Theater', 'Dance', 'Literature', 'Film', 'Photography']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: '2019',
+            type: 'bar',
+            stack: 'total',
+            barWidth: '30%',
+            data: [120, 220, 150, 260, 320, 110, 210, 170],
+            itemStyle: {
+                color: '#5470C6'
+            }
+        },
+        {
+            name: '2020',
+            type: 'bar',
+            stack: 'total',
+            barWidth: '30%',
+            data: [132, 182, 232, 232, 332, 112, 252, 192],
+            itemStyle: {
+                color: '#91CC75'
+            }
+        },
+        {
+            name: '2021',
+            type: 'bar',
+            stack: 'total',
+            barWidth: '30%',
+            data: [101, 191, 201, 221, 301, 121, 271, 181],
+            itemStyle: {
+                color: '#EE6666'
+            }
+        },
+        {
+            name: '2022',
+            type: 'bar',
+            stack: 'total',
+            barWidth: '30%',
+            data: [134, 234, 154, 254, 334, 114, 284, 204],
+            itemStyle: {
+                color: '#73C0DE'
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,141 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "A pie chart representing the popularity of different sports",
+    "title": {
+        "text": "Popularity of Different Sports",
+        "fontSize": 20,
+        "anchor": "start",
+        "offset": 10
+    },
+    "data": {
+        "values": [
+            {
+                "Sport": "Soccer",
+                "Popularity": 40
+            },
+            {
+                "Sport": "Basketball",
+                "Popularity": 20
+            },
+            {
+                "Sport": "Tennis",
+                "Popularity": 15
+            },
+            {
+                "Sport": "Cricket",
+                "Popularity": 10
+            },
+            {
+                "Sport": "Baseball",
+                "Popularity": 5
+            },
+            {
+                "Sport": "Golf",
+                "Popularity": 4
+            },
+            {
+                "Sport": "Rugby",
+                "Popularity": 3
+            },
+            {
+                "Sport": "Hockey",
+                "Popularity": 2
+            },
+            {
+                "Sport": "Table Tennis",
+                "Popularity": 1
+            }
+        ]
+    },
+    "width": 500,
+    "height": 500,
+    "layer": [
+        {
+            "mark": {
+                "type": "arc",
+                "outerRadius": 200
+            },
+            "encoding": {
+                "theta": {
+                    "field": "Popularity",
+                    "type": "quantitative",
+                    "stack": true
+                },
+                "color": {
+                    "field": "Sport",
+                    "type": "nominal",
+                    "scale": {
+                        "domain": [
+                            "Soccer",
+                            "Basketball",
+                            "Tennis",
+                            "Cricket",
+                            "Baseball",
+                            "Golf",
+                            "Rugby",
+                            "Hockey",
+                            "Table Tennis"
+                        ],
+                        "range": [
+                            "#FF5733",
+                            "#33FF57",
+                            "#3357FF",
+                            "#FF33A1",
+                            "#33FFA1",
+                            "#A133FF",
+                            "#FF8F33",
+                            "#FF3333",
+                            "#33A1FF"
+                        ]
+                    }
+                },
+                "tooltip": [
+                    {
+                        "field": "Sport",
+                        "type": "nominal"
+                    },
+                    {
+                        "field": "Popularity",
+                        "type": "quantitative",
+                        "title": "Popularity",
+                        "format": ".2f"
+                    }
+                ]
+            }
+        },
+        {
+            "transform": [
+                {
+                    "window": [
+                        {
+                            "op": "rank",
+                            "as": "rank"
+                        }
+                    ]
+                },
+                {
+                    "filter": "(datum.rank % 5) == 0"
+                }
+            ],
+            "mark": {
+                "type": "text",
+                "radius": 220,
+                "fill": "#000"
+            },
+            "encoding": {
+                "theta": {
+                    "field": "Popularity",
+                    "type": "quantitative",
+                    "stack": true
+                },
+                "text": {
+                    "field": "Sport",
+                    "type": "nominal"
+                }
+            }
+        }
+    ],
+    "view": {
+        "stroke": null
+    }
+}

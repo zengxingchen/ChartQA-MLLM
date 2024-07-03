@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+// Data
+var data = [
+    {'Event': 'Spring Fest', 'Ages 0-10': 120, 'Ages 11-20': 200, 'Ages 21-30': 250, 'Ages 31-40': 200, 'Ages 41-50': 150, 'Ages 51-60': 100, 'Ages 61+': 80},
+    {'Event': 'Summer Parade', 'Ages 0-10': 95, 'Ages 11-20': 150, 'Ages 21-30': 300, 'Ages 31-40': 220, 'Ages 41-50': 180, 'Ages 51-60': 130, 'Ages 61+': 90},
+    // ... (include all other events data as provided)
+    {'Event': 'Community Theater', 'Ages 0-10': 30, 'Ages 11-20': 50, 'Ages 21-30': 100, 'Ages 31-40': 150, 'Ages 41-50': 180, 'Ages 51-60': 210, 'Ages 61+': 240}
+];
+
+// Events and age groups
+var events = data.map(function (item) { return item.Event; });
+var ageGroups = Object.keys(data[0]).filter(function(key) { return key !== 'Event'; });
+
+// Tranform data in the format that echarts accepts for stacked bar chart
+var seriesData = ageGroups.map(function(group) {
+    var series = { name: group, type: 'bar', stack: 'total', emphasis: { focus: 'series' }, data: [] };
+    data.forEach(function(item) {
+        series.data.push(item[group]);
+    });
+    return series;
+});
+
+option = {
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            // Use shadow as tooltip indicator
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ageGroups
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value'
+    },
+    yAxis: {
+        type: 'category',
+        data: events
+    },
+    series: seriesData
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

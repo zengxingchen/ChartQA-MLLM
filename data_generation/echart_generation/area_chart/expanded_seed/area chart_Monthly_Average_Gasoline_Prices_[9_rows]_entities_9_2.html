@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var chartData = [
+  {'Month': 'January 2023', 'Average Price per Gallon (USD)': 3.28},
+  {'Month': 'February 2023', 'Average Price per Gallon (USD)': 3.34},
+  {'Month': 'March 2023', 'Average Price per Gallon (USD)': 3.22},
+  {'Month': 'April 2023', 'Average Price per Gallon (USD)': 3.55},
+  {'Month': 'May 2023', 'Average Price per Gallon (USD)': 3.6},
+  {'Month': 'June 2023', 'Average Price per Gallon (USD)': 3.45},
+  {'Month': 'July 2023', 'Average Price per Gallon (USD)': 3.4},
+  {'Month': 'August 2023', 'Average Price per Gallon (USD)': 3.3},
+  {'Month': 'September 2023', 'Average Price per Gallon (USD)': 3.25}
+];
+
+option = {
+    title: {
+        text: 'Average Gas Price Per Gallon Over Months in 2023'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            label: {
+                backgroundColor: '#6a7985'
+            }
+        }
+    },
+    legend: {
+        data: ['Average Price']
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: [
+        {
+            type: 'category',
+            boundaryGap: false,
+            data: chartData.map(function (item) {
+                return item.Month;
+            }),
+            axisTick: {
+                alignWithLabel: true
+            },
+            axisLabel: {
+                rotate: 45,
+                interval: 0
+            }
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value',
+            axisLabel: {
+                formatter: '${value}'
+            }
+        }
+    ],
+    series: [
+        {
+            name: 'Average Price',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {
+                normal: {
+                    color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                        offset: 0,
+                        color: 'rgba(58,77,233,0.8)'
+                    }, {
+                        offset: 1,
+                        color: 'rgba(58,77,233,0.1)'
+                    }])
+                }
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: chartData.map(function (item) {
+                return item['Average Price per Gallon (USD)'];
+            }),
+            smooth: true,
+            symbol: 'circle',
+            symbolSize: 10,
+            showSymbol: false
+        }
+    ],
+    dataZoom: [
+        {
+            type: 'slider',
+            start: 0,
+            end: 100
+        },
+        {
+            type: 'inside',
+            start: 0,
+            end: 100
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

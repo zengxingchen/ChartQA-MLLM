@@ -1,0 +1,180 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Horizontal stacked bar chart displaying the monthly sales revenue of different food products.",
+    "data": {
+        "values": [
+            {
+                "Month": "January",
+                "Fruits": 200,
+                "Vegetables": 150,
+                "Grains": 180,
+                "Dairy": 100,
+                "Meat": 120
+            },
+            {
+                "Month": "February",
+                "Fruits": 210,
+                "Vegetables": 160,
+                "Grains": 190,
+                "Dairy": 110,
+                "Meat": 130
+            },
+            {
+                "Month": "March",
+                "Fruits": 220,
+                "Vegetables": 170,
+                "Grains": 200,
+                "Dairy": 120,
+                "Meat": 140
+            },
+            {
+                "Month": "April",
+                "Fruits": 230,
+                "Vegetables": 180,
+                "Grains": 210,
+                "Dairy": 130,
+                "Meat": 150
+            },
+            {
+                "Month": "May",
+                "Fruits": 240,
+                "Vegetables": 190,
+                "Grains": 220,
+                "Dairy": 140,
+                "Meat": 160
+            },
+            {
+                "Month": "June",
+                "Fruits": 250,
+                "Vegetables": 200,
+                "Grains": 230,
+                "Dairy": 150,
+                "Meat": 170
+            },
+            {
+                "Month": "July",
+                "Fruits": 260,
+                "Vegetables": 210,
+                "Grains": 240,
+                "Dairy": 160,
+                "Meat": 180
+            },
+            {
+                "Month": "August",
+                "Fruits": 270,
+                "Vegetables": 220,
+                "Grains": 250,
+                "Dairy": 170,
+                "Meat": 190
+            },
+            {
+                "Month": "September",
+                "Fruits": 280,
+                "Vegetables": 230,
+                "Grains": 260,
+                "Dairy": 180,
+                "Meat": 200
+            },
+            {
+                "Month": "October",
+                "Fruits": 290,
+                "Vegetables": 240,
+                "Grains": 270,
+                "Dairy": 190,
+                "Meat": 210
+            },
+            {
+                "Month": "November",
+                "Fruits": 300,
+                "Vegetables": 250,
+                "Grains": 280,
+                "Dairy": 200,
+                "Meat": 220
+            },
+            {
+                "Month": "December",
+                "Fruits": 310,
+                "Vegetables": 260,
+                "Grains": 290,
+                "Dairy": 210,
+                "Meat": 230
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Fruits",
+                "Vegetables",
+                "Grains",
+                "Dairy",
+                "Meat"
+            ],
+            "as": [
+                "Product",
+                "Revenue"
+            ]
+        }
+    ],
+    "width": 600,
+    "height": 500,
+    "mark": {
+        "type": "bar",
+        "height": {
+            "band": 0.6
+        }
+    },
+    "encoding": {
+        "y": {
+            "field": "Month",
+            "type": "ordinal",
+            "axis": {
+                "title": "Month"
+            }
+        },
+        "x": {
+            "field": "Revenue",
+            "type": "quantitative",
+            "axis": {
+                "title": "Revenue (in thousands)"
+            },
+            "stack": "zero"
+        },
+        "color": {
+            "field": "Product",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Fruits",
+                    "Vegetables",
+                    "Grains",
+                    "Dairy",
+                    "Meat"
+                ],
+                "range": [
+                    "#FF6347",
+                    "#32CD32",
+                    "#FFD700",
+                    "#1E90FF",
+                    "#FF4500"
+                ]
+            },
+            "legend": {
+                "title": "Product",
+                "orient": "right",
+                "offset": 10
+            }
+        }
+    },
+    "title": {
+        "text": "Monthly Sales Revenue of Food Products",
+        "anchor": "start",
+        "offset": 20
+    },
+    "config": {
+        "background": "#f0f0f0",
+        "view": {
+            "stroke": "transparent"
+        }
+    }
+}

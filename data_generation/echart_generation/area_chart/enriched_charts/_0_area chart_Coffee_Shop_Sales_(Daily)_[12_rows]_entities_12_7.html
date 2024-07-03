@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {renderer: 'canvas', width: 800, height: 400});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Global Average Temperatures',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: [
+                // Data for each year from 1880 to 2020
+                '1880', '1881', '1882', // ... remaining years
+                '2019', '2020'
+               ]
+    },
+    yAxis: {
+        type: 'value',
+        axisLabel: {
+            formatter: '{value} °C'
+        }
+    },
+    series: [{
+        name: 'Temperature',
+        type: 'line',
+        data: [
+                // Data for average temperature corresponding to each year
+                14, 14.1, 14.1, // ... remaining temperatures
+                14.7, 14.9
+              ],
+        areaStyle: {
+            opacity: 0.5,
+            color: '#34bfa3'
+        },
+        smooth: true,
+        lineStyle: {
+            width: 3,
+            color: '#3f51b5'
+        },
+        itemStyle: {
+            color: '#ffc107'
+        },
+        emphasis: {
+            focus: 'series'
+        },
+        markLine: {
+            data: [
+                {type: 'average', name: 'Avg'}
+            ]
+        }
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

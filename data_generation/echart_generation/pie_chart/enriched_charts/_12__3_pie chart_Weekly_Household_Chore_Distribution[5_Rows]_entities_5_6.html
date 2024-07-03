@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 800, // width of the chart
+    height: 600  // height of the chart
+});
+var app = {};
+
+var option;
+option = {
+    title: {
+        text: 'Innovations Shaping Future Technology',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'item'
+    },
+    legend: {
+        orient: 'vertical',
+        left: 'left',
+        top: '15%', // Ensuring enough space between legend and title
+    },
+    series: [
+        {
+            name: 'Technology Distribution',
+            type: 'pie',
+            radius: '50%',
+            data: [
+                { value: 15, name: 'Wearable Tech' },
+                { value: 25, name: 'AI Home Assistants' },
+                { value: 20, name: 'Telemedicine' },
+                { value: 30, name: 'Smart Cities' },
+                { value: 10, name: 'Autonomous Vehicles' },
+                { value: 18, name: 'Quantum Computing' },
+                { value: 22, name: 'Blockchain' },
+                { value: 16, name: 'Augmented Reality' },
+                { value: 14, name: 'Virtual Reality' },
+                { value: 20, name: '5G Technology' },
+                { value: 19, name: 'Biometrics' },
+                { value: 31, name: 'Internet of Things' },
+            ],
+            emphasis: {
+                itemStyle: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            }
+        }
+    ],
+    color: [
+        '#3c8dbc', // Wearable Tech
+        '#00a65a', // AI Home Assistants
+        '#f39c12', // Telemedicine
+        '#00c0ef', // Smart Cities
+        '#d2d6de', // Autonomous Vehicles
+        '#605ca8', // Quantum Computing
+        '#ff851b', // Blockchain
+        '#D81B60', // Augmented Reality
+        '#001F3F', // Virtual Reality
+        '#39CCCC', // 5G Technology
+        '#F012BE', // Biometrics
+        '#3D9970'  // Internet of Things
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

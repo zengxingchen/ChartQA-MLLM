@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var option;
+
+option = {
+    title: {
+        text: 'Macronutrient Content in Various Foods',
+        left: 'center',
+        top: 20
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: { type: 'shadow' }
+    },
+    legend: {
+        top: 50,
+        left: 'center'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        data: ['Fruits', 'Vegetables', 'Dairy', 'Meat', 'Grains', 'Nuts', 'Seafood', 'Eggs', 'Legumes', 'Sweets'],
+        axisLabel: {
+            interval: 0
+        }
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Protein',
+            type: 'bar',
+            stack: 'Total',
+            label: {
+                show: true,
+                position: 'inside'
+            },
+            data: [2, 3, 8, 26, 13, 20, 22, 13, 9, 3],
+            itemStyle: {
+                color: '#FF6347'
+            },
+            barWidth: 40
+        },
+        {
+            name: 'Fat',
+            type: 'bar',
+            stack: 'Total',
+            label: {
+                show: true,
+                position: 'inside'
+            },
+            data: [0.2, 0.3, 5, 20, 1, 50, 5, 11, 1, 10],
+            itemStyle: {
+                color: '#4682B4'
+            },
+            barWidth: 40
+        },
+        {
+            name: 'Carbohydrates',
+            type: 'bar',
+            stack: 'Total',
+            label: {
+                show: true,
+                position: 'inside'
+            },
+            data: [15, 7, 12, 0, 75, 20, 0, 1, 60, 80],
+            itemStyle: {
+                color: '#3CB371'
+            },
+            barWidth: 40
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

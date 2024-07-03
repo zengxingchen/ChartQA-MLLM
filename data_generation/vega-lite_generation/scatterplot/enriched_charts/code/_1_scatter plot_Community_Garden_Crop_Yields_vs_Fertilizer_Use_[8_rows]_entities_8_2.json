@@ -1,0 +1,183 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "A scatter plot showing the relationship between marketing expenses and revenue for different products.",
+    "title": {
+        "text": "Revenue vs Marketing Expenses by Month",
+        "subtitle": [
+            "Analyzing the return on investment for marketing efforts across product lines."
+        ],
+        "subtitleFontStyle": "italic",
+        "subtitleFontSize": 10,
+        "anchor": "start",
+        "color": "black",
+        "fontSize": 12,
+        "offset": 20
+    },
+    "data": {
+        "values": [
+            {
+                "Month": "January",
+                "Marketing Expenses ($)": 5000,
+                "Product A Revenue ($)": 55000,
+                "Product B Revenue ($)": 65000,
+                "Product C Revenue ($)": 75000
+            },
+            {
+                "Month": "February",
+                "Marketing Expenses ($)": 7000,
+                "Product A Revenue ($)": 60000,
+                "Product B Revenue ($)": 70000,
+                "Product C Revenue ($)": 80000
+            },
+            {
+                "Month": "March",
+                "Marketing Expenses ($)": 8000,
+                "Product A Revenue ($)": 65000,
+                "Product B Revenue ($)": 75000,
+                "Product C Revenue ($)": 85000
+            },
+            {
+                "Month": "April",
+                "Marketing Expenses ($)": 9000,
+                "Product A Revenue ($)": 70000,
+                "Product B Revenue ($)": 80000,
+                "Product C Revenue ($)": 90000
+            },
+            {
+                "Month": "May",
+                "Marketing Expenses ($)": 10000,
+                "Product A Revenue ($)": 75000,
+                "Product B Revenue ($)": 85000,
+                "Product C Revenue ($)": 95000
+            },
+            {
+                "Month": "June",
+                "Marketing Expenses ($)": 11000,
+                "Product A Revenue ($)": 80000,
+                "Product B Revenue ($)": 90000,
+                "Product C Revenue ($)": 100000
+            },
+            {
+                "Month": "July",
+                "Marketing Expenses ($)": 12000,
+                "Product A Revenue ($)": 85000,
+                "Product B Revenue ($)": 95000,
+                "Product C Revenue ($)": 105000
+            },
+            {
+                "Month": "August",
+                "Marketing Expenses ($)": 13000,
+                "Product A Revenue ($)": 90000,
+                "Product B Revenue ($)": 100000,
+                "Product C Revenue ($)": 110000
+            },
+            {
+                "Month": "September",
+                "Marketing Expenses ($)": 14000,
+                "Product A Revenue ($)": 95000,
+                "Product B Revenue ($)": 105000,
+                "Product C Revenue ($)": 115000
+            },
+            {
+                "Month": "October",
+                "Marketing Expenses ($)": 15000,
+                "Product A Revenue ($)": 100000,
+                "Product B Revenue ($)": 110000,
+                "Product C Revenue ($)": 120000
+            },
+            {
+                "Month": "November",
+                "Marketing Expenses ($)": 16000,
+                "Product A Revenue ($)": 105000,
+                "Product B Revenue ($)": 115000,
+                "Product C Revenue ($)": 125000
+            },
+            {
+                "Month": "December",
+                "Marketing Expenses ($)": 17000,
+                "Product A Revenue ($)": 110000,
+                "Product B Revenue ($)": 120000,
+                "Product C Revenue ($)": 130000
+            }
+        ]
+    },
+    "repeat": {
+        "layer": [
+            "Product A Revenue ($)",
+            "Product B Revenue ($)",
+            "Product C Revenue ($)"
+        ]
+    },
+    "spec": {
+        "mark": "point",
+        "encoding": {
+            "x": {
+                "field": "Marketing Expenses ($)",
+                "type": "quantitative",
+                "title": "Marketing Expenses ($)"
+            },
+            "y": {
+                "field": {
+                    "repeat": "layer"
+                },
+                "type": "quantitative",
+                "title": "Revenue ($)"
+            },
+            "color": {
+                "datum": {
+                    "repeat": "layer"
+                },
+                "type": "nominal",
+                "legend": {
+                    "title": "Product Type",
+                    "orient": "top-left",
+                    "offset": -100
+                },
+                "scale": {
+                    "domain": [
+                        "Product A Revenue ($)",
+                        "Product B Revenue ($)",
+                        "Product C Revenue ($)"
+                    ],
+                    "range": [
+                        "#1f77b4",
+                        "#ff7f0e",
+                        "#2ca02c"
+                    ]
+                }
+            },
+            "size": {
+                "value": 100
+            },
+            "opacity": {
+                "value": 0.8
+            },
+            "tooltip": [
+                {
+                    "field": "Month",
+                    "type": "ordinal",
+                    "title": "Month"
+                },
+                {
+                    "field": "Marketing Expenses ($)",
+                    "type": "quantitative",
+                    "title": "Marketing Expenses ($)"
+                },
+                {
+                    "field": {
+                        "repeat": "layer"
+                    },
+                    "type": "quantitative",
+                    "title": "Revenue ($)"
+                }
+            ]
+        }
+    },
+    "width": 400,
+    "height": 300,
+    "resolve": {
+        "scale": {
+            "y": "independent"
+        }
+    }
+}

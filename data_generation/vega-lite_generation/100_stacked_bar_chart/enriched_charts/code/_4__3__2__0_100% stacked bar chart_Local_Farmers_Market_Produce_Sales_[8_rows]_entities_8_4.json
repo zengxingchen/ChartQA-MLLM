@@ -1,0 +1,164 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "A 100% stacked horizontal bar chart showing the distribution of time spent on various activities related to personal development across different days of the week.",
+    "data": {
+        "values": [
+            {
+                "Day": "Monday",
+                "Reading": 2,
+                "Meditation": 1,
+                "Exercise": 1.5,
+                "Cooking": 1,
+                "Art": 2
+            },
+            {
+                "Day": "Tuesday",
+                "Reading": 1.5,
+                "Meditation": 1.2,
+                "Exercise": 1.8,
+                "Cooking": 0.8,
+                "Art": 1.5
+            },
+            {
+                "Day": "Wednesday",
+                "Reading": 2,
+                "Meditation": 1,
+                "Exercise": 1.7,
+                "Cooking": 1.1,
+                "Art": 2.3
+            },
+            {
+                "Day": "Thursday",
+                "Reading": 1.8,
+                "Meditation": 1.5,
+                "Exercise": 1.4,
+                "Cooking": 0.9,
+                "Art": 2
+            },
+            {
+                "Day": "Friday",
+                "Reading": 2.2,
+                "Meditation": 1.1,
+                "Exercise": 1.6,
+                "Cooking": 1,
+                "Art": 2.1
+            },
+            {
+                "Day": "Saturday",
+                "Reading": 2,
+                "Meditation": 1.3,
+                "Exercise": 1.5,
+                "Cooking": 1.2,
+                "Art": 2.4
+            },
+            {
+                "Day": "Sunday",
+                "Reading": 2.5,
+                "Meditation": 1.2,
+                "Exercise": 1.8,
+                "Cooking": 1,
+                "Art": 2.5
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Reading",
+                "Meditation",
+                "Exercise",
+                "Cooking",
+                "Art"
+            ],
+            "as": [
+                "Activity",
+                "Hours"
+            ]
+        },
+        {
+            "calculate": "datum.Hours / (datum.Reading + datum.Meditation + datum.Exercise + datum.Cooking + datum.Art) * 100",
+            "as": "Percentage"
+        }
+    ],
+    "title": {
+        "text": "Daily Time Distribution in Personal Development Activities",
+        "color": "black",
+        "anchor": "start",
+        "fontSize": 16,
+        "dy": -20
+    },
+    "width": 600,
+    "height": 400,
+    "mark": {
+        "type": "bar",
+        "tooltip": true
+    },
+    "encoding": {
+        "y": {
+            "field": "Day",
+            "type": "nominal",
+            "axis": {
+                "title": "Day of the Week",
+                "titleAngle": 0,
+                "labelAngle": 0
+            }
+        },
+        "x": {
+            "field": "Percentage",
+            "type": "quantitative",
+            "axis": {
+                "title": "Time Spent (%)"
+            },
+            "stack": "normalize"
+        },
+        "color": {
+            "field": "Activity",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Reading",
+                    "Meditation",
+                    "Exercise",
+                    "Cooking",
+                    "Art"
+                ],
+                "range": [
+                    "#1b9e77",
+                    "#d95f02",
+                    "#7570b3",
+                    "#e7298a",
+                    "#66a61e"
+                ]
+            },
+            "legend": {
+                "title": "Activity Type",
+                "orient": "top",
+                "labelAngle": 0
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Day",
+                "type": "nominal"
+            },
+            {
+                "field": "Activity",
+                "type": "nominal"
+            },
+            {
+                "field": "Percentage",
+                "type": "quantitative",
+                "title": "Percentage"
+            }
+        ]
+    },
+    "config": {
+        "view": {
+            "stroke": "transparent"
+        },
+        "axis": {
+            "domainWidth": 1,
+            "labelFontSize": 12
+        }
+    }
+}

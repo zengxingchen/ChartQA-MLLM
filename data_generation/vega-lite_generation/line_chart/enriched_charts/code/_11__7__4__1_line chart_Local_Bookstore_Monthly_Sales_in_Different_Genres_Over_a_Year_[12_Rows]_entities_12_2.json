@@ -1,0 +1,178 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Monthly Physical Activity Levels by Age Group",
+    "data": {
+        "values": [
+            {
+                "Month": "January",
+                "Under 18": 50,
+                "18-30": 70,
+                "31-50": 65,
+                "51-65": 55,
+                "Over 65": 45
+            },
+            {
+                "Month": "February",
+                "Under 18": 55,
+                "18-30": 75,
+                "31-50": 70,
+                "51-65": 60,
+                "Over 65": 50
+            },
+            {
+                "Month": "March",
+                "Under 18": 60,
+                "18-30": 80,
+                "31-50": 75,
+                "51-65": 65,
+                "Over 65": 55
+            },
+            {
+                "Month": "April",
+                "Under 18": 65,
+                "18-30": 85,
+                "31-50": 80,
+                "51-65": 70,
+                "Over 65": 60
+            },
+            {
+                "Month": "May",
+                "Under 18": 70,
+                "18-30": 90,
+                "31-50": 85,
+                "51-65": 75,
+                "Over 65": 65
+            },
+            {
+                "Month": "June",
+                "Under 18": 75,
+                "18-30": 95,
+                "31-50": 90,
+                "51-65": 80,
+                "Over 65": 70
+            },
+            {
+                "Month": "July",
+                "Under 18": 80,
+                "18-30": 100,
+                "31-50": 95,
+                "51-65": 85,
+                "Over 65": 75
+            },
+            {
+                "Month": "August",
+                "Under 18": 85,
+                "18-30": 105,
+                "31-50": 100,
+                "51-65": 90,
+                "Over 65": 80
+            },
+            {
+                "Month": "September",
+                "Under 18": 90,
+                "18-30": 110,
+                "31-50": 105,
+                "51-65": 95,
+                "Over 65": 85
+            },
+            {
+                "Month": "October",
+                "Under 18": 95,
+                "18-30": 115,
+                "31-50": 110,
+                "51-65": 100,
+                "Over 65": 90
+            },
+            {
+                "Month": "November",
+                "Under 18": 100,
+                "18-30": 120,
+                "31-50": 115,
+                "51-65": 105,
+                "Over 65": 95
+            },
+            {
+                "Month": "December",
+                "Under 18": 105,
+                "18-30": 125,
+                "31-50": 120,
+                "51-65": 110,
+                "Over 65": 100
+            }
+        ]
+    },
+    "width": 800,
+    "height": 600,
+    "transform": [
+        {
+            "fold": [
+                "Under 18",
+                "18-30",
+                "31-50",
+                "51-65",
+                "Over 65"
+            ],
+            "as": [
+                "Age Group",
+                "Activity Level"
+            ]
+        }
+    ],
+    "mark": "line",
+    "encoding": {
+        "x": {
+            "field": "Month",
+            "type": "ordinal",
+            "title": "Month",
+            "axis": {
+                "labelAngle": 0
+            }
+        },
+        "y": {
+            "field": "Activity Level",
+            "type": "quantitative",
+            "title": "Activity Level (hours/week)",
+            "axis": {
+                "labelExpr": "datum.label + ' h'",
+                "scale": {
+                    "reverse": true
+                }
+            }
+        },
+        "color": {
+            "field": "Age Group",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Under 18",
+                    "18-30",
+                    "31-50",
+                    "51-65",
+                    "Over 65"
+                ],
+                "range": [
+                    "#FF4500",
+                    "#1E90FF",
+                    "#32CD32",
+                    "#FFD700",
+                    "#8A2BE2"
+                ]
+            },
+            "title": "Age Group"
+        },
+        "tooltip": [
+            {
+                "field": "Month",
+                "type": "nominal"
+            },
+            {
+                "field": "Age Group",
+                "type": "nominal"
+            },
+            {
+                "field": "Activity Level",
+                "type": "quantitative"
+            }
+        ]
+    }
+}

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+option = null;
+option = {
+    title: {
+        text: 'Exoplanet Distribution by Type',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: '{a} <br/>{b} : {c} ({d}%)'
+    },
+    legend: {
+        orient: 'vertical',
+        left: 'left',
+        top: '15%',
+        data: [
+            'Gas giants',
+            'Ice giants',
+            'Super-Earths',
+            'Terrestrial',
+            'Others'
+        ]
+    },
+    series: [
+        {
+            name: 'Exoplanet Type',
+            type: 'pie',
+            radius: '55%',
+            center: ['50%', '60%'],
+            data:[
+                {value: 762, name: 'Gas giants'},
+                {value: 96, name: 'Ice giants'},
+                {value: 879, name: 'Super-Earths'},
+                {value: 635, name: 'Terrestrial'},
+                {value: 58, name: 'Others'}
+            ],
+            emphasis: {
+                itemStyle: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            },
+            itemStyle: {
+                normal: {
+                    color: function(params) {
+                        var colorList = [
+                            '#1f77b4', // Gas giants: blue
+                            '#2ca02c', // Ice giants: green
+                            '#ff7f0e', // Super-Earths: orange
+                            '#d62728', // Terrestrial: red
+                            '#9467bd'  // Others: purple
+                        ];
+                        return colorList[params.dataIndex];
+                    }
+                }
+            }
+        }
+    ]
+};
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

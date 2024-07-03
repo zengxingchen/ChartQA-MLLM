@@ -1,0 +1,197 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Monthly Investment Portfolio Growth by Asset Class",
+    "width": 600,
+    "height": 400,
+    "title": {
+        "text": "Monthly Investment Portfolio Growth by Asset Class",
+        "anchor": "start",
+        "fontSize": 16,
+        "color": "#333",
+        "offset": 24,
+        "orient": "top"
+    },
+    "data": {
+        "values": [
+            {
+                "Month": "January",
+                "Stocks": 5000,
+                "Bonds": 2000,
+                "RealEstate": 3000,
+                "Commodities": 1500,
+                "Crypto": 800
+            },
+            {
+                "Month": "February",
+                "Stocks": 5200,
+                "Bonds": 2100,
+                "RealEstate": 3100,
+                "Commodities": 1550,
+                "Crypto": 850
+            },
+            {
+                "Month": "March",
+                "Stocks": 5300,
+                "Bonds": 2200,
+                "RealEstate": 3200,
+                "Commodities": 1600,
+                "Crypto": 900
+            },
+            {
+                "Month": "April",
+                "Stocks": 5400,
+                "Bonds": 2300,
+                "RealEstate": 3300,
+                "Commodities": 1650,
+                "Crypto": 950
+            },
+            {
+                "Month": "May",
+                "Stocks": 5500,
+                "Bonds": 2350,
+                "RealEstate": 3400,
+                "Commodities": 1700,
+                "Crypto": 1000
+            },
+            {
+                "Month": "June",
+                "Stocks": 5600,
+                "Bonds": 2400,
+                "RealEstate": 3500,
+                "Commodities": 1750,
+                "Crypto": 1100
+            },
+            {
+                "Month": "July",
+                "Stocks": 5700,
+                "Bonds": 2450,
+                "RealEstate": 3600,
+                "Commodities": 1800,
+                "Crypto": 1200
+            },
+            {
+                "Month": "August",
+                "Stocks": 5800,
+                "Bonds": 2500,
+                "RealEstate": 3700,
+                "Commodities": 1850,
+                "Crypto": 1300
+            },
+            {
+                "Month": "September",
+                "Stocks": 5900,
+                "Bonds": 2550,
+                "RealEstate": 3800,
+                "Commodities": 1900,
+                "Crypto": 1400
+            },
+            {
+                "Month": "October",
+                "Stocks": 6000,
+                "Bonds": 2600,
+                "RealEstate": 3900,
+                "Commodities": 1950,
+                "Crypto": 1500
+            },
+            {
+                "Month": "November",
+                "Stocks": 6100,
+                "Bonds": 2650,
+                "RealEstate": 4000,
+                "Commodities": 2000,
+                "Crypto": 1600
+            },
+            {
+                "Month": "December",
+                "Stocks": 6200,
+                "Bonds": 2700,
+                "RealEstate": 4100,
+                "Commodities": 2050,
+                "Crypto": 1700
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Stocks",
+                "Bonds",
+                "RealEstate",
+                "Commodities",
+                "Crypto"
+            ],
+            "as": [
+                "Asset Class",
+                "Growth"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "area",
+        "opacity": 0.7
+    },
+    "encoding": {
+        "x": {
+            "field": "Month",
+            "type": "ordinal",
+            "axis": {
+                "title": "Month",
+                "labelAngle": 0
+            }
+        },
+        "y": {
+            "field": "Growth",
+            "type": "quantitative",
+            "stack": "zero",
+            "axis": {
+                "title": "Portfolio Growth ($)"
+            }
+        },
+        "color": {
+            "field": "Asset Class",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Stocks",
+                    "Bonds",
+                    "RealEstate",
+                    "Commodities",
+                    "Crypto"
+                ],
+                "range": [
+                    "#4e79a7",
+                    "#f28e2b",
+                    "#e15759",
+                    "#76b7b2",
+                    "#59a14f"
+                ]
+            },
+            "legend": {
+                "title": "Asset Class",
+                "orient": "top-right"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Month",
+                "type": "ordinal"
+            },
+            {
+                "field": "Asset Class",
+                "type": "nominal"
+            },
+            {
+                "field": "Growth",
+                "type": "quantitative"
+            }
+        ]
+    },
+    "config": {
+        "view": {
+            "stroke": "transparent"
+        },
+        "axis": {
+            "domainWidth": 1
+        }
+    }
+}

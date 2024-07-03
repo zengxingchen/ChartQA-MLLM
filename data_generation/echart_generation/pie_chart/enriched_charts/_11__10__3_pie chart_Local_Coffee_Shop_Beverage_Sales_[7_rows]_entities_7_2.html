@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 400});
+option = {
+    title: {
+        text: 'Economic Sector Distribution - 2045',
+        left: 'center',
+        top: 20,
+        textStyle: {
+            color: '#333',
+            fontSize: 24
+        }
+    },
+    tooltip: {
+        trigger: 'item'
+    },
+    legend: {
+        orient: 'vertical',
+        left: 'left',
+        top: 50
+    },
+    series: [
+        {
+            name: 'Percentage',
+            type: 'pie',
+            radius: '50%',
+            data: [
+                {value: 5, name: 'Agriculture'},
+                {value: 20, name: 'Manufacturing'},
+                {value: 25, name: 'Services'},
+                {value: 15, name: 'Technology'},
+                {value: 10, name: 'Energy'},
+                {value: 8, name: 'Healthcare'},
+                {value: 7, name: 'Finance'},
+                {value: 6, name: 'Retail'},
+                {value: 4, name: 'Transportation'}
+            ],
+            emphasis: {
+                itemStyle: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            },
+            label: {
+                show: true,
+                formatter: '{b}: {d}%'
+            }
+        }
+    ],
+    color: [
+        '#FF7F50', // Agriculture
+        '#778899', // Manufacturing
+        '#FFD700', // Services
+        '#1E90FF', // Technology
+        '#32CD32', // Energy
+        '#BA55D3', // Healthcare
+        '#FF69B4', // Finance
+        '#F08080', // Retail
+        '#87CEFA'  // Transportation
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {renderer: 'canvas', useDirtyRect: false, width: 800, height: 600});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Monthly Art & Design Trends',
+        left: 'center',
+        top: '5%'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Art', 'Design', 'Creativity'],
+        top: '10%'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        data: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+        axisLabel: {
+            interval: 0,
+            rotate: 30,
+            textStyle: {
+                fontSize: 12
+            }
+        }
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Art',
+            type: 'bar',
+            stack: 'Total',
+            barWidth: 30,
+            color: '#FF6347',
+            label: {
+                show: true,
+                position: 'inside'
+            },
+            data: [120, 150, 200, 170, 240, 220, 260, 300, 280, 320, 330, 340]
+        },
+        {
+            name: 'Design',
+            type: 'bar',
+            stack: 'Total',
+            barWidth: 30,
+            color: '#4682B4',
+            label: {
+                show: true,
+                position: 'inside'
+            },
+            data: [110, 140, 190, 160, 230, 210, 240, 280, 260, 300, 310, 320]
+        },
+        {
+            name: 'Creativity',
+            type: 'bar',
+            stack: 'Total',
+            barWidth: 30,
+            color: '#3CB371',
+            label: {
+                show: true,
+                position: 'inside'
+            },
+            data: [130, 180, 230, 210, 270, 250, 290, 320, 300, 340, 350, 360]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

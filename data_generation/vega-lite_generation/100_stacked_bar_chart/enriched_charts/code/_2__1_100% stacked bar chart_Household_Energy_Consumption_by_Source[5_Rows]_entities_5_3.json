@@ -1,0 +1,217 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Proportion of Different Beverages Consumed Over Two Weeks",
+    "title": {
+        "text": "Bi-Weekly Beverage Consumption",
+        "anchor": "start",
+        "offset": 5,
+        "color": "#333"
+    },
+    "data": {
+        "values": [
+            {
+                "Day": "Monday",
+                "Coffee": 35,
+                "Tea": 30,
+                "Water": 20,
+                "Juice": 10,
+                "Soda": 5
+            },
+            {
+                "Day": "Tuesday",
+                "Coffee": 40,
+                "Tea": 20,
+                "Water": 25,
+                "Juice": 10,
+                "Soda": 5
+            },
+            {
+                "Day": "Wednesday",
+                "Coffee": 30,
+                "Tea": 25,
+                "Water": 30,
+                "Juice": 10,
+                "Soda": 5
+            },
+            {
+                "Day": "Thursday",
+                "Coffee": 45,
+                "Tea": 20,
+                "Water": 25,
+                "Juice": 5,
+                "Soda": 5
+            },
+            {
+                "Day": "Friday",
+                "Coffee": 25,
+                "Tea": 30,
+                "Water": 25,
+                "Juice": 10,
+                "Soda": 10
+            },
+            {
+                "Day": "Saturday",
+                "Coffee": 30,
+                "Tea": 25,
+                "Water": 30,
+                "Juice": 10,
+                "Soda": 5
+            },
+            {
+                "Day": "Sunday",
+                "Coffee": 25,
+                "Tea": 35,
+                "Water": 30,
+                "Juice": 5,
+                "Soda": 5
+            },
+            {
+                "Day": "Next Monday",
+                "Coffee": 30,
+                "Tea": 25,
+                "Water": 25,
+                "Juice": 10,
+                "Soda": 10
+            },
+            {
+                "Day": "Next Tuesday",
+                "Coffee": 35,
+                "Tea": 20,
+                "Water": 25,
+                "Juice": 15,
+                "Soda": 5
+            },
+            {
+                "Day": "Next Wednesday",
+                "Coffee": 40,
+                "Tea": 30,
+                "Water": 20,
+                "Juice": 5,
+                "Soda": 5
+            },
+            {
+                "Day": "Next Thursday",
+                "Coffee": 45,
+                "Tea": 25,
+                "Water": 15,
+                "Juice": 10,
+                "Soda": 5
+            },
+            {
+                "Day": "Next Friday",
+                "Coffee": 30,
+                "Tea": 35,
+                "Water": 25,
+                "Juice": 5,
+                "Soda": 5
+            },
+            {
+                "Day": "Next Saturday",
+                "Coffee": 20,
+                "Tea": 30,
+                "Water": 35,
+                "Juice": 10,
+                "Soda": 5
+            },
+            {
+                "Day": "Next Sunday",
+                "Coffee": 25,
+                "Tea": 35,
+                "Water": 25,
+                "Juice": 10,
+                "Soda": 5
+            }
+        ]
+    },
+    "width": 400,
+    "height": 300,
+    "transform": [
+        {
+            "fold": [
+                "Coffee",
+                "Tea",
+                "Water",
+                "Juice",
+                "Soda"
+            ],
+            "as": [
+                "Beverage Type",
+                "Value"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "bar",
+        "height": {
+            "band": 0.5
+        }
+    },
+    "encoding": {
+        "x": {
+            "field": "Day",
+            "type": "nominal",
+            "axis": {
+                "title": "Day of the Week"
+            }
+        },
+        "y": {
+            "field": "Value",
+            "type": "quantitative",
+            "axis": {
+                "title": "Percentage"
+            },
+            "stack": "normalize"
+        },
+        "color": {
+            "field": "Beverage Type",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Coffee",
+                    "Tea",
+                    "Water",
+                    "Juice",
+                    "Soda"
+                ],
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e",
+                    "#2ca02c",
+                    "#d62728",
+                    "#9467bd"
+                ]
+            },
+            "legend": {
+                "title": "Beverage Type",
+                "orient": "bottom",
+                "offset": 10
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Day",
+                "type": "nominal",
+                "title": "Day"
+            },
+            {
+                "field": "Beverage Type",
+                "type": "nominal",
+                "title": "Beverage Type"
+            },
+            {
+                "field": "Value",
+                "type": "quantitative",
+                "title": "Percentage",
+                "format": ".2%"
+            }
+        ]
+    },
+    "config": {
+        "view": {
+            "stroke": "transparent"
+        },
+        "axis": {
+            "domainWidth": 1
+        }
+    }
+}

@@ -1,0 +1,141 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Line chart of average annual CO2 emissions by country over recent years",
+    "data": {
+        "values": [
+            {
+                "Year": 2019,
+                "Country A": 50,
+                "Country B": 60,
+                "Country C": 70
+            },
+            {
+                "Year": 2020,
+                "Country A": 55,
+                "Country B": 65,
+                "Country C": 75
+            },
+            {
+                "Year": 2021,
+                "Country A": 52,
+                "Country B": 67,
+                "Country C": 80
+            },
+            {
+                "Year": 2022,
+                "Country A": 58,
+                "Country B": 70,
+                "Country C": 85
+            },
+            {
+                "Year": 2023,
+                "Country A": 54,
+                "Country B": 72,
+                "Country C": 90
+            },
+            {
+                "Year": 2024,
+                "Country A": 60,
+                "Country B": 75,
+                "Country C": 95
+            },
+            {
+                "Year": 2025,
+                "Country A": 62,
+                "Country B": 78,
+                "Country C": 100
+            },
+            {
+                "Year": 2026,
+                "Country A": 65,
+                "Country B": 80,
+                "Country C": 105
+            },
+            {
+                "Year": 2027,
+                "Country A": 67,
+                "Country B": 82,
+                "Country C": 110
+            },
+            {
+                "Year": 2028,
+                "Country A": 69,
+                "Country B": 85,
+                "Country C": 115
+            },
+            {
+                "Year": 2029,
+                "Country A": 70,
+                "Country B": 88,
+                "Country C": 120
+            },
+            {
+                "Year": 2030,
+                "Country A": 72,
+                "Country B": 90,
+                "Country C": 125
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Country A",
+                "Country B",
+                "Country C"
+            ],
+            "as": [
+                "Country",
+                "CO2 Emissions"
+            ]
+        }
+    ],
+    "width": 800,
+    "height": 500,
+    "mark": {
+        "type": "line",
+        "point": {
+            "filled": true,
+            "size": 100
+        }
+    },
+    "encoding": {
+        "x": {
+            "field": "Year",
+            "type": "ordinal",
+            "title": "Year"
+        },
+        "y": {
+            "field": "CO2 Emissions",
+            "type": "quantitative",
+            "title": "Average Annual CO2 Emissions (Mt)",
+            "axis": {
+                "format": ".1f",
+                "labelAngle": 0,
+                "reverse": true
+            }
+        },
+        "color": {
+            "field": "Country",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Country A",
+                    "Country B",
+                    "Country C"
+                ],
+                "range": [
+                    "#FF6347",
+                    "#4682B4",
+                    "#32CD32"
+                ]
+            },
+            "title": "Country"
+        }
+    },
+    "config": {
+        "axisY": {
+            "minExtent": 30
+        }
+    }
+}

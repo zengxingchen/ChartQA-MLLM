@@ -1,0 +1,169 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "A 100% horizontal stacked bar chart showing the distribution of energy sources for electricity production over a week",
+    "width": 400,
+    "height": 200,
+    "data": {
+        "values": [
+            {
+                "Day": "Monday",
+                "Solar": 20,
+                "Wind": 30,
+                "Hydro": 25,
+                "Nuclear": 15,
+                "Coal": 10
+            },
+            {
+                "Day": "Tuesday",
+                "Solar": 24,
+                "Wind": 25,
+                "Hydro": 27,
+                "Nuclear": 14,
+                "Coal": 10
+            },
+            {
+                "Day": "Wednesday",
+                "Solar": 19,
+                "Wind": 27,
+                "Hydro": 30,
+                "Nuclear": 14,
+                "Coal": 10
+            },
+            {
+                "Day": "Thursday",
+                "Solar": 23,
+                "Wind": 22,
+                "Hydro": 28,
+                "Nuclear": 17,
+                "Coal": 10
+            },
+            {
+                "Day": "Friday",
+                "Solar": 18,
+                "Wind": 35,
+                "Hydro": 22,
+                "Nuclear": 15,
+                "Coal": 10
+            },
+            {
+                "Day": "Saturday",
+                "Solar": 21,
+                "Wind": 22,
+                "Hydro": 28,
+                "Nuclear": 19,
+                "Coal": 10
+            },
+            {
+                "Day": "Sunday",
+                "Solar": 26,
+                "Wind": 18,
+                "Hydro": 26,
+                "Nuclear": 20,
+                "Coal": 10
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Solar",
+                "Wind",
+                "Hydro",
+                "Nuclear",
+                "Coal"
+            ],
+            "as": [
+                "EnergyType",
+                "Count"
+            ]
+        },
+        {
+            "joinaggregate": [
+                {
+                    "op": "sum",
+                    "field": "Count",
+                    "as": "TotalCount"
+                }
+            ],
+            "groupby": [
+                "Day"
+            ]
+        },
+        {
+            "calculate": "datum.Count / datum.TotalCount",
+            "as": "PercentOfTotal"
+        }
+    ],
+    "mark": {
+        "type": "bar",
+        "height": {
+            "band": 0.8
+        }
+    },
+    "encoding": {
+        "y": {
+            "field": "Day",
+            "type": "ordinal",
+            "title": "Day of the Week"
+        },
+        "x": {
+            "field": "PercentOfTotal",
+            "type": "quantitative",
+            "axis": {
+                "format": "%",
+                "title": "Percentage of Total Energy Produced"
+            }
+        },
+        "color": {
+            "field": "EnergyType",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Solar",
+                    "Wind",
+                    "Hydro",
+                    "Nuclear",
+                    "Coal"
+                ],
+                "range": [
+                    "#f1e05a",
+                    "#00b4ab",
+                    "#0366d6",
+                    "#e34c26",
+                    "#24292e"
+                ]
+            },
+            "legend": {
+                "title": "Type of Energy",
+                "orient": "right"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "EnergyType",
+                "type": "nominal",
+                "title": "Type of Energy"
+            },
+            {
+                "field": "PercentOfTotal",
+                "type": "quantitative",
+                "title": "Percentage",
+                "format": ".1%"
+            }
+        ],
+        "order": {
+            "field": "EnergyType",
+            "type": "nominal"
+        }
+    },
+    "config": {
+        "axis": {
+            "labelFontSize": 12,
+            "titleFontSize": 14
+        },
+        "legend": {
+            "labelFontSize": 12,
+            "titleFontSize": 14
+        }
+    }
+}

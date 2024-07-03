@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+option = {
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Espresso', 'Americano', 'Cappuccino', 'Latte', 'Mocha']
+    },
+    toolbox: {
+        show: true,
+        feature: {
+            dataView: {show: true, readOnly: false},
+            magicType: {show: true, type: ['line', 'bar', 'stack', 'tiled']},
+            saveAsImage: {show: true}
+        }
+    },
+    xAxis: [
+        {
+            type: 'category',
+            axisTick: {show: false},
+            data: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August']
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value'
+        }
+    ],
+    series: [
+        {
+            name: 'Espresso',
+            type: 'bar',
+            stack: 'Total',
+            emphasis: {
+                focus: 'series'
+            },
+            data: [1500, 1580, 1670, 1350, 1600, 1750, 1650, 1700]
+        },
+        {
+            name: 'Americano',
+            type: 'bar',
+            stack: 'Total',
+            emphasis: {
+                focus: 'series'
+            },
+            data: [1300, 1200, 1340, 1250, 1360, 1400, 1420, 1300]
+        },
+        {
+            name: 'Cappuccino',
+            type: 'bar',
+            stack: 'Total',
+            emphasis: {
+                focus: 'series'
+            },
+            data: [1450, 1370, 1550, 1400, 1450, 1500, 1550, 1620]
+        },
+        {
+            name: 'Latte',
+            type: 'bar',
+            stack: 'Total',
+            emphasis: {
+                focus: 'series'
+            },
+            data: [1600, 1650, 1720, 1550, 1750, 1800, 1670, 1760]
+        },
+        {
+            name: 'Mocha',
+            type: 'bar',
+            stack: 'Total',
+            emphasis: {
+                focus: 'series'
+            },
+            data: [1350, 1280, 1400, 1320, 1430, 1550, 1490, 1500]
+        }
+    ],
+    color: ['#334455', '#c4ccd3', '#61a0a8', '#d48265', '#91c7ae']
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

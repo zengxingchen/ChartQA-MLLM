@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Economic Sectors Contribution to GDP (2016 - 2020)',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Agriculture', 'Industry', 'Services'],
+        top: 45
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01],
+        max: 'dataMax',
+    },
+    yAxis: {
+        type: 'category',
+        data: ['2016', '2017', '2018', '2019', '2020']
+    },
+    series: [
+        {
+            name: 'Agriculture',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                formatter: '{b} Agriculture: {c}%'
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [20, 18, 15, 17, 19],
+            barWidth: '60%',
+            color: '#3366CC'
+        },
+        {
+            name: 'Industry',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                formatter: '{b} Industry: {c}%'
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [30, 35, 40, 38, 36],
+            barWidth: '60%',
+            color: '#DC3912'
+        },
+        {
+            name: 'Services',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                formatter: '{b} Services: {c}%'
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [50, 47, 45, 45, 45],
+            barWidth: '60%',
+            color: '#FF9900'
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

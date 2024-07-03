@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {renderer: 'canvas', useDirtyRect: false});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Food & Nutrition Categories',
+        left: 'center',
+        top: 20
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: '{b}: {c}'
+    },
+    series: [{
+        type: 'treemap',
+        width: '90%',
+        height: '80%',
+        data: [
+            {name: 'Fruits', value: 40, itemStyle: {color: '#FFB6C1'}},
+            {name: 'Vegetables', value: 50, itemStyle: {color: '#98FB98'}},
+            {name: 'Dairy', value: 30, itemStyle: {color: '#FFD700'}},
+            {name: 'Grains', value: 20, itemStyle: {color: '#DEB887'}},
+            {name: 'Meat', value: 25, itemStyle: {color: '#FF4500'}},
+            {name: 'Sweets', value: 10, itemStyle: {color: '#FFC0CB'}},
+            {name: 'Beverages', value: 35, itemStyle: {color: '#87CEFA'}},
+            {name: 'Seafood', value: 15, itemStyle: {color: '#20B2AA'}},
+            {name: 'Snacks', value: 5, itemStyle: {color: '#D2691E'}},
+            {name: 'Condiments', value: 8, itemStyle: {color: '#DAA520'}},
+            {name: 'Nuts', value: 12, itemStyle: {color: '#8B4513'}},
+            {name: 'Herbs', value: 7, itemStyle: {color: '#7CFC00'}},
+            {name: 'Spices', value: 18, itemStyle: {color: '#FF6347'}},
+            {name: 'Baked Goods', value: 22, itemStyle: {color: '#FAFAD2'}},
+            {name: 'Oils', value: 13, itemStyle: {color: '#FFA07A'}},
+            {name: 'Legumes', value: 16, itemStyle: {color: '#E9967A'}},
+            {name: 'Frozen Foods', value: 9, itemStyle: {color: '#6495ED'}},
+            {name: 'Canned Foods', value: 14, itemStyle: {color: '#FFDEAD'}},
+            {name: 'Prepared Foods', value: 6, itemStyle: {color: '#8FBC8F'}},
+            {name: 'Baby Foods', value: 11, itemStyle: {color: '#FF69B4'}},
+            {name: 'Organic Foods', value: 19, itemStyle: {color: '#32CD32'}}
+        ],
+        label: {
+            show: true,
+            formatter: '{b}\n{c}'
+        }
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

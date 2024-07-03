@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var app = {};
+
+var option = {
+    title: {
+        text: 'Decline in Forest Area Over Time',
+        left: 'center',
+        top: '10'
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: '{a} <br/>{b} : {c}'
+    },
+    legend: {
+        left: 'left',
+        top: 'middle',
+        data: ['Forest Area']
+    },
+    xAxis: {
+        name: 'Year',
+        type: 'value'
+    },
+    yAxis: {
+        name: 'Forest Area (Million Hectares)',
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Forest Area',
+            type: 'scatter',
+            itemStyle: {
+                color: '#FF5733'
+            },
+            data: [
+                [1, 98], [2, 96], [3, 92], [4, 91], [5, 88], 
+                [6, 85], [7, 80], [8, 78], [9, 74], [10, 72], 
+                [11, 70], [12, 67], [13, 65], [14, 63], [15, 60], 
+                [16, 59], [17, 55], [18, 53], [19, 52], [20, 50]
+            ]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 400});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Electric Car Sales Over the Years',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Electric Car Sales'],
+        top: '5%'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        data: ['2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022']
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Sales (in thousands)',
+        axisLabel: {
+            formatter: function (value) {
+                return value / 1000 + 'k';
+            }
+        }
+    },
+    series: [
+        {
+            name: 'Electric Car Sales',
+            type: 'bar',
+            barWidth: '60%',
+            data: [50, 100, 150, 200, 300, 400, 500, 750, 1100, 1500, 2000, 2600],
+            itemStyle: {
+                color: function(params) {
+                    const colors = ['#FF6633', '#FFB399', '#FF33FF', '#FFFF99', '#00B3E6', 
+                                    '#E6B333', '#3366E6', '#999966', '#99FF99', '#B34D4D',
+                                    '#80B300', '#809900'];
+                    return colors[params.dataIndex % colors.length];
+                }
+            },
+            label: {
+                show: true,
+                position: 'top',
+                formatter: function(params) {
+                    return params.value;
+                }
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

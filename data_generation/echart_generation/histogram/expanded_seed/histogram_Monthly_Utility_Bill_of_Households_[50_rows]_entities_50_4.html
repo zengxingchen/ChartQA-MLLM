@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById("container");
+var myChart = echarts.init(dom);
+var app = {};
+
+var data = [{'Month': 'January', 'Bill Amount': 120}, {'Month': 'February', 'Bill Amount': 110}, {'Month': 'March', 'Bill Amount': 95}, {'Month': 'April', 'Bill Amount': 80}, {'Month': 'May', 'Bill Amount': 85}, {'Month': 'June', 'Bill Amount': 70}, {'Month': 'July', 'Bill Amount': 65}, {'Month': 'August', 'Bill Amount': 75}, {'Month': 'September', 'Bill Amount': 105}, {'Month': 'October', 'Bill Amount': 130}, {'Month': 'November', 'Bill Amount': 140}, {'Month': 'December', 'Bill Amount': 150}, {'Month': 'January', 'Bill Amount': 123}, {'Month': 'February', 'Bill Amount': 115}, {'Month': 'March', 'Bill Amount': 98}];
+
+// Extracting bill amounts to create histogram
+var billAmounts = data.map(function (item) {
+    return item['Bill Amount'];
+});
+
+var option;
+
+function calculateHistogram(billAmounts, binSize) {
+    var bins = {};
+    billAmounts.forEach(function(amount) {
+        var bin = Math.floor(amount / binSize) * binSize;
+        bins[bin] = (bins[bin] || 0) + 1;
+    });
+    return Object.keys(bins).map(function(bin) {
+        return [bin, bins[bin]];
+    });
+}
+
+// Configuration for the histogram
+option = {
+    title: {
+        text: 'Bill Amount Histogram',
+        subtext: 'Frequency of Bill Amount Ranges',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'item',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    xAxis: {
+        type: 'category',
+        name: 'Bill Range',
+        nameLocation: 'middle',
+        nameGap: 30,
+        tickLabelInterval: 0
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Frequency'
+    },
+    series: [{
+        name: 'Frequency',
+        type: 'bar',
+        barWidth: '60%',
+        data: calculateHistogram(billAmounts, 10),
+        label: {
+            show: true,
+            position: 'top'
+        },
+        itemStyle: {
+            borderWidth: 1,
+            borderColor: '#333',
+            color: function (params) {
+                let colors = ['#5470C6', '#91CC75', '#EE6666', '#73C0DE', '#3BA272', '#FC8452', '#9A60B4', '#ea7ccc'];
+                return colors[params.dataIndex % colors.length];
+            }
+        }
+    }]
+};
+
+myChart.setOption(option, true); // Force update
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {renderer: 'canvas', width: '800', height: '600'});
+var app = {};
+var option;
+
+var data = {
+    headings: ['time', 'Tablets', 'Smartphones', 'Laptops', 'Desktops'],
+    values: [
+        ['2020-01',1000,2000,1500,3000],
+        ['2020-02',1200,2400,1550,2900],
+        ['2020-03',1300,2800,1600,2800],
+        ['2020-04',1400,2600,1650,2700],
+        ['2020-05',1500,2500,1700,2600],
+        ['2020-06',1600,2400,1800,2550],
+        ['2020-07',1700,2300,1850,2500],
+        ['2020-08',1800,2200,1900,2450],
+        ['2020-09',1900,2100,1950,2400],
+        ['2020-10',2000,2100,2000,2300],
+        ['2020-11',2100,2300,2100,2200],
+        ['2020-12',2200,2400,2200,2100],
+        ['2021-01',2300,2500,2300,2050],
+        ['2021-02',2400,2600,2400,2000],
+        ['2021-03',2500,2700,2500,1950],
+        ['2021-04',2600,2800,2600,1900],
+        ['2021-05',2700,2900,2700,1850],
+        ['2021-06',2800,3000,2800,1800],
+        ['2021-07',2900,3100,2900,1750],
+        ['2021-08',3000,3200,3000,1700],
+        ['2021-09',3100,3300,3100,1650],
+        ['2021-10',3200,3400,3200,1600],
+        ['2021-11',3300,3500,3300,1550],
+        ['2021-12',3400,3600,3400,1500]
+    ]
+};
+
+option = {
+    title: {
+        text: 'Electronic Device Sales Trends',
+        subtext: '2020-2021',
+        left: 'center',
+        padding: 5
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            label: {
+                backgroundColor: '#6a7985'
+            }
+        }
+    },
+    legend: {
+        data: data.headings.slice(1),
+        bottom: 10
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '10%',
+        containLabel: true
+    },
+    xAxis: [{
+        type: 'category',
+        boundaryGap: false,
+        data: data.values.map(function (item) {
+            return item[0];
+        })
+    }],
+    yAxis: [{
+        type: 'value'
+    }],
+    series: data.headings.slice(1).map(function (heading, i) {
+        return {
+            name: heading,
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: data.values.map(function (item) {
+                return item[i + 1];
+             }),
+             markPoint: {
+                data: [
+                    {type: 'max', name: 'Max'},
+                    {type: 'min', name: 'Min'}
+                ]
+             }
+        };
+    }),
+    color: ['#c23531', '#2f4554', '#61a0a8', '#d48265']
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

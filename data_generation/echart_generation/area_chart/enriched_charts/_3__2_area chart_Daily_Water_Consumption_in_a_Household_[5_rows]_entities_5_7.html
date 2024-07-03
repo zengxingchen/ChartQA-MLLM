@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 800, // Change the width of the chart.
+    height: 500 // Change the height of the chart.
+});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Average Hours of Sleep Per Night',
+        subtext: 'April 2023',
+        left: 'center', // Positioned in the center.
+        top: 5, // Puts the title at the top without overlapping with the legend.
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['Average Hours'],
+        top: '7%' // Ensure that the legend does not overlap with the headline.
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: [
+            '2023-04-01', '2023-04-02', '2023-04-03', '2023-04-04', '2023-04-05',
+            '2023-04-06', '2023-04-07', '2023-04-08', '2023-04-09', '2023-04-10',
+            '2023-04-11', '2023-04-12', '2023-04-13', '2023-04-14', '2023-04-15',
+            '2023-04-16', '2023-04-17', '2023-04-18', '2023-04-19', '2023-04-20',
+            '2023-04-21', '2023-04-22', '2023-04-23', '2023-04-24', '2023-04-25',
+            '2023-04-26', '2023-04-27', '2023-04-28', '2023-04-29', '2023-04-30'
+        ],
+        axisTick: {
+            alignWithLabel: true
+        }
+    },
+    yAxis: {
+        type: 'value',
+        axisLabel: {
+            formatter: '{value} hrs'
+        }
+    },
+    series: [
+        {
+            name: 'Average Hours',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [
+                7.8, 7.6, 7.7, 6.5, 7.2,
+                7.0, 6.8, 7.1, 7.3, 7.5,
+                7.6, 6.9, 6.6, 6.7, 7.4,
+                7.9, 6.8, 7.0, 7.2, 7.3,
+                7.6, 6.9, 7.1, 7.2, 6.8,
+                7.0, 7.3, 6.7, 7.5, 7.4
+            ],
+            itemStyle: {
+                color: '#3FA7DC' // Use a specific color code for the line color.
+            }
+        }
+    ],
+    color: ['#3FA7DC']
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

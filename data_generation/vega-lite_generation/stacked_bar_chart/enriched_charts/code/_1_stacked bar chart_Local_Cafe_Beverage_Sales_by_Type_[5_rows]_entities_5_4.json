@@ -1,0 +1,171 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+        "values": [
+            {
+                "Date": "2023-01-01",
+                "Smartphones": 120,
+                "Laptops": 80,
+                "Tablets": 60,
+                "Wearables": 40
+            },
+            {
+                "Date": "2023-01-02",
+                "Smartphones": 115,
+                "Laptops": 75,
+                "Tablets": 65,
+                "Wearables": 35
+            },
+            {
+                "Date": "2023-01-03",
+                "Smartphones": 130,
+                "Laptops": 90,
+                "Tablets": 70,
+                "Wearables": 45
+            },
+            {
+                "Date": "2023-01-04",
+                "Smartphones": 140,
+                "Laptops": 85,
+                "Tablets": 75,
+                "Wearables": 50
+            },
+            {
+                "Date": "2023-01-05",
+                "Smartphones": 125,
+                "Laptops": 95,
+                "Tablets": 65,
+                "Wearables": 55
+            },
+            {
+                "Date": "2023-01-06",
+                "Smartphones": 135,
+                "Laptops": 80,
+                "Tablets": 68,
+                "Wearables": 48
+            },
+            {
+                "Date": "2023-01-07",
+                "Smartphones": 145,
+                "Laptops": 82,
+                "Tablets": 72,
+                "Wearables": 43
+            },
+            {
+                "Date": "2023-01-08",
+                "Smartphones": 110,
+                "Laptops": 77,
+                "Tablets": 62,
+                "Wearables": 38
+            },
+            {
+                "Date": "2023-01-09",
+                "Smartphones": 120,
+                "Laptops": 89,
+                "Tablets": 66,
+                "Wearables": 44
+            },
+            {
+                "Date": "2023-01-10",
+                "Smartphones": 128,
+                "Laptops": 83,
+                "Tablets": 70,
+                "Wearables": 50
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Smartphones",
+                "Laptops",
+                "Tablets",
+                "Wearables"
+            ],
+            "as": [
+                "Product Type",
+                "Sales"
+            ]
+        }
+    ],
+    "width": 400,
+    "height": 200,
+    "title": {
+        "text": "Daily Tech Product Sales",
+        "subtitle": "Unit sales by product type",
+        "subtitleFontStyle": "italic",
+        "subtitleFontSize": 10,
+        "anchor": "start",
+        "color": "black"
+    },
+    "mark": {
+        "type": "bar",
+        "height": {
+            "band": 0.6
+        }
+    },
+    "encoding": {
+        "y": {
+            "field": "Date",
+            "type": "ordinal",
+            "title": "Date",
+            "axis": {
+                "labelAngle": 0
+            }
+        },
+        "x": {
+            "field": "Sales",
+            "type": "quantitative",
+            "title": "Units Sold"
+        },
+        "color": {
+            "field": "Product Type",
+            "type": "nominal",
+            "legend": {
+                "orient": "right",
+                "title": "Product Type",
+                "titleFontSize": 12,
+                "labelFontSize": 10
+            },
+            "scale": {
+                "domain": [
+                    "Smartphones",
+                    "Laptops",
+                    "Tablets",
+                    "Wearables"
+                ],
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e",
+                    "#2ca02c",
+                    "#d62728"
+                ]
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Date",
+                "type": "ordinal",
+                "title": "Date"
+            },
+            {
+                "field": "Product Type",
+                "type": "nominal",
+                "title": "Product Type"
+            },
+            {
+                "field": "Sales",
+                "type": "quantitative",
+                "title": "Units Sold"
+            }
+        ]
+    },
+    "config": {
+        "axisY": {
+            "labelAngle": 0
+        },
+        "view": {
+            "stroke": "transparent"
+        }
+    }
+}

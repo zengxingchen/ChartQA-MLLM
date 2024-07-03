@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {renderer: 'canvas', width: '750', height: '500'});
+
+var option;
+
+option = {
+    title: {
+        text: 'Music Genre Popularity Over Time',
+        left: 'center',
+        top: '3%'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            label: {
+                backgroundColor: '#6a7985'
+            }
+        }
+    },
+    legend: {
+        data: ['Ambient Pop', 'Indie Rock', 'EDM', 'Hip Hop'],
+        top: '8%'
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ['2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Ambient Pop',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: { focus: 'series' },
+            itemStyle: {color: '#88C1FF'},
+            data: [40, 47, 50, 65, 68, 75, 80, 90, 95, 100, 105, 110, 120]
+        },
+        {
+            name: 'Indie Rock',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: { focus: 'series' },
+            itemStyle: {color: '#FF88B2'},
+            data: [10, 15, 19, 25, 30, 40, 45, 50, 55, 60, 65, 70, 75]
+        },
+        {
+            name: 'EDM',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: { focus: 'series' },
+            itemStyle: {color: '#FFD088'},
+            data: [5, 7, 9, 12, 14, 18, 22, 26, 30, 35, 40, 50, 55]
+        },
+        {
+            name: 'Hip Hop',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: { focus: 'series' },
+            itemStyle: {color: '#A8FF88'},
+            data: [20, 22, 25, 30, 35, 40, 43, 50, 60, 65, 70, 75, 80]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

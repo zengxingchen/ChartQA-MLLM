@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var option;
+
+option = {
+    title: {
+        text: 'Future Technologies & Society',
+        left: 'center',
+        textStyle: {
+            fontSize: 24,
+            fontWeight: 'bold',
+            color: '#333333'
+        }
+    },
+    color: ['#4A90E2', '#50E3C2', '#B8E986', '#FF8C00', '#FF6347', '#7B68EE', '#32CD32', '#FF4500', '#4682B4', '#9400D3'],
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        data: ['Artificial Intelligence', 'Virtual Reality', 'Quantum Computing', 'Renewable Energy', 'Blockchain', 'Biotechnology', 'Autonomous Vehicles', '3D Printing', 'Cybersecurity', 'Space Exploration'],
+        axisLabel: {
+            interval: 0,
+            rotate: 30,
+            textStyle: {
+                fontSize: 12,
+                color: '#333333'
+            }
+        }
+    },
+    yAxis: {
+        type: 'value',
+        axisLabel: {
+            textStyle: {
+                fontSize: 12,
+                color: '#333333'
+            }
+        }
+    },
+    series: [
+        {
+            name: 'Value',
+            type: 'bar',
+            barWidth: '50%',
+            data: [
+                { value: 85, itemStyle: { color: '#4A90E2' }, label: { show: true, position: 'top', formatter: '85' } },
+                { value: 70, itemStyle: { color: '#50E3C2' }, label: { show: true, position: 'top', formatter: '70' } },
+                { value: 90, itemStyle: { color: '#B8E986' }, label: { show: true, position: 'top', formatter: '90' } },
+                { value: 65, itemStyle: { color: '#FF8C00' }, label: { show: true, position: 'top', formatter: '65' } },
+                { value: 75, itemStyle: { color: '#FF6347' }, label: { show: true, position: 'top', formatter: '75' } },
+                { value: 80, itemStyle: { color: '#7B68EE' }, label: { show: true, position: 'top', formatter: '80' } },
+                { value: 95, itemStyle: { color: '#32CD32' }, label: { show: true, position: 'top', formatter: '95' } },
+                { value: 60, itemStyle: { color: '#FF4500' }, label: { show: true, position: 'top', formatter: '60' } },
+                { value: 78, itemStyle: { color: '#4682B4' }, label: { show: true, position: 'top', formatter: '78' } },
+                { value: 88, itemStyle: { color: '#9400D3' }, label: { show: true, position: 'top', formatter: '88' } }
+            ]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

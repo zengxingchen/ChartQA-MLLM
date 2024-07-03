@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+dom.style.cssText = "width:800px;height:500px;"; // Set width and height
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas'
+});
+
+var option;
+
+option = {
+    title: {
+        text: 'Global Sea Level Rise Over Time',
+        left: 'center',
+        top: 20
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['Sea Level Rise'],
+        top: 50
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: [
+            '2000-01-01', '2000-02-01', '2000-03-01', '2000-04-01', '2000-05-01',
+            '2000-06-01', '2000-07-01', '2000-08-01', '2000-09-01', '2000-10-01',
+            '2000-11-01', '2000-12-01', '2001-01-01', '2001-02-01', '2001-03-01',
+            '2001-04-01', '2001-05-01', '2001-06-01', '2001-07-01', '2001-08-01',
+            '2001-09-01', '2001-10-01', '2001-11-01', '2001-12-01'
+        ]
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Sea Level Rise',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {
+                normal: {
+                    color: '#3BAFDA',
+                    opacity: 0.3
+                }
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [
+                0, 1, 1.5, 1.7, 2, 3, 3.3, 4.5, 4.7, 5, 6, 6.5,
+                6.8, 7, 8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12, 12.5
+            ],
+            itemStyle: {
+                normal: {
+                    color: '#3BAFDA'
+                }
+            },
+            lineStyle: {
+                normal: {
+                    color: '#207Fb0',
+                    width: 2
+                }
+            }
+        }
+    ],
+    color: ['#3BAFDA']
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

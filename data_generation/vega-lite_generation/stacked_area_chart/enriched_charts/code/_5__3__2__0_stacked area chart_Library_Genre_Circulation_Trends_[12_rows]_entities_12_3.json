@@ -1,0 +1,185 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Yearly Participation in Sports Activities",
+    "width": 600,
+    "height": 400,
+    "data": {
+        "values": [
+            {
+                "Year": 2010,
+                "Swimming": 150,
+                "Running": 250,
+                "Cycling": 200,
+                "Yoga": 100
+            },
+            {
+                "Year": 2011,
+                "Swimming": 160,
+                "Running": 260,
+                "Cycling": 220,
+                "Yoga": 110
+            },
+            {
+                "Year": 2012,
+                "Swimming": 170,
+                "Running": 270,
+                "Cycling": 240,
+                "Yoga": 120
+            },
+            {
+                "Year": 2013,
+                "Swimming": 180,
+                "Running": 280,
+                "Cycling": 260,
+                "Yoga": 130
+            },
+            {
+                "Year": 2014,
+                "Swimming": 190,
+                "Running": 290,
+                "Cycling": 280,
+                "Yoga": 140
+            },
+            {
+                "Year": 2015,
+                "Swimming": 200,
+                "Running": 310,
+                "Cycling": 300,
+                "Yoga": 150
+            },
+            {
+                "Year": 2016,
+                "Swimming": 210,
+                "Running": 320,
+                "Cycling": 310,
+                "Yoga": 160
+            },
+            {
+                "Year": 2017,
+                "Swimming": 215,
+                "Running": 330,
+                "Cycling": 320,
+                "Yoga": 170
+            },
+            {
+                "Year": 2018,
+                "Swimming": 220,
+                "Running": 340,
+                "Cycling": 330,
+                "Yoga": 180
+            },
+            {
+                "Year": 2019,
+                "Swimming": 225,
+                "Running": 350,
+                "Cycling": 340,
+                "Yoga": 190
+            },
+            {
+                "Year": 2020,
+                "Swimming": 230,
+                "Running": 360,
+                "Cycling": 350,
+                "Yoga": 200
+            },
+            {
+                "Year": 2021,
+                "Swimming": 235,
+                "Running": 370,
+                "Cycling": 360,
+                "Yoga": 210
+            },
+            {
+                "Year": 2022,
+                "Swimming": 240,
+                "Running": 380,
+                "Cycling": 370,
+                "Yoga": 220
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Swimming",
+                "Running",
+                "Cycling",
+                "Yoga"
+            ],
+            "as": [
+                "Activity",
+                "Count"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "area",
+        "opacity": 0.6
+    },
+    "encoding": {
+        "x": {
+            "field": "Year",
+            "type": "ordinal",
+            "title": "Year",
+            "axis": {
+                "labelAngle": 0
+            }
+        },
+        "y": {
+            "field": "Count",
+            "type": "quantitative",
+            "stack": "zero",
+            "title": "Participants Count"
+        },
+        "color": {
+            "field": "Activity",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Swimming",
+                    "Running",
+                    "Cycling",
+                    "Yoga"
+                ],
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e",
+                    "#2ca02c",
+                    "#d62728"
+                ]
+            },
+            "title": "Type of Activity"
+        },
+        "tooltip": [
+            {
+                "field": "Activity",
+                "type": "nominal",
+                "title": "Activity"
+            },
+            {
+                "field": "Count",
+                "type": "quantitative",
+                "title": "Participants Count",
+                "format": ",.0f"
+            }
+        ]
+    },
+    "title": {
+        "text": "Community Sports Activities Participation Over Time",
+        "fontSize": 16,
+        "anchor": "start",
+        "offset": 10
+    },
+    "config": {
+        "view": {
+            "stroke": "transparent"
+        },
+        "axis": {
+            "grid": true
+        },
+        "legend": {
+            "orient": "right",
+            "offset": 10
+        }
+    }
+}

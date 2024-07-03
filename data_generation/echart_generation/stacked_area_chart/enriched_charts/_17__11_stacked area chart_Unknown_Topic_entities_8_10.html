@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, { renderer: 'canvas', width: '600', height: '400' });
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Quarterly Revenue Comparison',
+        subtext: 'Economics & Finance',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            label: {
+                backgroundColor: '#6a7985'
+            }
+        }
+    },
+    legend: {
+        data: ['Company A', 'Company B', 'Company C', 'Company D'],
+        bottom: 10
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: [
+        {
+            type: 'category',
+            boundaryGap: false,
+            data: ['Q1-2020', 'Q2-2020', 'Q3-2020', 'Q4-2020', 'Q1-2021', 'Q2-2021', 'Q3-2021', 'Q4-2021', 'Q1-2022', 'Q2-2022', 'Q3-2022', 'Q4-2022']
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value'
+        }
+    ],
+    series: [
+        {
+            name: 'Company A',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [12000, 15000, 13000, 20000, 16000, 18000, 15000, 22000, 17000, 20000, 18000, 23000]
+        },
+        {
+            name: 'Company B',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [8000, 12000, 9000, 14000, 10000, 13000, 9500, 16000, 11000, 15000, 12000, 17000]
+        },
+        {
+            name: 'Company C',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [15000, 18000, 16000, 22000, 20000, 21000, 17000, 24000, 22000, 25000, 23000, 26000]
+        },
+        {
+            name: 'Company D',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [5000, 7000, 6000, 10000, 8000, 11000, 9000, 12000, 10000, 13000, 11000, 14000]
+        }
+    ],
+    color: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0'],
+    textStyle: {
+        fontFamily: 'Arial, Verdana, sans-serif'
+    },
+    animationEasing: 'elasticOut'
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

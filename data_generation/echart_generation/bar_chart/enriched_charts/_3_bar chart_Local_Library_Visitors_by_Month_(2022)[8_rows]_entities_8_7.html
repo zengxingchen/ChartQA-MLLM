@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var app = {};
+
+var option;
+
+option = {
+    color: ['#3398DB', '#D54C7E', '#ECA539', '#96A13A', '#1E488F', '#C04C36', '#6E7074', '#546570', '#c23531', '#61a0a8'],
+    title: {
+        text: 'Number of Students Enrolled by Course',
+        left: 'center',
+        textStyle: {
+            color: '#333',
+            fontWeight: 'normal',
+            fontSize: 20
+        }
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: [
+        {
+            type: 'category',
+            data: ['Math', 'Physics', 'Chemistry', 'Biology', 'English', 'History', 'Philosophy', 'Computer Science', 'Economics', 'Psychology'],
+            axisTick: {
+                alignWithLabel: true
+            },
+            axisLabel: {
+                textStyle: {
+                    color: '#333'
+                }
+            }
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value',
+            axisLabel: {
+                textStyle: {
+                    color: '#333'
+                }
+            }
+        }
+    ],
+    series: [
+        {
+            name: 'Enrollment',
+            type: 'bar',
+            barWidth: '60%',
+            data: [
+                {value: 1200, label: {show: true, position: 'top'}},
+                {value: 980, label: {show: true, position: 'top'}},
+                {value: 750, label: {show: true, position: 'top'}},
+                {value: 870, label: {show: true, position: 'top'}},
+                {value: 940, label: {show: true, position: 'top'}},
+                {value: 690, label: {show: true, position: 'top'}},
+                {value: 430, label: {show: true, position: 'top'}},
+                {value: 1100, label: {show: true, position: 'top'}},
+                {value: 1050, label: {show: true, position: 'top'}},
+                {value: 790, label: {show: true, position: 'top'}}
+            ],
+            itemStyle: {
+                barBorderRadius: [10, 10, 0, 0],
+                shadowBlur: 10,
+                shadowColor: 'rgba(0, 0, 0, 0.1)'
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

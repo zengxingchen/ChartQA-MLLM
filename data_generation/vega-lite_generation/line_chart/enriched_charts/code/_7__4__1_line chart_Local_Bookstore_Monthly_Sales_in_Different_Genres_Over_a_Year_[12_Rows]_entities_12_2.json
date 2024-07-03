@@ -1,0 +1,175 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Monthly Sales Revenue by Product Category",
+    "data": {
+        "values": [
+            {
+                "Month": "January",
+                "Electronics": 1500,
+                "Furniture": 1200,
+                "Clothing": 800,
+                "Groceries": 1000,
+                "Sports": 700
+            },
+            {
+                "Month": "February",
+                "Electronics": 1600,
+                "Furniture": 1100,
+                "Clothing": 900,
+                "Groceries": 1050,
+                "Sports": 750
+            },
+            {
+                "Month": "March",
+                "Electronics": 1700,
+                "Furniture": 1300,
+                "Clothing": 1000,
+                "Groceries": 1100,
+                "Sports": 800
+            },
+            {
+                "Month": "April",
+                "Electronics": 1800,
+                "Furniture": 1400,
+                "Clothing": 1100,
+                "Groceries": 1150,
+                "Sports": 850
+            },
+            {
+                "Month": "May",
+                "Electronics": 1900,
+                "Furniture": 1500,
+                "Clothing": 1200,
+                "Groceries": 1200,
+                "Sports": 900
+            },
+            {
+                "Month": "June",
+                "Electronics": 2000,
+                "Furniture": 1600,
+                "Clothing": 1300,
+                "Groceries": 1250,
+                "Sports": 950
+            },
+            {
+                "Month": "July",
+                "Electronics": 2100,
+                "Furniture": 1700,
+                "Clothing": 1400,
+                "Groceries": 1300,
+                "Sports": 1000
+            },
+            {
+                "Month": "August",
+                "Electronics": 2200,
+                "Furniture": 1800,
+                "Clothing": 1500,
+                "Groceries": 1350,
+                "Sports": 1050
+            },
+            {
+                "Month": "September",
+                "Electronics": 2300,
+                "Furniture": 1900,
+                "Clothing": 1600,
+                "Groceries": 1400,
+                "Sports": 1100
+            },
+            {
+                "Month": "October",
+                "Electronics": 2400,
+                "Furniture": 2000,
+                "Clothing": 1700,
+                "Groceries": 1450,
+                "Sports": 1150
+            },
+            {
+                "Month": "November",
+                "Electronics": 2500,
+                "Furniture": 2100,
+                "Clothing": 1800,
+                "Groceries": 1500,
+                "Sports": 1200
+            },
+            {
+                "Month": "December",
+                "Electronics": 2600,
+                "Furniture": 2200,
+                "Clothing": 1900,
+                "Groceries": 1550,
+                "Sports": 1250
+            }
+        ]
+    },
+    "width": 1000,
+    "height": 500,
+    "transform": [
+        {
+            "fold": [
+                "Electronics",
+                "Furniture",
+                "Clothing",
+                "Groceries",
+                "Sports"
+            ],
+            "as": [
+                "Product Category",
+                "Sales Revenue"
+            ]
+        }
+    ],
+    "mark": "line",
+    "encoding": {
+        "x": {
+            "field": "Month",
+            "type": "ordinal",
+            "title": "Month",
+            "axis": {
+                "labelAngle": 0
+            }
+        },
+        "y": {
+            "field": "Sales Revenue",
+            "type": "quantitative",
+            "title": "Sales Revenue ($)",
+            "axis": {
+                "labelExpr": "datum.label + ' $'"
+            }
+        },
+        "color": {
+            "field": "Product Category",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Electronics",
+                    "Furniture",
+                    "Clothing",
+                    "Groceries",
+                    "Sports"
+                ],
+                "range": [
+                    "#FF4500",
+                    "#1E90FF",
+                    "#32CD32",
+                    "#FFD700",
+                    "#8A2BE2"
+                ]
+            },
+            "title": "Product Category"
+        },
+        "tooltip": [
+            {
+                "field": "Month",
+                "type": "nominal"
+            },
+            {
+                "field": "Product Category",
+                "type": "nominal"
+            },
+            {
+                "field": "Sales Revenue",
+                "type": "quantitative"
+            }
+        ]
+    }
+}

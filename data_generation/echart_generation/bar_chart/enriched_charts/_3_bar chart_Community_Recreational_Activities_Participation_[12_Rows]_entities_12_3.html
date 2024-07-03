@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 400});
+var app = {};
+
+var option;
+option = {
+    title: {
+        text: 'Economic Growth and Education Spending Over Time',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Gross Domestic Product (Billions)', 'Education Spending (Billions)'],
+        top: '7%'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        data: ['2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Gross Domestic Product (Billions)',
+            type: 'bar',
+            barWidth: 20,
+            itemStyle: {
+                barBorderRadius: 4,
+                color: '#3471eb'
+            },
+            data: [10000, 10200, 10450, 10675, 10900, 11300, 11700, 12300, 13000, 13150, 13500, 13800, 14200, 14500, 14900, 15300, 15600, 16000, 16500, 17000, 16900],
+            markPoint: {
+                data: [
+                    {type: 'max', name: 'Max'},
+                    {type: 'min', name: 'Min'}
+                ]
+            },
+            label: {
+                show: true,
+                position: 'inside'
+            }
+        },
+        {
+            name: 'Education Spending (Billions)',
+            type: 'bar',
+            barWidth: 20,
+            itemStyle: {
+                barBorderRadius: 4,
+                color: '#e67300'
+            },
+            data: [500, 520, 541, 555, 580, 600, 630, 670, 700, 710, 730, 750, 770, 790, 815, 840, 865, 895, 920, 950, 975],
+            markPoint: {
+                data: [
+                    {type: 'max', name: 'Max'},
+                    {type: 'min', name: 'Min'}
+                ]
+            },
+            label: {
+                show: true,
+                position: 'top'
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

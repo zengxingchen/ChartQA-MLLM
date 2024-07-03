@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var app = {};
+
+var option = {
+    title: {
+        text: 'Electronic Devices Sales Over Years',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Smartphones', 'Tablets', 'Laptops', 'Desktops', 'Wearables'],
+        top: '10%'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        data: ['2015', '2016', '2017', '2018', '2019', '2020', '2021'],
+        axisLabel: {
+            formatter: function(value) {
+                return value;
+            }
+        }
+    },
+    yAxis: {
+        type: 'value',
+        axisLabel: {
+            formatter: '{value} M'
+        }
+    },
+    series: [
+        {
+            name: 'Smartphones',
+            type: 'bar',
+            barWidth: '20%',
+            data: [350, 380, 400, 420, 450, 470, 500],
+            itemStyle: {
+                color: '#1f77b4'
+            },
+            label: {
+                show: true,
+                position: 'top'
+            }
+        },
+        {
+            name: 'Tablets',
+            type: 'bar',
+            barWidth: '20%',
+            data: [120, 110, 100, 90, 85, 80, 75],
+            itemStyle: {
+                color: '#ff7f0e'
+            },
+            label: {
+                show: true,
+                position: 'top'
+            }
+        },
+        {
+            name: 'Laptops',
+            type: 'bar',
+            barWidth: '20%',
+            data: [250, 265, 280, 300, 320, 330, 340],
+            itemStyle: {
+                color: '#2ca02c'
+            },
+            label: {
+                show: true,
+                position: 'top'
+            }
+        },
+        {
+            name: 'Desktops',
+            type: 'bar',
+            barWidth: '20%',
+            data: [300, 290, 270, 250, 230, 220, 210],
+            itemStyle: {
+                color: '#d62728'
+            },
+            label: {
+                show: true,
+                position: 'top'
+            }
+        },
+        {
+            name: 'Wearables',
+            type: 'bar',
+            barWidth: '20%',
+            data: [90, 150, 200, 240, 260, 300, 350],
+            itemStyle: {
+                color: '#9467bd'
+            },
+            label: {
+                show: true,
+                position: 'top'
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+option = {
+  title: {
+    text: 'Tech Companies Quarterly Revenue Growth',
+    left: 'center'
+  },
+  tooltip: {
+    trigger: 'axis',
+    axisPointer: {
+      type: 'cross',
+      label: {
+        backgroundColor: '#6a7985'
+      }
+    }
+  },
+  legend: {
+    data: ['Apple', 'Samsung', 'Google'],
+    top: 40
+  },
+  grid: {
+    left: '3%',
+    right: '4%',
+    bottom: '3%',
+    containLabel: true
+  },
+  toolbox: {
+    feature: {
+      saveAsImage: {}
+    }
+  },
+  xAxis: [
+    {
+      type: 'category',
+      boundaryGap: false,
+      data: ['Q1', 'Q2', 'Q3', 'Q4'],
+    }
+  ],
+  yAxis: [
+    {
+      type: 'value'
+    }
+  ],
+  series: [
+    {
+      name: 'Apple',
+      type: 'line',
+      stack: 'Total',
+      areaStyle: {},
+      emphasis: {
+        focus: 'series'
+      },
+      data: [50, 55, 60, 65, 70, 75, 80, 85],
+      color: '#ff7f0e'
+    },
+    {
+      name: 'Samsung',
+      type: 'line',
+      stack: 'Total',
+      areaStyle: {},
+      emphasis: {
+        focus: 'series'
+      },
+      data: [30, 35, 40, 45, 50, 55, 60, 65],
+      color: '#2ca02c'
+    },
+    {
+      name: 'Google',
+      type: 'line',
+      stack: 'Total',
+      label: {
+        show: true,
+        position: 'top'
+      },
+      areaStyle: {},
+      emphasis: {
+        focus: 'series'
+      },
+      data: [20, 25, 30, 35, 40, 45, 50, 55],
+      color: '#1f77b4'
+    }
+  ],
+  color: ['#ff7f0e', '#2ca02c', '#1f77b4'],
+  responsive: true,
+  animationEasing: 'elasticOut',
+  animationDelayUpdate: function (idx) {
+    return idx * 5;
+  },
+  canvasZlevel: 10
+};
+
+myChart.setOption(option, true);
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

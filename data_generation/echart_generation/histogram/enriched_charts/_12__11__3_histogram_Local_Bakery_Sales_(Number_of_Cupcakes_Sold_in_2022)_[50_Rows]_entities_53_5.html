@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Distribution of Data Points in Scientific Research',
+        left: 'center',
+        top: '20'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    xAxis: {
+        name: 'Value Ranges',
+        nameLocation: 'center',
+        nameGap: 30,
+        type: 'category',
+        data: ['0-100', '101-200', '201-300', '301-400', '401-500', '501-600', '601-700', '701-800', '801-900', '901-1000', '1001-1100', '1101-1200', '1201-1300', '1301-1400', '1401-1500', '1501-1600', '1601-1700', '1701-1800', '1801-1900', '1901-2000', '2001-2100', '2101-2200', '2201-2300', '2301-2400', '2401-2500']
+    },
+    yAxis: {
+        name: 'Frequency',
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Frequency',
+            type: 'bar',
+            barWidth: '60%',
+            itemStyle: {
+                color: '#6495ED'
+            },
+            data: [
+                5, 8, 10, 7, 6, 9, 10, 9, 8, 7, 9, 8, 7, 9, 6, 7, 8, 7, 6, 8, 6, 7, 8, 7, 9
+            ]
+        }
+    ],
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

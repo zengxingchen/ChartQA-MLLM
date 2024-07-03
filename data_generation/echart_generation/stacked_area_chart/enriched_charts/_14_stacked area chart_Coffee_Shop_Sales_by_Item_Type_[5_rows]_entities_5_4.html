@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 800, // Chart width
+    height: 600 // Chart height
+});
+var app = {};
+
+option = {
+    title: {
+        text: 'Quarterly Investment Trends',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['Stocks', 'Bonds', 'Real Estate', 'Commodities'],
+        bottom: 0
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '10%',
+        containLabel: true
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ['2023-01-01','2023-01-02','2023-01-03','2023-01-04','2023-01-05',
+                '2023-01-06','2023-01-07','2023-01-08','2023-01-09','2023-01-10',
+                '2023-01-11','2023-01-12','2023-01-13','2023-01-14','2023-01-15',
+                '2023-01-16','2023-01-17','2023-01-18','2023-01-19','2023-01-20',
+                '2023-01-21','2023-01-22','2023-01-23','2023-01-24','2023-01-25',
+                '2023-01-26','2023-01-27','2023-01-28','2023-01-29','2023-01-30']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Stocks',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: { focus: 'series' },
+            data: [12000,11850,11900,12300,12200,12350,12700,12800,12950,13000,
+                   13100,12900,13200,13300,13150,13500,13600,13650,13700,13900,
+                   14100,14200,14300,14500,14600,14550,14650,14700,14800,15000]
+        },
+        {
+            name: 'Bonds',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: { focus: 'series' },
+            data: [5000,5200,5300,5400,5500,5600,5700,5800,5900,6000,
+                   6100,6200,6300,6400,6500,6600,6700,6800,6900,7000,
+                   7100,7200,7300,7400,7500,7600,7700,7800,7900,8000]
+        },
+        {
+            name: 'Real Estate',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: { focus: 'series' },
+            data: [7200,7300,7450,7550,7600,7700,7800,7900,8000,8150,
+                   8300,8350,8450,8550,8600,8700,8750,8800,8900,9000,
+                   9100,9200,9300,9400,9500,9600,9650,9700,9750,9800]
+        },
+        {
+            name: 'Commodities',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: { focus: 'series' },
+            data: [3000,3200,3300,3400,3300,3500,3400,3600,3700,3800,
+                   3700,3800,3900,4000,4100,4200,4300,4400,4500,4600,
+                   4700,4800,4900,5000,5100,5200,5300,5400,5500,5600]
+        }
+    ],
+    color: ['#3366CC', '#DC3912', '#FF9900', '#109618'], // Color scheme
+    textStyle: {
+        fontFamily: 'Arial'
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

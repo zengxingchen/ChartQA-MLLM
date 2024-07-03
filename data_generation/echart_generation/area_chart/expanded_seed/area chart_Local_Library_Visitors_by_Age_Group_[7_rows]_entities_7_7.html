@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+var option;
+
+var ageGroups = ['0-12', '13-18', '19-24', '25-34', '35-49', '50-64', '65+'];
+var visitorsData = [120, 95, 80, 110, 130, 90, 70];
+
+option = {
+    title: {
+        text: 'Visitors by Age Group',
+        subtext: 'Sample Area Chart',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            label: {
+                backgroundColor: '#6a7985'
+            }
+        }
+    },
+    legend: {
+        data: ['Visitors'],
+        bottom: 10
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {},
+            restore: {},
+            dataView: {},
+            magicType: {
+                type: ['stack', 'tiled']
+            },
+            dataZoom: {
+                yAxisIndex: 'none'
+            }
+        }
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ageGroups
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [{
+        name: 'Visitors',
+        type: 'line',
+        stack: 'Total',
+        areaStyle: {},
+        emphasis: {
+            focus: 'series'
+        },
+        data: visitorsData,
+        smooth: true, // enables smooth transition
+        symbol: 'circle',
+        symbolSize: 10,
+        itemStyle: {
+            borderWidth: 3,
+            borderColor: '#ffffff',
+            color: (params) => {
+                // Gradient color for each data point
+                var colorList = [
+                    '#c23531', '#2f4554', '#61a0a8', '#d48265', 
+                    '#91c7ae', '#749f83', '#ca8622'
+                ];
+                return colorList[params.dataIndex];
+            }
+        },
+        markPoint: {
+            data: [
+                { type: 'max', name: 'Max' },
+                { type: 'min', name: 'Min' }
+            ]
+        },
+        markLine: {
+            data: [{ type: 'average', name: 'Average' }]
+        }
+    }],
+    color: ['#3398DB'],
+    backgroundColor: '#f5f5f5',
+    animationEasing: 'elasticOut',
+    animationDelayUpdate: function (idx) {
+        return idx * 5;
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

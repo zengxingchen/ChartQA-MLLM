@@ -1,0 +1,194 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": 500,
+    "height": 300,
+    "data": {
+        "values": [
+            {
+                "Quarter": "Q1 2020",
+                "Agriculture": 15000,
+                "Manufacturing": 28000,
+                "Services": 32000,
+                "Technology": 26000,
+                "Healthcare": 19000
+            },
+            {
+                "Quarter": "Q2 2020",
+                "Agriculture": 17000,
+                "Manufacturing": 26000,
+                "Services": 34000,
+                "Technology": 27000,
+                "Healthcare": 20000
+            },
+            {
+                "Quarter": "Q3 2020",
+                "Agriculture": 16000,
+                "Manufacturing": 27000,
+                "Services": 33000,
+                "Technology": 28000,
+                "Healthcare": 21000
+            },
+            {
+                "Quarter": "Q4 2020",
+                "Agriculture": 18000,
+                "Manufacturing": 29000,
+                "Services": 35000,
+                "Technology": 29000,
+                "Healthcare": 22000
+            },
+            {
+                "Quarter": "Q1 2021",
+                "Agriculture": 15500,
+                "Manufacturing": 28500,
+                "Services": 32500,
+                "Technology": 26500,
+                "Healthcare": 19500
+            },
+            {
+                "Quarter": "Q2 2021",
+                "Agriculture": 17500,
+                "Manufacturing": 26500,
+                "Services": 34500,
+                "Technology": 27500,
+                "Healthcare": 20500
+            },
+            {
+                "Quarter": "Q3 2021",
+                "Agriculture": 16500,
+                "Manufacturing": 27500,
+                "Services": 33500,
+                "Technology": 28500,
+                "Healthcare": 21500
+            },
+            {
+                "Quarter": "Q4 2021",
+                "Agriculture": 18500,
+                "Manufacturing": 29500,
+                "Services": 35500,
+                "Technology": 29500,
+                "Healthcare": 22500
+            },
+            {
+                "Quarter": "Q1 2022",
+                "Agriculture": 16000,
+                "Manufacturing": 28000,
+                "Services": 32000,
+                "Technology": 26000,
+                "Healthcare": 19000
+            },
+            {
+                "Quarter": "Q2 2022",
+                "Agriculture": 17000,
+                "Manufacturing": 26500,
+                "Services": 34500,
+                "Technology": 27500,
+                "Healthcare": 20500
+            },
+            {
+                "Quarter": "Q3 2022",
+                "Agriculture": 16500,
+                "Manufacturing": 27500,
+                "Services": 33500,
+                "Technology": 28500,
+                "Healthcare": 21500
+            },
+            {
+                "Quarter": "Q4 2022",
+                "Agriculture": 18500,
+                "Manufacturing": 30000,
+                "Services": 36000,
+                "Technology": 30000,
+                "Healthcare": 23000
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Agriculture",
+                "Manufacturing",
+                "Services",
+                "Technology",
+                "Healthcare"
+            ],
+            "as": [
+                "Sector",
+                "Profit"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "area",
+        "opacity": 0.6
+    },
+    "encoding": {
+        "x": {
+            "field": "Quarter",
+            "type": "ordinal",
+            "title": "Quarter"
+        },
+        "y": {
+            "field": "Profit",
+            "type": "quantitative",
+            "title": "Quarterly Profit",
+            "stack": "zero"
+        },
+        "color": {
+            "field": "Sector",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Agriculture",
+                    "Manufacturing",
+                    "Services",
+                    "Technology",
+                    "Healthcare"
+                ],
+                "range": [
+                    "#4e79a7",
+                    "#f28e2c",
+                    "#e15759",
+                    "#76b7b2",
+                    "#59a14f"
+                ]
+            },
+            "title": "Sector"
+        },
+        "tooltip": [
+            {
+                "field": "Sector",
+                "type": "nominal"
+            },
+            {
+                "field": "Profit",
+                "type": "quantitative",
+                "format": ",.0f"
+            }
+        ]
+    },
+    "title": {
+        "text": "Quarterly Profit by Sector",
+        "fontsize": 16,
+        "subtitleFontSize": 12,
+        "anchor": "start",
+        "offset": 20,
+        "color": "black"
+    },
+    "config": {
+        "axis": {
+            "labelFontSize": 10,
+            "titleFontSize": 12
+        },
+        "legend": {
+            "labelFontSize": 10,
+            "titleFontSize": 12,
+            "orient": "top-left",
+            "offset": 0
+        },
+        "style": {
+            "cell": {
+                "stroke": "transparent"
+            }
+        }
+    }
+}

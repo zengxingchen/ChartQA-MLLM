@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var data = [{'Week': 'Week 1', 'Yoga': 30, 'Pilates': 25, 'Zumba': 45, 'Painting Class': 20, 'Cooking Class': 15, 'Photography Workshop': 10},
+{'Week': 'Week 2', 'Yoga': 32, 'Pilates': 26, 'Zumba': 50, 'Painting Class': 22, 'Cooking Class': 15, 'Photography Workshop': 12},
+{'Week': 'Week 3', 'Yoga': 35, 'Pilates': 30, 'Zumba': 55, 'Painting Class': 25, 'Cooking Class': 18, 'Photography Workshop': 13},
+{'Week': 'Week 4', 'Yoga': 38, 'Pilates': 28, 'Zumba': 60, 'Painting Class': 27, 'Cooking Class': 20, 'Photography Workshop': 15},
+{'Week': 'Week 5', 'Yoga': 40, 'Pilates': 26, 'Zumba': 65, 'Painting Class': 28, 'Cooking Class': 22, 'Photography Workshop': 14},
+{'Week': 'Week 6', 'Yoga': 42, 'Pilates': 27, 'Zumba': 68, 'Painting Class': 30, 'Cooking Class': 23, 'Photography Workshop': 16},
+{'Week': 'Week 7', 'Yoga': 45, 'Pilates': 29, 'Zumba': 70, 'Painting Class': 32, 'Cooking Class': 25, 'Photography Workshop': 18},
+{'Week': 'Week 8', 'Yoga': 40, 'Pilates': 30, 'Zumba': 72, 'Painting Class': 33, 'Cooking Class': 26, 'Photography Workshop': 17},
+{'Week': 'Week 9', 'Yoga': 38, 'Pilates': 32, 'Zumba': 75, 'Painting Class': 34, 'Cooking Class': 27, 'Photography Workshop': 20},
+{'Week': 'Week 10', 'Yoga': 37, 'Pilates': 34, 'Zumba': 70, 'Painting Class': 36, 'Cooking Class': 28, 'Photography Workshop': 21},
+{'Week': 'Week 11', 'Yoga': 35, 'Pilates': 35, 'Zumba': 65, 'Painting Class': 37, 'Cooking Class': 30, 'Photography Workshop': 22},
+{'Week': 'Week 12', 'Yoga': 34, 'Pilates': 37, 'Zumba': 68, 'Painting Class': 39, 'Cooking Class': 32, 'Photography Workshop': 24}];
+
+var weeks = data.map(function(item) {
+    return item.Week;
+});
+var series = [];
+var legendData = [];
+var activities = Object.keys(data[0]).filter(function(key) {
+    return key !== 'Week';
+});
+
+activities.forEach(function(activity) {
+    legendData.push(activity);
+    var seriesData = data.map(function(item) {
+        return item[activity];
+    });
+    series.push({
+        name: activity,
+        type: 'bar',
+        stack: 'total',
+        emphasis: {
+            focus: 'series'
+        },
+        data: seriesData
+    });
+});
+
+option = {
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: legendData
+    },
+    toolbox: {
+        show: true,
+        feature: {
+            magicType: {show: true, type: ['stack', 'tiled']},
+            saveAsImage: {show: true}
+        }
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: true,
+        data: weeks
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: series,
+    color: ['#5470C6', '#91CC75', '#EE6666', '#73C0DE', '#3BA272', '#FC8452']
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

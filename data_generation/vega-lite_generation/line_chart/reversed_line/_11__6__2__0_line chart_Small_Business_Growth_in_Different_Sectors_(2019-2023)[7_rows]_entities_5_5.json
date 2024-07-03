@@ -1,0 +1,130 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Line chart of average annual rainfall by region over recent years",
+    "data": {
+        "values": [
+            {
+                "Year": 2019,
+                "Americas": 1200,
+                "Europe": 800,
+                "Asia": 1500,
+                "Africa": 600,
+                "Oceania": 1100,
+                "Antarctica": 50
+            },
+            {
+                "Year": 2020,
+                "Americas": 1250,
+                "Europe": 850,
+                "Asia": 1550,
+                "Africa": 650,
+                "Oceania": 1150,
+                "Antarctica": 55
+            },
+            {
+                "Year": 2021,
+                "Americas": 1300,
+                "Europe": 900,
+                "Asia": 1600,
+                "Africa": 700,
+                "Oceania": 1200,
+                "Antarctica": 60
+            },
+            {
+                "Year": 2022,
+                "Americas": 1350,
+                "Europe": 950,
+                "Asia": 1650,
+                "Africa": 750,
+                "Oceania": 1250,
+                "Antarctica": 65
+            },
+            {
+                "Year": 2023,
+                "Americas": 1400,
+                "Europe": 1000,
+                "Asia": 1700,
+                "Africa": 800,
+                "Oceania": 1300,
+                "Antarctica": 70
+            },
+            {
+                "Year": 2024,
+                "Americas": 1450,
+                "Europe": 1050,
+                "Asia": 1750,
+                "Africa": 850,
+                "Oceania": 1350,
+                "Antarctica": 75
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Americas",
+                "Europe",
+                "Asia",
+                "Africa",
+                "Oceania",
+                "Antarctica"
+            ],
+            "as": [
+                "Region",
+                "Rainfall"
+            ]
+        }
+    ],
+    "width": 900,
+    "height": 600,
+    "mark": {
+        "type": "line",
+        "point": true
+    },
+    "encoding": {
+        "x": {
+            "field": "Year",
+            "type": "ordinal",
+            "title": "Year"
+        },
+        "y": {
+            "field": "Rainfall",
+            "type": "quantitative",
+            "title": "Average Annual Rainfall (mm)",
+            "scale": {
+                "reverse": true
+            },
+            "axis": {
+                "format": ".1f"
+            }
+        },
+        "color": {
+            "field": "Region",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Americas",
+                    "Europe",
+                    "Asia",
+                    "Africa",
+                    "Oceania",
+                    "Antarctica"
+                ],
+                "range": [
+                    "#FF5733",
+                    "#33FF57",
+                    "#3357FF",
+                    "#FF33A1",
+                    "#33FFF5",
+                    "#FF5733"
+                ]
+            },
+            "title": "Region"
+        }
+    },
+    "config": {
+        "axisY": {
+            "minExtent": 30
+        }
+    }
+}

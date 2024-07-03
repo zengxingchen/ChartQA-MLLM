@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var option;
+
+// Prepare dates for x-axis and separate datasets for each drink type
+const data = [{'Date': '2023-02-01', 'Espresso': 50, 'Americano': 75, 'Cappuccino': 120, 'Latte': 90, 'Tea': 60, 'Specialty Drinks': 45},
+              {'Date': '2023-02-02', 'Espresso': 45, 'Americano': 70, 'Cappuccino': 115, 'Latte': 85, 'Tea': 55, 'Specialty Drinks': 40},
+              {'Date': '2023-02-03', 'Espresso': 60, 'Americano': 80, 'Cappuccino': 130, 'Latte': 95, 'Tea': 65, 'Specialty Drinks': 50},
+              {'Date': '2023-02-04', 'Espresso': 70, 'Americano': 90, 'Cappuccino': 140, 'Latte': 100, 'Tea': 70, 'Specialty Drinks': 60},
+              {'Date': '2023-02-05', 'Espresso': 65, 'Americano': 85, 'Cappuccino': 135, 'Latte': 96, 'Tea': 68, 'Specialty Drinks': 55},
+              {'Date': '2023-02-06', 'Espresso': 55, 'Americano': 78, 'Cappuccino': 125, 'Latte': 92, 'Tea': 64, 'Specialty Drinks': 48},
+              {'Date': '2023-02-07', 'Espresso': 48, 'Americano': 76, 'Cappuccino': 120, 'Latte': 89, 'Tea': 62, 'Specialty Drinks': 44},
+              {'Date': '2023-02-08', 'Espresso': 52, 'Americano': 79, 'Cappuccino': 128, 'Latte': 93, 'Tea': 66, 'Specialty Drinks': 51},
+              {'Date': '2023-02-09', 'Espresso': 50, 'Americano': 80, 'Cappuccino': 124, 'Latte': 96, 'Tea': 68, 'Specialty Drinks': 49},
+              {'Date': '2023-02-10', 'Espresso': 65, 'Americano': 90, 'Cappuccino': 133, 'Latte': 102, 'Tea': 70, 'Specialty Drinks': 58},
+              {'Date': '2023-02-11', 'Espresso': 75, 'Americano': 95, 'Cappuccino': 145, 'Latte': 110, 'Tea': 75, 'Specialty Drinks': 65},
+              {'Date': '2023-02-12', 'Espresso': 60, 'Americano': 85, 'Cappuccino': 138, 'Latte': 99, 'Tea': 72, 'Specialty Drinks': 56},
+              {'Date': '2023-02-13', 'Espresso': 55, 'Americano': 77, 'Cappuccino': 121, 'Latte': 88, 'Tea': 63, 'Specialty Drinks': 45},
+              {'Date': '2023-02-14', 'Espresso': 80, 'Americano': 100, 'Cappuccino': 150, 'Latte': 120, 'Tea': 80, 'Specialty Drinks': 70},
+              {'Date': '2023-02-15', 'Espresso': 58, 'Americano': 84, 'Cappuccino': 126, 'Latte': 94, 'Tea': 67, 'Specialty Drinks': 53}];
+
+let dates = data.map(item => item.Date);
+let seriesData = {
+  'Espresso': data.map(item => item.Espresso),
+  'Americano': data.map(item => item.Americano),
+  'Cappuccino': data.map(item => item.Cappuccino),
+  'Latte': data.map(item => item.Latte),
+  'Tea': data.map(item => item.Tea),
+  'Specialty Drinks': data.map(item => item['Specialty Drinks'])
+};
+
+option = {
+  tooltip: {
+    trigger: 'axis',
+    axisPointer: {
+      type: 'cross',
+      label: {
+        backgroundColor: '#6a7985'
+      }
+    }
+  },
+  legend: {
+    data: ['Espresso', 'Americano', 'Cappuccino', 'Latte', 'Tea', 'Specialty Drinks']
+  },
+  toolbox: {
+    feature: {
+      saveAsImage: {}
+    }
+  },
+  grid: {
+    left: '3%',
+    right: '4%',
+    bottom: '3%',
+    containLabel: true
+  },
+  xAxis: [{
+    type: 'category',
+    boundaryGap: false,
+    data: dates
+  }],
+  yAxis: [{
+    type: 'value'
+  }],
+  series: [
+    {
+      name: 'Espresso',
+      type: 'line',
+      stack: 'total',
+      areaStyle: {},
+      emphasis: { focus: 'series' },
+      data: seriesData.Espresso
+    },
+    {
+      name: 'Americano',
+      type: 'line',
+      stack: 'total',
+      areaStyle: {},
+      emphasis: { focus: 'series' },
+      data: seriesData.Americano
+    },
+    {
+      name: 'Cappuccino',
+      type: 'line',
+      stack: 'total',
+      areaStyle: {},
+      emphasis: { focus: 'series' },
+      data: seriesData.Cappuccino
+    },
+    {
+      name: 'Latte',
+      type: 'line',
+      stack: 'total',
+      areaStyle: {},
+      emphasis: { focus: 'series' },
+      data: seriesData.Latte
+    },
+    {
+      name: 'Tea',
+      type: 'line',
+      stack: 'total',
+      areaStyle: {},
+      emphasis: { focus: 'series' },
+      data: seriesData.Tea
+    },
+    {
+      name: 'Specialty Drinks',
+      type: 'line',
+      stack: 'total',
+      areaStyle: {},
+      emphasis: { focus: 'series' },
+      data: seriesData['Specialty Drinks']
+    }
+  ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

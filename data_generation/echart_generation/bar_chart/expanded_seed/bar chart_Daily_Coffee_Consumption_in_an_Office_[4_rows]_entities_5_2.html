@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+// Data preprocessing
+var days = [];
+var coffeeCups = [];
+var chartData = [
+    {'Day': 'Monday', 'Number of Coffee Cups': 75},
+    {'Day': 'Tuesday', 'Number of Coffee Cups': 63},
+    {'Day': 'Wednesday', 'Number of Coffee Cups': 82},
+    {'Day': 'Thursday', 'Number of Coffee Cups': 56},
+    {'Day': 'Friday', 'Number of Coffee Cups': 94}
+];
+
+chartData.forEach(function(item) {
+    days.push(item.Day);
+    coffeeCups.push(item['Number of Coffee Cups']);
+});
+
+option = {
+    color: ['#3398DB'],
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: [{
+        type: 'category',
+        data: days,
+        axisTick: {
+            alignWithLabel: true
+        },
+        axisLabel: {
+            show: true,
+            color: 'green',
+            rotate: 45,
+            interval: 0
+        }
+    }],
+    yAxis: [{
+        type: 'value',
+        name: 'Cups',
+        axisLabel: {
+            formatter: '{value} cups'
+        },
+        splitLine: {
+            show: false
+        }
+    }],
+    series: [{
+        name: 'Number of Coffee Cups',
+        type: 'bar',
+        barWidth: '60%',
+        data: coffeeCups,
+        itemStyle: {
+            barBorderRadius: 5,
+            color: function(param) {
+                var colorList = ['#C1232B', '#B5C334', '#FCCE10', '#E87C25', '#27727B'];
+                return colorList[param.dataIndex];
+            }
+        },
+        markPoint: {
+            data: [
+                {type: 'max', name: 'Max'},
+                {type: 'min', name: 'Min'}
+            ]
+        },
+        markLine: {
+            data: [
+                {type: 'average', name: 'Average'}
+            ],
+            symbol: ['none', 'none'],
+            label: {
+                position: 'end'
+            }
+        }
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

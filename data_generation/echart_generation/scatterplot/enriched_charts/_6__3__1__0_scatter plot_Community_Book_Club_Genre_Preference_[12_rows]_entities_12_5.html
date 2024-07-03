@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false
+});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Sleep Patterns vs. Cognitive Performance',
+        left: 'center',
+        top: '5%'
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: '{a} <br/>{b} : {c}'
+    },
+    legend: {
+        data: ['Data Points'],
+        top: '10%',
+        left: 'center'
+    },
+    xAxis: {
+        type: 'value',
+        name: 'Hours of Sleep',
+        nameLocation: 'middle',
+        nameGap: 30
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Cognitive Performance Score',
+        nameLocation: 'middle',
+        nameGap: 50
+    },
+    series: [
+        {
+            name: 'Data Points',
+            type: 'scatter',
+            data: [
+                [8, 90],
+                [7, 85],
+                [6, 80],
+                [9, 88],
+                [5, 70],
+                [8.5, 92],
+                [7.5, 87],
+                [6.5, 82],
+                [8, 91],
+                [7, 84],
+                [5.5, 73],
+                [9.5, 89],
+                [4, 60],
+                [10, 95],
+                [3, 55],
+                [8, 93],
+                [6, 81],
+                [7.5, 86],
+                [5, 72],
+                [8.5, 94]
+            ],
+            itemStyle: {
+                color: '#1f77b4'
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

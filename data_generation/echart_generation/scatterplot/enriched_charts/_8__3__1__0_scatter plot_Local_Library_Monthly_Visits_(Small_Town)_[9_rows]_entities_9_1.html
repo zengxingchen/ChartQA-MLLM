@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+option = {
+    title: {
+        text: 'Impact of Exercise Duration on Weight Loss',
+        left: 'center',
+        top: '10%',
+        textStyle: {
+            color: '#333333',
+            fontSize: 20
+        }
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['Weight Loss'],
+        left: 'left',
+        top: '15%'
+    },
+    xAxis: {
+        name: 'Time (weeks)',
+        type: 'value',
+        min: 0,
+        max: 30,
+        interval: 5,
+        axisLine: {
+            lineStyle: {
+                color: '#000000'
+            }
+        },
+        axisLabel: {
+            formatter: '{value}'
+        }
+    },
+    yAxis: {
+        name: 'Weight Loss (kg)',
+        type: 'value',
+        min: 0,
+        max: 10,
+        interval: 2,
+        axisLine: {
+            lineStyle: {
+                color: '#000000'
+            }
+        },
+        axisLabel: {
+            formatter: '{value}'
+        }
+    },
+    series: [{
+        name: 'Weight Loss',
+        type: 'scatter',
+        itemStyle: {
+            color: '#FF6347'
+        },
+        data: [
+            [1, 10], [2, 9], [3, 8.5], [4, 8], [5, 7.5],
+            [6, 7], [7, 6.8], [8, 6.5], [9, 6], [10, 5.5],
+            [11, 5.2], [12, 5], [13, 4.8], [14, 4.6], [15, 4.4],
+            [16, 4.2], [17, 4], [18, 3.8], [19, 3.6], [20, 3.5],
+            [21, 3.4], [22, 3.2], [23, 3.1], [24, 3], [25, 2.9],
+            [26, 2.8], [27, 2.7], [28, 2.6], [29, 2.5], [30, 2.4]
+        ]
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

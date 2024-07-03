@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 800, // Increase width
+    height: 500 // Increase height
+});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Online Course Enrollments Trend',
+        left: 'center',
+        top: 20
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['Enrollments'],
+        top: 50
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+    },
+    yAxis: {
+        type: 'value',
+        axisLabel: {
+            formatter: '{value} enrollments'
+        }
+    },
+    series: [
+        {
+            name: 'Enrollments',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [
+                {value: 2000, label: {show: true, position: 'top'}},
+                {value: 2200, label: {show: true, position: 'top'}},
+                {value: 2400, label: {show: true, position: 'top'}},
+                {value: 2800, label: {show: true, position: 'top'}},
+                {value: 3300, label: {show: true, position: 'top'}},
+                {value: 4000, label: {show: true, position: 'top'}},
+                {value: 4500, label: {show: true, position: 'top'}},
+                {value: 4700, label: {show: true, position: 'top'}},
+                {value: 5300, label: {show: true, position: 'top'}},
+                {value: 5900, label: {show: true, position: 'top'}},
+                {value: 6400, label: {show: true, position: 'top'}},
+                {value: 7000, label: {show: true, position: 'top'}}
+            ],
+            color: ['#ff7f0e'] // Modified color scheme
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

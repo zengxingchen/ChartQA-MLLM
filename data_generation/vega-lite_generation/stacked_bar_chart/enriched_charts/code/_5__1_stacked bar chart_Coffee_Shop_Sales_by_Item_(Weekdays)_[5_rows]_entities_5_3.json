@@ -1,0 +1,165 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+        "values": [
+            {
+                "Genre": "Fiction",
+                "Elementary": 20,
+                "Middle School": 25,
+                "High School": 30,
+                "Adults": 15
+            },
+            {
+                "Genre": "Non-Fiction",
+                "Elementary": 15,
+                "Middle School": 20,
+                "High School": 35,
+                "Adults": 20
+            },
+            {
+                "Genre": "Poetry",
+                "Elementary": 10,
+                "Middle School": 15,
+                "High School": 20,
+                "Adults": 25
+            },
+            {
+                "Genre": "Drama",
+                "Elementary": 5,
+                "Middle School": 10,
+                "High School": 15,
+                "Adults": 30
+            },
+            {
+                "Genre": "Fantasy",
+                "Elementary": 25,
+                "Middle School": 30,
+                "High School": 40,
+                "Adults": 10
+            },
+            {
+                "Genre": "Science Fiction",
+                "Elementary": 8,
+                "Middle School": 12,
+                "High School": 18,
+                "Adults": 22
+            },
+            {
+                "Genre": "Biography",
+                "Elementary": 12,
+                "Middle School": 18,
+                "High School": 24,
+                "Adults": 16
+            },
+            {
+                "Genre": "Mystery",
+                "Elementary": 15,
+                "Middle School": 22,
+                "High School": 28,
+                "Adults": 20
+            },
+            {
+                "Genre": "Historical",
+                "Elementary": 10,
+                "Middle School": 15,
+                "High School": 20,
+                "Adults": 30
+            },
+            {
+                "Genre": "Adventure",
+                "Elementary": 18,
+                "Middle School": 25,
+                "High School": 32,
+                "Adults": 14
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Elementary",
+                "Middle School",
+                "High School",
+                "Adults"
+            ],
+            "as": [
+                "EducationLevel",
+                "Readers"
+            ]
+        }
+    ],
+    "mark": "bar",
+    "width": 400,
+    "height": 600,
+    "title": {
+        "text": "Reading Preferences by Education Level",
+        "anchor": "middle",
+        "fontSize": 18,
+        "fontWeight": "bold",
+        "dy": -20
+    },
+    "encoding": {
+        "x": {
+            "field": "Genre",
+            "type": "nominal",
+            "axis": {
+                "title": "Genre"
+            }
+        },
+        "y": {
+            "field": "Readers",
+            "type": "quantitative",
+            "stack": "zero",
+            "axis": {
+                "title": "Number of Readers"
+            }
+        },
+        "color": {
+            "field": "EducationLevel",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Elementary",
+                    "Middle School",
+                    "High School",
+                    "Adults"
+                ],
+                "range": [
+                    "#4e79a7",
+                    "#f28e2b",
+                    "#e15759",
+                    "#76b7b2"
+                ]
+            },
+            "legend": {
+                "orient": "bottom"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Genre",
+                "type": "nominal",
+                "title": "Genre"
+            },
+            {
+                "field": "EducationLevel",
+                "type": "nominal",
+                "title": "Education Level"
+            },
+            {
+                "field": "Readers",
+                "type": "quantitative",
+                "title": "Number of Readers"
+            }
+        ]
+    },
+    "config": {
+        "bar": {
+            "binSpacing": 1,
+            "width": 30,
+            "height": {
+                "band": 0.8
+            }
+        }
+    }
+}

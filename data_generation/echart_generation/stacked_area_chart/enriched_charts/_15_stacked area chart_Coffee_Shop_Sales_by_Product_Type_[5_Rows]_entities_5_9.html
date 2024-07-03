@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 800,
+    height: 600
+});
+var app = {};
+option = null;
+option = {
+    title: {
+        text: 'Quarterly Revenue Trends of Tech Giants',
+        left: 'center',
+        textStyle: {
+            fontSize: 24
+        }
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['Apple', 'Google', 'Amazon', 'Facebook'],
+        top: '8%'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ['Q1-2019', 'Q2-2019', 'Q3-2019', 'Q4-2019', 'Q1-2020', 'Q2-2020', 'Q3-2020', 'Q4-2020', 'Q1-2021', 'Q2-2021', 'Q3-2021', 'Q4-2021', 'Q1-2022', 'Q2-2022']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Apple',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: { focus: 'series' },
+            data: [58, 53.8, 64, 91.8, 58.3, 59.7, 64.7, 111.4, 89.6, 81.4, 83.4, 123.9, 97.3, 83],
+            itemStyle: {
+                color: '#A2A5F9'
+            }
+        },
+        {
+            name: 'Google',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: { focus: 'series' },
+            data: [36.3, 38.9, 40.5, 46.1, 41.1, 38.3, 46.2, 52.9, 55.3, 61.9, 65.1, 75.3, 68, 70.8],
+            itemStyle: {
+                color: '#F9A2A5'
+            }
+        },
+        {
+            name: 'Amazon',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: { focus: 'series' },
+            data: [59.7, 63.4, 70, 87.4, 75.5, 88.9, 96.1, 125.6, 108.5, 113.1, 110.8, 137.4, 116.4, 121.2],
+            itemStyle: {
+                color: '#F5F1A2'
+            }
+        },
+        {
+            name: 'Facebook',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: { focus: 'series' },
+            data: [15.1, 16.6, 17.4, 21, 17.7, 18.7, 21.5, 28, 26.1, 29.1, 29, 33.7, 27.9, 29.8],
+            itemStyle: {
+                color: '#A2F9E6'
+            }
+        }
+    ],
+    dataZoom: [
+        {
+            start: 0,
+            end: 100
+        },
+        {
+            type: 'inside'
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

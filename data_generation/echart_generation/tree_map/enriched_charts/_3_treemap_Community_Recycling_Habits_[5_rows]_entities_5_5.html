@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Popularity and Employment in Fields of Study',
+        left: 'center',
+        top: 'top',
+        textStyle: {
+            color: '#333',
+            fontWeight: 'bold',
+            fontSize: 20
+        }
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: '{b}: {c}'
+    },
+    series: [
+        {
+            type: 'treemap',
+            data: [
+                {name: 'Science', value: 120},
+                {name: 'Biology', value: 80},
+                {name: 'Physics', value: 40},
+                {name: 'Chemistry', value: 50},
+                {name: 'Mathematics', value: 100},
+                {name: 'Algebra', value: 30},
+                {name: 'Calculus', value: 30},
+                {name: 'Statistics', value: 40},
+                {name: 'Technology', value: 150},
+                {name: 'Information Technology', value: 70},
+                {name: 'Computer Science', value: 50},
+                {name: 'Software Engineering', value: 30},
+                {name: 'Engineering', value: 125},
+                {name: 'Mechanical Engineering', value: 40},
+                {name: 'Electrical Engineering', value: 35},
+                {name: 'Civil Engineering', value: 30},
+                {name: 'Aerospace Engineering', value: 20},
+                {name: 'Humanities', value: 70},
+                {name: 'History', value: 20},
+                {name: 'Philosophy', value: 15},
+                {name: 'Arts', value: 35},
+                {name: 'Social Sciences', value: 75},
+                {name: 'Psychology', value: 35},
+                {name: 'Economics', value: 25},
+                {name: 'Sociology', value: 15},
+            ],
+            leafDepth: 1,
+            levels: [
+                {
+                    itemStyle: {
+                        borderColor: '#555',
+                        borderWidth: 4,
+                        gapWidth: 2
+                    }
+                },
+                {
+                    colorSaturation: [0.3, 0.6],
+                    itemStyle: {
+                        borderColorSaturation: 0.7,
+                        gapWidth: 2,
+                        borderWidth: 2
+                    }
+                },
+                {
+                    colorSaturation: [0.3, 0.5],
+                    itemStyle: {
+                        borderColorSaturation: 0.6,
+                        gapWidth: 1
+                    }
+                }
+            ],
+            color: [
+                '#60acfc', '#32d3eb', '#5bc49f', '#feb64d', '#ff7c7c',
+                '#9287e7', '#d4ec59', '#43b883', '#dcbdfb', '#f2db9b',
+                '#bce672', '#9d96f5', '#f15755', '#6fccc5', '#626c91'
+            ]
+        }
+    ],
+    breadcrumb: {
+        show: false
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

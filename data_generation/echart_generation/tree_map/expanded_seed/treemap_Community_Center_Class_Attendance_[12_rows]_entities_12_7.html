@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+
+var data = [
+  {'Category': 'Health & Wellness', 'Class Type': 'Yoga', 'Age Group': 'Adults', 'Attendees': 25},
+  {'Category': 'Health & Wellness', 'Class Type': 'Meditation', 'Age Group': 'Adults', 'Attendees': 15},
+  {'Category': 'Health & Wellness', 'Class Type': 'Tai Chi', 'Age Group': 'Seniors', 'Attendees': 20},
+  {'Category': 'Arts & Crafts', 'Class Type': 'Painting', 'Age Group': 'Adults', 'Attendees': 10},
+  {'Category': 'Arts & Crafts', 'Class Type': 'Ceramics', 'Age Group': 'Adults', 'Attendees': 8},
+  {'Category': 'Arts & Crafts', 'Class Type': "Kids' Crafts", 'Age Group': 'Children', 'Attendees': 22},
+  {'Category': 'Fitness', 'Class Type': 'Aerobics', 'Age Group': 'Adults', 'Attendees': 18},
+  {'Category': 'Fitness', 'Class Type': 'Zumba', 'Age Group': 'Adults', 'Attendees': 20},
+  {'Category': 'Fitness', 'Class Type': 'Karate', 'Age Group': 'Kids', 'Attendees': 30},
+  {'Category': 'Education', 'Class Type': 'Language Classes', 'Age Group': 'Adults', 'Attendees': 12},
+  {'Category': 'Education', 'Class Type': 'Computer Skills', 'Age Group': 'Seniors', 'Attendees': 14},
+  {'Category': 'Education', 'Class Type': 'Tutoring', 'Age Group': 'Teens', 'Attendees': 10}
+];
+
+// Transform data for the treemap
+var levels = ['Category', 'Class Type', 'Age Group'];
+var treeData = {name: 'Classes', children: []};
+
+for (var i = 0; i < data.length; ++i) {
+  var sequence = data[i];
+  var currentNode = treeData;
+  
+  for (var j = 0; j < levels.length; j++) {
+    var wantedNode = false;
+    var level = levels[j];
+    var value = sequence[level];
+
+    for (var k = 0; k < currentNode.children.length; k++) {
+      if(currentNode.children[k].name === value) {
+        currentNode = currentNode.children[k];
+        wantedNode = true;
+        break;
+      }
+    }
+  
+    // If we don't already have a child node for it, create it
+    if (!wantedNode) {
+      var newNode = j === levels.length - 1 ? {name: value, value: sequence.Attendees} : {name: value, children: []};
+      currentNode.children.push(newNode);
+      currentNode = newNode;
+    }
+  }
+}
+
+var option = {
+  tooltip: {
+    trigger: 'item',
+    formatter: '{b}: {c}'
+  },
+  series: [{
+    name: 'Class Attendees',
+    type: 'treemap',
+    visibleMin: 10,
+    label: {
+      show: true,
+      formatter: "{b}"
+    },
+    upperLabel: {
+      show: true,
+      height: 30
+    },
+    itemStyle: {
+      borderColor: '#fff'
+    },
+    levels: [
+      {
+        itemStyle: {
+          borderWidth: 0,
+          gapWidth: 5
+        }
+      },
+      {
+        itemStyle: {
+          gapWidth: 1
+        }
+      },
+      {
+        colorSaturation: [0.35, 0.5],
+        itemStyle: {
+          gapWidth: 1,
+          borderColorSaturation: 0.6
+        }
+      }
+    ],
+    data: treeData.children
+  }]
+};
+
+if (option && typeof option === 'object') {
+  myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

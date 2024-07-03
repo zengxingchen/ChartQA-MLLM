@@ -1,0 +1,130 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "A scatter plot showing the relationship between the amount of fertilizer used and the yields of tomatoes, cucumbers, and carrots per month.",
+    "title": {
+        "text": "Crop Yields vs Fertilizer Usage by Month",
+        "subtitle": [
+            "Analyzing the effect of fertilizer on crop yields over time."
+        ],
+        "subtitleFontStyle": "italic",
+        "subtitleFontSize": 10,
+        "anchor": "start",
+        "color": "black"
+    },
+    "data": {
+        "values": [
+            {
+                "Month": "May",
+                "Fertilizer Used (kg)": 10,
+                "Tomato Yield (kg)": 50,
+                "Cucumber Yield (kg)": 40,
+                "Carrot Yield (kg)": 30
+            },
+            {
+                "Month": "June",
+                "Fertilizer Used (kg)": 15,
+                "Tomato Yield (kg)": 75,
+                "Cucumber Yield (kg)": 60,
+                "Carrot Yield (kg)": 45
+            },
+            {
+                "Month": "July",
+                "Fertilizer Used (kg)": 20,
+                "Tomato Yield (kg)": 80,
+                "Cucumber Yield (kg)": 70,
+                "Carrot Yield (kg)": 50
+            },
+            {
+                "Month": "August",
+                "Fertilizer Used (kg)": 12,
+                "Tomato Yield (kg)": 60,
+                "Cucumber Yield (kg)": 55,
+                "Carrot Yield (kg)": 40
+            },
+            {
+                "Month": "September",
+                "Fertilizer Used (kg)": 8,
+                "Tomato Yield (kg)": 30,
+                "Cucumber Yield (kg)": 25,
+                "Carrot Yield (kg)": 20
+            },
+            {
+                "Month": "October",
+                "Fertilizer Used (kg)": 5,
+                "Tomato Yield (kg)": 20,
+                "Cucumber Yield (kg)": 10,
+                "Carrot Yield (kg)": 10
+            },
+            {
+                "Month": "November",
+                "Fertilizer Used (kg)": 3,
+                "Tomato Yield (kg)": 10,
+                "Cucumber Yield (kg)": 5,
+                "Carrot Yield (kg)": 5
+            },
+            {
+                "Month": "December",
+                "Fertilizer Used (kg)": 2,
+                "Tomato Yield (kg)": 5,
+                "Cucumber Yield (kg)": 3,
+                "Carrot Yield (kg)": 2
+            }
+        ]
+    },
+    "repeat": {
+        "layer": [
+            "Tomato Yield (kg)",
+            "Cucumber Yield (kg)",
+            "Carrot Yield (kg)"
+        ]
+    },
+    "spec": {
+        "mark": "point",
+        "encoding": {
+            "x": {
+                "field": "Fertilizer Used (kg)",
+                "type": "quantitative",
+                "title": "Fertilizer Used (kg)"
+            },
+            "y": {
+                "field": {
+                    "repeat": "layer"
+                },
+                "type": "quantitative",
+                "title": "Yield (kg)"
+            },
+            "color": {
+                "datum": {
+                    "repeat": "layer"
+                },
+                "type": "nominal",
+                "legend": {
+                    "title": "Crop Type"
+                },
+                "scale": {
+                    "scheme": "set2"
+                }
+            },
+            "opacity": {
+                "value": 0.8
+            },
+            "tooltip": [
+                {
+                    "field": "Month",
+                    "type": "ordinal",
+                    "title": "Month"
+                },
+                {
+                    "field": "Fertilizer Used (kg)",
+                    "type": "quantitative",
+                    "title": "Fertilizer Used (kg)"
+                }
+            ]
+        }
+    },
+    "resolve": {
+        "scale": {
+            "y": "independent"
+        }
+    }
+}

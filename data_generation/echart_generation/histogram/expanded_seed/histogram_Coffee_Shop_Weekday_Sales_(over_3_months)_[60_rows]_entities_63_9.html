@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var data = [
+    {'Day': 'Monday', 'Sales ($)': 1120}, {'Day': 'Tuesday', 'Sales ($)': 980}, 
+    {'Day': 'Wednesday', 'Sales ($)': 875}, {'Day': 'Thursday', 'Sales ($)': 940},
+    {'Day': 'Friday', 'Sales ($)': 1100}, {'Day': 'Saturday', 'Sales ($)': 1500},
+    {'Day': 'Sunday', 'Sales ($)': 1400}, {'Day': 'Monday', 'Sales ($)': 1130},
+    {'Day': 'Tuesday', 'Sales ($)': 1070}, {'Day': 'Wednesday', 'Sales ($)': 900},
+    {'Day': 'Thursday', 'Sales ($)': 985}, {'Day': 'Friday', 'Sales ($)': 1010},
+    {'Day': 'Saturday', 'Sales ($)': 1440}, {'Day': 'Sunday', 'Sales ($)': 1360},
+    {'Day': 'Monday', 'Sales ($)': 1180}
+];
+
+function getBinRange(binSize, value) {
+    return Math.floor(value / binSize) * binSize + '-' + (Math.floor(value / binSize) * binSize + binSize - 1);
+}
+
+var binSize = 100;
+var bins = {};
+
+data.forEach(function (point) {
+    var bin = getBinRange(binSize, point['Sales ($)']);
+    if (bins[bin]) {
+        bins[bin]++;
+    } else {
+        bins[bin] = 1;
+    }
+});
+
+var seriesData = Object.keys(bins).map(function (key) {
+    return {value: bins[key], name: key};
+});
+
+option = {
+    tooltip: {},
+    xAxis: {
+        type: 'category',
+        name: 'Sales Range ($)',
+        data: seriesData.map(function (item) {
+            return item.name;
+        }),
+        axisLabel: {
+            rotate: 45, // For better label display
+        }
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Frequency'
+    },
+    series: [
+        {
+            name: 'Sales Frequency',
+            type: 'bar',
+            data: seriesData,
+            itemStyle: {
+                color: function (param) {
+                    // You can set different colors based on the data here,
+                    // for this example using a simple blue color scheme
+                    return echarts.color.lift('#749f83', param.dataIndex * 0.1);
+                },
+                barBorderRadius: 5 // Rounded corners for the bar
+            },
+            label: {
+                show: true,
+                position: 'top'
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

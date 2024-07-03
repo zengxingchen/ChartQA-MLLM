@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option = {
+    title: {
+        text: 'Distribution of Sample Data',
+        left: 'center',
+        top: '10%'
+    },
+    tooltip: {
+        trigger: 'item'
+    },
+    xAxis: {
+        type: 'category',
+        data: ['2.5-2.7', '2.8-3.0', '3.1-3.3', '3.4-3.6'],
+        axisLabel: {
+            rotate: 45,
+            textStyle: {
+                color: '#333'
+            }
+        }
+    },
+    yAxis: {
+        type: 'value',
+        axisLabel: {
+            textStyle: {
+                color: '#333'
+            }
+        }
+    },
+    series: [{
+        name: 'Frequency',
+        type: 'bar',
+        data: [
+            {value: 11, label: {show: true, position: 'top', formatter: '{c}'}},
+            {value: 14, label: {show: true, position: 'top', formatter: '{c}'}},
+            {value: 15, label: {show: true, position: 'top', formatter: '{c}'}},
+            {value: 10, label: {show: true, position: 'top', formatter: '{c}'}}
+        ],
+        itemStyle: {
+            color: function(params) {
+                var colorList = ['#FF7F50', '#87CEEB', '#DA70D6', '#32CD32'];
+                return colorList[params.dataIndex]
+            },
+            barBorderRadius: [5, 5, 0, 0]
+        },
+        barWidth: '50%'
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

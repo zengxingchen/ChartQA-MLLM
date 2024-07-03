@@ -1,0 +1,153 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Quarterly Visitor Numbers by Attraction",
+    "width": 700,
+    "height": 450,
+    "title": {
+        "text": "Quarterly Visitor Numbers by Attraction",
+        "offset": 30
+    },
+    "data": {
+        "values": [
+            {
+                "Quarter": "Q1",
+                "Beach": 3000,
+                "Mountains": 2000,
+                "City": 1800,
+                "Countryside": 1500
+            },
+            {
+                "Quarter": "Q2",
+                "Beach": 3500,
+                "Mountains": 2200,
+                "City": 1900,
+                "Countryside": 1700
+            },
+            {
+                "Quarter": "Q3",
+                "Beach": 4000,
+                "Mountains": 2400,
+                "City": 2100,
+                "Countryside": 1900
+            },
+            {
+                "Quarter": "Q4",
+                "Beach": 4500,
+                "Mountains": 2600,
+                "City": 2300,
+                "Countryside": 2100
+            },
+            {
+                "Quarter": "Q1",
+                "Beach": 3200,
+                "Mountains": 2100,
+                "City": 2000,
+                "Countryside": 1600
+            },
+            {
+                "Quarter": "Q2",
+                "Beach": 3700,
+                "Mountains": 2300,
+                "City": 2100,
+                "Countryside": 1800
+            },
+            {
+                "Quarter": "Q3",
+                "Beach": 4200,
+                "Mountains": 2500,
+                "City": 2300,
+                "Countryside": 2000
+            },
+            {
+                "Quarter": "Q4",
+                "Beach": 4700,
+                "Mountains": 2700,
+                "City": 2500,
+                "Countryside": 2200
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Beach",
+                "Mountains",
+                "City",
+                "Countryside"
+            ],
+            "as": [
+                "Attraction",
+                "Visitors"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "area",
+        "opacity": 0.8
+    },
+    "encoding": {
+        "x": {
+            "field": "Quarter",
+            "type": "ordinal",
+            "axis": {
+                "labelAngle": 0,
+                "title": "Quarter"
+            }
+        },
+        "y": {
+            "field": "Visitors",
+            "type": "quantitative",
+            "axis": {
+                "title": "Visitors"
+            }
+        },
+        "color": {
+            "field": "Attraction",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Beach",
+                    "Mountains",
+                    "City",
+                    "Countryside"
+                ],
+                "range": [
+                    "#1e90ff",
+                    "#32cd32",
+                    "#ff6347",
+                    "#ffa500"
+                ]
+            },
+            "legend": {
+                "orient": "top",
+                "title": "Attraction"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Quarter",
+                "type": "ordinal"
+            },
+            {
+                "field": "Attraction",
+                "type": "nominal",
+                "title": "Attraction"
+            },
+            {
+                "field": "Visitors",
+                "type": "quantitative",
+                "title": "Visitors"
+            }
+        ]
+    },
+    "config": {
+        "style": {
+            "cell": {
+                "stroke": "transparent"
+            }
+        },
+        "axis": {
+            "grid": true
+        }
+    }
+}

@@ -1,0 +1,191 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+        "values": [
+            {
+                "Month": "January",
+                "Stock Prices": 120,
+                "Unemployment Rate (%)": 5.5
+            },
+            {
+                "Month": "February",
+                "Stock Prices": 125,
+                "Unemployment Rate (%)": 5.4
+            },
+            {
+                "Month": "March",
+                "Stock Prices": 130,
+                "Unemployment Rate (%)": 5.3
+            },
+            {
+                "Month": "April",
+                "Stock Prices": 135,
+                "Unemployment Rate (%)": 5.2
+            },
+            {
+                "Month": "May",
+                "Stock Prices": 140,
+                "Unemployment Rate (%)": 5.1
+            },
+            {
+                "Month": "June",
+                "Stock Prices": 145,
+                "Unemployment Rate (%)": 5.0
+            },
+            {
+                "Month": "July",
+                "Stock Prices": 150,
+                "Unemployment Rate (%)": 4.9
+            },
+            {
+                "Month": "August",
+                "Stock Prices": 155,
+                "Unemployment Rate (%)": 4.8
+            },
+            {
+                "Month": "September",
+                "Stock Prices": 150,
+                "Unemployment Rate (%)": 4.9
+            },
+            {
+                "Month": "October",
+                "Stock Prices": 145,
+                "Unemployment Rate (%)": 5.0
+            },
+            {
+                "Month": "November",
+                "Stock Prices": 140,
+                "Unemployment Rate (%)": 5.1
+            },
+            {
+                "Month": "December",
+                "Stock Prices": 135,
+                "Unemployment Rate (%)": 5.2
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Stock Prices",
+                "Unemployment Rate (%)"
+            ],
+            "as": [
+                "Measure",
+                "Value"
+            ]
+        }
+    ],
+    "width": 1000,
+    "height": 500,
+    "mark": {
+        "type": "line",
+        "point": {
+            "filled": true,
+            "fill": "white"
+        },
+        "tooltip": true
+    },
+    "encoding": {
+        "x": {
+            "field": "Month",
+            "type": "ordinal",
+            "title": "Month",
+            "axis": {
+                "labelAngle": 0
+            }
+        },
+        "y": {
+            "field": "Value",
+            "type": "quantitative",
+            "title": "Value"
+        },
+        "color": {
+            "field": "Measure",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Stock Prices",
+                    "Unemployment Rate (%)"
+                ],
+                "range": [
+                    "#1E90FF",
+                    "#FF4500"
+                ]
+            },
+            "legend": {
+                "title": "Measure"
+            }
+        }
+    },
+    "layer": [
+        {
+            "mark": {
+                "type": "line",
+                "point": {
+                    "filled": true,
+                    "fill": "white"
+                },
+                "tooltip": true
+            },
+            "encoding": {
+                "x": {
+                    "field": "Month",
+                    "type": "ordinal",
+                    "title": "Month",
+                    "axis": {
+                        "labelAngle": 0
+                    }
+                },
+                "y": {
+                    "field": "Value",
+                    "type": "quantitative",
+                    "title": "Value"
+                },
+                "color": {
+                    "field": "Measure",
+                    "type": "nominal",
+                    "scale": {
+                        "domain": [
+                            "Stock Prices",
+                            "Unemployment Rate (%)"
+                        ],
+                        "range": [
+                            "#1E90FF",
+                            "#FF4500"
+                        ]
+                    },
+                    "legend": {
+                        "title": "Measure"
+                    }
+                }
+            }
+        },
+        {
+            "mark": {
+                "type": "text",
+                "align": "left",
+                "dx": 5,
+                "dy": -5
+            },
+            "encoding": {
+                "x": {
+                    "field": "Month",
+                    "type": "ordinal"
+                },
+                "y": {
+                    "field": "Value",
+                    "type": "quantitative"
+                },
+                "text": {
+                    "field": "Value"
+                }
+            }
+        }
+    ],
+    "title": {
+        "text": "Economics & Finance: Monthly Stock Prices and Unemployment Rates",
+        "subtitle": "Data representing economic indicators over a year",
+        "anchor": "start"
+    }
+}

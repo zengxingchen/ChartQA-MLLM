@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Stock Market Performance: Stock A vs Stock B',
+        left: 'center',
+        top: '5%'
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['Stock A', 'Stock B'],
+        left: '10%',
+        top: '10%'
+    },
+    xAxis: {
+        type: 'category',
+        name: 'Date',
+        data: ['2023-01-01', '2023-01-02', '2023-01-03', '2023-01-04', '2023-01-05', 
+               '2023-01-06', '2023-01-07', '2023-01-08', '2023-01-09', '2023-01-10', 
+               '2023-01-11', '2023-01-12', '2023-01-13', '2023-01-14', '2023-01-15', 
+               '2023-01-16', '2023-01-17', '2023-01-18', '2023-01-19', '2023-01-20', 
+               '2023-01-21', '2023-01-22', '2023-01-23', '2023-01-24', '2023-01-25', 
+               '2023-01-26', '2023-01-27', '2023-01-28', '2023-01-29', '2023-01-30', 
+               '2023-01-31']
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Stock Value'
+    },
+    series: [
+        {
+            name: 'Stock A',
+            type: 'scatter',
+            data: [102, 104, 108, 107, 109, 113, 115, 114, 116, 118, 119, 120, 122, 
+                   123, 125, 126, 127, 129, 130, 132, 131, 134, 135, 137, 138, 140, 
+                   141, 142, 144, 145, 146],
+            itemStyle: {
+                color: '#FF5733'
+            }
+        },
+        {
+            name: 'Stock B',
+            type: 'scatter',
+            data: [98, 97, 95, 96, 98, 100, 101, 103, 105, 104, 107, 108, 110, 109, 
+                   112, 114, 115, 117, 116, 119, 118, 121, 122, 123, 125, 126, 127, 
+                   129, 130, 132, 131],
+            itemStyle: {
+                color: '#33A1FF'
+            }
+        }
+    ],
+    width: 800,
+    height: 600
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

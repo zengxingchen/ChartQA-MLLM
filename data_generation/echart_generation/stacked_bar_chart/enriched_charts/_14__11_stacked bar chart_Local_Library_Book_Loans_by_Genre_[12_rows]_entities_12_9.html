@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {renderer: 'canvas', useDirtyRect: false, width: 800, height: 600});
+var option = {
+    title: {
+        text: 'Nutrient Distribution in Popular Fruits',
+        left: 'center',
+        top: '10',
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Vitamin C (mg)', 'Fiber (g)', 'Sugar (g)', 'Calories'],
+        top: '40',
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        data: ['Apple', 'Banana', 'Orange', 'Strawberry', 'Kiwi', 'Grapes', 'Pineapple', 'Mango', 'Blueberry', 'Watermelon'],
+        axisLabel: {
+            interval: 0,
+            rotate: 30,
+        }
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Vitamin C (mg)',
+            type: 'bar',
+            stack: 'Total',
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [7, 9, 53.2, 58.8, 92.7, 4, 47.8, 36.4, 9.7, 8.1],
+            itemStyle: {
+                color: '#FF5733'
+            }
+        },
+        {
+            name: 'Fiber (g)',
+            type: 'bar',
+            stack: 'Total',
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [2.4, 3.1, 2.2, 2, 3, 0.9, 2.3, 1.6, 2.4, 0.4],
+            itemStyle: {
+                color: '#33FF57'
+            }
+        },
+        {
+            name: 'Sugar (g)',
+            type: 'bar',
+            stack: 'Total',
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [19, 14, 12, 4.9, 9, 16, 10, 14, 15, 6.2],
+            itemStyle: {
+                color: '#3357FF'
+            }
+        },
+        {
+            name: 'Calories',
+            type: 'bar',
+            stack: 'Total',
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [95, 105, 62, 32, 42, 69, 50, 99, 57, 30],
+            itemStyle: {
+                color: '#FF33A1'
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

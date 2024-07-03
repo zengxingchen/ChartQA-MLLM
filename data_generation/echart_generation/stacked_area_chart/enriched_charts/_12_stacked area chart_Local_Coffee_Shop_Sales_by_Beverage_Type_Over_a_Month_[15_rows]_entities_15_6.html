@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+app.title = 'Monthly Energy Consumption by Sector';
+
+option = {
+    title: {
+        text: 'Monthly Energy Consumption by Sector',
+        left: 'center',
+        top: 20,
+        textStyle: {
+            color: '#333'
+        }
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['Residential', 'Commercial', 'Industrial', 'Transportation'],
+        top: 50
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    color: ['#FFA07A', '#20B2AA', '#778899', '#BDB76B'],
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Residential',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            data: [400, 410, 450, 470, 480, 470, 460, 450, 420, 410, 400, 390],
+            label: {
+                show: true,
+                position: 'top'
+            }
+        },
+        {
+            name: 'Commercial',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            data: [320, 330, 350, 360, 370, 380, 390, 400, 410, 420, 410, 400],
+            label: {
+                show: true,
+                position: 'top'
+            }
+        },
+        {
+            name: 'Industrial',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            data: [620, 640, 670, 700, 730, 760, 780, 800, 790, 750, 720, 700],
+            label: {
+                show: true,
+                position: 'top'
+            }
+        },
+        {
+            name: 'Transportation',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            data: [310, 320, 330, 340, 350, 360, 370, 380, 390, 400, 410, 420],
+            label: {
+                show: true,
+                position: 'top'
+            }
+        }
+    ]
+};
+
+myChart.setOption(option, true);
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

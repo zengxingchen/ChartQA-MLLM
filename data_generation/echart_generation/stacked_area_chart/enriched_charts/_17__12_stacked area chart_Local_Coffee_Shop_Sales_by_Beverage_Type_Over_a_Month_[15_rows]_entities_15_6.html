@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, { width: 1000, height: 600 });
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Digital Trends in 2020-2021',
+        left: 'center',
+        top: '10'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            label: {
+                backgroundColor: '#6a7985'
+            }
+        }
+    },
+    legend: {
+        data: ['Technology', 'Gaming', 'Health', 'Education'],
+        top: '30'
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: [
+        {
+            type: 'category',
+            boundaryGap: false,
+            data: [
+                '2020-01-01', '2020-02-01', '2020-03-01', '2020-04-01', '2020-05-01',
+                '2020-06-01', '2020-07-01', '2020-08-01', '2020-09-01', '2020-10-01',
+                '2020-11-01', '2020-12-01', '2021-01-01', '2021-02-01', '2021-03-01',
+                '2021-04-01', '2021-05-01', '2021-06-01', '2021-07-01', '2021-08-01',
+                '2021-09-01', '2021-10-01', '2021-11-01', '2021-12-01'
+            ]
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value'
+        }
+    ],
+    series: [
+        {
+            name: 'Technology',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [
+                120, 130, 135, 145, 155, 160, 165, 175, 180, 190, 195, 200,
+                210, 220, 225, 230, 235, 240, 245, 250, 255, 260, 265, 270
+            ]
+        },
+        {
+            name: 'Gaming',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [
+                80, 85, 78, 82, 95, 93, 88, 100, 105, 103, 110, 115, 120,
+                125, 130, 135, 140, 145, 150, 155, 160, 165, 170, 175
+            ]
+        },
+        {
+            name: 'Health',
+            type: 'line',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'top'
+            },
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [
+                50, 55, 60, 70, 65, 75, 80, 85, 90, 100, 105, 110, 115,
+                120, 125, 130, 135, 140, 145, 150, 155, 160, 165, 170
+            ]
+        },
+        {
+            name: 'Education',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [
+                70, 75, 80, 90, 85, 95, 100, 105, 110, 120, 125, 130, 135,
+                140, 145, 150, 155, 160, 165, 170, 175, 180, 185, 190
+            ]
+        }
+    ],
+    color: ['#FFD54F', '#46BFBD', '#F7464A', '#FDB45C']
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+
+var weeks = [];
+var singleMembershipData = [];
+var familyMembershipData = [];
+var studentMembershipData = [];
+var seniorMembershipData = [];
+
+var chartData = [
+    {'Week': '1-7 January', 'Single Membership': 5, 'Family Membership': 3, 'Student Membership': 8, 'Senior Membership': 2},
+    {'Week': '8-14 January', 'Single Membership': 6, 'Family Membership': 7, 'Student Membership': 10, 'Senior Membership': 3},
+    {'Week': '15-21 January', 'Single Membership': 7, 'Family Membership': 5, 'Student Membership': 11, 'Senior Membership': 4},
+    {'Week': '22-28 January', 'Single Membership': 8, 'Family Membership': 11, 'Student Membership': 13, 'Senior Membership': 5},
+    {'Week': '1-7 February', 'Single Membership': 9, 'Family Membership': 7, 'Student Membership': 14, 'Senior Membership': 3},
+    {'Week': '8-14 February', 'Single Membership': 10, 'Family Membership': 9, 'Student Membership': 16, 'Senior Membership': 4},
+    {'Week': '15-21 February', 'Single Membership': 12, 'Family Membership': 8, 'Student Membership': 17, 'Senior Membership': 6},
+    {'Week': '22-28 February', 'Single Membership': 11, 'Family Membership': 10, 'Student Membership': 18, 'Senior Membership': 7},
+    {'Week': '1-7 March', 'Single Membership': 13, 'Family Membership': 9, 'Student Membership': 19, 'Senior Membership': 5},
+    {'Week': '8-14 March', 'Single Membership': 14, 'Family Membership': 12, 'Student Membership': 20, 'Senior Membership': 8},
+    {'Week': '15-21 March', 'Single Membership': 15, 'Family Membership': 10, 'Student Membership': 22, 'Senior Membership': 9},
+    {'Week': '22-28 March', 'Single Membership': 16, 'Family Membership': 14, 'Student Membership': 25, 'Senior Membership': 10}
+];
+
+// Populate data arrays
+chartData.forEach(function(item) {
+    weeks.push(item.Week);
+    singleMembershipData.push(item['Single Membership']);
+    familyMembershipData.push(item['Family Membership']);
+    studentMembershipData.push(item['Student Membership']);
+    seniorMembershipData.push(item['Senior Membership']);
+});
+
+var markAreaData = [];
+markAreaData.push([{
+    xAxis: '1-7 January'
+}, {
+    xAxis: '8-14 January',
+    label: {
+        position: 'insideEndTop',
+        formatter: 'Promotion Week'
+    }
+}]);
+
+var option = {
+    title: {
+        text: 'Membership Sign-ups by Week',
+        subtext: 'Single, Family, Student, Senior',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        bottom: '0',
+        data: ['Single Membership', 'Family Membership', 'Student Membership', 'Senior Membership']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '10%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: weeks
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Single Membership',
+            type: 'line',
+            data: singleMembershipData,
+            markPoint: {
+                data: [
+                    { type: 'max', name: 'Max', symbolSize: 80 },
+                    { type: 'min', name: 'Min', symbolSize: 80 }
+                ]
+            }
+        },
+        {
+            name: 'Family Membership',
+            type: 'line',
+            data: familyMembershipData,
+            markLine: {
+                data: [
+                    { type: 'average', name: 'Average' }
+                ]
+            }
+        },
+        {
+            name: 'Student Membership',
+            type: 'line',
+            data: studentMembershipData,
+            areaStyle: {}
+        },
+        {
+            name: 'Senior Membership',
+            type: 'line',
+            data: seniorMembershipData,
+            lineStyle: {
+                width: 5,
+                type: 'dotted'
+            }
+        }
+    ],
+    markArea: {
+        label: {
+            show: true
+        },
+        data: markAreaData
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

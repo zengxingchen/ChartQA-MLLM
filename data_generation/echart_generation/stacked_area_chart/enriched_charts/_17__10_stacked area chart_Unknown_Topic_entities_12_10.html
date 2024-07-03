@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Annual Sales Report for Tech Gadgets',
+        left: 'center',
+        top: 'top'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            label: {
+                backgroundColor: '#6a7985'
+            }
+        }
+    },
+    legend: {
+        data: ['Laptops', 'Smartphones', 'Accessories', 'Smart Home Devices'],
+        bottom: 'bottom'
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: [
+        {
+            type: 'category',
+            boundaryGap: false,
+            data: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value'
+        }
+    ],
+    series: [
+        {
+            name: 'Laptops',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [12000, 14000, 13000, 15000, 16000, 15500, 17000, 16500, 18000, 19000, 17500, 20000],
+            color: '#1f77b4'
+        },
+        {
+            name: 'Smartphones',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [34000, 32000, 35000, 33000, 37000, 36000, 39000, 38000, 37000, 40000, 41000, 42000],
+            color: '#ff7f0e'
+        },
+        {
+            name: 'Accessories',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [15000, 17000, 16000, 18000, 19000, 20000, 22000, 21000, 23000, 24000, 25000, 26000],
+            color: '#2ca02c'
+        },
+        {
+            name: 'Smart Home Devices',
+            type: 'line',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'top'
+            },
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [7000, 5000, 8000, 5500, 9000, 9500, 10000, 11000, 10500, 12000, 11500, 13000],
+            color: '#d62728'
+        }
+    ],
+    textStyle: {
+        color: '#333'
+    }
+};
+
+option && myChart.setOption(option);
+myChart.resize({
+    width: 800,
+    height: 600
+});
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+  width: 800, // Changed width of the chart
+  height: 600 // Changed height of the chart
+});
+var app = {};
+
+var option;
+
+option = {
+  title: {
+    text: 'Advancements and Interests in Fields of Study',
+    left: 'center',
+    top: '20'
+  },
+  tooltip: {
+    trigger: 'item',
+    show: true,
+    formatter: '{a} <br/>{b} : {c} ({d}%)'
+  },
+  legend: {
+    orient: 'vertical',
+    left: 'left',
+    data: ['Technology', 'Art', 'Science', 'Health']
+  },
+  grid: {
+    bottom: '3%',
+    containLabel: true
+  },
+  xAxis: {
+    type: 'category',
+    data: ['2019', '2020', '2021', '2022', '2023']
+  },
+  yAxis: {
+    type: 'value'
+  },
+  series: [
+    {
+      name: 'Technology',
+      type: 'bar',
+      stack: 'total',
+      barWidth: 35, // Changed the width of bars
+      data: [20, 30, 25, 25, 20],
+      color: '#7B68EE' // Changed to a specific color code
+    },
+    {
+      name: 'Art',
+      type: 'bar',
+      barWidth: 35, // Changed the width of bars
+      stack: 'total',
+      data: [30, 20, 25, 25, 30],
+      color: '#FF4500' // Changed to a specific color code
+    },
+    {
+      name: 'Science',
+      type: 'bar',
+      barWidth: 35, // Changed the width of bars
+      stack: 'total',
+      data: [25, 25, 30, 20, 20],
+      color: '#3CB371' // Changed to a specific color code
+    },
+    {
+      name: 'Health',
+      type: 'bar',
+      barWidth: 35, // Changed the width of bars
+      stack: 'total',
+      data: [25, 25, 20, 30, 30],
+      color: '#00BFFF' // Changed to a specific color code
+    }
+  ]
+};
+
+if (option && typeof option === 'object') {
+  myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

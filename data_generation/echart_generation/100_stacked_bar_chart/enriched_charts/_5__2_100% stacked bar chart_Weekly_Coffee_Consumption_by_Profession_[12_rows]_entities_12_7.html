@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+option = {
+    color: ['#FFC0CB', '#03A9F4', '#8BC34A', '#FFEB3B', '#00BCD4', '#FF9800', '#9C27B0'],
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Technology', 'Art', 'Science', 'Health', 'Culture', 'Economics', 'Education'],
+        top: '5%'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01]
+    },
+    yAxis: {
+        type: 'category',
+        data: ['2017', '2018', '2019', '2020', '2021', '2022']
+    },
+    series: [{
+        name: 'Technology',
+        type: 'bar',
+        stack: 'total',
+        barWidth: 35,
+        data: [25, 30, 23, 27, 35, 40]
+    }, {
+        name: 'Art',
+        type: 'bar',
+        stack: 'total',
+        barWidth: 35,
+        data: [10, 10, 12, 15, 5, 8]
+    }, {
+        name: 'Science',
+        type: 'bar',
+        stack: 'total',
+        barWidth: 35,
+        data: [15, 10, 17, 13, 15, 12]
+    }, {
+        name: 'Health',
+        type: 'bar',
+        stack: 'total',
+        barWidth: 35,
+        data: [20, 25, 18, 20, 20, 15]
+    }, {
+        name: 'Culture',
+        type: 'bar',
+        stack: 'total',
+        barWidth: 35,
+        data: [10, 10, 12, 10, 5, 10]
+    }, {
+        name: 'Economics',
+        type: 'bar',
+        stack: 'total',
+        barWidth: 35,
+        data: [10, 5, 9, 7, 10, 5]
+    }, {
+        name: 'Education',
+        type: 'bar',
+        stack: 'total',
+        barWidth: 35,
+        data: [10, 10, 9, 8, 10, 10]
+    }],
+    title: {
+        text: 'Annual Progress in Key Sectors',
+        subtext: 'Education & Learning',
+        left: 'center',
+        padding: 5
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

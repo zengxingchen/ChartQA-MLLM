@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Book Genre Popularity',
+        left: 'center',
+        top: '5%'
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: function (params) {
+            return 'Type: ' + params.data[2] + '<br>ValueX: ' + params.data[0] + '<br>ValueY: ' + params.data[1];
+        }
+    },
+    legend: {
+        left: '10%',
+        top: '5%',
+        data: ['Fiction', 'Non-Fiction', 'Poetry', 'Drama']
+    },
+    xAxis: {
+        name: 'Popularity Score',
+        min: 0,
+        max: 100
+    },
+    yAxis: {
+        name: 'Rating Score',
+        min: 0,
+        max: 100
+    },
+    series: [
+        {
+            name: 'Fiction',
+            type: 'scatter',
+            itemStyle: {
+                color: '#FF5733'
+            },
+            data: [
+                [80, 90, 'Fiction'],
+                [75, 85, 'Fiction'],
+                [85, 80, 'Fiction'],
+                [90, 75, 'Fiction'],
+                [70, 95, 'Fiction'],
+                [95, 70, 'Fiction']
+            ]
+        },
+        {
+            name: 'Non-Fiction',
+            type: 'scatter',
+            itemStyle: {
+                color: '#33FF57'
+            },
+            data: [
+                [60, 50, 'Non-Fiction'],
+                [65, 55, 'Non-Fiction'],
+                [55, 60, 'Non-Fiction'],
+                [50, 65, 'Non-Fiction'],
+                [45, 70, 'Non-Fiction'],
+                [70, 45, 'Non-Fiction']
+            ]
+        },
+        {
+            name: 'Poetry',
+            type: 'scatter',
+            itemStyle: {
+                color: '#3357FF'
+            },
+            data: [
+                [40, 30, 'Poetry'],
+                [35, 25, 'Poetry'],
+                [25, 35, 'Poetry'],
+                [30, 40, 'Poetry'],
+                [20, 45, 'Poetry'],
+                [45, 20, 'Poetry']
+            ]
+        },
+        {
+            name: 'Drama',
+            type: 'scatter',
+            itemStyle: {
+                color: '#FF33A8'
+            },
+            data: [
+                [15, 10, 'Drama'],
+                [10, 15, 'Drama'],
+                [5, 20, 'Drama'],
+                [20, 5, 'Drama'],
+                [25, 0, 'Drama'],
+                [0, 25, 'Drama']
+            ]
+        }
+    ],
+    grid: {
+        left: '3%',
+        right: '7%',
+        bottom: '10%',
+        containLabel: true
+    },
+    width: 800,
+    height: 600
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

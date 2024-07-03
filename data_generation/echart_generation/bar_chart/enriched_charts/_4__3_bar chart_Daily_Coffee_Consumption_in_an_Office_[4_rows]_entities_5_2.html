@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 800,
+    height: 600
+});
+var option;
+
+option = {
+    title: {
+        text: 'Health & Psychology Metrics',
+        left: 'center',
+        top: '10'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01]
+    },
+    yAxis: {
+        type: 'category',
+        data: ['Sleep Quality', 'Stress Level', 'Physical Activity', 'Mental Wellness', 'Nutrition', 'Social Interaction', 'Work-Life Balance', 'Screen Time', 'Hydration', 'Hobbies'],
+        axisLabel: {
+            rotate: 45
+        }
+    },
+    series: [
+        {
+            name: 'Value',
+            type: 'bar',
+            data: [85, 40, 75, 60, 90, 50, 70, 30, 80, 65],
+            itemStyle: {
+                color: function(params) {
+                    var colorList = ['#FF6347','#4682B4','#32CD32','#FFD700','#6A5ACD','#FF4500','#2E8B57','#8B0000','#20B2AA','#DAA520'];
+                    return colorList[params.dataIndex];
+                }
+            },
+            label: {
+                show: true,
+                position: 'right'
+            },
+            barWidth: '30%'
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

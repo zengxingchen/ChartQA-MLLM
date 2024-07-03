@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 800,  // reasonable width
+    height: 600  // reasonable height
+});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Environment & Climate Change Sector Contributions Over Time',
+        left: 'center',
+        top: 20  // placed appropriately to avoid overlap
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'  // to show a tooltip shadow on the active bar
+        },
+        formatter: function(params) {
+            var result = params[0].name + '<br>';
+            params.forEach(function (item) {
+                result += item.marker + " " + item.seriesName + ": " + item.value + "%<br>";
+            });
+            return result;
+        }
+    },
+    legend: {
+        data: ['Renewable Energy', 'Recycling Programs', 'Conservation Efforts', 'Pollution Control', 'Sustainable Agriculture'],
+        left: 'right',
+        top: 50  // placed appropriately to avoid overlap
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01]  // the range is set so it sticks to the bottom of the chart
+    },
+    yAxis: {
+        type: 'category',  // aligned as a horizontal chart
+        data: ['2020', '2021', '2022']
+    },
+    series: [
+        {
+            name: 'Renewable Energy',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,  // realistic bar width
+            data: [25, 30, 32],
+            color: '#4c9bfd'  // specific color code
+        },
+        {
+            name: 'Recycling Programs',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            data: [20, 22, 25],
+            color: '#e15759'  // specific color code
+        },
+        {
+            name: 'Conservation Efforts',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            data: [35, 28, 26],
+            color: '#76b7b2'  // specific color code
+        },
+        {
+            name: 'Pollution Control',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            data: [10, 12, 12],
+            color: '#f28e2b'  // specific color code
+        },
+        {
+            name: 'Sustainable Agriculture',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            data: [10, 8, 5],
+            color: '#edc948'  // specific color code
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

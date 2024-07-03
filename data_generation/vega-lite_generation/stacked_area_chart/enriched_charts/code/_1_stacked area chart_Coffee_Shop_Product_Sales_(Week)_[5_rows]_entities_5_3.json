@@ -1,0 +1,200 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Daily Average Temperature Readings by Environmental Zone",
+    "width": 500,
+    "height": 300,
+    "title": {
+        "text": "Average Temperatures Across Environmental Zones",
+        "anchor": "start",
+        "offset": 5,
+        "fontSize": 16
+    },
+    "data": {
+        "values": [
+            {
+                "Date": "2023-03-01",
+                "Tropical": 25,
+                "Dry": 22,
+                "Temperate": 15,
+                "Polar": -5
+            },
+            {
+                "Date": "2023-03-02",
+                "Tropical": 26,
+                "Dry": 23,
+                "Temperate": 16,
+                "Polar": -4
+            },
+            {
+                "Date": "2023-03-03",
+                "Tropical": 25,
+                "Dry": 21,
+                "Temperate": 14,
+                "Polar": -6
+            },
+            {
+                "Date": "2023-03-04",
+                "Tropical": 27,
+                "Dry": 24,
+                "Temperate": 15,
+                "Polar": -5
+            },
+            {
+                "Date": "2023-03-05",
+                "Tropical": 26,
+                "Dry": 23,
+                "Temperate": 16,
+                "Polar": -3
+            },
+            {
+                "Date": "2023-03-06",
+                "Tropical": 25,
+                "Dry": 22,
+                "Temperate": 17,
+                "Polar": -6
+            },
+            {
+                "Date": "2023-03-07",
+                "Tropical": 24,
+                "Dry": 22,
+                "Temperate": 15,
+                "Polar": -7
+            },
+            {
+                "Date": "2023-03-08",
+                "Tropical": 25,
+                "Dry": 21,
+                "Temperate": 16,
+                "Polar": -4
+            },
+            {
+                "Date": "2023-03-09",
+                "Tropical": 26,
+                "Dry": 20,
+                "Temperate": 15,
+                "Polar": -5
+            },
+            {
+                "Date": "2023-03-10",
+                "Tropical": 27,
+                "Dry": 23,
+                "Temperate": 18,
+                "Polar": -3
+            },
+            {
+                "Date": "2023-03-11",
+                "Tropical": 24,
+                "Dry": 19,
+                "Temperate": 15,
+                "Polar": -7
+            },
+            {
+                "Date": "2023-03-12",
+                "Tropical": 28,
+                "Dry": 22,
+                "Temperate": 16,
+                "Polar": -5
+            },
+            {
+                "Date": "2023-03-13",
+                "Tropical": 26,
+                "Dry": 24,
+                "Temperate": 17,
+                "Polar": -6
+            },
+            {
+                "Date": "2023-03-14",
+                "Tropical": 25,
+                "Dry": 21,
+                "Temperate": 15,
+                "Polar": -4
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Tropical",
+                "Dry",
+                "Temperate",
+                "Polar"
+            ],
+            "as": [
+                "Environment",
+                "Temperature"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "area",
+        "opacity": 0.7
+    },
+    "encoding": {
+        "x": {
+            "field": "Date",
+            "type": "temporal",
+            "axis": {
+                "title": "Date",
+                "format": "%Y-%m-%d",
+                "labelAngle": -45
+            }
+        },
+        "y": {
+            "field": "Temperature",
+            "type": "quantitative",
+            "stack": "zero",
+            "axis": {
+                "title": "Average Temperature (\u00b0C)"
+            }
+        },
+        "color": {
+            "field": "Environment",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Tropical",
+                    "Dry",
+                    "Temperate",
+                    "Polar"
+                ],
+                "range": [
+                    "#1f77b4",
+                    "#aec7e8",
+                    "#ff7f0e",
+                    "#2ca02c"
+                ]
+            },
+            "legend": {
+                "title": "Zone",
+                "labelFontSize": 12,
+                "titleFontSize": 14
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Date",
+                "type": "temporal",
+                "title": "Date"
+            },
+            {
+                "field": "Environment",
+                "type": "nominal",
+                "title": "Zone"
+            },
+            {
+                "field": "Temperature",
+                "type": "quantitative",
+                "title": "Temperature (\u00b0C)"
+            }
+        ]
+    },
+    "config": {
+        "view": {
+            "stroke": "transparent"
+        },
+        "axis": {
+            "labelFontSize": 12,
+            "titleFontSize": 14
+        }
+    }
+}

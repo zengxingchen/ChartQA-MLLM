@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var activities = ['Swimming', 'Yoga', 'Basketball', 'Soccer', 'Dance', 'Gardening', 'Cooking Classes', 'Photography Workshop', 'Book Club', 'Cycling Group', 'Hiking Club', 'Board Game Nights'];
+var participantsLastYear = [230, 180, 300, 250, 150, 120, 80, 60, 50, 140, 210, 100];
+var participantsThisYear = [250, 200, 290, 260, 170, 150, 110, 90, 70, 160, 230, 120];
+
+option = {
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Participants (Last Year)', 'Participants (This Year)']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01]
+    },
+    yAxis: {
+        type: 'category',
+        data: activities
+    },
+    series: [
+        {
+            name: 'Participants (Last Year)',
+            type: 'bar',
+            data: participantsLastYear,
+            itemStyle: {
+                barBorderRadius: 3,
+                color: '#5470C6'
+            },
+            markPoint: {
+                data: [
+                    {type: 'max', name: 'Max'},
+                    {type: 'min', name: 'Min'}
+                ]
+            }
+        },
+        {
+            name: 'Participants (This Year)',
+            type: 'bar',
+            data: participantsThisYear,
+            itemStyle: {
+                barBorderRadius: 3,
+                color: '#91CC75'
+            },
+            markPoint: {
+                data: [
+                    {type: 'max', name: 'Max'},
+                    {type: 'min', name: 'Min'}
+                ]
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

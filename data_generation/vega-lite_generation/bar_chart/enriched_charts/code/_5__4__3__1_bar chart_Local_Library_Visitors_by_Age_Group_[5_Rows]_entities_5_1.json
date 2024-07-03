@@ -1,0 +1,116 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "A vertical bar chart showing the average monthly spending on different entertainment activities.",
+    "width": 600,
+    "height": 400,
+    "title": {
+        "text": "Average Monthly Spending on Entertainment Activities",
+        "anchor": "middle",
+        "offset": 10
+    },
+    "data": {
+        "values": [
+            {
+                "Activity": "Movies",
+                "Average Spending": 30
+            },
+            {
+                "Activity": "Concerts",
+                "Average Spending": 50
+            },
+            {
+                "Activity": "Video Games",
+                "Average Spending": 40
+            },
+            {
+                "Activity": "Streaming Services",
+                "Average Spending": 25
+            },
+            {
+                "Activity": "Sports Events",
+                "Average Spending": 45
+            },
+            {
+                "Activity": "Amusement Parks",
+                "Average Spending": 60
+            },
+            {
+                "Activity": "Museums",
+                "Average Spending": 20
+            },
+            {
+                "Activity": "Theater",
+                "Average Spending": 35
+            },
+            {
+                "Activity": "Nightclubs",
+                "Average Spending": 55
+            },
+            {
+                "Activity": "Dining Out",
+                "Average Spending": 70
+            }
+        ]
+    },
+    "mark": {
+        "type": "bar",
+        "tooltip": true,
+        "cornerRadiusEnd": 5,
+        "height": {
+            "band": 0.7
+        }
+    },
+    "encoding": {
+        "x": {
+            "field": "Activity",
+            "type": "ordinal",
+            "axis": {
+                "title": "Entertainment Activity"
+            }
+        },
+        "y": {
+            "field": "Average Spending",
+            "type": "quantitative",
+            "axis": {
+                "title": "Average Monthly Spending ($)"
+            },
+            "labels": {
+                "format": "$.0f"
+            }
+        },
+        "color": {
+            "field": "Activity",
+            "scale": {
+                "range": [
+                    "#ff0000",
+                    "#ff6600",
+                    "#ffcc00",
+                    "#ccff00",
+                    "#66ff00",
+                    "#00ff66",
+                    "#00ffcc",
+                    "#0066ff",
+                    "#6600ff",
+                    "#cc00ff"
+                ]
+            }
+        },
+        "opacity": {
+            "condition": {
+                "param": "hover",
+                "value": 0.8
+            },
+            "value": 1
+        }
+    },
+    "params": [
+        {
+            "name": "hover",
+            "select": {
+                "type": "point",
+                "on": "mouseover",
+                "clear": "mouseout"
+            }
+        }
+    ]
+}

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+var option = {
+    title: {
+        text: 'Evolution of Art and Design Trends',
+        left: 'center',
+        top: 20
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: { type: 'shadow' }
+    },
+    legend: {
+        data: ['Design', 'Painting', 'Architecture'],
+        top: 50
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        data: ['2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', 
+               '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', 
+               '2021', '2022', '2023'],
+        axisLabel: { rotate: 45 }
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Design',
+            type: 'bar',
+            stack: 'Total',
+            barWidth: 25,
+            itemStyle: { color: '#ff7f50' },
+            data: [15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100, 105, 110, 115, 120, 125]
+        },
+        {
+            name: 'Painting',
+            type: 'bar',
+            stack: 'Total',
+            barWidth: 25,
+            itemStyle: { color: '#87cefa' },
+            data: [12, 18, 22, 27, 32, 36, 41, 46, 51, 56, 61, 66, 71, 76, 81, 86, 91, 96, 101, 106, 111, 116, 121]
+        },
+        {
+            name: 'Architecture',
+            type: 'bar',
+            stack: 'Total',
+            barWidth: 25,
+            itemStyle: { color: '#da70d6' },
+            data: [10, 15, 18, 22, 28, 32, 36, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100, 105, 110, 115]
+        }
+    ],
+    label: {
+        show: true,
+        position: 'insideBottom',
+        distance: 15,
+        align: 'left',
+        verticalAlign: 'middle',
+        rotate: 90,
+        formatter: '{name|{a}}',
+        fontSize: 16,
+        rich: {
+            name: {}
+        }
+    }
+};
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

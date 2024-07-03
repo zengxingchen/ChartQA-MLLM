@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 800, // Reasonably increased width
+    height: 600 // Reasonably increased height
+});
+var app = {};
+
+var option;
+
+// Data for the area chart
+var data = [
+    ['1', 300],
+    ['2', 290],
+    ['3', 280],
+    ['4', 270],
+    ['5', 260],
+    ['6', 250],
+    ['7', 240],
+    ['8', 230],
+    ['9', 220],
+    ['10', 210],
+    ['11', 200],
+    ['12', 190],
+    ['13', 180],
+    ['14', 170],
+    ['15', 160],
+    ['16', 150],
+    ['17', 140],
+    ['18', 130],
+    ['19', 120],
+    ['20', 110],
+    ['21', 100],
+    ['22', 95],
+    ['23', 90],
+    ['24', 85],
+    ['25', 80],
+    ['26', 75],
+    ['27', 70],
+    ['28', 65],
+    ['29', 60],
+    ['30', 55]
+];
+
+option = {
+    title: {
+        text: 'Daily Engagement in Education & Learning Program',
+        left: 'center',
+        top: 5, // Ensuring that the headline does not overlap with the legend
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            label: {
+                backgroundColor: '#6a7985',
+            },
+        },
+    },
+    legend: {
+        data: ['Number of Learners'],
+        top: 30, // Position the legend below the headline
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {},
+        },
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true,
+    },
+    xAxis: [
+        {
+            type: 'category',
+            boundaryGap: false,
+            data: data.map(function (item) {
+                return item[0];
+            }),
+        },
+    ],
+    yAxis: [
+        {
+            type: 'value',
+        },
+    ],
+    series: [
+        {
+            name: 'Number of Learners',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series',
+            },
+            data: data.map(function (item) {
+                return item[1];
+            }),
+            color: '#3398DB', // Specific color code for better clarity
+            markPoint: {
+                data: [
+                    { type: 'max', name: 'Max' },
+                    { type: 'min', name: 'Min' },
+                ],
+            },
+        },
+    ],
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

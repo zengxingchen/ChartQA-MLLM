@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var option;
+
+option = {
+    title: {
+        text: 'Future Technologies & Society: AI Investment Over Years',
+        left: 'center',
+        top: '5%'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['AI Investment ($ Billion)', 'Technology Advancement', 'Impact on Society'],
+        top: '15%'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        data: ['2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024']
+    },
+    yAxis: [
+        {
+            type: 'value',
+            name: 'Investment ($ Billion)',
+            min: 0,
+            max: 70,
+            position: 'left',
+            axisLine: {
+                lineStyle: {
+                    color: '#1f78b4'
+                }
+            },
+            axisLabel: {
+                formatter: '{value} B'
+            }
+        },
+        {
+            type: 'value',
+            name: 'Impact Level',
+            min: 0,
+            max: 5,
+            position: 'right',
+            axisLine: {
+                lineStyle: {
+                    color: '#e31a1c'
+                }
+            },
+            axisLabel: {
+                formatter: function (value) {
+                    var levels = ['Low', 'Medium', 'High', 'Very High', 'Extremely High'];
+                    return levels[value];
+                }
+            }
+        }
+    ],
+    series: [
+        {
+            name: 'AI Investment ($ Billion)',
+            type: 'bar',
+            barWidth: '30%',
+            itemStyle: {
+                color: '#1f78b4'
+            },
+            data: [8.9, 10.2, 14.6, 18.7, 23.5, 29.1, 34.7, 42.3, 50.1, 60.5]
+        },
+        {
+            name: 'Technology Advancement',
+            type: 'bar',
+            barWidth: '30%',
+            itemStyle: {
+                color: '#33a02c'
+            },
+            data: [2, 2, 3, 3, 4, 4, 5, 5, 5, 6]
+        },
+        {
+            name: 'Impact on Society',
+            type: 'line',
+            yAxisIndex: 1,
+            itemStyle: {
+                color: '#e31a1c'
+            },
+            data: [1, 2, 2, 3, 3, 4, 4, 4, 5, 5]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

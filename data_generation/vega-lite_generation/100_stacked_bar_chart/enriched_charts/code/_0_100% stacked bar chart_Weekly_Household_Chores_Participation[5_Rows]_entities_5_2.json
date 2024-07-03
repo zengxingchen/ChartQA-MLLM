@@ -1,0 +1,156 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "A 100% Stacked Horizontal Bar Chart showing the distribution of office tasks.",
+    "data": {
+        "values": [
+            {
+                "Employee": "Alex",
+                "Emails": 120,
+                "Meetings": 90,
+                "Reports": 40,
+                "Design": 70,
+                "Development": 50
+            },
+            {
+                "Employee": "Jordan",
+                "Emails": 80,
+                "Meetings": 100,
+                "Reports": 60,
+                "Design": 50,
+                "Development": 90
+            },
+            {
+                "Employee": "Casey",
+                "Emails": 95,
+                "Meetings": 85,
+                "Reports": 80,
+                "Design": 60,
+                "Development": 70
+            },
+            {
+                "Employee": "Taylor",
+                "Emails": 110,
+                "Meetings": 120,
+                "Reports": 70,
+                "Design": 30,
+                "Development": 60
+            },
+            {
+                "Employee": "Jamie",
+                "Emails": 70,
+                "Meetings": 85,
+                "Reports": 90,
+                "Design": 85,
+                "Development": 70
+            },
+            {
+                "Employee": "Robin",
+                "Emails": 105,
+                "Meetings": 74,
+                "Reports": 63,
+                "Design": 87,
+                "Development": 81
+            },
+            {
+                "Employee": "Drew",
+                "Emails": 95,
+                "Meetings": 120,
+                "Reports": 45,
+                "Design": 68,
+                "Development": 52
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Emails",
+                "Meetings",
+                "Reports",
+                "Design",
+                "Development"
+            ],
+            "as": [
+                "Task",
+                "Hours"
+            ]
+        }
+    ],
+    "padding": {
+        "left": 60,
+        "top": 5,
+        "right": 5,
+        "bottom": 20
+    },
+    "width": 400,
+    "height": 400,
+    "mark": {
+        "type": "bar",
+        "width": 15
+    },
+    "encoding": {
+        "y": {
+            "field": "Employee",
+            "type": "nominal",
+            "axis": {
+                "title": "Employee"
+            },
+            "sort": null
+        },
+        "x": {
+            "field": "Hours",
+            "type": "quantitative",
+            "stack": "normalize",
+            "axis": {
+                "title": "Percentage of Total Hours",
+                "format": ".0%"
+            },
+            "sort": null
+        },
+        "color": {
+            "field": "Task",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Emails",
+                    "Meetings",
+                    "Reports",
+                    "Design",
+                    "Development"
+                ],
+                "range": [
+                    "#e41a1c",
+                    "#377eb8",
+                    "#4daf4a",
+                    "#984ea3",
+                    "#ff7f00"
+                ]
+            },
+            "legend": {
+                "title": "Task Type"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Employee",
+                "type": "nominal"
+            },
+            {
+                "field": "Task",
+                "type": "nominal",
+                "title": "Task"
+            },
+            {
+                "field": "Hours",
+                "type": "quantitative",
+                "title": "Hours Spent"
+            }
+        ]
+    },
+    "config": {
+        "bar": {
+            "cornerRadiusTopLeft": 3,
+            "cornerRadiusTopRight": 3
+        }
+    }
+}

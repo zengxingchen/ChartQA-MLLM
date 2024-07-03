@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById("container");
+var myChart = echarts.init(dom);
+
+var app = {};
+option = null;
+
+// Data
+var data = [
+  { 'Month': 'January', 'Visitors': 1200 },
+  { 'Month': 'February', 'Visitors': 1100 },
+  { 'Month': 'March', 'Visitors': 1400 },
+  { 'Month': 'April', 'Visitors': 1600 },
+  { 'Month': 'May', 'Visitors': 1800 },
+  { 'Month': 'June', 'Visitors': 1500 },
+  { 'Month': 'July', 'Visitors': 1300 },
+  { 'Month': 'August', 'Visitors': 1700 }
+];
+
+// Extract Month and Visitors for axes
+var months = data.map(function (item) {
+  return item.Month;
+});
+var visitors = data.map(function (item) {
+  return item.Visitors;
+});
+
+option = {
+  // Title
+  title: {
+    text: 'Monthly Visitors',
+    subtext: 'Sample Data'
+  },
+
+  // Tooltips
+  tooltip: {
+    trigger: 'axis',
+    axisPointer: {
+      type: 'shadow'
+    }
+  },
+
+  // Legend
+  legend: {
+    data: ['Visitors']
+  },
+
+  // Grid
+  grid: {
+    left: '3%',
+    right: '4%',
+    bottom: '3%',
+    containLabel: true
+  },
+
+  // X Axis
+  xAxis: [{
+    type: 'category',
+    data: months,
+    axisTick: {
+      alignWithLabel: true
+    }
+  }],
+
+  // Y Axis
+  yAxis: [{
+    type: 'value'
+  }],
+
+  // Series
+  series: [{
+    name: 'Visitors',
+    type: 'bar',
+    barWidth: '60%',
+    data: visitors,
+    itemStyle: {
+      // Gradient color
+      color: new echarts.graphic.LinearGradient(
+        0, 0, 0, 1,
+        [
+          { offset: 0, color: '#83bff6' },
+          { offset: 0.5, color: '#188df0' },
+          { offset: 1, color: '#188df0' }
+        ]
+      )
+    },
+    emphasis: {
+      focus: 'series'
+    },
+    markPoint: {
+      data: [
+        { type: 'max', name: 'Max' },
+        { type: 'min', name: 'Min' }
+      ]
+    },
+    markLine: {
+      data: [{ type: 'average', name: 'Avg' }]
+    }
+  }]
+};
+
+if (option && typeof option === 'object') {
+  myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

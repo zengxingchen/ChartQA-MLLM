@@ -1,0 +1,185 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Line chart showing average monthly physical activity by month for different regions.",
+    "title": {
+        "text": "Average Monthly Physical Activity by Region",
+        "fontSize": 18,
+        "anchor": "start",
+        "color": "#333333"
+    },
+    "width": 800,
+    "height": 500,
+    "data": {
+        "values": [
+            {
+                "Region": "North America",
+                "January": 50,
+                "February": 60,
+                "March": 55,
+                "April": 65,
+                "May": 70,
+                "June": 75,
+                "July": 80,
+                "August": 85,
+                "September": 75,
+                "October": 70,
+                "November": 65,
+                "December": 60
+            },
+            {
+                "Region": "South America",
+                "January": 60,
+                "February": 65,
+                "March": 70,
+                "April": 75,
+                "May": 80,
+                "June": 85,
+                "July": 90,
+                "August": 95,
+                "September": 85,
+                "October": 80,
+                "November": 75,
+                "December": 70
+            },
+            {
+                "Region": "Europe",
+                "January": 40,
+                "February": 45,
+                "March": 50,
+                "April": 55,
+                "May": 60,
+                "June": 65,
+                "July": 70,
+                "August": 75,
+                "September": 65,
+                "October": 60,
+                "November": 55,
+                "December": 50
+            },
+            {
+                "Region": "Asia",
+                "January": 70,
+                "February": 75,
+                "March": 80,
+                "April": 85,
+                "May": 90,
+                "June": 95,
+                "July": 100,
+                "August": 105,
+                "September": 95,
+                "October": 90,
+                "November": 85,
+                "December": 80
+            },
+            {
+                "Region": "Australia",
+                "January": 80,
+                "February": 85,
+                "March": 90,
+                "April": 95,
+                "May": 100,
+                "June": 105,
+                "July": 110,
+                "August": 115,
+                "September": 105,
+                "October": 100,
+                "November": 95,
+                "December": 90
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "January",
+                "February",
+                "March",
+                "April",
+                "May",
+                "June",
+                "July",
+                "August",
+                "September",
+                "October",
+                "November",
+                "December"
+            ],
+            "as": [
+                "Month",
+                "Physical Activity (hours)"
+            ]
+        }
+    ],
+    "mark": "line",
+    "encoding": {
+        "x": {
+            "field": "Month",
+            "type": "ordinal",
+            "title": "Month",
+            "axis": {
+                "titleFontSize": 14,
+                "labelAngle": -45
+            }
+        },
+        "y": {
+            "field": "Physical Activity (hours)",
+            "type": "quantitative",
+            "title": "Physical Activity (hours)",
+            "axis": {
+                "titleFontSize": 14
+            }
+        },
+        "color": {
+            "field": "Region",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "North America",
+                    "South America",
+                    "Europe",
+                    "Asia",
+                    "Australia"
+                ],
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e",
+                    "#2ca02c",
+                    "#d62728",
+                    "#9467bd"
+                ]
+            },
+            "legend": {
+                "title": "Region"
+            }
+        },
+        "strokeDash": {
+            "condition": {
+                "test": "datum['Region'] == 'Europe'",
+                "value": [
+                    5,
+                    5
+                ]
+            },
+            "value": []
+        },
+        "tooltip": [
+            {
+                "field": "Region",
+                "type": "nominal"
+            },
+            {
+                "field": "Month",
+                "type": "ordinal"
+            },
+            {
+                "field": "Physical Activity (hours)",
+                "type": "quantitative"
+            }
+        ]
+    },
+    "config": {
+        "axisY": {
+            "minExtent": 30
+        }
+    }
+}

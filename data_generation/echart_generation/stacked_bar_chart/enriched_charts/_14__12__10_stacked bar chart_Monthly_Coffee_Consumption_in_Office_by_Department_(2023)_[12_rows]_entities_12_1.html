@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Art & Design Trends',
+        left: 'center',
+        top: '5%'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Value1', 'Value2', 'Value3'],
+        bottom: '0%'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '10%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value'
+    },
+    yAxis: {
+        type: 'category',
+        data: ['Art', 'Design', 'Painting', 'Sculpture', 'Photography', 'Fashion', 'Graphics', 'Animation', 'Film', 'Music', 'Dance', 'Drama', 'Literature', 'Philosophy', 'Ethics', 'History', 'Archaeology', 'Politics', 'Governance', 'Economics', 'Finance', 'Education', 'Learning', 'Health', 'Psychology', 'Fitness', 'Sports']
+    },
+    series: [
+        {
+            name: 'Value1',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            itemStyle: {
+                color: '#5470C6'
+            },
+            data: [40, 50, 70, 60, 55, 65, 75, 80, 85, 90, 95, 100, 110, 115, 120, 130, 125, 135, 140, 145, 150, 155, 160, 165, 170, 175, 180]
+        },
+        {
+            name: 'Value2',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            itemStyle: {
+                color: '#91CC75'
+            },
+            data: [30, 40, 50, 45, 40, 50, 60, 70, 75, 80, 85, 90, 100, 105, 110, 120, 115, 125, 130, 135, 140, 145, 150, 155, 160, 165, 170]
+        },
+        {
+            name: 'Value3',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            itemStyle: {
+                color: '#EE6666'
+            },
+            data: [20, 30, 40, 35, 25, 45, 50, 60, 65, 70, 75, 80, 90, 95, 100, 110, 105, 115, 120, 125, 130, 135, 140, 145, 150, 155, 160]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

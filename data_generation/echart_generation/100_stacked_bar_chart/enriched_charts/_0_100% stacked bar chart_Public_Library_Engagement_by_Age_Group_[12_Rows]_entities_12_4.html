@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 800, // Change width of the chart
+    height: 400 // Change height of the chart
+});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Yearly Expenditure Breakdown', // Changed topic/headline
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            // Use shadow for better clarity
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Food', 'Beverages', 'Clothing', 'Household', 'Electronics']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value'
+    },
+    yAxis: {
+        type: 'category', // Changed the direction of the chart
+        data: ['2016', '2017', '2018', '2019', '2020']
+    },
+    series: [
+        {
+            name: 'Food',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35, // Change bar width
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            data: [40, 35, 30, 40, 45], // Data points are adjusted
+            itemStyle: {
+                color: '#FFD700' // Specific color code for Food
+            }
+        },
+        {
+            name: 'Beverages',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35, // Change bar width
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            data: [20, 25, 18, 19, 20], // Data points are adjusted
+            itemStyle: {
+                color: '#C0C0C0' // Specific color code for Beverages
+            }
+        },
+        {
+            name: 'Clothing',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35, // Change bar width
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            data: [10, 15, 22, 13, 15], // Data points are adjusted
+            itemStyle: {
+                color: '#cd7f32' // Specific color code for Clothing
+            }
+        },
+        {
+            name: 'Household',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35, // Change bar width
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            data: [20, 15, 20, 18, 10], // Data points are adjusted
+            itemStyle: {
+                color: '#6495ed' // Specific color code for Household
+            }
+        },
+        {
+            name: 'Electronics',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35, // Change bar width
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            data: [10, 10, 10, 10, 10], // Data points are adjusted
+            itemStyle: {
+                color: '#ffa500' // Specific color code for Electronics
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

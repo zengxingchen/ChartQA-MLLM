@@ -1,0 +1,183 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Line chart of average annual obesity rates by continent over recent years",
+    "data": {
+        "values": [
+            {
+                "Year": 2010,
+                "Americas": 29.3,
+                "Europe": 23.1,
+                "Asia": 6.2,
+                "Africa": 7.3,
+                "Oceania": 28.5
+            },
+            {
+                "Year": 2011,
+                "Americas": 29.6,
+                "Europe": 23.4,
+                "Asia": 6.3,
+                "Africa": 7.5,
+                "Oceania": 28.8
+            },
+            {
+                "Year": 2012,
+                "Americas": 29.9,
+                "Europe": 23.6,
+                "Asia": 6.4,
+                "Africa": 7.7,
+                "Oceania": 29.1
+            },
+            {
+                "Year": 2013,
+                "Americas": 30.2,
+                "Europe": 23.8,
+                "Asia": 6.5,
+                "Africa": 7.9,
+                "Oceania": 29.4
+            },
+            {
+                "Year": 2014,
+                "Americas": 30.5,
+                "Europe": 24.0,
+                "Asia": 6.6,
+                "Africa": 8.1,
+                "Oceania": 29.7
+            },
+            {
+                "Year": 2015,
+                "Americas": 30.8,
+                "Europe": 24.2,
+                "Asia": 6.7,
+                "Africa": 8.3,
+                "Oceania": 30.0
+            },
+            {
+                "Year": 2016,
+                "Americas": 31.1,
+                "Europe": 24.4,
+                "Asia": 6.8,
+                "Africa": 8.5,
+                "Oceania": 30.3
+            },
+            {
+                "Year": 2017,
+                "Americas": 31.4,
+                "Europe": 24.6,
+                "Asia": 6.9,
+                "Africa": 8.7,
+                "Oceania": 30.6
+            },
+            {
+                "Year": 2018,
+                "Americas": 31.7,
+                "Europe": 24.8,
+                "Asia": 7.0,
+                "Africa": 8.9,
+                "Oceania": 30.9
+            },
+            {
+                "Year": 2019,
+                "Americas": 32.0,
+                "Europe": 25.0,
+                "Asia": 7.1,
+                "Africa": 9.1,
+                "Oceania": 31.2
+            },
+            {
+                "Year": 2020,
+                "Americas": 32.3,
+                "Europe": 25.2,
+                "Asia": 7.2,
+                "Africa": 9.3,
+                "Oceania": 31.5
+            },
+            {
+                "Year": 2021,
+                "Americas": 32.6,
+                "Europe": 25.4,
+                "Asia": 7.3,
+                "Africa": 9.5,
+                "Oceania": 31.8
+            },
+            {
+                "Year": 2022,
+                "Americas": 32.9,
+                "Europe": 25.6,
+                "Asia": 7.4,
+                "Africa": 9.7,
+                "Oceania": 32.1
+            },
+            {
+                "Year": 2023,
+                "Americas": 33.2,
+                "Europe": 25.8,
+                "Asia": 7.5,
+                "Africa": 9.9,
+                "Oceania": 32.4
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Americas",
+                "Europe",
+                "Asia",
+                "Africa",
+                "Oceania"
+            ],
+            "as": [
+                "Continent",
+                "Obesity Rate"
+            ]
+        }
+    ],
+    "width": 900,
+    "height": 500,
+    "mark": {
+        "type": "line",
+        "point": true
+    },
+    "encoding": {
+        "x": {
+            "field": "Year",
+            "type": "ordinal",
+            "title": "Year"
+        },
+        "y": {
+            "field": "Obesity Rate",
+            "type": "quantitative",
+            "title": "Average Annual Obesity Rates (%)",
+            "axis": {
+                "format": ".1f",
+                "labelAlign": "right"
+            }
+        },
+        "color": {
+            "field": "Continent",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Americas",
+                    "Europe",
+                    "Asia",
+                    "Africa",
+                    "Oceania"
+                ],
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e",
+                    "#2ca02c",
+                    "#d62728",
+                    "#9467bd"
+                ]
+            },
+            "title": "Continent"
+        }
+    },
+    "config": {
+        "axisY": {
+            "minExtent": 30
+        }
+    }
+}

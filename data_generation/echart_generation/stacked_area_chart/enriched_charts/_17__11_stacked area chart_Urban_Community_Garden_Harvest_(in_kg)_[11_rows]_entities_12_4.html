@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 650, height: 500});
+var app = {};
+
+var option;
+option = {
+    title: {
+        text: 'Funding Distribution for Space Agencies (2010-2020)',
+        subtext: 'In Million USD',
+        left: 'left'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            label: {
+                backgroundColor: '#6a7985'
+            }
+        }
+    },
+    legend: {
+        data: ['NASA Funding', 'ESA Funding', 'Roscosmos Funding', 'ISRO Funding', 'CNSA Funding'],
+        top: 50
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ['2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'NASA Funding',
+            type: 'line',
+            stack: 'Total funding',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [18000, 18200, 18500, 19000, 19500, 20000, 20500, 21000, 21500, 22000, 22500],
+            color: '#ff3333',
+        },
+        {
+            name: 'ESA Funding',
+            type: 'line',
+            stack: 'Total funding',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [5500, 5600, 5400, 5700, 5800, 5900, 6000, 6100, 6200, 6300, 6400],
+            color: '#33ff57',
+        },
+        {
+            name: 'Roscosmos Funding',
+            type: 'line',
+            stack: 'Total funding',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [3000, 3100, 3200, 3300, 3400, 3500, 3600, 3700, 3750, 3800, 3900],
+            color: '#3399ff',
+        },
+        {
+            name: 'ISRO Funding',
+            type: 'line',
+            stack: 'Total funding',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [1300, 1350, 1400, 1450, 1500, 1600, 1700, 1800, 1900, 2000, 2100],
+            color: '#ff9933',
+        },
+        {
+            name: 'CNSA Funding',
+            type: 'line',
+            stack: 'Total funding',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [1100, 1150, 1200, 1250, 1300, 1350, 1400, 1500, 1600, 1650, 1700],
+            color: '#ff33ff',
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

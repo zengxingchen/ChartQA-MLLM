@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 800,
+    height: 500
+});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Fruit Consumption over Years',
+        subtext: 'Percentage Stacked'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        },
+        formatter: function (params) {
+            let res = `${params[0].name}<br/>`;
+            params.forEach(param => {
+                res += `${param.marker}${param.seriesName}: ${(param.value)}%<br/>`;
+            });
+            return res;
+        }
+    },
+    legend: {
+        data: ['Apples', 'Bananas', 'Oranges', 'Grapes', 'Berries']
+    },
+    grid: {
+        left: '3%',
+        right: '10%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value'
+    },
+    yAxis: {
+        type: 'category',
+        data: ['2015', '2016', '2017', '2018', '2019', '2020']
+    },
+    series: [
+        {
+            name: 'Apples',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [30, 25, 35, 20, 15, 23],
+            itemStyle: {
+                color: '#FF0000'
+            },
+            barWidth: 35
+        },
+        {
+            name: 'Bananas',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [40, 35, 30, 40, 42, 33],
+            itemStyle: {
+                color: '#FFD700'
+            },
+            barWidth: 35
+        },
+        {
+            name: 'Oranges',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [15, 20, 15, 30, 28, 22],
+            itemStyle: {
+                color: '#FFA500'
+            },
+            barWidth: 35
+        },
+        {
+            name: 'Grapes',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [10, 15, 15, 5, 10, 15],
+            itemStyle: {
+                color: '#6A5ACD'
+            },
+            barWidth: 35
+        },
+        {
+            name: 'Berries',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [5, 5, 5, 5, 5, 7],
+            itemStyle: {
+                color: '#C71585'
+            },
+            barWidth: 35
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

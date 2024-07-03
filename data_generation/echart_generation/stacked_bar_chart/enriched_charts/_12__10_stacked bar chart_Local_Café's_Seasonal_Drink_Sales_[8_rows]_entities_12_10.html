@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var app = {};
+
+var option;
+option = {
+    title: {
+        text: 'Renewable Energy Sources in 2023',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Solar', 'Wind', 'Hydropower', 'Biomass', 'Geothermal'],
+        top: 'bottom'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '10%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        data: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+        axisLabel: {
+            rotate: 45,
+            interval: 0
+        }
+    },
+    yAxis: {
+        type: 'value',
+        axisLabel: {
+            formatter: '{value} GWh'
+        }
+    },
+    series: [
+        {
+            name: 'Solar',
+            type: 'bar',
+            stack: 'Total',
+            barWidth: '30%',
+            itemStyle: {
+                color: '#FF7F50'
+            },
+            data: [30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85]
+        },
+        {
+            name: 'Wind',
+            type: 'bar',
+            stack: 'Total',
+            itemStyle: {
+                color: '#87CEFA'
+            },
+            data: [20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75]
+        },
+        {
+            name: 'Hydropower',
+            type: 'bar',
+            stack: 'Total',
+            itemStyle: {
+                color: '#32CD32'
+            },
+            data: [40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95]
+        },
+        {
+            name: 'Biomass',
+            type: 'bar',
+            stack: 'Total',
+            itemStyle: {
+                color: '#FFD700'
+            },
+            data: [10, 12, 15, 18, 20, 25, 30, 35, 40, 45, 50, 55]
+        },
+        {
+            name: 'Geothermal',
+            type: 'bar',
+            stack: 'Total',
+            itemStyle: {
+                color: '#8B4513'
+            },
+            data: [5, 7, 10, 12, 15, 18, 20, 25, 30, 35, 40, 45]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

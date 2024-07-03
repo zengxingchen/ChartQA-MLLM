@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 400});
+var app = {};
+
+var option;
+
+option = {
+  title: {
+    text: 'Technology Adoption Trends',
+    left: 'center',
+    textStyle: {
+      color: '#333'
+    }
+  },
+  tooltip: {
+    trigger: 'axis'
+  },
+  legend: {
+    data: ['Technology Adoption'],
+    top: '10',
+    textStyle: {
+      color: '#000'
+    }
+  },
+  grid: {
+    left: '3%',
+    right: '4%',
+    bottom: '3%',
+    containLabel: true
+  },
+  xAxis: {
+    type: 'category',
+    boundaryGap: false,
+    data: ['2023-01-01','2023-01-02','2023-01-03','2023-01-04','2023-01-05','2023-01-06','2023-01-07','2023-01-08','2023-01-09','2023-01-10','2023-01-11','2023-01-12','2023-01-13','2023-01-14','2023-01-15']
+  },
+  yAxis: {
+    type: 'value',
+    axisLabel: {
+      formatter: '{value}'
+    }
+  },
+  series: [
+    {
+      name: 'Technology Adoption',
+      type: 'line',
+      stack: 'Total',
+      areaStyle: {},
+      emphasize: {
+        focus: 'series'
+      },
+      data: [10000, 9900, 9700, 9400, 9000, 8700, 8400, 8000, 7700, 7300, 6900, 6600, 6300, 5900, 5600],
+      label: {
+        show: true,
+        position: 'top',
+        valueAnimation: true
+      },
+      lineStyle: {
+        color: '#DB7093',
+        width: 2
+      },
+      itemStyle: {
+        color: '#DB7093'
+      },
+      areaStyle: {
+        color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+          {offset: 0, color: '#DB7093'},
+          {offset: 1, color: '#FFC0CB'}
+        ])
+      },
+      markPoint: {
+        data: [
+          {type: 'max', name: 'Max'},
+          {type: 'min', name: 'Min'}
+        ],
+        label: {
+          show: true
+        },
+        itemStyle: {
+          color: '#FF69B4'
+        }
+      }
+    }
+  ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

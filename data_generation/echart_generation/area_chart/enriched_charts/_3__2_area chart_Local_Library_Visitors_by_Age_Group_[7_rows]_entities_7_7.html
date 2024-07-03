@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Annual CO2 Emissions Trends',
+        left: 'center',
+        top: 20
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        top: '50',
+        data: ['CO2 Emissions']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ['2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021']
+    },
+    yAxis: {
+        type: 'value',
+        axisLabel: {
+            formatter: '{value} M tonnes'
+        }
+    },
+    series: [
+        {
+            name: 'CO2 Emissions',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [3002.5, 3080.5, 3161.8, 3302.6, 3421.5, 3502.7, 3630.3, 3726.2, 3820.6, 3799.3, 3934.5, 4018.8, 4042.1, 4114.6, 4238.3, 4321.7, 4412.6, 4501.2, 4611.5, 4698.3, 4220.1, 4355.3]
+        }
+    ],
+    color: ['#5470C6', '#91CC75', '#EE6666'],
+    markPoint: {
+        data: [
+            {type: 'max', name: 'Max'},
+            {type: 'min', name: 'Min'}
+        ]
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

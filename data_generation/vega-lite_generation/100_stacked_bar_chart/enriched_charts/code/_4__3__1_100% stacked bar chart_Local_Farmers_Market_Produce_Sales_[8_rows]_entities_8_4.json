@@ -1,0 +1,198 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "A 100% stacked bar chart showing the distribution of different types of fruits over years.",
+    "data": {
+        "values": [
+            {
+                "Year": 2010,
+                "Apple": 15,
+                "Banana": 25,
+                "Cherry": 20,
+                "Date": 10,
+                "Elderberry": 15,
+                "Fig": 15
+            },
+            {
+                "Year": 2011,
+                "Apple": 18,
+                "Banana": 23,
+                "Cherry": 19,
+                "Date": 12,
+                "Elderberry": 15,
+                "Fig": 13
+            },
+            {
+                "Year": 2012,
+                "Apple": 20,
+                "Banana": 20,
+                "Cherry": 18,
+                "Date": 14,
+                "Elderberry": 15,
+                "Fig": 13
+            },
+            {
+                "Year": 2013,
+                "Apple": 22,
+                "Banana": 18,
+                "Cherry": 18,
+                "Date": 16,
+                "Elderberry": 14,
+                "Fig": 12
+            },
+            {
+                "Year": 2014,
+                "Apple": 25,
+                "Banana": 16,
+                "Cherry": 17,
+                "Date": 18,
+                "Elderberry": 13,
+                "Fig": 11
+            },
+            {
+                "Year": 2015,
+                "Apple": 28,
+                "Banana": 14,
+                "Cherry": 16,
+                "Date": 19,
+                "Elderberry": 12,
+                "Fig": 11
+            },
+            {
+                "Year": 2016,
+                "Apple": 30,
+                "Banana": 12,
+                "Cherry": 15,
+                "Date": 20,
+                "Elderberry": 12,
+                "Fig": 11
+            },
+            {
+                "Year": 2017,
+                "Apple": 32,
+                "Banana": 10,
+                "Cherry": 14,
+                "Date": 21,
+                "Elderberry": 11,
+                "Fig": 10
+            },
+            {
+                "Year": 2018,
+                "Apple": 35,
+                "Banana": 8,
+                "Cherry": 13,
+                "Date": 22,
+                "Elderberry": 10,
+                "Fig": 10
+            },
+            {
+                "Year": 2019,
+                "Apple": 38,
+                "Banana": 6,
+                "Cherry": 12,
+                "Date": 23,
+                "Elderberry": 10,
+                "Fig": 10
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Apple",
+                "Banana",
+                "Cherry",
+                "Date",
+                "Elderberry",
+                "Fig"
+            ],
+            "as": [
+                "Fruit",
+                "Percentage"
+            ]
+        },
+        {
+            "calculate": "datum.Percentage / 100",
+            "as": "NormalizedPercentage"
+        }
+    ],
+    "title": {
+        "text": "Distribution of Different Types of Fruits Over Years",
+        "color": "black",
+        "fontSize": 16,
+        "anchor": "start",
+        "dy": -30
+    },
+    "width": 1000,
+    "height": 600,
+    "mark": {
+        "type": "bar",
+        "tooltip": true,
+        "size": 20
+    },
+    "encoding": {
+        "y": {
+            "field": "Year",
+            "type": "ordinal",
+            "axis": {
+                "title": "Year"
+            }
+        },
+        "x": {
+            "field": "NormalizedPercentage",
+            "type": "quantitative",
+            "axis": {
+                "title": "Percentage"
+            },
+            "stack": "normalize"
+        },
+        "color": {
+            "field": "Fruit",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Apple",
+                    "Banana",
+                    "Cherry",
+                    "Date",
+                    "Elderberry",
+                    "Fig"
+                ],
+                "range": [
+                    "#FF0000",
+                    "#FFFF00",
+                    "#8B0000",
+                    "#A52A2A",
+                    "#4B0082",
+                    "#228B22"
+                ]
+            },
+            "legend": {
+                "title": "Fruit",
+                "orient": "top-right",
+                "titleFontSize": 12,
+                "labelFontSize": 10
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Year",
+                "type": "ordinal"
+            },
+            {
+                "field": "Fruit",
+                "type": "nominal"
+            },
+            {
+                "field": "Percentage",
+                "type": "quantitative",
+                "title": "Percentage"
+            }
+        ]
+    },
+    "config": {
+        "bar": {
+            "binSpacing": 1,
+            "continuousBandSize": 15
+        }
+    }
+}

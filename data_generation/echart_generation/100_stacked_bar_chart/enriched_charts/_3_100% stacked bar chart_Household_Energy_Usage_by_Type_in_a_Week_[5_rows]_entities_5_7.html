@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 800, // changed width of the chart reasonably
+    height: 600 // changed height of the chart reasonably
+});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Online Educational Content Consumption by Age Group',
+        left: 'center',
+        top: 5 // placing title appropriately
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            // Use axis to trigger tooltip
+            type: 'shadow' // Default shadow; can also be line or shadow
+        }
+    },
+    legend: {
+        data: ['E-Learning', 'Course Videos', 'Articles', 'Podcasts', 'Interactive Content'],
+        bottom: 10 // positioning the legend away from the title
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '10%', // leaving space for the legend
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01]
+    },
+    yAxis: {
+        type: 'category',
+        data: ['<18', '18-24', '25-34', '35-44', '45-54', '55+']
+    },
+    series: [
+        {
+            name: 'E-Learning',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            data: [15, 10, 20, 25, 30, 35],
+            itemStyle: {
+                barBorderRadius: 10, // Band width for bars
+                color: '#1F77B4'
+            }
+        },
+        {
+            name: 'Course Videos',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            data: [25, 30, 25, 20, 15, 10],
+            itemStyle: {
+                barBorderRadius: 10, // Band width for bars
+                color: '#FF7F0E'
+            }
+        },
+        {
+            name: 'Articles',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            data: [30, 25, 30, 25, 20, 25],
+            itemStyle: {
+                barBorderRadius: 10, // Band width for bars
+                color: '#2CA02C'
+            }
+        },
+        {
+            name: 'Podcasts',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            data: [15, 20, 15, 15, 20, 15],
+            itemStyle: {
+                barBorderRadius: 10, // Band width for bars
+                color: '#D62728'
+            }
+        },
+        {
+            name: 'Interactive Content',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            data: [15, 15, 10, 15, 15, 15],
+            itemStyle: {
+                barBorderRadius: 10, // Band width for bars
+                color: '#9467BD'
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

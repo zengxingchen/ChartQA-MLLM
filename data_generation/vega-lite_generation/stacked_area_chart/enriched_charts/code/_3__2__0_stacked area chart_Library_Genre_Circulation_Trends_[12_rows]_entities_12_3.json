@@ -1,0 +1,174 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Area chart of renewable energy production by type over time",
+    "width": 500,
+    "height": 300,
+    "data": {
+        "values": [
+            {
+                "Year": 2010,
+                "Solar": 50,
+                "Wind": 80,
+                "Hydro": 120,
+                "Bioenergy": 40
+            },
+            {
+                "Year": 2011,
+                "Solar": 60,
+                "Wind": 90,
+                "Hydro": 125,
+                "Bioenergy": 45
+            },
+            {
+                "Year": 2012,
+                "Solar": 65,
+                "Wind": 95,
+                "Hydro": 130,
+                "Bioenergy": 46
+            },
+            {
+                "Year": 2013,
+                "Solar": 70,
+                "Wind": 100,
+                "Hydro": 135,
+                "Bioenergy": 47
+            },
+            {
+                "Year": 2014,
+                "Solar": 80,
+                "Wind": 105,
+                "Hydro": 140,
+                "Bioenergy": 48
+            },
+            {
+                "Year": 2015,
+                "Solar": 85,
+                "Wind": 110,
+                "Hydro": 145,
+                "Bioenergy": 50
+            },
+            {
+                "Year": 2016,
+                "Solar": 90,
+                "Wind": 115,
+                "Hydro": 150,
+                "Bioenergy": 52
+            },
+            {
+                "Year": 2017,
+                "Solar": 100,
+                "Wind": 120,
+                "Hydro": 155,
+                "Bioenergy": 53
+            },
+            {
+                "Year": 2018,
+                "Solar": 110,
+                "Wind": 130,
+                "Hydro": 160,
+                "Bioenergy": 55
+            },
+            {
+                "Year": 2019,
+                "Solar": 120,
+                "Wind": 140,
+                "Hydro": 165,
+                "Bioenergy": 56
+            },
+            {
+                "Year": 2020,
+                "Solar": 130,
+                "Wind": 150,
+                "Hydro": 170,
+                "Bioenergy": 58
+            },
+            {
+                "Year": 2021,
+                "Solar": 140,
+                "Wind": 160,
+                "Hydro": 175,
+                "Bioenergy": 60
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Solar",
+                "Wind",
+                "Hydro",
+                "Bioenergy"
+            ],
+            "as": [
+                "Energy Type",
+                "Production"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "area",
+        "opacity": 0.8
+    },
+    "encoding": {
+        "x": {
+            "field": "Year",
+            "type": "ordinal",
+            "title": "Year",
+            "axis": {
+                "labelAngle": 0
+            }
+        },
+        "y": {
+            "field": "Production",
+            "type": "quantitative",
+            "stack": "zero",
+            "title": "Energy Production (TWh)"
+        },
+        "color": {
+            "field": "Energy Type",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Solar",
+                    "Wind",
+                    "Hydro",
+                    "Bioenergy"
+                ],
+                "range": [
+                    "#f1c40f",
+                    "#3498db",
+                    "#2ecc71",
+                    "#e74c3c"
+                ]
+            },
+            "title": "Type of Renewable Energy"
+        },
+        "tooltip": [
+            {
+                "field": "Energy Type",
+                "type": "nominal",
+                "title": "Energy Type"
+            },
+            {
+                "field": "Production",
+                "type": "quantitative",
+                "title": "Production",
+                "format": ",.0f"
+            }
+        ]
+    },
+    "title": {
+        "text": "Renewable Energy Production Over Time",
+        "fontSize": 16,
+        "anchor": "start",
+        "offset": 10
+    },
+    "config": {
+        "view": {
+            "stroke": "transparent"
+        },
+        "axis": {
+            "grid": true
+        }
+    }
+}

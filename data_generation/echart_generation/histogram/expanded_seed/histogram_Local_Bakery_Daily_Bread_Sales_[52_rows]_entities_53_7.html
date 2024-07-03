@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var rawData = [{'Day': 'Monday', 'Sales': 210}, {'Day': 'Tuesday', 'Sales': 150}, {'Day': 'Wednesday', 'Sales': 175}, {'Day': 'Thursday', 'Sales': 190}, {'Day': 'Friday', 'Sales': 240}, {'Day': 'Saturday', 'Sales': 300}, {'Day': 'Sunday', 'Sales': 280}, {'Day': 'Monday', 'Sales': 220}, {'Day': 'Tuesday', 'Sales': 130}, {'Day': 'Wednesday', 'Sales': 160}, {'Day': 'Thursday', 'Sales': 195}, {'Day': 'Friday', 'Sales': 230}, {'Day': 'Saturday', 'Sales': 310}, {'Day': 'Sunday', 'Sales': 275}, {'Day': 'Monday', 'Sales': 205}];
+
+// Process data to get the frequency of each bin
+var salesValues = rawData.map(function (item) {
+    return item.Sales;
+});
+
+// Define the bin thresholds
+var binSize = 30;
+var maxSales = Math.max.apply(null, salesValues);
+var minSales = Math.min.apply(null, salesValues);
+var bins = [];
+for (var i = minSales; i < maxSales; i += binSize) {
+    bins.push({from: i, to: i + binSize, count: 0});
+}
+
+// Fill the bins with frequency counts
+salesValues.forEach(function (val) {
+    var bin = Math.floor((val - minSales) / binSize);
+    if (bins[bin]) {
+        bins[bin].count += 1;
+    }
+});
+
+// Convert bin data for charting
+var histogramData = bins.map(function (bin) {
+    return [bin.from, bin.to, bin.count];
+});
+
+// Now, prepare the option for echart
+var option;
+option = {
+    title: {
+        text: 'Sales Histogram',
+        subtext: 'Frequency of Sales Bins'
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: function (params) {
+            return params.value[2] + ' sales from ' + params.value[0] + ' to ' + params.value[1];
+        }
+    },
+    xAxis: {
+        scale: true,
+        splitLine: {
+            show: false
+        }
+    },
+    yAxis: {
+    },
+    series: [
+        {
+            name: 'Sales',
+            type: 'bar',
+            barWidth: '99.3%',
+            label: {
+                normal: {
+                    show: true,
+                    position: 'insideTop',
+                    formatter: function (params) {
+                        return params.value[2];
+                    }
+                }
+            },
+            data: histogramData
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

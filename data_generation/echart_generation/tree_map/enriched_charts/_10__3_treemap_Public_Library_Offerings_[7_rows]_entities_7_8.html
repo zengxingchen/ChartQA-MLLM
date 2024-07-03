@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+var option = {
+    title: {
+        text: 'Popular Art Movements',
+        left: 'center',
+        top: '5%'
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: '{b}: {c}'
+    },
+    series: [{
+        type: 'treemap',
+        data: [
+            {name: 'Impressionism', value: 45, itemStyle: {color: '#FF6347'}},
+            {name: 'Cubism', value: 60, itemStyle: {color: '#4682B4'}},
+            {name: 'Abstract', value: 30, itemStyle: {color: '#8A2BE2'}},
+            {name: 'Surrealism', value: 40, itemStyle: {color: '#FF69B4'}},
+            {name: 'Baroque', value: 55, itemStyle: {color: '#FF8C00'}},
+            {name: 'Renaissance', value: 75, itemStyle: {color: '#32CD32'}},
+            {name: 'Gothic', value: 35, itemStyle: {color: '#FFD700'}},
+            {name: 'Realism', value: 50, itemStyle: {color: '#ADFF2F'}},
+            {name: 'Art Nouveau', value: 65, itemStyle: {color: '#00CED1'}},
+            {name: 'Pop Art', value: 25, itemStyle: {color: '#20B2AA'}},
+            {name: 'Minimalism', value: 20, itemStyle: {color: '#FF4500'}},
+            {name: 'Expressionism', value: 55, itemStyle: {color: '#DA70D6'}},
+            {name: 'Modernism', value: 70, itemStyle: {color: '#CD5C5C'}},
+            {name: 'Postmodernism', value: 30, itemStyle: {color: '#4B0082'}},
+            {name: 'Dada', value: 40, itemStyle: {color: '#7CFC00'}},
+            {name: 'Neoclassicism', value: 50, itemStyle: {color: '#BA55D3'}},
+            {name: 'Romanticism', value: 60, itemStyle: {color: '#87CEEB'}},
+            {name: 'Fauvism', value: 35, itemStyle: {color: '#FFA07A'}},
+            {name: 'Constructivism', value: 45, itemStyle: {color: '#B0C4DE'}},
+            {name: 'Futurism', value: 25, itemStyle: {color: '#3CB371'}}
+        ]
+    }]
+};
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

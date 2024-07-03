@@ -1,0 +1,120 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "A pie chart showing the popularity of different music genres.",
+    "width": 450,
+    "height": 450,
+    "padding": 10,
+    "config": {
+        "font": "Roboto",
+        "style": {
+            "guide-label": {
+                "fill": "#44475a"
+            },
+            "guide-title": {
+                "fill": "#44475a"
+            }
+        },
+        "axis": {
+            "domainColor": "#44475a",
+            "tickColor": "#44475a"
+        }
+    },
+    "data": {
+        "values": [
+            {
+                "Genre": "Rock",
+                "Popularity": 30
+            },
+            {
+                "Genre": "Pop",
+                "Popularity": 25
+            },
+            {
+                "Genre": "Jazz",
+                "Popularity": 15
+            },
+            {
+                "Genre": "Classical",
+                "Popularity": 10
+            },
+            {
+                "Genre": "Hip-Hop",
+                "Popularity": 10
+            },
+            {
+                "Genre": "Electronic",
+                "Popularity": 5
+            },
+            {
+                "Genre": "Country",
+                "Popularity": 5
+            }
+        ]
+    },
+    "mark": {
+        "type": "arc",
+        "tooltip": true
+    },
+    "encoding": {
+        "theta": {
+            "field": "Popularity",
+            "type": "quantitative",
+            "stack": true
+        },
+        "color": {
+            "field": "Genre",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Rock",
+                    "Pop",
+                    "Jazz",
+                    "Classical",
+                    "Hip-Hop",
+                    "Electronic",
+                    "Country"
+                ],
+                "range": [
+                    "#FF6F61",
+                    "#6B5B95",
+                    "#88B04B",
+                    "#F7CAC9",
+                    "#92A8D1",
+                    "#955251",
+                    "#B565A7"
+                ]
+            },
+            "legend": {
+                "direction": "horizontal",
+                "orient": "bottom"
+            }
+        },
+        "opacity": {
+            "condition": {
+                "selection": "element",
+                "value": 1
+            },
+            "value": 0.7
+        }
+    },
+    "selection": {
+        "element": {
+            "type": "multi",
+            "fields": [
+                "Genre"
+            ],
+            "bind": "legend"
+        }
+    },
+    "view": {
+        "stroke": null
+    },
+    "title": {
+        "text": "Popularity of Different Music Genres",
+        "fontSize": 18,
+        "fontWeight": "bold",
+        "anchor": "start",
+        "dx": 20,
+        "dy": -20
+    }
+}

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Interest Levels in Various Topics',
+        left: 'center',
+        top: '10%'
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: function (params) {
+            return params.name + ': ' + params.value[1];
+        }
+    },
+    legend: {
+        left: 'right',
+        top: '15%',
+    },
+    xAxis: {
+        name: 'Category',
+        type: 'category',
+        data: ['Art & Design', 'Science & Nature', 'Health & Psychology', 'Culture & Society', 'Economics & Finance', 'Education & Learning', 'Entertainment & Leisure', 'Environment & Climate Change', 'Food & Nutrition', 'Travel & Adventure', 'Fashion & Beauty', 'Politics & Governance', 'Sports & Fitness', 'History & Archaeology', 'Philosophy & Ethics', 'Music & Performing Arts', 'Literature & Writing', 'Business & Entrepreneurship', 'Astronomy & Space Exploration'],
+        axisLabel: {
+            rotate: 45,
+            interval: 0
+        }
+    },
+    yAxis: {
+        name: 'Interest Level',
+        type: 'value'
+    },
+    series: [{
+        name: 'Interest Level',
+        type: 'scatter',
+        itemStyle: {
+            color: '#FF6347'
+        },
+        data: [
+            ['Art & Design', 90],
+            ['Science & Nature', 85],
+            ['Health & Psychology', 80],
+            ['Culture & Society', 78],
+            ['Economics & Finance', 76],
+            ['Education & Learning', 74],
+            ['Entertainment & Leisure', 72],
+            ['Environment & Climate Change', 70],
+            ['Food & Nutrition', 68],
+            ['Travel & Adventure', 66],
+            ['Fashion & Beauty', 64],
+            ['Politics & Governance', 62],
+            ['Sports & Fitness', 60],
+            ['History & Archaeology', 58],
+            ['Philosophy & Ethics', 56],
+            ['Music & Performing Arts', 54],
+            ['Literature & Writing', 52],
+            ['Business & Entrepreneurship', 50],
+            ['Astronomy & Space Exploration', 48]
+        ]
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

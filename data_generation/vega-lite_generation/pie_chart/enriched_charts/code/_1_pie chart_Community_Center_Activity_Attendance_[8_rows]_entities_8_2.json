@@ -1,0 +1,118 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "A pie chart representing the monthly revenue generated from different departments of a store.",
+    "height": 300,
+    "width": 300,
+    "padding": 0,
+    "config": {
+        "font": "Roboto",
+        "style": {
+            "guide-label": {
+                "fill": "#44475a"
+            },
+            "guide-title": {
+                "fill": "#44475a"
+            }
+        },
+        "axis": {
+            "domainColor": "#44475a",
+            "tickColor": "#44475a"
+        }
+    },
+    "data": {
+        "values": [
+            {
+                "Department": "Electronics",
+                "Revenue": 35000
+            },
+            {
+                "Department": "Clothing",
+                "Revenue": 28000
+            },
+            {
+                "Department": "Footwear",
+                "Revenue": 19000
+            },
+            {
+                "Department": "Home Appliances",
+                "Revenue": 21000
+            },
+            {
+                "Department": "Groceries",
+                "Revenue": 27000
+            },
+            {
+                "Department": "Books",
+                "Revenue": 13000
+            },
+            {
+                "Department": "Toys",
+                "Revenue": 8000
+            },
+            {
+                "Department": "Garden",
+                "Revenue": 5000
+            }
+        ]
+    },
+    "mark": {
+        "type": "arc",
+        "tooltip": true
+    },
+    "encoding": {
+        "theta": {
+            "field": "Revenue",
+            "type": "quantitative",
+            "stack": true
+        },
+        "color": {
+            "field": "Department",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Electronics",
+                    "Clothing",
+                    "Footwear",
+                    "Home Appliances",
+                    "Groceries",
+                    "Books",
+                    "Toys",
+                    "Garden"
+                ],
+                "range": [
+                    "#1f77b4",
+                    "#aec7e8",
+                    "#ffbb78",
+                    "#2ca02c",
+                    "#98df8a",
+                    "#ff9896",
+                    "#9467bd",
+                    "#c5b0d5"
+                ]
+            },
+            "legend": {
+                "direction": "horizontal",
+                "orient": "bottom"
+            }
+        },
+        "opacity": {
+            "condition": {
+                "selection": "element",
+                "value": 1
+            },
+            "value": 0.7
+        }
+    },
+    "selection": {
+        "element": {
+            "type": "multi",
+            "fields": [
+                "Department"
+            ],
+            "bind": "legend"
+        }
+    },
+    "view": {
+        "stroke": null
+    }
+}

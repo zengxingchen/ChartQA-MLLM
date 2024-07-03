@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 800,   // Modified width
+    height: 600   // Modified height
+});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Distribution of Future Technology Adoption',
+        left: 'center',
+        top: 20
+    },
+    tooltip: {
+        trigger: 'item'
+    },
+    legend: {
+        orient: 'vertical',
+        left: 'left',
+        top: 50,
+        textStyle: {
+            fontSize: 14 // Adjust for better visibility
+        }
+    },
+    series: [
+        {
+            name: 'Technology',
+            type: 'pie',
+            radius: '55%',
+            center: ['50%', '60%'], // Adjust to make space for legend
+            data: [
+                {value: 12, name: 'Home Automation'},
+                {value: 34, name: 'Smartphones'},
+                {value: 26, name: 'Wearable Technology'},
+                {value: 22, name: 'Augmented Reality'},
+                {value: 28, name: 'Artificial Intelligence'},
+                {value: 20, name: 'Big Data'},
+                {value: 18, name: 'Blockchain'},
+                {value: 24, name: 'Internet of Things'},
+                {value: 14, name: 'Robotic Process Automation'},
+                {value: 12, name: 'Quantum Computing'}
+            ],
+            emphasis: {
+                itemStyle: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            }
+        }
+    ],
+    color: [  // Custom color scheme
+        '#56CCF2', '#2F80ED', '#9B51E0', '#F2994A', '#EB5757',
+        '#6FCF97', '#333333', '#F2C94C', '#828282', '#BB6BD9'
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

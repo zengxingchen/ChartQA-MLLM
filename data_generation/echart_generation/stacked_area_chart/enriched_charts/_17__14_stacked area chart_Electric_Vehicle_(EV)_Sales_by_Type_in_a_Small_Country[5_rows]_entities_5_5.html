@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+// Generate data series
+var quarters = ['Q1-2020', 'Q2-2020', 'Q3-2020', 'Q4-2020', 'Q1-2021', 'Q2-2021', 'Q3-2021', 'Q4-2021', 'Q1-2022', 'Q2-2022', 'Q3-2022', 'Q4-2022'];
+var smartphones = [12000, 13000, 15000, 16000, 14000, 15500, 16500, 17000, 17500, 18000, 19000, 19500];
+var computers = [8000, 7500, 7700, 7800, 7900, 8200, 8500, 8600, 8700, 8800, 8900, 9000];
+var accessories = [2000, 2500, 2200, 2600, 2700, 2100, 2300, 2400, 2500, 2600, 2700, 2800];
+var software = [4000, 4500, 4800, 5000, 5200, 5400, 5500, 5700, 5900, 6100, 6300, 6500];
+var services = [3000, 3500, 3200, 3300, 3400, 3600, 3800, 3900, 4000, 4200, 4400, 4600];
+
+option = {
+    title: {
+        text: 'Quarterly Revenue by Product Category',
+        left: 'center',
+        top: 20
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            label: {
+                backgroundColor: '#6a7985'
+            }
+        }
+    },
+    legend: {
+        data: ['Smartphones', 'Computers', 'Accessories', 'Software', 'Services'],
+        top: 50
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: quarters
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Smartphones',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: { focus: 'series' },
+            data: smartphones,
+            itemStyle: {
+                color: '#1f77b4'
+            }
+        },
+        {
+            name: 'Computers',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: { focus: 'series' },
+            data: computers,
+            itemStyle: {
+                color: '#ff7f0e'
+            }
+        },
+        {
+            name: 'Accessories',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: { focus: 'series' },
+            data: accessories,
+            itemStyle: {
+                color: '#2ca02c'
+            }
+        },
+        {
+            name: 'Software',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: { focus: 'series' },
+            data: software,
+            itemStyle: {
+                color: '#d62728'
+            }
+        },
+        {
+            name: 'Services',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: { focus: 'series' },
+            data: services,
+            itemStyle: {
+                color: '#9467bd'
+            }
+        }
+    ],
+    color: ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd'],
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    annotations: [
+        {
+            seriesIndex: 4,
+            dataCoord: ['Q4-2022', 4600],
+            symbol: 'pin',
+            value: 'Peak Revenue'
+        }
+    ]
+};
+
+myChart.setOption(option, true);
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

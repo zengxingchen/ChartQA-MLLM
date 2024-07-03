@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 800,  // Changed width for better clarity
+    height: 500  // Changed height for better clarity
+});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Quarterly Revenue of Startups',  // Headline of the chart
+        subtext: 'Economics & Finance',  // Topic
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['Startup A', 'Startup B', 'Startup C'],
+        top: 'top'  // Adjusting the legend to the top to avoid overlap with the title
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ['Q1-2021', 'Q2-2021', 'Q3-2021', 'Q4-2021', 'Q1-2022', 'Q2-2022', 'Q3-2022', 'Q4-2022']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Startup A',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: { focus: 'series' },
+            data: [120, 130, 128, 140, 150, 160, 155, 165],
+            color: '#FF7F50',  // Coral color for Startup A
+            label: {
+                show: true,
+                position: 'top'
+            }
+        },
+        {
+            name: 'Startup B',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: { focus: 'series' },
+            data: [80, 90, 100, 110, 130, 140, 150, 160],
+            color: '#6495ED',  // Cornflower Blue color for Startup B
+            label: {
+                show: true,
+                position: 'top'
+            }
+        },
+        {
+            name: 'Startup C',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: { focus: 'series' },
+            data: [150, 160, 175, 180, 190, 200, 210, 220],
+            color: '#32CD32',  // Lime Green color for Startup C
+            label: {
+                show: true,
+                position: 'top'
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

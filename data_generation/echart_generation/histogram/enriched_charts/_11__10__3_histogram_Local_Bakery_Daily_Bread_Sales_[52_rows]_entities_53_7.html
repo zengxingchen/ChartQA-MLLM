@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+var option;
+
+option = {
+    title: {
+        text: 'Distribution of Daily Caloric Intake',
+        left: 'center',
+        top: 20
+    },
+    tooltip: {
+        trigger: 'item'
+    },
+    xAxis: {
+        type: 'category',
+        data: ['1500-1599', '1600-1699', '1700-1799', '1800-1899', '1900-1999', '2000-2099', '2100-2199', '2200-2299', '2300-2399', '2400-2499', '2500-2599', '2600-2699', '2700-2799', '2800-2899', '2900-2999', '3000-3099', '3100-3199'],
+        axisLabel: {
+            rotate: 45,
+            textStyle: {
+                color: '#000000'
+            }
+        }
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Frequency',
+        axisLabel: {
+            textStyle: {
+                color: '#000000'
+            }
+        }
+    },
+    series: [{
+        data: [2, 3, 4, 6, 5, 7, 4, 8, 6, 9, 3, 2, 1, 2, 3, 1, 1],
+        type: 'bar',
+        barWidth: '50%',
+        itemStyle: {
+            color: '#FF6347'
+        },
+        label: {
+            show: true,
+            position: 'top'
+        }
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

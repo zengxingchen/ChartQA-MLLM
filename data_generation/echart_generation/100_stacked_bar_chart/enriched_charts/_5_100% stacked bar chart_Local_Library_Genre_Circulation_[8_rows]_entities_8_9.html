@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {renderer: 'canvas', width: 800, height: 600});
+var app = {};
+
+var option;
+
+option = {
+    color: ['#FFCE34', '#6FCF97', '#4D8FAC', '#F2994A', '#9B51E0', '#EB5757', '#333333', '#56CCF2'],
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Literature', 'Science', 'Arts', 'Economics', 'Engineering', 'Health', 'Education', 'Other'],
+        orient: 'horizontal',
+        left: 10,
+        top: 20
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01],
+    },
+    yAxis: {
+        type: 'category',
+        data: ['2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020']
+    },
+    series: [
+        {
+            name: 'Literature',
+            type: 'bar',
+            stack: 'total',
+            barWidth : 35,
+            label: {
+                show: true,
+                formatter: '{c}%'
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [10, 11, 12, 13, 14, 15, 14, 16, 17, 18]
+        },
+        {
+            name: 'Science',
+            type: 'bar',
+            stack: 'total',
+            barWidth : 35,
+            label: {
+                show: true,
+                formatter: '{c}%'
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [20, 21, 20, 19, 18, 20, 19, 20, 21, 22]
+        },
+        {
+            name: 'Arts',
+            type: 'bar',
+            stack: 'total',
+            barWidth : 35,
+            label: {
+                show: true,
+                formatter: '{c}%'
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [15, 15, 16, 17, 17, 16, 17, 18, 18, 17]
+        },
+        {
+            name: 'Economics',
+            type: 'bar',
+            stack: 'total',
+            barWidth : 35,
+            label: {
+                show: true,
+                formatter: '{c}%'
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [14, 14, 13, 13, 12, 11, 14, 13, 12, 12]
+        },
+        {
+            name: 'Engineering',
+            type: 'bar',
+            stack: 'total',
+            barWidth : 35,
+            label: {
+                show: true,
+                formatter: '{c}%'
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [18, 17, 19, 18, 19, 18, 17, 15, 14, 13]
+        },
+        {
+            name: 'Health',
+            type: 'bar',
+            stack: 'total',
+            barWidth : 35,
+            label: {
+                show: true,
+                formatter: '{c}%'
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [12, 11, 11, 10, 11, 11, 10, 12, 11, 10]
+        },
+        {
+            name: 'Education',
+            type: 'bar',
+            stack: 'total',
+            barWidth : 35,
+            label: {
+                show: true,
+                formatter: '{c}%'
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [8, 9, 7, 7, 6, 5, 5, 4, 5, 6]
+        },
+        {
+            name: 'Other',
+            type: 'bar',
+            stack: 'total',
+            barWidth : 35,
+            label: {
+                show: true,
+                formatter: '{c}%'
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [3, 2, 2, 3, 3, 4, 4, 2, 2, 2]
+        }
+    ],
+    title: {
+        text: 'Education & Learning Enrolment by Fields',
+        left: 'center'
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

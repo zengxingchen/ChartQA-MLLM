@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 800,  // Changed width
+    height: 600  // Changed height
+});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Quarterly Revenue Growth by Sector',
+        left: 'center',
+        textStyle: {
+            fontSize: 24
+        }
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            label: {
+                backgroundColor: '#6a7985'
+            }
+        }
+    },
+    legend: {
+        data: ['Technology', 'Healthcare', 'Consumer Goods', 'Energy'],
+        top: '7%'
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: [
+        {
+            type: 'category',
+            boundaryGap: false,
+            data: ['Q1-2019', 'Q2-2019', 'Q3-2019', 'Q4-2019', 'Q1-2020', 'Q2-2020', 'Q3-2020', 'Q4-2020', 'Q1-2021', 'Q2-2021', 'Q3-2021', 'Q4-2021', 'Q1-2022', 'Q2-2022', 'Q3-2022', 'Q4-2022']
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value'
+        }
+    ],
+    series: [
+        {
+            name: 'Technology',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [120000, 130000, 135000, 140000, 145000, 150000, 155000, 160000, 165000, 170000, 175000, 180000, 185000, 190000, 195000, 200000],
+            color: '#33A5FF'  // New color code
+        },
+        {
+            name: 'Healthcare',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [95000, 100000, 105000, 110000, 115000, 118000, 120000, 125000, 130000, 135000, 137000, 140000, 142000, 145000, 148000, 150000],
+            color: '#4CAF50' // New color code
+        },
+        {
+            name: 'Consumer Goods',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [75000, 77000, 80000, 83000, 85000, 87000, 89000, 91000, 93000, 95000, 96000, 97000, 98000, 99000, 100000, 102000],
+            color: '#FFC300' // New color code
+        },
+        {
+            name: 'Energy',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [40000, 43000, 46000, 49000, 50000, 56000, 61000, 65000, 67000, 69000, 71000, 73000, 75000, 77000, 79000, 81000],
+            color: '#FF5733' // New color code
+        }
+    ]
+};
+
+// Label/Annotation - Here we are adding a label to the last data point of 'Technology' series for annotation
+myChart.on('finished', function() {
+    var position = myChart.convertToPixel({seriesIndex: 0}, [15, 200000]);
+    var zIndex = myChart.getZr().storage.getDisplayList().length + 1;
+    
+    myChart.getZr().add(new echarts.graphic.Text({
+        style: {
+            text: 'Steady Growth',
+            x: position[0],
+            y: position[1],
+            fill: '#334455',
+            stroke: '#f0f0f0',
+            lineWidth: 2,
+            fontSize: 14,
+            fontWeight: 'bold'
+        },
+        // Set to be over all other elements
+        z: zIndex
+    }));
+});
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 700, // changed width reasonably
+    height: 400, // changed height reasonably
+});
+var app = {};
+
+var option;
+
+option = {
+    color: ['#FFD700', '#228B22', '#4169E1', '#FF4500'], // modified color scheme
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow' // Default tooltip trigger to axis
+        }
+    },
+    legend: {
+        data: ['Primary Education', 'Secondary Education', 'Higher Education', 'Vocational Training'],
+        orient: 'vertical', // changed legend position
+        left: 'right'
+    },
+    title: {
+        text: 'Education & Learning Sector Breakdown (2015-2021)',
+        left: 'center' // correct position to not overlap with the legend
+    },
+    grid: {
+        left: '3%',
+        right: '20%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01]
+    },
+    yAxis: {
+        type: 'category',
+        data: ['2015', '2016', '2017', '2018', '2019', '2020', '2021']
+    },
+    series: [
+        {
+            name: 'Primary Education',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 40, // changed the band height for bars
+            data: [25, 20, 20, 18, 16, 15, 14]
+        },
+        {
+            name: 'Secondary Education',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 40, // changed the band height for bars
+            data: [35, 40, 30, 32, 34, 30, 28]
+        },
+        {
+            name: 'Higher Education',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 40, // changed the band height for bars
+            data: [30, 30, 35, 38, 40, 45, 47]
+        },
+        {
+            name: 'Vocational Training',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 40, // changed the band height for bars
+            data: [10, 10, 15, 12, 10, 10, 11]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

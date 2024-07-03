@@ -1,0 +1,114 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "A bar chart showing the average price of various items.",
+    "data": {
+        "values": [
+            {
+                "Item": "Milk (1 gallon)",
+                "Average Price (USD)": 3.45
+            },
+            {
+                "Item": "Eggs (dozen)",
+                "Average Price (USD)": 2.19
+            },
+            {
+                "Item": "Bread (loaf)",
+                "Average Price (USD)": 2.35
+            },
+            {
+                "Item": "Chicken Breast (1 lb)",
+                "Average Price (USD)": 3.8
+            },
+            {
+                "Item": "Rice (1 lb)",
+                "Average Price (USD)": 1.5
+            },
+            {
+                "Item": "Apples (1 lb)",
+                "Average Price (USD)": 1.2
+            },
+            {
+                "Item": "Tomatoes (1 lb)",
+                "Average Price (USD)": 2.1
+            },
+            {
+                "Item": "Potatoes (1 lb)",
+                "Average Price (USD)": 0.99
+            },
+            {
+                "Item": "Coffee (12 oz bag)",
+                "Average Price (USD)": 4.99
+            }
+        ]
+    },
+    "width": 400,
+    "height": 300,
+    "mark": "bar",
+    "encoding": {
+        "y": {
+            "field": "Item",
+            "type": "ordinal",
+            "title": "Item",
+            "axis": {
+                "labelAngle": 0
+            }
+        },
+        "x": {
+            "field": "Average Price (USD)",
+            "type": "quantitative",
+            "title": "Average Price (USD)"
+        },
+        "color": {
+            "field": "Item",
+            "type": "nominal",
+            "legend": {
+                "title": "Items"
+            },
+            "scale": {
+                "scheme": "category10"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Item",
+                "type": "nominal"
+            },
+            {
+                "field": "Average Price (USD)",
+                "type": "quantitative"
+            }
+        ]
+    },
+    "config": {
+        "bar": {
+            "stroke": "transparent"
+        }
+    },
+    "layer": [
+        {
+            "mark": "rule",
+            "encoding": {
+                "x": {
+                    "aggregate": "mean",
+                    "field": "Average Price (USD)",
+                    "type": "quantitative",
+                    "title": "Mean Average Price (USD)"
+                },
+                "color": {
+                    "value": "red"
+                },
+                "size": {
+                    "value": 2
+                },
+                "tooltip": [
+                    {
+                        "aggregate": "mean",
+                        "field": "Average Price (USD)",
+                        "type": "quantitative",
+                        "title": "Mean Price"
+                    }
+                ]
+            }
+        }
+    ]
+}

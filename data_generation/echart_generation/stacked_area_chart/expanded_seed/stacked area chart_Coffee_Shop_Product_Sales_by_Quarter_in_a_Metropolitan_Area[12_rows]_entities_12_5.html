@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var data = [{'Quarter': 'Q1 2021', 'Espresso': 800, 'Lattes': 1500, 'Cappuccinos': 1000, 'Frappes': 700, 'Pastries': 500}, {'Quarter': 'Q2 2021', 'Espresso': 850, 'Lattes': 1600, 'Cappuccinos': 1100, 'Frappes': 750, 'Pastries': 550}, {'Quarter': 'Q3 2021', 'Espresso': 900, 'Lattes': 1650, 'Cappuccinos': 1150, 'Frappes': 780, 'Pastries': 580}, {'Quarter': 'Q4 2021', 'Espresso': 950, 'Lattes': 1700, 'Cappuccinos': 1200, 'Frappes': 800, 'Pastries': 600}, {'Quarter': 'Q1 2022', 'Espresso': 1000, 'Lattes': 1800, 'Cappuccinos': 1300, 'Frappes': 850, 'Pastries': 650}, {'Quarter': 'Q2 2022', 'Espresso': 1050, 'Lattes': 1900, 'Cappuccinos': 1400, 'Frappes': 900, 'Pastries': 700}, {'Quarter': 'Q3 2022', 'Espresso': 1100, 'Lattes': 1950, 'Cappuccinos': 1450, 'Frappes': 950, 'Pastries': 750}, {'Quarter': 'Q4 2022', 'Espresso': 1150, 'Lattes': 2000, 'Cappuccinos': 1500, 'Frappes': 1000, 'Pastries': 800}, {'Quarter': 'Q1 2023', 'Espresso': 1200, 'Lattes': 2100, 'Cappuccinos': 1550, 'Frappes': 1050, 'Pastries': 850}, {'Quarter': 'Q2 2023', 'Espresso': 1250, 'Lattes': 2200, 'Cappuccinos': 1600, 'Frappes': 1100, 'Pastries': 900}, {'Quarter': 'Q3 2023', 'Espresso': 1300, 'Lattes': 2250, 'Cappuccinos': 1650, 'Frappes': 1150, 'Pastries': 950}, {'Quarter': 'Q4 2023', 'Espresso': 1350, 'Lattes': 2300, 'Cappuccinos': 1700, 'Frappes': 1200, 'Pastries': 1000}];
+
+var quarters = data.map(function (item) {
+    return item.Quarter;
+});
+var seriesData = ['Espresso', 'Lattes', 'Cappuccinos', 'Frappes', 'Pastries'].map(function (key) {
+    return {
+        name: key,
+        type: 'line',
+        stack: 'Total',
+        areaStyle: {},
+        emphasis: {
+            focus: 'series'
+        },
+        data: data.map(function (item) {
+            return item[key];
+        })
+    };
+});
+
+option = {
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            label: {
+                backgroundColor: '#6a7985'
+            }
+        }
+    },
+    legend: {
+        data: ['Espresso', 'Lattes', 'Cappuccinos', 'Frappes', 'Pastries']
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: [
+        {
+            type: 'category',
+            boundaryGap: false,
+            data: quarters
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value'
+        }
+    ],
+    series: seriesData,
+    color: ['#003366', '#006699', '#4cabce', '#e5323e', '#c4ccd3'],
+    animationEasing: 'elasticOut',
+    animationDelayUpdate: function (idx) {
+        return idx * 5;
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

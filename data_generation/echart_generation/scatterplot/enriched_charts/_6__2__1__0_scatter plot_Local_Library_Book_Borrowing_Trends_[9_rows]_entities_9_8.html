@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+var option = {
+    title: {
+        text: 'Astronomy Observations',
+        left: 'center',
+        top: 20
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: function (params) {
+            return 'X: ' + params.value[0] + '<br>Y: ' + params.value[1];
+        }
+    },
+    legend: {
+        data: ['Observations'],
+        left: 'right',
+        top: 40
+    },
+    xAxis: {
+        type: 'value',
+        name: 'Time (Days)',
+        nameLocation: 'middle',
+        nameGap: 25
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Brightness (Lumens)',
+        nameLocation: 'middle',
+        nameGap: 35
+    },
+    series: [
+        {
+            name: 'Observations',
+            type: 'scatter',
+            itemStyle: {
+                color: '#FF4500'
+            },
+            data: [
+                [15, 43],
+                [20, 68],
+                [25, 52],
+                [30, 80],
+                [35, 77],
+                [40, 65],
+                [45, 73],
+                [50, 85],
+                [55, 70],
+                [60, 90],
+                [65, 95],
+                [70, 88],
+                [75, 93],
+                [80, 99],
+                [85, 94],
+                [90, 96],
+                [95, 100],
+                [100, 97],
+                [105, 103],
+                [110, 105],
+                [115, 108],
+                [120, 110],
+                [125, 111],
+                [130, 115],
+                [135, 113],
+                [140, 120],
+                [145, 118],
+                [150, 123],
+                [155, 125],
+                [160, 130],
+                [165, 127],
+                [170, 135],
+                [175, 138],
+                [180, 140],
+                [185, 143],
+                [190, 145],
+                [195, 148],
+                [200, 150]
+            ]
+        }
+    ]
+};
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+// Processing data for the stacked area chart
+const data = [
+    {'Day': 'Monday', 'Espresso': 35, 'Cappuccino': 42, 'Americano': 39, 'Latte': 31, 'Mocha': 22},
+    {'Day': 'Tuesday', 'Espresso': 41, 'Cappuccino': 38, 'Americano': 44, 'Latte': 29, 'Mocha': 25},
+    {'Day': 'Wednesday', 'Espresso': 47, 'Cappuccino': 35, 'Americano': 40, 'Latte': 38, 'Mocha': 27},
+    {'Day': 'Thursday', 'Espresso': 32, 'Cappuccino': 30, 'Americano': 38, 'Latte': 35, 'Mocha': 20},
+    {'Day': 'Friday', 'Espresso': 53, 'Cappuccino': 49, 'Americano': 45, 'Latte': 42, 'Mocha': 33}
+];
+
+const categories = ['Espresso', 'Cappuccino', 'Americano', 'Latte', 'Mocha'];
+const days = data.map(item => item.Day);
+const series = categories.map(function(category) {
+    const seriesData = data.map(function(item) {
+        return item[category];
+    });
+    return {
+        name: category,
+        type: 'line',
+        stack: 'Total',
+        areaStyle: {},
+        emphasis: {
+            focus: 'series'
+        },
+        data: seriesData
+    };
+});
+
+option = {
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            label: {
+                backgroundColor: '#6a7985'
+            }
+        }
+    },
+    legend: {
+        data: categories
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: days
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: series
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

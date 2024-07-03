@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+var option = {
+    title: {
+        text: 'Correlation between Variable X and Y in Health Data',
+        left: 'center'
+    },
+    legend: {
+        data: ['Health Data Points'],
+        top: 50,
+        left: 'right'
+    },
+    xAxis: {
+        type: 'value',
+        name: 'Variable X',
+        min: 0,
+        max: 25
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Variable Y',
+        min: 0,
+        max: 12
+    },
+    series: [{
+        name: 'Health Data Points',
+        type: 'scatter',
+        data: [
+            [1, 2], [2, 2.8], [3, 3.1], [4, 4.5], [5, 4.8],
+            [6, 5.7], [7, 5.9], [8, 6.4], [9, 6.8], [10, 7.2],
+            [11, 7.5], [12, 8.0], [13, 8.3], [14, 8.5], [15, 8.9],
+            [16, 9.0], [17, 9.3], [18, 9.6], [19, 10.0], [20, 10.2]
+        ],
+        itemStyle: {
+            color: '#FF5733'
+        }
+    }]
+};
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var app = {};
+
+var option;
+option = {
+    title: {
+        text: 'University Education Funds Distribution',
+        left: 'center',
+        top: 20,
+        textStyle: {
+            color: '#333',
+            fontWeight: 'bold'
+        }
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: '{a} <br/>{b} : {c} ({d}%)'
+    },
+    legend: {
+        orient: 'vertical',
+        left: 'left',
+        top: 50
+    },
+    color: [
+        '#4E79A7', '#F28E2B', '#E15759', '#76B7B2', '#59A14F',
+        '#EDC948', '#B07AA1', '#FF9DA7', '#9C755F', '#BAB0AC'
+    ],
+    series: [
+        {
+            name: 'Fund Allocation',
+            type: 'pie',
+            radius: '55%',
+            center: ['50%', '60%'],
+            data: [
+                {value: 300000, name: 'Humanities'},
+                {value: 500000, name: 'Natural Sciences'},
+                {value: 750000, name: 'Engineering'},
+                {value: 200000, name: 'Law and Social Sciences'},
+                {value: 600000, name: 'Medicine'},
+                {value: 550000, name: 'Business'},
+                {value: 150000, name: 'Arts'},
+                {value: 480000, name: 'Education'},
+                {value: 320000, name: 'Environmental Studies'},
+                {value: 270000, name: 'Psychology'}
+            ],
+            emphasis: {
+                itemStyle: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            },
+            label: {
+                position: 'outer',
+                formatter: '{b}: {c}'
+            }
+        }
+    ]
+};
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

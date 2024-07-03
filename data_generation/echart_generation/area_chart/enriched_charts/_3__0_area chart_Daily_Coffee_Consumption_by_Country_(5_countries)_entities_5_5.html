@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+dom.style.width = '800px';
+dom.style.height = '600px';
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Monthly Revenue Analysis',
+        subtext: 'Economics & Finance',
+        left: 'center',
+        top: '20'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            label: {
+                backgroundColor: '#6a7985'
+            }
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: [
+        {
+            type: 'category',
+            boundaryGap: false,
+            data: [
+                '2023-01-01', '2023-01-02', '2023-01-03', '2023-01-04',
+                '2023-01-05', '2023-01-06', '2023-01-07', '2023-01-08',
+                '2023-01-09', '2023-01-10', '2023-01-11', '2023-01-12',
+                '2023-01-13', '2023-01-14', '2023-01-15', '2023-01-16',
+                '2023-01-17', '2023-01-18', '2023-01-19', '2023-01-20',
+                '2023-01-21', '2023-01-22', '2023-01-23', '2023-01-24',
+                '2023-01-25', '2023-01-26', '2023-01-27', '2023-01-28',
+                '2023-01-29', '2023-01-30', '2023-01-31'
+            ]
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value',
+            axisLabel: {
+                formatter: '${value}'
+            }
+        }
+    ],
+    series: [
+        {
+            name: 'Revenue',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [
+                10000, 9850, 9700, 9550, 9400, 9250, 9100, 8950, 8800, 8650,
+                8500, 8350, 8200, 8050, 7900, 7750, 7600, 7450, 7300, 7150,
+                7000, 6850, 6700, 6550, 6400, 6250, 6100, 5950, 5800, 5650,
+                5500
+            ],
+            color: ['#3fb1e3']
+        }
+    ],
+    markPoint: {
+        data: [
+            { type: 'max', name: 'Max' },
+            { type: 'min', name: 'Min' }
+        ],
+        label: {
+            position: 'inside',
+            formatter: '{c}'
+        }
+    },
+    itemStyle: {
+        color: '#d14a61'
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

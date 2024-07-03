@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: '800', // Changed width
+    height: '600' // Changed height
+});
+var app = {};
+
+var option;
+option = {
+    title: {
+        text: 'Monthly Sales by Book Genre',
+        left: 'center', // Position the title so it doesn't overlap with the legend
+        top: 10
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            label: {
+                backgroundColor: '#6a7985'
+            }
+        }
+    },
+    legend: {
+        data: ['Literature', 'Science Fiction', 'Mystery', 'Thriller', 'Romance'],
+        top: 40 // Position legend to prevent overlap with the title
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: [
+        {
+            type: 'category',
+            boundaryGap: false,
+            data: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value'
+        }
+    ],
+    series: [
+        {
+            name: 'Literature',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [120, 150, 140, 170, 180, 160, 190, 200, 210, 220, 230, 240],
+            color: '#00aaff' // Specific color code for this series
+        },
+        {
+            name: 'Science Fiction',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [80, 110, 95, 130, 145, 120, 140, 150, 160, 175, 180, 190],
+            color: '#ff7700' // Specific color code for this series
+        },
+        {
+            name: 'Mystery',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [140, 160, 155, 145, 175, 165, 155, 170, 190, 180, 175, 185],
+            color: '#0daf0a' // Specific color code for this series
+        },
+        {
+            name: 'Thriller',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [110, 130, 120, 150, 160, 155, 165, 180, 175, 190, 200, 210],
+            color: '#c717eb' // Specific color code for this series
+        },
+        {
+            name: 'Romance',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [170, 180, 165, 190, 200, 180, 210, 220, 230, 240, 250, 260],
+            color: '#eb171a' // Specific color code for this series
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,170 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": {
+        "text": "Monthly Average Sales by Product Category",
+        "anchor": "start",
+        "offset": 5,
+        "fontWeight": "bold",
+        "fontSize": 20,
+        "frame": "group",
+        "color": "#333"
+    },
+    "description": "Stacked area chart showing monthly average sales by product category from 2010 to 2020",
+    "width": 1000,
+    "height": 500,
+    "data": {
+        "values": [
+            {
+                "Year": 2010,
+                "Electronics": 200,
+                "Clothing": 150,
+                "Home": 100,
+                "Toys": 50
+            },
+            {
+                "Year": 2011,
+                "Electronics": 220,
+                "Clothing": 160,
+                "Home": 110,
+                "Toys": 55
+            },
+            {
+                "Year": 2012,
+                "Electronics": 230,
+                "Clothing": 170,
+                "Home": 120,
+                "Toys": 60
+            },
+            {
+                "Year": 2013,
+                "Electronics": 250,
+                "Clothing": 180,
+                "Home": 130,
+                "Toys": 65
+            },
+            {
+                "Year": 2014,
+                "Electronics": 270,
+                "Clothing": 190,
+                "Home": 140,
+                "Toys": 70
+            },
+            {
+                "Year": 2015,
+                "Electronics": 300,
+                "Clothing": 200,
+                "Home": 150,
+                "Toys": 75
+            },
+            {
+                "Year": 2016,
+                "Electronics": 320,
+                "Clothing": 210,
+                "Home": 160,
+                "Toys": 80
+            },
+            {
+                "Year": 2017,
+                "Electronics": 340,
+                "Clothing": 220,
+                "Home": 170,
+                "Toys": 85
+            },
+            {
+                "Year": 2018,
+                "Electronics": 360,
+                "Clothing": 230,
+                "Home": 180,
+                "Toys": 90
+            },
+            {
+                "Year": 2019,
+                "Electronics": 380,
+                "Clothing": 240,
+                "Home": 190,
+                "Toys": 95
+            },
+            {
+                "Year": 2020,
+                "Electronics": 400,
+                "Clothing": 250,
+                "Home": 200,
+                "Toys": 100
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Electronics",
+                "Clothing",
+                "Home",
+                "Toys"
+            ],
+            "as": [
+                "Category",
+                "Sales"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "area",
+        "opacity": 0.7
+    },
+    "encoding": {
+        "x": {
+            "field": "Year",
+            "type": "ordinal",
+            "title": "Year",
+            "axis": {
+                "labelAngle": 0
+            }
+        },
+        "y": {
+            "field": "Sales",
+            "type": "quantitative",
+            "stack": "zero",
+            "title": "Average Sales ($)"
+        },
+        "color": {
+            "field": "Category",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Electronics",
+                    "Clothing",
+                    "Home",
+                    "Toys"
+                ],
+                "range": [
+                    "#FF5733",
+                    "#33FF57",
+                    "#3357FF",
+                    "#FF33A1"
+                ]
+            },
+            "title": "Product Category"
+        },
+        "tooltip": [
+            {
+                "field": "Category",
+                "type": "nominal",
+                "title": "Category"
+            },
+            {
+                "field": "Sales",
+                "type": "quantitative",
+                "title": "Avg Sales ($)",
+                "format": ".1f"
+            }
+        ]
+    },
+    "config": {
+        "view": {
+            "stroke": "transparent"
+        },
+        "axisY": {
+            "grid": true
+        }
+    }
+}

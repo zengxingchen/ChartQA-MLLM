@@ -1,0 +1,206 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+        "values": [
+            {
+                "Year": "2010",
+                "Online Sales": 120,
+                "In-Store Sales": 150,
+                "Subscription Sales": 200
+            },
+            {
+                "Year": "2011",
+                "Online Sales": 130,
+                "In-Store Sales": 160,
+                "Subscription Sales": 210
+            },
+            {
+                "Year": "2012",
+                "Online Sales": 140,
+                "In-Store Sales": 170,
+                "Subscription Sales": 220
+            },
+            {
+                "Year": "2013",
+                "Online Sales": 150,
+                "In-Store Sales": 180,
+                "Subscription Sales": 230
+            },
+            {
+                "Year": "2014",
+                "Online Sales": 160,
+                "In-Store Sales": 190,
+                "Subscription Sales": 240
+            },
+            {
+                "Year": "2015",
+                "Online Sales": 170,
+                "In-Store Sales": 200,
+                "Subscription Sales": 250
+            },
+            {
+                "Year": "2016",
+                "Online Sales": 180,
+                "In-Store Sales": 210,
+                "Subscription Sales": 260
+            },
+            {
+                "Year": "2017",
+                "Online Sales": 190,
+                "In-Store Sales": 220,
+                "Subscription Sales": 270
+            },
+            {
+                "Year": "2018",
+                "Online Sales": 200,
+                "In-Store Sales": 230,
+                "Subscription Sales": 280
+            },
+            {
+                "Year": "2019",
+                "Online Sales": 210,
+                "In-Store Sales": 240,
+                "Subscription Sales": 290
+            },
+            {
+                "Year": "2020",
+                "Online Sales": 220,
+                "In-Store Sales": 250,
+                "Subscription Sales": 300
+            },
+            {
+                "Year": "2021",
+                "Online Sales": 230,
+                "In-Store Sales": 260,
+                "Subscription Sales": 310
+            },
+            {
+                "Year": "2022",
+                "Online Sales": 240,
+                "In-Store Sales": 270,
+                "Subscription Sales": 320
+            },
+            {
+                "Year": "2023",
+                "Online Sales": 250,
+                "In-Store Sales": 280,
+                "Subscription Sales": 330
+            },
+            {
+                "Year": "2024",
+                "Online Sales": 260,
+                "In-Store Sales": 290,
+                "Subscription Sales": 340
+            },
+            {
+                "Year": "2025",
+                "Online Sales": 270,
+                "In-Store Sales": 300,
+                "Subscription Sales": 350
+            },
+            {
+                "Year": "2026",
+                "Online Sales": 280,
+                "In-Store Sales": 310,
+                "Subscription Sales": 360
+            },
+            {
+                "Year": "2027",
+                "Online Sales": 290,
+                "In-Store Sales": 320,
+                "Subscription Sales": 370
+            },
+            {
+                "Year": "2028",
+                "Online Sales": 300,
+                "In-Store Sales": 330,
+                "Subscription Sales": 380
+            }
+        ]
+    },
+    "width": 700,
+    "height": 500,
+    "mark": {
+        "type": "bar",
+        "width": {
+            "band": 0.6
+        }
+    },
+    "title": {
+        "text": "Annual Sales Overview",
+        "subtitle": "Sales data for online, in-store, and subscription channels from 2010 to 2028",
+        "subtitleFontStyle": "italic",
+        "subtitleFontSize": 10,
+        "anchor": "start",
+        "color": "black"
+    },
+    "transform": [
+        {
+            "fold": [
+                "Online Sales",
+                "In-Store Sales",
+                "Subscription Sales"
+            ],
+            "as": [
+                "Sales Channel",
+                "Sales"
+            ]
+        }
+    ],
+    "encoding": {
+        "x": {
+            "field": "Year",
+            "type": "ordinal",
+            "axis": {
+                "title": "Year"
+            }
+        },
+        "y": {
+            "field": "Sales",
+            "type": "quantitative",
+            "stack": "zero",
+            "axis": {
+                "title": "Sales"
+            }
+        },
+        "color": {
+            "field": "Sales Channel",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Online Sales",
+                    "In-Store Sales",
+                    "Subscription Sales"
+                ],
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e",
+                    "#2ca02c"
+                ]
+            },
+            "legend": {
+                "orient": "top-left"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Year",
+                "type": "nominal"
+            },
+            {
+                "field": "Sales Channel",
+                "type": "nominal"
+            },
+            {
+                "field": "Sales",
+                "type": "quantitative"
+            }
+        ]
+    },
+    "config": {
+        "axis": {
+            "labelFontSize": 10,
+            "titleFontSize": 12
+        }
+    }
+}

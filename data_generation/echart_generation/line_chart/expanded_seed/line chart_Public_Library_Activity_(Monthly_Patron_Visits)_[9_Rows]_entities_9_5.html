@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+// Data
+var chartData = [{
+    'Month': '2023-01', "Children's Books Section": 480, 'Technology Books Section': 200, 'Fiction Books Section': 750, 'Study Area': 890
+}, {
+    'Month': '2023-02', "Children's Books Section": 460, 'Technology Books Section': 190, 'Fiction Books Section': 800, 'Study Area': 845
+}, {
+    'Month': '2023-03', "Children's Books Section": 530, 'Technology Books Section': 210, 'Fiction Books Section': 830, 'Study Area': 905
+}, {
+    'Month': '2023-04', "Children's Books Section": 600, 'Technology Books Section': 205, 'Fiction Books Section': 780, 'Study Area': 965
+}, {
+    'Month': '2023-05', "Children's Books Section": 610, 'Technology Books Section': 215, 'Fiction Books Section': 855, 'Study Area': 980
+}, {
+    'Month': '2023-06', "Children's Books Section": 560, 'Technology Books Section': 220, 'Fiction Books Section': 870, 'Study Area': 935
+}, {
+    'Month': '2023-07', "Children's Books Section": 580, 'Technology Books Section': 230, 'Fiction Books Section': 910, 'Study Area': 920
+}, {
+    'Month': '2023-08', "Children's Books Section": 620, 'Technology Books Section': 245, 'Fiction Books Section': 890, 'Study Area': 950
+}, {
+    'Month': '2023-09', "Children's Books Section": 640, 'Technology Books Section': 255, 'Fiction Books Section': 930, 'Study Area': 970
+}];
+
+// Extract months and values for each category
+var months = chartData.map(function (item) {
+    return item.Month;
+});
+var childrenBooks = chartData.map(function (item) {
+    return item["Children's Books Section"];
+});
+var technologyBooks = chartData.map(function (item) {
+    return item["Technology Books Section"];
+});
+var fictionBooks = chartData.map(function (item) {
+    return item["Fiction Books Section"];
+});
+var studyArea = chartData.map(function (item) {
+    return item["Study Area"];
+});
+
+// Find max value and its index for annotation
+var maxChildren = Math.max.apply(null, childrenBooks);
+var maxTech = Math.max.apply(null, technologyBooks);
+var maxFiction = Math.max.apply(null, fictionBooks);
+var maxStudy = Math.max.apply(null, studyArea);
+
+option = {
+    tooltip: {
+        trigger: 'axis',
+    },
+    legend: {
+        data: ["Children's Books Section", 'Technology Books Section', 'Fiction Books Section', 'Study Area']
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: months
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: "Children's Books Section",
+            type: 'line',
+            data: childrenBooks,
+            markPoint: {
+                data: [
+                    { type: 'max', name: 'Max' }
+                ]
+            }
+        },
+        {
+            name: 'Technology Books Section',
+            type: 'line',
+            data: technologyBooks,
+            markPoint: {
+                data: [
+                    { type: 'max', name: 'Max' }
+                ]
+            }
+        },
+        {
+            name: 'Fiction Books Section',
+            type: 'line',
+            data: fictionBooks,
+            markPoint: {
+                data: [
+                    { type: 'max', name: 'Max' }
+                ]
+            }
+        },
+        {
+            name: 'Study Area',
+            type: 'line',
+            data: studyArea,
+            markPoint: {
+                data: [
+                    { type: 'max', name: 'Max' }
+                ]
+            }
+        },
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

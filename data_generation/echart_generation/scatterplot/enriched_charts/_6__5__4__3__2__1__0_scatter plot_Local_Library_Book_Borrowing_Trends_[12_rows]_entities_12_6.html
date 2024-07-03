@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Correlation between Age and Fitness Score',
+        left: 'center',
+        top: 20
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: 'Age: {b0}<br/>Fitness Score: {c0}'
+    },
+    legend: {
+        left: 'left',
+        top: 20
+    },
+    xAxis: {
+        name: 'Age',
+        type: 'value',
+        min: 0,
+        max: 20
+    },
+    yAxis: {
+        name: 'Fitness Score',
+        type: 'value',
+        min: 0,
+        max: 20
+    },
+    series: [{
+        name: 'Fitness Data',
+        type: 'scatter',
+        itemStyle: {
+            color: '#FF5733'
+        },
+        data: [
+            [0.5, 1.1],
+            [1.2, 2.3],
+            [2.8, 3.7],
+            [3.5, 2.9],
+            [4.0, 4.5],
+            [5.2, 5.3],
+            [6.1, 6.9],
+            [7.3, 7.1],
+            [8.0, 8.4],
+            [9.5, 9.0],
+            [10.3, 10.2],
+            [11.2, 11.1],
+            [12.5, 12.4],
+            [13.1, 13.3],
+            [14.7, 14.6],
+            [15.6, 15.2],
+            [16.8, 16.7],
+            [17.3, 17.1],
+            [18.5, 18.9],
+            [19.1, 19.4]
+        ]
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

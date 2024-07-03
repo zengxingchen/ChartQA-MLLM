@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 800,
+    height: 600
+});
+var option;
+
+option = {
+    title: {
+        text: 'Impact of Exercise on Mental Well-being',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    xAxis: {
+        type: 'value',
+        name: 'Exercise Hours per Week',
+        nameLocation: 'middle',
+        nameGap: 25
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Mental Well-being Index',
+        nameLocation: 'middle',
+        nameGap: 50
+    },
+    series: [{
+        name: 'Mental Well-being',
+        type: 'scatter',
+        emphasis: {
+            focus: 'series'
+        },
+        data: [
+            [2, 5], [3, 15], [4, 9], [5, 28], [6, 20], [7, 31], [8, 15], [9, 40], [10, 22], [11, 45], 
+            [12, 35], [13, 47], [14, 30], [15, 50], [16, 38], [17, 55], [18, 42], [19, 60], [20, 48], [21, 65],
+            [22, 52], [23, 70], [24, 55], [25, 75], [26, 60], [27, 78], [28, 65], [29, 80], [30, 70], [31, 85], 
+            [32, 75], [33, 90], [34, 78], [35, 95], [36, 82], [37, 100], [38, 88], [39, 105], [40, 90], [41, 110],
+            [42, 95], [43, 115], [44, 98], [45, 120], [46, 102], [47, 125], [48, 108], [49, 130], [50, 115], [51, 135]
+        ],
+        itemStyle: {
+            color: '#FF6347'
+        }
+    }],
+    legend: {
+        data: ['Mental Well-being'],
+        right: 10,
+        top: '10%'
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

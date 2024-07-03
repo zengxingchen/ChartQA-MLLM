@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var option;
+
+option = {
+    title: {
+        text: 'Decline in Air Quality Index Over Time',
+        left: 'center',
+        top: '5%'
+    },
+    legend: {
+        data: ['Air Quality Index'],
+        left: 'right',
+        top: '10%'
+    },
+    xAxis: {
+        type: 'value',
+        name: 'Time (days)',
+        nameLocation: 'middle',
+        nameGap: 30
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Air Quality Index',
+        nameLocation: 'middle',
+        nameGap: 40
+    },
+    series: [{
+        name: 'Air Quality Index',
+        type: 'scatter',
+        data: [
+            [10, 50], [20, 45], [30, 40], [40, 35], [50, 32],
+            [60, 30], [70, 25], [80, 20], [90, 15], [100, 10],
+            [110, 8], [120, 5], [130, 3], [140, 2], [150, 1]
+        ],
+        itemStyle: {
+            color: '#FF5733'
+        }
+    }],
+    grid: {
+        left: '10%',
+        right: '10%',
+        bottom: '15%',
+        top: '20%'
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

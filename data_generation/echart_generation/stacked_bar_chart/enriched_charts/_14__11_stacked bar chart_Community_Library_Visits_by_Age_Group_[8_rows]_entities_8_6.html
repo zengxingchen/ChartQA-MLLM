@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Monthly Fruit Consumption',
+        left: 'center',
+        top: '5%',
+        textStyle: {
+            fontSize: 18
+        }
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Apples', 'Bananas', 'Cherries', 'Dates'],
+        top: '10%'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        data: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+        axisLabel: {
+            rotate: 45
+        }
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Apples',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 20,
+            itemStyle: {
+                color: '#FF6347'
+            },
+            data: [120, 140, 150, 160, 170, 180, 190, 200, 210, 220, 230, 240],
+            label: {
+                show: true,
+                position: 'inside'
+            }
+        },
+        {
+            name: 'Bananas',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 20,
+            itemStyle: {
+                color: '#FFD700'
+            },
+            data: [132, 182, 232, 232, 142, 232, 192, 182, 172, 182, 212, 222],
+            label: {
+                show: true,
+                position: 'inside'
+            }
+        },
+        {
+            name: 'Cherries',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 20,
+            itemStyle: {
+                color: '#8A2BE2'
+            },
+            data: [101, 191, 201, 251, 301, 271, 181, 211, 221, 241, 271, 301],
+            label: {
+                show: true,
+                position: 'inside'
+            }
+        },
+        {
+            name: 'Dates',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 20,
+            itemStyle: {
+                color: '#8B4513'
+            },
+            data: [134, 234, 154, 134, 214, 144, 134, 174, 184, 194, 154, 184],
+            label: {
+                show: true,
+                position: 'inside'
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

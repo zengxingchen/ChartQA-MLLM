@@ -1,0 +1,177 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Distribution of Study Hours Among Subjects by Students",
+    "data": {
+        "values": [
+            {
+                "Student": "Alex",
+                "Math": 90,
+                "Science": 80,
+                "History": 70,
+                "Art": 40,
+                "PE": 50
+            },
+            {
+                "Student": "Jordan",
+                "Math": 85,
+                "Science": 75,
+                "History": 60,
+                "Art": 70,
+                "PE": 55
+            },
+            {
+                "Student": "Casey",
+                "Math": 100,
+                "Science": 90,
+                "History": 80,
+                "Art": 60,
+                "PE": 70
+            },
+            {
+                "Student": "Taylor",
+                "Math": 95,
+                "Science": 85,
+                "History": 75,
+                "Art": 50,
+                "PE": 65
+            },
+            {
+                "Student": "Jamie",
+                "Math": 80,
+                "Science": 70,
+                "History": 60,
+                "Art": 90,
+                "PE": 80
+            },
+            {
+                "Student": "Robin",
+                "Math": 88,
+                "Science": 77,
+                "History": 66,
+                "Art": 55,
+                "PE": 45
+            },
+            {
+                "Student": "Drew",
+                "Math": 92,
+                "Science": 82,
+                "History": 72,
+                "Art": 62,
+                "PE": 52
+            },
+            {
+                "Student": "Morgan",
+                "Math": 75,
+                "Science": 65,
+                "History": 55,
+                "Art": 85,
+                "PE": 75
+            },
+            {
+                "Student": "Taylor",
+                "Math": 85,
+                "Science": 95,
+                "History": 85,
+                "Art": 65,
+                "PE": 75
+            },
+            {
+                "Student": "Harper",
+                "Math": 78,
+                "Science": 88,
+                "History": 68,
+                "Art": 58,
+                "PE": 48
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Math",
+                "Science",
+                "History",
+                "Art",
+                "PE"
+            ],
+            "as": [
+                "Subject",
+                "Hours"
+            ]
+        }
+    ],
+    "padding": {
+        "left": 60,
+        "top": 40,
+        "right": 20,
+        "bottom": 40
+    },
+    "width": 600,
+    "height": 300,
+    "mark": {
+        "type": "bar",
+        "height": {
+            "band": 0.8
+        }
+    },
+    "encoding": {
+        "x": {
+            "field": "Hours",
+            "type": "quantitative",
+            "stack": "normalize",
+            "axis": {
+                "title": "Percentage of Total Hours",
+                "format": ".0%"
+            }
+        },
+        "y": {
+            "field": "Student",
+            "type": "nominal",
+            "axis": {
+                "title": "Student"
+            }
+        },
+        "color": {
+            "field": "Subject",
+            "type": "nominal",
+            "scale": {
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e",
+                    "#2ca02c",
+                    "#d62728",
+                    "#9467bd"
+                ]
+            },
+            "legend": {
+                "title": "Subject"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Student",
+                "type": "nominal"
+            },
+            {
+                "field": "Subject",
+                "type": "nominal",
+                "title": "Subject"
+            },
+            {
+                "field": "Hours",
+                "type": "quantitative",
+                "title": "Hours Spent"
+            }
+        ]
+    },
+    "title": {
+        "text": "Distribution of Study Hours Among Subjects by Students",
+        "anchor": "start"
+    },
+    "config": {
+        "bar": {
+            "cornerRadiusTopLeft": 3,
+            "cornerRadiusTopRight": 3
+        }
+    }
+}

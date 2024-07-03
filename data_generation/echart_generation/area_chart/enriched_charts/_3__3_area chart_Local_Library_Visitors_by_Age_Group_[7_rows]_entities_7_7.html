@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {renderer: 'canvas', width: 800, height: 400});
+var app = {};
+
+var option;
+option = {
+    title: {
+        text: 'Monthly Expense Trend',
+        left: 'center',
+        textStyle: {
+            color: '#333',
+            fontSize: 20
+        }
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['Expenses'],
+        top: '10%'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: [
+            '2021-01-01', '2021-01-02', '2021-01-03', '2021-01-04', '2021-01-05',
+            '2021-01-06', '2021-01-07', '2021-01-08', '2021-01-09', '2021-01-10',
+            '2021-01-11', '2021-01-12', '2021-01-13', '2021-01-14', '2021-01-15',
+            '2021-01-16', '2021-01-17', '2021-01-18', '2021-01-19', '2021-01-20',
+            '2021-01-21', '2021-01-22', '2021-01-23', '2021-01-24', '2021-01-25',
+            '2021-01-26', '2021-01-27', '2021-01-28', '2021-01-29', '2021-01-30',
+            '2021-01-31'
+        ],
+        axisLabel: {
+            formatter: function(value, index) {
+                // Formatted to be month/day; display year only in the first label
+                var date = new Date(value);
+                if (index === 0) {
+                    return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
+                }
+                return `${date.getMonth() + 1}-${date.getDate()}`;
+            }
+        }
+    },
+    yAxis: {
+        type: 'value',
+        axisLabel: {
+            formatter: '{value} USD'
+        }
+    },
+    series: [
+        {
+            name: 'Expenses',
+            type: 'line',
+            stack: 'Total amount',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [
+                1000, 980, 950, 925, 900, 870, 850, 830, 800, 770, 740, 710, 680,
+                650, 620, 590, 560, 530, 500, 470, 440, 410, 380, 350, 320, 290, 260,
+                230, 200, 170, 140
+            ],
+            color: '#FF6347',
+            lineStyle: {
+                normal: {
+                    color: '#FF6347',
+                    width: 3
+                }
+            },
+            markPoint: {
+                data: [
+                    {type: 'max', name: 'Max'},
+                    {type: 'min', name: 'Min'}
+                ],
+                label: {
+                    show: true,
+                    formatter: function(params) {
+                        return params.value + ' USD';
+                    }
+                }
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

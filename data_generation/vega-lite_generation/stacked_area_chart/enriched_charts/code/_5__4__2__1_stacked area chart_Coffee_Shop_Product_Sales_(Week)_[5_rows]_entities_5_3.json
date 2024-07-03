@@ -1,0 +1,256 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Yearly Evolution of Revenue Across Different Business Sectors",
+    "width": 600,
+    "height": 400,
+    "title": {
+        "text": "Business Sector Revenue Trends Over Time",
+        "anchor": "middle",
+        "offset": 5,
+        "fontSize": 20,
+        "dx": 0,
+        "dy": -20
+    },
+    "data": {
+        "values": [
+            {
+                "Year": 2000,
+                "Technology": 120,
+                "Healthcare": 80,
+                "Automotive": 200,
+                "Retail": 150
+            },
+            {
+                "Year": 2001,
+                "Technology": 150,
+                "Healthcare": 85,
+                "Automotive": 210,
+                "Retail": 155
+            },
+            {
+                "Year": 2002,
+                "Technology": 160,
+                "Healthcare": 90,
+                "Automotive": 220,
+                "Retail": 160
+            },
+            {
+                "Year": 2003,
+                "Technology": 180,
+                "Healthcare": 95,
+                "Automotive": 230,
+                "Retail": 165
+            },
+            {
+                "Year": 2004,
+                "Technology": 200,
+                "Healthcare": 100,
+                "Automotive": 240,
+                "Retail": 170
+            },
+            {
+                "Year": 2005,
+                "Technology": 220,
+                "Healthcare": 110,
+                "Automotive": 250,
+                "Retail": 175
+            },
+            {
+                "Year": 2006,
+                "Technology": 230,
+                "Healthcare": 115,
+                "Automotive": 260,
+                "Retail": 180
+            },
+            {
+                "Year": 2007,
+                "Technology": 240,
+                "Healthcare": 120,
+                "Automotive": 270,
+                "Retail": 185
+            },
+            {
+                "Year": 2008,
+                "Technology": 250,
+                "Healthcare": 125,
+                "Automotive": 280,
+                "Retail": 190
+            },
+            {
+                "Year": 2009,
+                "Technology": 200,
+                "Healthcare": 130,
+                "Automotive": 270,
+                "Retail": 195
+            },
+            {
+                "Year": 2010,
+                "Technology": 210,
+                "Healthcare": 135,
+                "Automotive": 260,
+                "Retail": 200
+            },
+            {
+                "Year": 2011,
+                "Technology": 220,
+                "Healthcare": 140,
+                "Automotive": 250,
+                "Retail": 210
+            },
+            {
+                "Year": 2012,
+                "Technology": 230,
+                "Healthcare": 145,
+                "Automotive": 240,
+                "Retail": 220
+            },
+            {
+                "Year": 2013,
+                "Technology": 240,
+                "Healthcare": 150,
+                "Automotive": 230,
+                "Retail": 230
+            },
+            {
+                "Year": 2014,
+                "Technology": 250,
+                "Healthcare": 155,
+                "Automotive": 220,
+                "Retail": 240
+            },
+            {
+                "Year": 2015,
+                "Technology": 260,
+                "Healthcare": 160,
+                "Automotive": 210,
+                "Retail": 250
+            },
+            {
+                "Year": 2016,
+                "Technology": 270,
+                "Healthcare": 165,
+                "Automotive": 220,
+                "Retail": 260
+            },
+            {
+                "Year": 2017,
+                "Technology": 280,
+                "Healthcare": 170,
+                "Automotive": 230,
+                "Retail": 270
+            },
+            {
+                "Year": 2018,
+                "Technology": 300,
+                "Healthcare": 175,
+                "Automotive": 240,
+                "Retail": 280
+            },
+            {
+                "Year": 2019,
+                "Technology": 320,
+                "Healthcare": 180,
+                "Automotive": 250,
+                "Retail": 290
+            },
+            {
+                "Year": 2020,
+                "Technology": 400,
+                "Healthcare": 200,
+                "Automotive": 260,
+                "Retail": 300
+            },
+            {
+                "Year": 2021,
+                "Technology": 450,
+                "Healthcare": 210,
+                "Automotive": 270,
+                "Retail": 310
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Technology",
+                "Healthcare",
+                "Automotive",
+                "Retail"
+            ],
+            "as": [
+                "Sector",
+                "Revenue"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "area",
+        "opacity": 0.5
+    },
+    "encoding": {
+        "x": {
+            "field": "Year",
+            "type": "ordinal",
+            "axis": {
+                "title": "Year"
+            }
+        },
+        "y": {
+            "field": "Revenue",
+            "type": "quantitative",
+            "stack": "zero",
+            "axis": {
+                "title": "Revenue (in Billion USD)"
+            }
+        },
+        "color": {
+            "field": "Sector",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Technology",
+                    "Healthcare",
+                    "Automotive",
+                    "Retail"
+                ],
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e",
+                    "#2ca02c",
+                    "#d62728"
+                ]
+            },
+            "legend": {
+                "title": "Business Sector",
+                "labelFontSize": 12,
+                "titleFontSize": 14
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Year",
+                "type": "ordinal",
+                "title": "Year"
+            },
+            {
+                "field": "Sector",
+                "type": "nominal",
+                "title": "Sector"
+            },
+            {
+                "field": "Revenue",
+                "type": "quantitative",
+                "title": "Revenue (in Billion USD)"
+            }
+        ]
+    },
+    "config": {
+        "view": {
+            "stroke": "transparent"
+        },
+        "axis": {
+            "labelFontSize": 12,
+            "titleFontSize": 14
+        }
+    }
+}

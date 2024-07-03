@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option = {
+    title: {
+        text: 'Exploring Art, Science, and Health',
+        left: 'center',
+        top: '10'
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: '{b}: {c}'
+    },
+    series: [{
+        name: 'Categories',
+        type: 'treemap',
+        width: '90%',
+        height: '90%',
+        data: [
+            {
+                name: 'Art & Design',
+                value: 540,
+                itemStyle: {
+                    color: '#FF7F50'
+                },
+                children: [
+                    { name: 'Painting', value: 120, itemStyle: { color: '#FF6347' } },
+                    { name: 'Sculpture', value: 85, itemStyle: { color: '#FF4500' } },
+                    { name: 'Architecture', value: 95, itemStyle: { color: '#FFD700' } },
+                    { name: 'Graphic Design', value: 70, itemStyle: { color: '#FFA500' } },
+                    { name: 'Photography', value: 110, itemStyle: { color: '#FF8C00' } },
+                    { name: 'Digital Art', value: 60, itemStyle: { color: '#FFB6C1' } }
+                ]
+            },
+            {
+                name: 'Science & Nature',
+                value: 665,
+                itemStyle: {
+                    color: '#87CEEB'
+                },
+                children: [
+                    { name: 'Astronomy', value: 130, itemStyle: { color: '#4682B4' } },
+                    { name: 'Biology', value: 115, itemStyle: { color: '#4169E1' } },
+                    { name: 'Chemistry', value: 90, itemStyle: { color: '#1E90FF' } },
+                    { name: 'Physics', value: 125, itemStyle: { color: '#00BFFF' } },
+                    { name: 'Geology', value: 100, itemStyle: { color: '#87CEFA' } },
+                    { name: 'Ecology', value: 105, itemStyle: { color: '#B0E0E6' } }
+                ]
+            },
+            {
+                name: 'Health & Psychology',
+                value: 785,
+                itemStyle: {
+                    color: '#32CD32'
+                },
+                children: [
+                    { name: 'Mental Health', value: 135, itemStyle: { color: '#00FF00' } },
+                    { name: 'Physical Health', value: 140, itemStyle: { color: '#ADFF2F' } },
+                    { name: 'Neuroscience', value: 120, itemStyle: { color: '#7FFF00' } },
+                    { name: 'Wellness', value: 130, itemStyle: { color: '#7CFC00' } },
+                    { name: 'Nutrition', value: 145, itemStyle: { color: '#00FA9A' } },
+                    { name: 'Psychology', value: 115, itemStyle: { color: '#98FB98' } }
+                ]
+            },
+            {
+                name: 'Culture & Society',
+                value: 435,
+                itemStyle: {
+                    color: '#FF69B4'
+                },
+                children: [
+                    { name: 'History', value: 80, itemStyle: { color: '#FF1493' } },
+                    { name: 'Anthropology', value: 75, itemStyle: { color: '#C71585' } },
+                    { name: 'Sociology', value: 70, itemStyle: { color: '#DB7093' } },
+                    { name: 'Political Science', value: 85, itemStyle: { color: '#FFC0CB' } },
+                    { name: 'Religious Studies', value: 65, itemStyle: { color: '#FFB6C1' } },
+                    { name: 'Gender Studies', value: 60, itemStyle: { color: '#FF69B4' } }
+                ]
+            }
+        ]
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var option;
+
+option = {
+    title: {
+        text: 'Annual Performance Metrics',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        bottom: 10
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '15%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        data: ['2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Data1',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 20,
+            label: {
+                show: true,
+                position: 'inside'
+            },
+            itemStyle: {
+                color: '#FF5733'
+            },
+            data: [43, 78, 92, 65, 74, 89, 93, 72, 82, 95]
+        },
+        {
+            name: 'Data2',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 20,
+            label: {
+                show: true,
+                position: 'inside'
+            },
+            itemStyle: {
+                color: '#33FF57'
+            },
+            data: [85, 65, 58, 74, 93, 83, 75, 78, 91, 85]
+        },
+        {
+            name: 'Data3',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 20,
+            label: {
+                show: true,
+                position: 'inside'
+            },
+            itemStyle: {
+                color: '#3357FF'
+            },
+            data: [90, 72, 63, 81, 70, 87, 85, 88, 79, 80]
+        },
+        {
+            name: 'Data4',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 20,
+            label: {
+                show: true,
+                position: 'inside'
+            },
+            itemStyle: {
+                color: '#FF33A1'
+            },
+            data: [75, 60, 55, 82, 69, 92, 80, 91, 76, 88]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

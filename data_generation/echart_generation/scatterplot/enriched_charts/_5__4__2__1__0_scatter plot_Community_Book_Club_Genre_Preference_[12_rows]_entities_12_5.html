@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+var option;
+
+option = {
+    title: {
+        text: 'Global Temperature Anomalies Over Time',
+        left: 'center',
+        top: '20'
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: '{a} <br/>{b} : {c}'
+    },
+    legend: {
+        left: 'right',
+        top: '20',
+        data: ['Temperature Anomalies']
+    },
+    xAxis: {
+        name: 'Year',
+        type: 'category',
+        data: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31', '32', '33', '34', '35', '36', '37', '38', '39', '40', '41', '42', '43', '44', '45', '46', '47', '48', '49', '50']
+    },
+    yAxis: {
+        name: 'Anomalies (°C)',
+        type: 'value'
+    },
+    series: [{
+        name: 'Temperature Anomalies',
+        type: 'scatter',
+        itemStyle: {
+            color: '#FF5733'
+        },
+        data: [
+            [1, 12.3], [2, 15.6], [3, 9.8], [4, 16.2], [5, 14.7], [6, 17.1], [7, 19.3], [8, 10.2], [9, 18.5], [10, 13.9],
+            [11, 20.4], [12, 14.5], [13, 16.9], [14, 19.8], [15, 17.3], [16, 21.2], [17, 23.4], [18, 20.6], [19, 25.7], [20, 22.1],
+            [21, 24.8], [22, 19.2], [23, 26.5], [24, 23.7], [25, 27.8], [26, 24.1], [27, 28.9], [28, 26.3], [29, 29.4], [30, 25.6],
+            [31, 27.1], [32, 30.2], [33, 28.4], [34, 31.7], [35, 29.1], [36, 32.5], [37, 30.8], [38, 33.2], [39, 31.4], [40, 34.8],
+            [41, 32.9], [42, 35.1], [43, 33.7], [44, 36.4], [45, 34.5], [46, 37.2], [47, 35.6], [48, 38.3], [49, 36.9], [50, 39.7]
+        ]
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var option;
+
+option = {
+    title: {
+        text: 'Correlation between Training Hours and Performance',
+        left: 'center',
+        top: '10%'
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: function (params) {
+            return 'Training Hours: ' + params.value[0] + '<br>Performance: ' + params.value[1];
+        }
+    },
+    legend: {
+        data: ['Training Data'],
+        left: '10%',
+        top: 'top'
+    },
+    xAxis: {
+        name: 'Training Hours',
+        type: 'value'
+    },
+    yAxis: {
+        name: 'Performance Index',
+        type: 'value'
+    },
+    series: [{
+        name: 'Training Data',
+        type: 'scatter',
+        itemStyle: {
+            color: '#ff6347' // Tomato color
+        },
+        data: [
+            [1, 15],
+            [2, 20],
+            [3, 26],
+            [4, 18],
+            [5, 30],
+            [6, 25],
+            [7, 22],
+            [8, 35],
+            [9, 40],
+            [10, 38],
+            [11, 50],
+            [12, 55],
+            [13, 60],
+            [14, 52],
+            [15, 65],
+            [16, 70],
+            [17, 64],
+            [18, 75],
+            [19, 80],
+            [20, 85]
+        ]
+    }],
+    width: 800,
+    height: 600
+};
+
+if (option && typeof option === 'object') myChart.setOption(option);
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

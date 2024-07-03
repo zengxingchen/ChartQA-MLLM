@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var app = {};
+
+var option;
+
+option = {
+    color: ['#3366CC', '#DC3912', '#FF9900', '#109618', '#990099', '#3B3EAC'],
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Elementary', 'Middle School', 'High School', 'Bachelor', 'Master', 'Ph.D.'],
+        textStyle: {
+            color: '#000'
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01]
+    },
+    yAxis: {
+        type: 'category',
+        data: ['2015', '2016', '2017', '2018', '2019']
+    },
+    series: [
+        {
+            name: 'Elementary',
+            type: 'bar',
+            stack: 'total',
+            barWidth: '50%',
+            data: [35.2, 34, 33, 32.5, 31.8]
+        },
+        {
+            name: 'Middle School',
+            type: 'bar',
+            stack: 'total',
+            barWidth: '50%',
+            data: [25.5, 26, 26.8, 25.9, 27.1]
+        },
+        {
+            name: 'High School',
+            type: 'bar',
+            stack: 'total',
+            barWidth: '50%',
+            data: [20.1, 21, 20.5, 22.3, 22.6]
+        },
+        {
+            name: 'Bachelor',
+            type: 'bar',
+            stack: 'total',
+            barWidth: '50%',
+            data: [10.2, 11, 11.5, 11.2, 11]
+        },
+        {
+            name: 'Master',
+            type: 'bar',
+            stack: 'total',
+            barWidth: '50%',
+            data: [7, 6.8, 6.5, 6.6, 6.3]
+        },
+        {
+            name: 'Ph.D.',
+            type: 'bar',
+            stack: 'total',
+            barWidth: '50%',
+            data: [2, 1.2, 1.7, 1.5, 1.2]
+        }
+    ],
+    title: {
+        text: 'Education & Learning Enrollment by Level',
+        left: 'center',
+        top: 15,
+        textStyle: {
+            fontSize: 24,
+            color: '#333'
+        }
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

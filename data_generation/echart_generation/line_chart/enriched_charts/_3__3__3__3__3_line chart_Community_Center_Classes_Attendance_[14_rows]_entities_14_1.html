@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+
+var data = [
+    { month: 'January', articles: 22 },
+    { month: 'February', articles: 18 },
+    { month: 'March', articles: 25 },
+    { month: 'April', articles: 30 },
+    { month: 'May', articles: 28 },
+    { month: 'June', articles: 35 },
+    { month: 'July', articles: 33 },
+    { month: 'August', articles: 28 },
+    { month: 'September', articles: 32 },
+    { month: 'October', articles: 29 },
+    { month: 'November', articles: 26 },
+    { month: 'December', articles: 20 }
+];
+
+var xAxisData = data.map(item => item.month);
+var seriesData = data.map(item => item.articles);
+
+var option = {
+    title: {
+        text: 'Science & Nature Articles Published',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    xAxis: {
+        type: 'category',
+        data: xAxisData
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [{
+        data: seriesData,
+        type: 'line',
+        smooth: true,
+        lineStyle: {
+            width: 3
+        }
+    }],
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    color: ['#6CA2FF'] // Custom color for the line
+};
+
+// Apply the options to the chart
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+option = {
+  title: {
+    text: 'Electric Vehicle Market Penetration',
+    left: 'center'
+  },
+  tooltip: {
+    trigger: 'axis',
+    axisPointer: {
+      type: 'shadow'
+    }
+  },
+  legend: {
+    bottom: 0,
+    data: ['Electric Vehicles', 'Hybrid Vehicles', 'Combustion Engine Vehicles']
+  },
+  grid: {
+    left: '3%',
+    right: '4%',
+    bottom: '12%',
+    containLabel: true
+  },
+  xAxis: {
+    type: 'value',
+    boundaryGap: [0, 0.01],
+  },
+  yAxis: {
+    type: 'category',
+    data: ['2020', '2021', '2022', '2023', '2024', '2025', '2026', '2027', '2028', '2029', '2030']
+  },
+  series: [
+    {
+      name: 'Electric Vehicles',
+      type: 'bar',
+      stack: 'total',
+      barWidth: '60%',
+      label: {
+        show: true,
+        formatter: '{c}%'
+      },
+      data: [5, 8, 12, 19, 28, 38, 45, 53, 62, 70, 78],
+      itemStyle: {
+        color: '#32a852'
+      }
+    },
+    {
+      name: 'Hybrid Vehicles',
+      type: 'bar',
+      stack: 'total',
+      barWidth: '60%',
+      label: {
+        show: true,
+        formatter: '{c}%'
+      },
+      data: [25, 27, 30, 33, 35, 32, 27, 22, 18, 15, 12],
+      itemStyle: {
+        color: '#f5e51b'
+      }
+    },
+    {
+      name: 'Combustion Engine Vehicles',
+      type: 'bar',
+      stack: 'total',
+      barWidth: '60%',
+      label: {
+        show: true,
+        formatter: '{c}%'
+      },
+      data: [70, 65, 58, 48, 37, 30, 28, 25, 20, 15, 10],
+      itemStyle: {
+        color: '#eb4034'
+      }
+    }
+  ]
+};
+
+if (option && typeof option === 'object') {
+  myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

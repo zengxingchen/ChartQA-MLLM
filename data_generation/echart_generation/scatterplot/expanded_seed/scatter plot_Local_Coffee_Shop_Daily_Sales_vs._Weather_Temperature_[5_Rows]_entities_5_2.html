@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+
+// Prepare the data
+var data = [
+    {'Date': '2023-03-01', 'Sales ($)': 1570, 'Temperature (°C)': 13},
+    {'Date': '2023-03-02', 'Sales ($)': 1890, 'Temperature (°C)': 16},
+    {'Date': '2023-03-03', 'Sales ($)': 1230, 'Temperature (°C)': 11},
+    {'Date': '2023-03-04', 'Sales ($)': 2200, 'Temperature (°C)': 18},
+    {'Date': '2023-03-05', 'Sales ($)': 2050, 'Temperature (°C)': 17}
+];
+
+var scatterData = data.map(function (item) {
+    return {
+        value: [
+            item['Date'],
+            item['Sales ($)'],
+            item['Temperature (°C)']
+        ],
+        // Customize the visual presentation here:
+        symbolSize: item['Sales ($)'] / 200, // Example of encoding size relative to Sales
+        itemStyle: {
+            color: 'hsl(' + Math.round((item['Temperature (°C)'] - 10) * 15) + ', 50%, 50%)' // Coloring by temperature
+        }
+    };
+});
+
+// Create the scatterplot option
+var option = {
+    title: {
+        text: 'Scatterplot of Sales and Temperature',
+        subtext: 'Date vs Sales and Temperature',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis',
+        showDelay: 0,
+        formatter: function (params) {
+            if (params.value.length > 1) {
+                return params.value[0] + ' :<br/>'
+                    + '$' + params.value[1] + ' '
+                    + params.value[2]  + '°C';
+            } else {
+                return params.seriesName + ' :<br/>'
+                    + params.name + ' : '
+                    + params.value + '°C';
+            }
+        },
+        axisPointer: {
+            animation: false
+        }
+    },
+    xAxis: {
+        type: 'category',
+        name: 'Date',
+        nameLocation: 'middle',
+        nameGap: 30,
+        data: data.map(function (item) {
+            return item['Date'];
+        }),
+        splitLine: {
+            show: false
+        }
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Sales ($)',
+        nameLocation: 'middle',
+        nameGap: 50
+    },
+    series: [{
+        name: 'Sales vs Temperature',
+        type: 'scatter',
+        symbolSize: function (value, params) {
+            // Use the symbolSize from the encoded item if available
+            return params.data.symbolSize;
+        },
+        itemStyle: {
+            // Use the itemStyle from the encoded item if available
+            color: function (params) {
+                return params.data.itemStyle.color;
+            }
+        },
+        data: scatterData
+    }]
+};
+
+// Apply the option to the chart
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

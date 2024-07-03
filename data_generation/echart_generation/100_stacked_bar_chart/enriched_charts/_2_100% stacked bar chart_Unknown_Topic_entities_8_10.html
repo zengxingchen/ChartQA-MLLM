@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+  renderer: 'canvas',
+  useDirtyRect: false,
+  width: 800, // Modified width
+  height: 600 // Modified height
+});
+var app = {};
+
+var option;
+
+option = {
+  color: ['#FF6B6B', '#4ECDC4', '#FFD93D', '#1A535C'], // Modified color scheme
+  tooltip: {
+    trigger: 'axis',
+    axisPointer: {
+      // Use axis to trigger tooltip
+      type: 'shadow' // 'shadow' as default; can also be 'line' or 'shadow'
+    }
+  },
+  title: {
+    text: 'Regional Spending by Sector', // Changed headline
+    left: 'center',
+    textStyle: {
+      fontSize: 24 // Visible and non-overlapping
+    }
+  },
+  legend: {
+    data: [
+      'Education & Learning',
+      'Health & Psychology',
+      'Entertainment & Leisure',
+      'Environment & Climate Change'
+    ],
+    top: 40 // Ensure it does not overlap with the title
+  },
+  grid: {
+    left: '3%',
+    right: '4%',
+    bottom: '3%',
+    containLabel: true
+  },
+  xAxis: [
+    {
+      type: 'value' // Change the chart from vertical to horizontal
+    }
+  ],
+  yAxis: [
+    {
+      type: 'category',
+      data: ['North America', 'Europe', 'Asia', 'South America'],
+    }
+  ],
+  series: [
+    {
+      name: 'Education & Learning',
+      type: 'bar',
+      stack: 'total',
+      emphasis: {
+        focus: 'series'
+      },
+      data: [25, 30, 35, 20],
+      barWidth: 35 // Changed bar width reasonably
+    },
+    {
+      name: 'Health & Psychology',
+      type: 'bar',
+      stack: 'total',
+      emphasis: {
+        focus: 'series'
+      },
+      data: [30, 25, 20, 35],
+      barWidth: 35 // Changed bar width reasonably
+    },
+    {
+      name: 'Entertainment & Leisure',
+      type: 'bar',
+      stack: 'total',
+      emphasis: {
+        focus: 'series'
+      },
+      data: [20, 25, 30, 15],
+      barWidth: 35 // Changed bar width reasonably
+    },
+    {
+      name: 'Environment & Climate Change',
+      type: 'bar',
+      stack: 'total',
+      emphasis: {
+        focus: 'series'
+      },
+      data: [25, 20, 15, 30],
+      barWidth: 35 // Changed bar width reasonably
+    }
+  ]
+};
+
+if (option && typeof option === 'object') {
+  myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

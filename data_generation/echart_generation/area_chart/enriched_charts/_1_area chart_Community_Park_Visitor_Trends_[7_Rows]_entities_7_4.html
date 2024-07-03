@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var app = {};
+
+var option;
+option = {
+    title: {
+        text: 'Atmospheric CO2 Emissions Over Time',
+        left: 'center',
+        top: '3%'
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['CO2 Emissions'],
+        top: '8%'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: [
+            '1990-01', '1990-02', '1990-03', '1990-04', '1990-05', '1990-06',
+            '1990-07', '1990-08', '1990-09', '1990-10', '1990-11', '1990-12',
+            '1991-01', '1991-02', '1991-03', '1991-04', '1991-05', '1991-06',
+            '1991-07', '1991-08', '1991-09', '1991-10', '1991-11', '1991-12'
+        ]
+    },
+    yAxis: {
+        type: 'value',
+        axisLabel: {
+            formatter: '{value} ppm'
+        }
+    },
+    series: [
+        {
+            name: 'CO2 Emissions',
+            type: 'line',
+            stack: 'Total amount',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [
+                315, 317, 319, 321, 322, 324,
+                325, 327, 328, 330, 331, 333,
+                334, 336, 338, 339, 341, 342,
+                344, 345, 347, 348, 350, 352
+            ],
+            color: ['#008ffb', '#00ecbc'],
+            smooth: true
+        }
+    ],
+    color: ['#74add1', '#abd9e9', '#4575b4'],
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

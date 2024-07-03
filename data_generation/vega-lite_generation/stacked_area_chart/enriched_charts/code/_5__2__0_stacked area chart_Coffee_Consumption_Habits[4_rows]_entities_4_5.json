@@ -1,0 +1,149 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Annual Technology Investment Trends in Key Sectors",
+    "title": {
+        "text": "Technology Investment Trends",
+        "fontSize": 18,
+        "anchor": "start",
+        "offset": 20,
+        "orient": "top"
+    },
+    "width": 600,
+    "height": 400,
+    "data": {
+        "values": [
+            {
+                "Year": "2015",
+                "Biotech": 430,
+                "AI & Robotics": 240,
+                "Renewable Energy": 350
+            },
+            {
+                "Year": "2016",
+                "Biotech": 470,
+                "AI & Robotics": 280,
+                "Renewable Energy": 400
+            },
+            {
+                "Year": "2017",
+                "Biotech": 500,
+                "AI & Robotics": 320,
+                "Renewable Energy": 450
+            },
+            {
+                "Year": "2018",
+                "Biotech": 550,
+                "AI & Robotics": 360,
+                "Renewable Energy": 500
+            },
+            {
+                "Year": "2019",
+                "Biotech": 590,
+                "AI & Robotics": 410,
+                "Renewable Energy": 550
+            },
+            {
+                "Year": "2020",
+                "Biotech": 620,
+                "AI & Robotics": 460,
+                "Renewable Energy": 600
+            },
+            {
+                "Year": "2021",
+                "Biotech": 660,
+                "AI & Robotics": 500,
+                "Renewable Energy": 650
+            },
+            {
+                "Year": "2022",
+                "Biotech": 700,
+                "AI & Robotics": 550,
+                "Renewable Energy": 700
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Biotech",
+                "AI & Robotics",
+                "Renewable Energy"
+            ],
+            "as": [
+                "Sector",
+                "Investment"
+            ]
+        },
+        {
+            "calculate": "datum.Investment",
+            "as": "annual_investment"
+        }
+    ],
+    "mark": {
+        "type": "area",
+        "opacity": 0.7,
+        "line": true
+    },
+    "encoding": {
+        "x": {
+            "field": "Year",
+            "type": "ordinal",
+            "axis": {
+                "title": "Year"
+            }
+        },
+        "y": {
+            "field": "annual_investment",
+            "type": "quantitative",
+            "stack": "zero",
+            "axis": {
+                "title": "Investment (in millions)"
+            }
+        },
+        "color": {
+            "field": "Sector",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Biotech",
+                    "AI & Robotics",
+                    "Renewable Energy"
+                ],
+                "range": [
+                    "#21ba45",
+                    "#f2711c",
+                    "#31ccec"
+                ]
+            },
+            "legend": {
+                "title": "Sector",
+                "orient": "top",
+                "offset": 10,
+                "titleAnchor": "start"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Year",
+                "type": "ordinal"
+            },
+            {
+                "field": "Sector",
+                "type": "nominal"
+            },
+            {
+                "field": "annual_investment",
+                "type": "quantitative",
+                "title": "Investment"
+            }
+        ]
+    },
+    "config": {
+        "view": {
+            "stroke": "transparent"
+        },
+        "area": {
+            "line": true
+        }
+    }
+}

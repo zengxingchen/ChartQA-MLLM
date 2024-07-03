@@ -1,0 +1,155 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Weekly Profile of Stock Market Sector Performance",
+    "width": 600,
+    "height": 400,
+    "data": {
+        "values": [
+            {
+                "Day": "Monday",
+                "Technology": 1.5,
+                "Healthcare": 0.5,
+                "Energy": 1.0,
+                "Finance": 0.8,
+                "Consumer Goods": 0.4
+            },
+            {
+                "Day": "Tuesday",
+                "Technology": 1.8,
+                "Healthcare": 0.6,
+                "Energy": 1.1,
+                "Finance": 0.9,
+                "Consumer Goods": 0.5
+            },
+            {
+                "Day": "Wednesday",
+                "Technology": 2.0,
+                "Healthcare": 0.7,
+                "Energy": 1.2,
+                "Finance": 1.0,
+                "Consumer Goods": 0.6
+            },
+            {
+                "Day": "Thursday",
+                "Technology": 1.6,
+                "Healthcare": 0.9,
+                "Energy": 1.3,
+                "Finance": 1.1,
+                "Consumer Goods": 0.7
+            },
+            {
+                "Day": "Friday",
+                "Technology": 1.4,
+                "Healthcare": 0.8,
+                "Energy": 1.1,
+                "Finance": 1.2,
+                "Consumer Goods": 0.5
+            },
+            {
+                "Day": "Saturday",
+                "Technology": 1.9,
+                "Healthcare": 1.0,
+                "Energy": 1.4,
+                "Finance": 1.3,
+                "Consumer Goods": 0.6
+            },
+            {
+                "Day": "Sunday",
+                "Technology": 2.1,
+                "Healthcare": 0.7,
+                "Energy": 1.5,
+                "Finance": 1.4,
+                "Consumer Goods": 0.4
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Technology",
+                "Healthcare",
+                "Energy",
+                "Finance",
+                "Consumer Goods"
+            ],
+            "as": [
+                "Sector",
+                "Change"
+            ]
+        }
+    ],
+    "title": {
+        "text": "Weekly Stock Market Sector Performance",
+        "anchor": "start",
+        "offset": 5,
+        "frame": "group"
+    },
+    "mark": {
+        "type": "area",
+        "opacity": 0.65
+    },
+    "encoding": {
+        "x": {
+            "field": "Day",
+            "type": "ordinal",
+            "axis": {
+                "title": "Day of the Week",
+                "labelAngle": 0
+            }
+        },
+        "y": {
+            "field": "Change",
+            "type": "quantitative",
+            "stack": "zero",
+            "axis": {
+                "title": "Average Percentage Change"
+            }
+        },
+        "color": {
+            "field": "Sector",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Technology",
+                    "Healthcare",
+                    "Energy",
+                    "Finance",
+                    "Consumer Goods"
+                ],
+                "range": [
+                    "#1f77b4",
+                    "#ff7f0e",
+                    "#2ca02c",
+                    "#d62728",
+                    "#9467bd"
+                ]
+            },
+            "legend": {
+                "title": "Market Sector",
+                "orient": "top-right"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Day",
+                "type": "ordinal"
+            },
+            {
+                "field": "Sector",
+                "type": "nominal"
+            },
+            {
+                "field": "Change",
+                "type": "quantitative"
+            }
+        ]
+    },
+    "config": {
+        "view": {
+            "stroke": "transparent"
+        },
+        "axis": {
+            "domainWidth": 1
+        }
+    }
+}

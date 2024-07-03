@@ -1,0 +1,114 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+        "values": [
+            {
+                "Day": "Monday",
+                "Espresso": 50,
+                "Americano": 75,
+                "Cappuccino": 25,
+                "Latte": 100,
+                "Mocha": 50
+            },
+            {
+                "Day": "Tuesday",
+                "Espresso": 60,
+                "Americano": 80,
+                "Cappuccino": 30,
+                "Latte": 110,
+                "Mocha": 60
+            },
+            {
+                "Day": "Wednesday",
+                "Espresso": 55,
+                "Americano": 85,
+                "Cappuccino": 35,
+                "Latte": 120,
+                "Mocha": 55
+            },
+            {
+                "Day": "Thursday",
+                "Espresso": 45,
+                "Americano": 70,
+                "Cappuccino": 40,
+                "Latte": 115,
+                "Mocha": 65
+            },
+            {
+                "Day": "Friday",
+                "Espresso": 70,
+                "Americano": 90,
+                "Cappuccino": 45,
+                "Latte": 130,
+                "Mocha": 70
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Espresso",
+                "Americano",
+                "Cappuccino",
+                "Latte",
+                "Mocha"
+            ],
+            "as": [
+                "CoffeeType",
+                "Sales"
+            ]
+        }
+    ],
+    "mark": "bar",
+    "width": 250,
+    "height": 300,
+    "title": {
+        "text": "Coffee Sales Data by Day",
+        "anchor": "start"
+    },
+    "encoding": {
+        "x": {
+            "field": "Day",
+            "type": "ordinal",
+            "axis": {
+                "title": "Day"
+            }
+        },
+        "y": {
+            "field": "Sales",
+            "type": "quantitative",
+            "stack": "zero",
+            "axis": {
+                "title": "Number of Coffee Sales"
+            }
+        },
+        "color": {
+            "field": "CoffeeType",
+            "type": "nominal",
+            "scale": {
+                "scheme": "tableau10"
+            },
+            "legend": {
+                "orient": "right",
+                "title": "Coffee Type"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Day",
+                "type": "nominal",
+                "title": "Day"
+            },
+            {
+                "field": "CoffeeType",
+                "type": "nominal",
+                "title": "Coffee Type"
+            },
+            {
+                "field": "Sales",
+                "type": "quantitative",
+                "title": "Sales"
+            }
+        ]
+    }
+}

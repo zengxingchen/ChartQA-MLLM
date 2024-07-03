@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    width: 800,
+    height: 500
+});
+var app = {};
+
+var option;
+
+option = {
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['iOS', 'Android', 'Windows Phone', 'Others']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: false,
+        min: 0,
+        max: 100,
+    },
+    yAxis: {
+        type: 'category',
+        data: ['2016', '2017', '2018', '2019', '2020']
+    },
+    series: [
+        {
+            name: 'iOS',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [15.4, 14.7, 13.2, 13.4, 14.9],
+            color: '#007AFF'
+        },
+        {
+            name: 'Android',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [80.7, 82.8, 85.1, 86.0, 84.1],
+            color: '#3DDC84'
+        },
+        {
+            name: 'Windows Phone',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [2.3, 1.1, 0.7, 0.3, 0.1],
+            color: '#00ADEF'
+        },
+        {
+            name: 'Others',
+            type: 'bar',
+            stack: 'total',
+            barWidth: 35,
+            label: {
+                show: true
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [1.6, 1.4, 1.0, 0.3, 1.0],
+            color: '#FCC43D'
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

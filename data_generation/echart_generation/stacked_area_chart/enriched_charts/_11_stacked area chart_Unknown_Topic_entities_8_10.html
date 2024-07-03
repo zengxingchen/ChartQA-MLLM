@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: '600',
+    height: '400'
+});
+
+var option;
+option = {
+    title: {
+        text: 'Year-Round Leisure Activities Trends',
+        left: 'center',
+        textStyle: {
+            color: '#333'
+        }
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['Outdoor Recreation', 'Home Entertainment', 'Online Learning', 'Travel & Booking'],
+        top: 40
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Outdoor Recreation',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [150, 165, 172, 180, 200, 190, 210, 220, 230, 240, 225, 210],
+            itemStyle: {
+                normal: {
+                    color: '#FF8C00' // Orange
+                }
+            }
+        },
+        {
+            name: 'Home Entertainment',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [220, 210, 230, 250, 270, 260, 280, 300, 305, 310, 320, 330],
+            itemStyle: {
+                normal: {
+                    color: '#6A5ACD' // SlateBlue
+                }
+            }
+        },
+        {
+            name: 'Online Learning',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [170, 190, 210, 220, 230, 250, 240, 260, 250, 270, 260, 250],
+            itemStyle: {
+                normal: {
+                    color: '#2E8B57' // SeaGreen
+                }
+            }
+        },
+        {
+            name: 'Travel & Booking',
+            type: 'line',
+            stack: 'total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [90, 110, 95, 100, 110, 130, 120, 140, 150, 160, 155, 150],
+            itemStyle: {
+                normal: {
+                    color: '#1E90FF' // DodgerBlue
+                }
+            }
+        }
+    ],
+    markPoint: {
+        data: [
+            {type: 'max', name: 'Max', symbol: 'circle', label: { show: true }, itemStyle: { color: '#FF4500' }},
+            {type: 'min', name: 'Min', symbol: 'circle', label: { show: true }, itemStyle: { color: '#32CD32' }}
+        ]
+    }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

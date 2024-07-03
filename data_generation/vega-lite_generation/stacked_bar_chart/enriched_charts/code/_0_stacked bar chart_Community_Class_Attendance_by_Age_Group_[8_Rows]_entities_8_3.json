@@ -1,0 +1,159 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+        "values": [
+            {
+                "Day": "Monday",
+                "Grades K-2": 25,
+                "Grades 3-5": 30,
+                "Grades 6-8": 45,
+                "Grades 9-12": 20
+            },
+            {
+                "Day": "Tuesday",
+                "Grades K-2": 22,
+                "Grades 3-5": 25,
+                "Grades 6-8": 50,
+                "Grades 9-12": 22
+            },
+            {
+                "Day": "Wednesday",
+                "Grades K-2": 30,
+                "Grades 3-5": 35,
+                "Grades 6-8": 40,
+                "Grades 9-12": 25
+            },
+            {
+                "Day": "Thursday",
+                "Grades K-2": 28,
+                "Grades 3-5": 33,
+                "Grades 6-8": 47,
+                "Grades 9-12": 23
+            },
+            {
+                "Day": "Friday",
+                "Grades K-2": 35,
+                "Grades 3-5": 40,
+                "Grades 6-8": 45,
+                "Grades 9-12": 30
+            },
+            {
+                "Day": "Saturday",
+                "Grades K-2": 20,
+                "Grades 3-5": 25,
+                "Grades 6-8": 50,
+                "Grades 9-12": 21
+            },
+            {
+                "Day": "Sunday",
+                "Grades K-2": 27,
+                "Grades 3-5": 32,
+                "Grades 6-8": 43,
+                "Grades 9-12": 22
+            }
+        ]
+    },
+    "width": 700,
+    "height": 400,
+    "title": {
+        "text": "Daily Classroom Attendance by Grade",
+        "subtitle": "A horizontal stacked bar chart showing the number of students in different grade levels throughout the week.",
+        "subtitleFontStyle": "italic",
+        "subtitleFontSize": 10,
+        "anchor": "start"
+    },
+    "transform": [
+        {
+            "fold": [
+                "Grades K-2",
+                "Grades 3-5",
+                "Grades 6-8",
+                "Grades 9-12"
+            ],
+            "as": [
+                "Grade Level",
+                "Number of Students"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "bar",
+        "height": {
+            "band": 0.6
+        }
+    },
+    "encoding": {
+        "y": {
+            "field": "Day",
+            "type": "ordinal",
+            "title": "Day of the Week",
+            "axis": {
+                "labelAngle": 0
+            }
+        },
+        "x": {
+            "field": "Number of Students",
+            "type": "quantitative",
+            "title": "Number of Students",
+            "stack": "zero"
+        },
+        "color": {
+            "field": "Grade Level",
+            "type": "nominal",
+            "title": "Grade Level",
+            "scale": {
+                "domain": [
+                    "Grades K-2",
+                    "Grades 3-5",
+                    "Grades 6-8",
+                    "Grades 9-12"
+                ],
+                "range": [
+                    "#E53935",
+                    "#D81B60",
+                    "#8E24AA",
+                    "#5E35B1"
+                ]
+            },
+            "legend": {
+                "orient": "right",
+                "titleFontSize": 12
+            }
+        },
+        "order": {
+            "field": "Grade Level",
+            "type": "nominal",
+            "sort": [
+                "Grades K-2",
+                "Grades 3-5",
+                "Grades 6-8",
+                "Grades 9-12"
+            ]
+        },
+        "tooltip": [
+            {
+                "field": "Day",
+                "type": "nominal"
+            },
+            {
+                "field": "Grade Level",
+                "type": "nominal",
+                "title": "Grade Level"
+            },
+            {
+                "field": "Number of Students",
+                "type": "quantitative",
+                "title": "Number of Students"
+            }
+        ]
+    },
+    "config": {
+        "axis": {
+            "titleFontWeight": "normal",
+            "labelFont": "sans-serif"
+        },
+        "bar": {
+            "strokeWidth": 0
+        }
+    }
+}

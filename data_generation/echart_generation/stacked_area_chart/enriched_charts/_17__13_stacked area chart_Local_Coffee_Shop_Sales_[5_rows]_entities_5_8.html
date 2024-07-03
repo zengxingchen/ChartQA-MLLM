@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: '600', height: '400'});
+var app = {};
+
+var option;
+
+option = {
+  title: {
+    text: 'Quarterly Revenue Growth by Sector',
+    left: 'center',
+    textStyle: {
+      fontWeight: 'normal',
+      fontSize: 16
+    }
+  },
+  tooltip: {
+    trigger: 'axis',
+  },
+  legend: {
+    data: ['Technology', 'Healthcare', 'Retail', 'Energy'],
+    bottom: 10
+  },
+  grid: {
+    left: '3%',
+    right: '4%',
+    bottom: '10%',
+    containLabel: true
+  },
+  xAxis: {
+    type: 'category',
+    boundaryGap: false,
+    data: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12']
+  },
+  yAxis: {
+    type: 'value'
+  },
+  series: [
+    {
+      name: 'Technology',
+      type: 'line',
+      stack: 'total',
+      areaStyle: {},
+      emphasis: { focus: 'series' },
+      data: [130, 135, 140, 150, 160, 170, 180, 175, 160, 165, 170, 180],
+      color: '#FF7F0E'
+    },
+    {
+      name: 'Healthcare',
+      type: 'line',
+      stack: 'total',
+      areaStyle: {},
+      emphasis: { focus: 'series' },
+      data: [120, 125, 130, 135, 140, 145, 150, 155, 160, 165, 170, 175],
+      color: '#2CA02C'
+    },
+    {
+      name: 'Retail',
+      type: 'line',
+      stack: 'total',
+      areaStyle: {},
+      emphasis: { focus: 'series' },
+      data: [110, 115, 120, 125, 130, 135, 140, 145, 150, 155, 160, 165],
+      color: '#1F77B4'
+    },
+    {
+      name: 'Energy',
+      type: 'line',
+      stack: 'total',
+      areaStyle: {},
+      emphasis: { focus: 'series' },
+      data: [90, 95, 100, 105, 100, 110, 115, 120, 125, 130, 135, 140],
+      color: '#D62728'
+    }
+  ],
+  markPoint: {
+    data: [
+      { type: 'max', name: 'Max', valueDim: 'highest' },
+      { type: 'min', name: 'Min', valueDim: 'lowest' }
+    ]
+  }
+};
+
+if (option && typeof option === 'object') {
+  myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

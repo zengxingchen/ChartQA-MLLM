@@ -1,0 +1,173 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "A 100% stacked horizontal bar chart showing the popularity distribution of various programming languages over years",
+    "width": 400,
+    "height": 200,
+    "data": {
+        "values": [
+            {
+                "Year": "2015",
+                "Python": 15,
+                "JavaScript": 25,
+                "Java": 35,
+                "C#": 10,
+                "Ruby": 15
+            },
+            {
+                "Year": "2016",
+                "Python": 17,
+                "JavaScript": 28,
+                "Java": 33,
+                "C#": 12,
+                "Ruby": 10
+            },
+            {
+                "Year": "2017",
+                "Python": 22,
+                "JavaScript": 30,
+                "Java": 28,
+                "C#": 10,
+                "Ruby": 10
+            },
+            {
+                "Year": "2018",
+                "Python": 27,
+                "JavaScript": 30,
+                "Java": 23,
+                "C#": 12,
+                "Ruby": 8
+            },
+            {
+                "Year": "2019",
+                "Python": 30,
+                "JavaScript": 35,
+                "Java": 20,
+                "C#": 10,
+                "Ruby": 5
+            },
+            {
+                "Year": "2020",
+                "Python": 35,
+                "JavaScript": 33,
+                "Java": 17,
+                "C#": 10,
+                "Ruby": 5
+            },
+            {
+                "Year": "2021",
+                "Python": 40,
+                "JavaScript": 32,
+                "Java": 15,
+                "C#": 8,
+                "Ruby": 5
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Python",
+                "JavaScript",
+                "Java",
+                "C#",
+                "Ruby"
+            ],
+            "as": [
+                "Programming Language",
+                "Popularity"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "bar",
+        "width": 30
+    },
+    "encoding": {
+        "y": {
+            "field": "Year",
+            "type": "ordinal",
+            "axis": {
+                "title": "Year"
+            }
+        },
+        "x": {
+            "field": "Popularity",
+            "type": "quantitative",
+            "stack": "normalize",
+            "title": "Percentage of Total Popularity",
+            "axis": {
+                "format": ".0%"
+            }
+        },
+        "color": {
+            "field": "Programming Language",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Python",
+                    "JavaScript",
+                    "Java",
+                    "C#",
+                    "Ruby"
+                ],
+                "range": [
+                    "#4F81BD",
+                    "#C0504D",
+                    "#9BBB59",
+                    "#8064A2",
+                    "#F79646"
+                ]
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Year",
+                "type": "ordinal",
+                "title": "Year"
+            },
+            {
+                "field": "Programming Language",
+                "type": "nominal",
+                "title": "Programming Language"
+            },
+            {
+                "field": "Popularity",
+                "type": "quantitative",
+                "title": "Popularity"
+            }
+        ]
+    },
+    "title": {
+        "text": "Programming Language Popularity Over Time",
+        "anchor": "start",
+        "offset": 5,
+        "dx": 100
+    },
+    "config": {
+        "axisY": {
+            "minExtent": 30
+        },
+        "scale": {
+            "bandPaddingInner": 0.2
+        }
+    },
+    "layer": [
+        {
+            "mark": "bar"
+        },
+        {
+            "mark": {
+                "type": "text",
+                "align": "left",
+                "baseline": "middle",
+                "dx": 3
+            },
+            "encoding": {
+                "text": {
+                    "field": "Popularity",
+                    "type": "quantitative"
+                }
+            }
+        }
+    ]
+}

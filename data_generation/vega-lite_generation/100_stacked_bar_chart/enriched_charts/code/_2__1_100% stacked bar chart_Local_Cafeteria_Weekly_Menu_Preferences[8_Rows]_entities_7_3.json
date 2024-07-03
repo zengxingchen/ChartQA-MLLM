@@ -1,0 +1,177 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "A 100% stacked vertical bar chart showing the distribution of time spent on various physical activities over a week",
+    "width": 300,
+    "height": 400,
+    "data": {
+        "values": [
+            {
+                "Day": "Monday",
+                "Running": 1,
+                "Cycling": 2,
+                "Swimming": 1,
+                "Yoga": 1,
+                "Gym": 1
+            },
+            {
+                "Day": "Tuesday",
+                "Running": 1.5,
+                "Cycling": 1,
+                "Swimming": 1.5,
+                "Yoga": 1,
+                "Gym": 1
+            },
+            {
+                "Day": "Wednesday",
+                "Running": 2,
+                "Cycling": 1,
+                "Swimming": 2,
+                "Yoga": 1,
+                "Gym": 1
+            },
+            {
+                "Day": "Thursday",
+                "Running": 1,
+                "Cycling": 2,
+                "Swimming": 1,
+                "Yoga": 1,
+                "Gym": 1
+            },
+            {
+                "Day": "Friday",
+                "Running": 1,
+                "Cycling": 1,
+                "Swimming": 2,
+                "Yoga": 2,
+                "Gym": 1
+            },
+            {
+                "Day": "Saturday",
+                "Running": 2,
+                "Cycling": 1,
+                "Swimming": 1,
+                "Yoga": 1,
+                "Gym": 2
+            },
+            {
+                "Day": "Sunday",
+                "Running": 1.5,
+                "Cycling": 1.5,
+                "Swimming": 1,
+                "Yoga": 1,
+                "Gym": 1
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Running",
+                "Cycling",
+                "Swimming",
+                "Yoga",
+                "Gym"
+            ],
+            "as": [
+                "Activity",
+                "Hours"
+            ]
+        },
+        {
+            "joinaggregate": [
+                {
+                    "op": "sum",
+                    "field": "Hours",
+                    "as": "TotalHours"
+                }
+            ],
+            "groupby": [
+                "Day"
+            ]
+        },
+        {
+            "calculate": "datum.Hours / datum.TotalHours",
+            "as": "PercentOfTotal"
+        }
+    ],
+    "mark": {
+        "type": "bar",
+        "height": {
+            "band": 0.8
+        }
+    },
+    "encoding": {
+        "x": {
+            "field": "Day",
+            "type": "ordinal",
+            "title": "Day of the Week",
+            "axis": {
+                "labelFontSize": 12,
+                "titleFontSize": 14
+            }
+        },
+        "y": {
+            "field": "PercentOfTotal",
+            "type": "quantitative",
+            "axis": {
+                "format": "%",
+                "title": "Percentage of Total Time Spent"
+            }
+        },
+        "color": {
+            "field": "Activity",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Running",
+                    "Cycling",
+                    "Swimming",
+                    "Yoga",
+                    "Gym"
+                ],
+                "range": [
+                    "#FF5733",
+                    "#33FF57",
+                    "#3357FF",
+                    "#FF33A1",
+                    "#FFBD33"
+                ]
+            },
+            "legend": {
+                "title": "Type of Physical Activity",
+                "orient": "bottom"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Activity",
+                "type": "nominal",
+                "title": "Activity"
+            },
+            {
+                "field": "PercentOfTotal",
+                "type": "quantitative",
+                "title": "Percentage",
+                "format": ".1%"
+            }
+        ]
+    },
+    "title": {
+        "text": "Weekly Distribution of Physical Activities",
+        "anchor": "start",
+        "offset": 10,
+        "color": "#333",
+        "fontSize": 16,
+        "fontWeight": "bold"
+    },
+    "config": {
+        "axis": {
+            "labelFontSize": 12,
+            "titleFontSize": 14
+        },
+        "legend": {
+            "labelFontSize": 12,
+            "titleFontSize": 14
+        }
+    }
+}

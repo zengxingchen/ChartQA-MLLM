@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Future Technologies Adoption Rates',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['AI Adoption', 'Quantum Computing', '5G Networks', 'Renewable Energy'],
+        top: '10%'
+    },
+    xAxis: {
+        type: 'category',
+        data: ['2020', '2021', '2022', '2023', '2024', '2025', '2026', '2027', '2028', '2029', '2030']
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Adoption Rate (%)',
+        min: 0,
+        max: 100
+    },
+    series: [
+        {
+            name: 'AI Adoption',
+            type: 'line',
+            data: [30, 35, 40, 50, 55, 60, 70, 75, 80, 85, 90],
+            itemStyle: {
+                color: '#FF0000'
+            },
+            label: {
+                show: true,
+                position: 'top',
+                formatter: '{c}%'
+            }
+        },
+        {
+            name: 'Quantum Computing',
+            type: 'line',
+            data: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55],
+            itemStyle: {
+                color: '#00FF00'
+            },
+            label: {
+                show: true,
+                position: 'top',
+                formatter: '{c}%'
+            }
+        },
+        {
+            name: '5G Networks',
+            type: 'line',
+            data: [50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100],
+            itemStyle: {
+                color: '#0000FF'
+            },
+            label: {
+                show: true,
+                position: 'top',
+                formatter: '{c}%'
+            }
+        },
+        {
+            name: 'Renewable Energy',
+            type: 'line',
+            data: [40, 45, 50, 60, 65, 70, 75, 80, 85, 90, 95],
+            itemStyle: {
+                color: '#FFA500'
+            },
+            label: {
+                show: true,
+                position: 'top',
+                formatter: '{c}%'
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

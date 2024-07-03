@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById("container");
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+// Chart data
+const data = [
+    {'Month': 'January', 'Electricity_Usage_kWh': 350, 'Natural_Gas_Usage_Therms': 75},
+    {'Month': 'February', 'Electricity_Usage_kWh': 320, 'Natural_Gas_Usage_Therms': 70},
+    {'Month': 'March', 'Electricity_Usage_kWh': 280, 'Natural_Gas_Usage_Therms': 50},
+    {'Month': 'April', 'Electricity_Usage_kWh': 270, 'Natural_Gas_Usage_Therms': 30},
+    {'Month': 'May', 'Electricity_Usage_kWh': 260, 'Natural_Gas_Usage_Therms': 20}
+];
+
+// Process data to fit the scatter plot
+const scatterData = data.map(item => {
+    return {
+        value: [
+            item.Electricity_Usage_kWh, 
+            item.Natural_Gas_Usage_Therms
+        ],
+        name: item.Month,
+        itemStyle: {
+            color: `rgba(0, ${item.Natural_Gas_Usage_Therms*3}, ${item.Electricity_Usage_kWh/2}, 0.8)`
+        },
+        symbolSize: item.Electricity_Usage_kWh/2
+    };
+});
+
+option = {
+    title: {
+        text: 'Energy Usage Scatter Plot'
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: params => {
+            return (
+                'Month: ' + params.data.name + '<br>' +
+                'Electricity Usage (kWh): ' + params.value[0] + '<br>' +
+                'Natural Gas Usage (Therms): ' + params.value[1]
+            );
+        }
+    },
+    xAxis: {
+        name: 'Electricity Usage (kWh)',
+        type: 'value',
+        min: 'dataMin',
+        max: 'dataMax'
+    },
+    yAxis: {
+        name: 'Natural Gas Usage (Therms)',
+        type: 'value',
+        min: 'dataMin',
+        max: 'dataMax'
+    },
+    series: [{
+        type: 'scatter',
+        symbol: 'circle',
+        symbolSize: function (value) {
+            return value[0] / 2; // Size based on Electricity usage
+        },
+        data: scatterData,
+        itemStyle: {
+            borderWidth: 1,
+            borderColor: 'rgba(0,0,0,0.4)'
+        },
+        emphasis: {
+            focus: 'series',
+            itemStyle: {
+                shadowBlur: 10,
+                shadowColor: 'rgba(0,0,0,0.5)'
+            }
+        }
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

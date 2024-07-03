@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Trends in Cultural Goods Sales Over Time',
+        subtext: 'Books, Music Albums, & Art Pieces',
+        x: 'center',
+        top: 'top',
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            label: {
+                backgroundColor: '#6a7985'
+            }
+        }
+    },
+    legend: {
+        data: ['Books', 'Music Albums', 'Art Pieces'],
+        orient: 'horizontal',
+        top: 'bottom',
+        selectedMode: 'multiple',
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: [
+        {
+            type: 'category',
+            boundaryGap: false,
+            data: ['2001','2002','2003','2004','2005','2006','2007','2008','2009','2010','2011','2012','2013','2014','2015','2016','2017','2018','2019','2020','2021','2022']
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value'
+        }
+    ],
+    series: [
+        {
+            name: 'Books',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [15432, 15823, 16205, 17432, 18012, 19023, 19823, 20401, 21567, 22345, 22987, 23456, 24234, 25123, 25789, 26345, 27012, 27654, 28123, 28987, 29456, 29987],
+            color: '#f44336'
+        },
+        {
+            name: 'Music Albums',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [23345, 24301, 25012, 26034, 27056, 27923, 28954, 29841, 30598, 31045, 31567, 32234, 33023, 33898, 34678, 35023, 35567, 36098, 36500, 36823, 37234, 37678],
+            color: '#2196F3'
+        },
+        {
+            name: 'Art Pieces',
+            type: 'line',
+            stack: 'Total',
+            label: {
+                show: true,
+                position: 'top'
+            },
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [12312, 14623, 15045, 16429, 17348, 18123, 19543, 20123, 21456, 22678, 23789, 24987, 25970, 27123, 28198, 29456, 30598, 31673, 32489, 33456, 34567, 35678],
+            color: '#4CAF50'
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

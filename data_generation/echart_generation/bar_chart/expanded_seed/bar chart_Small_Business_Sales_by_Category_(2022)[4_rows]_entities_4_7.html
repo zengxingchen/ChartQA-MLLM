@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+// Given table data
+var data = [
+    {'Category': 'Books', 'Q1 Sales (USD)': 23500, 'Q2 Sales (USD)': 27500, 'Q3 Sales (USD)': 21700, 'Q4 Sales (USD)': 29800},
+    {'Category': 'Electronics', 'Q1 Sales (USD)': 55000, 'Q2 Sales (USD)': 49300, 'Q3 Sales (USD)': 61200, 'Q4 Sales (USD)': 47300},
+    {'Category': 'Clothing', 'Q1 Sales (USD)': 34900, 'Q2 Sales (USD)': 36700, 'Q3 Sales (USD)': 41500, 'Q4 Sales (USD)': 49800},
+    {'Category': 'Home & Garden', 'Q1 Sales (USD)': 28800, 'Q2 Sales (USD)': 30500, 'Q3 Sales (USD)': 32200, 'Q4 Sales (USD)': 36700}
+];
+
+// Extracting categories and sales data for the bar chart
+var categories = data.map(function (item) {
+    return item.Category;
+});
+var q1Sales = data.map(function (item) {
+    return item['Q1 Sales (USD)'];
+});
+var q2Sales = data.map(function (item) {
+    return item['Q2 Sales (USD)'];
+});
+var q3Sales = data.map(function (item) {
+    return item['Q3 Sales (USD)'];
+});
+var q4Sales = data.map(function (item) {
+    return item['Q4 Sales (USD)'];
+});
+
+option = {
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Q1', 'Q2', 'Q3', 'Q4']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01]
+    },
+    yAxis: {
+        type: 'category',
+        data: categories
+    },
+    series: [
+        {
+            name: 'Q1',
+            type: 'bar',
+            data: q1Sales,
+            itemStyle: {
+                color: '#a83279'
+            }
+        },
+        {
+            name: 'Q2',
+            type: 'bar',
+            data: q2Sales,
+            itemStyle: {
+                color: '#f08a5d'
+            }
+        },
+        {
+            name: 'Q3',
+            type: 'bar',
+            data: q3Sales,
+            itemStyle: {
+                color: '#f9ed69'
+            }
+        },
+        {
+            name: 'Q4',
+            type: 'bar',
+            data: q4Sales,
+            itemStyle: {
+                color: '#b83b5e'
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

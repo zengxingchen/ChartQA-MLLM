@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 800, // Change chart width
+    height: 600 // Change chart height
+});
+var app = {};
+
+var option;
+
+option = {
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Food', 'Clothing', 'Housing', 'Utilities', 'Transportation', 'Healthcare', 'Entertainment', 'Others']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01]
+    },
+    yAxis: {
+        type: 'category',
+        data: ['2019', '2020', '2021', '2022', '2023']
+    },
+    series: [
+        {
+            name: 'Food',
+            type: 'bar',
+            stack: 'total',
+            barWidth : 50, // Change bar width
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            data: [10, 15, 20, 30, 25],
+            itemStyle: {
+                color: '#D53A35' // Change bar color
+            }
+        },
+        {
+            name: 'Clothing',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            data: [20, 25, 15, 10, 30],
+            itemStyle: {
+                color: '#F5A623' // Change bar color
+            }
+        },
+        {
+            name: 'Housing',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            data: [25, 20, 25, 20, 15],
+            itemStyle: {
+                color: '#FDD835' // Change bar color
+            }
+        },
+        {
+            name: 'Utilities',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            data: [10, 15, 10, 15, 10],
+            itemStyle: {
+                color: '#26A69A' // Change bar color
+            }
+        },
+        {
+            name: 'Transportation',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            data: [15, 10, 10, 5, 5],
+            itemStyle: {
+                color: '#42A5F5' // Change bar color
+            }
+        },
+        {
+            name: 'Healthcare',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            data: [10, 5, 15, 10, 5],
+            itemStyle: {
+                color: '#AB47BC' // Change bar color
+            }
+        },
+        {
+            name: 'Entertainment',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            data: [5, 5, 3, 6, 7],
+            itemStyle: {
+                color: '#FF7043' // Change bar color
+            }
+        },
+        {
+            name: 'Others',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                show: true,
+                position: 'insideRight'
+            },
+            data: [5, 5, 2, 4, 3],
+            itemStyle: {
+                color: '#BDBDBD' // Change bar color
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

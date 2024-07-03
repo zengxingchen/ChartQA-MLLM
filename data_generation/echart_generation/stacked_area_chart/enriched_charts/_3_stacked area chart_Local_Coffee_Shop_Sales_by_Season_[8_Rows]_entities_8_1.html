@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+
+var colors = ['#5470C6', '#91CC75', '#EE6666'];
+var dataAxis = ["2018-01-01","2018-01-02","2018-01-03","2018-01-04","2018-01-05","2018-01-06","2018-01-07","2018-01-08","2018-01-09","2018-01-10","2018-01-11","2018-01-12","2018-01-13","2018-01-14","2018-01-15","2018-01-16","2018-01-17","2018-01-18","2018-01-19","2018-01-20","2018-01-21","2018-01-22","2018-01-23","2018-01-24","2018-01-25","2018-01-26","2018-01-27","2018-01-28","2018-01-29","2018-01-30"];
+var dataIncome = [8000,8200,8800,8500,9000,9300,9700,9100,9400,9500,9800,9900,10100,10400,10200,10500,10700,10900,11000,11300,11600,11800,11900,12000,12200,12400,12500,12700,12800,12900];
+var dataExpenses = [5000,5400,5500,5700,6000,6500,6400,6000,6200,6100,6300,6400,6600,6800,6900,7000,7200,7300,7400,7500,7400,7600,7700,7800,7900,8000,8100,8200,8300,8400];
+var dataProfit = [3000,2800,3300,2800,3000,2800,3300,3100,3200,3400,3500,3500,3500,3600,3300,3500,3500,3600,3600,3800,4200,4200,4200,4200,4300,4400,4400,4500,4500,4500];
+
+var option;
+
+option = {
+    title: {
+        text: 'Monthly Financial Overview',
+        subtext: 'Economics & Finance',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            label: {
+                backgroundColor: '#6a7985'
+            }
+        }
+    },
+    legend: {
+        data: ['Income', 'Expenses', 'Profit'],
+        bottom: 10
+    },
+    color: colors,
+    xAxis: [
+        {
+            type: 'category',
+            boundaryGap: false,
+            data: dataAxis
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value'
+        }
+    ],
+    series: [
+        {
+            name: 'Income',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: dataIncome
+        },
+        {
+            name: 'Expenses',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: dataExpenses
+        },
+        {
+            name: 'Profit',
+            type: 'line',
+            stack: 'Total',
+            label: {
+                show: true,
+                position: 'top'
+            },
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: dataProfit
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

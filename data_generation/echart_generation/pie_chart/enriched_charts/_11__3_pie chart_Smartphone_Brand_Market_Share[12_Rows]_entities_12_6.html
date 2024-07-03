@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var app = {};
+
+option = {
+    title: {
+        text: 'Renewable Energy Sources Contribution',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'item'
+    },
+    legend: {
+        orient: 'vertical',
+        left: 'right',
+        top: 'middle'
+    },
+    color: [
+        '#FFD700', // Gold for Solar
+        '#1E90FF', // Dodger Blue for Wind
+        '#008000', // Green for Hydro
+        '#A0522D', // Sienna for Geothermal
+        '#8B4513', // SaddleBrown for Biomass
+        '#00FFFF'  // Aqua for Tidal
+    ],
+    series: [
+        {
+            name: 'Energy Source',
+            type: 'pie',
+            radius: '65%',
+            center: ['50%', '50%'],
+            data: [
+                { value: 25.6, name: 'Solar' },
+                { value: 20.5, name: 'Wind' },
+                { value: 30.1, name: 'Hydro' },
+                { value: 12.8, name: 'Geothermal' },
+                { value: 10.7, name: 'Biomass' },
+                { value: 0.3, name: 'Tidal' }
+            ],
+            emphasis: {
+                itemStyle: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            },
+            label: {
+                normal: {
+                    formatter: '{b}: {d}%',
+                    position: 'outside'
+                }
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

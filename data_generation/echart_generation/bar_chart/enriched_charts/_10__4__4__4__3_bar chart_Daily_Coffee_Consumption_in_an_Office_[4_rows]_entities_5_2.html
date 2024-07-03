@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+option = {
+    title: {
+        text: 'Health Metrics Across Countries',
+        left: 'center',
+        top: '10'
+    },
+    color: ['#FF5733', '#33FF57', '#3357FF', '#FF33A6'],
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Life Expectancy', 'Obesity Rate', 'Smoking Rate', 'Healthcare Index'],
+        top: '50'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        data: ['USA', 'Canada', 'UK', 'Germany', 'France', 'Japan', 'Australia', 'China', 'India', 'Brazil'],
+        axisTick: {
+            alignWithLabel: true
+        }
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Life Expectancy',
+            type: 'bar',
+            barWidth: '15%',
+            data: [78.5, 82.2, 81.3, 81.1, 82.4, 84.6, 83.0, 76.9, 69.7, 75.7]
+        },
+        {
+            name: 'Obesity Rate',
+            type: 'bar',
+            barWidth: '15%',
+            data: [36.2, 29.4, 27.8, 23.6, 21.6, 4.3, 29.7, 6.2, 3.9, 22.1]
+        },
+        {
+            name: 'Smoking Rate',
+            type: 'bar',
+            barWidth: '15%',
+            data: [17.1, 15.8, 15.5, 24.5, 27.7, 18.4, 14.6, 26.6, 11.2, 10.1]
+        },
+        {
+            name: 'Healthcare Index',
+            type: 'bar',
+            barWidth: '15%',
+            data: [73.2, 74.5, 77.1, 72.6, 70.3, 80.1, 71.9, 65.4, 60.2, 59.6]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

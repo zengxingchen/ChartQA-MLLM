@@ -1,0 +1,163 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Stacked bar chart showing the consumption of different energy types over years.",
+    "title": {
+        "text": "Energy Consumption by Type Over Years",
+        "fontSize": 15,
+        "anchor": "middle",
+        "color": "black"
+    },
+    "width": 500,
+    "height": 300,
+    "data": {
+        "values": [
+            {
+                "Year": 2010,
+                "Natural Gas": 400,
+                "Electricity": 350,
+                "Fuel Oil": 70,
+                "Solar": 2
+            },
+            {
+                "Year": 2011,
+                "Natural Gas": 390,
+                "Electricity": 360,
+                "Fuel Oil": 65,
+                "Solar": 3
+            },
+            {
+                "Year": 2012,
+                "Natural Gas": 380,
+                "Electricity": 370,
+                "Fuel Oil": 60,
+                "Solar": 5
+            },
+            {
+                "Year": 2013,
+                "Natural Gas": 370,
+                "Electricity": 375,
+                "Fuel Oil": 55,
+                "Solar": 8
+            },
+            {
+                "Year": 2014,
+                "Natural Gas": 360,
+                "Electricity": 380,
+                "Fuel Oil": 50,
+                "Solar": 12
+            },
+            {
+                "Year": 2015,
+                "Natural Gas": 350,
+                "Electricity": 390,
+                "Fuel Oil": 45,
+                "Solar": 15
+            },
+            {
+                "Year": 2016,
+                "Natural Gas": 340,
+                "Electricity": 400,
+                "Fuel Oil": 40,
+                "Solar": 18
+            },
+            {
+                "Year": 2017,
+                "Natural Gas": 330,
+                "Electricity": 410,
+                "Fuel Oil": 36,
+                "Solar": 22
+            },
+            {
+                "Year": 2018,
+                "Natural Gas": 320,
+                "Electricity": 420,
+                "Fuel Oil": 32,
+                "Solar": 27
+            },
+            {
+                "Year": 2019,
+                "Natural Gas": 310,
+                "Electricity": 425,
+                "Fuel Oil": 28,
+                "Solar": 33
+            },
+            {
+                "Year": 2020,
+                "Natural Gas": 300,
+                "Electricity": 430,
+                "Fuel Oil": 25,
+                "Solar": 40
+            },
+            {
+                "Year": 2021,
+                "Natural Gas": 295,
+                "Electricity": 435,
+                "Fuel Oil": 22,
+                "Solar": 48
+            },
+            {
+                "Year": 2022,
+                "Natural Gas": 290,
+                "Electricity": 440,
+                "Fuel Oil": 20,
+                "Solar": 55
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Natural Gas",
+                "Electricity",
+                "Fuel Oil",
+                "Solar"
+            ],
+            "as": [
+                "Energy Type",
+                "Amount"
+            ]
+        }
+    ],
+    "mark": "bar",
+    "encoding": {
+        "x": {
+            "field": "Year",
+            "type": "ordinal",
+            "axis": {
+                "labelAngle": -45,
+                "title": "Year"
+            }
+        },
+        "y": {
+            "field": "Amount",
+            "type": "quantitative",
+            "stack": "zero",
+            "axis": {
+                "title": "Energy Consumption (in units)"
+            }
+        },
+        "color": {
+            "field": "Energy Type",
+            "type": "nominal",
+            "scale": {
+                "scheme": "category20"
+            },
+            "title": "Energy Type"
+        },
+        "tooltip": [
+            {
+                "field": "Year",
+                "type": "ordinal"
+            },
+            {
+                "field": "Energy Type",
+                "type": "nominal"
+            },
+            {
+                "field": "Amount",
+                "type": "quantitative",
+                "title": "Energy Consumption (in units)"
+            }
+        ]
+    }
+}

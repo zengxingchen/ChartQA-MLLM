@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, { width: '600', height: '400'});
+var app = {};
+
+var option;
+option = {
+    title: {
+        text: 'Monthly Education Spending by Age Group',
+        left: 'center',
+        top: '10'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Books', 'Courses', 'Tech'],
+        top: '30'
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        data: ['18-24', '25-34', '35-44', '45-54', '55-64', '65+']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Books',
+            type: 'bar',
+            barWidth: '12',
+            data: [150, 100, 70, 50, 30, 20],
+            itemStyle: {
+                color: '#FFA07A'
+            },
+            label: {
+                show: true,
+                position: 'inside'
+            }
+        },
+        {
+            name: 'Courses',
+            type: 'bar',
+            barWidth: '12',
+            data: [180, 240, 300, 190, 140, 100],
+            itemStyle: {
+                color: '#20B2AA'
+            },
+            label: {
+                show: true,
+                position: 'inside'
+            }
+        },
+        {
+            name: 'Tech',
+            type: 'bar',
+            barWidth: '12',
+            data: [200, 220, 260, 180, 160, 120],
+            itemStyle: {
+                color: '#778899'
+            },
+            label: {
+                show: true,
+                position: 'inside'
+            }
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

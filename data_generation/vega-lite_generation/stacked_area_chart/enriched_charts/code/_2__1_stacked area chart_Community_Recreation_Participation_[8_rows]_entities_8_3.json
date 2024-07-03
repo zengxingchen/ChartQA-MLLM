@@ -1,0 +1,219 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": 700,
+    "height": 500,
+    "data": {
+        "values": [
+            {
+                "Year": "2010",
+                "Online Courses": 20,
+                "Workshops": 30,
+                "Webinars": 10,
+                "Conferences": 5,
+                "Seminars": 15,
+                "Certifications": 8
+            },
+            {
+                "Year": "2011",
+                "Online Courses": 25,
+                "Workshops": 35,
+                "Webinars": 15,
+                "Conferences": 10,
+                "Seminars": 20,
+                "Certifications": 12
+            },
+            {
+                "Year": "2012",
+                "Online Courses": 30,
+                "Workshops": 45,
+                "Webinars": 20,
+                "Conferences": 12,
+                "Seminars": 25,
+                "Certifications": 15
+            },
+            {
+                "Year": "2013",
+                "Online Courses": 40,
+                "Workshops": 50,
+                "Webinars": 25,
+                "Conferences": 15,
+                "Seminars": 30,
+                "Certifications": 18
+            },
+            {
+                "Year": "2014",
+                "Online Courses": 45,
+                "Workshops": 60,
+                "Webinars": 30,
+                "Conferences": 20,
+                "Seminars": 35,
+                "Certifications": 22
+            },
+            {
+                "Year": "2015",
+                "Online Courses": 60,
+                "Workshops": 65,
+                "Webinars": 35,
+                "Conferences": 22,
+                "Seminars": 40,
+                "Certifications": 25
+            },
+            {
+                "Year": "2016",
+                "Online Courses": 70,
+                "Workshops": 70,
+                "Webinars": 40,
+                "Conferences": 25,
+                "Seminars": 45,
+                "Certifications": 28
+            },
+            {
+                "Year": "2017",
+                "Online Courses": 80,
+                "Workshops": 75,
+                "Webinars": 45,
+                "Conferences": 27,
+                "Seminars": 50,
+                "Certifications": 32
+            },
+            {
+                "Year": "2018",
+                "Online Courses": 90,
+                "Workshops": 85,
+                "Webinars": 50,
+                "Conferences": 30,
+                "Seminars": 55,
+                "Certifications": 35
+            },
+            {
+                "Year": "2019",
+                "Online Courses": 100,
+                "Workshops": 95,
+                "Webinars": 65,
+                "Conferences": 35,
+                "Seminars": 60,
+                "Certifications": 40
+            },
+            {
+                "Year": "2020",
+                "Online Courses": 120,
+                "Workshops": 100,
+                "Webinars": 70,
+                "Conferences": 40,
+                "Seminars": 65,
+                "Certifications": 45
+            },
+            {
+                "Year": "2021",
+                "Online Courses": 130,
+                "Workshops": 105,
+                "Webinars": 75,
+                "Conferences": 45,
+                "Seminars": 70,
+                "Certifications": 50
+            },
+            {
+                "Year": "2022",
+                "Online Courses": 140,
+                "Workshops": 110,
+                "Webinars": 80,
+                "Conferences": 50,
+                "Seminars": 75,
+                "Certifications": 55
+            }
+        ]
+    },
+    "transform": [
+        {
+            "fold": [
+                "Online Courses",
+                "Workshops",
+                "Webinars",
+                "Conferences",
+                "Seminars",
+                "Certifications"
+            ],
+            "as": [
+                "Education Type",
+                "Participants"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "area",
+        "opacity": 0.6
+    },
+    "encoding": {
+        "x": {
+            "field": "Year",
+            "type": "ordinal",
+            "title": "Year"
+        },
+        "y": {
+            "field": "Participants",
+            "type": "quantitative",
+            "title": "Number of Participants",
+            "stack": "zero"
+        },
+        "color": {
+            "field": "Education Type",
+            "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Online Courses",
+                    "Workshops",
+                    "Webinars",
+                    "Conferences",
+                    "Seminars",
+                    "Certifications"
+                ],
+                "range": [
+                    "#ff0000",
+                    "#ffa500",
+                    "#008000",
+                    "#0000ff",
+                    "#800080",
+                    "#00ced1"
+                ]
+            },
+            "title": "Type of Education"
+        },
+        "tooltip": [
+            {
+                "field": "Education Type",
+                "type": "nominal"
+            },
+            {
+                "field": "Participants",
+                "type": "quantitative",
+                "format": ",.0f"
+            }
+        ]
+    },
+    "title": {
+        "text": "Trends in Online Learning Methods",
+        "fontSize": 20,
+        "subtitle": "A Detailed Look at Participation from 2010 to 2022",
+        "subtitleFontSize": 14,
+        "anchor": "start",
+        "offset": 30,
+        "color": "black"
+    },
+    "config": {
+        "axis": {
+            "labelFontSize": 14,
+            "titleFontSize": 16
+        },
+        "legend": {
+            "labelFontSize": 13,
+            "titleFontSize": 15,
+            "titleLimit": 200,
+            "orient": "top-left"
+        },
+        "style": {
+            "cell": {
+                "stroke": "transparent"
+            }
+        }
+    }
+}

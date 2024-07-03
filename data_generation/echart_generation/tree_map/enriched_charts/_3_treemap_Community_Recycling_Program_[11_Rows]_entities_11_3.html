@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: 800,
+    height: 600
+});
+
+var option;
+myChart.setOption(
+    (option = {
+        title: {
+            text: 'Educational Fields Breakdown',
+            left: 'center',
+            top: '1%'
+        },
+        color: [
+            '#5D93E1', '#FCC44D', '#CA6EAA', '#F1575A', '#5BC49F', '#C7EBFC',
+            '#6E6EFD', '#FFC1E0', '#F1F5B4', '#B690D4', '#FADFA3', '#FF928B',
+            '#D0F4DE', '#D3BCC0', '#9FC2E9', '#FDD1B5', '#FFAA92', '#B2C2A6',
+            '#5D6772', '#BFCBD9', '#D1BA74', '#A5C4D4', '#E2C58B', '#CFC4BD'
+        ],
+        series: [
+            {
+                type: 'treemap',
+                breadcrumb: {
+                    show: false
+                },
+                data: [
+                    {name: 'Online Courses', value: 20000},
+                    {name: 'Mathematics', value: 13000},
+                    {name: 'Science', value: 17000, children: [
+                        {name: 'Physics', value: 5000},
+                        {name: 'Chemistry', value: 5000},
+                        {name: 'Biology', value: 7000}
+                    ]},
+                    {name: 'Technology', value: 15000, children: [
+                        {name: 'AI & Robotics', value: 7000},
+                        {name: 'Computer Science', value: 4000},
+                        {name: 'Software Engineering', value: 4000}
+                    ]},
+                    {name: 'Humanities', value: 8000, children: [
+                        {name: 'History', value: 2000},
+                        {name: 'Philosophy', value: 2000},
+                        {name: 'Arts', value: 2000},
+                        {name: 'Language & Literature', value: 2000}
+                    ]},
+                    {name: 'Health Education', value: 5000, children: [
+                        {name: 'Nutrition', value: 2500},
+                        {name: 'Public Health', value: 2500}
+                    ]},
+                    {name: 'Physical Education', value: 4000, children: [
+                        {name: 'Sports', value: 2000},
+                        {name: 'Dance', value: 2000}
+                    ]},
+                    {name: 'Business Studies', value: 10000, children: [
+                        {name: 'Accounting', value: 5000},
+                        {name: 'Management', value: 5000}
+                    ]},
+                    {name: 'Economics', value: 4000}
+                ]
+            }
+        ]
+    })
+);
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

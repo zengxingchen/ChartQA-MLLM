@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    renderer: 'canvas',
+    useDirtyRect: false,
+    width: 800,
+    height: 600
+});
+var option;
+
+option = {
+    title: {
+        text: 'Decline in Air Quality Over Time',
+        left: 'center',
+        top: 20
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: 'Value: {c}'
+    },
+    legend: {
+        data: ['Air Quality Index'],
+        left: 'right',
+        top: 50
+    },
+    xAxis: {
+        type: 'value',
+        name: 'Month'
+    },
+    yAxis: {
+        type: 'value',
+        name: 'Air Quality Index'
+    },
+    series: [
+        {
+            name: 'Air Quality Index',
+            type: 'scatter',
+            itemStyle: {
+                color: '#FF6347'
+            },
+            data: [
+                [1, 98],
+                [2, 95],
+                [3, 92],
+                [4, 88],
+                [5, 85],
+                [6, 82],
+                [7, 79],
+                [8, 76],
+                [9, 72],
+                [10, 69],
+                [11, 66],
+                [12, 63],
+                [13, 60],
+                [14, 57],
+                [15, 54],
+                [16, 51],
+                [17, 48],
+                [18, 45],
+                [19, 42],
+                [20, 39],
+                [21, 36],
+                [22, 33],
+                [23, 30],
+                [24, 27],
+                [25, 24],
+                [26, 21],
+                [27, 18],
+                [28, 15],
+                [29, 12],
+                [30, 9],
+                [31, 6],
+                [32, 3],
+                [33, 2]
+            ]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

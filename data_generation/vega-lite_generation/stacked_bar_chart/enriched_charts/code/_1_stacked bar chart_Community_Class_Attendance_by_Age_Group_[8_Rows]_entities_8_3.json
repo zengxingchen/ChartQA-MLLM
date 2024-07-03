@@ -1,0 +1,149 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+        "values": [
+            {
+                "Day": "Monday",
+                "Children (5-12)": 60,
+                "Teens (13-19)": 90,
+                "Adults (20-64)": 75,
+                "Seniors (65+)": 30
+            },
+            {
+                "Day": "Tuesday",
+                "Children (5-12)": 55,
+                "Teens (13-19)": 85,
+                "Adults (20-64)": 70,
+                "Seniors (65+)": 35
+            },
+            {
+                "Day": "Wednesday",
+                "Children (5-12)": 50,
+                "Teens (13-19)": 80,
+                "Adults (20-64)": 65,
+                "Seniors (65+)": 25
+            },
+            {
+                "Day": "Thursday",
+                "Children (5-12)": 58,
+                "Teens (13-19)": 88,
+                "Adults (20-64)": 73,
+                "Seniors (65+)": 28
+            },
+            {
+                "Day": "Friday",
+                "Children (5-12)": 65,
+                "Teens (13-19)": 95,
+                "Adults (20-64)": 80,
+                "Seniors (65+)": 45
+            },
+            {
+                "Day": "Saturday",
+                "Children (5-12)": 70,
+                "Teens (13-19)": 100,
+                "Adults (20-64)": 85,
+                "Seniors (65+)": 20
+            },
+            {
+                "Day": "Sunday",
+                "Children (5-12)": 52,
+                "Teens (13-19)": 82,
+                "Adults (20-64)": 77,
+                "Seniors (65+)": 22
+            }
+        ]
+    },
+    "width": 400,
+    "height": 200,
+    "title": {
+        "text": "Daily Active Minutes by Age Group",
+        "subtitle": "A horizontal stacked bar chart showing the average active minutes per day across different age groups.",
+        "subtitleFontStyle": "italic",
+        "subtitleFontSize": 10,
+        "anchor": "start",
+        "frame": "group"
+    },
+    "transform": [
+        {
+            "fold": [
+                "Children (5-12)",
+                "Teens (13-19)",
+                "Adults (20-64)",
+                "Seniors (65+)"
+            ],
+            "as": [
+                "Age Group",
+                "Active Minutes"
+            ]
+        }
+    ],
+    "mark": {
+        "type": "bar",
+        "height": 20
+    },
+    "encoding": {
+        "y": {
+            "field": "Day",
+            "type": "ordinal",
+            "title": "Day of the Week",
+            "axis": {
+                "labelAngle": 0
+            }
+        },
+        "x": {
+            "field": "Active Minutes",
+            "type": "quantitative",
+            "title": "Average Active Minutes",
+            "stack": "zero"
+        },
+        "color": {
+            "field": "Age Group",
+            "type": "nominal",
+            "title": "Age Group",
+            "scale": {
+                "domain": [
+                    "Children (5-12)",
+                    "Teens (13-19)",
+                    "Adults (20-64)",
+                    "Seniors (65+)"
+                ],
+                "range": [
+                    "#4682b4",
+                    "#ffa500",
+                    "#008000",
+                    "#ff6347"
+                ]
+            },
+            "legend": {
+                "orient": "top-left",
+                "titleFontSize": 12,
+                "labelFontSize": 10
+            }
+        },
+        "tooltip": [
+            {
+                "field": "Day",
+                "type": "nominal"
+            },
+            {
+                "field": "Age Group",
+                "type": "nominal",
+                "title": "Age Group"
+            },
+            {
+                "field": "Active Minutes",
+                "type": "quantitative",
+                "title": "Active Minutes"
+            }
+        ]
+    },
+    "config": {
+        "axis": {
+            "titleFontWeight": "normal",
+            "labelFont": "sans-serif"
+        },
+        "bar": {
+            "strokeWidth": 0
+        }
+    }
+}

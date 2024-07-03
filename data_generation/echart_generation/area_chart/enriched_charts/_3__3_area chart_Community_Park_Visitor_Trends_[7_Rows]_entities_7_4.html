@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {
+    width: '800',
+    height: '500'
+});
+var app = {};
+
+var option;
+
+option = {
+    title: {
+        text: 'Economic Trends in 2023',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['Economic Value'],
+        top: '10%'
+    },
+    grid: {
+        top: '20%',
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: [
+            '2023-01-01', '2023-01-02', '2023-01-03', '2023-01-04', '2023-01-05', 
+            '2023-01-06', '2023-01-07', '2023-01-08', '2023-01-09', '2023-01-10', 
+            '2023-01-11', '2023-01-12', '2023-01-13', '2023-01-14', '2023-01-15', 
+            '2023-01-16', '2023-01-17', '2023-01-18', '2023-01-19', '2023-01-20', 
+            '2023-01-21', '2023-01-22', '2023-01-23', '2023-01-24', '2023-01-25', 
+            '2023-01-26', '2023-01-27', '2023-01-28', '2023-01-29', '2023-01-30' 
+        ]
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Economic Value',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [
+                12000, 11895, 11780, 11650, 11530, 11395, 11250, 11120, 11000, 
+                10885, 10770, 10655, 10540, 10430, 10320, 10215, 10110, 10000, 
+                9890, 9785, 9680, 9575, 9470, 9365, 9260, 9155, 9050, 8945, 
+                8835, 8730
+            ],
+            markPoint: {
+                data: [
+                    {type: 'max', name: 'Max Value'},
+                    {type: 'min', name: 'Min Value'}
+                ]
+            },
+            itemStyle: {
+                normal: {
+                    color: '#007bff',
+                    lineStyle: {
+                        color: '#007bff'
+                    }
+                }
+            }
+        }
+    ],
+    color: ['#80CBC4', '#FFAB91']
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

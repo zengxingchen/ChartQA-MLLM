@@ -1,0 +1,124 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "A pie chart representing the distribution of different food categories in a diet.",
+    "title": {
+        "text": "Distribution of Food Categories in a Diet",
+        "fontSize": 16,
+        "font": "Arial",
+        "dy": -190
+    },
+    "height": 400,
+    "width": 400,
+    "padding": 5,
+    "config": {
+        "font": "Arial",
+        "axis": {
+            "domainColor": "#44475a",
+            "tickColor": "#44475a"
+        }
+    },
+    "data": {
+        "values": [
+            {
+                "Category": "Vegetables",
+                "Amount": 500
+            },
+            {
+                "Category": "Fruits",
+                "Amount": 400
+            },
+            {
+                "Category": "Proteins",
+                "Amount": 300
+            },
+            {
+                "Category": "Grains",
+                "Amount": 350
+            },
+            {
+                "Category": "Dairy",
+                "Amount": 200
+            },
+            {
+                "Category": "Fats & Oils",
+                "Amount": 150
+            },
+            {
+                "Category": "Sugars",
+                "Amount": 100
+            },
+            {
+                "Category": "Beverages",
+                "Amount": 250
+            }
+        ]
+    },
+    "mark": {
+        "type": "arc",
+        "tooltip": true
+    },
+    "encoding": {
+        "theta": {
+            "field": "Amount",
+            "type": "quantitative",
+            "stack": true
+        },
+        "color": {
+            "field": "Category",
+            "type": "nominal",
+            "scale": {
+                "range": [
+                    "#FF6F61",
+                    "#6B5B95",
+                    "#88B04B",
+                    "#F7CAC9",
+                    "#92A8D1",
+                    "#955251",
+                    "#B565A7",
+                    "#009B77"
+                ]
+            },
+            "legend": {
+                "direction": "horizontal",
+                "orient": "bottom"
+            }
+        },
+        "opacity": {
+            "value": 0.8
+        }
+    },
+    "layer": [
+        {
+            "mark": {
+                "type": "arc",
+                "outerRadius": 160
+            }
+        },
+        {
+            "transform": [
+                {
+                    "calculate": "datum.Amount + 'g'",
+                    "as": "formattedAmount"
+                }
+            ],
+            "mark": {
+                "type": "text",
+                "radius": 180
+            },
+            "encoding": {
+                "text": {
+                    "field": "formattedAmount",
+                    "type": "nominal"
+                },
+                "theta": {
+                    "field": "Amount",
+                    "type": "quantitative",
+                    "stack": true
+                }
+            }
+        }
+    ],
+    "view": {
+        "stroke": null
+    }
+}

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var app = {};
+
+var data = [
+    {"name":"Smartphones","value":9000},
+    {"name":"Laptops","value":8500},
+    {"name":"Tablets","value":4900},
+    {"name":"Desktops","value":6600},
+    {"name":"Smartwatches","value":3500},
+    {"name":"Gaming Consoles","value":5500},
+    {"name":"Smart Glasses","value":1500},
+    {"name":"VR Headsets","value":3000},
+    {"name":"Wearable Cameras","value":1200},
+    {"name":"Home Automation","value":6700},
+    {"name":"E-Readers","value":3100},
+    {"name":"Portable Monitors","value":2800},
+    {"name":"Fitness Trackers","value":5200},
+    {"name":"IoT Devices","value":7100},
+    {"name":"Drones","value":4000},
+    {"name":"3D Printers","value":2400},
+    {"name":"Robotics","value":3600},
+    {"name":"Wireless Charging","value":4700}
+];
+
+option = {
+    title: {
+        text: 'Market Value of Tech Gadgets',
+        subtext: 'Future Technologies & Society',
+        left: 'center',
+        top: 'top'
+    },
+    color: [
+        "#61a0a8", "#d48265", "#91c7ae", "#749f83", 
+        "#ca8622", "#bda29a", "#6e7074", "#546570", 
+        "#c4ccd3", "#2f4554", "#c23531", "#61a0a8", 
+        "#d48265", "#91c7ae", "#749f83", "#ca8622", 
+        "#bda29a", "#6e7074"
+    ],
+    series: [{
+        type: 'treemap',
+        data: data,
+        label: {
+            show: true,
+            formatter: "{b}: {c}"
+        },
+        upperLabel: {
+            normal: {
+                show: true,
+                height: 30
+            }
+        },
+        itemStyle: {
+            normal: {
+                borderColor: '#fff'
+            }
+        },
+        levels: [
+            {
+                upperLabel: {
+                    normal: {
+                        show: false
+                    }
+                }
+            }
+        ]
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

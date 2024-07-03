@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom, null, {width: 800, height: 600});
+var option;
+
+option = {
+    title: {
+        text: 'Quarterly Revenue of Tech Companies',
+        left: 'center',
+        top: 20
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['Q1', 'Q2', 'Q3', 'Q4'],
+        top: 50
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        data: ['Apple', 'Google', 'Microsoft', 'Amazon', 'Facebook', 'Tesla', 'Netflix', 'Adobe', 'Salesforce', 'IBM'],
+        axisLabel: {
+            rotate: 30,
+            interval: 0
+        }
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: 'Q1',
+            type: 'bar',
+            stack: 'total',
+            barWidth: '30%',
+            itemStyle: {
+                color: '#ff7f50'
+            },
+            data: [90, 85, 80, 75, 70, 65, 60, 55, 50, 45]
+        },
+        {
+            name: 'Q2',
+            type: 'bar',
+            stack: 'total',
+            barWidth: '30%',
+            itemStyle: {
+                color: '#87cefa'
+            },
+            data: [100, 95, 90, 85, 80, 75, 70, 65, 60, 55]
+        },
+        {
+            name: 'Q3',
+            type: 'bar',
+            stack: 'total',
+            barWidth: '30%',
+            itemStyle: {
+                color: '#da70d6'
+            },
+            data: [110, 105, 100, 95, 90, 85, 80, 75, 70, 65]
+        },
+        {
+            name: 'Q4',
+            type: 'bar',
+            stack: 'total',
+            barWidth: '30%',
+            itemStyle: {
+                color: '#32cd32'
+            },
+            data: [120, 115, 110, 105, 100, 95, 90, 85, 80, 75]
+        }
+    ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

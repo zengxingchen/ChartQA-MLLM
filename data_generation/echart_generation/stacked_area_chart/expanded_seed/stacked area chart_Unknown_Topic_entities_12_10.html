@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+        <html lang="en" style="height: 100%">
+        <head>
+        <meta charset="utf-8">
+        <title>ECharts 100% Stacked Bar Chart</title>
+        </head>
+        <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+
+        <script type="text/javascript">
+
+            
+var dom = document.getElementById('container');
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+// Data
+const events = ['Opening Ceremony', 'Day 1', 'Day 2', 'Day 3', 'Day 4', 'Cultural Day', 'Day 5', 'Day 6', 'Day 7', 'Closing Night', 'Fireworks Finale', 'Survey Day'];
+
+const seriesData = {
+    'Food Stalls': [],
+    'Artisan Market': [],
+    'Live Music': [],
+    'Workshops': [],
+    'Parade': [],
+    "Kid's Activities": []
+};
+
+// Populate series data
+const chartData = [
+    {'Event': 'Opening Ceremony', 'Food Stalls': 500, 'Artisan Market': 0, 'Live Music': 300, 'Workshops': 0, 'Parade': 150, "Kid's Activities": 0},
+    {'Event': 'Day 1', 'Food Stalls': 430, 'Artisan Market': 220, 'Live Music': 350, 'Workshops': 100, 'Parade': 0, "Kid's Activities": 180},
+    //... Remaining data
+    {'Event': 'Survey Day', 'Food Stalls': 300, 'Artisan Market': 100, 'Live Music': 200, 'Workshops': 50, 'Parade': 0, "Kid's Activities": 90}
+];
+
+chartData.forEach((dataPoint) => {
+    for (const [key, value] of Object.entries(dataPoint)) {
+        if (key !== 'Event') {
+            seriesData[key].push(value);
+        }
+    }
+});
+
+const series = Object.keys(seriesData).map(key => ({
+    name: key,
+    type: 'line',
+    stack: 'Total',
+    areaStyle: {},
+    emphasis: {
+        focus: 'series'
+    },
+    data: seriesData[key]
+}));
+
+// Configuration
+option = {
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            label: {
+                backgroundColor: '#6a7985'
+            }
+        }
+    },
+    legend: {
+        data: Object.keys(seriesData)
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: events
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: series
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+            window.addEventListener('resize', myChart.resize);
+        </script>
+        </body>
+        </html>

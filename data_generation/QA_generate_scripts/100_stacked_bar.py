@@ -148,9 +148,9 @@ def main(chart_dir, save_dir, table_data_path, max_workers):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('--chart_dir', type=str,
-                        default=r'E:\VIS2024\chart-understanding\data_engine\bench_space_data\diverse_scripts\temp2\overall_dataset\100_stacked_bar_chart')
+                        default=r'100_stacked_bar_chart')
     parser.add_argument('--save_dir', type=str,
-                        default=r'E:\VIS2024\chart-understanding\data_engine\bench_space_data\diverse_scripts\temp2\overall_dataset\100_stacked_bar_chart_QA')
+                        default=r'100_stacked_bar_chart_QA')
     parser.add_argument('--output_file', type=str,
                         default='output.json')
     parser.add_argument('--max_workers', type=int,

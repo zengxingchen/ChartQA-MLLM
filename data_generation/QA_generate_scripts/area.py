@@ -149,12 +149,11 @@ def generate_qa_pairs(args, table_data, task_types):
 
 
 
-def main(chart_dir, save_dir, table_data_path, max_workers):
-    table_data = read_csv_content(table_data_path)
+def main(chart_dir, save_dir, table_dir, max_workers):
     task_types = extract_types_from_template(template)
     chart_list = [f for f in os.listdir(chart_dir) if f.endswith(('.json', '.py', '.html'))]
     args_list = [
-        (read_file_content(os.path.join(chart_dir, chart_name)), chart_name, save_dir, table_data, task_types)
+        (read_file_content(os.path.join(chart_dir, chart_name)), chart_name, save_dir, read_csv_content(os.path.join(table_dir, f"{os.path.splitext(chart_name)[0]}.csv")), task_types)
         for chart_name in chart_list if not os.path.exists(os.path.join(save_dir, f"{os.path.splitext(chart_name)[0]}.json"))
     ]
 
@@ -169,16 +168,16 @@ def main(chart_dir, save_dir, table_data_path, max_workers):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('--chart_dir', type=str,
-                        default=r'E:\VIS2024\chart-understanding\data_engine\bench_space_data\diverse_scripts\temp2\overall_dataset\area_chart')
+                        default=r'area_chart')
     parser.add_argument('--save_dir', type=str,
-                        default=r'E:\VIS2024\chart-understanding\data_engine\bench_space_data\diverse_scripts\temp2\overall_dataset\area_chart_QA')
+                        default=r'area_chart_QA')
     parser.add_argument('--output_file', type=str,
                         default='output.json')
     parser.add_argument('--max_workers', type=int,
                         default=200, help='Number of worker processes')
     parser.add_argument('--multiprocessing', type=bool, default=True)
-    parser.add_argument('--table_data_path', type=str, required=True, help='Path to the table data CSV file.')
+    parser.add_argument('--table_dir', type=str, required=True, help='Path to the table data CSV file.')
 
     args = parser.parse_args()
     os.makedirs(args.save_dir, exist_ok=True)
-    main(chart_dir=args.chart_dir, save_dir=args.save_dir, table_data_path=args.table_data_path, max_workers=args.max_workers)
+    main(chart_dir=args.chart_dir, save_dir=args.save_dir, table_dir=args.table_dir, max_workers=args.max_workers)

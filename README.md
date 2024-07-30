@@ -1,12 +1,21 @@
 # Advancing Multimodal Large Language Models in Chart Question Answering with Visualization-Referenced Instruction Tuning
 Paper Link: https://arxiv.org/abs/2407.20174
+<img width="1429" alt="data-generation-pipeline" src="https://github.com/user-attachments/assets/b59bab9f-26ad-49f2-9197-2ab75d65af79">
 ## Release
 * We have released all the code and datasets used in our paper.
 * The generated data and selected benchmark can be downloaded in the [huggingface link](https://huggingface.co/datasets/lewy666/ChartInstructionData).
 * Our model weights are available at the [huggingface link](https://huggingface.co/lewy666/llava-hr-ChartInstruction/tree/main).
 ## To-dos
 - [ ] Write a walk-through tutorial about this repo.
-- [ ] Need fix: some library paths and relevant file paths may be wrong. 
+- [ ] Need fix: some library paths and relevant file paths may be wrong.
+- [ ] Need fix: potential copyright and metadata issues exist in filtered data.
+
+<details>
+  <summary>Data Gallery</summary>
+<img width="865" alt="chart-gallery-1" src="https://github.com/user-attachments/assets/b1f3a60c-6fcd-4b4d-9cf6-fa950997901f">
+<img width="856" alt="chart-gallery-2" src="https://github.com/user-attachments/assets/f5fa541d-9741-412c-bdfb-2bc1a7a34555">
+
+</details>
 
 ## Evaluation
 You can run our evaluation bash scripts `scripts/*.sh`.

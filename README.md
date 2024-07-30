@@ -1,5 +1,5 @@
 # Advancing Multimodal Large Language Models in Chart Question Answering with Visualization-Referenced Instruction Tuning
-
+Paper Link: https://arxiv.org/abs/2407.20174
 ## Release
 * We have released all the code and datasets used in our paper.
 * The generated data and selected benchmark can be downloaded in the [huggingface link](https://huggingface.co/datasets/lewy666/ChartInstructionData).

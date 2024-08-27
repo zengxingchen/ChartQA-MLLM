@@ -1,4 +1,4 @@
-# Advancing Multimodal Large Language Models in Chart Question Answering with Visualization-Referenced Instruction Tuning
+# LLaVA-Chart: Advancing Multimodal Large Language Models in Chart Question Answering with Visualization-Referenced Instruction Tuning
 Paper Link: https://arxiv.org/abs/2407.20174
 <img width="1429" alt="data-generation-pipeline" src="https://github.com/user-attachments/assets/b59bab9f-26ad-49f2-9197-2ab75d65af79">
 ## Release

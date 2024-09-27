@@ -7,8 +7,6 @@ Paper Link: https://arxiv.org/abs/2407.20174
 * Our model weights are available at the [huggingface link](https://huggingface.co/lewy666/llava-hr-ChartInstruction/tree/main).
 ## To-dos
 - [ ] Write a walk-through tutorial about this repo.
-- [ ] Need fix: some library paths and relevant file paths may be wrong.
-- [ ] Need fix: potential copyright and metadata issues exist in filtered data.
 
 <details>
   <summary>Data Gallery</summary>

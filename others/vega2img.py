@@ -53,8 +53,8 @@ def main(chart_dir, img_dir, multiprocessing):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Process Vega-Lite chart files')
-    parser.add_argument('--chart_dir', type=str, default=r"C:\Users\user\Desktop\新建文件夹", help='Path to the chart directory')
-    parser.add_argument('--img_dir', type=str, default=r'C:\Users\user\Desktop\新建文件夹', help='Path to the image directory')
+    parser.add_argument('--chart_dir', type=str, default=r"", help='Path to the chart directory')
+    parser.add_argument('--img_dir', type=str, default=r'', help='Path to the image directory')
     parser.add_argument('--multiprocessing', type=bool, default=False, help='Whether to use multiprocessing')
     args = parser.parse_args()
     os.makedirs(args.img_dir, exist_ok=True)

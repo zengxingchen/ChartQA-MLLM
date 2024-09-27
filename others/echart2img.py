@@ -14,8 +14,8 @@ import urllib.parse
 from concurrent.futures import ThreadPoolExecutor
 
 # 设置文件路径
-html_folder_path = r'E:\VIS2024\chart-understanding\data_engine\bench_space_data\diverse_scripts\echart_generation\line_chart\reversed_line'  # 替换为存放 HTML 文件的文件夹路径
-output_folder_path = r'E:\VIS2024\chart-understanding\data_engine\bench_space_data\diverse_scripts\echart_generation\line_chart\reversed_line'  # 替换为存放输出图片的文件夹路径
+html_folder_path = r''  # 替换为存放 HTML 文件的文件夹路径
+output_folder_path = r''  # 替换为存放输出图片的文件夹路径
 
 # 确保输出文件夹存在
 os.makedirs(output_folder_path, exist_ok=True)

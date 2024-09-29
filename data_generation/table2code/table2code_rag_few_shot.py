@@ -35,7 +35,7 @@ def main(data_table_dir, seed_dir, save_dir, chart_type, method, max_workers):
 
     csv_file_paths = [os.path.join(data_table_dir, f) for f in os.listdir(data_table_dir) if f.endswith('.csv')]
     all_json_files = [os.path.join(seed_dir, f) for f in os.listdir(seed_dir) if f.endswith('.json')]
-    json_dir = os.path.join(f"{method}_generation", chart_type)
+    json_dir = os.path.join("..", f"{method}_generation", chart_type)
     precomputed_json_path = [os.path.join(json_dir, f) for f in os.listdir(json_dir) if f.endswith('.json')]
     closest_features_info = load_closest_features_info(precomputed_json_path)
     generate_function = get_generator_function(method)
@@ -95,9 +95,9 @@ if __name__ == "__main__":
     parser.add_argument('--multiprocessing', type=bool, default=True)
 
     args = parser.parse_args()
-    args.data_table_dir = os.path.join(f"{args.method}_generation", args.chart_type, args.data_table_dir)
-    args.save_dir = os.path.join(f"{args.method}_generation", args.chart_type, args.save_dir)
-    args.seed_dir = os.path.join(f"{args.method}_generation", args.chart_type, args.seed_dir)
+    args.data_table_dir = os.path.join("..", f"{args.method}_generation", args.chart_type, args.data_table_dir)
+    args.save_dir = os.path.join("..", f"{args.method}_generation", args.chart_type, args.save_dir)
+    args.seed_dir = os.path.join("..", f"{args.method}_generation", args.chart_type, args.seed_dir)
 
 
     os.makedirs(args.save_dir, exist_ok=True)

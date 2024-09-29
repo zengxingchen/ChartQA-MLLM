@@ -64,11 +64,11 @@ if __name__ == "__main__":
     
     args = parser.parse_args()
     if args.method == "vega-lite":
-        args.data_dir = os.path.join(f"{args.method}_generation", args.chart_type, args.data_dir,f"code")
-        args.save_dir = os.path.join(f"{args.method}_generation", args.chart_type, args.save_dir)
+        args.data_dir = os.path.join("..", f"{args.method}_generation", args.chart_type, args.data_dir,f"code")
+        args.save_dir = os.path.join("..",f"{args.method}_generation", args.chart_type, args.save_dir)
     else:
-        args.data_dir = os.path.join(f"{args.method}_generation", args.chart_type, args.data_dir)
-        args.save_dir = os.path.join(f"{args.method}_generation", args.chart_type, args.save_dir)
+        args.data_dir = os.path.join("..",f"{args.method}_generation", args.chart_type, args.data_dir)
+        args.save_dir = os.path.join("..",f"{args.method}_generation", args.chart_type, args.save_dir)
     
     os.makedirs(args.save_dir, exist_ok=True)
     main(data_dir=args.data_dir, save_dir=args.save_dir, chart_type=args.chart_type, method=args.method, max_workers=args.max_workers)

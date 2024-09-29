@@ -2,6 +2,7 @@
 Paper Link: https://arxiv.org/abs/2407.20174
 <img width="1429" alt="data-generation-pipeline" src="https://github.com/user-attachments/assets/b59bab9f-26ad-49f2-9197-2ab75d65af79">
 ## Release
+* 🔥 A more well-organized version of the chart generation pipeline is now available in [this new repository]((https://github.com/zengxingchen/ChartGeneration)).
 * We have released all the code and datasets used in our paper.
 * The generated data and selected benchmark can be downloaded in the [huggingface link](https://huggingface.co/datasets/lewy666/ChartInstructionData).
 * Our model weights are available at the [huggingface link](https://huggingface.co/lewy666/llava-hr-ChartInstruction/tree/main).

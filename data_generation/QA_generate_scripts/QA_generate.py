@@ -21,14 +21,14 @@ def read_file_content(file_path):
 # def generate_qa_pairs(args, table_data, task_types):
 #     spec, chart_name, save_dir = args
 def generate_qa_pairs(args):
-    spec, chart_name, save_dir, table_data, task_types = args
-    template = get_template(chart_name)
+    spec, chart_name, save_dir, table_data, task_types, chart_type= args
+    template = get_template(chart_type)
 
     client = OpenAI(base_url='',
         api_key='')
-    question = f''' Here is a {chart_name} presented by {task_types} and table data {table_data}.{spec}
+    question = f''' Here is a {chart_type} presented by {task_types} and table data {table_data}.{spec}
     Please generate questions about the chart in different task types.
-    The task types are {task_types}.
+    The task types are {chart_type}.
     You should imagine that you are looking at the image presented by the code, not the code itself.
     Remember in your answer, what is given is only an image of chart and you answer based on the image.
     The value and label are ground truth of your question, so make sure the answer is correct.
@@ -39,12 +39,12 @@ def generate_qa_pairs(args):
     '''
 
     messages = [
-        {"role": "system", "content": f"You are a highly intelligent AI familiar with data visualization and {chart_name}."},
+        {"role": "system", "content": f"You are a highly intelligent AI familiar with data visualization and {task_types}."},
         {"role": "user", "content": f"{question}"}
     ]
     try:
         response = client.chat.completions.create(
-            model="gpt-4o",
+            model="gpt-4o-mini",
             messages=messages
         )
         print(response)
@@ -71,23 +71,17 @@ def generate_qa_pairs(args):
 
 
 
-def main(method, chart_dir, save_dir, table_dir, max_workers):
+def main(method, chart_type, chart_dir, save_dir, table_dir, max_workers):
     task_types = method
     chart_list = [f for f in os.listdir(chart_dir) if f.endswith(('.json', '.py', '.html'))]
-    # args_list = [
-    #     (read_file_content(os.path.join(chart_dir, chart_name)),
-    #      chart_name,
-    #      save_dir,
-    #      read_csv_content(os.path.join(table_dir, f"{os.path.splitext(chart_name)[0]}.csv")),
-    #      task_types)
-    #     for chart_name in chart_list if not os.path.exists(os.path.join(save_dir, f"{os.path.splitext(chart_name)[0]}.json"))
-    # ]
+
     args_list = [
         (read_file_content(os.path.join(chart_dir, chart_name)),
          chart_name,
          save_dir,
          read_csv_content(os.path.join(table_dir, f"{os.path.splitext(chart_name)[0]}.csv")),
-         task_types)
+         task_types,
+         chart_type)
         for chart_name in chart_list if not os.path.exists(os.path.join(save_dir, f"{os.path.splitext(chart_name)[0]}.json"))
     ]
 
@@ -103,8 +97,9 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('--method', type=str, required=True,
                     help='Type of method (e.g., matplot, echart, seaborn, etc.)')
-    parser.add_argument('--chart_dir', type=str,
-                        default=r'100_stacked_bar_chart')
+    parser.add_argument('--chart_type', type=str, required=True,
+                    help='Type of method (e.g., bar_chart, line_chart, etc.)')
+    parser.add_argument('--chart_dir', type=str,required=True)
     parser.add_argument('--save_dir', type=str,
                         default=r'100_stacked_bar_chart_QA')
     parser.add_argument('--output_file', type=str,
@@ -116,5 +111,4 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
     os.makedirs(args.save_dir, exist_ok=True)
-    # os.makedirs(args.chart_dir, exist_ok=True)
-    main(method=args.method, chart_dir=args.chart_dir, save_dir=args.save_dir, table_dir=args.table_dir, max_workers=args.max_workers)
+    main(method=args.method, chart_type=args.chart_type, chart_dir=args.chart_dir, save_dir=args.save_dir, table_dir=args.table_dir, max_workers=args.max_workers)

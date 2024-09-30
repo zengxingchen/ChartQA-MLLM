@@ -5,65 +5,11 @@ import re
 import argparse
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from tqdm import tqdm
+from template import get_template
 
 def read_csv_content(file_path):
     with open(file_path, 'r', encoding='utf-8') as file:
         return file.read()
-
-def extract_types_from_template(template):
-    matches = re.findall(r'"type_of_question": "(.*?)"', template)
-    return ", ".join(matches)
-
-
-template = '''
-```json
-[
-    {
-        "from": "human",
-        "type_of_question": "Data Retrieval",
-        "value": "What was the percentage of Books sold in 1990?."
-    },
-    {
-        "from": "gpt",
-        "value": "Looking at the chart, the percentage of Books sold in 1990 can be found by locating the bar representing Books for the year 1990. The Books segment is the second section of the stacked bar and is colored in red. According to the visual encoding, the percentage for Books in 1990 is 20%.",
-        "label": "20%"
-    },
-    {
-        "from": "human",
-        "type_of_question": "Find Extremum",
-        "value": "In which year was the percentage of fiction sold the highest?"
-    },
-    {
-        "from": "gpt",
-        "value": "To determine the year when the percentage of fiction sold was the highest, we need to look at the yellow segments of the stacked bars across all the years. The highest yellow segment is in 1992, where the percentage is 32%. Therefore, the year with the highest percentage of fiction sold is 1992.",
-        "label": "1992"
-    },
-    {
-        "from": "human",
-        "type_of_question": "Make Comparisons",
-        "value": "Compare the percentage of cars sold between 2015 and 2023."
-    },
-    {
-        "from": "gpt",
-        "value": "To compare the percentage of cars sold between 2015 and 2023, we examine the orange segments in the stacked bars for those years. In 2015, the percentage for cars is 10%, while in 2023, it is 15%. Therefore, the percentage of cars sold increased from 10% in 2015 to 15% in 2023.",
-        "label": "Increase"
-    }
-]
-```
-'''
-
-
-def get_chart_type(file_name):
-    if file_name.startswith('vl_'):
-        return 'vega-lite'
-    elif file_name.startswith('echart_'):
-        return 'echart'
-    elif file_name.startswith('matplot_'):
-        return 'matplotlib'
-    elif file_name.startswith('seaborn_'):
-        return 'seaborn'
-    else:
-        return 'unknown'
 
 def read_file_content(file_path):
     with open(file_path, 'r') as file:
@@ -72,19 +18,17 @@ def read_file_content(file_path):
         else:
             return file.read()
 
+# def generate_qa_pairs(args, table_data, task_types):
+#     spec, chart_name, save_dir = args
+def generate_qa_pairs(args):
+    spec, chart_name, save_dir, table_data, task_types, chart_type= args
+    template = get_template(chart_type)
 
-def generate_qa_pairs(args, table_data, task_types):
-    spec, chart_name, save_dir = args
-
-    chart_type = get_chart_type(chart_name)
-
-    # client = OpenAI(base_url='',
-    #     api_key='')
     client = OpenAI(base_url='',
         api_key='')
-    question = f''' Here is a percentage stacked bar chart presented by {chart_type} and table data {table_data}.{spec}
+    question = f''' Here is a {chart_type} presented by {task_types} and table data {table_data}.{spec}
     Please generate questions about the chart in different task types.
-    The task types are {task_types}.
+    The task types are {chart_type}.
     You should imagine that you are looking at the image presented by the code, not the code itself.
     Remember in your answer, what is given is only an image of chart and you answer based on the image.
     The value and label are ground truth of your question, so make sure the answer is correct.
@@ -95,13 +39,12 @@ def generate_qa_pairs(args, table_data, task_types):
     '''
 
     messages = [
-        {"role": "system", "content": f"You are a highly intelligent AI familiar with data visualization and {chart_type}."},
+        {"role": "system", "content": f"You are a highly intelligent AI familiar with data visualization and {task_types}."},
         {"role": "user", "content": f"{question}"}
     ]
     try:
         response = client.chat.completions.create(
-            # model="gpt-3.5-turbo-16k",
-            model="gpt-4o",
+            model="gpt-4o-mini",
             messages=messages
         )
         print(response)
@@ -128,11 +71,17 @@ def generate_qa_pairs(args, table_data, task_types):
 
 
 
-def main(chart_dir, save_dir, table_dir, max_workers):
-    task_types = extract_types_from_template(template)
+def main(method, chart_type, chart_dir, save_dir, table_dir, max_workers):
+    task_types = method
     chart_list = [f for f in os.listdir(chart_dir) if f.endswith(('.json', '.py', '.html'))]
+
     args_list = [
-        (read_file_content(os.path.join(chart_dir, chart_name)), chart_name, save_dir, read_csv_content(os.path.join(table_dir, f"{os.path.splitext(chart_name)[0]}.csv")), task_types)
+        (read_file_content(os.path.join(chart_dir, chart_name)),
+         chart_name,
+         save_dir,
+         read_csv_content(os.path.join(table_dir, f"{os.path.splitext(chart_name)[0]}.csv")),
+         task_types,
+         chart_type)
         for chart_name in chart_list if not os.path.exists(os.path.join(save_dir, f"{os.path.splitext(chart_name)[0]}.json"))
     ]
 
@@ -146,8 +95,11 @@ def main(chart_dir, save_dir, table_dir, max_workers):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument('--chart_dir', type=str,
-                        default=r'100_stacked_bar_chart')
+    parser.add_argument('--method', type=str, required=True,
+                    help='Type of method (e.g., matplot, echart, seaborn, etc.)')
+    parser.add_argument('--chart_type', type=str, required=True,
+                    help='Type of method (e.g., bar_chart, line_chart, etc.)')
+    parser.add_argument('--chart_dir', type=str,required=True)
     parser.add_argument('--save_dir', type=str,
                         default=r'100_stacked_bar_chart_QA')
     parser.add_argument('--output_file', type=str,
@@ -159,4 +111,4 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
     os.makedirs(args.save_dir, exist_ok=True)
-    main(chart_dir=args.chart_dir, save_dir=args.save_dir, table_dir=args.table_dir, max_workers=args.max_workers)
+    main(method=args.method, chart_type=args.chart_type, chart_dir=args.chart_dir, save_dir=args.save_dir, table_dir=args.table_dir, max_workers=args.max_workers)

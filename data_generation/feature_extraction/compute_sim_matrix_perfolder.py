@@ -49,7 +49,6 @@ def load_features_to_matrix(feature_folder, max_length):
 def compare_and_save_similarities(feature_folder_1, feature_folder_2, max_length, output_path):
     matrix_1, names_1 = load_features_to_matrix(feature_folder_1, max_length)
     matrix_2, names_2 = load_features_to_matrix(feature_folder_2, max_length)
-    # 清理矩阵中的 NaN 和无穷大值
     matrix_1 = clean_matrix(matrix_1)
     matrix_2 = clean_matrix(matrix_2)
     

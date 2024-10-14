@@ -39,11 +39,17 @@ def load_features_to_matrix(feature_folder, max_length):
     vectors = []
     filenames = []
     for json_file in glob.glob(os.path.join(feature_folder, '*.json')):
-        with open(json_file, 'r') as f:
-            data = json.load(f)
-        vector = feature_dict_to_vector(data['df_field_level_features'], max_length)
-        vectors.append(vector)
-        filenames.append(os.path.basename(json_file))
+        try:
+            with open(json_file, 'r') as f:
+                data = json.load(f)
+            vector = feature_dict_to_vector(data['df_field_level_features'], max_length)
+            vectors.append(vector)
+            filenames.append(os.path.basename(json_file))
+        except json.JSONDecodeError as e:
+            print(f"JSONDecodeError in file {json_file}: {e}")
+        except Exception as e:
+            print(f"Unexpected error with file {json_file}: {e}")
+
     return np.array(vectors), filenames
 
 def compare_and_save_similarities(feature_folder_1, feature_folder_2, max_length, output_path):
@@ -60,7 +66,9 @@ def compare_and_save_similarities(feature_folder_1, feature_folder_2, max_length
         # Initialize BallTree with matrix_2
         tree = BallTree(matrix_2)
         # Query the BallTree for the 3 nearest neighbors of each vector in matrix_1
-        distances, indices = tree.query(matrix_1, k=3)
+        k = min(3, len(matrix_2))
+        # Query the BallTree for the k nearest neighbors of each vector in matrix_1
+        distances, indices = tree.query(matrix_1, k=k)
 
         similarities_record = {}
         for i, name_1 in enumerate(names_1):

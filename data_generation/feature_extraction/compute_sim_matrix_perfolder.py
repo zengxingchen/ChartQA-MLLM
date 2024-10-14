@@ -84,7 +84,7 @@ def compare_and_save_similarities(feature_folder_1, feature_folder_2, max_length
 
 def main():
     base_dir_path = r'..\diverse_scripts\seaborn_generation'
-    max_length = 2025  # 假定已知的最大长度
+    max_length = 2025  
     for sub_dir in os.listdir(base_dir_path):
         sub_dir_path = os.path.join(base_dir_path, sub_dir)
         if os.path.isdir(sub_dir_path):

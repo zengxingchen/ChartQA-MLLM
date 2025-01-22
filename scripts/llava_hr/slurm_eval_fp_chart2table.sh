@@ -36,7 +36,7 @@ run_evaluation() {
     # for pretrained and full param finetuned models
 
     for IDX in $(seq 0 $((CHUNKS-1))); do
-        CUDA_VISIBLE_DEVICES=${GPULIST[$IDX]} python  -m llava_hr.eval.model_vqa_loader_Chart2Table \
+        CUDA_VISIBLE_DEVICES=${GPULIST[$IDX]} python -m model.llava_hr.eval.model_vqa_loader_Chart2Table \
             --model-path  $MODEL_PATH\
             --question-file $question_file \
             --image-folder ./playground/eval/chartqa/test/png \

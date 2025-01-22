@@ -34,7 +34,7 @@ run_evaluation() {
 
 
     for IDX in $(seq 0 $((CHUNKS-1))); do
-        CUDA_VISIBLE_DEVICES=${GPULIST[$IDX]} python  -m llava_hr.eval.model_vqa_loader_ChartQA \
+        CUDA_VISIBLE_DEVICES=${GPULIST[$IDX]} python  -m model.llava_hr.eval.model_vqa_loader_ChartQA \
             --model-path  $MODEL_PATH\
             --question-file $question_file \
             --image-folder ./playground/eval/chartqa/test/png \

@@ -34,7 +34,7 @@ export WANDB_NAME=llava-hr-x-13b-chart
 DATA_PATH='./playground/data/llava665K_vis467K.json'
 
 
-deepspeed --hostfile hostfile.txt --master_addr=$MASTER_ADDR  --master_port=$MASTER_PORT llava_hr/train/train_mem.py \
+deepspeed --hostfile hostfile.txt --master_addr=$MASTER_ADDR  --master_port=$MASTER_PORT model.llava_hr/train/train_mem.py \
     --deepspeed ./scripts/zero3.json \
     --model_name_or_path ~/projects/LLaVA/models/vicuna-13b-v1.5\
     --version v1 \
